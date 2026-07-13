@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TuIAlista — Mi panel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{
+    --steel-900:#0f1922;--steel-800:#16242f;--steel-700:#1f3543;--steel-600:#2c4a5c;
+    --paper:#f5f6f4;--paper-2:#eceee9;--ink:#0f1922;--muted:#5a6b73;
+    --signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2;--ok:#1d9e75;--warn:#ba7517;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper-2);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;letter-spacing:-.02em}
+
+  .shell{display:grid;grid-template-columns:248px 1fr;min-height:100vh}
+
+  /* ── SIDEBAR ── */
+  .side{background:var(--steel-900);color:#9fb0b8;padding:24px 18px;display:flex;flex-direction:column;position:sticky;top:0;height:100vh}
+  .side .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;color:var(--paper);display:flex;align-items:center;gap:8px;margin-bottom:32px;padding:0 8px}
+  .side .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal);box-shadow:0 0 0 3px rgba(232,130,30,.2)}
+  .side .logo b{color:var(--signal)}
+  .nav-item{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:9px;color:#9fb0b8;text-decoration:none;font-size:14.5px;font-weight:500;margin-bottom:4px;transition:.15s;cursor:pointer;user-select:none}
+  .nav-item:hover{background:var(--steel-700);color:var(--paper)}
+  .nav-item.active{background:var(--steel-700);color:var(--paper)}
+  .nav-item .ti{font-size:19px;flex-shrink:0}
+  .side .foot{margin-top:auto;padding:14px 8px 0;border-top:1px solid var(--steel-700)}
+  .user-chip{display:flex;align-items:center;gap:10px;font-size:13px}
+  .user-chip .av{width:34px;height:34px;border-radius:50%;background:var(--steel-600);color:var(--paper);display:flex;align-items:center;justify-content:center;font-weight:500;font-size:13px;flex-shrink:0}
+
+  /* ── MAIN ── */
+  .main{padding:30px 38px;overflow-x:hidden;min-height:100vh}
+  .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:30px;flex-wrap:wrap;gap:12px}
+  .topbar h1{font-size:26px;font-weight:700}
+  .topbar .right{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--muted)}
+  .locale-btn{display:flex;align-items:center;gap:6px;border:1px solid var(--line);padding:7px 12px;border-radius:8px;background:var(--paper);cursor:pointer;font-size:13px;font-family:'Inter',sans-serif;color:var(--muted)}
+  .back-link{font-size:13px;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:5px}
+  .back-link:hover{color:var(--ink)}
+  /* ── Language switcher (premium) ── */
+  .lang-select{position:relative;display:inline-flex;align-items:center}
+  .lang-select > .ti-world{position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:16px;line-height:1;color:var(--muted);pointer-events:none;transition:color .18s ease}
+  .lang-select::after{content:"";position:absolute;right:12px;top:50%;width:7px;height:7px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:translateY(-65%) rotate(45deg);pointer-events:none;transition:border-color .18s ease}
+  #lang-switcher{appearance:none;-webkit-appearance:none;-moz-appearance:none;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;letter-spacing:.1px;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:8px 34px;cursor:pointer;transition:border-color .18s ease,box-shadow .18s ease}
+  #lang-switcher:hover{border-color:var(--signal)}
+  #lang-switcher:focus{outline:none;border-color:var(--signal);box-shadow:0 0 0 3px rgba(232,130,30,.15)}
+  .lang-select:hover > .ti-world,.lang-select:focus-within > .ti-world{color:var(--signal)}
+  .lang-select:hover::after,.lang-select:focus-within::after{border-color:var(--signal)}
+  #lang-switcher option{font-family:'Inter',sans-serif;color:var(--ink);background:#fff}
+
+  /* ── SECTIONS ── */
+  .sec-content{display:none}
+  .sec-content.active{display:block}
+
+  /* ── METRICS ── */
+  .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:30px}
+  .metric{background:var(--paper);border:1px solid var(--line);border-radius:13px;padding:18px}
+  .metric .lbl{font-size:12.5px;color:var(--muted);margin-bottom:6px;display:flex;align-items:center;gap:6px}
+  .metric .val{font-family:'Space Grotesk';font-size:27px;font-weight:500}
+  .metric .val small{font-size:14px;color:var(--muted);font-weight:400}
+  .metrics-3{grid-template-columns:repeat(3,1fr)}
+
+  /* ── SEC LABEL ── */
+  .sec-label{font-size:13px;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:.05em;margin-bottom:14px}
+
+  /* ── AGENT CARDS (Mis agentes) ── */
+  .agents{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-bottom:34px}
+  .acard{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:22px;transition:.15s}
+  .acard.trial{border-color:var(--warn)}
+  .acard-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px}
+  .acard-ico{width:42px;height:42px;border-radius:10px;background:rgba(44,74,92,.10);border:1px solid var(--line);color:var(--steel-700);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;transition:.18s}
+  .acard:hover .acard-ico{background:rgba(232,130,30,.08);border-color:rgba(232,130,30,.32);color:var(--signal-dim)}
+  .pill{font-family:'JetBrains Mono';font-size:11px;padding:5px 10px;border-radius:6px;font-weight:500;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+  .pill.ok{background:rgba(29,158,117,.13);color:#0f6e56}
+  .pill.trial{background:rgba(186,117,23,.14);color:#854f0b}
+  .acard h3{font-size:17px;font-weight:500;margin-bottom:14px}
+  .acard table{width:100%;font-size:13.5px;margin-bottom:16px;border-collapse:collapse}
+  .acard td{padding:5px 0;color:var(--muted);vertical-align:middle}
+  .acard td.v{text-align:right;color:var(--ink);font-family:'JetBrains Mono';font-size:12.5px}
+  .acard .acts{display:flex;gap:9px}
+
+  /* ── BUTTONS ── */
+  .btn{font-family:'Space Grotesk';font-weight:500;font-size:13.5px;padding:9px 16px;border-radius:8px;border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:.15s;justify-content:center}
+  .btn-flex{flex:1}
+  .btn-solid{background:var(--steel-900);color:var(--paper)}
+  .btn-solid:hover{background:var(--steel-700)}
+  .btn-signal{background:var(--signal);color:#1a1206}
+  .btn-signal:hover{background:var(--signal-dim)}
+  .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--steel-600)}
+  .btn-sm{font-size:12.5px;padding:7px 13px}
+
+  /* ── MINI CATALOG (in Mis agentes) ── */
+  .catalog-mini-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:13px;margin-bottom:8px}
+  .cat-mini{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:18px;text-align:center;transition:.18s;cursor:pointer;display:flex;flex-direction:column;align-items:center}
+  .cat-mini:hover{border-color:var(--signal);transform:translateY(-2px);box-shadow:0 4px 14px rgba(0,0,0,.07)}
+  .cat-mini .ti{font-size:24px;color:var(--steel-700);margin-bottom:9px;transition:.15s}
+  .cat-mini:hover .ti{color:var(--signal-dim)}
+  .cat-mini.premium .ti{color:var(--signal)}
+  .cat-mini h4{font-size:14px;font-weight:500;margin-bottom:5px;line-height:1.35}
+  .cat-mini .p{font-family:'JetBrains Mono';font-size:11.5px;color:var(--muted)}
+  .cat-mini.premium .p{color:var(--signal-dim);font-weight:500}
+  .cat-mini .add-badge{margin-top:10px;font-size:11px;color:var(--signal);font-weight:500;display:flex;align-items:center;gap:4px}
+  .catalog-cta{text-align:center;margin-top:16px;font-size:13.5px;color:var(--muted)}
+  .catalog-cta a{color:var(--signal);text-decoration:none;font-weight:500}
+  .catalog-cta a:hover{text-decoration:underline}
+
+  /* ── STORE CATALOG (full section) ── */
+  .store-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+  .store-card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:22px;transition:.18s;display:flex;flex-direction:column}
+  .store-card:hover{border-color:rgba(44,74,92,.35);box-shadow:0 4px 18px rgba(0,0,0,.07)}
+  .store-card.premium{border-color:rgba(232,130,30,.35);background:linear-gradient(160deg,rgba(232,130,30,.04),transparent)}
+  .store-card.owned{border-color:rgba(29,158,117,.35);background:rgba(29,158,117,.03)}
+  .store-card-head{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+  .store-ico{width:40px;height:40px;border-radius:10px;background:rgba(44,74,92,.10);border:1px solid var(--line);color:var(--steel-700);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;transition:.18s}
+  .store-card:hover .store-ico{background:rgba(232,130,30,.08);border-color:rgba(232,130,30,.32);color:var(--signal-dim)}
+  .store-card.premium .store-ico{background:rgba(232,130,30,.12);border-color:rgba(232,130,30,.38);color:var(--signal)}
+  .store-card.owned .store-ico{background:rgba(29,158,117,.10);border-color:rgba(29,158,117,.3);color:var(--ok)}
+  .store-card-name{font-family:'Space Grotesk';font-size:16px;font-weight:500}
+  .store-card-price{font-family:'JetBrains Mono';font-size:12px;color:var(--muted);margin-top:2px}
+  .store-card.premium .store-card-price{color:var(--signal-dim);font-weight:500}
+  .store-card p{font-size:13.5px;color:var(--muted);line-height:1.55;flex:1;margin-bottom:16px}
+  .store-card .acts{display:flex;gap:8px;margin-top:auto}
+  .owned-badge{font-family:'JetBrains Mono';font-size:11px;padding:4px 10px;border-radius:6px;background:rgba(29,158,117,.13);color:#0f6e56;display:inline-flex;align-items:center;gap:5px;align-self:flex-start;margin-bottom:8px}
+
+  /* ── BILLING ── */
+  .billing-layout{display:grid;grid-template-columns:1fr 320px;gap:22px;align-items:start}
+  .card-box{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:24px;margin-bottom:22px}
+  .card-box h3{font-size:16px;font-weight:500;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+  .card-box h3 .ti{font-size:17px;color:var(--muted)}
+  .billing-table{width:100%;border-collapse:collapse;font-size:13.5px}
+  .billing-table th{text-align:left;font-size:12px;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:.04em;padding:0 0 10px;border-bottom:1px solid var(--line)}
+  .billing-table td{padding:12px 0;border-bottom:1px solid var(--line);vertical-align:middle;color:var(--ink)}
+  .billing-table tr:last-child td{border-bottom:none}
+  .billing-table td.mono{font-family:'JetBrains Mono';font-size:12.5px}
+  .billing-table td.right{text-align:right}
+  .payment-method{display:flex;align-items:center;gap:14px;padding:16px;background:var(--paper-2);border:1px solid var(--line);border-radius:10px;margin-bottom:16px}
+  .card-brand{width:44px;height:30px;border-radius:6px;background:var(--steel-800);display:flex;align-items:center;justify-content:center;color:var(--paper);font-size:13px;flex-shrink:0}
+  .card-info{flex:1}
+  .card-info .num{font-family:'JetBrains Mono';font-size:13.5px;font-weight:500}
+  .card-info .exp{font-size:12px;color:var(--muted)}
+  .next-charge{background:rgba(44,74,92,.06);border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:16px}
+  .next-charge .row{display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:6px}
+  .next-charge .row:last-child{margin-bottom:0;font-weight:500}
+  .next-charge .row span:last-child{font-family:'JetBrains Mono';font-size:13px}
+
+  /* ── LICENSES ── */
+  .lic-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+  .lic-card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:22px}
+  .lic-card.trial{border-color:var(--warn)}
+  .lic-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+  .lic-ico-wrap{display:flex;align-items:center;gap:12px}
+  .lic-ico{width:38px;height:38px;border-radius:9px;background:rgba(44,74,92,.10);border:1px solid var(--line);color:var(--steel-700);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+  .lic-name{font-family:'Space Grotesk';font-size:15px;font-weight:500}
+  .lic-table{width:100%;font-size:13.5px;margin-bottom:16px;border-collapse:collapse}
+  .lic-table td{padding:5px 0;color:var(--muted);vertical-align:middle}
+  .lic-table td.v{text-align:right;color:var(--ink);font-family:'JetBrains Mono';font-size:12px}
+  .lic-key{display:flex;align-items:center;gap:6px}
+  .lic-key .masked{color:var(--steel-600)}
+  .copy-btn{background:none;border:1px solid var(--line);border-radius:6px;padding:3px 8px;font-size:11px;cursor:pointer;color:var(--muted);font-family:'JetBrains Mono';transition:.15s;display:inline-flex;align-items:center;gap:4px}
+  .copy-btn:hover{border-color:var(--steel-600);color:var(--ink)}
+  .copy-btn.copied{border-color:var(--ok);color:var(--ok)}
+  .lic-acts{display:flex;gap:9px}
+
+  /* ── SETTINGS ── */
+  .settings-layout{display:grid;grid-template-columns:1fr 300px;gap:22px;align-items:start}
+  .form-group{margin-bottom:18px}
+  .form-group label{display:block;font-size:13px;font-weight:500;color:var(--ink);margin-bottom:6px}
+  .form-group input,.form-group select{width:100%;padding:9px 13px;border:1px solid var(--line);border-radius:8px;font-size:14px;font-family:'Inter',sans-serif;background:var(--paper);color:var(--ink);transition:.15s}
+  .form-group input:focus,.form-group select:focus{outline:none;border-color:var(--steel-600);box-shadow:0 0 0 3px rgba(44,74,92,.08)}
+  .form-group input[type="password"]{font-family:'JetBrains Mono';letter-spacing:.08em}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .settings-save{display:flex;align-items:center;gap:12px;margin-top:6px}
+  .save-hint{font-size:12.5px;color:var(--muted)}
+
+  /* Toast */
+  .toast{position:fixed;bottom:28px;right:28px;background:var(--steel-800);color:var(--paper);font-size:13.5px;padding:12px 20px;border-radius:10px;display:flex;align-items:center;gap:10px;box-shadow:0 6px 24px rgba(0,0,0,.22);opacity:0;transform:translateY(10px);transition:.25s;pointer-events:none;z-index:999}
+  .toast.show{opacity:1;transform:translateY(0)}
+  .toast .ti{color:var(--ok);font-size:16px}
+
+  /* Empty state */
+  .empty-state{text-align:center;padding:60px 24px;color:var(--muted)}
+  .empty-state .ti{font-size:44px;color:var(--line);margin-bottom:14px;display:block}
+  .empty-state h3{font-size:18px;font-weight:500;color:var(--ink);margin-bottom:8px}
+  .empty-state p{font-size:14px;line-height:1.6;max-width:320px;margin:0 auto 20px}
+
+  /* Toggle switch */
+  .toggle-list{display:flex;flex-direction:column;gap:0}
+  .toggle-row{display:flex;align-items:center;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--line)}
+  .toggle-row:last-child{border-bottom:none}
+  .toggle-label{font-size:14px}
+  .toggle-label small{display:block;font-size:12px;color:var(--muted);margin-top:1px}
+  .toggle{position:relative;width:38px;height:21px;flex-shrink:0}
+  .toggle input{opacity:0;width:0;height:0}
+  .toggle-track{position:absolute;inset:0;border-radius:21px;background:var(--line);transition:.2s;cursor:pointer}
+  .toggle input:checked+.toggle-track{background:var(--ok)}
+  .toggle-track::before{content:'';position:absolute;left:3px;top:3px;width:15px;height:15px;border-radius:50%;background:var(--paper);transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+  .toggle input:checked+.toggle-track::before{transform:translateX(17px)}
+  .danger-zone{margin-top:8px;padding:14px;background:rgba(186,117,23,.06);border:1px solid rgba(186,117,23,.25);border-radius:10px;font-size:13px;color:var(--muted)}
+  .danger-zone a{color:var(--signal-dim);cursor:pointer;font-weight:500}
+
+  /* Responsive */
+  @media(max-width:1100px){
+    .billing-layout,.settings-layout{grid-template-columns:1fr}
+  }
+  @media(max-width:900px){
+    .shell{grid-template-columns:1fr}
+    .side{flex-direction:row;align-items:center;overflow-x:auto;padding:14px;gap:4px;position:static;height:auto}
+    .side .logo{margin-bottom:0;margin-right:8px;flex-shrink:0}
+    .side .foot{display:none}
+    .metrics,.metrics.metrics-3{grid-template-columns:repeat(2,1fr)}
+    .main{padding:20px 18px}
+  }
+  @media(max-width:480px){
+    .metrics{grid-template-columns:1fr 1fr}
+    .catalog-mini-grid{grid-template-columns:repeat(2,1fr)}
+    .store-grid{grid-template-columns:1fr}
+    .form-row{grid-template-columns:1fr}
+  }
+  :focus-visible{outline:2px solid var(--signal);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- ═══ SIDEBAR ═══ -->
+  <aside class="side">
+    <div class="logo"><span class="dot"></span>Tu<b>IA</b>lista</div>
+    <a class="nav-item active" data-sec="agents">
+      <i class="ti ti-layout-dashboard"></i>
+      <span data-i18n="portal.nav.agents">Mis agentes</span>
+    </a>
+    <a class="nav-item" data-sec="catalog">
+      <i class="ti ti-building-store"></i>
+      <span data-i18n="portal.nav.catalog">Catálogo</span>
+    </a>
+    <a class="nav-item" data-sec="billing">
+      <i class="ti ti-credit-card"></i>
+      <span data-i18n="portal.nav.billing">Facturación</span>
+    </a>
+    <a class="nav-item" data-sec="licenses">
+      <i class="ti ti-key"></i>
+      <span data-i18n="portal.nav.licenses">Mis licencias</span>
+    </a>
+    <a class="nav-item" data-sec="settings">
+      <i class="ti ti-settings"></i>
+      <span data-i18n="portal.nav.settings">Configuración</span>
+    </a>
+    <div class="foot">
+      <div class="user-chip">
+        <span class="av">EA</span>
+        <div>
+          <div style="color:var(--paper);font-weight:500">Edgar A.</div>
+          <div style="font-size:11.5px" data-i18n="portal.user.plan">Plan activo</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ═══ MAIN ═══ -->
+  <main class="main">
+    <div class="topbar">
+      <h1 id="topbar-title" data-i18n="portal.nav.agents">Mis agentes</h1>
+      <div class="right">
+        <a class="back-link" href="../index.html">
+          <i class="ti ti-arrow-left" style="font-size:14px"></i>
+          <span data-i18n="portal.back">Inicio</span>
+        </a>
+        <span class="lang-select">
+          <i class="ti ti-world"></i>
+          <select id="lang-switcher" aria-label="Idioma">
+            <option value="es">Español</option>
+            <option value="en">English</option>
+            <option value="pt">Português</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+            <option value="it">Italiano</option>
+          </select>
+        </span>
+        <span class="locale-btn"><i class="ti ti-bell" style="font-size:15px"></i></span>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         SECCIÓN 1 — MIS AGENTES
+    ══════════════════════════════════════════ -->
+    <div id="sec-agents" class="sec-content active">
+
+      <div class="metrics">
+        <div class="metric">
+          <div class="lbl"><i class="ti ti-robot" style="font-size:15px"></i> <span data-i18n="portal.metric.active">Agentes activos</span></div>
+          <div class="val">2</div>
+        </div>
+        <div class="metric">
+          <div class="lbl"><i class="ti ti-clock" style="font-size:15px"></i> <span data-i18n="portal.metric.trial">En prueba</span></div>
+          <div class="val">1</div>
+        </div>
+        <div class="metric">
+          <div class="lbl"><i class="ti ti-calendar" style="font-size:15px"></i> <span data-i18n="portal.metric.billing">Próximo cobro</span></div>
+          <div class="val">15 jul</div>
+        </div>
+        <div class="metric">
+          <div class="lbl"><i class="ti ti-receipt" style="font-size:15px"></i> <span data-i18n="portal.metric.monthly">Mensual</span></div>
+          <div class="val">$27<small> USD</small></div>
+        </div>
+      </div>
+
+      <div class="sec-label" data-i18n="portal.section.active">Agentes activos</div>
+      <div class="agents">
+
+        <div class="acard">
+          <div class="acard-head">
+            <div class="acard-ico"><i class="ti ti-file-text"></i></div>
+            <span class="pill ok"><span style="width:6px;height:6px;border-radius:50%;background:#1d9e75;display:inline-block"></span> <span data-i18n="portal.status.active">Activo</span></span>
+          </div>
+          <h3 data-i18n="agent.documents.name">Documentos</h3>
+          <table>
+            <tr><td data-i18n="portal.card.license">Licencia</td><td class="v">TIA-A1B2-C3D4</td></tr>
+            <tr><td data-i18n="portal.card.renews">Renueva</td><td class="v">15 jul 2026</td></tr>
+            <tr><td data-i18n="portal.card.linked">Equipo vinculado</td><td class="v" style="color:#0f6e56" data-i18n="portal.card.yes">✓ Sí</td></tr>
+          </table>
+          <div class="acts">
+            <a class="btn btn-solid btn-flex"><i class="ti ti-download"></i> <span data-i18n="portal.card.download">Descargar</span></a>
+            <a class="btn btn-ghost btn-flex" data-i18n="portal.card.manual">Manual</a>
+          </div>
+        </div>
+
+        <div class="acard">
+          <div class="acard-head">
+            <div class="acard-ico"><i class="ti ti-table"></i></div>
+            <span class="pill ok"><span style="width:6px;height:6px;border-radius:50%;background:#1d9e75;display:inline-block"></span> <span data-i18n="portal.status.active">Activo</span></span>
+          </div>
+          <h3 data-i18n="agent.excel.name">Excel y datos</h3>
+          <table>
+            <tr><td data-i18n="portal.card.license">Licencia</td><td class="v">TIA-E5F6-G7H8</td></tr>
+            <tr><td data-i18n="portal.card.renews">Renueva</td><td class="v">15 jul 2026</td></tr>
+            <tr><td data-i18n="portal.card.linked">Equipo vinculado</td><td class="v" style="color:#0f6e56" data-i18n="portal.card.yes">✓ Sí</td></tr>
+          </table>
+          <div class="acts">
+            <a class="btn btn-solid btn-flex"><i class="ti ti-download"></i> <span data-i18n="portal.card.download">Descargar</span></a>
+            <a class="btn btn-ghost btn-flex" data-i18n="portal.card.manual">Manual</a>
+          </div>
+        </div>
+
+        <div class="acard trial">
+          <div class="acard-head">
+            <div class="acard-ico"><i class="ti ti-database"></i></div>
+            <span class="pill trial"><i class="ti ti-clock" style="font-size:12px"></i> <span data-i18n="portal.status.trial">Prueba · 4 días</span></span>
+          </div>
+          <h3 data-i18n="agent.database.name">Base de datos</h3>
+          <table>
+            <tr><td data-i18n="portal.card.license">Licencia</td><td class="v">TIA-K9L0-M1N2</td></tr>
+            <tr><td data-i18n="portal.card.trial_ends">Prueba termina</td><td class="v" style="color:#854f0b">27 jun 2026</td></tr>
+            <tr><td data-i18n="portal.card.linked">Equipo vinculado</td><td class="v" style="color:#0f6e56" data-i18n="portal.card.yes">✓ Sí</td></tr>
+          </table>
+          <div class="acts">
+            <a class="btn btn-signal btn-flex"><i class="ti ti-credit-card"></i> <span data-i18n="portal.card.subscribe">Suscribirme</span></a>
+            <a class="btn btn-ghost btn-flex" data-i18n="portal.card.manual">Manual</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="sec-label" data-i18n="portal.section.catalog">Agregar más agentes</div>
+      <div class="catalog-mini-grid">
+        <div class="cat-mini" data-sec-go="catalog"><i class="ti ti-report-money"></i><h4 data-i18n="agent.fiscal.name">Cumplimiento Fiscal</h4><div class="p">$29 USD/mes</div><div class="add-badge"><i class="ti ti-plus" style="font-size:12px"></i> <span data-i18n="portal.catalog.add">Agregar</span></div></div>
+        <div class="cat-mini" data-sec-go="catalog"><i class="ti ti-file-certificate"></i><h4 data-i18n="agent.contratos.name">Contratos y Renovaciones</h4><div class="p">$79 USD/mes</div><div class="add-badge"><i class="ti ti-plus" style="font-size:12px"></i> <span data-i18n="portal.catalog.add">Agregar</span></div></div>
+        <div class="cat-mini" data-sec-go="catalog"><i class="ti ti-file-invoice"></i><h4 data-i18n="agent.facturas.name">Facturas y CxP</h4><div class="p">$49 USD/mes</div><div class="add-badge"><i class="ti ti-plus" style="font-size:12px"></i> <span data-i18n="portal.catalog.add">Agregar</span></div></div>
+        <div class="cat-mini" data-sec-go="catalog"><i class="ti ti-books"></i><h4 data-i18n="agent.conocimiento.name">Conocimiento Interno</h4><div class="p">$39 USD/mes</div><div class="add-badge"><i class="ti ti-plus" style="font-size:12px"></i> <span data-i18n="portal.catalog.add">Agregar</span></div></div>
+        <div class="cat-mini" data-sec-go="catalog"><i class="ti ti-id-badge-2"></i><h4 data-i18n="agent.nominas.name">Nóminas y RR.HH.</h4><div class="p">$49 USD/mes</div><div class="add-badge"><i class="ti ti-plus" style="font-size:12px"></i> <span data-i18n="portal.catalog.add">Agregar</span></div></div>
+        <div class="cat-mini" data-sec-go="catalog"><i class="ti ti-box-seam"></i><h4 data-i18n="agent.inventario.name">Inventario</h4><div class="p">$29 USD/mes</div><div class="add-badge"><i class="ti ti-plus" style="font-size:12px"></i> <span data-i18n="portal.catalog.add">Agregar</span></div></div>
+        <div class="cat-mini" data-sec-go="catalog"><i class="ti ti-file-code"></i><h4 data-i18n="agent.docs-tecnica.name">Documentación Técnica</h4><div class="p">$49 USD/mes</div><div class="add-badge"><i class="ti ti-plus" style="font-size:12px"></i> <span data-i18n="portal.catalog.add">Agregar</span></div></div>
+        <div class="cat-mini" data-sec-go="catalog"><i class="ti ti-building-bank"></i><h4 data-i18n="agent.tramites.name">Trámites de Gobierno</h4><div class="p">$19 USD/mes</div><div class="add-badge"><i class="ti ti-plus" style="font-size:12px"></i> <span data-i18n="portal.catalog.add">Agregar</span></div></div>
+        <div class="cat-mini" data-sec-go="catalog"><i class="ti ti-signature"></i><h4 data-i18n="agent.contratos-personales.name">Contratos Personales</h4><div class="p">$19 USD/mes</div><div class="add-badge"><i class="ti ti-plus" style="font-size:12px"></i> <span data-i18n="portal.catalog.add">Agregar</span></div></div>
+        <div class="cat-mini" data-sec-go="catalog"><i class="ti ti-shield-check"></i><h4 data-i18n="agent.garantias.name">Reclamaciones y Garantías</h4><div class="p">$15 USD/mes</div><div class="add-badge"><i class="ti ti-plus" style="font-size:12px"></i> <span data-i18n="portal.catalog.add">Agregar</span></div></div>
+        <div class="cat-mini" data-sec-go="catalog"><i class="ti ti-clipboard-text"></i><h4 data-i18n="agent.actas.name">Actas y Reuniones</h4><div class="p">$19 USD/mes</div><div class="add-badge"><i class="ti ti-plus" style="font-size:12px"></i> <span data-i18n="portal.catalog.add">Agregar</span></div></div>
+        <div class="cat-mini" data-sec-go="catalog"><i class="ti ti-inbox"></i><h4 data-i18n="agent.correo.name">Correo</h4><div class="p">$19 USD/mes</div><div class="add-badge"><i class="ti ti-plus" style="font-size:12px"></i> <span data-i18n="portal.catalog.add">Agregar</span></div></div>
+        <div class="cat-mini premium" data-sec-go="catalog"><i class="ti ti-server-2"></i><h4 data-i18n="agent.as400.name">AS/400 · IBM i</h4><div class="p" data-i18n="portal.catalog.premium">Premium</div><div class="add-badge" style="color:var(--signal-dim)"><i class="ti ti-message" style="font-size:12px"></i> <span data-i18n="portal.catalog.contact">Contactar</span></div></div>
+      </div>
+      <div class="catalog-cta">
+        <span data-i18n="portal.catalog.cta_text">¿Quieres ver todos los detalles?</span>
+        <a href="#" data-sec-go="catalog" data-i18n="portal.catalog.cta_link">Ver catálogo completo →</a>
+      </div>
+
+    </div><!-- /sec-agents -->
+
+
+    <!-- ══════════════════════════════════════════
+         SECCIÓN 2 — CATÁLOGO
+    ══════════════════════════════════════════ -->
+    <div id="sec-catalog" class="sec-content">
+
+      <p style="font-size:14.5px;color:var(--muted);margin-bottom:24px" data-i18n="portal.store.subtitle">Agrega agentes a tu suscripción. Cada uno corre localmente en tu equipo — tus datos nunca salen.</p>
+
+      <div class="store-grid">
+
+        <!-- OWNED: Documentos -->
+        <div class="store-card owned">
+          <div class="store-card-head">
+            <div class="store-ico"><i class="ti ti-file-text"></i></div>
+            <div><div class="store-card-name" data-i18n="agent.documents.name">Documentos</div><div class="store-card-price">$9 USD/mes</div></div>
+          </div>
+          <span class="owned-badge"><i class="ti ti-check" style="font-size:11px"></i> <span data-i18n="portal.store.owned">Ya tienes este agente</span></span>
+          <p data-i18n="agent.documents.desc">Pregunta en lenguaje natural sobre tus contratos, manuales y expedientes. Responde y cita la fuente.</p>
+          <div class="acts">
+            <a class="btn btn-ghost btn-sm"><i class="ti ti-download"></i> <span data-i18n="portal.card.download">Descargar</span></a>
+            <a class="btn btn-ghost btn-sm" data-i18n="portal.card.manual">Manual</a>
+          </div>
+        </div>
+
+        <!-- OWNED: Excel -->
+        <div class="store-card owned">
+          <div class="store-card-head">
+            <div class="store-ico"><i class="ti ti-table"></i></div>
+            <div><div class="store-card-name" data-i18n="agent.excel.name">Excel y datos</div><div class="store-card-price">$9 USD/mes</div></div>
+          </div>
+          <span class="owned-badge"><i class="ti ti-check" style="font-size:11px"></i> <span data-i18n="portal.store.owned">Ya tienes este agente</span></span>
+          <p data-i18n="agent.excel.desc">Analiza tus hojas de cálculo hablando. Totales, comparativas y hallazgos sin fórmulas.</p>
+          <div class="acts">
+            <a class="btn btn-ghost btn-sm"><i class="ti ti-download"></i> <span data-i18n="portal.card.download">Descargar</span></a>
+            <a class="btn btn-ghost btn-sm" data-i18n="portal.card.manual">Manual</a>
+          </div>
+        </div>
+
+        <!-- TRIAL: Base de datos -->
+        <div class="store-card" style="border-color:var(--warn)">
+          <div class="store-card-head">
+            <div class="store-ico"><i class="ti ti-database"></i></div>
+            <div><div class="store-card-name" data-i18n="agent.database.name">Base de datos</div><div class="store-card-price">$15 USD/mes</div></div>
+          </div>
+          <span class="pill trial" style="margin-bottom:10px;align-self:flex-start"><i class="ti ti-clock" style="font-size:11px"></i> <span data-i18n="portal.status.trial">Prueba · 4 días</span></span>
+          <p data-i18n="agent.database.desc">Consulta cualquier base de datos en lenguaje natural. Solo lectura: nunca daña tus datos.</p>
+          <div class="acts">
+            <a class="btn btn-signal btn-sm btn-flex"><i class="ti ti-credit-card"></i> <span data-i18n="portal.card.subscribe">Suscribirme</span></a>
+          </div>
+        </div>
+
+        <!-- Cumplimiento Fiscal -->
+        <div class="store-card">
+          <div class="store-card-head">
+            <div class="store-ico"><i class="ti ti-report-money"></i></div>
+            <div><div class="store-card-name" data-i18n="agent.fiscal.name">Cumplimiento Fiscal</div><div class="store-card-price">$29 USD/mes</div></div>
+          </div>
+          <p data-i18n="agent.fiscal.desc">Vigila obligaciones fiscales y prepara documentos, sin que tus datos salgan de tu equipo.</p>
+          <div class="acts">
+            <a class="btn btn-solid btn-sm btn-flex"><i class="ti ti-plus"></i> <span data-i18n="portal.catalog.add">Agregar</span></a>
+          </div>
+        </div>
+
+        <!-- Contratos y Renovaciones -->
+        <div class="store-card">
+          <div class="store-card-head">
+            <div class="store-ico"><i class="ti ti-file-certificate"></i></div>
+            <div><div class="store-card-name" data-i18n="agent.contratos.name">Contratos y Renovaciones</div><div class="store-card-price">$79 USD/mes</div></div>
+          </div>
+          <p data-i18n="agent.contratos.desc">Extrae términos clave, alerta renovaciones y detecta cláusulas riesgosas en tus contratos.</p>
+          <div class="acts">
+            <a class="btn btn-solid btn-sm btn-flex"><i class="ti ti-plus"></i> <span data-i18n="portal.catalog.add">Agregar</span></a>
+          </div>
+        </div>
+
+        <!-- Facturas -->
+        <div class="store-card">
+          <div class="store-card-head">
+            <div class="store-ico"><i class="ti ti-file-invoice"></i></div>
+            <div><div class="store-card-name" data-i18n="agent.facturas.name">Facturas y CxP</div><div class="store-card-price">$49 USD/mes</div></div>
+          </div>
+          <p data-i18n="agent.facturas.desc">Lee tus facturas, extrae montos y fechas, detecta duplicados y las organiza para pago. Todo local.</p>
+          <div class="acts">
+            <a class="btn btn-solid btn-sm btn-flex"><i class="ti ti-plus"></i> <span data-i18n="portal.catalog.add">Agregar</span></a>
+          </div>
+        </div>
+
+        <!-- Conocimiento Interno -->
+        <div class="store-card">
+          <div class="store-card-head">
+            <div class="store-ico"><i class="ti ti-books"></i></div>
+            <div><div class="store-card-name" data-i18n="agent.conocimiento.name">Conocimiento Interno</div><div class="store-card-price">$39 USD/mes</div></div>
+          </div>
+          <p data-i18n="agent.conocimiento.desc">Tu equipo pregunta y el agente busca en todos los documentos de la empresa y responde citando la fuente.</p>
+          <div class="acts">
+            <a class="btn btn-solid btn-sm btn-flex"><i class="ti ti-plus"></i> <span data-i18n="portal.catalog.add">Agregar</span></a>
+          </div>
+        </div>
+
+        <!-- Nóminas -->
+        <div class="store-card">
+          <div class="store-card-head">
+            <div class="store-ico"><i class="ti ti-id-badge-2"></i></div>
+            <div><div class="store-card-name" data-i18n="agent.nominas.name">Nóminas y RR.HH.</div><div class="store-card-price">$49 USD/mes</div></div>
+          </div>
+          <p data-i18n="agent.nominas.desc">Organiza datos de empleados, prepara reportes y vigila fechas de contratos y vacaciones, sin que los datos salgan.</p>
+          <div class="acts">
+            <a class="btn btn-solid btn-sm btn-flex"><i class="ti ti-plus"></i> <span data-i18n="portal.catalog.add">Agregar</span></a>
+          </div>
+        </div>
+
+        <!-- Inventario -->
+        <div class="store-card">
+          <div class="store-card-head">
+            <div class="store-ico"><i class="ti ti-box-seam"></i></div>
+            <div><div class="store-card-name" data-i18n="agent.inventario.name">Inventario</div><div class="store-card-price">$29 USD/mes</div></div>
+          </div>
+          <p data-i18n="agent.inventario.desc">Analiza tu stock, predice cuándo reordenar y detecta faltantes sobre los datos de tu negocio.</p>
+          <div class="acts">
+            <a class="btn btn-solid btn-sm btn-flex"><i class="ti ti-plus"></i> <span data-i18n="portal.catalog.add">Agregar</span></a>
+          </div>
+        </div>
+
+        <!-- Documentación Técnica -->
+        <div class="store-card">
+          <div class="store-card-head">
+            <div class="store-ico"><i class="ti ti-file-code"></i></div>
+            <div><div class="store-card-name" data-i18n="agent.docs-tecnica.name">Documentación Técnica</div><div class="store-card-price">$49 USD/mes</div></div>
+          </div>
+          <p data-i18n="agent.docs-tecnica.desc">Genera y mantiene documentación técnica desde tu código y archivos locales.</p>
+          <div class="acts">
+            <a class="btn btn-solid btn-sm btn-flex"><i class="ti ti-plus"></i> <span data-i18n="portal.catalog.add">Agregar</span></a>
+          </div>
+        </div>
+
+        <!-- Trámites -->
+        <div class="store-card">
+          <div class="store-card-head">
+            <div class="store-ico"><i class="ti ti-building-bank"></i></div>
+            <div><div class="store-card-name" data-i18n="agent.tramites.name">Trámites de Gobierno</div><div class="store-card-price">$19 USD/mes</div></div>
+          </div>
+          <p data-i18n="agent.tramites.desc">Te guía paso a paso en trámites y prepara los documentos necesarios.</p>
+          <div class="acts">
+            <a class="btn btn-solid btn-sm btn-flex"><i class="ti ti-plus"></i> <span data-i18n="portal.catalog.add">Agregar</span></a>
+          </div>
+        </div>
+
+        <!-- Contratos Personales -->
+        <div class="store-card">
+          <div class="store-card-head">
+            <div class="store-ico"><i class="ti ti-signature"></i></div>
+            <div><div class="store-card-name" data-i18n="agent.contratos-personales.name">Contratos Personales</div><div class="store-card-price">$19 USD/mes</div></div>
+          </div>
+          <p data-i18n="agent.contratos-personales.desc">Revisa contratos que vas a firmar y te explica las cláusulas problemáticas.</p>
+          <div class="acts">
+            <a class="btn btn-solid btn-sm btn-flex"><i class="ti ti-plus"></i> <span data-i18n="portal.catalog.add">Agregar</span></a>
+          </div>
+        </div>
+
+        <!-- Garantías -->
+        <div class="store-card">
+          <div class="store-card-head">
+            <div class="store-ico"><i class="ti ti-shield-check"></i></div>
+            <div><div class="store-card-name" data-i18n="agent.garantias.name">Reclamaciones y Garantías</div><div class="store-card-price">$15 USD/mes</div></div>
+          </div>
+          <p data-i18n="agent.garantias.desc">Detecta garantías por vencer y organiza tus reclamaciones para recuperar dinero.</p>
+          <div class="acts">
+            <a class="btn btn-solid btn-sm btn-flex"><i class="ti ti-plus"></i> <span data-i18n="portal.catalog.add">Agregar</span></a>
+          </div>
+        </div>
+
+        <!-- Actas -->
+        <div class="store-card">
+          <div class="store-card-head">
+            <div class="store-ico"><i class="ti ti-clipboard-text"></i></div>
+            <div><div class="store-card-name" data-i18n="agent.actas.name">Actas y Reuniones</div><div class="store-card-price">$19 USD/mes</div></div>
+          </div>
+          <p data-i18n="agent.actas.desc">Convierte tus reuniones en minutas claras y extrae tareas y acuerdos automáticamente.</p>
+          <div class="acts">
+            <a class="btn btn-solid btn-sm btn-flex"><i class="ti ti-plus"></i> <span data-i18n="portal.catalog.add">Agregar</span></a>
+          </div>
+        </div>
+
+        <!-- Correo -->
+        <div class="store-card">
+          <div class="store-card-head">
+            <div class="store-ico"><i class="ti ti-inbox"></i></div>
+            <div><div class="store-card-name" data-i18n="agent.correo.name">Correo</div><div class="store-card-price">$19 USD/mes</div></div>
+          </div>
+          <p data-i18n="agent.correo.desc">Organiza, prioriza y redacta respuestas a tu correo procesándolo localmente. Tus emails nunca salen de tu equipo.</p>
+          <div class="acts">
+            <a class="btn btn-solid btn-sm btn-flex"><i class="ti ti-plus"></i> <span data-i18n="portal.catalog.add">Agregar</span></a>
+          </div>
+        </div>
+
+        <!-- AS/400 — Premium -->
+        <div class="store-card premium">
+          <div class="store-card-head">
+            <div class="store-ico"><i class="ti ti-server-2"></i></div>
+            <div><div class="store-card-name" data-i18n="agent.as400.name">AS/400 · IBM i</div><div class="store-card-price" data-i18n="portal.store.from">Desde $299 USD/mes</div></div>
+          </div>
+          <p data-i18n="agent.as400.desc">Consulta tu sistema legacy IBM i y entiende su código RPG sin ser experto. El puente a lo moderno.</p>
+          <div class="acts">
+            <a class="btn btn-signal btn-sm btn-flex"><i class="ti ti-message"></i> <span data-i18n="portal.catalog.contact">Contactar</span></a>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /sec-catalog -->
+
+
+    <!-- ══════════════════════════════════════════
+         SECCIÓN 3 — FACTURACIÓN
+    ══════════════════════════════════════════ -->
+    <div id="sec-billing" class="sec-content">
+
+      <div class="metrics metrics-3">
+        <div class="metric">
+          <div class="lbl"><i class="ti ti-calendar" style="font-size:15px"></i> <span data-i18n="portal.metric.billing">Próximo cobro</span></div>
+          <div class="val">15 jul</div>
+        </div>
+        <div class="metric">
+          <div class="lbl"><i class="ti ti-receipt" style="font-size:15px"></i> <span data-i18n="portal.metric.monthly">Mensual</span></div>
+          <div class="val">$27<small> USD</small></div>
+        </div>
+        <div class="metric">
+          <div class="lbl"><i class="ti ti-credit-card" style="font-size:15px"></i> <span data-i18n="portal.billing.method">Método de pago</span></div>
+          <div class="val" style="font-size:18px;margin-top:4px">•••• 1234</div>
+        </div>
+      </div>
+
+      <div class="billing-layout">
+        <!-- Historial de pagos -->
+        <div>
+          <div class="card-box">
+            <h3><i class="ti ti-history"></i> <span data-i18n="portal.billing.history">Historial de pagos</span></h3>
+            <table class="billing-table">
+              <thead>
+                <tr>
+                  <th data-i18n="portal.billing.date">Fecha</th>
+                  <th data-i18n="portal.billing.concept">Concepto</th>
+                  <th class="right" data-i18n="portal.billing.amount">Monto</th>
+                  <th class="right" data-i18n="portal.billing.status">Estado</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="mono">15 jun 2026</td>
+                  <td>Documentos + Excel y datos</td>
+                  <td class="mono right">$18.00 USD</td>
+                  <td class="right"><span class="pill ok" style="margin-left:auto" data-i18n="portal.billing.paid">Pagado</span></td>
+                  <td class="right"><a class="btn btn-ghost btn-sm" style="flex:0"><i class="ti ti-download" style="font-size:13px"></i></a></td>
+                </tr>
+                <tr>
+                  <td class="mono">15 may 2026</td>
+                  <td>Documentos + Excel y datos</td>
+                  <td class="mono right">$18.00 USD</td>
+                  <td class="right"><span class="pill ok" data-i18n="portal.billing.paid">Pagado</span></td>
+                  <td class="right"><a class="btn btn-ghost btn-sm" style="flex:0"><i class="ti ti-download" style="font-size:13px"></i></a></td>
+                </tr>
+                <tr>
+                  <td class="mono">15 abr 2026</td>
+                  <td>Documentos</td>
+                  <td class="mono right">$9.00 USD</td>
+                  <td class="right"><span class="pill ok" data-i18n="portal.billing.paid">Pagado</span></td>
+                  <td class="right"><a class="btn btn-ghost btn-sm" style="flex:0"><i class="ti ti-download" style="font-size:13px"></i></a></td>
+                </tr>
+                <tr>
+                  <td class="mono">15 mar 2026</td>
+                  <td>Documentos</td>
+                  <td class="mono right">$9.00 USD</td>
+                  <td class="right"><span class="pill ok" data-i18n="portal.billing.paid">Pagado</span></td>
+                  <td class="right"><a class="btn btn-ghost btn-sm" style="flex:0"><i class="ti ti-download" style="font-size:13px"></i></a></td>
+                </tr>
+                <tr>
+                  <td class="mono">15 feb 2026</td>
+                  <td>Documentos</td>
+                  <td class="mono right">$9.00 USD</td>
+                  <td class="right"><span class="pill ok" data-i18n="portal.billing.paid">Pagado</span></td>
+                  <td class="right"><a class="btn btn-ghost btn-sm" style="flex:0"><i class="ti ti-download" style="font-size:13px"></i></a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Panel lateral: método + próximo cobro -->
+        <div>
+          <div class="card-box">
+            <h3><i class="ti ti-credit-card"></i> <span data-i18n="portal.billing.method">Método de pago</span></h3>
+            <div class="payment-method">
+              <div class="card-brand"><i class="ti ti-credit-card"></i></div>
+              <div class="card-info">
+                <div class="num">•••• •••• •••• 1234</div>
+                <div class="exp" data-i18n="portal.billing.expires">Vence</div>
+              </div>
+              <span style="font-family:'JetBrains Mono';font-size:12px;color:var(--muted)">12/27</span>
+            </div>
+            <a class="btn btn-ghost" style="width:100%;font-size:13px"><i class="ti ti-edit"></i> <span data-i18n="portal.billing.update_card">Actualizar tarjeta</span></a>
+          </div>
+
+          <div class="card-box">
+            <h3><i class="ti ti-calendar"></i> <span data-i18n="portal.billing.next">Próximo cobro</span></h3>
+            <div class="next-charge">
+              <div class="row">
+                <span data-i18n="agent.documents.name">Documentos</span>
+                <span>$9.00 USD</span>
+              </div>
+              <div class="row">
+                <span data-i18n="agent.excel.name">Excel y datos</span>
+                <span>$9.00 USD</span>
+              </div>
+              <div class="row">
+                <span data-i18n="agent.database.name">Base de datos</span>
+                <span>$9.00 USD</span>
+              </div>
+              <div class="row" style="padding-top:10px;border-top:1px solid var(--line);margin-top:6px">
+                <span data-i18n="portal.billing.total">Total · 15 jul 2026</span>
+                <span>$27.00 USD</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /sec-billing -->
+
+
+    <!-- ══════════════════════════════════════════
+         SECCIÓN 4 — MIS LICENCIAS
+    ══════════════════════════════════════════ -->
+    <div id="sec-licenses" class="sec-content">
+
+      <p style="font-size:14px;color:var(--muted);margin-bottom:24px" data-i18n="portal.licenses.subtitle">Tus claves de licencia activan cada agente en tu equipo. Descárgalos e instálalos localmente.</p>
+
+      <div id="lic-empty" class="empty-state" style="display:none">
+        <i class="ti ti-key"></i>
+        <h3 data-i18n="portal.lic.empty_title">Sin licencias activas</h3>
+        <p data-i18n="portal.lic.empty_desc">Aún no tienes ningún agente. Explora el catálogo y agrega el primero.</p>
+        <a class="btn btn-signal" data-sec-go="catalog"><i class="ti ti-building-store"></i> <span data-i18n="portal.nav.catalog">Catálogo</span></a>
+      </div>
+
+      <div class="lic-cards">
+
+        <!-- Documentos — Activa -->
+        <div class="lic-card">
+          <div class="lic-head">
+            <div class="lic-ico-wrap">
+              <div class="lic-ico"><i class="ti ti-file-text"></i></div>
+              <div class="lic-name" data-i18n="agent.documents.name">Documentos</div>
+            </div>
+            <span class="pill ok"><span style="width:6px;height:6px;border-radius:50%;background:#1d9e75;display:inline-block"></span> <span data-i18n="portal.status.active">Activo</span></span>
+          </div>
+          <table class="lic-table">
+            <tr>
+              <td data-i18n="portal.card.license">Licencia</td>
+              <td class="v">
+                <div class="lic-key">
+                  <span>TUIA-<span class="masked">••••</span>-C3D4</span>
+                  <button class="copy-btn" data-key="TUIA-A1B2-C3D4"><i class="ti ti-copy" style="font-size:11px"></i> <span data-i18n="portal.lic.copy">Copiar</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr><td data-i18n="portal.lic.activated">Activada</td><td class="v">01 feb 2026</td></tr>
+            <tr><td data-i18n="portal.card.renews">Renueva</td><td class="v">15 jul 2026</td></tr>
+            <tr><td data-i18n="portal.card.linked">Equipo</td><td class="v">DESKTOP-EA9K2</td></tr>
+          </table>
+          <div class="lic-acts">
+            <a class="btn btn-solid btn-flex btn-sm"><i class="ti ti-download"></i> <span data-i18n="portal.lic.download">Descargar agente</span></a>
+            <a class="btn btn-ghost btn-flex btn-sm" data-i18n="portal.card.manual">Manual</a>
+          </div>
+        </div>
+
+        <!-- Excel — Activa -->
+        <div class="lic-card">
+          <div class="lic-head">
+            <div class="lic-ico-wrap">
+              <div class="lic-ico"><i class="ti ti-table"></i></div>
+              <div class="lic-name" data-i18n="agent.excel.name">Excel y datos</div>
+            </div>
+            <span class="pill ok"><span style="width:6px;height:6px;border-radius:50%;background:#1d9e75;display:inline-block"></span> <span data-i18n="portal.status.active">Activo</span></span>
+          </div>
+          <table class="lic-table">
+            <tr>
+              <td data-i18n="portal.card.license">Licencia</td>
+              <td class="v">
+                <div class="lic-key">
+                  <span>TUIA-<span class="masked">••••</span>-G7H8</span>
+                  <button class="copy-btn" data-key="TUIA-E5F6-G7H8"><i class="ti ti-copy" style="font-size:11px"></i> <span data-i18n="portal.lic.copy">Copiar</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr><td data-i18n="portal.lic.activated">Activada</td><td class="v">15 may 2026</td></tr>
+            <tr><td data-i18n="portal.card.renews">Renueva</td><td class="v">15 jul 2026</td></tr>
+            <tr><td data-i18n="portal.card.linked">Equipo</td><td class="v">DESKTOP-EA9K2</td></tr>
+          </table>
+          <div class="lic-acts">
+            <a class="btn btn-solid btn-flex btn-sm"><i class="ti ti-download"></i> <span data-i18n="portal.lic.download">Descargar agente</span></a>
+            <a class="btn btn-ghost btn-flex btn-sm" data-i18n="portal.card.manual">Manual</a>
+          </div>
+        </div>
+
+        <!-- Base de datos — Prueba -->
+        <div class="lic-card trial">
+          <div class="lic-head">
+            <div class="lic-ico-wrap">
+              <div class="lic-ico"><i class="ti ti-database"></i></div>
+              <div class="lic-name" data-i18n="agent.database.name">Base de datos</div>
+            </div>
+            <span class="pill trial"><i class="ti ti-clock" style="font-size:12px"></i> <span data-i18n="portal.status.trial">Prueba · 4 días</span></span>
+          </div>
+          <table class="lic-table">
+            <tr>
+              <td data-i18n="portal.card.license">Licencia</td>
+              <td class="v">
+                <div class="lic-key">
+                  <span>TUIA-<span class="masked">••••</span>-M1N2</span>
+                  <button class="copy-btn" data-key="TUIA-K9L0-M1N2"><i class="ti ti-copy" style="font-size:11px"></i> <span data-i18n="portal.lic.copy">Copiar</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr><td data-i18n="portal.lic.activated">Activada</td><td class="v">23 jun 2026</td></tr>
+            <tr><td data-i18n="portal.card.trial_ends">Prueba termina</td><td class="v" style="color:#854f0b">27 jun 2026</td></tr>
+            <tr><td data-i18n="portal.card.linked">Equipo</td><td class="v">DESKTOP-EA9K2</td></tr>
+          </table>
+          <div class="lic-acts">
+            <a class="btn btn-signal btn-flex btn-sm"><i class="ti ti-credit-card"></i> <span data-i18n="portal.card.subscribe">Suscribirme</span></a>
+            <a class="btn btn-ghost btn-flex btn-sm" data-i18n="portal.card.manual">Manual</a>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /sec-licenses -->
+
+
+    <!-- ══════════════════════════════════════════
+         SECCIÓN 5 — CONFIGURACIÓN
+    ══════════════════════════════════════════ -->
+    <div id="sec-settings" class="sec-content">
+
+      <div class="settings-layout">
+
+        <!-- Columna principal: datos de cuenta -->
+        <div>
+          <div class="card-box">
+            <h3><i class="ti ti-user-circle"></i> <span data-i18n="portal.settings.account">Datos de la cuenta</span></h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label data-i18n="portal.settings.name">Nombre completo</label>
+                <input type="text" value="Edgar Aguilar">
+              </div>
+              <div class="form-group">
+                <label data-i18n="portal.settings.email">Correo electrónico</label>
+                <input type="email" value="edgar.shg78@gmail.com">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label data-i18n="portal.settings.country">País</label>
+                <select>
+                  <option selected data-i18n="portal.country.mx">México</option>
+                  <option data-i18n="portal.country.us">Estados Unidos</option>
+                  <option data-i18n="portal.country.es">España</option>
+                  <option data-i18n="portal.country.co">Colombia</option>
+                  <option data-i18n="portal.country.ar">Argentina</option>
+                  <option data-i18n="portal.country.br">Brasil</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label data-i18n="portal.settings.currency">Moneda preferida</label>
+                <select>
+                  <option data-i18n="portal.currency.usd">USD — Dólar</option>
+                  <option data-i18n="portal.currency.mxn">MXN — Peso mexicano</option>
+                  <option data-i18n="portal.currency.eur">EUR — Euro</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label data-i18n="portal.settings.language">Idioma preferido</label>
+              <select>
+                <option selected>Español</option>
+                <option>English</option>
+                <option>Português</option>
+                <option>Français</option>
+                <option>Deutsch</option>
+                <option>Italiano</option>
+              </select>
+            </div>
+            <div class="settings-save">
+              <a class="btn btn-solid" style="flex:0;white-space:nowrap"><i class="ti ti-device-floppy"></i> <span data-i18n="portal.settings.save">Guardar cambios</span></a>
+              <span class="save-hint" data-i18n="portal.settings.save_hint">Los cambios se aplican de inmediato.</span>
+            </div>
+          </div>
+
+          <div class="card-box">
+            <h3><i class="ti ti-lock"></i> <span data-i18n="portal.settings.password">Cambiar contraseña</span></h3>
+            <div class="form-group">
+              <label data-i18n="portal.settings.pwd_current">Contraseña actual</label>
+              <input type="password" placeholder="••••••••">
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label data-i18n="portal.settings.pwd_new">Nueva contraseña</label>
+                <input type="password" placeholder="••••••••">
+              </div>
+              <div class="form-group">
+                <label data-i18n="portal.settings.pwd_confirm">Confirmar contraseña</label>
+                <input type="password" placeholder="••••••••">
+              </div>
+            </div>
+            <a class="btn btn-ghost" style="width:100%"><i class="ti ti-lock-check"></i> <span data-i18n="portal.settings.pwd_save">Actualizar contraseña</span></a>
+          </div>
+        </div>
+
+        <!-- Columna derecha: notificaciones + zona peligrosa -->
+        <div>
+          <div class="card-box">
+            <h3><i class="ti ti-bell"></i> <span data-i18n="portal.settings.notifications">Notificaciones</span></h3>
+            <div class="toggle-list">
+              <div class="toggle-row">
+                <div class="toggle-label">
+                  <span data-i18n="portal.settings.notif_renewals">Alertas de renovación</span>
+                  <small data-i18n="portal.settings.notif_renewals_hint">Aviso 7 días antes de que renueve</small>
+                </div>
+                <label class="toggle"><input type="checkbox" checked><span class="toggle-track"></span></label>
+              </div>
+              <div class="toggle-row">
+                <div class="toggle-label">
+                  <span data-i18n="portal.settings.notif_billing">Recordatorios de pago</span>
+                  <small data-i18n="portal.settings.notif_billing_hint">3 días antes del cobro</small>
+                </div>
+                <label class="toggle"><input type="checkbox" checked><span class="toggle-track"></span></label>
+              </div>
+              <div class="toggle-row">
+                <div class="toggle-label">
+                  <span data-i18n="portal.settings.notif_updates">Actualizaciones de agentes</span>
+                  <small data-i18n="portal.settings.notif_updates_hint">Cuando haya una nueva versión</small>
+                </div>
+                <label class="toggle"><input type="checkbox"><span class="toggle-track"></span></label>
+              </div>
+              <div class="toggle-row">
+                <div class="toggle-label">
+                  <span data-i18n="portal.settings.notif_news">Novedades y catálogo</span>
+                  <small data-i18n="portal.settings.notif_news_hint">Nuevos agentes disponibles</small>
+                </div>
+                <label class="toggle"><input type="checkbox"><span class="toggle-track"></span></label>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-box">
+            <h3 style="color:var(--muted)"><i class="ti ti-alert-triangle"></i> <span data-i18n="portal.settings.danger">Cuenta</span></h3>
+            <div class="danger-zone">
+              <span data-i18n="portal.settings.cancel_hint">Para cancelar tu suscripción o eliminar tu cuenta escríbenos a</span>
+              <a>soporte@tuialista.com</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /sec-settings -->
+
+  </main>
+</div>
+
+<!-- Toast global -->
+<div id="toast" class="toast"><i class="ti ti-circle-check"></i> <span id="toast-msg">Cambios guardados</span></div>
+
+<script src="../i18n.js"></script>
+<script>
+/* ── PORTAL i18n (se fusiona con i18n.js antes de aplicar) ── */
+const PORTAL_I18N = {
+  es:{
+    "portal.nav.agents":"Mis agentes","portal.nav.catalog":"Catálogo",
+    "portal.nav.billing":"Facturación","portal.nav.licenses":"Mis licencias",
+    "portal.nav.settings":"Configuración","portal.user.plan":"Plan activo",
+    "portal.back":"Inicio","portal.metric.active":"Agentes activos",
+    "portal.metric.trial":"En prueba","portal.metric.billing":"Próximo cobro",
+    "portal.metric.monthly":"Mensual","portal.section.active":"Agentes activos",
+    "portal.section.catalog":"Agregar más agentes",
+    "portal.card.license":"Licencia","portal.card.renews":"Renueva",
+    "portal.card.trial_ends":"Prueba termina","portal.card.linked":"Equipo vinculado",
+    "portal.card.download":"Descargar","portal.card.manual":"Manual",
+    "portal.card.subscribe":"Suscribirme","portal.card.yes":"✓ Sí",
+    "portal.status.active":"Activo","portal.status.trial":"Prueba · 4 días",
+    "portal.catalog.add":"Agregar","portal.catalog.premium":"Premium",
+    "portal.catalog.contact":"Contactar",
+    "portal.catalog.cta_text":"¿Quieres ver todos los detalles?",
+    "portal.catalog.cta_link":"Ver catálogo completo →",
+    "portal.store.subtitle":"Agrega agentes a tu suscripción. Cada uno corre localmente en tu equipo — tus datos nunca salen.",
+    "portal.store.owned":"Ya tienes este agente","portal.store.from":"Desde $299 USD/mes",
+    "portal.billing.method":"Método de pago","portal.billing.history":"Historial de pagos",
+    "portal.billing.date":"Fecha","portal.billing.concept":"Concepto",
+    "portal.billing.amount":"Monto","portal.billing.status":"Estado",
+    "portal.billing.paid":"Pagado","portal.billing.expires":"Vence",
+    "portal.billing.update_card":"Actualizar tarjeta","portal.billing.next":"Próximo cobro",
+    "portal.billing.total":"Total · 15 jul 2026",
+    "portal.licenses.subtitle":"Tus claves de licencia activan cada agente en tu equipo. Descárgalos e instálalos localmente.",
+    "portal.lic.copy":"Copiar","portal.lic.activated":"Activada",
+    "portal.lic.download":"Descargar agente",
+    "portal.settings.account":"Datos de la cuenta","portal.settings.name":"Nombre completo",
+    "portal.settings.email":"Correo electrónico","portal.settings.country":"País",
+    "portal.settings.currency":"Moneda preferida","portal.settings.language":"Idioma preferido",
+    "portal.settings.save":"Guardar cambios","portal.settings.save_hint":"Los cambios se aplican de inmediato.",
+    "portal.settings.password":"Cambiar contraseña","portal.settings.pwd_current":"Contraseña actual",
+    "portal.settings.pwd_new":"Nueva contraseña","portal.settings.pwd_confirm":"Confirmar contraseña",
+    "portal.settings.pwd_save":"Actualizar contraseña",
+    "portal.settings.notifications":"Notificaciones",
+    "portal.settings.notif_renewals":"Alertas de renovación",
+    "portal.settings.notif_renewals_hint":"Aviso 7 días antes de que renueve",
+    "portal.settings.notif_billing":"Recordatorios de pago",
+    "portal.settings.notif_billing_hint":"3 días antes del cobro",
+    "portal.settings.notif_updates":"Actualizaciones de agentes",
+    "portal.settings.notif_updates_hint":"Cuando haya una nueva versión",
+    "portal.settings.notif_news":"Novedades y catálogo",
+    "portal.settings.notif_news_hint":"Nuevos agentes disponibles",
+    "portal.settings.danger":"Cuenta",
+    "portal.settings.cancel_hint":"Para cancelar tu suscripción o eliminar tu cuenta escríbenos a",
+    "portal.settings.saved_toast":"Cambios guardados ✓","portal.settings.pwd_toast":"Contraseña actualizada ✓",
+    "portal.lic.copied_toast":"Clave copiada al portapapeles",
+    "portal.lic.empty_title":"Sin licencias activas","portal.lic.empty_desc":"Aún no tienes ningún agente. Explora el catálogo y agrega el primero.",
+    "agent.documents.name":"Documentos","agent.excel.name":"Excel y datos",
+    "agent.database.name":"Base de datos","agent.as400.name":"AS/400 · IBM i",
+    "agent.documents.desc":"Pregunta en lenguaje natural sobre tus contratos, manuales y expedientes. Responde y cita la fuente.",
+    "agent.excel.desc":"Analiza tus hojas de cálculo hablando. Totales, comparativas y hallazgos sin fórmulas.",
+    "agent.database.desc":"Consulta cualquier base de datos en lenguaje natural. Solo lectura: nunca daña tus datos.",
+    "agent.as400.desc":"Consulta tu sistema legacy IBM i y entiende su código RPG sin ser experto. El puente a lo moderno.",
+    "portal.country.mx":"México","portal.country.us":"Estados Unidos","portal.country.es":"España","portal.country.co":"Colombia","portal.country.ar":"Argentina","portal.country.br":"Brasil",
+    "portal.currency.usd":"USD — Dólar","portal.currency.mxn":"MXN — Peso mexicano","portal.currency.eur":"EUR — Euro",
+  },
+  en:{
+    "portal.nav.agents":"My agents","portal.nav.catalog":"Catalog",
+    "portal.nav.billing":"Billing","portal.nav.licenses":"My licenses",
+    "portal.nav.settings":"Settings","portal.user.plan":"Active plan",
+    "portal.back":"Home","portal.metric.active":"Active agents",
+    "portal.metric.trial":"In trial","portal.metric.billing":"Next charge",
+    "portal.metric.monthly":"Monthly","portal.section.active":"Active agents",
+    "portal.section.catalog":"Add more agents",
+    "portal.card.license":"License","portal.card.renews":"Renews",
+    "portal.card.trial_ends":"Trial ends","portal.card.linked":"Device linked",
+    "portal.card.download":"Download","portal.card.manual":"Manual",
+    "portal.card.subscribe":"Subscribe","portal.card.yes":"✓ Yes",
+    "portal.status.active":"Active","portal.status.trial":"Trial · 4 days",
+    "portal.catalog.add":"Add","portal.catalog.premium":"Premium",
+    "portal.catalog.contact":"Contact us",
+    "portal.catalog.cta_text":"Want to see all the details?",
+    "portal.catalog.cta_link":"View full catalog →",
+    "portal.store.subtitle":"Add agents to your subscription. Each one runs locally on your machine — your data never leaves.",
+    "portal.store.owned":"You already have this agent","portal.store.from":"From $299 USD/mo",
+    "portal.billing.method":"Payment method","portal.billing.history":"Payment history",
+    "portal.billing.date":"Date","portal.billing.concept":"Description",
+    "portal.billing.amount":"Amount","portal.billing.status":"Status",
+    "portal.billing.paid":"Paid","portal.billing.expires":"Expires",
+    "portal.billing.update_card":"Update card","portal.billing.next":"Next charge",
+    "portal.billing.total":"Total · Jul 15, 2026",
+    "portal.licenses.subtitle":"Your license keys activate each agent on your machine. Download and install them locally.",
+    "portal.lic.copy":"Copy","portal.lic.activated":"Activated",
+    "portal.lic.download":"Download agent",
+    "portal.settings.account":"Account details","portal.settings.name":"Full name",
+    "portal.settings.email":"Email address","portal.settings.country":"Country",
+    "portal.settings.currency":"Preferred currency","portal.settings.language":"Preferred language",
+    "portal.settings.save":"Save changes","portal.settings.save_hint":"Changes take effect immediately.",
+    "portal.settings.password":"Change password","portal.settings.pwd_current":"Current password",
+    "portal.settings.pwd_new":"New password","portal.settings.pwd_confirm":"Confirm password",
+    "portal.settings.pwd_save":"Update password",
+    "portal.settings.notifications":"Notifications",
+    "portal.settings.notif_renewals":"Renewal alerts",
+    "portal.settings.notif_renewals_hint":"7 days before renewal",
+    "portal.settings.notif_billing":"Payment reminders",
+    "portal.settings.notif_billing_hint":"3 days before charge",
+    "portal.settings.notif_updates":"Agent updates",
+    "portal.settings.notif_updates_hint":"When a new version is available",
+    "portal.settings.notif_news":"News and catalog",
+    "portal.settings.notif_news_hint":"New agents available",
+    "portal.settings.danger":"Account",
+    "portal.settings.cancel_hint":"To cancel your subscription or delete your account write to",
+    "portal.settings.saved_toast":"Changes saved ✓","portal.settings.pwd_toast":"Password updated ✓",
+    "portal.lic.copied_toast":"License key copied to clipboard",
+    "portal.lic.empty_title":"No active licenses","portal.lic.empty_desc":"You don't have any agents yet. Explore the catalog and add your first one.",
+    "agent.documents.name":"Documents","agent.excel.name":"Excel & data",
+    "agent.database.name":"Database","agent.as400.name":"AS/400 · IBM i",
+    "agent.documents.desc":"Ask in natural language about your contracts, manuals and files. Answers with citations.",
+    "agent.excel.desc":"Analyze your spreadsheets by talking. Totals, comparisons and insights without formulas.",
+    "agent.database.desc":"Query any database in natural language. Read-only: never damages your data.",
+    "agent.as400.desc":"Query your IBM i legacy system and understand RPG code without being an expert. The bridge to modern.",
+    "portal.country.mx":"Mexico","portal.country.us":"United States","portal.country.es":"Spain","portal.country.co":"Colombia","portal.country.ar":"Argentina","portal.country.br":"Brazil",
+    "portal.currency.usd":"USD — Dollar","portal.currency.mxn":"MXN — Mexican peso","portal.currency.eur":"EUR — Euro",
+  },
+  pt:{
+    "portal.nav.agents":"Meus agentes","portal.nav.catalog":"Catálogo",
+    "portal.nav.billing":"Faturação","portal.nav.licenses":"Minhas licenças",
+    "portal.nav.settings":"Configurações","portal.user.plan":"Plano ativo",
+    "portal.back":"Início","portal.metric.active":"Agentes ativos",
+    "portal.metric.trial":"Em teste","portal.metric.billing":"Próxima cobrança",
+    "portal.metric.monthly":"Mensal","portal.section.active":"Agentes ativos",
+    "portal.section.catalog":"Adicionar mais agentes",
+    "portal.card.license":"Licença","portal.card.renews":"Renova",
+    "portal.card.trial_ends":"Teste termina","portal.card.linked":"Equipamento vinculado",
+    "portal.card.download":"Baixar","portal.card.manual":"Manual",
+    "portal.card.subscribe":"Assinar","portal.card.yes":"✓ Sim",
+    "portal.status.active":"Ativo","portal.status.trial":"Teste · 4 dias",
+    "portal.catalog.add":"Adicionar","portal.catalog.premium":"Premium",
+    "portal.catalog.contact":"Contatar",
+    "portal.catalog.cta_text":"Quer ver todos os detalhes?",
+    "portal.catalog.cta_link":"Ver catálogo completo →",
+    "portal.store.subtitle":"Adicione agentes à sua assinatura. Cada um roda localmente no seu equipamento — seus dados nunca saem.",
+    "portal.store.owned":"Você já tem este agente","portal.store.from":"A partir de $299 USD/mês",
+    "portal.billing.method":"Método de pagamento","portal.billing.history":"Histórico de pagamentos",
+    "portal.billing.date":"Data","portal.billing.concept":"Descrição",
+    "portal.billing.amount":"Valor","portal.billing.status":"Estado",
+    "portal.billing.paid":"Pago","portal.billing.expires":"Vence",
+    "portal.billing.update_card":"Atualizar cartão","portal.billing.next":"Próxima cobrança",
+    "portal.billing.total":"Total · 15 jul 2026",
+    "portal.licenses.subtitle":"Suas chaves de licença ativam cada agente no seu equipamento. Baixe e instale localmente.",
+    "portal.lic.copy":"Copiar","portal.lic.activated":"Ativada",
+    "portal.lic.download":"Baixar agente",
+    "portal.settings.account":"Dados da conta","portal.settings.name":"Nome completo",
+    "portal.settings.email":"Endereço de e-mail","portal.settings.country":"País",
+    "portal.settings.currency":"Moeda preferida","portal.settings.language":"Idioma preferido",
+    "portal.settings.save":"Salvar alterações","portal.settings.save_hint":"As alterações são aplicadas imediatamente.",
+    "portal.settings.password":"Alterar senha","portal.settings.pwd_current":"Senha atual",
+    "portal.settings.pwd_new":"Nova senha","portal.settings.pwd_confirm":"Confirmar senha",
+    "portal.settings.pwd_save":"Atualizar senha",
+    "portal.settings.notifications":"Notificações",
+    "portal.settings.notif_renewals":"Alertas de renovação",
+    "portal.settings.notif_renewals_hint":"7 dias antes da renovação",
+    "portal.settings.notif_billing":"Lembretes de pagamento",
+    "portal.settings.notif_billing_hint":"3 dias antes da cobrança",
+    "portal.settings.notif_updates":"Atualizações de agentes",
+    "portal.settings.notif_updates_hint":"Quando houver uma nova versão",
+    "portal.settings.notif_news":"Novidades e catálogo",
+    "portal.settings.notif_news_hint":"Novos agentes disponíveis",
+    "portal.settings.danger":"Conta",
+    "portal.settings.cancel_hint":"Para cancelar sua assinatura ou excluir sua conta escreva para",
+    "portal.settings.saved_toast":"Alterações salvas ✓","portal.settings.pwd_toast":"Senha atualizada ✓",
+    "portal.lic.copied_toast":"Chave de licença copiada",
+    "portal.lic.empty_title":"Sem licenças ativas","portal.lic.empty_desc":"Você ainda não tem nenhum agente. Explore o catálogo e adicione o primeiro.",
+    "agent.documents.name":"Documentos","agent.excel.name":"Excel e dados",
+    "agent.database.name":"Banco de dados","agent.as400.name":"AS/400 · IBM i",
+    "agent.documents.desc":"Faça perguntas em linguagem natural sobre seus contratos, manuais e arquivos. Responde com citações.",
+    "agent.excel.desc":"Analise suas planilhas conversando. Totais, comparações e insights sem fórmulas.",
+    "agent.database.desc":"Consulte qualquer banco de dados em linguagem natural. Somente leitura: nunca danifica seus dados.",
+    "agent.as400.desc":"Consulte seu sistema legado IBM i e entenda código RPG sem ser especialista. A ponte para o moderno.",
+    "portal.country.mx":"México","portal.country.us":"Estados Unidos","portal.country.es":"Espanha","portal.country.co":"Colômbia","portal.country.ar":"Argentina","portal.country.br":"Brasil",
+    "portal.currency.usd":"USD — Dólar","portal.currency.mxn":"MXN — Peso mexicano","portal.currency.eur":"EUR — Euro",
+  },
+  fr:{
+    "portal.nav.agents":"Mes agents","portal.nav.catalog":"Catalogue",
+    "portal.nav.billing":"Facturation","portal.nav.licenses":"Mes licences",
+    "portal.nav.settings":"Paramètres","portal.user.plan":"Forfait actif",
+    "portal.back":"Accueil","portal.metric.active":"Agents actifs",
+    "portal.metric.trial":"En essai","portal.metric.billing":"Prochain prélèvement",
+    "portal.metric.monthly":"Mensuel","portal.section.active":"Agents actifs",
+    "portal.section.catalog":"Ajouter d'autres agents",
+    "portal.card.license":"Licence","portal.card.renews":"Renouvellement",
+    "portal.card.trial_ends":"Fin de l'essai","portal.card.linked":"Appareil lié",
+    "portal.card.download":"Télécharger","portal.card.manual":"Manuel",
+    "portal.card.subscribe":"S'abonner","portal.card.yes":"✓ Oui",
+    "portal.status.active":"Actif","portal.status.trial":"Essai · 4 jours",
+    "portal.catalog.add":"Ajouter","portal.catalog.premium":"Premium",
+    "portal.catalog.contact":"Nous contacter",
+    "portal.catalog.cta_text":"Vous voulez voir tous les détails ?",
+    "portal.catalog.cta_link":"Voir le catalogue complet →",
+    "portal.store.subtitle":"Ajoutez des agents à votre abonnement. Chacun s'exécute localement sur votre machine — vos données ne sortent jamais.",
+    "portal.store.owned":"Vous avez déjà cet agent","portal.store.from":"À partir de 299 USD/mois",
+    "portal.billing.method":"Moyen de paiement","portal.billing.history":"Historique des paiements",
+    "portal.billing.date":"Date","portal.billing.concept":"Description",
+    "portal.billing.amount":"Montant","portal.billing.status":"Statut",
+    "portal.billing.paid":"Payé","portal.billing.expires":"Expire",
+    "portal.billing.update_card":"Mettre à jour la carte","portal.billing.next":"Prochain prélèvement",
+    "portal.billing.total":"Total · 15 juil. 2026",
+    "portal.licenses.subtitle":"Vos clés de licence activent chaque agent sur votre machine. Téléchargez-les et installez-les localement.",
+    "portal.lic.copy":"Copier","portal.lic.activated":"Activée",
+    "portal.lic.download":"Télécharger l'agent",
+    "portal.settings.account":"Informations du compte","portal.settings.name":"Nom complet",
+    "portal.settings.email":"Adresse e-mail","portal.settings.country":"Pays",
+    "portal.settings.currency":"Devise préférée","portal.settings.language":"Langue préférée",
+    "portal.settings.save":"Enregistrer les modifications","portal.settings.save_hint":"Les modifications prennent effet immédiatement.",
+    "portal.settings.password":"Changer le mot de passe","portal.settings.pwd_current":"Mot de passe actuel",
+    "portal.settings.pwd_new":"Nouveau mot de passe","portal.settings.pwd_confirm":"Confirmer le mot de passe",
+    "portal.settings.pwd_save":"Mettre à jour le mot de passe",
+    "portal.settings.notifications":"Notifications",
+    "portal.settings.notif_renewals":"Alertes de renouvellement",
+    "portal.settings.notif_renewals_hint":"Avis 7 jours avant le renouvellement",
+    "portal.settings.notif_billing":"Rappels de paiement",
+    "portal.settings.notif_billing_hint":"3 jours avant le prélèvement",
+    "portal.settings.notif_updates":"Mises à jour des agents",
+    "portal.settings.notif_updates_hint":"Quand une nouvelle version est disponible",
+    "portal.settings.notif_news":"Actualités et catalogue",
+    "portal.settings.notif_news_hint":"Nouveaux agents disponibles",
+    "portal.settings.danger":"Compte",
+    "portal.settings.cancel_hint":"Pour résilier votre abonnement ou supprimer votre compte, écrivez-nous à",
+    "portal.settings.saved_toast":"Modifications enregistrées ✓","portal.settings.pwd_toast":"Mot de passe mis à jour ✓",
+    "portal.lic.copied_toast":"Clé copiée dans le presse-papiers",
+    "portal.lic.empty_title":"Aucune licence active","portal.lic.empty_desc":"Vous n'avez encore aucun agent. Explorez le catalogue et ajoutez le premier.",
+    "agent.documents.name":"Documents","agent.excel.name":"Excel et données",
+    "agent.database.name":"Base de données","agent.as400.name":"AS/400 · IBM i",
+    "agent.documents.desc":"Posez des questions en langage naturel sur vos contrats, manuels et dossiers. Répond en citant la source.",
+    "agent.excel.desc":"Analysez vos feuilles de calcul en parlant. Totaux, comparaisons et constats sans formules.",
+    "agent.database.desc":"Interrogez n'importe quelle base de données en langage naturel. Lecture seule : n'endommage jamais vos données.",
+    "agent.as400.desc":"Interrogez votre système hérité IBM i et comprenez son code RPG sans être expert. Le pont vers le moderne.",
+    "portal.country.mx":"Mexique","portal.country.us":"États-Unis","portal.country.es":"Espagne","portal.country.co":"Colombie","portal.country.ar":"Argentine","portal.country.br":"Brésil",
+    "portal.currency.usd":"USD — Dollar","portal.currency.mxn":"MXN — Peso mexicain","portal.currency.eur":"EUR — Euro",
+  },
+  de:{
+    "portal.nav.agents":"Meine Agenten","portal.nav.catalog":"Katalog",
+    "portal.nav.billing":"Abrechnung","portal.nav.licenses":"Meine Lizenzen",
+    "portal.nav.settings":"Einstellungen","portal.user.plan":"Aktiver Tarif",
+    "portal.back":"Startseite","portal.metric.active":"Aktive Agenten",
+    "portal.metric.trial":"In Testphase","portal.metric.billing":"Nächste Abbuchung",
+    "portal.metric.monthly":"Monatlich","portal.section.active":"Aktive Agenten",
+    "portal.section.catalog":"Weitere Agenten hinzufügen",
+    "portal.card.license":"Lizenz","portal.card.renews":"Verlängert am",
+    "portal.card.trial_ends":"Testphase endet","portal.card.linked":"Gerät verknüpft",
+    "portal.card.download":"Herunterladen","portal.card.manual":"Handbuch",
+    "portal.card.subscribe":"Abonnieren","portal.card.yes":"✓ Ja",
+    "portal.status.active":"Aktiv","portal.status.trial":"Test · 4 Tage",
+    "portal.catalog.add":"Hinzufügen","portal.catalog.premium":"Premium",
+    "portal.catalog.contact":"Kontakt aufnehmen",
+    "portal.catalog.cta_text":"Möchten Sie alle Details sehen?",
+    "portal.catalog.cta_link":"Vollständigen Katalog ansehen →",
+    "portal.store.subtitle":"Fügen Sie Agenten zu Ihrem Abo hinzu. Jeder läuft lokal auf Ihrem Gerät — Ihre Daten verlassen es nie.",
+    "portal.store.owned":"Sie haben diesen Agenten bereits","portal.store.from":"Ab 299 USD/Monat",
+    "portal.billing.method":"Zahlungsmethode","portal.billing.history":"Zahlungsverlauf",
+    "portal.billing.date":"Datum","portal.billing.concept":"Beschreibung",
+    "portal.billing.amount":"Betrag","portal.billing.status":"Status",
+    "portal.billing.paid":"Bezahlt","portal.billing.expires":"Läuft ab",
+    "portal.billing.update_card":"Karte aktualisieren","portal.billing.next":"Nächste Abbuchung",
+    "portal.billing.total":"Gesamt · 15. Juli 2026",
+    "portal.licenses.subtitle":"Ihre Lizenzschlüssel aktivieren jeden Agenten auf Ihrem Gerät. Laden Sie sie herunter und installieren Sie sie lokal.",
+    "portal.lic.copy":"Kopieren","portal.lic.activated":"Aktiviert",
+    "portal.lic.download":"Agent herunterladen",
+    "portal.settings.account":"Kontodaten","portal.settings.name":"Vollständiger Name",
+    "portal.settings.email":"E-Mail-Adresse","portal.settings.country":"Land",
+    "portal.settings.currency":"Bevorzugte Währung","portal.settings.language":"Bevorzugte Sprache",
+    "portal.settings.save":"Änderungen speichern","portal.settings.save_hint":"Änderungen werden sofort wirksam.",
+    "portal.settings.password":"Passwort ändern","portal.settings.pwd_current":"Aktuelles Passwort",
+    "portal.settings.pwd_new":"Neues Passwort","portal.settings.pwd_confirm":"Passwort bestätigen",
+    "portal.settings.pwd_save":"Passwort aktualisieren",
+    "portal.settings.notifications":"Benachrichtigungen",
+    "portal.settings.notif_renewals":"Verlängerungswarnungen",
+    "portal.settings.notif_renewals_hint":"Hinweis 7 Tage vor der Verlängerung",
+    "portal.settings.notif_billing":"Zahlungserinnerungen",
+    "portal.settings.notif_billing_hint":"3 Tage vor der Abbuchung",
+    "portal.settings.notif_updates":"Agenten-Updates",
+    "portal.settings.notif_updates_hint":"Wenn eine neue Version verfügbar ist",
+    "portal.settings.notif_news":"Neuigkeiten und Katalog",
+    "portal.settings.notif_news_hint":"Neue Agenten verfügbar",
+    "portal.settings.danger":"Konto",
+    "portal.settings.cancel_hint":"Um Ihr Abo zu kündigen oder Ihr Konto zu löschen, schreiben Sie uns an",
+    "portal.settings.saved_toast":"Änderungen gespeichert ✓","portal.settings.pwd_toast":"Passwort aktualisiert ✓",
+    "portal.lic.copied_toast":"Schlüssel in die Zwischenablage kopiert",
+    "portal.lic.empty_title":"Keine aktiven Lizenzen","portal.lic.empty_desc":"Sie haben noch keinen Agenten. Erkunden Sie den Katalog und fügen Sie den ersten hinzu.",
+    "agent.documents.name":"Dokumente","agent.excel.name":"Excel und Daten",
+    "agent.database.name":"Datenbank","agent.as400.name":"AS/400 · IBM i",
+    "agent.documents.desc":"Fragen Sie in natürlicher Sprache zu Ihren Verträgen, Handbüchern und Akten. Antwortet mit Quellenangabe.",
+    "agent.excel.desc":"Analysieren Sie Ihre Tabellen im Gespräch. Summen, Vergleiche und Erkenntnisse ohne Formeln.",
+    "agent.database.desc":"Fragen Sie jede Datenbank in natürlicher Sprache ab. Nur Lesezugriff: beschädigt Ihre Daten nie.",
+    "agent.as400.desc":"Fragen Sie Ihr IBM-i-Altsystem ab und verstehen Sie dessen RPG-Code, ohne Experte zu sein. Die Brücke zur Moderne.",
+    "portal.country.mx":"Mexiko","portal.country.us":"Vereinigte Staaten","portal.country.es":"Spanien","portal.country.co":"Kolumbien","portal.country.ar":"Argentinien","portal.country.br":"Brasilien",
+    "portal.currency.usd":"USD — Dollar","portal.currency.mxn":"MXN — Mexikanischer Peso","portal.currency.eur":"EUR — Euro",
+  },
+  it:{
+    "portal.nav.agents":"I miei agenti","portal.nav.catalog":"Catalogo",
+    "portal.nav.billing":"Fatturazione","portal.nav.licenses":"Le mie licenze",
+    "portal.nav.settings":"Impostazioni","portal.user.plan":"Piano attivo",
+    "portal.back":"Home","portal.metric.active":"Agenti attivi",
+    "portal.metric.trial":"In prova","portal.metric.billing":"Prossimo addebito",
+    "portal.metric.monthly":"Mensile","portal.section.active":"Agenti attivi",
+    "portal.section.catalog":"Aggiungi altri agenti",
+    "portal.card.license":"Licenza","portal.card.renews":"Si rinnova",
+    "portal.card.trial_ends":"La prova termina","portal.card.linked":"Dispositivo collegato",
+    "portal.card.download":"Scarica","portal.card.manual":"Manuale",
+    "portal.card.subscribe":"Abbonati","portal.card.yes":"✓ Sì",
+    "portal.status.active":"Attivo","portal.status.trial":"Prova · 4 giorni",
+    "portal.catalog.add":"Aggiungi","portal.catalog.premium":"Premium",
+    "portal.catalog.contact":"Contattaci",
+    "portal.catalog.cta_text":"Vuoi vedere tutti i dettagli?",
+    "portal.catalog.cta_link":"Vedi il catalogo completo →",
+    "portal.store.subtitle":"Aggiungi agenti al tuo abbonamento. Ognuno gira localmente sul tuo dispositivo — i tuoi dati non escono mai.",
+    "portal.store.owned":"Hai già questo agente","portal.store.from":"Da 299 USD/mese",
+    "portal.billing.method":"Metodo di pagamento","portal.billing.history":"Cronologia dei pagamenti",
+    "portal.billing.date":"Data","portal.billing.concept":"Descrizione",
+    "portal.billing.amount":"Importo","portal.billing.status":"Stato",
+    "portal.billing.paid":"Pagato","portal.billing.expires":"Scade",
+    "portal.billing.update_card":"Aggiorna carta","portal.billing.next":"Prossimo addebito",
+    "portal.billing.total":"Totale · 15 lug 2026",
+    "portal.licenses.subtitle":"Le tue chiavi di licenza attivano ogni agente sul tuo dispositivo. Scaricali e installali localmente.",
+    "portal.lic.copy":"Copia","portal.lic.activated":"Attivata",
+    "portal.lic.download":"Scarica agente",
+    "portal.settings.account":"Dati dell'account","portal.settings.name":"Nome completo",
+    "portal.settings.email":"Indirizzo e-mail","portal.settings.country":"Paese",
+    "portal.settings.currency":"Valuta preferita","portal.settings.language":"Lingua preferita",
+    "portal.settings.save":"Salva modifiche","portal.settings.save_hint":"Le modifiche vengono applicate immediatamente.",
+    "portal.settings.password":"Cambia password","portal.settings.pwd_current":"Password attuale",
+    "portal.settings.pwd_new":"Nuova password","portal.settings.pwd_confirm":"Conferma password",
+    "portal.settings.pwd_save":"Aggiorna password",
+    "portal.settings.notifications":"Notifiche",
+    "portal.settings.notif_renewals":"Avvisi di rinnovo",
+    "portal.settings.notif_renewals_hint":"Avviso 7 giorni prima del rinnovo",
+    "portal.settings.notif_billing":"Promemoria di pagamento",
+    "portal.settings.notif_billing_hint":"3 giorni prima dell'addebito",
+    "portal.settings.notif_updates":"Aggiornamenti degli agenti",
+    "portal.settings.notif_updates_hint":"Quando è disponibile una nuova versione",
+    "portal.settings.notif_news":"Novità e catalogo",
+    "portal.settings.notif_news_hint":"Nuovi agenti disponibili",
+    "portal.settings.danger":"Account",
+    "portal.settings.cancel_hint":"Per annullare l'abbonamento o eliminare l'account scrivici a",
+    "portal.settings.saved_toast":"Modifiche salvate ✓","portal.settings.pwd_toast":"Password aggiornata ✓",
+    "portal.lic.copied_toast":"Chiave copiata negli appunti",
+    "portal.lic.empty_title":"Nessuna licenza attiva","portal.lic.empty_desc":"Non hai ancora nessun agente. Esplora il catalogo e aggiungi il primo.",
+    "agent.documents.name":"Documenti","agent.excel.name":"Excel e dati",
+    "agent.database.name":"Database","agent.as400.name":"AS/400 · IBM i",
+    "agent.documents.desc":"Fai domande in linguaggio naturale sui tuoi contratti, manuali e pratiche. Risponde citando la fonte.",
+    "agent.excel.desc":"Analizza i tuoi fogli di calcolo parlando. Totali, confronti e risultati senza formule.",
+    "agent.database.desc":"Interroga qualsiasi database in linguaggio naturale. Sola lettura: non danneggia mai i tuoi dati.",
+    "agent.as400.desc":"Interroga il tuo sistema legacy IBM i e comprendi il suo codice RPG senza essere esperto. Il ponte verso il moderno.",
+    "portal.country.mx":"Messico","portal.country.us":"Stati Uniti","portal.country.es":"Spagna","portal.country.co":"Colombia","portal.country.ar":"Argentina","portal.country.br":"Brasile",
+    "portal.currency.usd":"USD — Dollaro","portal.currency.mxn":"MXN — Peso messicano","portal.currency.eur":"EUR — Euro",
+  }
+};
+
+/* ── NAVEGACIÓN POR SECCIONES ── */
+const SEC_TITLES = {
+  agents:   "portal.nav.agents",
+  catalog:  "portal.nav.catalog",
+  billing:  "portal.nav.billing",
+  licenses: "portal.nav.licenses",
+  settings: "portal.nav.settings",
+};
+const VALID_SECS = Object.keys(SEC_TITLES);
+
+function showSection(id, pushState) {
+  if (!VALID_SECS.includes(id)) id = "agents";
+  document.querySelectorAll(".sec-content").forEach(s => s.classList.remove("active"));
+  document.querySelectorAll(".nav-item").forEach(n => n.classList.remove("active"));
+  const sec = document.getElementById("sec-" + id);
+  if (sec) sec.classList.add("active");
+  const nav = document.querySelector(`.nav-item[data-sec="${id}"]`);
+  if (nav) nav.classList.add("active");
+  // Actualiza título del topbar
+  const titleEl = document.getElementById("topbar-title");
+  if (titleEl) {
+    const key = SEC_TITLES[id];
+    titleEl.setAttribute("data-i18n", key);
+    const lang = (typeof detectLang === "function") ? detectLang() : "es";
+    const dict = (typeof I18N !== "undefined" && I18N[lang]) ? I18N[lang] : {};
+    titleEl.textContent = dict[key] || titleEl.textContent;
+  }
+  // Actualiza URL hash sin recargar
+  if (pushState !== false) history.replaceState(null, "", "#" + id);
+  window.scrollTo(0, 0);
+}
+
+/* ── TOAST ── */
+let _toastTimer;
+function showToast(msg) {
+  const t = document.getElementById("toast");
+  const m = document.getElementById("toast-msg");
+  if (!t) return;
+  if (msg) m.textContent = msg;
+  clearTimeout(_toastTimer);
+  t.classList.add("show");
+  _toastTimer = setTimeout(() => t.classList.remove("show"), 2400);
+}
+
+/* ── COPIAR CLAVE DE LICENCIA ── */
+function initCopyButtons() {
+  document.querySelectorAll(".copy-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const key = btn.dataset.key;
+      if (!key) return;
+      navigator.clipboard.writeText(key).then(() => {
+        const original = btn.innerHTML;
+        btn.innerHTML = `<i class="ti ti-check" style="font-size:11px"></i> OK`;
+        btn.classList.add("copied");
+        setTimeout(() => { btn.innerHTML = original; btn.classList.remove("copied"); }, 1800);
+        const lang = (typeof detectLang === "function") ? detectLang() : "es";
+        const dict = (typeof I18N !== "undefined" && I18N[lang]) ? I18N[lang] : {};
+        showToast(dict["portal.lic.copied_toast"] || "Clave copiada al portapapeles");
+      }).catch(() => {});
+    });
+  });
+}
+
+/* ── INIT ── */
+document.addEventListener("DOMContentLoaded", () => {
+  // Fusiona i18n del portal con el global
+  ["es","en","pt","fr","de","it"].forEach(l => {
+    if (typeof I18N !== "undefined" && I18N[l]) Object.assign(I18N[l], PORTAL_I18N[l]);
+  });
+  if (typeof initI18n === "function") initI18n();
+
+  // Leer hash inicial (permite /portal/#billing etc.)
+  const initHash = location.hash.replace("#", "") || "agents";
+  showSection(initHash, false);
+
+  // Nav items → secciones
+  document.querySelectorAll(".nav-item[data-sec]").forEach(item => {
+    item.addEventListener("click", () => showSection(item.dataset.sec));
+  });
+
+  // Links en mini-catálogo y estado vacío → van al catálogo
+  document.querySelectorAll("[data-sec-go]").forEach(el => {
+    el.addEventListener("click", e => { e.preventDefault(); showSection(el.dataset.secGo); });
+  });
+
+  // Botón "Guardar cambios" en configuración → toast
+  document.querySelectorAll(".settings-save .btn-solid").forEach(btn => {
+    btn.addEventListener("click", e => {
+      e.preventDefault();
+      const lang = (typeof detectLang === "function") ? detectLang() : "es";
+      const dict = (typeof I18N !== "undefined" && I18N[lang]) ? I18N[lang] : {};
+      showToast(dict["portal.settings.saved_toast"] || "Cambios guardados");
+    });
+  });
+
+  // Botón "Actualizar contraseña" → toast
+  document.querySelectorAll(".card-box .btn-ghost[style*='width:100%']").forEach(btn => {
+    btn.addEventListener("click", e => {
+      e.preventDefault();
+      const lang = (typeof detectLang === "function") ? detectLang() : "es";
+      const dict = (typeof I18N !== "undefined" && I18N[lang]) ? I18N[lang] : {};
+      showToast(dict["portal.settings.pwd_toast"] || "Contraseña actualizada");
+    });
+  });
+
+  initCopyButtons();
+});
+</script>
+
+<!-- ═══ Asistente de plataforma · modo CLIENTE ═══ -->
+<script src="../platform-assistant/knowledge_base.js"></script>
+<script src="../platform-assistant/assistant.js"></script>
+<script>
+  // apiBase: "" = mismo origen (/api/assistant). Si la API vive en otro host,
+  // pásalo aquí, p. ej. TuiaAssistant.init({ mode:"client", apiBase:"https://core.tuialista.com" });
+  TuiaAssistant.init({ mode: "client" });
+</script>
+</body>
+</html>

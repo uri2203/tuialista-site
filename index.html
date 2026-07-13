@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TuIAlista — Agentes de IA que trabajan dentro de tu negocio</title>
+<meta name="description" content="Agentes de inteligencia artificial que corren localmente en tu equipo, con tus datos y tus sistemas. Tus datos nunca salen. Licencia mensual, sin complicaciones.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{
+    --steel-900:#0f1922;
+    --steel-800:#16242f;
+    --steel-700:#1f3543;
+    --steel-600:#2c4a5c;
+    --paper:#f5f6f4;
+    --paper-2:#eceee9;
+    --ink:#0f1922;
+    --muted:#5a6b73;
+    --signal:#e8821e;      /* ámbar señal: el LED de "activo" */
+    --signal-dim:#c46a12;
+    --line:#d4d8d2;
+    --ok:#1d9e75;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{font-family:'JetBrains Mono',monospace}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-.02em;line-height:1.05}
+
+  /* ---------- NAV ---------- */
+  header{position:sticky;top:0;z-index:50;background:rgba(245,246,244,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  /* ── Language switcher (premium) ── */
+  .lang-select{position:relative;display:inline-flex;align-items:center}
+  .lang-select > .ti-world{position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:16px;line-height:1;color:var(--muted);pointer-events:none;transition:color .18s ease}
+  .lang-select::after{content:"";position:absolute;right:12px;top:50%;width:7px;height:7px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:translateY(-65%) rotate(45deg);pointer-events:none;transition:border-color .18s ease}
+  #lang-switcher{appearance:none;-webkit-appearance:none;-moz-appearance:none;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;letter-spacing:.1px;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:8px 34px;cursor:pointer;transition:border-color .18s ease,box-shadow .18s ease}
+  #lang-switcher:hover{border-color:var(--signal)}
+  #lang-switcher:focus{outline:none;border-color:var(--signal);box-shadow:0 0 0 3px rgba(232,130,30,.15)}
+  .lang-select:hover > .ti-world,.lang-select:focus-within > .ti-world{color:var(--signal)}
+  .lang-select:hover::after,.lang-select:focus-within::after{border-color:var(--signal)}
+  #lang-switcher option{font-family:'Inter',sans-serif;color:var(--ink);background:#fff}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:21px;letter-spacing:-.03em;display:flex;align-items:center;gap:9px}
+  .logo .dot{width:9px;height:9px;border-radius:50%;background:var(--signal);box-shadow:0 0 0 3px rgba(232,130,30,.2);animation:pulse 2.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
+  .logo b{color:var(--signal)}
+  .nav-links{display:flex;gap:32px;align-items:center}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:14.5px;font-weight:500;transition:color .15s}
+  .nav-links a:hover{color:var(--ink)}
+  .btn{font-family:'Space Grotesk';font-weight:500;text-decoration:none;font-size:14.5px;padding:11px 22px;border-radius:8px;transition:.18s;display:inline-flex;align-items:center;gap:8px;cursor:pointer;border:none}
+  .btn-solid{background:var(--steel-900);color:var(--paper)}
+  .btn-solid:hover{background:var(--steel-700)}
+  .btn-signal{background:var(--signal);color:#1a1206}
+  .btn-signal:hover{background:var(--signal-dim)}
+  .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--steel-600)}
+  @media(max-width:780px){.nav-links{display:none}}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:90px 0 70px;position:relative;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:'JetBrains Mono';font-size:12.5px;color:var(--signal-dim);background:rgba(232,130,30,.1);padding:6px 13px;border-radius:6px;margin-bottom:26px;font-weight:500}
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--signal)}
+  h1.hero-title{font-size:clamp(38px,5vw,62px);font-weight:700;margin-bottom:24px}
+  h1.hero-title em{font-style:normal;color:var(--signal-dim);position:relative;white-space:nowrap}
+  .hero-lead{font-size:19px;color:var(--muted);max-width:46ch;margin-bottom:36px}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:30px}
+  .hero-trust{display:flex;gap:22px;flex-wrap:wrap;font-size:13.5px;color:var(--muted)}
+  .hero-trust span{display:flex;align-items:center;gap:7px}
+  .hero-trust .ti{color:var(--ok);font-size:17px}
+  @media(max-width:880px){.hero-grid{grid-template-columns:1fr;gap:40px}}
+
+  /* ---------- SIGNATURE: terminal local conectada al núcleo ---------- */
+  .stage{background:var(--steel-900);border-radius:16px;padding:24px;position:relative;box-shadow:0 30px 60px -20px rgba(15,25,34,.4)}
+  .stage-top{display:flex;align-items:center;gap:7px;margin-bottom:18px}
+  .stage-top i{width:11px;height:11px;border-radius:50%;display:inline-block;background:#2c4a5c}
+  .stage-label{margin-left:auto;font-family:'JetBrains Mono';font-size:11px;color:#5a6b73}
+  .term{font-family:'JetBrains Mono';font-size:13px;line-height:1.85}
+  .term .l{display:block;white-space:nowrap;overflow:hidden}
+  .term .p{color:var(--signal)}
+  .term .u{color:#85b7eb}
+  .term .o{color:#9fe1cb}
+  .term .c{color:#5a6b73}
+  .term .w{color:#e6e8e4}
+  .badge-local{position:absolute;bottom:-14px;right:24px;background:var(--signal);color:#1a1206;font-family:'JetBrains Mono';font-size:11.5px;font-weight:500;padding:7px 14px;border-radius:8px;display:flex;align-items:center;gap:7px}
+
+  /* ---------- THESIS STRIP ---------- */
+  .thesis{background:var(--steel-900);color:var(--paper);padding:30px 0}
+  .thesis .wrap{display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap;text-align:center}
+  .thesis p{font-family:'Space Grotesk';font-size:clamp(18px,2.4vw,26px);font-weight:500;max-width:30ch}
+  .thesis em{font-style:normal;color:var(--signal)}
+
+  /* ---------- HOW (el puente local↔núcleo) ---------- */
+  .section{padding:80px 0}
+  .sec-head{max-width:60ch;margin-bottom:48px}
+  .sec-eyebrow{font-family:'JetBrains Mono';font-size:12.5px;color:var(--signal-dim);font-weight:500;letter-spacing:.04em;margin-bottom:14px}
+  h2.sec-title{font-size:clamp(28px,3.6vw,40px);font-weight:700;margin-bottom:16px}
+  .sec-sub{font-size:17.5px;color:var(--muted)}
+  .flow{display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:stretch;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--paper)}
+  .flow-side{padding:34px}
+  .flow-side.local{background:var(--paper)}
+  .flow-side.core{background:var(--paper-2)}
+  .flow-mid{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 8px;background:var(--paper-2);border-left:1px dashed var(--line);border-right:1px dashed var(--line);min-width:90px}
+  .flow-mid .wire{font-family:'JetBrains Mono';font-size:11px;color:var(--muted);writing-mode:vertical-rl;transform:rotate(180deg);letter-spacing:.1em}
+  .flow-tag{font-family:'JetBrains Mono';font-size:12px;font-weight:500;padding:5px 11px;border-radius:6px;display:inline-block;margin-bottom:16px}
+  .flow-tag.l{background:rgba(29,158,117,.13);color:#0f6e56}
+  .flow-tag.c{background:var(--steel-900);color:var(--paper)}
+  .flow-side h3{font-size:20px;margin-bottom:10px;font-weight:500}
+  .flow-side p{font-size:15px;color:var(--muted);margin-bottom:14px}
+  .flow-side ul{list-style:none}
+  .flow-side li{font-size:14.5px;padding:7px 0;display:flex;gap:10px;align-items:flex-start;border-top:1px solid var(--line)}
+  .flow-side li .ti{color:var(--signal-dim);font-size:17px;margin-top:2px}
+  @media(max-width:780px){.flow{grid-template-columns:1fr}.flow-mid{flex-direction:row;border:none;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line);padding:14px}.flow-mid .wire{writing-mode:horizontal-tb;transform:none}}
+
+  /* ---------- CATALOG ---------- */
+  .cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+  .agent{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:26px;transition:.2s;position:relative}
+  .agent:hover{border-color:var(--steel-600);transform:translateY(-3px)}
+  .agent.premium{border-color:var(--signal);background:linear-gradient(180deg,rgba(232,130,30,.04),transparent)}
+  .agent-ico{width:46px;height:46px;border-radius:10px;background:rgba(44,74,92,.10);border:1px solid var(--line);color:var(--steel-700);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:18px;transition:.18s}
+  .agent:hover .agent-ico{background:rgba(232,130,30,.08);border-color:rgba(232,130,30,.32);color:var(--signal-dim)}
+  .agent.premium .agent-ico{background:rgba(232,130,30,.11);border-color:rgba(232,130,30,.38);color:var(--signal)}
+  .agent h3{font-size:19px;font-weight:500;margin-bottom:9px}
+  .agent p{font-size:14.5px;color:var(--muted);margin-bottom:18px;min-height:62px}
+  .agent .price{font-family:'JetBrains Mono';font-size:14px;color:var(--ink);font-weight:500}
+  .agent .price span{color:var(--muted);font-weight:400}
+  .premium-tag{position:absolute;top:18px;right:18px;font-family:'JetBrains Mono';font-size:10.5px;background:var(--signal);color:#1a1206;padding:4px 9px;border-radius:5px;font-weight:500}
+
+  /* ---------- PRICING NOTE / AFFILIATE ---------- */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .panel{border:1px solid var(--line);border-radius:16px;padding:36px;background:var(--paper)}
+  .panel.dark{background:var(--steel-900);color:var(--paper);border-color:var(--steel-700)}
+  .panel h3{font-size:23px;font-weight:500;margin-bottom:14px}
+  .panel.dark h3{color:var(--paper)}
+  .panel p{font-size:15.5px;color:var(--muted);margin-bottom:20px}
+  .panel.dark p{color:#9fb0b8}
+  @media(max-width:780px){.split{grid-template-columns:1fr}}
+
+  /* ---------- COMMITMENT (privacy seal) ---------- */
+  .commit{background:var(--steel-900);color:var(--paper);padding:80px 0}
+  .commit-card{display:grid;grid-template-columns:auto 1fr;gap:44px;align-items:center;border:1px solid var(--steel-700);border-radius:18px;padding:46px;background:linear-gradient(180deg,rgba(232,130,30,.05),transparent)}
+  .commit-seal{width:120px;height:120px;border-radius:20px;border:1px solid rgba(232,130,30,.4);background:rgba(232,130,30,.08);display:flex;align-items:center;justify-content:center;color:var(--signal);font-size:56px;flex-shrink:0}
+  .commit-eyebrow{font-family:'JetBrains Mono';font-size:12.5px;color:var(--signal);font-weight:500;letter-spacing:.06em;margin-bottom:14px}
+  .commit-title{font-size:clamp(26px,3.2vw,38px);font-weight:700;margin-bottom:16px;max-width:22ch}
+  .commit-text{font-size:17px;color:#9fb0b8;max-width:62ch;margin-bottom:28px}
+  .commit-actions{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+  .commit-note{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono';font-size:12.5px;color:#7c8d95}
+  .commit-note .ti{color:var(--ok);font-size:16px}
+  @media(max-width:780px){.commit-card{grid-template-columns:1fr;gap:26px;padding:30px}.commit-seal{width:84px;height:84px;font-size:40px}}
+
+  /* ---------- CTA FINAL ---------- */
+  .final{background:var(--steel-900);color:var(--paper);padding:84px 0;text-align:center}
+  .final h2{font-size:clamp(30px,4vw,46px);font-weight:700;max-width:20ch;margin:0 auto 18px}
+  .final p{color:#9fb0b8;font-size:18px;max-width:46ch;margin:0 auto 34px}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--steel-900);color:#7c8d95;padding:36px 0;border-top:1px solid var(--steel-700)}
+  .foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-size:13.5px}
+  .foot a{color:#9fb0b8;text-decoration:none}
+  .foot a:hover{color:var(--paper)}
+
+  :focus-visible{outline:2px solid var(--signal);outline-offset:2px}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="logo"><span class="dot"></span>Tu<b>IA</b>lista</div>
+    <nav class="nav-links">
+      <a href="#como" data-i18n="nav.how">Cómo funciona</a>
+      <a href="#agentes" data-i18n="nav.agents">Agentes</a>
+      <a href="#precios" data-i18n="nav.pricing">Precios</a>
+      <a href="#afiliados" data-i18n="nav.affiliates">Afiliados</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:14px">
+      <span class="lang-select">
+        <i class="ti ti-world"></i>
+        <select id="lang-switcher" aria-label="Idioma">
+          <option value="es">Español</option>
+          <option value="en">English</option>
+          <option value="pt">Português</option>
+          <option value="fr">Français</option>
+          <option value="de">Deutsch</option>
+          <option value="it">Italiano</option>
+        </select>
+      </span>
+      <a class="btn btn-solid" href="portal/" data-i18n="nav.enter">Entrar</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow"><span class="dot"></span><span data-i18n="hero.eyebrow">IA LOCAL · TUS DATOS NUNCA SALEN</span></div>
+      <h1 class="hero-title" data-i18n-html="hero.title">Agentes de IA que trabajan <em>dentro</em> de tu negocio.</h1>
+      <p class="hero-lead" data-i18n="hero.lead">No es otro chatbot en la nube. Son agentes que corren en tu propio equipo, operan tus sistemas y archivos, y mantienen tus datos donde deben estar: contigo.</p>
+      <div class="hero-cta">
+        <a class="btn btn-signal" href="#agentes"><span data-i18n="hero.cta_main">Ver los agentes</span> <i class="ti ti-arrow-right"></i></a>
+        <a class="btn btn-ghost" href="#como" data-i18n="hero.cta_alt">Cómo funciona</a>
+      </div>
+      <div class="hero-trust">
+        <span><i class="ti ti-lock"></i> <span data-i18n="hero.trust_data">Datos 100% locales</span></span>
+        <span><i class="ti ti-world"></i> <span data-i18n="hero.trust_world">Funciona en cualquier país</span></span>
+        <span><i class="ti ti-credit-card"></i> <span data-i18n="hero.trust_pay">Licencia mensual</span></span>
+      </div>
+    </div>
+    <div class="stage" aria-hidden="true">
+      <div class="stage-top">
+        <i></i><i></i><i></i>
+        <span class="stage-label" data-i18n="hero.stage_label">agente-local · tu-equipo</span>
+      </div>
+      <div class="term">
+        <span class="l"><span class="c" data-i18n="hero.term_c1"># el agente trabaja en TU máquina</span></span>
+        <span class="l"><span class="p">tuialista</span> <span class="w">activar</span> <span class="u">--agente=documentos</span></span>
+        <span class="l"><span class="o" data-i18n="hero.term_ok1">✓ licencia válida · firma verificada</span></span>
+        <span class="l"><span class="o" data-i18n="hero.term_ok2">✓ 1,240 documentos indexados (local)</span></span>
+        <span class="l"><span class="w" data-i18n="hero.term_q">&gt; ¿cuánto vendimos en marzo?</span></span>
+        <span class="l"><span class="o" data-i18n="hero.term_a1">Según ventas_q1.xlsx: $427,000 en marzo,</span></span>
+        <span class="l"><span class="o" data-i18n="hero.term_a2">14% arriba de febrero.</span></span>
+        <span class="l"><span class="c" data-i18n="hero.term_c2"># nada de esto salió de tu equipo</span></span>
+      </div>
+      <div class="badge-local"><i class="ti ti-shield-lock" style="font-size:14px"></i> <span data-i18n="hero.badge_local">Procesado localmente</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="thesis">
+  <div class="wrap">
+    <p data-i18n-html="thesis">La IA que vale no vive en la nube de alguien más. Vive <em>donde están tus datos</em>.</p>
+  </div>
+</div>
+
+<section class="section" id="como">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-eyebrow" data-i18n="how.eyebrow">CÓMO FUNCIONA</div>
+      <h2 class="sec-title" data-i18n="how.title">Tu equipo hace el trabajo. Nosotros solo validamos la licencia.</h2>
+      <p class="sec-sub" data-i18n="how.sub">El agente vive en tu máquina y opera con tus datos. Lo único que viaja por internet es una verificación firmada de que tu licencia está activa. Nada más.</p>
+    </div>
+    <div class="flow">
+      <div class="flow-side local">
+        <span class="flow-tag l" data-i18n="flow.local_tag">EN TU EQUIPO</span>
+        <h3 data-i18n="flow.local_h3">El agente y tus datos</h3>
+        <p data-i18n="flow.local_p">Todo el procesamiento ocurre aquí, en tu computadora o tu red.</p>
+        <ul>
+          <li><i class="ti ti-files"></i> <span data-i18n="flow.local_li1">Lee tus archivos y sistemas localmente</span></li>
+          <li><i class="ti ti-cpu"></i> <span data-i18n="flow.local_li2">Procesa con IA sin subir nada</span></li>
+          <li><i class="ti ti-shield-lock"></i> <span data-i18n="flow.local_li3">Tus datos nunca cruzan a la nube</span></li>
+        </ul>
+      </div>
+      <div class="flow-mid">
+        <span class="wire" data-i18n="flow.mid">licencia firmada ···</span>
+      </div>
+      <div class="flow-side core">
+        <span class="flow-tag c" data-i18n="flow.core_tag">NÚCLEO TUIALISTA</span>
+        <h3 data-i18n="flow.core_h3">Solo la licencia</h3>
+        <p data-i18n="flow.core_p">Verificamos que tu suscripción esté al día. Nada de tus datos pasa por aquí.</p>
+        <ul>
+          <li><i class="ti ti-key"></i> <span data-i18n="flow.core_li1">Valida tu licencia con firma criptográfica</span></li>
+          <li><i class="ti ti-credit-card"></i> <span data-i18n="flow.core_li2">Gestiona tu pago mensual</span></li>
+          <li><i class="ti ti-eye-off"></i> <span data-i18n="flow.core_li3">No vemos tus archivos jamás</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="agentes" style="background:var(--paper-2)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-eyebrow" data-i18n="agents.eyebrow">EL CATÁLOGO</div>
+      <h2 class="sec-title" data-i18n="agents.title">Un agente para cada necesidad real.</h2>
+      <p class="sec-sub" data-i18n="agents.sub">Especializados, no genéricos. Cada uno resuelve un dolor concreto que cuesta horas de trabajo manual.</p>
+    </div>
+    <div class="cat-grid">
+      <div class="agent">
+        <div class="agent-ico"><i class="ti ti-file-text"></i></div>
+        <h3 data-i18n="agent.documents.name">Documentos</h3>
+        <p data-i18n="agent.documents.desc">Pregunta en lenguaje natural sobre tus contratos, manuales y expedientes. Responde y cita la fuente.</p>
+        <div class="price">$9 USD<span data-i18n="price.month"> / mes</span></div>
+      </div>
+      <div class="agent">
+        <div class="agent-ico"><i class="ti ti-table"></i></div>
+        <h3 data-i18n="agent.excel.name">Excel y datos</h3>
+        <p data-i18n="agent.excel.desc">Analiza tus hojas de cálculo hablando. Totales, comparativas y hallazgos sin fórmulas.</p>
+        <div class="price">$9 USD<span data-i18n="price.month"> / mes</span></div>
+      </div>
+      <div class="agent">
+        <div class="agent-ico"><i class="ti ti-database"></i></div>
+        <h3 data-i18n="agent.database.name">Base de datos</h3>
+        <p data-i18n="agent.database.desc">Consulta cualquier base de datos en lenguaje natural. Solo lectura: nunca daña tus datos.</p>
+        <div class="price">$15 USD<span data-i18n="price.month"> / mes</span></div>
+      </div>
+      <div class="agent premium">
+        <span class="premium-tag">PREMIUM</span>
+        <div class="agent-ico"><i class="ti ti-server-2"></i></div>
+        <h3 data-i18n="agent.as400.name">AS/400 · IBM i</h3>
+        <p data-i18n="agent.as400.desc">Consulta tu sistema legacy y entiende su código RPG sin ser experto. El puente a lo moderno.</p>
+        <div class="price"><span data-i18n="price.from">Desde</span> $299 USD<span data-i18n="price.month"> / mes</span></div>
+      </div>
+      <div class="agent">
+        <div class="agent-ico"><i class="ti ti-report-money"></i></div>
+        <h3 data-i18n="agent.fiscal.name">Cumplimiento Fiscal</h3>
+        <p data-i18n="agent.fiscal.desc">Vigila obligaciones fiscales y prepara documentos, sin que tus datos salgan de tu equipo.</p>
+        <div class="price">$29 USD<span data-i18n="price.month"> / mes</span></div>
+      </div>
+      <div class="agent">
+        <div class="agent-ico"><i class="ti ti-file-certificate"></i></div>
+        <h3 data-i18n="agent.contratos.name">Contratos y Renovaciones</h3>
+        <p data-i18n="agent.contratos.desc">Extrae términos clave, alerta renovaciones y detecta cláusulas riesgosas en tus contratos.</p>
+        <div class="price">$79 USD<span data-i18n="price.month"> / mes</span></div>
+      </div>
+      <div class="agent">
+        <div class="agent-ico"><i class="ti ti-file-code"></i></div>
+        <h3 data-i18n="agent.docs-tecnica.name">Documentación Técnica</h3>
+        <p data-i18n="agent.docs-tecnica.desc">Genera y mantiene documentación técnica desde tu código y archivos locales.</p>
+        <div class="price">$49 USD<span data-i18n="price.month"> / mes</span></div>
+      </div>
+      <div class="agent">
+        <div class="agent-ico"><i class="ti ti-building-bank"></i></div>
+        <h3 data-i18n="agent.tramites.name">Trámites de Gobierno</h3>
+        <p data-i18n="agent.tramites.desc">Te guía paso a paso en trámites y prepara los documentos necesarios.</p>
+        <div class="price">$19 USD<span data-i18n="price.month"> / mes</span></div>
+      </div>
+      <div class="agent">
+        <div class="agent-ico"><i class="ti ti-signature"></i></div>
+        <h3 data-i18n="agent.contratos-personales.name">Contratos Personales</h3>
+        <p data-i18n="agent.contratos-personales.desc">Revisa contratos que vas a firmar y te explica las cláusulas problemáticas.</p>
+        <div class="price">$19 USD<span data-i18n="price.month"> / mes</span></div>
+      </div>
+      <div class="agent">
+        <div class="agent-ico"><i class="ti ti-shield-check"></i></div>
+        <h3 data-i18n="agent.garantias.name">Reclamaciones y Garantías</h3>
+        <p data-i18n="agent.garantias.desc">Detecta garantías por vencer y organiza tus reclamaciones para recuperar dinero.</p>
+        <div class="price">$15 USD<span data-i18n="price.month"> / mes</span></div>
+      </div>
+      <div class="agent">
+        <div class="agent-ico"><i class="ti ti-file-invoice"></i></div>
+        <h3 data-i18n="agent.facturas.name">Facturas y Cuentas por Pagar</h3>
+        <p data-i18n="agent.facturas.desc">Lee tus facturas, extrae montos y fechas, detecta duplicados y las organiza para pago. Todo local.</p>
+        <div class="price">$49 USD<span data-i18n="price.month"> / mes</span></div>
+      </div>
+      <div class="agent">
+        <div class="agent-ico"><i class="ti ti-books"></i></div>
+        <h3 data-i18n="agent.conocimiento.name">Conocimiento Interno</h3>
+        <p data-i18n="agent.conocimiento.desc">Tu equipo pregunta y el agente busca en todos los documentos de la empresa y responde citando la fuente.</p>
+        <div class="price">$39 USD<span data-i18n="price.month"> / mes</span></div>
+      </div>
+      <div class="agent">
+        <div class="agent-ico"><i class="ti ti-id-badge-2"></i></div>
+        <h3 data-i18n="agent.nominas.name">Nóminas y Recursos Humanos</h3>
+        <p data-i18n="agent.nominas.desc">Organiza datos de empleados, prepara reportes y vigila fechas de contratos y vacaciones, sin que los datos salgan.</p>
+        <div class="price">$49 USD<span data-i18n="price.month"> / mes</span></div>
+      </div>
+      <div class="agent">
+        <div class="agent-ico"><i class="ti ti-box-seam"></i></div>
+        <h3 data-i18n="agent.inventario.name">Inventario</h3>
+        <p data-i18n="agent.inventario.desc">Analiza tu stock, predice cuándo reordenar y detecta faltantes sobre los datos de tu negocio.</p>
+        <div class="price">$29 USD<span data-i18n="price.month"> / mes</span></div>
+      </div>
+      <div class="agent">
+        <div class="agent-ico"><i class="ti ti-clipboard-text"></i></div>
+        <h3 data-i18n="agent.actas.name">Actas y Reuniones</h3>
+        <p data-i18n="agent.actas.desc">Convierte tus reuniones en minutas claras y extrae tareas y acuerdos automáticamente.</p>
+        <div class="price">$19 USD<span data-i18n="price.month"> / mes</span></div>
+      </div>
+      <div class="agent">
+        <div class="agent-ico"><i class="ti ti-inbox"></i></div>
+        <h3 data-i18n="agent.correo.name">Correo</h3>
+        <p data-i18n="agent.correo.desc">Organiza, prioriza y redacta respuestas a tu correo procesándolo localmente. Tus emails nunca salen de tu equipo.</p>
+        <div class="price">$19 USD<span data-i18n="price.month"> / mes</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section commit" id="compromiso">
+  <div class="wrap">
+    <div class="commit-card">
+      <div class="commit-seal"><i class="ti ti-shield-lock"></i></div>
+      <div class="commit-body">
+        <div class="commit-eyebrow" data-i18n="commit.eyebrow">COMPROMISO POR ESCRITO</div>
+        <h2 class="commit-title" data-i18n="commit.title">Tus datos nunca salen de tu equipo.</h2>
+        <p class="commit-text" data-i18n="commit.text">Nuestros agentes procesan todo localmente, en tu propio equipo. Nunca recibimos ni almacenamos el contenido de tus archivos, contratos, facturas o correos. La plataforma solo valida tu licencia.</p>
+        <div class="commit-actions">
+          <a class="btn btn-signal" id="commit-link" href="legal/compromiso-local/compromiso_es.md" target="_blank" rel="noopener"><span data-i18n="commit.cta">Leer nuestro compromiso</span> <i class="ti ti-arrow-right"></i></a>
+          <span class="commit-note"><i class="ti ti-circle-check"></i><span data-i18n="commit.note">Arquitectura verificable · 100% local</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="precios">
+  <div class="wrap">
+    <div class="split">
+      <div class="panel">
+        <h3 data-i18n="pricing.p1_title">Licencia mensual, sin ataduras</h3>
+        <p data-i18n="pricing.p1_text">Eliges los agentes que necesitas y pagas solo por esos. Cada uno tiene 7 días de prueba. Cancela cuando quieras desde tu panel.</p>
+        <a class="btn btn-solid" href="portal/" data-i18n="pricing.p1_cta">Empezar prueba gratis</a>
+      </div>
+      <div class="panel dark" id="afiliados">
+        <h3 data-i18n="pricing.p2_title">Gana vendiendo TuIAlista</h3>
+        <p data-i18n="pricing.p2_text">Programa de afiliados con comisión recurrente cada mes que tu cliente siga activo. Te damos el material; tú compartes tu enlace.</p>
+        <a class="btn btn-signal" href="/afiliados" data-i18n="pricing.p2_cta">Ser afiliado</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2 data-i18n="final.title">Pon la IA a trabajar sin entregar tus datos.</h2>
+    <p data-i18n="final.text">Elige tu primer agente y pruébalo gratis 7 días en tu propio equipo.</p>
+    <a class="btn btn-signal" href="#agentes" style="font-size:16px;padding:14px 30px"><span data-i18n="final.cta">Ver los agentes</span> <i class="ti ti-arrow-right"></i></a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div class="logo" style="color:var(--paper);font-size:18px"><span class="dot"></span>Tu<b>IA</b>lista</div>
+    <div style="display:flex;gap:26px;flex-wrap:wrap">
+      <a href="#como" data-i18n="nav.how">Cómo funciona</a>
+      <a href="#agentes" data-i18n="nav.agents">Agentes</a>
+      <a href="#afiliados" data-i18n="nav.affiliates">Afiliados</a>
+      <a href="portal/" data-i18n="nav.enter">Entrar</a>
+    </div>
+    <div class="mono" style="font-size:12px">© <span id="y"></span> · tuialista.com</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('y').textContent=new Date().getFullYear();
+</script>
+<script src="i18n.js"></script>
+<script>
+  (function(){
+    var LANGS=["es","en","pt","fr","de","it"];
+    function syncCommitLink(){
+      var a=document.getElementById("commit-link");if(!a)return;
+      var l=(typeof localStorage!=="undefined"&&localStorage.getItem("tuialista_lang"))||"es";
+      if(LANGS.indexOf(l)<0)l="es";
+      a.setAttribute("href","legal/compromiso-local/compromiso_"+l+".md");
+    }
+    document.addEventListener("DOMContentLoaded",function(){
+      syncCommitLink();
+      var sw=document.getElementById("lang-switcher");
+      if(sw)sw.addEventListener("change",syncCommitLink);
+    });
+  })();
+</script>
+</body>
+</html>

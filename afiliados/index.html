@@ -1,0 +1,1775 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TuIAlista — Panel del Afiliado</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{
+    --steel-900:#0f1922;--steel-800:#16242f;--steel-700:#1f3543;--steel-600:#2c4a5c;
+    --paper:#f5f6f4;--paper-2:#eceee9;--ink:#0f1922;--muted:#5a6b73;
+    --signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2;--ok:#1d9e75;--danger:#a32d2d;
+    --warn:#ba7517;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper-2);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .mono{font-family:'JetBrains Mono',monospace}
+  h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;letter-spacing:-.02em}
+  a{color:inherit}
+
+  /* ── SHELL ── */
+  .shell{display:grid;grid-template-columns:248px 1fr;min-height:100vh}
+
+  /* ── SIDEBAR ── */
+  .side{background:var(--steel-900);color:#9fb0b8;padding:24px 18px;display:flex;flex-direction:column;position:sticky;top:0;height:100vh}
+  .side .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;color:var(--paper);display:flex;align-items:center;gap:8px;margin-bottom:6px;padding:0 8px}
+  .side .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal);box-shadow:0 0 0 3px rgba(232,130,30,.2)}
+  .side .logo b{color:var(--signal)}
+  .side .role{font-family:'JetBrains Mono';font-size:11px;color:var(--signal);padding:0 8px;margin-bottom:28px;letter-spacing:.06em}
+  .nav-item{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:9px;color:#9fb0b8;text-decoration:none;font-size:14.5px;font-weight:500;margin-bottom:4px;transition:.15s;cursor:pointer;user-select:none}
+  .nav-item:hover,.nav-item.active{background:var(--steel-700);color:var(--paper)}
+  .nav-item .ti{font-size:19px;flex-shrink:0}
+  .side .foot{margin-top:auto;border-top:1px solid var(--steel-700);padding-top:14px}
+  .side .foot a{display:flex;align-items:center;gap:9px;font-size:13px;color:#9fb0b8;text-decoration:none;padding:9px 14px;border-radius:9px;transition:.15s}
+  .side .foot a:hover{background:var(--steel-700);color:var(--paper)}
+
+  /* ── MAIN ── */
+  .main{padding:30px 38px;overflow-x:hidden;min-height:100vh}
+  .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:10px}
+  .topbar h1{font-size:26px;font-weight:700}
+  .topbar .right{display:flex;align-items:center;gap:10px}
+  .period{font-family:'JetBrains Mono';font-size:13px;color:var(--muted);border:1px solid var(--line);padding:8px 14px;border-radius:8px;background:var(--paper)}
+  /* ── Language switcher (premium) ── */
+  .lang-select{position:relative;display:inline-flex;align-items:center}
+  .lang-select > .ti-world{position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:16px;line-height:1;color:var(--muted);pointer-events:none;transition:color .18s ease}
+  .lang-select::after{content:"";position:absolute;right:12px;top:50%;width:7px;height:7px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:translateY(-65%) rotate(45deg);pointer-events:none;transition:border-color .18s ease}
+  #lang-switcher{appearance:none;-webkit-appearance:none;-moz-appearance:none;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;letter-spacing:.1px;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:8px 34px;cursor:pointer;transition:border-color .18s ease,box-shadow .18s ease}
+  #lang-switcher:hover{border-color:var(--signal)}
+  #lang-switcher:focus{outline:none;border-color:var(--signal);box-shadow:0 0 0 3px rgba(232,130,30,.15)}
+  .lang-select:hover > .ti-world,.lang-select:focus-within > .ti-world{color:var(--signal)}
+  .lang-select:hover::after,.lang-select:focus-within::after{border-color:var(--signal)}
+  #lang-switcher option{font-family:'Inter',sans-serif;color:var(--ink);background:#fff}
+
+  /* ── SECTIONS ── */
+  .sec-content{display:none}
+  .sec-content.active{display:block}
+
+  /* ── METRICS ── */
+  .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}
+  .metric{background:var(--paper);border:1px solid var(--line);border-radius:13px;padding:20px}
+  .metric .lbl{font-size:12.5px;color:var(--muted);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+  .metric .val{font-family:'Space Grotesk';font-size:29px;font-weight:500;line-height:1}
+  .metric .val small{font-size:14px;color:var(--muted);font-weight:400}
+  .metric .delta{font-size:12px;margin-top:8px;font-weight:500}
+  .delta.up{color:var(--ok)}.delta.neutral{color:var(--muted)}.delta.down{color:var(--danger)}
+  .metrics-3{grid-template-columns:repeat(3,1fr)}
+
+  /* ── GRID LAYOUTS ── */
+  .grid2{display:grid;grid-template-columns:1.4fr 1fr;gap:18px;margin-bottom:18px}
+  .grid2-equal{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
+
+  /* ── CARD ── */
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px}
+  .card-0{margin-bottom:0}
+  .card h3{font-size:16px;font-weight:500;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+  .card h3 .ti{font-size:17px;color:var(--muted)}
+  .card h3 .spacer{margin-left:auto;font-family:'JetBrains Mono';font-size:11px;color:var(--muted);font-weight:400}
+
+  /* ── DATA TABLE ── */
+  table.data{width:100%;border-collapse:collapse;font-size:13.5px}
+  table.data th{text-align:left;font-weight:500;color:var(--muted);font-size:12px;padding:0 0 10px;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--line)}
+  table.data td{padding:11px 0;border-top:1px solid var(--line);vertical-align:middle}
+  table.data tr:first-child td{border-top:none}
+  .name-cell{display:flex;align-items:center;gap:9px;font-weight:500}
+  .ico{width:30px;height:30px;border-radius:8px;background:var(--paper-2);display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--steel-600);flex-shrink:0}
+  .ico.prem{background:rgba(232,130,30,.13);color:var(--signal-dim)}
+  .ico.ok-bg{background:rgba(29,158,117,.10);color:var(--ok)}
+  td.num{text-align:right;font-family:'JetBrains Mono';font-size:13px;color:var(--muted)}
+  td.rev{text-align:right;font-family:'JetBrains Mono';font-size:13px;font-weight:500;color:var(--ink)}
+  td.right{text-align:right}
+  td.mono-sm{font-family:'JetBrains Mono';font-size:12px;color:var(--muted)}
+
+  /* ── PILLS ── */
+  .pill{font-family:'JetBrains Mono';font-size:11px;padding:4px 9px;border-radius:6px;font-weight:500;white-space:nowrap}
+  .pill.ok{background:rgba(29,158,117,.13);color:#0f6e56}
+  .pill.trial{background:rgba(186,117,23,.14);color:#854f0b}
+  .pill.off{background:rgba(163,45,45,.12);color:var(--danger)}
+  .pill.draft{background:var(--paper-2);color:var(--muted);border:1px solid var(--line)}
+  .pill.proc{background:rgba(44,74,92,.12);color:var(--steel-600)}
+
+  /* ── BUTTONS ── */
+  .btn{font-family:'Space Grotesk';font-weight:500;font-size:13px;padding:7px 14px;border-radius:8px;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:.15s;text-decoration:none}
+  .btn-solid{background:var(--steel-900);color:var(--paper)}
+  .btn-solid:hover{background:var(--steel-700)}
+  .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--steel-600)}
+  .btn-signal{background:var(--signal);color:#1a1206}
+  .btn-signal:hover{background:var(--signal-dim)}
+  .btn-xs{font-size:11.5px;padding:5px 10px;border-radius:6px}
+  .btn-lg{font-size:14.5px;padding:11px 20px;border-radius:10px}
+
+  /* ── SEARCH / FILTERS ── */
+  .toolbar{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+  .search-box{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:8px;padding:8px 12px;background:var(--paper);flex:1;min-width:200px}
+  .search-box input{border:none;outline:none;font-size:13.5px;font-family:'Inter',sans-serif;background:transparent;width:100%;color:var(--ink)}
+  .search-box .ti{color:var(--muted);font-size:15px;flex-shrink:0}
+  .filter-btn{border:1px solid var(--line);border-radius:8px;padding:8px 13px;background:var(--paper);font-size:13px;font-family:'Inter',sans-serif;color:var(--muted);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+  .filter-btn.active-filter{border-color:var(--signal);color:var(--signal-dim);background:rgba(232,130,30,.06)}
+
+  /* ── ROWS ── */
+  .comm-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;padding:9px 0;border-top:1px solid var(--line)}
+  .comm-row:first-of-type{border-top:none}
+  .comm-row .amt{font-family:'JetBrains Mono';font-weight:500}
+  .comm-row small{color:var(--muted);font-size:11.5px}
+
+  /* ── BAR CHART ── */
+  .chart-wrap{margin-bottom:6px}
+  .bar-chart{display:flex;align-items:flex-end;gap:10px;height:120px;padding-bottom:4px}
+  .bar-col{display:flex;flex-direction:column;align-items:center;flex:1;gap:5px}
+  .bar{width:100%;border-radius:5px 5px 0 0;background:var(--steel-600);transition:.3s;min-height:4px;position:relative}
+  .bar.current{background:var(--signal)}
+  .bar-val{font-family:'JetBrains Mono';font-size:10px;color:var(--muted);white-space:nowrap}
+  .bar-lbl{font-size:11px;color:var(--muted);white-space:nowrap}
+  .chart-rule{border:none;border-top:1px solid var(--line);margin:0 0 14px}
+
+  /* ── SUMMARY CHIPS ── */
+  .chips{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+  .chip{background:var(--paper-2);border:1px solid var(--line);border-radius:9px;padding:9px 14px;font-size:13px;display:flex;align-items:center;gap:8px}
+  .chip b{font-family:'JetBrains Mono';font-weight:500}
+  .chip .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+  .dot-ok{background:var(--ok)}.dot-trial{background:var(--warn)}.dot-off{background:var(--danger)}.dot-sig{background:var(--signal)}
+
+  /* ── REFERRAL HERO ── */
+  .ref-hero{background:var(--steel-900);color:var(--paper);border-radius:14px;padding:26px;margin-bottom:18px}
+  .ref-hero .eyebrow{font-family:'JetBrains Mono';font-size:11px;color:var(--signal);letter-spacing:.08em;margin-bottom:10px}
+  .ref-hero h2{font-size:20px;font-weight:500;margin-bottom:6px}
+  .ref-hero p{font-size:13.5px;color:#9fb0b8;margin-bottom:18px;max-width:520px}
+  .link-field{display:flex;align-items:center;gap:10px;background:var(--steel-800);border:1px solid var(--steel-700);border-radius:10px;padding:12px 14px;flex-wrap:wrap}
+  .link-field .url{font-family:'JetBrains Mono';font-size:14px;color:var(--paper);flex:1;min-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .code-chip{display:inline-flex;align-items:center;gap:8px;background:var(--steel-800);border:1px solid var(--steel-700);border-radius:8px;padding:8px 12px;font-family:'JetBrains Mono';font-size:14px;color:var(--signal)}
+
+  /* ── COPY BUTTON ── */
+  .copy-btn{background:var(--signal);color:#1a1206;border:none;border-radius:8px;padding:9px 14px;font-family:'Space Grotesk';font-weight:500;font-size:13px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:.15s;white-space:nowrap}
+  .copy-btn:hover{background:var(--signal-dim)}
+  .copy-btn.ghost{background:transparent;border:1px solid var(--line);color:var(--muted)}
+  .copy-btn.ghost:hover{border-color:var(--steel-600);color:var(--ink)}
+  .copy-btn.copied{background:var(--ok);color:#fff}
+
+  /* ── MATERIAL / MESSAGE BLOCKS ── */
+  .msg-block{background:var(--paper-2);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:12px}
+  .msg-block .head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
+  .msg-block .head .t{font-size:13px;font-weight:600;display:flex;align-items:center;gap:7px}
+  .msg-block .head .t .ti{font-size:15px;color:var(--muted)}
+  .msg-block .body{font-size:13px;color:var(--ink);line-height:1.65;white-space:pre-wrap}
+
+  /* ── GENERATOR ── */
+  .gen-row{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap}
+  .gen-row .form-group{margin-bottom:0;flex:1;min-width:200px}
+  .gen-out{display:flex;align-items:center;gap:10px;background:var(--paper-2);border:1px dashed var(--line);border-radius:9px;padding:11px 14px;margin-top:14px;flex-wrap:wrap}
+  .gen-out .url{font-family:'JetBrains Mono';font-size:13.5px;color:var(--steel-600);flex:1;min-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+  /* ── RESOURCE GRID ── */
+  .res-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .res-card{display:flex;gap:13px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:17px;text-decoration:none;transition:.15s}
+  .res-card:hover{border-color:var(--steel-600);transform:translateY(-1px)}
+  .res-card .r-ico{width:40px;height:40px;border-radius:10px;background:var(--paper-2);display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--signal-dim);flex-shrink:0}
+  .res-card .r-t{font-size:14.5px;font-weight:600;margin-bottom:3px}
+  .res-card .r-d{font-size:12.5px;color:var(--muted);line-height:1.5}
+
+  /* ── FAQ / ACCORDION ── */
+  .faq-item{border-bottom:1px solid var(--line)}
+  .faq-item:last-child{border-bottom:none}
+  .faq-q{width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:15px 0;font-size:14px;font-weight:500;color:var(--ink);font-family:'Inter',sans-serif;display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .faq-q .ti{color:var(--muted);transition:.2s;flex-shrink:0}
+  .faq-item.open .faq-q .ti{transform:rotate(180deg)}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;font-size:13.5px;color:var(--muted);line-height:1.7}
+  .faq-item.open .faq-a{max-height:400px;padding-bottom:15px}
+
+  /* ── PAYOUT ── */
+  .balance-card{background:linear-gradient(135deg,var(--steel-900),var(--steel-700));color:var(--paper);border-radius:14px;padding:26px}
+  .balance-card .lbl{font-size:13px;color:#9fb0b8;margin-bottom:8px}
+  .balance-card .amt{font-family:'Space Grotesk';font-size:40px;font-weight:500;line-height:1;margin-bottom:6px}
+  .balance-card .amt small{font-size:16px;color:#9fb0b8}
+  .balance-card .sub{font-size:12.5px;color:#9fb0b8;margin-bottom:20px}
+  .mor-note{display:flex;gap:11px;align-items:flex-start;background:rgba(44,74,92,.08);border:1px solid rgba(44,74,92,.2);border-radius:10px;padding:13px 15px;font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:16px}
+  .mor-note .ti{color:var(--steel-600);font-size:17px;flex-shrink:0;margin-top:1px}
+  .radio-cards{display:flex;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+  .radio-card{flex:1;min-width:150px;border:1px solid var(--line);border-radius:10px;padding:14px;cursor:pointer;transition:.15s;display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500}
+  .radio-card:hover{border-color:var(--steel-600)}
+  .radio-card.sel{border-color:var(--signal);background:rgba(232,130,30,.06)}
+  .radio-card .ti{font-size:20px;color:var(--steel-600)}
+  .radio-card.sel .ti{color:var(--signal-dim)}
+  .radio-card input{display:none}
+
+  /* ── SETTINGS ── */
+  .settings-layout{display:grid;grid-template-columns:1fr 320px;gap:22px;align-items:start}
+  .form-group{margin-bottom:18px}
+  .form-group label{display:block;font-size:13px;font-weight:500;color:var(--ink);margin-bottom:6px}
+  .form-group input,.form-group select{width:100%;padding:9px 13px;border:1px solid var(--line);border-radius:8px;font-size:14px;font-family:'Inter',sans-serif;background:var(--paper);color:var(--ink);transition:.15s}
+  .form-group input:focus,.form-group select:focus{outline:none;border-color:var(--steel-600);box-shadow:0 0 0 3px rgba(44,74,92,.08)}
+  .form-group input[type="password"]{font-family:'JetBrains Mono';letter-spacing:.08em}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .settings-save{display:flex;align-items:center;gap:12px;margin-top:6px}
+  .save-hint{font-size:12.5px;color:var(--muted)}
+
+  /* Toggle switch */
+  .toggle-list{display:flex;flex-direction:column;gap:0}
+  .toggle-row{display:flex;align-items:center;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--line);gap:14px}
+  .toggle-row:last-child{border-bottom:none}
+  .toggle-label{font-size:14px}
+  .toggle-label small{display:block;font-size:12px;color:var(--muted);margin-top:1px}
+  .toggle{position:relative;width:38px;height:21px;flex-shrink:0}
+  .toggle input{opacity:0;width:0;height:0}
+  .toggle-track{position:absolute;inset:0;border-radius:21px;background:var(--line);transition:.2s;cursor:pointer}
+  .toggle input:checked+.toggle-track{background:var(--ok)}
+  .toggle-track::before{content:'';position:absolute;left:3px;top:3px;width:15px;height:15px;border-radius:50%;background:var(--paper);transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+  .toggle input:checked+.toggle-track::before{transform:translateX(17px)}
+  .danger-zone{margin-top:8px;padding:14px;background:rgba(186,117,23,.06);border:1px solid rgba(186,117,23,.25);border-radius:10px;font-size:13px;color:var(--muted)}
+  .danger-zone a{color:var(--signal-dim);cursor:pointer;font-weight:500}
+
+  /* ── TOAST ── */
+  .toast{position:fixed;bottom:28px;right:28px;background:var(--steel-800);color:var(--paper);font-size:13.5px;padding:12px 20px;border-radius:10px;display:flex;align-items:center;gap:10px;box-shadow:0 6px 24px rgba(0,0,0,.22);opacity:0;transform:translateY(10px);transition:.25s;pointer-events:none;z-index:999}
+  .toast.show{opacity:1;transform:translateY(0)}
+  .toast .ti{color:var(--ok);font-size:16px}
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:1100px){.grid2{grid-template-columns:1fr}.grid2-equal{grid-template-columns:1fr}.settings-layout{grid-template-columns:1fr}.res-grid{grid-template-columns:1fr}}
+  @media(max-width:900px){
+    .shell{grid-template-columns:1fr}
+    .side{flex-direction:row;overflow-x:auto;padding:14px;gap:4px;position:static;height:auto}
+    .side .logo{margin-bottom:0;margin-right:8px;flex-shrink:0}
+    .side .role,.side .foot{display:none}
+    .metrics{grid-template-columns:repeat(2,1fr)}
+    .metrics.metrics-3{grid-template-columns:repeat(2,1fr)}
+    .main{padding:20px 18px}
+  }
+  @media(max-width:480px){.metrics{grid-template-columns:1fr 1fr}.form-row{grid-template-columns:1fr}}
+  :focus-visible{outline:2px solid var(--signal);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- ═══ SIDEBAR ═══ -->
+  <aside class="side">
+    <div class="logo"><span class="dot"></span>Tu<b>IA</b>lista</div>
+    <div class="role">AFILIADO</div>
+    <a class="nav-item active" data-sec="dashboard"><i class="ti ti-chart-line"></i> <span data-i18n="aff.nav.dashboard">Resumen</span></a>
+    <a class="nav-item" data-sec="clients"><i class="ti ti-users"></i> <span data-i18n="aff.nav.clients">Mis clientes</span></a>
+    <a class="nav-item" data-sec="commissions"><i class="ti ti-coin"></i> <span data-i18n="aff.nav.commissions">Comisiones</span></a>
+    <a class="nav-item" data-sec="payouts"><i class="ti ti-cash"></i> <span data-i18n="aff.nav.payouts">Retiros y pagos</span></a>
+    <a class="nav-item" data-sec="link"><i class="ti ti-link"></i> <span data-i18n="aff.nav.link">Mi enlace</span></a>
+    <a class="nav-item" data-sec="resources"><i class="ti ti-book"></i> <span data-i18n="aff.nav.resources">Recursos</span></a>
+    <a class="nav-item" data-sec="settings"><i class="ti ti-settings"></i> <span data-i18n="aff.nav.settings">Configuración</span></a>
+    <div class="foot">
+      <a href="../index.html"><i class="ti ti-home"></i> <span data-i18n="aff.nav.home">Ir al sitio</span></a>
+      <a href="mailto:afiliados@tuialista.com"><i class="ti ti-lifebuoy"></i> <span data-i18n="aff.nav.support">Soporte</span></a>
+    </div>
+  </aside>
+
+  <!-- ═══ MAIN ═══ -->
+  <main class="main">
+
+    <div class="topbar">
+      <h1 id="topbar-title" data-i18n="aff.nav.dashboard">Resumen</h1>
+      <div class="right">
+        <span class="period"><span data-i18n="aff.hello">Hola,</span> Mariana R.</span>
+        <span class="lang-select">
+          <i class="ti ti-world"></i>
+          <select id="lang-switcher" aria-label="Idioma">
+            <option value="es">Español</option>
+            <option value="en">English</option>
+            <option value="pt">Português</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+            <option value="it">Italiano</option>
+          </select>
+        </span>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         SECCIÓN 1 — RESUMEN (DASHBOARD)
+    ══════════════════════════════════════════ -->
+    <div id="sec-dashboard" class="sec-content active">
+
+      <div class="metrics">
+        <div class="metric">
+          <div class="lbl"><i class="ti ti-wallet" style="font-size:15px"></i> <span data-i18n="aff.dash.balance">Saldo disponible</span></div>
+          <div class="val">$131.10<small> USD</small></div>
+          <div class="delta up" data-i18n="aff.dash.balance_hint">listo para retirar</div>
+        </div>
+        <div class="metric">
+          <div class="lbl"><i class="ti ti-coin" style="font-size:15px"></i> <span data-i18n="aff.dash.total">Comisión acumulada</span></div>
+          <div class="val">$376.80<small> USD</small></div>
+          <div class="delta neutral" data-i18n="aff.dash.total_hint">histórico total</div>
+        </div>
+        <div class="metric">
+          <div class="lbl"><i class="ti ti-clock-dollar" style="font-size:15px"></i> <span data-i18n="aff.dash.pending">Pendiente del mes</span></div>
+          <div class="val">$66.90<small> USD</small></div>
+          <div class="delta neutral" data-i18n="aff.dash.pending_hint">julio, en curso</div>
+        </div>
+        <div class="metric">
+          <div class="lbl"><i class="ti ti-repeat" style="font-size:15px"></i> <span data-i18n="aff.dash.recurring">Comisión recurrente</span></div>
+          <div class="val">$66.90<small> USD</small></div>
+          <div class="delta up" data-i18n="aff.dash.recurring_hint">cada mes activo</div>
+        </div>
+      </div>
+
+      <div class="metrics metrics-3">
+        <div class="metric">
+          <div class="lbl"><i class="ti ti-circle-check" style="font-size:15px"></i> <span data-i18n="aff.dash.active">Clientes activos</span></div>
+          <div class="val">7</div>
+          <div class="delta up" data-i18n="aff.dash.active_hint">↑ 1 este mes</div>
+        </div>
+        <div class="metric">
+          <div class="lbl"><i class="ti ti-clock" style="font-size:15px"></i> <span data-i18n="aff.dash.trial">En prueba</span></div>
+          <div class="val">2</div>
+          <div class="delta neutral" data-i18n="aff.dash.trial_hint">pueden convertir pronto</div>
+        </div>
+        <div class="metric">
+          <div class="lbl"><i class="ti ti-x" style="font-size:15px"></i> <span data-i18n="aff.dash.cancelled">Cancelados</span></div>
+          <div class="val">1</div>
+          <div class="delta neutral"><span data-i18n="aff.dash.conversion">conversión</span> 74%</div>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="card card-0">
+          <h3><i class="ti ti-repeat"></i> <span data-i18n="aff.dash.model_title">El modelo 30% recurrente en acción</span></h3>
+          <p style="font-size:13.5px;color:var(--muted);margin-bottom:16px" data-i18n="aff.dash.model_body">Ganas el <strong style="color:var(--ink)">30% de lo que paga cada cliente, todos los meses</strong> que siga activo. No es un pago único: se acumula. Tus 7 clientes activos te generan <strong style="color:var(--ink)">$66.90 al mes</strong> de forma recurrente.</p>
+          <div class="comm-row"><span><span data-i18n="aff.client.andrade">Comercial Andrade</span> · <small>Facturas ($49)</small></span><span class="amt" style="color:var(--ok)">$14.70/mes</span></div>
+          <div class="comm-row"><span><span data-i18n="aff.client.ferretero">Grupo Ferretero del Bajío</span> · <small>Contratos ($79)</small></span><span class="amt" style="color:var(--signal)">$23.70/mes</span></div>
+          <div class="comm-row"><span><span data-i18n="aff.client.ruiz">Despacho Ruiz & Asoc.</span> · <small>Fiscal ($29)</small></span><span class="amt" style="color:var(--ok)">$8.70/mes</span></div>
+          <div class="comm-row"><span style="color:var(--muted)"><span data-i18n="aff.dash.others">Otros activos</span> (4)</span><span class="amt" style="color:var(--muted)">$19.80/mes</span></div>
+        </div>
+        <div class="card card-0">
+          <h3><i class="ti ti-calendar-dollar"></i> <span data-i18n="aff.dash.next_title">Tu próximo pago</span></h3>
+          <div style="font-family:'Space Grotesk';font-size:34px;font-weight:500;margin-bottom:4px">$131.10 <small style="font-size:14px;color:var(--muted)">USD</small></div>
+          <div style="font-size:13px;color:var(--muted);margin-bottom:16px" data-i18n="aff.dash.next_sub">saldo disponible · corte 31 jul 2026</div>
+          <a class="btn btn-signal" style="width:100%;justify-content:center" data-sec-link="payouts"><i class="ti ti-cash"></i> <span data-i18n="aff.dash.go_payout">Ir a retiros</span></a>
+          <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)" data-i18n="aff.dash.mor_hint">El pago lo ejecuta nuestro Merchant of Record.</div>
+        </div>
+      </div>
+
+      <div class="ref-hero">
+        <div class="eyebrow" data-i18n="aff.dash.share_eyebrow">TU HERRAMIENTA #1</div>
+        <h2 data-i18n="aff.dash.share_title">Comparte tu enlace y suma clientes</h2>
+        <p data-i18n="aff.dash.share_body">Cada cliente que entra por tu enlace y se suscribe queda atribuido a ti automáticamente. Compártelo por WhatsApp, redes o correo.</p>
+        <div class="link-field">
+          <span class="url" id="dash-link">https://tuialista.com/?ref=MRES9A4C21</span>
+          <button class="copy-btn" data-copy="https://tuialista.com/?ref=MRES9A4C21"><i class="ti ti-copy"></i> <span data-i18n="aff.copy">Copiar</span></button>
+        </div>
+      </div>
+
+    </div><!-- /sec-dashboard -->
+
+
+    <!-- ══════════════════════════════════════════
+         SECCIÓN 2 — MIS CLIENTES
+    ══════════════════════════════════════════ -->
+    <div id="sec-clients" class="sec-content">
+
+      <div class="chips">
+        <div class="chip"><span class="dot dot-ok"></span><span data-i18n="aff.status.active">Activos</span>: <b>7</b></div>
+        <div class="chip"><span class="dot dot-trial"></span><span data-i18n="aff.status.trial">En prueba</span>: <b>2</b></div>
+        <div class="chip"><span class="dot dot-off"></span><span data-i18n="aff.status.cancelled">Cancelados</span>: <b>1</b></div>
+        <div class="chip"><span class="dot dot-sig"></span><span data-i18n="aff.clients.recurring">Comisión recurrente</span>: <b>$66.90/mes</b></div>
+      </div>
+
+      <div class="card card-0">
+        <h3><i class="ti ti-users"></i> <span data-i18n="aff.clients.title">Clientes que has referido</span>
+          <span class="spacer" data-i18n="aff.clients.privacy">Nombres parcialmente ocultos por privacidad</span>
+        </h3>
+        <div class="toolbar">
+          <div class="search-box">
+            <i class="ti ti-search"></i>
+            <input type="text" placeholder="Buscar cliente o agente…" data-i18n-placeholder="aff.clients.search">
+          </div>
+          <button class="filter-btn active-filter" data-filter="all"><i class="ti ti-list" style="font-size:14px"></i> <span data-i18n="aff.clients.all">Todos</span></button>
+          <button class="filter-btn" data-filter="ok"><i class="ti ti-circle-check" style="font-size:14px"></i> <span data-i18n="aff.status.active">Activos</span></button>
+          <button class="filter-btn" data-filter="trial"><i class="ti ti-clock" style="font-size:14px"></i> <span data-i18n="aff.status.trial">Prueba</span></button>
+          <button class="filter-btn" data-filter="off"><i class="ti ti-x" style="font-size:14px"></i> <span data-i18n="aff.status.cancelled">Cancelados</span></button>
+        </div>
+        <table class="data">
+          <thead><tr>
+            <th data-i18n="aff.col.client">Cliente / Empresa</th>
+            <th data-i18n="aff.col.agent">Agente contratado</th>
+            <th data-i18n="aff.col.since">Alta</th>
+            <th data-i18n="aff.col.status">Estado</th>
+            <th style="text-align:right" data-i18n="aff.col.commission">Comisión / mes</th>
+          </tr></thead>
+          <tbody id="clients-tbody">
+            <tr data-st="ok">
+              <td><div class="name-cell"><div class="ico ok-bg"><i class="ti ti-building"></i></div>Grupo Ferretero del B••••</div></td>
+              <td class="mono-sm">Contratos y Renovaciones · $79</td>
+              <td class="mono-sm">12 ene 2026</td>
+              <td><span class="pill ok" data-i18n="aff.status.active">Activo</span></td>
+              <td class="rev" style="color:var(--signal-dim)">$23.70</td>
+            </tr>
+            <tr data-st="ok">
+              <td><div class="name-cell"><div class="ico ok-bg"><i class="ti ti-building"></i></div>Despacho Ruiz & A••••</div></td>
+              <td class="mono-sm">Cumplimiento Fiscal · $29</td>
+              <td class="mono-sm">05 feb 2026</td>
+              <td><span class="pill ok" data-i18n="aff.status.active">Activo</span></td>
+              <td class="rev">$8.70</td>
+            </tr>
+            <tr data-st="ok">
+              <td><div class="name-cell"><div class="ico ok-bg"><i class="ti ti-building"></i></div>Comercial A••••••</div></td>
+              <td class="mono-sm">Facturas y CxP · $49</td>
+              <td class="mono-sm">18 feb 2026</td>
+              <td><span class="pill ok" data-i18n="aff.status.active">Activo</span></td>
+              <td class="rev">$14.70</td>
+            </tr>
+            <tr data-st="ok">
+              <td><div class="name-cell"><div class="ico ok-bg"><i class="ti ti-building"></i></div>Logística del N••••</div></td>
+              <td class="mono-sm">Inventario · $29</td>
+              <td class="mono-sm">02 mar 2026</td>
+              <td><span class="pill ok" data-i18n="aff.status.active">Activo</span></td>
+              <td class="rev">$8.70</td>
+            </tr>
+            <tr data-st="ok">
+              <td><div class="name-cell"><div class="ico ok-bg"><i class="ti ti-user"></i></div>Constructora V••••</div></td>
+              <td class="mono-sm">Contratos Personales · $19</td>
+              <td class="mono-sm">15 mar 2026</td>
+              <td><span class="pill ok" data-i18n="aff.status.active">Activo</span></td>
+              <td class="rev">$5.70</td>
+            </tr>
+            <tr data-st="ok">
+              <td><div class="name-cell"><div class="ico ok-bg"><i class="ti ti-user"></i></div>Notaría 4•</div></td>
+              <td class="mono-sm">Documentos · $9</td>
+              <td class="mono-sm">22 mar 2026</td>
+              <td><span class="pill ok" data-i18n="aff.status.active">Activo</span></td>
+              <td class="rev">$2.70</td>
+            </tr>
+            <tr data-st="ok">
+              <td><div class="name-cell"><div class="ico ok-bg"><i class="ti ti-user"></i></div>Estudio Contable L••••</div></td>
+              <td class="mono-sm">Excel y datos · $9</td>
+              <td class="mono-sm">01 abr 2026</td>
+              <td><span class="pill ok" data-i18n="aff.status.active">Activo</span></td>
+              <td class="rev">$2.70</td>
+            </tr>
+            <tr data-st="trial">
+              <td><div class="name-cell"><div class="ico"><i class="ti ti-building"></i></div>TalentoRH C•••••••</div></td>
+              <td class="mono-sm">Nóminas y RR.HH. · $49</td>
+              <td class="mono-sm">28 may 2026</td>
+              <td><span class="pill trial" data-i18n="aff.status.trial">En prueba</span></td>
+              <td class="rev" style="color:var(--muted)">—</td>
+            </tr>
+            <tr data-st="trial">
+              <td><div class="name-cell"><div class="ico"><i class="ti ti-building"></i></div>Bufete S•••••</div></td>
+              <td class="mono-sm">Conocimiento Interno · $39</td>
+              <td class="mono-sm">03 jun 2026</td>
+              <td><span class="pill trial" data-i18n="aff.status.trial">En prueba</span></td>
+              <td class="rev" style="color:var(--muted)">—</td>
+            </tr>
+            <tr data-st="off">
+              <td><div class="name-cell"><div class="ico" style="opacity:.6"><i class="ti ti-building"></i></div><span style="opacity:.65">Muebles T••••••</span></div></td>
+              <td class="mono-sm">Correo · $19</td>
+              <td class="mono-sm">10 dic 2025</td>
+              <td><span class="pill off" data-i18n="aff.status.cancelled">Cancelado</span></td>
+              <td class="rev" style="color:var(--muted)">—</td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="font-size:12.5px;color:var(--muted);margin-top:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px">
+          <span data-i18n="aff.clients.footnote">La comisión de un cliente en prueba empieza a contar cuando hace su primer pago.</span>
+          <span><span data-i18n="aff.clients.total_recurring">Total recurrente</span>: <strong style="color:var(--ink)">$66.90/mes</strong></span>
+        </div>
+      </div>
+
+    </div><!-- /sec-clients -->
+
+
+    <!-- ══════════════════════════════════════════
+         SECCIÓN 3 — COMISIONES
+    ══════════════════════════════════════════ -->
+    <div id="sec-commissions" class="sec-content">
+
+      <div class="metrics">
+        <div class="metric">
+          <div class="lbl"><i class="ti ti-coin" style="font-size:15px"></i> <span data-i18n="aff.comm.lifetime">Ganado en total</span></div>
+          <div class="val">$376.80<small> USD</small></div>
+          <div class="delta neutral" data-i18n="aff.comm.since">desde dic 2025</div>
+        </div>
+        <div class="metric">
+          <div class="lbl"><i class="ti ti-circle-check" style="font-size:15px"></i> <span data-i18n="aff.comm.paid">Pagado</span></div>
+          <div class="val">$309.90<small> USD</small></div>
+          <div class="delta up" data-i18n="aff.comm.paid_hint">7 periodos liquidados</div>
+        </div>
+        <div class="metric">
+          <div class="lbl"><i class="ti ti-clock-dollar" style="font-size:15px"></i> <span data-i18n="aff.comm.pending">Pendiente</span></div>
+          <div class="val">$66.90<small> USD</small></div>
+          <div class="delta neutral" data-i18n="aff.comm.pending_hint">julio 2026</div>
+        </div>
+        <div class="metric">
+          <div class="lbl"><i class="ti ti-percentage" style="font-size:15px"></i> <span data-i18n="aff.comm.rate">Tu comisión</span></div>
+          <div class="val">30%</div>
+          <div class="delta up" data-i18n="aff.comm.rate_hint">recurrente</div>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="card card-0">
+          <h3><i class="ti ti-chart-bar"></i> <span data-i18n="aff.comm.chart_title">Comisiones por mes (USD)</span></h3>
+          <div class="chart-wrap">
+            <div class="bar-chart" id="comm-chart"><!-- injected --></div>
+            <hr class="chart-rule">
+          </div>
+          <p style="font-size:12.5px;color:var(--muted)" data-i18n="aff.comm.chart_note">La curva sube porque cada cliente nuevo se suma a los que ya pagan. Eso es el efecto recurrente.</p>
+        </div>
+        <div class="card card-0">
+          <h3><i class="ti ti-receipt-2"></i> <span data-i18n="aff.comm.detail_title">Detalle de julio 2026</span></h3>
+          <div class="comm-row"><span>Grupo Ferretero del B•••• · <small>Contratos</small></span><span class="amt">$23.70</span></div>
+          <div class="comm-row"><span>Comercial A•••••• · <small>Facturas</small></span><span class="amt">$14.70</span></div>
+          <div class="comm-row"><span>Despacho Ruiz & A•••• · <small>Fiscal</small></span><span class="amt">$8.70</span></div>
+          <div class="comm-row"><span>Logística del N•••• · <small>Inventario</small></span><span class="amt">$8.70</span></div>
+          <div class="comm-row"><span>Constructora V•••• · <small>C. Personales</small></span><span class="amt">$5.70</span></div>
+          <div class="comm-row"><span>Notaría 4• · <small>Documentos</small></span><span class="amt">$2.70</span></div>
+          <div class="comm-row"><span>Estudio Contable L•••• · <small>Excel</small></span><span class="amt">$2.70</span></div>
+          <div class="comm-row" style="border-top:2px solid var(--line);margin-top:2px"><span style="font-weight:600" data-i18n="aff.comm.total_month">Total del mes</span><span class="amt" style="color:var(--signal);font-size:15px">$66.90</span></div>
+        </div>
+      </div>
+
+      <div class="card card-0">
+        <h3><i class="ti ti-history"></i> <span data-i18n="aff.comm.history_title">Historial de comisiones</span></h3>
+        <table class="data">
+          <thead><tr>
+            <th data-i18n="aff.col.period">Periodo</th>
+            <th style="text-align:right" data-i18n="aff.col.payingClients">Clientes que pagaron</th>
+            <th style="text-align:right" data-i18n="aff.col.generated">Comisión generada</th>
+            <th style="text-align:right" data-i18n="aff.col.status">Estado</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td class="mono-sm" style="color:var(--ink)">2026-07 · <span data-i18n="aff.month.jul">julio</span></td>
+              <td class="num">7</td><td class="rev">$66.90</td>
+              <td class="right"><span class="pill trial" data-i18n="aff.status.pending">Pendiente</span></td>
+            </tr>
+            <tr>
+              <td class="mono-sm" style="color:var(--ink)">2026-06 · <span data-i18n="aff.month.jun">junio</span></td>
+              <td class="num">7</td><td class="rev">$66.90</td>
+              <td class="right"><span class="pill ok" data-i18n="aff.status.paid">Pagada</span></td>
+            </tr>
+            <tr>
+              <td class="mono-sm" style="color:var(--ink)">2026-05 · <span data-i18n="aff.month.may">mayo</span></td>
+              <td class="num">7</td><td class="rev">$64.20</td>
+              <td class="right"><span class="pill ok" data-i18n="aff.status.paid">Pagada</span></td>
+            </tr>
+            <tr>
+              <td class="mono-sm" style="color:var(--ink)">2026-04 · <span data-i18n="aff.month.apr">abril</span></td>
+              <td class="num">6</td><td class="rev">$61.50</td>
+              <td class="right"><span class="pill ok" data-i18n="aff.status.paid">Pagada</span></td>
+            </tr>
+            <tr>
+              <td class="mono-sm" style="color:var(--ink)">2026-03 · <span data-i18n="aff.month.mar">marzo</span></td>
+              <td class="num">5</td><td class="rev">$52.80</td>
+              <td class="right"><span class="pill ok" data-i18n="aff.status.paid">Pagada</span></td>
+            </tr>
+            <tr>
+              <td class="mono-sm" style="color:var(--ink)">2026-02 · <span data-i18n="aff.month.feb">febrero</span></td>
+              <td class="num">2</td><td class="rev">$32.40</td>
+              <td class="right"><span class="pill ok" data-i18n="aff.status.paid">Pagada</span></td>
+            </tr>
+            <tr>
+              <td class="mono-sm">2026-01 · <span data-i18n="aff.month.jan">enero</span></td>
+              <td class="num">1</td><td class="rev">$23.70</td>
+              <td class="right"><span class="pill ok" data-i18n="aff.status.paid">Pagada</span></td>
+            </tr>
+            <tr>
+              <td class="mono-sm">2025-12 · <span data-i18n="aff.month.dec">diciembre</span></td>
+              <td class="num">1</td><td class="rev">$8.40</td>
+              <td class="right"><span class="pill ok" data-i18n="aff.status.paid">Pagada</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div><!-- /sec-commissions -->
+
+
+    <!-- ══════════════════════════════════════════
+         SECCIÓN 4 — RETIROS Y PAGOS
+    ══════════════════════════════════════════ -->
+    <div id="sec-payouts" class="sec-content">
+
+      <div class="grid2">
+        <div>
+          <div class="balance-card">
+            <div class="lbl" data-i18n="aff.pay.available">Saldo disponible para retirar</div>
+            <div class="amt">$131.10 <small>USD</small></div>
+            <div class="sub" data-i18n="aff.pay.available_sub">Comisiones liquidadas · mínimo de retiro $50 USD</div>
+            <button class="btn btn-signal btn-lg" style="width:100%;justify-content:center" id="withdraw-btn"><i class="ti ti-cash"></i> <span data-i18n="aff.pay.request">Solicitar retiro</span></button>
+          </div>
+          <div class="mor-note">
+            <i class="ti ti-shield-check"></i>
+            <span data-i18n="aff.pay.mor">La ejecución del pago se procesa a través de nuestro <strong>Merchant of Record</strong>, que gestiona impuestos y la dispersión de fondos conforme a tu país. TuIAlista calcula y aprueba tu comisión; el Merchant of Record realiza el depósito a tu método de cobro.</span>
+          </div>
+        </div>
+
+        <div class="card card-0">
+          <h3><i class="ti ti-wallet"></i> <span data-i18n="aff.pay.method_title">Datos de cobro</span></h3>
+          <div class="radio-cards">
+            <label class="radio-card sel" data-method="paypal">
+              <input type="radio" name="paymethod" value="paypal" checked>
+              <i class="ti ti-brand-paypal"></i> PayPal
+            </label>
+            <label class="radio-card" data-method="bank">
+              <input type="radio" name="paymethod" value="bank">
+              <i class="ti ti-building-bank"></i> <span data-i18n="aff.pay.bank">Transferencia</span>
+            </label>
+          </div>
+
+          <div id="fields-paypal">
+            <div class="form-group">
+              <label data-i18n="aff.pay.paypal_email">Correo de PayPal</label>
+              <input type="email" value="m.resendiz@mktmx.com">
+            </div>
+          </div>
+
+          <div id="fields-bank" style="display:none">
+            <div class="form-group">
+              <label data-i18n="aff.pay.holder">Titular de la cuenta</label>
+              <input type="text" placeholder="Mariana Reséndiz García">
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label data-i18n="aff.pay.bank_name">Banco</label>
+                <input type="text" placeholder="BBVA">
+              </div>
+              <div class="form-group">
+                <label data-i18n="aff.pay.account">CLABE / IBAN</label>
+                <input type="text" placeholder="0123 4567 8901 2345 67">
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-save">
+            <button class="btn btn-solid" id="save-payout"><i class="ti ti-device-floppy"></i> <span data-i18n="aff.pay.save_method">Guardar datos de cobro</span></button>
+            <span class="save-hint" data-i18n="aff.pay.save_hint">Se usarán en tu próximo retiro.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-0">
+        <h3><i class="ti ti-history"></i> <span data-i18n="aff.pay.history_title">Historial de retiros</span></h3>
+        <table class="data">
+          <thead><tr>
+            <th data-i18n="aff.col.date">Fecha</th>
+            <th data-i18n="aff.col.method">Método</th>
+            <th data-i18n="aff.col.reference">Referencia</th>
+            <th style="text-align:right" data-i18n="aff.col.amount">Monto</th>
+            <th style="text-align:right" data-i18n="aff.col.status">Estado</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td class="mono-sm" style="color:var(--ink)">05 jun 2026</td>
+              <td style="font-size:13px">PayPal</td>
+              <td class="mono-sm">WD-2026-06-0042</td>
+              <td class="rev">$114.30</td>
+              <td class="right"><span class="pill ok" data-i18n="aff.status.paid_m">Pagado</span></td>
+            </tr>
+            <tr>
+              <td class="mono-sm" style="color:var(--ink)">04 abr 2026</td>
+              <td style="font-size:13px">PayPal</td>
+              <td class="mono-sm">WD-2026-04-0031</td>
+              <td class="rev">$64.50</td>
+              <td class="right"><span class="pill ok" data-i18n="aff.status.paid_m">Pagado</span></td>
+            </tr>
+            <tr>
+              <td class="mono-sm" style="color:var(--ink)">03 feb 2026</td>
+              <td style="font-size:13px">PayPal</td>
+              <td class="mono-sm">WD-2026-02-0019</td>
+              <td class="rev">$32.10</td>
+              <td class="right"><span class="pill ok" data-i18n="aff.status.paid_m">Pagado</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="font-size:12.5px;color:var(--muted);margin-top:12px" data-i18n="aff.pay.history_note">Los retiros solicitados aparecen como “En proceso” hasta que el Merchant of Record confirma el depósito (2–5 días hábiles).</div>
+      </div>
+
+    </div><!-- /sec-payouts -->
+
+
+    <!-- ══════════════════════════════════════════
+         SECCIÓN 5 — MI ENLACE DE REFERIDO
+    ══════════════════════════════════════════ -->
+    <div id="sec-link" class="sec-content">
+
+      <div class="ref-hero">
+        <div class="eyebrow" data-i18n="aff.link.eyebrow">TU IDENTIDAD DE AFILIADO</div>
+        <h2 data-i18n="aff.link.title">Tu código y enlace únicos</h2>
+        <p data-i18n="aff.link.body">Usa este enlace en todo lo que compartas. Sirve para los 16 agentes: la comisión se calcula sobre lo que pague el cliente, sea cual sea el agente.</p>
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:14px">
+          <span style="font-size:12.5px;color:#9fb0b8" data-i18n="aff.link.your_code">Tu código:</span>
+          <span class="code-chip">MRES9A4C21</span>
+        </div>
+        <div class="link-field">
+          <span class="url">https://tuialista.com/?ref=MRES9A4C21</span>
+          <button class="copy-btn" data-copy="https://tuialista.com/?ref=MRES9A4C21"><i class="ti ti-copy"></i> <span data-i18n="aff.copy">Copiar</span></button>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="card card-0">
+          <h3><i class="ti ti-wand"></i> <span data-i18n="aff.link.gen_title">Generador de enlace por agente</span></h3>
+          <p style="font-size:13px;color:var(--muted);margin-bottom:16px" data-i18n="aff.link.gen_body">¿Quieres promocionar un agente específico? Genera un enlace que lleva directo a ese agente, ya con tu código.</p>
+          <div class="gen-row">
+            <div class="form-group">
+              <label data-i18n="aff.link.pick_agent">Elige un agente</label>
+              <select id="agent-select">
+                <option value="documentos" data-price="9">Documentos — $9</option>
+                <option value="excel" data-price="9">Excel y datos — $9</option>
+                <option value="database" data-price="15">Base de datos — $15</option>
+                <option value="as400" data-price="299">AS/400 · IBM i — $299</option>
+                <option value="fiscal" data-price="29">Cumplimiento Fiscal — $29</option>
+                <option value="contratos" data-price="79" selected>Contratos y Renovaciones — $79</option>
+                <option value="docs-tecnica" data-price="49">Documentación Técnica — $49</option>
+                <option value="tramites" data-price="19">Trámites de Gobierno — $19</option>
+                <option value="contratos-personales" data-price="19">Contratos Personales — $19</option>
+                <option value="garantias" data-price="15">Reclamaciones y Garantías — $15</option>
+                <option value="facturas" data-price="49">Facturas y Cuentas por Pagar — $49</option>
+                <option value="conocimiento" data-price="39">Conocimiento Interno — $39</option>
+                <option value="nominas" data-price="49">Nóminas y Recursos Humanos — $49</option>
+                <option value="inventario" data-price="29">Inventario — $29</option>
+                <option value="actas" data-price="19">Actas y Reuniones — $19</option>
+                <option value="correo" data-price="19">Correo — $19</option>
+              </select>
+            </div>
+          </div>
+          <div class="gen-out">
+            <span class="url" id="gen-link">https://tuialista.com/?ref=MRES9A4C21&agent=contratos</span>
+            <button class="copy-btn ghost" id="gen-copy"><i class="ti ti-copy"></i> <span data-i18n="aff.copy">Copiar</span></button>
+          </div>
+          <div style="font-size:12.5px;color:var(--muted);margin-top:12px">
+            <span data-i18n="aff.link.gen_commission">Comisión estimada por este agente:</span>
+            <strong id="gen-commission" style="color:var(--signal-dim)">$23.70/mes</strong>
+          </div>
+        </div>
+
+        <div class="card card-0">
+          <h3><i class="ti ti-message-2"></i> <span data-i18n="aff.link.msg_title">Mensajes listos para copiar</span></h3>
+          <p style="font-size:13px;color:var(--muted);margin-bottom:14px" data-i18n="aff.link.msg_body">Del kit de afiliados. Copia, pega y cambia el enlace por el tuyo.</p>
+
+          <div class="msg-block">
+            <div class="head">
+              <span class="t"><i class="ti ti-brand-whatsapp"></i> WhatsApp</span>
+              <button class="copy-btn ghost btn-xs" data-copy-el="msg-wa"><i class="ti ti-copy"></i> <span data-i18n="aff.copy">Copiar</span></button>
+            </div>
+            <div class="body" id="msg-wa" data-i18n="aff.msg.wa">Hola 👋 Te comparto algo útil: TuIAlista, agentes de IA que trabajan con tus documentos, Excel y facturas... pero SIN subir nada a internet. Todo corre en tu propia compu, tus datos nunca salen. Desde $9 al mes y con 7 días gratis. Aquí: https://tuialista.com/?ref=MRES9A4C21</div>
+          </div>
+
+          <div class="msg-block">
+            <div class="head">
+              <span class="t"><i class="ti ti-brand-linkedin"></i> <span data-i18n="aff.link.social">Redes (LinkedIn/Facebook)</span></span>
+              <button class="copy-btn ghost btn-xs" data-copy-el="msg-social"><i class="ti ti-copy"></i> <span data-i18n="aff.copy">Copiar</span></button>
+            </div>
+            <div class="body" id="msg-social" data-i18n="aff.msg.social">¿Quieres usar IA en tu empresa sin subir información confidencial a la nube? TuIAlista son agentes de IA que corren 100% locales: tus contratos, facturas y correos NUNCA salen de tu equipo. 16 agentes desde $9/mes con prueba gratis. Míralo: https://tuialista.com/?ref=MRES9A4C21</div>
+          </div>
+
+          <div class="msg-block" style="margin-bottom:0">
+            <div class="head">
+              <span class="t"><i class="ti ti-mail"></i> <span data-i18n="aff.link.email">Correo</span></span>
+              <button class="copy-btn ghost btn-xs" data-copy-el="msg-mail"><i class="ti ti-copy"></i> <span data-i18n="aff.copy">Copiar</span></button>
+            </div>
+            <div class="body" id="msg-mail" data-i18n="aff.msg.mail">Asunto: IA para tu empresa, sin que tus datos salgan de tu equipo.
+
+Te escribo porque creo que TuIAlista encaja contigo: agentes de IA especializados que procesan TODO de forma local. Tus documentos y facturas nunca salen de tu empresa. Desde $9/mes, 7 días gratis. Pruébalo: https://tuialista.com/?ref=MRES9A4C21</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /sec-link -->
+
+
+    <!-- ══════════════════════════════════════════
+         SECCIÓN 6 — RECURSOS / AYUDA
+    ══════════════════════════════════════════ -->
+    <div id="sec-resources" class="sec-content">
+
+      <div class="card card-0">
+        <h3><i class="ti ti-book"></i> <span data-i18n="aff.res.kit_title">Kit de afiliados</span>
+          <span class="spacer" data-i18n="aff.res.kit_langs">Disponible en español e inglés</span>
+        </h3>
+        <div class="res-grid">
+          <a class="res-card" href="../marketing/afiliados/guia_afiliados_es.md" target="_blank" rel="noopener">
+            <div class="r-ico"><i class="ti ti-book-2"></i></div>
+            <div><div class="r-t" data-i18n="aff.res.guide_t">Guía del afiliado</div><div class="r-d" data-i18n="aff.res.guide_d">Cómo funciona el programa, cuánto ganas y cómo cobras.</div></div>
+          </a>
+          <a class="res-card" href="../marketing/afiliados/argumentos_venta_es.md" target="_blank" rel="noopener">
+            <div class="r-ico"><i class="ti ti-target-arrow"></i></div>
+            <div><div class="r-t" data-i18n="aff.res.args_t">Argumentos de venta</div><div class="r-d" data-i18n="aff.res.args_d">El diferenciador local, los 16 agentes y respuestas a objeciones.</div></div>
+          </a>
+          <a class="res-card" href="../marketing/afiliados/mensajes_listos_es.md" target="_blank" rel="noopener">
+            <div class="r-ico"><i class="ti ti-messages"></i></div>
+            <div><div class="r-t" data-i18n="aff.res.msgs_t">Mensajes listos</div><div class="r-d" data-i18n="aff.res.msgs_d">Plantillas para WhatsApp, redes, correo y seguimiento.</div></div>
+          </a>
+          <a class="res-card" href="../marketing/afiliados/preguntas_frecuentes_es.md" target="_blank" rel="noopener">
+            <div class="r-ico"><i class="ti ti-help-circle"></i></div>
+            <div><div class="r-t" data-i18n="aff.res.faq_t">Preguntas frecuentes</div><div class="r-d" data-i18n="aff.res.faq_d">FAQ para ti y FAQ para usar con tus prospectos.</div></div>
+          </a>
+        </div>
+      </div>
+
+      <div class="card card-0">
+        <h3><i class="ti ti-help-square-rounded"></i> <span data-i18n="aff.res.help_title">Ayuda — preguntas comunes del afiliado</span></h3>
+        <div id="faq-list">
+          <div class="faq-item">
+            <button class="faq-q"><span data-i18n="aff.faq.q1">¿Cuándo y cómo cobro mis comisiones?</span> <i class="ti ti-chevron-down"></i></button>
+            <div class="faq-a" data-i18n="aff.faq.a1">Las comisiones se agrupan por periodo mensual. Cuando tu saldo disponible supera el mínimo de $50 USD, solicitas un retiro desde la sección Retiros y el Merchant of Record lo deposita a tu método de cobro en 2–5 días hábiles.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q"><span data-i18n="aff.faq.q2">¿Qué pasa si mi cliente cancela?</span> <i class="ti ti-chevron-down"></i></button>
+            <div class="faq-a" data-i18n="aff.faq.a2">Dejas de ganar por ese cliente a partir de la cancelación, pero conservas todo lo ya ganado. Si vuelve a suscribirse por tu enlace, se te atribuye de nuevo.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q"><span data-i18n="aff.faq.q3">¿Hay límite de ganancias o de clientes?</span> <i class="ti ti-chevron-down"></i></button>
+            <div class="faq-a" data-i18n="aff.faq.a3">No. No hay tope de comisiones ni de referidos. Tu ingreso crece con tu cartera de clientes activos: cada uno suma su 30% recurrente.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q"><span data-i18n="aff.faq.q4">¿Puedo referir empresas grandes?</span> <i class="ti ti-chevron-down"></i></button>
+            <div class="faq-a" data-i18n="aff.faq.a4">Sí, y es tu mejor negocio. El agente Premium AS/400 (desde $299/mes) está pensado para grandes empresas: tu comisión sería de $89.70/mes por un solo cliente.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q"><span data-i18n="aff.faq.q5">¿Cómo se registra que un cliente es mío?</span> <i class="ti ti-chevron-down"></i></button>
+            <div class="faq-a" data-i18n="aff.faq.a5">Cuando la persona entra por tu enlace (?ref=TUCODIGO) y se suscribe, el sistema la atribuye a tu código automáticamente en su primer pago.</div>
+          </div>
+        </div>
+        <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)">
+          <span data-i18n="aff.res.contact">¿Otra pregunta? Escríbenos a</span> <a href="mailto:afiliados@tuialista.com" style="color:var(--signal-dim);font-weight:500">afiliados@tuialista.com</a>
+        </div>
+      </div>
+
+    </div><!-- /sec-resources -->
+
+
+    <!-- ══════════════════════════════════════════
+         SECCIÓN 7 — CONFIGURACIÓN
+    ══════════════════════════════════════════ -->
+    <div id="sec-settings" class="sec-content">
+
+      <div class="settings-layout">
+        <div>
+          <div class="card">
+            <h3><i class="ti ti-user-circle"></i> <span data-i18n="aff.set.account">Datos de la cuenta</span></h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label data-i18n="aff.set.name">Nombre completo</label>
+                <input type="text" value="Mariana Reséndiz García">
+              </div>
+              <div class="form-group">
+                <label data-i18n="aff.set.email">Correo electrónico</label>
+                <input type="email" value="m.resendiz@mktmx.com">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label data-i18n="aff.set.country">País</label>
+                <select>
+                  <option selected data-i18n="aff.country.mx">México</option>
+                  <option data-i18n="aff.country.us">Estados Unidos</option>
+                  <option data-i18n="aff.country.es">España</option>
+                  <option data-i18n="aff.country.co">Colombia</option>
+                  <option data-i18n="aff.country.ar">Argentina</option>
+                  <option data-i18n="aff.country.br">Brasil</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label data-i18n="aff.set.currency">Moneda de pago</label>
+                <select>
+                  <option data-i18n="aff.currency.usd">USD — Dólar</option>
+                  <option data-i18n="aff.currency.mxn">MXN — Peso mexicano</option>
+                  <option data-i18n="aff.currency.eur">EUR — Euro</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label data-i18n="aff.set.language">Idioma de la interfaz</label>
+              <select id="settings-lang">
+                <option value="es">Español</option>
+                <option value="en">English</option>
+                <option value="pt">Português</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+                <option value="it">Italiano</option>
+              </select>
+            </div>
+            <div class="settings-save">
+              <button class="btn btn-solid" data-save-toast><i class="ti ti-device-floppy"></i> <span data-i18n="aff.set.save">Guardar cambios</span></button>
+              <span class="save-hint" data-i18n="aff.set.save_hint">Los cambios se aplican de inmediato.</span>
+            </div>
+          </div>
+
+          <div class="card card-0">
+            <h3><i class="ti ti-lock"></i> <span data-i18n="aff.set.password">Cambiar contraseña</span></h3>
+            <div class="form-group">
+              <label data-i18n="aff.set.pwd_current">Contraseña actual</label>
+              <input type="password" placeholder="••••••••">
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label data-i18n="aff.set.pwd_new">Nueva contraseña</label>
+                <input type="password" placeholder="••••••••">
+              </div>
+              <div class="form-group">
+                <label data-i18n="aff.set.pwd_confirm">Confirmar contraseña</label>
+                <input type="password" placeholder="••••••••">
+              </div>
+            </div>
+            <button class="btn btn-ghost" style="width:100%" data-save-toast><i class="ti ti-lock-check"></i> <span data-i18n="aff.set.pwd_save">Actualizar contraseña</span></button>
+          </div>
+        </div>
+
+        <div>
+          <div class="card">
+            <h3><i class="ti ti-bell"></i> <span data-i18n="aff.set.notifications">Notificaciones</span></h3>
+            <div class="toggle-list">
+              <div class="toggle-row">
+                <div class="toggle-label">
+                  <span data-i18n="aff.set.notif_sale">Nuevo cliente referido</span>
+                  <small data-i18n="aff.set.notif_sale_hint">Cuando alguien se suscribe por tu enlace</small>
+                </div>
+                <label class="toggle"><input type="checkbox" checked><span class="toggle-track"></span></label>
+              </div>
+              <div class="toggle-row">
+                <div class="toggle-label">
+                  <span data-i18n="aff.set.notif_commission">Comisión acreditada</span>
+                  <small data-i18n="aff.set.notif_commission_hint">Cada vez que un cliente paga su mes</small>
+                </div>
+                <label class="toggle"><input type="checkbox" checked><span class="toggle-track"></span></label>
+              </div>
+              <div class="toggle-row">
+                <div class="toggle-label">
+                  <span data-i18n="aff.set.notif_payout">Retiros y pagos</span>
+                  <small data-i18n="aff.set.notif_payout_hint">Estado de tus solicitudes de retiro</small>
+                </div>
+                <label class="toggle"><input type="checkbox" checked><span class="toggle-track"></span></label>
+              </div>
+              <div class="toggle-row">
+                <div class="toggle-label">
+                  <span data-i18n="aff.set.notif_churn">Cliente en riesgo</span>
+                  <small data-i18n="aff.set.notif_churn_hint">Si un cliente referido cancela</small>
+                </div>
+                <label class="toggle"><input type="checkbox"><span class="toggle-track"></span></label>
+              </div>
+              <div class="toggle-row">
+                <div class="toggle-label">
+                  <span data-i18n="aff.set.notif_news">Novedades y materiales</span>
+                  <small data-i18n="aff.set.notif_news_hint">Nuevos agentes y material de venta</small>
+                </div>
+                <label class="toggle"><input type="checkbox"><span class="toggle-track"></span></label>
+              </div>
+            </div>
+          </div>
+
+          <div class="card card-0">
+            <h3><i class="ti ti-id-badge"></i> <span data-i18n="aff.set.affiliate_data">Datos de afiliado</span></h3>
+            <div style="font-size:13px;color:var(--muted);line-height:1.9">
+              <div style="display:flex;justify-content:space-between"><span data-i18n="aff.set.your_code">Tu código</span><span class="mono" style="color:var(--signal-dim)">MRES9A4C21</span></div>
+              <div style="display:flex;justify-content:space-between"><span data-i18n="aff.set.commission_rate">Comisión</span><span class="mono">30% recurrente</span></div>
+              <div style="display:flex;justify-content:space-between"><span data-i18n="aff.set.member_since">Afiliado desde</span><span class="mono">dic 2025</span></div>
+            </div>
+            <div class="danger-zone">
+              <span data-i18n="aff.set.close_hint">Para cerrar tu cuenta de afiliado escríbenos a</span>
+              <a href="mailto:afiliados@tuialista.com">afiliados@tuialista.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /sec-settings -->
+
+  </main>
+</div>
+
+<!-- Toast global -->
+<div id="toast" class="toast"><i class="ti ti-circle-check"></i> <span id="toast-msg">Listo</span></div>
+
+<script>
+/* ══════════════════════════════════════════════════════
+   TuIAlista · Panel del Afiliado — i18n (6 idiomas)
+══════════════════════════════════════════════════════ */
+const AFF_I18N = {
+  es:{
+    "aff.nav.dashboard":"Resumen","aff.nav.clients":"Mis clientes","aff.nav.commissions":"Comisiones",
+    "aff.nav.payouts":"Retiros y pagos","aff.nav.link":"Mi enlace","aff.nav.resources":"Recursos",
+    "aff.nav.settings":"Configuración","aff.nav.home":"Ir al sitio","aff.nav.support":"Soporte",
+    "aff.hello":"Hola,","aff.copy":"Copiar","aff.copied":"¡Copiado!",
+    "aff.dash.balance":"Saldo disponible","aff.dash.balance_hint":"listo para retirar",
+    "aff.dash.total":"Comisión acumulada","aff.dash.total_hint":"histórico total",
+    "aff.dash.pending":"Pendiente del mes","aff.dash.pending_hint":"julio, en curso",
+    "aff.dash.recurring":"Comisión recurrente","aff.dash.recurring_hint":"cada mes activo",
+    "aff.dash.active":"Clientes activos","aff.dash.active_hint":"↑ 1 este mes",
+    "aff.dash.trial":"En prueba","aff.dash.trial_hint":"pueden convertir pronto",
+    "aff.dash.cancelled":"Cancelados","aff.dash.conversion":"conversión",
+    "aff.dash.model_title":"El modelo 30% recurrente en acción",
+    "aff.dash.model_body":"Ganas el 30% de lo que paga cada cliente, todos los meses que siga activo. No es un pago único: se acumula. Tus 7 clientes activos te generan $66.90 al mes de forma recurrente.",
+    "aff.dash.others":"Otros activos","aff.dash.next_title":"Tu próximo pago",
+    "aff.dash.next_sub":"saldo disponible · corte 31 jul 2026","aff.dash.go_payout":"Ir a retiros",
+    "aff.dash.mor_hint":"El pago lo ejecuta nuestro Merchant of Record.",
+    "aff.dash.share_eyebrow":"TU HERRAMIENTA #1","aff.dash.share_title":"Comparte tu enlace y suma clientes",
+    "aff.dash.share_body":"Cada cliente que entra por tu enlace y se suscribe queda atribuido a ti automáticamente. Compártelo por WhatsApp, redes o correo.",
+    "aff.client.andrade":"Comercial Andrade","aff.client.ferretero":"Grupo Ferretero del Bajío","aff.client.ruiz":"Despacho Ruiz & Asoc.",
+    "aff.status.active":"Activo","aff.status.trial":"En prueba","aff.status.cancelled":"Cancelado",
+    "aff.status.paid":"Pagada","aff.status.pending":"Pendiente","aff.status.paid_m":"Pagado","aff.status.processing":"En proceso",
+    "aff.clients.recurring":"Comisión recurrente","aff.clients.title":"Clientes que has referido",
+    "aff.clients.privacy":"Nombres parcialmente ocultos por privacidad",
+    "aff.clients.search":"Buscar cliente o agente…","aff.clients.all":"Todos",
+    "aff.clients.footnote":"La comisión de un cliente en prueba empieza a contar cuando hace su primer pago.",
+    "aff.clients.total_recurring":"Total recurrente",
+    "aff.col.client":"Cliente / Empresa","aff.col.agent":"Agente contratado","aff.col.since":"Alta",
+    "aff.col.status":"Estado","aff.col.commission":"Comisión / mes",
+    "aff.comm.lifetime":"Ganado en total","aff.comm.since":"desde dic 2025",
+    "aff.comm.paid":"Pagado","aff.comm.paid_hint":"7 periodos liquidados",
+    "aff.comm.pending":"Pendiente","aff.comm.pending_hint":"julio 2026",
+    "aff.comm.rate":"Tu comisión","aff.comm.rate_hint":"recurrente",
+    "aff.comm.chart_title":"Comisiones por mes (USD)",
+    "aff.comm.chart_note":"La curva sube porque cada cliente nuevo se suma a los que ya pagan. Eso es el efecto recurrente.",
+    "aff.comm.detail_title":"Detalle de julio 2026","aff.comm.total_month":"Total del mes",
+    "aff.comm.history_title":"Historial de comisiones",
+    "aff.col.period":"Periodo","aff.col.payingClients":"Clientes que pagaron","aff.col.generated":"Comisión generada",
+    "aff.month.jul":"julio","aff.month.jun":"junio","aff.month.may":"mayo","aff.month.apr":"abril",
+    "aff.month.mar":"marzo","aff.month.feb":"febrero","aff.month.jan":"enero","aff.month.dec":"diciembre",
+    "aff.pay.available":"Saldo disponible para retirar","aff.pay.available_sub":"Comisiones liquidadas · mínimo de retiro $50 USD",
+    "aff.pay.request":"Solicitar retiro",
+    "aff.pay.mor":"La ejecución del pago se procesa a través de nuestro Merchant of Record, que gestiona impuestos y la dispersión de fondos conforme a tu país. TuIAlista calcula y aprueba tu comisión; el Merchant of Record realiza el depósito a tu método de cobro.",
+    "aff.pay.method_title":"Datos de cobro","aff.pay.bank":"Transferencia",
+    "aff.pay.paypal_email":"Correo de PayPal","aff.pay.holder":"Titular de la cuenta",
+    "aff.pay.bank_name":"Banco","aff.pay.account":"CLABE / IBAN",
+    "aff.pay.save_method":"Guardar datos de cobro","aff.pay.save_hint":"Se usarán en tu próximo retiro.",
+    "aff.pay.history_title":"Historial de retiros",
+    "aff.col.date":"Fecha","aff.col.method":"Método","aff.col.reference":"Referencia","aff.col.amount":"Monto",
+    "aff.pay.history_note":"Los retiros solicitados aparecen como “En proceso” hasta que el Merchant of Record confirma el depósito (2–5 días hábiles).",
+    "aff.link.eyebrow":"TU IDENTIDAD DE AFILIADO","aff.link.title":"Tu código y enlace únicos",
+    "aff.link.body":"Usa este enlace en todo lo que compartas. Sirve para los 16 agentes: la comisión se calcula sobre lo que pague el cliente, sea cual sea el agente.",
+    "aff.link.your_code":"Tu código:","aff.link.gen_title":"Generador de enlace por agente",
+    "aff.link.gen_body":"¿Quieres promocionar un agente específico? Genera un enlace que lleva directo a ese agente, ya con tu código.",
+    "aff.link.pick_agent":"Elige un agente","aff.link.gen_commission":"Comisión estimada por este agente:",
+    "aff.link.msg_title":"Mensajes listos para copiar","aff.link.msg_body":"Del kit de afiliados. Copia, pega y cambia el enlace por el tuyo.",
+    "aff.link.social":"Redes (LinkedIn/Facebook)","aff.link.email":"Correo",
+    "aff.msg.wa":"Hola 👋 Te comparto algo útil: TuIAlista, agentes de IA que trabajan con tus documentos, Excel y facturas... pero SIN subir nada a internet. Todo corre en tu propia compu, tus datos nunca salen. Desde $9 al mes y con 7 días gratis. Aquí: https://tuialista.com/?ref=MRES9A4C21",
+    "aff.msg.social":"¿Quieres usar IA en tu empresa sin subir información confidencial a la nube? TuIAlista son agentes de IA que corren 100% locales: tus contratos, facturas y correos NUNCA salen de tu equipo. 16 agentes desde $9/mes con prueba gratis. Míralo: https://tuialista.com/?ref=MRES9A4C21",
+    "aff.msg.mail":"Asunto: IA para tu empresa, sin que tus datos salgan de tu equipo.\n\nTe escribo porque creo que TuIAlista encaja contigo: agentes de IA especializados que procesan TODO de forma local. Tus documentos y facturas nunca salen de tu empresa. Desde $9/mes, 7 días gratis. Pruébalo: https://tuialista.com/?ref=MRES9A4C21",
+    "aff.res.kit_title":"Kit de afiliados","aff.res.kit_langs":"Disponible en español e inglés",
+    "aff.res.guide_t":"Guía del afiliado","aff.res.guide_d":"Cómo funciona el programa, cuánto ganas y cómo cobras.",
+    "aff.res.args_t":"Argumentos de venta","aff.res.args_d":"El diferenciador local, los 16 agentes y respuestas a objeciones.",
+    "aff.res.msgs_t":"Mensajes listos","aff.res.msgs_d":"Plantillas para WhatsApp, redes, correo y seguimiento.",
+    "aff.res.faq_t":"Preguntas frecuentes","aff.res.faq_d":"FAQ para ti y FAQ para usar con tus prospectos.",
+    "aff.res.help_title":"Ayuda — preguntas comunes del afiliado","aff.res.contact":"¿Otra pregunta? Escríbenos a",
+    "aff.faq.q1":"¿Cuándo y cómo cobro mis comisiones?",
+    "aff.faq.a1":"Las comisiones se agrupan por periodo mensual. Cuando tu saldo disponible supera el mínimo de $50 USD, solicitas un retiro desde la sección Retiros y el Merchant of Record lo deposita a tu método de cobro en 2–5 días hábiles.",
+    "aff.faq.q2":"¿Qué pasa si mi cliente cancela?",
+    "aff.faq.a2":"Dejas de ganar por ese cliente a partir de la cancelación, pero conservas todo lo ya ganado. Si vuelve a suscribirse por tu enlace, se te atribuye de nuevo.",
+    "aff.faq.q3":"¿Hay límite de ganancias o de clientes?",
+    "aff.faq.a3":"No. No hay tope de comisiones ni de referidos. Tu ingreso crece con tu cartera de clientes activos: cada uno suma su 30% recurrente.",
+    "aff.faq.q4":"¿Puedo referir empresas grandes?",
+    "aff.faq.a4":"Sí, y es tu mejor negocio. El agente Premium AS/400 (desde $299/mes) está pensado para grandes empresas: tu comisión sería de $89.70/mes por un solo cliente.",
+    "aff.faq.q5":"¿Cómo se registra que un cliente es mío?",
+    "aff.faq.a5":"Cuando la persona entra por tu enlace (?ref=TUCODIGO) y se suscribe, el sistema la atribuye a tu código automáticamente en su primer pago.",
+    "aff.set.account":"Datos de la cuenta","aff.set.name":"Nombre completo","aff.set.email":"Correo electrónico",
+    "aff.set.country":"País","aff.set.currency":"Moneda de pago","aff.set.language":"Idioma de la interfaz",
+    "aff.set.save":"Guardar cambios","aff.set.save_hint":"Los cambios se aplican de inmediato.",
+    "aff.set.password":"Cambiar contraseña","aff.set.pwd_current":"Contraseña actual",
+    "aff.set.pwd_new":"Nueva contraseña","aff.set.pwd_confirm":"Confirmar contraseña","aff.set.pwd_save":"Actualizar contraseña",
+    "aff.set.notifications":"Notificaciones","aff.set.notif_sale":"Nuevo cliente referido",
+    "aff.set.notif_sale_hint":"Cuando alguien se suscribe por tu enlace","aff.set.notif_commission":"Comisión acreditada",
+    "aff.set.notif_commission_hint":"Cada vez que un cliente paga su mes","aff.set.notif_payout":"Retiros y pagos",
+    "aff.set.notif_payout_hint":"Estado de tus solicitudes de retiro","aff.set.notif_churn":"Cliente en riesgo",
+    "aff.set.notif_churn_hint":"Si un cliente referido cancela","aff.set.notif_news":"Novedades y materiales",
+    "aff.set.notif_news_hint":"Nuevos agentes y material de venta",
+    "aff.set.affiliate_data":"Datos de afiliado","aff.set.your_code":"Tu código","aff.set.commission_rate":"Comisión",
+    "aff.set.member_since":"Afiliado desde","aff.set.close_hint":"Para cerrar tu cuenta de afiliado escríbenos a",
+    "aff.country.mx":"México","aff.country.us":"Estados Unidos","aff.country.es":"España","aff.country.co":"Colombia","aff.country.ar":"Argentina","aff.country.br":"Brasil",
+    "aff.currency.usd":"USD — Dólar","aff.currency.mxn":"MXN — Peso mexicano","aff.currency.eur":"EUR — Euro",
+    "aff.toast.copied":"Enlace copiado al portapapeles","aff.toast.msg_copied":"Mensaje copiado","aff.toast.withdraw":"Solicitud de retiro enviada · en proceso","aff.toast.saved":"Cambios guardados","aff.toast.payout_saved":"Datos de cobro actualizados",
+  },
+  en:{
+    "aff.nav.dashboard":"Overview","aff.nav.clients":"My clients","aff.nav.commissions":"Commissions",
+    "aff.nav.payouts":"Payouts","aff.nav.link":"My link","aff.nav.resources":"Resources",
+    "aff.nav.settings":"Settings","aff.nav.home":"Go to site","aff.nav.support":"Support",
+    "aff.hello":"Hi,","aff.copy":"Copy","aff.copied":"Copied!",
+    "aff.dash.balance":"Available balance","aff.dash.balance_hint":"ready to withdraw",
+    "aff.dash.total":"Total commission","aff.dash.total_hint":"lifetime total",
+    "aff.dash.pending":"Pending this month","aff.dash.pending_hint":"July, in progress",
+    "aff.dash.recurring":"Recurring commission","aff.dash.recurring_hint":"every active month",
+    "aff.dash.active":"Active clients","aff.dash.active_hint":"↑ 1 this month",
+    "aff.dash.trial":"In trial","aff.dash.trial_hint":"may convert soon",
+    "aff.dash.cancelled":"Cancelled","aff.dash.conversion":"conversion",
+    "aff.dash.model_title":"The 30% recurring model in action",
+    "aff.dash.model_body":"You earn 30% of what each client pays, every month they stay active. It's not a one-off: it accumulates. Your 7 active clients generate $66.90/month recurring.",
+    "aff.dash.others":"Other active","aff.dash.next_title":"Your next payout",
+    "aff.dash.next_sub":"available balance · cutoff Jul 31, 2026","aff.dash.go_payout":"Go to payouts",
+    "aff.dash.mor_hint":"Payment is executed by our Merchant of Record.",
+    "aff.dash.share_eyebrow":"YOUR #1 TOOL","aff.dash.share_title":"Share your link and add clients",
+    "aff.dash.share_body":"Every client who enters through your link and subscribes is attributed to you automatically. Share it via WhatsApp, social, or email.",
+    "aff.client.andrade":"Andrade Trading","aff.client.ferretero":"Bajío Hardware Group","aff.client.ruiz":"Ruiz & Assoc. Firm",
+    "aff.status.active":"Active","aff.status.trial":"In trial","aff.status.cancelled":"Cancelled",
+    "aff.status.paid":"Paid","aff.status.pending":"Pending","aff.status.paid_m":"Paid","aff.status.processing":"Processing",
+    "aff.clients.recurring":"Recurring commission","aff.clients.title":"Clients you've referred",
+    "aff.clients.privacy":"Names partially hidden for privacy",
+    "aff.clients.search":"Search client or agent…","aff.clients.all":"All",
+    "aff.clients.footnote":"A trial client's commission starts counting when they make their first payment.",
+    "aff.clients.total_recurring":"Total recurring",
+    "aff.col.client":"Client / Company","aff.col.agent":"Subscribed agent","aff.col.since":"Joined",
+    "aff.col.status":"Status","aff.col.commission":"Commission / mo",
+    "aff.comm.lifetime":"Earned in total","aff.comm.since":"since Dec 2025",
+    "aff.comm.paid":"Paid","aff.comm.paid_hint":"7 periods settled",
+    "aff.comm.pending":"Pending","aff.comm.pending_hint":"July 2026",
+    "aff.comm.rate":"Your commission","aff.comm.rate_hint":"recurring",
+    "aff.comm.chart_title":"Commissions by month (USD)",
+    "aff.comm.chart_note":"The curve rises because every new client stacks on top of those already paying. That's the recurring effect.",
+    "aff.comm.detail_title":"July 2026 breakdown","aff.comm.total_month":"Month total",
+    "aff.comm.history_title":"Commission history",
+    "aff.col.period":"Period","aff.col.payingClients":"Clients who paid","aff.col.generated":"Commission earned",
+    "aff.month.jul":"July","aff.month.jun":"June","aff.month.may":"May","aff.month.apr":"April",
+    "aff.month.mar":"March","aff.month.feb":"February","aff.month.jan":"January","aff.month.dec":"December",
+    "aff.pay.available":"Available balance to withdraw","aff.pay.available_sub":"Settled commissions · $50 USD minimum withdrawal",
+    "aff.pay.request":"Request withdrawal",
+    "aff.pay.mor":"Payment execution is processed through our Merchant of Record, which handles taxes and fund disbursement per your country. TuIAlista calculates and approves your commission; the Merchant of Record deposits it to your payout method.",
+    "aff.pay.method_title":"Payout details","aff.pay.bank":"Bank transfer",
+    "aff.pay.paypal_email":"PayPal email","aff.pay.holder":"Account holder",
+    "aff.pay.bank_name":"Bank","aff.pay.account":"IBAN / account no.",
+    "aff.pay.save_method":"Save payout details","aff.pay.save_hint":"Used for your next withdrawal.",
+    "aff.pay.history_title":"Withdrawal history",
+    "aff.col.date":"Date","aff.col.method":"Method","aff.col.reference":"Reference","aff.col.amount":"Amount",
+    "aff.pay.history_note":"Requested withdrawals show as “Processing” until the Merchant of Record confirms the deposit (2–5 business days).",
+    "aff.link.eyebrow":"YOUR AFFILIATE IDENTITY","aff.link.title":"Your unique code and link",
+    "aff.link.body":"Use this link in everything you share. It works for all 16 agents: commission is calculated on whatever the client pays, for any agent.",
+    "aff.link.your_code":"Your code:","aff.link.gen_title":"Per-agent link generator",
+    "aff.link.gen_body":"Want to promote a specific agent? Generate a link that goes straight to that agent, already with your code.",
+    "aff.link.pick_agent":"Pick an agent","aff.link.gen_commission":"Estimated commission for this agent:",
+    "aff.link.msg_title":"Ready-to-copy messages","aff.link.msg_body":"From the affiliate kit. Copy, paste, and swap the link for yours.",
+    "aff.link.social":"Social (LinkedIn/Facebook)","aff.link.email":"Email",
+    "aff.msg.wa":"Hi 👋 Sharing something useful: TuIAlista, AI agents that work with your documents, Excel, and invoices... but WITHOUT uploading anything to the internet. It all runs on your own computer, your data never leaves. From $9/mo with a 7-day free trial. Here: https://tuialista.com/?ref=MRES9A4C21",
+    "aff.msg.social":"Want to use AI at your company without uploading confidential info to the cloud? TuIAlista is AI agents that run 100% locally: your contracts, invoices, and emails NEVER leave your computer. 16 agents from $9/mo with a free trial. Check it out: https://tuialista.com/?ref=MRES9A4C21",
+    "aff.msg.mail":"Subject: AI for your company, without your data leaving your computer.\n\nI'm reaching out because I think TuIAlista fits you: specialized AI agents that process EVERYTHING locally. Your documents and invoices never leave your company. From $9/mo, 7-day free trial. Try it: https://tuialista.com/?ref=MRES9A4C21",
+    "aff.res.kit_title":"Affiliate kit","aff.res.kit_langs":"Available in Spanish and English",
+    "aff.res.guide_t":"Affiliate guide","aff.res.guide_d":"How the program works, how much you earn, and how you get paid.",
+    "aff.res.args_t":"Sales arguments","aff.res.args_d":"The local differentiator, the 16 agents, and objection answers.",
+    "aff.res.msgs_t":"Ready messages","aff.res.msgs_d":"Templates for WhatsApp, social, email, and follow-up.",
+    "aff.res.faq_t":"FAQ","aff.res.faq_d":"FAQ for you and FAQ to use with your prospects.",
+    "aff.res.help_title":"Help — common affiliate questions","aff.res.contact":"Another question? Write to us at",
+    "aff.faq.q1":"When and how do I get paid my commissions?",
+    "aff.faq.a1":"Commissions are grouped by monthly period. When your available balance exceeds the $50 USD minimum, you request a withdrawal from the Payouts section and the Merchant of Record deposits it to your payout method in 2–5 business days.",
+    "aff.faq.q2":"What happens if my client cancels?",
+    "aff.faq.a2":"You stop earning from that client as of the cancellation, but you keep everything already earned. If they resubscribe through your link, they're re-attributed to you.",
+    "aff.faq.q3":"Is there a cap on earnings or clients?",
+    "aff.faq.a3":"No. There's no cap on commissions or referrals. Your income grows with your active-client portfolio: each one adds its recurring 30%.",
+    "aff.faq.q4":"Can I refer large companies?",
+    "aff.faq.a4":"Yes, and it's your best business. The Premium AS/400 agent (from $299/mo) is designed for large companies: your commission would be $89.70/month from a single client.",
+    "aff.faq.q5":"How is it recorded that a client is mine?",
+    "aff.faq.a5":"When the person enters through your link (?ref=YOURCODE) and subscribes, the system attributes them to your code automatically on their first payment.",
+    "aff.set.account":"Account details","aff.set.name":"Full name","aff.set.email":"Email address",
+    "aff.set.country":"Country","aff.set.currency":"Payout currency","aff.set.language":"Interface language",
+    "aff.set.save":"Save changes","aff.set.save_hint":"Changes apply immediately.",
+    "aff.set.password":"Change password","aff.set.pwd_current":"Current password",
+    "aff.set.pwd_new":"New password","aff.set.pwd_confirm":"Confirm password","aff.set.pwd_save":"Update password",
+    "aff.set.notifications":"Notifications","aff.set.notif_sale":"New referred client",
+    "aff.set.notif_sale_hint":"When someone subscribes through your link","aff.set.notif_commission":"Commission credited",
+    "aff.set.notif_commission_hint":"Every time a client pays their month","aff.set.notif_payout":"Payouts",
+    "aff.set.notif_payout_hint":"Status of your withdrawal requests","aff.set.notif_churn":"Client at risk",
+    "aff.set.notif_churn_hint":"If a referred client cancels","aff.set.notif_news":"News & materials",
+    "aff.set.notif_news_hint":"New agents and sales material",
+    "aff.set.affiliate_data":"Affiliate details","aff.set.your_code":"Your code","aff.set.commission_rate":"Commission",
+    "aff.set.member_since":"Affiliate since","aff.set.close_hint":"To close your affiliate account write to us at",
+    "aff.country.mx":"Mexico","aff.country.us":"United States","aff.country.es":"Spain","aff.country.co":"Colombia","aff.country.ar":"Argentina","aff.country.br":"Brazil",
+    "aff.currency.usd":"USD — Dollar","aff.currency.mxn":"MXN — Mexican peso","aff.currency.eur":"EUR — Euro",
+    "aff.toast.copied":"Link copied to clipboard","aff.toast.msg_copied":"Message copied","aff.toast.withdraw":"Withdrawal request sent · processing","aff.toast.saved":"Changes saved","aff.toast.payout_saved":"Payout details updated",
+  },
+  pt:{
+    "aff.nav.dashboard":"Resumo","aff.nav.clients":"Meus clientes","aff.nav.commissions":"Comissões",
+    "aff.nav.payouts":"Saques e pagamentos","aff.nav.link":"Meu link","aff.nav.resources":"Recursos",
+    "aff.nav.settings":"Configurações","aff.nav.home":"Ir ao site","aff.nav.support":"Suporte",
+    "aff.hello":"Olá,","aff.copy":"Copiar","aff.copied":"Copiado!",
+    "aff.dash.balance":"Saldo disponível","aff.dash.balance_hint":"pronto para sacar",
+    "aff.dash.total":"Comissão acumulada","aff.dash.total_hint":"total histórico",
+    "aff.dash.pending":"Pendente do mês","aff.dash.pending_hint":"julho, em curso",
+    "aff.dash.recurring":"Comissão recorrente","aff.dash.recurring_hint":"a cada mês ativo",
+    "aff.dash.active":"Clientes ativos","aff.dash.active_hint":"↑ 1 este mês",
+    "aff.dash.trial":"Em teste","aff.dash.trial_hint":"podem converter em breve",
+    "aff.dash.cancelled":"Cancelados","aff.dash.conversion":"conversão",
+    "aff.dash.model_title":"O modelo 30% recorrente em ação",
+    "aff.dash.model_body":"Você ganha 30% do que cada cliente paga, todos os meses em que ele continuar ativo. Não é um pagamento único: acumula. Seus 7 clientes ativos geram US$ 66,90 por mês de forma recorrente.",
+    "aff.dash.others":"Outros ativos","aff.dash.next_title":"Seu próximo pagamento",
+    "aff.dash.next_sub":"saldo disponível · corte 31 jul 2026","aff.dash.go_payout":"Ir para saques",
+    "aff.dash.mor_hint":"O pagamento é executado pelo nosso Merchant of Record.",
+    "aff.dash.share_eyebrow":"SUA FERRAMENTA Nº 1","aff.dash.share_title":"Compartilhe seu link e some clientes",
+    "aff.dash.share_body":"Cada cliente que entra pelo seu link e assina é atribuído a você automaticamente. Compartilhe por WhatsApp, redes ou e-mail.",
+    "aff.client.andrade":"Comercial Andrade","aff.client.ferretero":"Grupo Ferragens do Bajío","aff.client.ruiz":"Escritório Ruiz & Assoc.",
+    "aff.status.active":"Ativo","aff.status.trial":"Em teste","aff.status.cancelled":"Cancelado",
+    "aff.status.paid":"Paga","aff.status.pending":"Pendente","aff.status.paid_m":"Pago","aff.status.processing":"Em processamento",
+    "aff.clients.recurring":"Comissão recorrente","aff.clients.title":"Clientes que você indicou",
+    "aff.clients.privacy":"Nomes parcialmente ocultos por privacidade",
+    "aff.clients.search":"Buscar cliente ou agente…","aff.clients.all":"Todos",
+    "aff.clients.footnote":"A comissão de um cliente em teste começa a contar quando ele faz o primeiro pagamento.",
+    "aff.clients.total_recurring":"Total recorrente",
+    "aff.col.client":"Cliente / Empresa","aff.col.agent":"Agente contratado","aff.col.since":"Cadastro",
+    "aff.col.status":"Estado","aff.col.commission":"Comissão / mês",
+    "aff.comm.lifetime":"Ganho no total","aff.comm.since":"desde dez 2025",
+    "aff.comm.paid":"Pago","aff.comm.paid_hint":"7 períodos liquidados",
+    "aff.comm.pending":"Pendente","aff.comm.pending_hint":"julho 2026",
+    "aff.comm.rate":"Sua comissão","aff.comm.rate_hint":"recorrente",
+    "aff.comm.chart_title":"Comissões por mês (USD)",
+    "aff.comm.chart_note":"A curva sobe porque cada novo cliente soma-se aos que já pagam. Esse é o efeito recorrente.",
+    "aff.comm.detail_title":"Detalhe de julho 2026","aff.comm.total_month":"Total do mês",
+    "aff.comm.history_title":"Histórico de comissões",
+    "aff.col.period":"Período","aff.col.payingClients":"Clientes que pagaram","aff.col.generated":"Comissão gerada",
+    "aff.month.jul":"julho","aff.month.jun":"junho","aff.month.may":"maio","aff.month.apr":"abril",
+    "aff.month.mar":"março","aff.month.feb":"fevereiro","aff.month.jan":"janeiro","aff.month.dec":"dezembro",
+    "aff.pay.available":"Saldo disponível para saque","aff.pay.available_sub":"Comissões liquidadas · saque mínimo US$ 50",
+    "aff.pay.request":"Solicitar saque",
+    "aff.pay.mor":"A execução do pagamento é processada pelo nosso Merchant of Record, que cuida de impostos e da distribuição de fundos conforme o seu país. A TuIAlista calcula e aprova sua comissão; o Merchant of Record faz o depósito no seu método de recebimento.",
+    "aff.pay.method_title":"Dados de recebimento","aff.pay.bank":"Transferência",
+    "aff.pay.paypal_email":"E-mail do PayPal","aff.pay.holder":"Titular da conta",
+    "aff.pay.bank_name":"Banco","aff.pay.account":"IBAN / conta",
+    "aff.pay.save_method":"Salvar dados de recebimento","aff.pay.save_hint":"Usados no seu próximo saque.",
+    "aff.pay.history_title":"Histórico de saques",
+    "aff.col.date":"Data","aff.col.method":"Método","aff.col.reference":"Referência","aff.col.amount":"Valor",
+    "aff.pay.history_note":"Saques solicitados aparecem como “Em processamento” até o Merchant of Record confirmar o depósito (2–5 dias úteis).",
+    "aff.link.eyebrow":"SUA IDENTIDADE DE AFILIADO","aff.link.title":"Seu código e link únicos",
+    "aff.link.body":"Use este link em tudo o que compartilhar. Serve para os 16 agentes: a comissão é calculada sobre o que o cliente pagar, seja qual for o agente.",
+    "aff.link.your_code":"Seu código:","aff.link.gen_title":"Gerador de link por agente",
+    "aff.link.gen_body":"Quer promover um agente específico? Gere um link que leva direto a esse agente, já com o seu código.",
+    "aff.link.pick_agent":"Escolha um agente","aff.link.gen_commission":"Comissão estimada por este agente:",
+    "aff.link.msg_title":"Mensagens prontas para copiar","aff.link.msg_body":"Do kit de afiliados. Copie, cole e troque o link pelo seu.",
+    "aff.link.social":"Redes (LinkedIn/Facebook)","aff.link.email":"E-mail",
+    "aff.msg.wa":"Olá 👋 Compartilho algo útil: TuIAlista, agentes de IA que trabalham com seus documentos, Excel e faturas... mas SEM enviar nada para a internet. Tudo roda no seu próprio computador, seus dados nunca saem. A partir de US$ 9/mês e com 7 dias grátis. Aqui: https://tuialista.com/?ref=MRES9A4C21",
+    "aff.msg.social":"Quer usar IA na sua empresa sem enviar informações confidenciais para a nuvem? A TuIAlista são agentes de IA que rodam 100% locais: seus contratos, faturas e e-mails NUNCA saem do seu equipamento. 16 agentes a partir de US$ 9/mês com teste grátis. Veja: https://tuialista.com/?ref=MRES9A4C21",
+    "aff.msg.mail":"Assunto: IA para sua empresa, sem que seus dados saiam do seu equipamento.\n\nEscrevo porque acho que a TuIAlista combina com você: agentes de IA especializados que processam TUDO localmente. Seus documentos e faturas nunca saem da sua empresa. A partir de US$ 9/mês, 7 dias grátis. Experimente: https://tuialista.com/?ref=MRES9A4C21",
+    "aff.res.kit_title":"Kit de afiliados","aff.res.kit_langs":"Disponível em espanhol e inglês",
+    "aff.res.guide_t":"Guia do afiliado","aff.res.guide_d":"Como o programa funciona, quanto você ganha e como recebe.",
+    "aff.res.args_t":"Argumentos de venda","aff.res.args_d":"O diferencial local, os 16 agentes e respostas a objeções.",
+    "aff.res.msgs_t":"Mensagens prontas","aff.res.msgs_d":"Modelos para WhatsApp, redes, e-mail e follow-up.",
+    "aff.res.faq_t":"Perguntas frequentes","aff.res.faq_d":"FAQ para você e FAQ para usar com seus prospects.",
+    "aff.res.help_title":"Ajuda — perguntas comuns do afiliado","aff.res.contact":"Outra pergunta? Escreva para",
+    "aff.faq.q1":"Quando e como recebo minhas comissões?",
+    "aff.faq.a1":"As comissões são agrupadas por período mensal. Quando seu saldo disponível ultrapassa o mínimo de US$ 50, você solicita um saque na seção Saques e o Merchant of Record deposita no seu método de recebimento em 2–5 dias úteis.",
+    "aff.faq.q2":"O que acontece se meu cliente cancelar?",
+    "aff.faq.a2":"Você deixa de ganhar por esse cliente a partir do cancelamento, mas mantém tudo o que já ganhou. Se ele assinar de novo pelo seu link, é atribuído a você novamente.",
+    "aff.faq.q3":"Há limite de ganhos ou de clientes?",
+    "aff.faq.a3":"Não. Não há teto de comissões nem de indicações. Sua renda cresce com sua carteira de clientes ativos: cada um soma seus 30% recorrentes.",
+    "aff.faq.q4":"Posso indicar empresas grandes?",
+    "aff.faq.a4":"Sim, e é o seu melhor negócio. O agente Premium AS/400 (a partir de US$ 299/mês) é pensado para grandes empresas: sua comissão seria de US$ 89,70/mês por um único cliente.",
+    "aff.faq.q5":"Como se registra que um cliente é meu?",
+    "aff.faq.a5":"Quando a pessoa entra pelo seu link (?ref=SEUCODIGO) e assina, o sistema a atribui ao seu código automaticamente no primeiro pagamento.",
+    "aff.set.account":"Dados da conta","aff.set.name":"Nome completo","aff.set.email":"E-mail",
+    "aff.set.country":"País","aff.set.currency":"Moeda de pagamento","aff.set.language":"Idioma da interface",
+    "aff.set.save":"Salvar alterações","aff.set.save_hint":"As alterações são aplicadas imediatamente.",
+    "aff.set.password":"Alterar senha","aff.set.pwd_current":"Senha atual",
+    "aff.set.pwd_new":"Nova senha","aff.set.pwd_confirm":"Confirmar senha","aff.set.pwd_save":"Atualizar senha",
+    "aff.set.notifications":"Notificações","aff.set.notif_sale":"Novo cliente indicado",
+    "aff.set.notif_sale_hint":"Quando alguém assina pelo seu link","aff.set.notif_commission":"Comissão creditada",
+    "aff.set.notif_commission_hint":"Sempre que um cliente paga o mês","aff.set.notif_payout":"Saques e pagamentos",
+    "aff.set.notif_payout_hint":"Status das suas solicitações de saque","aff.set.notif_churn":"Cliente em risco",
+    "aff.set.notif_churn_hint":"Se um cliente indicado cancelar","aff.set.notif_news":"Novidades e materiais",
+    "aff.set.notif_news_hint":"Novos agentes e material de venda",
+    "aff.set.affiliate_data":"Dados de afiliado","aff.set.your_code":"Seu código","aff.set.commission_rate":"Comissão",
+    "aff.set.member_since":"Afiliado desde","aff.set.close_hint":"Para encerrar sua conta de afiliado escreva para",
+    "aff.country.mx":"México","aff.country.us":"Estados Unidos","aff.country.es":"Espanha","aff.country.co":"Colômbia","aff.country.ar":"Argentina","aff.country.br":"Brasil",
+    "aff.currency.usd":"USD — Dólar","aff.currency.mxn":"MXN — Peso mexicano","aff.currency.eur":"EUR — Euro",
+    "aff.toast.copied":"Link copiado para a área de transferência","aff.toast.msg_copied":"Mensagem copiada","aff.toast.withdraw":"Solicitação de saque enviada · em processamento","aff.toast.saved":"Alterações salvas","aff.toast.payout_saved":"Dados de recebimento atualizados",
+  },
+  fr:{
+    "aff.nav.dashboard":"Aperçu","aff.nav.clients":"Mes clients","aff.nav.commissions":"Commissions",
+    "aff.nav.payouts":"Retraits et paiements","aff.nav.link":"Mon lien","aff.nav.resources":"Ressources",
+    "aff.nav.settings":"Paramètres","aff.nav.home":"Aller au site","aff.nav.support":"Support",
+    "aff.hello":"Bonjour,","aff.copy":"Copier","aff.copied":"Copié !",
+    "aff.dash.balance":"Solde disponible","aff.dash.balance_hint":"prêt à retirer",
+    "aff.dash.total":"Commission cumulée","aff.dash.total_hint":"total historique",
+    "aff.dash.pending":"En attente ce mois-ci","aff.dash.pending_hint":"juillet, en cours",
+    "aff.dash.recurring":"Commission récurrente","aff.dash.recurring_hint":"chaque mois actif",
+    "aff.dash.active":"Clients actifs","aff.dash.active_hint":"↑ 1 ce mois-ci",
+    "aff.dash.trial":"En essai","aff.dash.trial_hint":"peuvent convertir bientôt",
+    "aff.dash.cancelled":"Annulés","aff.dash.conversion":"conversion",
+    "aff.dash.model_title":"Le modèle 30 % récurrent en action",
+    "aff.dash.model_body":"Vous gagnez 30 % de ce que paie chaque client, tous les mois où il reste actif. Ce n'est pas un paiement unique : cela s'accumule. Vos 7 clients actifs génèrent 66,90 $/mois de façon récurrente.",
+    "aff.dash.others":"Autres actifs","aff.dash.next_title":"Votre prochain paiement",
+    "aff.dash.next_sub":"solde disponible · clôture 31 juil. 2026","aff.dash.go_payout":"Aller aux retraits",
+    "aff.dash.mor_hint":"Le paiement est exécuté par notre Merchant of Record.",
+    "aff.dash.share_eyebrow":"VOTRE OUTIL Nº 1","aff.dash.share_title":"Partagez votre lien et ajoutez des clients",
+    "aff.dash.share_body":"Chaque client qui arrive via votre lien et s'abonne vous est attribué automatiquement. Partagez-le par WhatsApp, réseaux ou e-mail.",
+    "aff.client.andrade":"Andrade Commerce","aff.client.ferretero":"Groupe Quincaillerie du Bajío","aff.client.ruiz":"Cabinet Ruiz & Assoc.",
+    "aff.status.active":"Actif","aff.status.trial":"En essai","aff.status.cancelled":"Annulé",
+    "aff.status.paid":"Payée","aff.status.pending":"En attente","aff.status.paid_m":"Payé","aff.status.processing":"En cours",
+    "aff.clients.recurring":"Commission récurrente","aff.clients.title":"Clients que vous avez parrainés",
+    "aff.clients.privacy":"Noms partiellement masqués par confidentialité",
+    "aff.clients.search":"Rechercher un client ou un agent…","aff.clients.all":"Tous",
+    "aff.clients.footnote":"La commission d'un client en essai commence à compter à son premier paiement.",
+    "aff.clients.total_recurring":"Total récurrent",
+    "aff.col.client":"Client / Entreprise","aff.col.agent":"Agent souscrit","aff.col.since":"Inscription",
+    "aff.col.status":"Statut","aff.col.commission":"Commission / mois",
+    "aff.comm.lifetime":"Gagné au total","aff.comm.since":"depuis déc. 2025",
+    "aff.comm.paid":"Payé","aff.comm.paid_hint":"7 périodes réglées",
+    "aff.comm.pending":"En attente","aff.comm.pending_hint":"juillet 2026",
+    "aff.comm.rate":"Votre commission","aff.comm.rate_hint":"récurrente",
+    "aff.comm.chart_title":"Commissions par mois (USD)",
+    "aff.comm.chart_note":"La courbe monte car chaque nouveau client s'ajoute à ceux qui paient déjà. C'est l'effet récurrent.",
+    "aff.comm.detail_title":"Détail de juillet 2026","aff.comm.total_month":"Total du mois",
+    "aff.comm.history_title":"Historique des commissions",
+    "aff.col.period":"Période","aff.col.payingClients":"Clients ayant payé","aff.col.generated":"Commission générée",
+    "aff.month.jul":"juillet","aff.month.jun":"juin","aff.month.may":"mai","aff.month.apr":"avril",
+    "aff.month.mar":"mars","aff.month.feb":"février","aff.month.jan":"janvier","aff.month.dec":"décembre",
+    "aff.pay.available":"Solde disponible à retirer","aff.pay.available_sub":"Commissions réglées · retrait minimum 50 $ USD",
+    "aff.pay.request":"Demander un retrait",
+    "aff.pay.mor":"L'exécution du paiement passe par notre Merchant of Record, qui gère les taxes et le versement des fonds selon votre pays. TuIAlista calcule et approuve votre commission ; le Merchant of Record effectue le dépôt sur votre moyen de paiement.",
+    "aff.pay.method_title":"Coordonnées de paiement","aff.pay.bank":"Virement",
+    "aff.pay.paypal_email":"E-mail PayPal","aff.pay.holder":"Titulaire du compte",
+    "aff.pay.bank_name":"Banque","aff.pay.account":"IBAN / n° de compte",
+    "aff.pay.save_method":"Enregistrer les coordonnées","aff.pay.save_hint":"Utilisées pour votre prochain retrait.",
+    "aff.pay.history_title":"Historique des retraits",
+    "aff.col.date":"Date","aff.col.method":"Méthode","aff.col.reference":"Référence","aff.col.amount":"Montant",
+    "aff.pay.history_note":"Les retraits demandés apparaissent « En cours » jusqu'à ce que le Merchant of Record confirme le dépôt (2 à 5 jours ouvrés).",
+    "aff.link.eyebrow":"VOTRE IDENTITÉ D'AFFILIÉ","aff.link.title":"Votre code et lien uniques",
+    "aff.link.body":"Utilisez ce lien dans tout ce que vous partagez. Il vaut pour les 16 agents : la commission se calcule sur ce que paie le client, quel que soit l'agent.",
+    "aff.link.your_code":"Votre code :","aff.link.gen_title":"Générateur de lien par agent",
+    "aff.link.gen_body":"Vous voulez promouvoir un agent précis ? Générez un lien qui mène directement à cet agent, déjà avec votre code.",
+    "aff.link.pick_agent":"Choisissez un agent","aff.link.gen_commission":"Commission estimée pour cet agent :",
+    "aff.link.msg_title":"Messages prêts à copier","aff.link.msg_body":"Issus du kit d'affiliation. Copiez, collez et remplacez le lien par le vôtre.",
+    "aff.link.social":"Réseaux (LinkedIn/Facebook)","aff.link.email":"E-mail",
+    "aff.msg.wa":"Bonjour 👋 Je partage quelque chose d'utile : TuIAlista, des agents IA qui travaillent avec vos documents, Excel et factures... mais SANS rien envoyer sur Internet. Tout tourne sur votre propre ordinateur, vos données ne sortent jamais. Dès 9 $/mois avec 7 jours gratuits. Ici : https://tuialista.com/?ref=MRES9A4C21",
+    "aff.msg.social":"Vous voulez utiliser l'IA dans votre entreprise sans envoyer d'infos confidentielles dans le cloud ? TuIAlista, ce sont des agents IA 100 % locaux : vos contrats, factures et e-mails ne quittent JAMAIS votre poste. 16 agents dès 9 $/mois avec essai gratuit. À voir : https://tuialista.com/?ref=MRES9A4C21",
+    "aff.msg.mail":"Objet : L'IA pour votre entreprise, sans que vos données quittent votre poste.\n\nJe vous écris car je pense que TuIAlista vous convient : des agents IA spécialisés qui traitent TOUT en local. Vos documents et factures ne quittent jamais votre entreprise. Dès 9 $/mois, 7 jours gratuits. Essayez : https://tuialista.com/?ref=MRES9A4C21",
+    "aff.res.kit_title":"Kit d'affiliation","aff.res.kit_langs":"Disponible en espagnol et en anglais",
+    "aff.res.guide_t":"Guide de l'affilié","aff.res.guide_d":"Comment fonctionne le programme, combien vous gagnez et comment vous êtes payé.",
+    "aff.res.args_t":"Arguments de vente","aff.res.args_d":"Le différenciateur local, les 16 agents et les réponses aux objections.",
+    "aff.res.msgs_t":"Messages prêts","aff.res.msgs_d":"Modèles pour WhatsApp, réseaux, e-mail et relance.",
+    "aff.res.faq_t":"FAQ","aff.res.faq_d":"FAQ pour vous et FAQ à utiliser avec vos prospects.",
+    "aff.res.help_title":"Aide — questions fréquentes de l'affilié","aff.res.contact":"Une autre question ? Écrivez-nous à",
+    "aff.faq.q1":"Quand et comment suis-je payé mes commissions ?",
+    "aff.faq.a1":"Les commissions sont regroupées par période mensuelle. Lorsque votre solde disponible dépasse le minimum de 50 $ USD, vous demandez un retrait dans la section Retraits et le Merchant of Record le dépose sur votre moyen de paiement sous 2 à 5 jours ouvrés.",
+    "aff.faq.q2":"Que se passe-t-il si mon client annule ?",
+    "aff.faq.a2":"Vous cessez de gagner pour ce client dès l'annulation, mais vous conservez tout ce qui a déjà été gagné. S'il se réabonne via votre lien, il vous est de nouveau attribué.",
+    "aff.faq.q3":"Y a-t-il une limite de gains ou de clients ?",
+    "aff.faq.a3":"Non. Aucun plafond de commissions ni de parrainages. Vos revenus croissent avec votre portefeuille de clients actifs : chacun ajoute ses 30 % récurrents.",
+    "aff.faq.q4":"Puis-je parrainer de grandes entreprises ?",
+    "aff.faq.a4":"Oui, et c'est votre meilleure affaire. L'agent Premium AS/400 (dès 299 $/mois) est conçu pour les grandes entreprises : votre commission serait de 89,70 $/mois pour un seul client.",
+    "aff.faq.q5":"Comment enregistre-t-on qu'un client est le mien ?",
+    "aff.faq.a5":"Lorsque la personne arrive via votre lien (?ref=VOTRECODE) et s'abonne, le système l'attribue à votre code automatiquement lors de son premier paiement.",
+    "aff.set.account":"Détails du compte","aff.set.name":"Nom complet","aff.set.email":"Adresse e-mail",
+    "aff.set.country":"Pays","aff.set.currency":"Devise de paiement","aff.set.language":"Langue de l'interface",
+    "aff.set.save":"Enregistrer","aff.set.save_hint":"Les changements s'appliquent immédiatement.",
+    "aff.set.password":"Changer le mot de passe","aff.set.pwd_current":"Mot de passe actuel",
+    "aff.set.pwd_new":"Nouveau mot de passe","aff.set.pwd_confirm":"Confirmer le mot de passe","aff.set.pwd_save":"Mettre à jour le mot de passe",
+    "aff.set.notifications":"Notifications","aff.set.notif_sale":"Nouveau client parrainé",
+    "aff.set.notif_sale_hint":"Quand quelqu'un s'abonne via votre lien","aff.set.notif_commission":"Commission créditée",
+    "aff.set.notif_commission_hint":"Chaque fois qu'un client paie son mois","aff.set.notif_payout":"Retraits et paiements",
+    "aff.set.notif_payout_hint":"Statut de vos demandes de retrait","aff.set.notif_churn":"Client à risque",
+    "aff.set.notif_churn_hint":"Si un client parrainé annule","aff.set.notif_news":"Nouveautés et supports",
+    "aff.set.notif_news_hint":"Nouveaux agents et supports de vente",
+    "aff.set.affiliate_data":"Détails d'affilié","aff.set.your_code":"Votre code","aff.set.commission_rate":"Commission",
+    "aff.set.member_since":"Affilié depuis","aff.set.close_hint":"Pour fermer votre compte d'affilié écrivez-nous à",
+    "aff.country.mx":"Mexique","aff.country.us":"États-Unis","aff.country.es":"Espagne","aff.country.co":"Colombie","aff.country.ar":"Argentine","aff.country.br":"Brésil",
+    "aff.currency.usd":"USD — Dollar","aff.currency.mxn":"MXN — Peso mexicain","aff.currency.eur":"EUR — Euro",
+    "aff.toast.copied":"Lien copié dans le presse-papiers","aff.toast.msg_copied":"Message copié","aff.toast.withdraw":"Demande de retrait envoyée · en cours","aff.toast.saved":"Modifications enregistrées","aff.toast.payout_saved":"Coordonnées de paiement mises à jour",
+  },
+  de:{
+    "aff.nav.dashboard":"Übersicht","aff.nav.clients":"Meine Kunden","aff.nav.commissions":"Provisionen",
+    "aff.nav.payouts":"Auszahlungen","aff.nav.link":"Mein Link","aff.nav.resources":"Ressourcen",
+    "aff.nav.settings":"Einstellungen","aff.nav.home":"Zur Website","aff.nav.support":"Support",
+    "aff.hello":"Hallo,","aff.copy":"Kopieren","aff.copied":"Kopiert!",
+    "aff.dash.balance":"Verfügbarer Saldo","aff.dash.balance_hint":"bereit zur Auszahlung",
+    "aff.dash.total":"Aufgelaufene Provision","aff.dash.total_hint":"Gesamt historisch",
+    "aff.dash.pending":"Ausstehend diesen Monat","aff.dash.pending_hint":"Juli, laufend",
+    "aff.dash.recurring":"Wiederkehrende Provision","aff.dash.recurring_hint":"jeden aktiven Monat",
+    "aff.dash.active":"Aktive Kunden","aff.dash.active_hint":"↑ 1 diesen Monat",
+    "aff.dash.trial":"In Testphase","aff.dash.trial_hint":"können bald konvertieren",
+    "aff.dash.cancelled":"Gekündigt","aff.dash.conversion":"Konversion",
+    "aff.dash.model_title":"Das 30 %-Modell in Aktion",
+    "aff.dash.model_body":"Du verdienst 30 % dessen, was jeder Kunde zahlt, in jedem Monat, in dem er aktiv bleibt. Keine Einmalzahlung: es summiert sich. Deine 7 aktiven Kunden bringen dir wiederkehrend 66,90 $/Monat.",
+    "aff.dash.others":"Weitere aktive","aff.dash.next_title":"Deine nächste Auszahlung",
+    "aff.dash.next_sub":"verfügbarer Saldo · Stichtag 31. Juli 2026","aff.dash.go_payout":"Zu Auszahlungen",
+    "aff.dash.mor_hint":"Die Zahlung wird von unserem Merchant of Record ausgeführt.",
+    "aff.dash.share_eyebrow":"DEIN WERKZEUG NR. 1","aff.dash.share_title":"Teile deinen Link und gewinne Kunden",
+    "aff.dash.share_body":"Jeder Kunde, der über deinen Link kommt und abonniert, wird dir automatisch zugeordnet. Teile ihn per WhatsApp, in sozialen Netzwerken oder per E-Mail.",
+    "aff.client.andrade":"Andrade Handel","aff.client.ferretero":"Baumarkt-Gruppe Bajío","aff.client.ruiz":"Kanzlei Ruiz & Partner",
+    "aff.status.active":"Aktiv","aff.status.trial":"In Testphase","aff.status.cancelled":"Gekündigt",
+    "aff.status.paid":"Bezahlt","aff.status.pending":"Ausstehend","aff.status.paid_m":"Bezahlt","aff.status.processing":"In Bearbeitung",
+    "aff.clients.recurring":"Wiederkehrende Provision","aff.clients.title":"Von dir geworbene Kunden",
+    "aff.clients.privacy":"Namen aus Datenschutzgründen teils verborgen",
+    "aff.clients.search":"Kunde oder Agent suchen…","aff.clients.all":"Alle",
+    "aff.clients.footnote":"Die Provision eines Test-Kunden zählt ab seiner ersten Zahlung.",
+    "aff.clients.total_recurring":"Gesamt wiederkehrend",
+    "aff.col.client":"Kunde / Firma","aff.col.agent":"Gebuchter Agent","aff.col.since":"Beitritt",
+    "aff.col.status":"Status","aff.col.commission":"Provision / Monat",
+    "aff.comm.lifetime":"Insgesamt verdient","aff.comm.since":"seit Dez. 2025",
+    "aff.comm.paid":"Bezahlt","aff.comm.paid_hint":"7 Perioden abgerechnet",
+    "aff.comm.pending":"Ausstehend","aff.comm.pending_hint":"Juli 2026",
+    "aff.comm.rate":"Deine Provision","aff.comm.rate_hint":"wiederkehrend",
+    "aff.comm.chart_title":"Provisionen pro Monat (USD)",
+    "aff.comm.chart_note":"Die Kurve steigt, weil jeder neue Kunde zu den bereits zahlenden hinzukommt. Das ist der wiederkehrende Effekt.",
+    "aff.comm.detail_title":"Aufstellung Juli 2026","aff.comm.total_month":"Monatssumme",
+    "aff.comm.history_title":"Provisionsverlauf",
+    "aff.col.period":"Zeitraum","aff.col.payingClients":"Zahlende Kunden","aff.col.generated":"Erzielte Provision",
+    "aff.month.jul":"Juli","aff.month.jun":"Juni","aff.month.may":"Mai","aff.month.apr":"April",
+    "aff.month.mar":"März","aff.month.feb":"Februar","aff.month.jan":"Januar","aff.month.dec":"Dezember",
+    "aff.pay.available":"Verfügbarer Saldo zur Auszahlung","aff.pay.available_sub":"Abgerechnete Provisionen · Mindestauszahlung 50 $ USD",
+    "aff.pay.request":"Auszahlung anfordern",
+    "aff.pay.mor":"Die Zahlungsausführung erfolgt über unseren Merchant of Record, der Steuern und die Auszahlung gemäß deinem Land abwickelt. TuIAlista berechnet und genehmigt deine Provision; der Merchant of Record überweist sie auf deine Zahlungsmethode.",
+    "aff.pay.method_title":"Auszahlungsdaten","aff.pay.bank":"Überweisung",
+    "aff.pay.paypal_email":"PayPal-E-Mail","aff.pay.holder":"Kontoinhaber",
+    "aff.pay.bank_name":"Bank","aff.pay.account":"IBAN / Kontonr.",
+    "aff.pay.save_method":"Auszahlungsdaten speichern","aff.pay.save_hint":"Werden für deine nächste Auszahlung verwendet.",
+    "aff.pay.history_title":"Auszahlungsverlauf",
+    "aff.col.date":"Datum","aff.col.method":"Methode","aff.col.reference":"Referenz","aff.col.amount":"Betrag",
+    "aff.pay.history_note":"Angeforderte Auszahlungen erscheinen als „In Bearbeitung“, bis der Merchant of Record die Gutschrift bestätigt (2–5 Werktage).",
+    "aff.link.eyebrow":"DEINE PARTNER-IDENTITÄT","aff.link.title":"Dein eindeutiger Code und Link",
+    "aff.link.body":"Nutze diesen Link in allem, was du teilst. Er gilt für alle 16 Agenten: Die Provision wird auf das berechnet, was der Kunde zahlt, egal welcher Agent.",
+    "aff.link.your_code":"Dein Code:","aff.link.gen_title":"Link-Generator pro Agent",
+    "aff.link.gen_body":"Möchtest du einen bestimmten Agenten bewerben? Erzeuge einen Link, der direkt zu diesem Agenten führt – schon mit deinem Code.",
+    "aff.link.pick_agent":"Agent wählen","aff.link.gen_commission":"Geschätzte Provision für diesen Agenten:",
+    "aff.link.msg_title":"Fertige Nachrichten zum Kopieren","aff.link.msg_body":"Aus dem Partner-Kit. Kopieren, einfügen und den Link durch deinen ersetzen.",
+    "aff.link.social":"Soziale Netzwerke (LinkedIn/Facebook)","aff.link.email":"E-Mail",
+    "aff.msg.wa":"Hallo 👋 Ich teile etwas Nützliches: TuIAlista, KI-Agenten, die mit deinen Dokumenten, Excel und Rechnungen arbeiten... aber OHNE etwas ins Internet hochzuladen. Alles läuft auf deinem eigenen Rechner, deine Daten verlassen ihn nie. Ab 9 $/Monat und mit 7 Tagen gratis. Hier: https://tuialista.com/?ref=MRES9A4C21",
+    "aff.msg.social":"Willst du KI im Unternehmen nutzen, ohne vertrauliche Infos in die Cloud zu laden? TuIAlista sind KI-Agenten, die 100 % lokal laufen: deine Verträge, Rechnungen und E-Mails verlassen NIE deinen Rechner. 16 Agenten ab 9 $/Monat mit Gratis-Test. Ansehen: https://tuialista.com/?ref=MRES9A4C21",
+    "aff.msg.mail":"Betreff: KI für dein Unternehmen, ohne dass deine Daten den Rechner verlassen.\n\nIch schreibe dir, weil ich denke, dass TuIAlista zu dir passt: spezialisierte KI-Agenten, die ALLES lokal verarbeiten. Deine Dokumente und Rechnungen verlassen nie dein Unternehmen. Ab 9 $/Monat, 7 Tage gratis. Probier es: https://tuialista.com/?ref=MRES9A4C21",
+    "aff.res.kit_title":"Partner-Kit","aff.res.kit_langs":"Verfügbar auf Spanisch und Englisch",
+    "aff.res.guide_t":"Partner-Leitfaden","aff.res.guide_d":"Wie das Programm funktioniert, wie viel du verdienst und wie du bezahlt wirst.",
+    "aff.res.args_t":"Verkaufsargumente","aff.res.args_d":"Das lokale Alleinstellungsmerkmal, die 16 Agenten und Antworten auf Einwände.",
+    "aff.res.msgs_t":"Fertige Nachrichten","aff.res.msgs_d":"Vorlagen für WhatsApp, soziale Netzwerke, E-Mail und Follow-up.",
+    "aff.res.faq_t":"FAQ","aff.res.faq_d":"FAQ für dich und FAQ zur Nutzung mit deinen Interessenten.",
+    "aff.res.help_title":"Hilfe — häufige Partner-Fragen","aff.res.contact":"Noch eine Frage? Schreib uns an",
+    "aff.faq.q1":"Wann und wie werde ich meine Provisionen ausgezahlt?",
+    "aff.faq.a1":"Provisionen werden nach Monatsperiode gebündelt. Sobald dein verfügbarer Saldo den Mindestbetrag von 50 $ USD übersteigt, forderst du im Bereich Auszahlungen eine Auszahlung an, und der Merchant of Record überweist sie in 2–5 Werktagen auf deine Zahlungsmethode.",
+    "aff.faq.q2":"Was passiert, wenn mein Kunde kündigt?",
+    "aff.faq.a2":"Du verdienst ab der Kündigung nicht mehr an diesem Kunden, behältst aber alles bereits Verdiente. Abonniert er erneut über deinen Link, wird er dir wieder zugeordnet.",
+    "aff.faq.q3":"Gibt es eine Grenze für Einnahmen oder Kunden?",
+    "aff.faq.a3":"Nein. Es gibt keine Obergrenze für Provisionen oder Empfehlungen. Dein Einkommen wächst mit deinem aktiven Kundenstamm: jeder bringt seine wiederkehrenden 30 %.",
+    "aff.faq.q4":"Kann ich große Unternehmen werben?",
+    "aff.faq.a4":"Ja, und das ist dein bestes Geschäft. Der Premium-Agent AS/400 (ab 299 $/Monat) ist für große Unternehmen gedacht: deine Provision wäre 89,70 $/Monat von einem einzigen Kunden.",
+    "aff.faq.q5":"Wie wird erfasst, dass ein Kunde meiner ist?",
+    "aff.faq.a5":"Wenn die Person über deinen Link (?ref=DEINCODE) kommt und abonniert, ordnet das System sie bei ihrer ersten Zahlung automatisch deinem Code zu.",
+    "aff.set.account":"Kontodaten","aff.set.name":"Vollständiger Name","aff.set.email":"E-Mail-Adresse",
+    "aff.set.country":"Land","aff.set.currency":"Auszahlungswährung","aff.set.language":"Oberflächensprache",
+    "aff.set.save":"Änderungen speichern","aff.set.save_hint":"Änderungen werden sofort übernommen.",
+    "aff.set.password":"Passwort ändern","aff.set.pwd_current":"Aktuelles Passwort",
+    "aff.set.pwd_new":"Neues Passwort","aff.set.pwd_confirm":"Passwort bestätigen","aff.set.pwd_save":"Passwort aktualisieren",
+    "aff.set.notifications":"Benachrichtigungen","aff.set.notif_sale":"Neuer geworbener Kunde",
+    "aff.set.notif_sale_hint":"Wenn jemand über deinen Link abonniert","aff.set.notif_commission":"Provision gutgeschrieben",
+    "aff.set.notif_commission_hint":"Jedes Mal, wenn ein Kunde seinen Monat zahlt","aff.set.notif_payout":"Auszahlungen",
+    "aff.set.notif_payout_hint":"Status deiner Auszahlungsanträge","aff.set.notif_churn":"Kunde in Gefahr",
+    "aff.set.notif_churn_hint":"Wenn ein geworbener Kunde kündigt","aff.set.notif_news":"Neuigkeiten & Materialien",
+    "aff.set.notif_news_hint":"Neue Agenten und Verkaufsmaterial",
+    "aff.set.affiliate_data":"Partnerdaten","aff.set.your_code":"Dein Code","aff.set.commission_rate":"Provision",
+    "aff.set.member_since":"Partner seit","aff.set.close_hint":"Um dein Partnerkonto zu schließen, schreib uns an",
+    "aff.country.mx":"Mexiko","aff.country.us":"Vereinigte Staaten","aff.country.es":"Spanien","aff.country.co":"Kolumbien","aff.country.ar":"Argentinien","aff.country.br":"Brasilien",
+    "aff.currency.usd":"USD — Dollar","aff.currency.mxn":"MXN — Mexikanischer Peso","aff.currency.eur":"EUR — Euro",
+    "aff.toast.copied":"Link in die Zwischenablage kopiert","aff.toast.msg_copied":"Nachricht kopiert","aff.toast.withdraw":"Auszahlungsantrag gesendet · in Bearbeitung","aff.toast.saved":"Änderungen gespeichert","aff.toast.payout_saved":"Auszahlungsdaten aktualisiert",
+  },
+  it:{
+    "aff.nav.dashboard":"Panoramica","aff.nav.clients":"I miei clienti","aff.nav.commissions":"Commissioni",
+    "aff.nav.payouts":"Prelievi e pagamenti","aff.nav.link":"Il mio link","aff.nav.resources":"Risorse",
+    "aff.nav.settings":"Impostazioni","aff.nav.home":"Vai al sito","aff.nav.support":"Assistenza",
+    "aff.hello":"Ciao,","aff.copy":"Copia","aff.copied":"Copiato!",
+    "aff.dash.balance":"Saldo disponibile","aff.dash.balance_hint":"pronto al prelievo",
+    "aff.dash.total":"Commissione accumulata","aff.dash.total_hint":"totale storico",
+    "aff.dash.pending":"In sospeso questo mese","aff.dash.pending_hint":"luglio, in corso",
+    "aff.dash.recurring":"Commissione ricorrente","aff.dash.recurring_hint":"ogni mese attivo",
+    "aff.dash.active":"Clienti attivi","aff.dash.active_hint":"↑ 1 questo mese",
+    "aff.dash.trial":"In prova","aff.dash.trial_hint":"potrebbero convertire presto",
+    "aff.dash.cancelled":"Annullati","aff.dash.conversion":"conversione",
+    "aff.dash.model_title":"Il modello 30% ricorrente in azione",
+    "aff.dash.model_body":"Guadagni il 30% di ciò che paga ogni cliente, ogni mese in cui resta attivo. Non è un pagamento una tantum: si accumula. I tuoi 7 clienti attivi ti generano 66,90 $ al mese in modo ricorrente.",
+    "aff.dash.others":"Altri attivi","aff.dash.next_title":"Il tuo prossimo pagamento",
+    "aff.dash.next_sub":"saldo disponibile · chiusura 31 lug 2026","aff.dash.go_payout":"Vai ai prelievi",
+    "aff.dash.mor_hint":"Il pagamento è eseguito dal nostro Merchant of Record.",
+    "aff.dash.share_eyebrow":"IL TUO STRUMENTO N.1","aff.dash.share_title":"Condividi il tuo link e aggiungi clienti",
+    "aff.dash.share_body":"Ogni cliente che entra dal tuo link e si abbona viene attribuito a te automaticamente. Condividilo su WhatsApp, social o e-mail.",
+    "aff.client.andrade":"Commerciale Andrade","aff.client.ferretero":"Gruppo Ferramenta del Bajío","aff.client.ruiz":"Studio Ruiz & Assoc.",
+    "aff.status.active":"Attivo","aff.status.trial":"In prova","aff.status.cancelled":"Annullato",
+    "aff.status.paid":"Pagata","aff.status.pending":"In sospeso","aff.status.paid_m":"Pagato","aff.status.processing":"In elaborazione",
+    "aff.clients.recurring":"Commissione ricorrente","aff.clients.title":"Clienti che hai segnalato",
+    "aff.clients.privacy":"Nomi parzialmente nascosti per privacy",
+    "aff.clients.search":"Cerca cliente o agente…","aff.clients.all":"Tutti",
+    "aff.clients.footnote":"La commissione di un cliente in prova inizia a contare quando effettua il primo pagamento.",
+    "aff.clients.total_recurring":"Totale ricorrente",
+    "aff.col.client":"Cliente / Azienda","aff.col.agent":"Agente sottoscritto","aff.col.since":"Iscrizione",
+    "aff.col.status":"Stato","aff.col.commission":"Commissione / mese",
+    "aff.comm.lifetime":"Guadagnato in totale","aff.comm.since":"da dic 2025",
+    "aff.comm.paid":"Pagato","aff.comm.paid_hint":"7 periodi liquidati",
+    "aff.comm.pending":"In sospeso","aff.comm.pending_hint":"luglio 2026",
+    "aff.comm.rate":"La tua commissione","aff.comm.rate_hint":"ricorrente",
+    "aff.comm.chart_title":"Commissioni per mese (USD)",
+    "aff.comm.chart_note":"La curva sale perché ogni nuovo cliente si aggiunge a quelli che già pagano. È l'effetto ricorrente.",
+    "aff.comm.detail_title":"Dettaglio di luglio 2026","aff.comm.total_month":"Totale del mese",
+    "aff.comm.history_title":"Storico commissioni",
+    "aff.col.period":"Periodo","aff.col.payingClients":"Clienti che hanno pagato","aff.col.generated":"Commissione generata",
+    "aff.month.jul":"luglio","aff.month.jun":"giugno","aff.month.may":"maggio","aff.month.apr":"aprile",
+    "aff.month.mar":"marzo","aff.month.feb":"febbraio","aff.month.jan":"gennaio","aff.month.dec":"dicembre",
+    "aff.pay.available":"Saldo disponibile per il prelievo","aff.pay.available_sub":"Commissioni liquidate · prelievo minimo 50 $ USD",
+    "aff.pay.request":"Richiedi prelievo",
+    "aff.pay.mor":"L'esecuzione del pagamento avviene tramite il nostro Merchant of Record, che gestisce imposte e distribuzione dei fondi in base al tuo Paese. TuIAlista calcola e approva la tua commissione; il Merchant of Record effettua il deposito sul tuo metodo di pagamento.",
+    "aff.pay.method_title":"Dati di pagamento","aff.pay.bank":"Bonifico",
+    "aff.pay.paypal_email":"E-mail PayPal","aff.pay.holder":"Intestatario del conto",
+    "aff.pay.bank_name":"Banca","aff.pay.account":"IBAN / n. conto",
+    "aff.pay.save_method":"Salva dati di pagamento","aff.pay.save_hint":"Usati per il tuo prossimo prelievo.",
+    "aff.pay.history_title":"Storico prelievi",
+    "aff.col.date":"Data","aff.col.method":"Metodo","aff.col.reference":"Riferimento","aff.col.amount":"Importo",
+    "aff.pay.history_note":"I prelievi richiesti appaiono come “In elaborazione” finché il Merchant of Record non conferma il deposito (2–5 giorni lavorativi).",
+    "aff.link.eyebrow":"LA TUA IDENTITÀ DA AFFILIATO","aff.link.title":"Il tuo codice e link unici",
+    "aff.link.body":"Usa questo link in tutto ciò che condividi. Vale per i 16 agenti: la commissione si calcola su quanto paga il cliente, qualunque sia l'agente.",
+    "aff.link.your_code":"Il tuo codice:","aff.link.gen_title":"Generatore di link per agente",
+    "aff.link.gen_body":"Vuoi promuovere un agente specifico? Genera un link che porta direttamente a quell'agente, già con il tuo codice.",
+    "aff.link.pick_agent":"Scegli un agente","aff.link.gen_commission":"Commissione stimata per questo agente:",
+    "aff.link.msg_title":"Messaggi pronti da copiare","aff.link.msg_body":"Dal kit affiliati. Copia, incolla e sostituisci il link con il tuo.",
+    "aff.link.social":"Social (LinkedIn/Facebook)","aff.link.email":"E-mail",
+    "aff.msg.wa":"Ciao 👋 Ti condivido una cosa utile: TuIAlista, agenti IA che lavorano con i tuoi documenti, Excel e fatture... ma SENZA caricare nulla su internet. Tutto gira sul tuo computer, i tuoi dati non escono mai. Da 9 $/mese e con 7 giorni gratis. Qui: https://tuialista.com/?ref=MRES9A4C21",
+    "aff.msg.social":"Vuoi usare l'IA in azienda senza caricare informazioni riservate sul cloud? TuIAlista sono agenti IA che girano al 100% in locale: i tuoi contratti, fatture ed e-mail non escono MAI dal tuo dispositivo. 16 agenti da 9 $/mese con prova gratuita. Guarda: https://tuialista.com/?ref=MRES9A4C21",
+    "aff.msg.mail":"Oggetto: L'IA per la tua azienda, senza che i tuoi dati escano dal tuo dispositivo.\n\nTi scrivo perché credo che TuIAlista faccia al caso tuo: agenti IA specializzati che elaborano TUTTO in locale. I tuoi documenti e le fatture non escono mai dalla tua azienda. Da 9 $/mese, 7 giorni gratis. Provalo: https://tuialista.com/?ref=MRES9A4C21",
+    "aff.res.kit_title":"Kit affiliati","aff.res.kit_langs":"Disponibile in spagnolo e inglese",
+    "aff.res.guide_t":"Guida dell'affiliato","aff.res.guide_d":"Come funziona il programma, quanto guadagni e come vieni pagato.",
+    "aff.res.args_t":"Argomenti di vendita","aff.res.args_d":"Il fattore differenziante locale, i 16 agenti e le risposte alle obiezioni.",
+    "aff.res.msgs_t":"Messaggi pronti","aff.res.msgs_d":"Modelli per WhatsApp, social, e-mail e follow-up.",
+    "aff.res.faq_t":"Domande frequenti","aff.res.faq_d":"FAQ per te e FAQ da usare con i tuoi prospect.",
+    "aff.res.help_title":"Aiuto — domande comuni dell'affiliato","aff.res.contact":"Un'altra domanda? Scrivici a",
+    "aff.faq.q1":"Quando e come vengo pagato le commissioni?",
+    "aff.faq.a1":"Le commissioni sono raggruppate per periodo mensile. Quando il tuo saldo disponibile supera il minimo di 50 $ USD, richiedi un prelievo dalla sezione Prelievi e il Merchant of Record lo deposita sul tuo metodo di pagamento in 2–5 giorni lavorativi.",
+    "aff.faq.q2":"Cosa succede se il mio cliente annulla?",
+    "aff.faq.a2":"Smetti di guadagnare da quel cliente dal momento dell'annullamento, ma conservi tutto ciò che hai già guadagnato. Se si riabbona tramite il tuo link, viene attribuito di nuovo a te.",
+    "aff.faq.q3":"C'è un limite di guadagni o di clienti?",
+    "aff.faq.a3":"No. Nessun tetto alle commissioni né alle segnalazioni. Il tuo reddito cresce con il tuo portafoglio di clienti attivi: ognuno aggiunge il suo 30% ricorrente.",
+    "aff.faq.q4":"Posso segnalare grandi aziende?",
+    "aff.faq.a4":"Sì, ed è il tuo miglior affare. L'agente Premium AS/400 (da 299 $/mese) è pensato per le grandi aziende: la tua commissione sarebbe di 89,70 $/mese da un solo cliente.",
+    "aff.faq.q5":"Come si registra che un cliente è mio?",
+    "aff.faq.a5":"Quando la persona entra dal tuo link (?ref=TUOCODICE) e si abbona, il sistema la attribuisce al tuo codice automaticamente al primo pagamento.",
+    "aff.set.account":"Dati dell'account","aff.set.name":"Nome completo","aff.set.email":"Indirizzo e-mail",
+    "aff.set.country":"Paese","aff.set.currency":"Valuta di pagamento","aff.set.language":"Lingua dell'interfaccia",
+    "aff.set.save":"Salva modifiche","aff.set.save_hint":"Le modifiche vengono applicate subito.",
+    "aff.set.password":"Cambia password","aff.set.pwd_current":"Password attuale",
+    "aff.set.pwd_new":"Nuova password","aff.set.pwd_confirm":"Conferma password","aff.set.pwd_save":"Aggiorna password",
+    "aff.set.notifications":"Notifiche","aff.set.notif_sale":"Nuovo cliente segnalato",
+    "aff.set.notif_sale_hint":"Quando qualcuno si abbona dal tuo link","aff.set.notif_commission":"Commissione accreditata",
+    "aff.set.notif_commission_hint":"Ogni volta che un cliente paga il mese","aff.set.notif_payout":"Prelievi e pagamenti",
+    "aff.set.notif_payout_hint":"Stato delle tue richieste di prelievo","aff.set.notif_churn":"Cliente a rischio",
+    "aff.set.notif_churn_hint":"Se un cliente segnalato annulla","aff.set.notif_news":"Novità e materiali",
+    "aff.set.notif_news_hint":"Nuovi agenti e materiale di vendita",
+    "aff.set.affiliate_data":"Dati affiliato","aff.set.your_code":"Il tuo codice","aff.set.commission_rate":"Commissione",
+    "aff.set.member_since":"Affiliato dal","aff.set.close_hint":"Per chiudere il tuo account affiliato scrivici a",
+    "aff.country.mx":"Messico","aff.country.us":"Stati Uniti","aff.country.es":"Spagna","aff.country.co":"Colombia","aff.country.ar":"Argentina","aff.country.br":"Brasile",
+    "aff.currency.usd":"USD — Dollaro","aff.currency.mxn":"MXN — Peso messicano","aff.currency.eur":"EUR — Euro",
+    "aff.toast.copied":"Link copiato negli appunti","aff.toast.msg_copied":"Messaggio copiato","aff.toast.withdraw":"Richiesta di prelievo inviata · in elaborazione","aff.toast.saved":"Modifiche salvate","aff.toast.payout_saved":"Dati di pagamento aggiornati",
+  }
+};
+
+/* ── i18n engine ── */
+const SUPPORTED = ["es","en","pt","fr","de","it"], FALLBACK = "en";
+function detectLang(){
+  const s = localStorage.getItem("tuialista_lang");
+  if(s && SUPPORTED.includes(s)) return s;
+  const n = (navigator.language || FALLBACK).slice(0,2).toLowerCase();
+  return SUPPORTED.includes(n) ? n : FALLBACK;
+}
+function t(key){
+  const d = AFF_I18N[detectLang()] || AFF_I18N[FALLBACK];
+  return d[key] !== undefined ? d[key] : (AFF_I18N[FALLBACK][key] || key);
+}
+function applyLang(l){
+  const d = AFF_I18N[l] || AFF_I18N[FALLBACK];
+  document.documentElement.lang = l;
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const k = el.getAttribute("data-i18n");
+    if(d[k] !== undefined) el.textContent = d[k];
+  });
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+    const k = el.getAttribute("data-i18n-placeholder");
+    if(d[k] !== undefined) el.setAttribute("placeholder", d[k]);
+  });
+  localStorage.setItem("tuialista_lang", l);
+  const sw = document.getElementById("lang-switcher");
+  if(sw) sw.value = l;
+  const sl = document.getElementById("settings-lang");
+  if(sl) sl.value = l;
+  const titleEl = document.getElementById("topbar-title");
+  if(titleEl){ const k = titleEl.getAttribute("data-i18n"); if(d[k]) titleEl.textContent = d[k]; }
+}
+function initI18n(){ applyLang(detectLang()); }
+
+/* ── NAVEGACIÓN ── */
+const SEC_TITLES = {
+  dashboard:"aff.nav.dashboard", clients:"aff.nav.clients", commissions:"aff.nav.commissions",
+  payouts:"aff.nav.payouts", link:"aff.nav.link", resources:"aff.nav.resources", settings:"aff.nav.settings",
+};
+const VALID_SECS = Object.keys(SEC_TITLES);
+function showSection(id, push){
+  if(!VALID_SECS.includes(id)) id = "dashboard";
+  document.querySelectorAll(".sec-content").forEach(s => s.classList.remove("active"));
+  document.querySelectorAll(".nav-item[data-sec]").forEach(n => n.classList.remove("active"));
+  const sec = document.getElementById("sec-" + id);
+  if(sec) sec.classList.add("active");
+  const nav = document.querySelector(`.nav-item[data-sec="${id}"]`);
+  if(nav) nav.classList.add("active");
+  const titleEl = document.getElementById("topbar-title");
+  if(titleEl){
+    const key = SEC_TITLES[id];
+    titleEl.setAttribute("data-i18n", key);
+    titleEl.textContent = t(key);
+  }
+  try{ if(push !== false) history.replaceState(null,"","#"+id); }catch(e){}
+  window.scrollTo(0,0);
+}
+
+/* ── TOAST ── */
+let _toastTimer;
+function showToast(msg){
+  const el = document.getElementById("toast");
+  const m = document.getElementById("toast-msg");
+  if(!el) return;
+  if(msg) m.textContent = msg;
+  clearTimeout(_toastTimer);
+  el.classList.add("show");
+  _toastTimer = setTimeout(() => el.classList.remove("show"), 2400);
+}
+
+/* ── COPY helpers ── */
+function copyText(text, cb){
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(cb, ()=>fallbackCopy(text,cb));
+  } else { fallbackCopy(text, cb); }
+}
+function fallbackCopy(text, cb){
+  const ta = document.createElement("textarea");
+  ta.value = text; ta.style.position="fixed"; ta.style.opacity="0";
+  document.body.appendChild(ta); ta.focus(); ta.select();
+  try{ document.execCommand("copy"); }catch(e){}
+  document.body.removeChild(ta); if(cb) cb();
+}
+function flashCopied(btn){
+  if(!btn) return;
+  btn.classList.add("copied");
+  setTimeout(()=>btn.classList.remove("copied"), 1400);
+}
+
+/* ── COMMISSION CHART (6 meses) ── */
+function renderChart(){
+  const data = [
+    {lbl:"Feb",val:32.40},{lbl:"Mar",val:52.80},{lbl:"Abr",val:61.50},
+    {lbl:"May",val:64.20},{lbl:"Jun",val:66.90},{lbl:"Jul",val:66.90,current:true},
+  ];
+  const max = Math.max(...data.map(d=>d.val));
+  const chart = document.getElementById("comm-chart");
+  if(!chart) return;
+  chart.innerHTML = data.map(d=>`
+    <div class="bar-col">
+      <div class="bar-val">$${d.val.toFixed(2)}</div>
+      <div class="bar${d.current?" current":""}" style="height:${Math.round((d.val/max)*95)}px"></div>
+      <div class="bar-lbl">${d.lbl}</div>
+    </div>`).join("");
+}
+
+/* ── AGENT LINK GENERATOR ── */
+const REF = "MRES9A4C21";
+function updateGenLink(){
+  const sel = document.getElementById("agent-select");
+  if(!sel) return;
+  const opt = sel.options[sel.selectedIndex];
+  const agent = sel.value;
+  const price = parseFloat(opt.getAttribute("data-price")) || 0;
+  const url = `https://tuialista.com/?ref=${REF}&agent=${agent}`;
+  document.getElementById("gen-link").textContent = url;
+  document.getElementById("gen-copy").setAttribute("data-copy", url);
+  const comm = (price * 0.30);
+  document.getElementById("gen-commission").textContent = "$" + comm.toFixed(2) + "/mes";
+}
+
+/* ── CLIENT FILTER ── */
+function filterClients(f){
+  document.querySelectorAll("#clients-tbody tr").forEach(tr => {
+    tr.style.display = (f === "all" || tr.getAttribute("data-st") === f) ? "" : "none";
+  });
+}
+
+/* ── INIT ── */
+document.addEventListener("DOMContentLoaded", () => {
+  initI18n();
+
+  const initHash = location.hash.replace("#","") || "dashboard";
+  showSection(initHash, false);
+
+  document.querySelectorAll(".nav-item[data-sec]").forEach(item => {
+    item.addEventListener("click", () => showSection(item.dataset.sec));
+  });
+  document.querySelectorAll("[data-sec-link]").forEach(el => {
+    el.addEventListener("click", () => showSection(el.getAttribute("data-sec-link")));
+  });
+
+  // Language
+  const sw = document.getElementById("lang-switcher");
+  if(sw) sw.addEventListener("change", e => applyLang(e.target.value));
+  const sl = document.getElementById("settings-lang");
+  if(sl) sl.addEventListener("change", e => applyLang(e.target.value));
+
+  // Copy buttons (data-copy = literal text)
+  document.querySelectorAll("[data-copy]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      copyText(btn.getAttribute("data-copy"), () => { flashCopied(btn); showToast(t("aff.toast.copied")); });
+    });
+  });
+  // Copy from element (messages)
+  document.querySelectorAll("[data-copy-el]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const src = document.getElementById(btn.getAttribute("data-copy-el"));
+      if(src) copyText(src.textContent, () => { flashCopied(btn); showToast(t("aff.toast.msg_copied")); });
+    });
+  });
+
+  // Client filters
+  document.querySelectorAll(".filter-btn[data-filter]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".filter-btn[data-filter]").forEach(b => b.classList.remove("active-filter"));
+      btn.classList.add("active-filter");
+      filterClients(btn.getAttribute("data-filter"));
+    });
+  });
+
+  // Agent generator
+  const asel = document.getElementById("agent-select");
+  if(asel){ asel.addEventListener("change", updateGenLink); updateGenLink(); }
+  const gcopy = document.getElementById("gen-copy");
+  if(gcopy) gcopy.addEventListener("click", () => {
+    copyText(gcopy.getAttribute("data-copy"), () => { flashCopied(gcopy); showToast(t("aff.toast.copied")); });
+  });
+
+  // Payout method switch
+  document.querySelectorAll(".radio-card[data-method]").forEach(card => {
+    card.addEventListener("click", () => {
+      document.querySelectorAll(".radio-card").forEach(c => c.classList.remove("sel"));
+      card.classList.add("sel");
+      const m = card.getAttribute("data-method");
+      document.getElementById("fields-paypal").style.display = (m === "paypal") ? "" : "none";
+      document.getElementById("fields-bank").style.display = (m === "bank") ? "" : "none";
+    });
+  });
+
+  // Withdraw button (visual)
+  const wb = document.getElementById("withdraw-btn");
+  if(wb) wb.addEventListener("click", () => showToast(t("aff.toast.withdraw")));
+  const sp = document.getElementById("save-payout");
+  if(sp) sp.addEventListener("click", () => showToast(t("aff.toast.payout_saved")));
+
+  // Generic save toasts
+  document.querySelectorAll("[data-save-toast]").forEach(b => {
+    b.addEventListener("click", () => showToast(t("aff.toast.saved")));
+  });
+
+  // FAQ accordion
+  document.querySelectorAll(".faq-q").forEach(q => {
+    q.addEventListener("click", () => q.closest(".faq-item").classList.toggle("open"));
+  });
+
+  renderChart();
+});
+</script>
+
+<!-- ═══ Asistente de plataforma · modo AFILIADO ═══ -->
+<script src="../platform-assistant/knowledge_base.js"></script>
+<script src="../platform-assistant/assistant.js"></script>
+<script>
+  // apiBase: "" = mismo origen (/api/assistant). Si la API vive en otro host,
+  // pásalo aquí, p. ej. TuiaAssistant.init({ mode:"affiliate", apiBase:"https://core.tuialista.com" });
+  TuiaAssistant.init({ mode: "affiliate" });
+</script>
+</body>
+</html>
