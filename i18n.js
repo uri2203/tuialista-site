@@ -1,7 +1,7 @@
 // TuIAlista — Sistema multi-idioma (i18n)
 const I18N = {
   es: {
-    "nav.how":"Cómo funciona","nav.agents":"Agentes","nav.pricing":"Precios","nav.affiliates":"Afiliados","nav.enter":"Entrar",
+    "nav.how":"Cómo funciona","nav.agents":"Agentes","nav.pricing":"Precios","nav.affiliates":"Afiliados","nav.enter":"Entrar","nav.support":"Soporte",
     "hero.eyebrow":"IA LOCAL · TUS DATOS NUNCA SALEN",
     "hero.lead":"No es otro chatbot en la nube. Son agentes que corren en tu propio equipo, operan tus sistemas y archivos, y mantienen tus datos donde deben estar: contigo.",
     "hero.cta_main":"Ver los agentes","hero.cta_alt":"Cómo funciona",
@@ -68,7 +68,7 @@ const I18N = {
     "final.cta":"Ver los agentes"
   },
   en: {
-    "nav.how":"How it works","nav.agents":"Agents","nav.pricing":"Pricing","nav.affiliates":"Affiliates","nav.enter":"Sign in",
+    "nav.how":"How it works","nav.agents":"Agents","nav.pricing":"Pricing","nav.affiliates":"Affiliates","nav.enter":"Sign in","nav.support":"Support",
     "hero.eyebrow":"LOCAL AI · YOUR DATA NEVER LEAVES",
     "hero.lead":"Not another cloud chatbot. These are agents that run on your own machine, operate your systems and files, and keep your data where it belongs: with you.",
     "hero.cta_main":"See the agents","hero.cta_alt":"How it works",
@@ -135,7 +135,7 @@ const I18N = {
     "final.cta":"See the agents"
   },
   pt: {
-    "nav.how":"Como funciona","nav.agents":"Agentes","nav.pricing":"Preços","nav.affiliates":"Afiliados","nav.enter":"Entrar",
+    "nav.how":"Como funciona","nav.agents":"Agentes","nav.pricing":"Preços","nav.affiliates":"Afiliados","nav.enter":"Entrar","nav.support":"Suporte",
     "hero.eyebrow":"IA LOCAL · SEUS DADOS NUNCA SAEM",
     "hero.lead":"Não é mais um chatbot na nuvem. São agentes que rodam no seu próprio equipamento, operam seus sistemas e arquivos, e mantêm seus dados onde devem estar: com você.",
     "hero.cta_main":"Ver os agentes","hero.cta_alt":"Como funciona",
@@ -202,7 +202,7 @@ const I18N = {
     "final.cta":"Ver os agentes"
   },
   fr: {
-    "nav.how":"Comment ça marche","nav.agents":"Agents","nav.pricing":"Tarifs","nav.affiliates":"Affiliés","nav.enter":"Se connecter",
+    "nav.how":"Comment ça marche","nav.agents":"Agents","nav.pricing":"Tarifs","nav.affiliates":"Affiliés","nav.enter":"Se connecter","nav.support":"Support",
     "hero.eyebrow":"IA LOCALE · VOS DONNÉES NE SORTENT JAMAIS",
     "hero.lead":"Ce n'est pas un énième chatbot dans le cloud. Ce sont des agents qui s'exécutent sur votre propre machine, pilotent vos systèmes et vos fichiers, et gardent vos données là où elles doivent être : chez vous.",
     "hero.cta_main":"Voir les agents","hero.cta_alt":"Comment ça marche",
@@ -269,7 +269,7 @@ const I18N = {
     "final.cta":"Voir les agents"
   },
   de: {
-    "nav.how":"Wie es funktioniert","nav.agents":"Agenten","nav.pricing":"Preise","nav.affiliates":"Partner","nav.enter":"Anmelden",
+    "nav.how":"Wie es funktioniert","nav.agents":"Agenten","nav.pricing":"Preise","nav.affiliates":"Partner","nav.enter":"Anmelden","nav.support":"Support",
     "hero.eyebrow":"LOKALE KI · IHRE DATEN VERLASSEN SIE NIE",
     "hero.lead":"Kein weiterer Chatbot in der Cloud. Das sind Agenten, die auf Ihrem eigenen Gerät laufen, Ihre Systeme und Dateien bedienen und Ihre Daten dort halten, wo sie hingehören: bei Ihnen.",
     "hero.cta_main":"Agenten ansehen","hero.cta_alt":"Wie es funktioniert",
@@ -336,7 +336,7 @@ const I18N = {
     "final.cta":"Agenten ansehen"
   },
   it: {
-    "nav.how":"Come funziona","nav.agents":"Agenti","nav.pricing":"Prezzi","nav.affiliates":"Affiliati","nav.enter":"Accedi",
+    "nav.how":"Come funziona","nav.agents":"Agenti","nav.pricing":"Prezzi","nav.affiliates":"Affiliati","nav.enter":"Accedi","nav.support":"Assistenza",
     "hero.eyebrow":"IA LOCALE · I TUOI DATI NON ESCONO MAI",
     "hero.lead":"Non è l'ennesimo chatbot nel cloud. Sono agenti che girano sul tuo dispositivo, gestiscono i tuoi sistemi e file, e mantengono i tuoi dati dove devono stare: con te.",
     "hero.cta_main":"Vedi gli agenti","hero.cta_alt":"Come funziona",
