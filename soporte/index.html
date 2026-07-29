@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soporte — TuIAlista</title>
+<meta name="description" content="Soporte de TuIAlista: activación de licencia, instalación de agentes y facturación. Escríbenos a soporte@tuialista.com.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{
+    --steel-900:#0f1922; --steel-800:#16242f; --steel-700:#1f3543; --steel-600:#2c4a5c;
+    --paper:#f5f6f4; --paper-2:#eceee9; --ink:#0f1922; --muted:#5a6b73;
+    --signal:#e8821e; --signal-dim:#c46a12; --line:#d4d8d2; --ok:#1d9e75;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .mono{font-family:'JetBrains Mono',monospace}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-.02em;line-height:1.05}
+  a{color:inherit}
+
+  /* ---------- NAV ---------- */
+  header{position:sticky;top:0;z-index:50;background:rgba(245,246,244,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .lang-select{position:relative;display:inline-flex;align-items:center}
+  .lang-select > .ti-world{position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:16px;line-height:1;color:var(--muted);pointer-events:none;transition:color .18s ease}
+  .lang-select::after{content:"";position:absolute;right:12px;top:50%;width:7px;height:7px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:translateY(-65%) rotate(45deg);pointer-events:none;transition:border-color .18s ease}
+  #lang-switcher{appearance:none;-webkit-appearance:none;-moz-appearance:none;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;letter-spacing:.1px;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:8px 34px;cursor:pointer;transition:border-color .18s ease,box-shadow .18s ease}
+  #lang-switcher:hover{border-color:var(--signal)}
+  #lang-switcher:focus{outline:none;border-color:var(--signal);box-shadow:0 0 0 3px rgba(232,130,30,.15)}
+  .lang-select:hover > .ti-world,.lang-select:focus-within > .ti-world{color:var(--signal)}
+  .lang-select:hover::after,.lang-select:focus-within::after{border-color:var(--signal)}
+  #lang-switcher option{font-family:'Inter',sans-serif;color:var(--ink);background:#fff}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:21px;letter-spacing:-.03em;display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink)}
+  .logo .dot{width:9px;height:9px;border-radius:50%;background:var(--signal);box-shadow:0 0 0 3px rgba(232,130,30,.2);animation:pulse 2.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
+  .logo b{color:var(--signal)}
+  .nav-links{display:flex;gap:32px;align-items:center}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:14.5px;font-weight:500;transition:color .15s}
+  .nav-links a:hover{color:var(--ink)}
+  .btn{font-family:'Space Grotesk';font-weight:500;text-decoration:none;font-size:14.5px;padding:11px 22px;border-radius:8px;transition:.18s;display:inline-flex;align-items:center;gap:8px;cursor:pointer;border:none}
+  .btn-solid{background:var(--steel-900);color:var(--paper)}
+  .btn-solid:hover{background:var(--steel-700)}
+  .btn-signal{background:var(--signal);color:#1a1206}
+  .btn-signal:hover{background:var(--signal-dim)}
+  .btn-ghost{background:transparent;color:var(--paper);border:1px solid rgba(245,246,244,.35)}
+  .btn-ghost:hover{border-color:var(--paper)}
+  @media(max-width:780px){.nav-links{display:none}}
+
+  /* ---------- HERO ---------- */
+  .support-hero{padding:74px 0 34px}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:'JetBrains Mono';font-size:12.5px;color:var(--signal-dim);background:rgba(232,130,30,.1);padding:6px 13px;border-radius:6px;margin-bottom:22px;font-weight:500}
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--signal)}
+  h1.page-title{font-size:clamp(32px,4.4vw,50px);font-weight:700;margin-bottom:16px}
+  .lead{font-size:18.5px;color:var(--muted);max-width:60ch}
+
+  /* ---------- SECTION ---------- */
+  .section{padding:34px 0}
+  .sec-eyebrow{font-family:'JetBrains Mono';font-size:12.5px;color:var(--signal-dim);font-weight:500;letter-spacing:.04em;margin-bottom:12px}
+  h2.sec-title{font-size:clamp(24px,3vw,32px);font-weight:700;margin-bottom:24px}
+
+  /* ---------- CONTACT CARDS ---------- */
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px;display:flex;flex-direction:column;gap:10px}
+  .card .ic{width:44px;height:44px;border-radius:11px;background:rgba(232,130,30,.12);color:var(--signal-dim);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:4px}
+  .card h3{font-size:19px;font-weight:500;font-family:'Space Grotesk'}
+  .card .mail{font-family:'JetBrains Mono';font-size:14px;color:var(--ink);word-break:break-all}
+  .card p{color:var(--muted);font-size:15px}
+  .card .btn{margin-top:auto;align-self:flex-start}
+  .response{display:flex;align-items:center;gap:10px;margin-top:22px;font-size:14.5px;color:var(--muted)}
+  .response .led{width:9px;height:9px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 3px rgba(29,158,117,.18)}
+  @media(max-width:720px){.cards{grid-template-columns:1fr}}
+
+  /* ---------- FAQ ---------- */
+  .faq{display:grid;gap:14px}
+  .qa{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 24px}
+  .qa h4{font-family:'Space Grotesk';font-size:16.5px;font-weight:500;margin-bottom:7px;display:flex;gap:11px;align-items:flex-start}
+  .qa h4 .ti{color:var(--signal-dim);font-size:19px;flex-shrink:0}
+  .qa p{color:var(--muted);font-size:15px;padding-left:30px}
+  .qa code{font-family:'JetBrains Mono';font-size:13px;background:var(--paper-2);padding:2px 6px;border-radius:5px;color:var(--steel-700)}
+
+  /* ---------- LEGAL STRIP ---------- */
+  .legal-strip{background:var(--steel-900);color:var(--paper);border-radius:14px;padding:28px 32px;display:flex;justify-content:space-between;align-items:center;gap:22px;flex-wrap:wrap}
+  .legal-strip h3{font-size:19px;font-weight:500;margin-bottom:5px}
+  .legal-strip p{color:#aeb8bd;font-size:15px}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--steel-900);color:var(--paper);padding:32px 0;margin-top:44px}
+  footer .foot{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  footer .foot a{color:#aeb8bd;text-decoration:none;font-size:14px;transition:color .15s}
+  footer .foot a:hover{color:var(--paper)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="../"><span class="dot"></span>Tu<b>IA</b>lista</a>
+    <nav class="nav-links">
+      <a href="../" data-i18n="nav.home">Inicio</a>
+      <a href="../portal/" data-i18n="nav.portal">Portal</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:14px">
+      <span class="lang-select">
+        <i class="ti ti-world"></i>
+        <select id="lang-switcher" aria-label="Idioma">
+          <option value="es">Español</option>
+          <option value="en">English</option>
+          <option value="pt">Português</option>
+          <option value="fr">Français</option>
+          <option value="de">Deutsch</option>
+          <option value="it">Italiano</option>
+        </select>
+      </span>
+      <a class="btn btn-solid" href="../portal/" data-i18n="nav.enter">Entrar</a>
+    </div>
+  </div>
+</header>
+
+<section class="support-hero">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span><span data-i18n="sup.eyebrow">SOPORTE</span></div>
+    <h1 class="page-title" data-i18n="sup.title_h">¿En qué podemos ayudarte?</h1>
+    <p class="lead" data-i18n="sup.lead">Estamos aquí para ayudarte con tu licencia, la instalación de los agentes o cualquier duda de facturación.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-eyebrow" data-i18n="sup.contact_h">Contáctanos</div>
+    <div class="cards">
+      <div class="card">
+        <div class="ic"><i class="ti ti-lifebuoy"></i></div>
+        <h3 data-i18n="sup.email_label">Correo de soporte</h3>
+        <div class="mail">soporte@tuialista.com</div>
+        <p data-i18n="sup.email_desc">Dudas técnicas, instalación o facturación.</p>
+        <a class="btn btn-signal" href="mailto:soporte@tuialista.com"><i class="ti ti-mail"></i> <span data-i18n="sup.write">Escribir correo</span></a>
+      </div>
+      <div class="card">
+        <div class="ic"><i class="ti ti-users"></i></div>
+        <h3 data-i18n="sup.aff_label">Afiliados</h3>
+        <div class="mail">afiliados@tuialista.com</div>
+        <p data-i18n="sup.aff_desc">Preguntas del programa de afiliados.</p>
+        <a class="btn btn-ghost" style="color:var(--ink);border-color:var(--line)" href="mailto:afiliados@tuialista.com"><i class="ti ti-mail"></i> <span data-i18n="sup.write">Escribir correo</span></a>
+      </div>
+    </div>
+    <div class="response"><span class="led"></span><span data-i18n="sup.response">Respondemos en menos de 24 horas hábiles.</span></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-eyebrow" data-i18n="sup.faq_kicker">FAQ</div>
+    <h2 class="sec-title" data-i18n="sup.faq_h">Preguntas frecuentes</h2>
+    <div class="faq">
+      <div class="qa">
+        <h4><i class="ti ti-key"></i><span data-i18n="sup.q1">¿Cómo activo mi licencia?</span></h4>
+        <p><span data-i18n="sup.a1">Define la variable de entorno TUIALISTA_LICENSE_KEY con la clave que recibiste por correo y sigue el manual del agente.</span></p>
+      </div>
+      <div class="qa">
+        <h4><i class="ti ti-mail-opened"></i><span data-i18n="sup.q2">¿Dónde encuentro mi clave de licencia?</span></h4>
+        <p data-i18n="sup.a2">Te llega por correo tras la compra y también aparece en la página de éxito del pago.</p>
+      </div>
+      <div class="qa">
+        <h4><i class="ti ti-shield-lock"></i><span data-i18n="sup.q3">¿Mis datos salen de mi equipo?</span></h4>
+        <p data-i18n="sup.a3">No. Los agentes se ejecutan 100% en tu propio equipo; tus datos nunca salen.</p>
+      </div>
+      <div class="qa">
+        <h4><i class="ti ti-receipt"></i><span data-i18n="sup.q4">¿Cómo gestiono o cancelo mi suscripción?</span></h4>
+        <p data-i18n="sup.a4">Escríbenos a soporte@tuialista.com y lo resolvemos contigo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="legal-strip">
+      <div>
+        <h3 data-i18n="sup.legal_h">Nuestro compromiso</h3>
+        <p data-i18n="sup.legal_desc">Lee nuestro compromiso de ejecución local y privacidad.</p>
+      </div>
+      <a id="commit-link" class="btn btn-signal" href="../legal/compromiso-local/compromiso_es.md"><i class="ti ti-file-text"></i> <span data-i18n="sup.legal_link">Ver compromiso local</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <a class="logo" href="../" style="color:var(--paper);font-size:18px"><span class="dot"></span>Tu<b>IA</b>lista</a>
+    <div style="display:flex;gap:26px;flex-wrap:wrap">
+      <a href="../" data-i18n="nav.home">Inicio</a>
+      <a href="../portal/" data-i18n="nav.portal">Portal</a>
+      <a href="mailto:soporte@tuialista.com">soporte@tuialista.com</a>
+    </div>
+    <div class="mono" style="font-size:12px">© <span id="y"></span> · tuialista.com</div>
+  </div>
+</footer>
+
+<script>
+/* ── Diccionario i18n (auto-contenido; mismo motor y clave localStorage que el resto del sitio) ── */
+const SUP_I18N = {
+  es:{
+    "sup.title":"Soporte — TuIAlista","nav.home":"Inicio","nav.portal":"Portal","nav.enter":"Entrar",
+    "sup.eyebrow":"SOPORTE","sup.title_h":"¿En qué podemos ayudarte?",
+    "sup.lead":"Estamos aquí para ayudarte con tu licencia, la instalación de los agentes o cualquier duda de facturación.",
+    "sup.contact_h":"Contáctanos","sup.email_label":"Correo de soporte","sup.email_desc":"Dudas técnicas, instalación o facturación.",
+    "sup.aff_label":"Afiliados","sup.aff_desc":"Preguntas del programa de afiliados.","sup.write":"Escribir correo",
+    "sup.response":"Respondemos en menos de 24 horas hábiles.","sup.faq_kicker":"FAQ","sup.faq_h":"Preguntas frecuentes",
+    "sup.q1":"¿Cómo activo mi licencia?","sup.a1":"Define la variable de entorno TUIALISTA_LICENSE_KEY con la clave que recibiste por correo y sigue el manual del agente.",
+    "sup.q2":"¿Dónde encuentro mi clave de licencia?","sup.a2":"Te llega por correo tras la compra y también aparece en la página de éxito del pago.",
+    "sup.q3":"¿Mis datos salen de mi equipo?","sup.a3":"No. Los agentes se ejecutan 100% en tu propio equipo; tus datos nunca salen.",
+    "sup.q4":"¿Cómo gestiono o cancelo mi suscripción?","sup.a4":"Escríbenos a soporte@tuialista.com y lo resolvemos contigo.",
+    "sup.legal_h":"Nuestro compromiso","sup.legal_desc":"Lee nuestro compromiso de ejecución local y privacidad.","sup.legal_link":"Ver compromiso local"
+  },
+  en:{
+    "sup.title":"Support — TuIAlista","nav.home":"Home","nav.portal":"Portal","nav.enter":"Enter",
+    "sup.eyebrow":"SUPPORT","sup.title_h":"How can we help you?",
+    "sup.lead":"We're here to help with your license, installing the agents, or any billing question.",
+    "sup.contact_h":"Contact us","sup.email_label":"Support email","sup.email_desc":"Technical questions, installation or billing.",
+    "sup.aff_label":"Affiliates","sup.aff_desc":"Questions about the affiliate program.","sup.write":"Send email",
+    "sup.response":"We reply within 24 business hours.","sup.faq_kicker":"FAQ","sup.faq_h":"Frequently asked questions",
+    "sup.q1":"How do I activate my license?","sup.a1":"Set the TUIALISTA_LICENSE_KEY environment variable to the key you received by email and follow the agent's manual.",
+    "sup.q2":"Where do I find my license key?","sup.a2":"It's emailed to you after purchase and also shown on the payment success page.",
+    "sup.q3":"Does my data leave my computer?","sup.a3":"No. The agents run 100% on your own machine; your data never leaves.",
+    "sup.q4":"How do I manage or cancel my subscription?","sup.a4":"Write to soporte@tuialista.com and we'll sort it out with you.",
+    "sup.legal_h":"Our commitment","sup.legal_desc":"Read our local-execution and privacy commitment.","sup.legal_link":"View local commitment"
+  },
+  pt:{
+    "sup.title":"Suporte — TuIAlista","nav.home":"Início","nav.portal":"Portal","nav.enter":"Entrar",
+    "sup.eyebrow":"SUPORTE","sup.title_h":"Como podemos ajudar?",
+    "sup.lead":"Estamos aqui para ajudar com a sua licença, a instalação dos agentes ou qualquer dúvida de faturação.",
+    "sup.contact_h":"Fale conosco","sup.email_label":"E-mail de suporte","sup.email_desc":"Dúvidas técnicas, instalação ou faturação.",
+    "sup.aff_label":"Afiliados","sup.aff_desc":"Perguntas sobre o programa de afiliados.","sup.write":"Escrever e-mail",
+    "sup.response":"Respondemos em menos de 24 horas úteis.","sup.faq_kicker":"FAQ","sup.faq_h":"Perguntas frequentes",
+    "sup.q1":"Como ativo a minha licença?","sup.a1":"Defina a variável de ambiente TUIALISTA_LICENSE_KEY com a chave que recebeu por e-mail e siga o manual do agente.",
+    "sup.q2":"Onde encontro a minha chave de licença?","sup.a2":"Ela chega por e-mail após a compra e também aparece na página de sucesso do pagamento.",
+    "sup.q3":"Os meus dados saem do meu computador?","sup.a3":"Não. Os agentes são executados 100% no seu próprio computador; os seus dados nunca saem.",
+    "sup.q4":"Como faço para gerir ou cancelar a minha assinatura?","sup.a4":"Escreva para soporte@tuialista.com e resolvemos com você.",
+    "sup.legal_h":"Nosso compromisso","sup.legal_desc":"Leia o nosso compromisso de execução local e privacidade.","sup.legal_link":"Ver compromisso local"
+  },
+  fr:{
+    "sup.title":"Assistance — TuIAlista","nav.home":"Accueil","nav.portal":"Portail","nav.enter":"Entrer",
+    "sup.eyebrow":"ASSISTANCE","sup.title_h":"Comment pouvons-nous vous aider ?",
+    "sup.lead":"Nous sommes là pour vous aider avec votre licence, l'installation des agents ou toute question de facturation.",
+    "sup.contact_h":"Contactez-nous","sup.email_label":"E-mail d'assistance","sup.email_desc":"Questions techniques, installation ou facturation.",
+    "sup.aff_label":"Affiliés","sup.aff_desc":"Questions sur le programme d'affiliation.","sup.write":"Écrire un e-mail",
+    "sup.response":"Nous répondons en moins de 24 heures ouvrées.","sup.faq_kicker":"FAQ","sup.faq_h":"Questions fréquentes",
+    "sup.q1":"Comment activer ma licence ?","sup.a1":"Définissez la variable d'environnement TUIALISTA_LICENSE_KEY avec la clé reçue par e-mail et suivez le manuel de l'agent.",
+    "sup.q2":"Où trouver ma clé de licence ?","sup.a2":"Elle vous est envoyée par e-mail après l'achat et apparaît aussi sur la page de confirmation du paiement.",
+    "sup.q3":"Mes données quittent-elles mon ordinateur ?","sup.a3":"Non. Les agents s'exécutent à 100 % sur votre propre machine ; vos données ne sortent jamais.",
+    "sup.q4":"Comment gérer ou annuler mon abonnement ?","sup.a4":"Écrivez à soporte@tuialista.com et nous réglons cela avec vous.",
+    "sup.legal_h":"Notre engagement","sup.legal_desc":"Lisez notre engagement d'exécution locale et de confidentialité.","sup.legal_link":"Voir l'engagement local"
+  },
+  de:{
+    "sup.title":"Support — TuIAlista","nav.home":"Start","nav.portal":"Portal","nav.enter":"Anmelden",
+    "sup.eyebrow":"SUPPORT","sup.title_h":"Wie können wir helfen?",
+    "sup.lead":"Wir helfen dir bei deiner Lizenz, der Installation der Agenten oder jeder Frage zur Abrechnung.",
+    "sup.contact_h":"Kontakt","sup.email_label":"Support-E-Mail","sup.email_desc":"Technische Fragen, Installation oder Abrechnung.",
+    "sup.aff_label":"Partner","sup.aff_desc":"Fragen zum Partnerprogramm.","sup.write":"E-Mail schreiben",
+    "sup.response":"Wir antworten innerhalb von 24 Werkstunden.","sup.faq_kicker":"FAQ","sup.faq_h":"Häufige Fragen",
+    "sup.q1":"Wie aktiviere ich meine Lizenz?","sup.a1":"Setze die Umgebungsvariable TUIALISTA_LICENSE_KEY auf den per E-Mail erhaltenen Schlüssel und folge dem Handbuch des Agenten.",
+    "sup.q2":"Wo finde ich meinen Lizenzschlüssel?","sup.a2":"Er wird dir nach dem Kauf per E-Mail zugeschickt und erscheint auch auf der Zahlungsbestätigungsseite.",
+    "sup.q3":"Verlassen meine Daten meinen Computer?","sup.a3":"Nein. Die Agenten laufen zu 100 % auf deinem eigenen Gerät; deine Daten verlassen es nie.",
+    "sup.q4":"Wie verwalte oder kündige ich mein Abo?","sup.a4":"Schreib an soporte@tuialista.com und wir klären das mit dir.",
+    "sup.legal_h":"Unser Versprechen","sup.legal_desc":"Lies unser Versprechen zur lokalen Ausführung und zum Datenschutz.","sup.legal_link":"Lokales Versprechen ansehen"
+  },
+  it:{
+    "sup.title":"Assistenza — TuIAlista","nav.home":"Home","nav.portal":"Portale","nav.enter":"Entra",
+    "sup.eyebrow":"ASSISTENZA","sup.title_h":"Come possiamo aiutarti?",
+    "sup.lead":"Siamo qui per aiutarti con la tua licenza, l'installazione degli agenti o qualsiasi domanda di fatturazione.",
+    "sup.contact_h":"Contattaci","sup.email_label":"E-mail di assistenza","sup.email_desc":"Domande tecniche, installazione o fatturazione.",
+    "sup.aff_label":"Affiliati","sup.aff_desc":"Domande sul programma di affiliazione.","sup.write":"Scrivi un'e-mail",
+    "sup.response":"Rispondiamo entro 24 ore lavorative.","sup.faq_kicker":"FAQ","sup.faq_h":"Domande frequenti",
+    "sup.q1":"Come attivo la mia licenza?","sup.a1":"Imposta la variabile d'ambiente TUIALISTA_LICENSE_KEY con la chiave ricevuta via e-mail e segui il manuale dell'agente.",
+    "sup.q2":"Dove trovo la mia chiave di licenza?","sup.a2":"Ti arriva via e-mail dopo l'acquisto e appare anche nella pagina di conferma del pagamento.",
+    "sup.q3":"I miei dati escono dal mio computer?","sup.a3":"No. Gli agenti vengono eseguiti al 100% sul tuo dispositivo; i tuoi dati non escono mai.",
+    "sup.q4":"Come gestisco o annullo il mio abbonamento?","sup.a4":"Scrivi a soporte@tuialista.com e lo risolviamo insieme.",
+    "sup.legal_h":"Il nostro impegno","sup.legal_desc":"Leggi il nostro impegno all'esecuzione locale e alla privacy.","sup.legal_link":"Vedi l'impegno locale"
+  }
+};
+
+const SUPPORTED = ["es","en","pt","fr","de","it"], FALLBACK = "en";
+function detectLang(){
+  const s = localStorage.getItem("tuialista_lang");
+  if(s && SUPPORTED.includes(s)) return s;
+  const n = (navigator.language || FALLBACK).slice(0,2).toLowerCase();
+  return SUPPORTED.includes(n) ? n : FALLBACK;
+}
+function applyLang(l){
+  const d = SUP_I18N[l] || SUP_I18N[FALLBACK];
+  document.documentElement.lang = l;
+  document.title = d["sup.title"] || document.title;
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const k = el.getAttribute("data-i18n");
+    if(d[k] !== undefined) el.textContent = d[k];
+  });
+  const cl = document.getElementById("commit-link");
+  if(cl) cl.setAttribute("href","../legal/compromiso-local/compromiso_" + l + ".md");
+  localStorage.setItem("tuialista_lang", l);
+  const sw = document.getElementById("lang-switcher");
+  if(sw) sw.value = l;
+}
+document.addEventListener("DOMContentLoaded", function(){
+  document.getElementById("y").textContent = new Date().getFullYear();
+  applyLang(detectLang());
+  const sw = document.getElementById("lang-switcher");
+  if(sw) sw.addEventListener("change", function(){ applyLang(this.value); });
+});
+</script>
+<script src="../platform-assistant/knowledge_base.js"></script>
+<script src="../platform-assistant/assistant.js"></script>
+<script>
+  // Widget de soporte (mismo modo "client" que el portal). apiBase="" = mismo origen
+  // (/api/assistant); si la API del núcleo vive en otro host, pásalo aquí.
+  if (window.TuiaAssistant) TuiaAssistant.init({ mode: "client" });
+</script>
+</body>
+</html>
