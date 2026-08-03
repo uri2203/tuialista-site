@@ -1771,5 +1771,123 @@ document.addEventListener("DOMContentLoaded", () => {
   // pásalo aquí, p. ej. TuiaAssistant.init({ mode:"affiliate", apiBase:"https://core.tuialista.com" });
   TuiaAssistant.init({ mode: "affiliate" });
 </script>
+
+<!-- ═══ Afiliados · autenticación real (login usuario/contraseña) + datos vivos ═══ -->
+<style>
+  #aff-auth{position:fixed;inset:0;z-index:9999;background:var(--paper,#f5f6f4);display:flex;align-items:center;justify-content:center;padding:20px;font-family:'Inter',system-ui,sans-serif}
+  #aff-auth .auth-card{background:#fff;border:1px solid var(--line,#d4d8d2);border-radius:14px;padding:34px;max-width:400px;width:100%;box-shadow:0 24px 60px -24px rgba(15,25,34,.35)}
+  #aff-auth .auth-logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px}
+  #aff-auth .auth-logo b{color:var(--signal,#e8821e)}
+  #aff-auth h2{font-family:'Space Grotesk',sans-serif;font-size:19px;margin:14px 0 4px}
+  #aff-auth p.sub{color:var(--muted,#5a6b73);font-size:14px;margin-bottom:16px}
+  #aff-auth label{display:block;font-size:12.5px;color:var(--muted,#5a6b73);margin:12px 0 5px;font-weight:500}
+  #aff-auth input{width:100%;padding:11px 13px;border:1px solid var(--line,#d4d8d2);border-radius:9px;font-size:14px;font-family:inherit}
+  #aff-auth input:focus{outline:none;border-color:var(--signal,#e8821e);box-shadow:0 0 0 3px rgba(232,130,30,.15)}
+  #aff-auth button{width:100%;margin-top:20px;padding:12px;border:none;border-radius:9px;background:var(--steel-900,#0f1922);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:15px;cursor:pointer}
+  #aff-auth button:disabled{opacity:.6;cursor:default}
+  #aff-auth .auth-err{display:none;margin-top:14px;color:#c0392b;font-size:13px}
+  #aff-logout{position:fixed;top:14px;right:16px;z-index:60;background:#fff;border:1px solid var(--line,#d4d8d2);border-radius:8px;padding:7px 12px;font-size:13px;color:var(--muted,#5a6b73);cursor:pointer;display:none}
+</style>
+<div id="aff-auth">
+  <div class="auth-card">
+    <div class="auth-logo">Tu<b>IA</b>lista</div>
+    <h2 id="aff-title">Panel de afiliado</h2>
+    <p class="sub" id="aff-sub">Entra con tu correo de afiliado.</p>
+    <form id="aff-form" novalidate>
+      <label id="aff-l-email">Correo</label>
+      <input id="aff-email" type="email" autocomplete="email" required>
+      <label id="aff-l-pw">Contraseña</label>
+      <input id="aff-pw" type="password" autocomplete="current-password" required>
+      <button id="aff-btn" type="submit">Entrar</button>
+      <div class="auth-err" id="aff-err"></div>
+    </form>
+  </div>
+</div>
+<button id="aff-logout" type="button">Salir</button>
+<script>
+(function(){
+  var API=(window.AFF_API_BASE||"https://tuialista-core.onrender.com").replace(/\/$/,"");
+  var TKEY="tuialista_aff_token";
+  var lang=(typeof detectLang==="function")?detectLang():"es", EN=lang==="en";
+  var T={
+    title:EN?"Affiliate panel":"Panel de afiliado", sub:EN?"Sign in with your affiliate email.":"Entra con tu correo de afiliado.",
+    email:EN?"Email":"Correo", pw:EN?"Password":"Contraseña", enter:EN?"Sign in":"Entrar", wait:EN?"Signing in…":"Entrando…",
+    bad:EN?"Wrong email or password.":"Correo o contraseña incorrectos.", neterr:EN?"Connection error. Try again.":"Error de conexión. Inténtalo de nuevo.",
+    logout:EN?"Sign out":"Salir", na:"—"
+  };
+  var $=function(id){return document.getElementById(id);};
+  function tok(){return sessionStorage.getItem(TKEY);}
+  function setTok(t){t?sessionStorage.setItem(TKEY,t):sessionStorage.removeItem(TKEY);}
+  function showAuth(){$("aff-auth").style.display="flex";$("aff-logout").style.display="none";}
+  function hideAuth(){$("aff-auth").style.display="none";$("aff-logout").style.display="block";}
+  function logout(){setTok(null);showAuth();}
+  function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+  function money(n){return "$"+Number(n||0).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2})+"<small> USD</small>";}
+  function setVals(sel,vals){var els=document.querySelectorAll(sel);vals.forEach(function(v,i){if(els[i])els[i].innerHTML=v;});}
+  function hide(sel){var e=document.querySelector(sel);if(e)e.style.display="none";}
+  function api(path){
+    return fetch(API+path,{headers:{Authorization:"Bearer "+tok()}}).then(function(r){
+      if(r.status===401){logout();throw new Error("unauth");}
+      if(!r.ok)throw new Error("HTTP "+r.status);
+      return r.json();
+    });
+  }
+  function renderSummary(s){
+    var total=Number(s.paid_usd||0)+Number(s.pending_usd||0);
+    // Dashboard: fila de 4 (saldo, acumulado, pendiente, recurrente) + fila de 3 (activos, prueba, cancelados)
+    setVals("#sec-dashboard .metrics:not(.metrics-3) .val",[money(s.pending_usd),money(total),money(s.pending_usd),T.na]);
+    setVals("#sec-dashboard .metrics-3 .val",[String(s.referrals_count),T.na,T.na]);
+    // Comisiones: total, pagado, pendiente, tasa
+    setVals("#sec-commissions .metrics .val",[money(total),money(s.paid_usd),money(s.pending_usd),(Number(s.commission_pct||0))+"%"]);
+    // Enlace de referido real
+    var link="https://tuialista.com/?ref="+encodeURIComponent(s.ref_code||"");
+    var dl=$("dash-link"); if(dl) dl.textContent=link;
+    var cb=document.querySelector('#sec-dashboard .link-field .copy-btn'); if(cb) cb.setAttribute("data-copy",link);
+    var sl=document.querySelector('#sec-link .url'); if(sl) sl.textContent=link;
+    // Ocultar tarjetas de DEMO con datos por cliente (no reales / privacidad)
+    hide("#sec-dashboard .grid2");
+    hide("#sec-commissions .grid2");
+  }
+  function renderCommissions(list){
+    var tb=document.querySelector("#sec-commissions table.data tbody");
+    if(!tb)return;
+    if(!list||!list.length){ tb.innerHTML='<tr><td colspan="4" style="text-align:center;color:var(--muted);padding:24px">'+(EN?"No commissions yet.":"Aún no hay comisiones.")+'</td></tr>'; return; }
+    tb.innerHTML=list.map(function(c){
+      var cls=c.status==="paid"?"ok":(c.status==="pending"?"trial":"");
+      return '<tr><td class="mono-sm" style="color:var(--ink)">'+esc(c.period)+'</td>'+
+        '<td class="num">—</td><td class="rev">'+money(c.amount_usd)+'</td>'+
+        '<td class="right"><span class="pill '+cls+'">'+esc(c.status)+'</span></td></tr>';
+    }).join("");
+  }
+  function loadData(){
+    api("/api/affiliate/summary").then(renderSummary).catch(function(){});
+    api("/api/affiliate/commissions?limit=50").then(function(d){renderCommissions(d.commissions||[]);}).catch(function(){});
+  }
+  function doLogin(e){
+    e.preventDefault();
+    var email=$("aff-email").value.trim(), pw=$("aff-pw").value;
+    if(!email||!pw)return;
+    var btn=$("aff-btn"), err=$("aff-err");
+    err.style.display="none"; btn.disabled=true; btn.textContent=T.wait;
+    fetch(API+"/api/auth/login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:email,password:pw,role:"affiliate"})})
+      .then(function(r){return r.json().then(function(j){return {ok:r.ok,j:j};});})
+      .then(function(res){
+        if(res.ok&&res.j.token){setTok(res.j.token);hideAuth();loadData();}
+        else{err.textContent=T.bad;err.style.display="block";}
+      })
+      .catch(function(){err.textContent=T.neterr;err.style.display="block";})
+      .finally(function(){btn.disabled=false;btn.textContent=T.enter;});
+  }
+  document.addEventListener("DOMContentLoaded",function(){
+    $("aff-title").textContent=T.title; $("aff-sub").textContent=T.sub;
+    $("aff-l-email").textContent=T.email; $("aff-l-pw").textContent=T.pw;
+    $("aff-btn").textContent=T.enter; $("aff-logout").textContent=T.logout;
+    $("aff-form").addEventListener("submit",doLogin);
+    $("aff-logout").addEventListener("click",logout);
+    if(tok()){ api("/api/auth/me").then(function(){hideAuth();loadData();}).catch(function(){showAuth();}); }
+    else { showAuth(); }
+  });
+})();
+</script>
 </body>
 </html>
