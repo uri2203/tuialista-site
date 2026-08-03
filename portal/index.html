@@ -1428,5 +1428,118 @@ document.addEventListener("DOMContentLoaded", () => {
   // pásalo aquí, p. ej. TuiaAssistant.init({ mode:"client", apiBase:"https://core.tuialista.com" });
   TuiaAssistant.init({ mode: "client" });
 </script>
+
+<!-- ═══ Portal · autenticación real (login usuario/contraseña) + datos vivos ═══ -->
+<style>
+  #portal-auth{position:fixed;inset:0;z-index:9999;background:var(--paper,#f5f6f4);display:flex;align-items:center;justify-content:center;padding:20px;font-family:'Inter',system-ui,sans-serif}
+  #portal-auth .auth-card{background:#fff;border:1px solid var(--line,#d4d8d2);border-radius:14px;padding:34px;max-width:400px;width:100%;box-shadow:0 24px 60px -24px rgba(15,25,34,.35)}
+  #portal-auth .auth-logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px}
+  #portal-auth .auth-logo b{color:var(--signal,#e8821e)}
+  #portal-auth h2{font-family:'Space Grotesk',sans-serif;font-size:19px;margin:14px 0 4px}
+  #portal-auth p.sub{color:var(--muted,#5a6b73);font-size:14px;margin-bottom:16px}
+  #portal-auth label{display:block;font-size:12.5px;color:var(--muted,#5a6b73);margin:12px 0 5px;font-weight:500}
+  #portal-auth input{width:100%;padding:11px 13px;border:1px solid var(--line,#d4d8d2);border-radius:9px;font-size:14px;font-family:inherit}
+  #portal-auth input:focus{outline:none;border-color:var(--signal,#e8821e);box-shadow:0 0 0 3px rgba(232,130,30,.15)}
+  #portal-auth button{width:100%;margin-top:20px;padding:12px;border:none;border-radius:9px;background:var(--steel-900,#0f1922);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:15px;cursor:pointer}
+  #portal-auth button:disabled{opacity:.6;cursor:default}
+  #portal-auth .auth-err{display:none;margin-top:14px;color:#c0392b;font-size:13px}
+  #portal-logout{position:fixed;top:14px;right:16px;z-index:60;background:#fff;border:1px solid var(--line,#d4d8d2);border-radius:8px;padding:7px 12px;font-size:13px;color:var(--muted,#5a6b73);cursor:pointer;display:none}
+</style>
+<div id="portal-auth">
+  <div class="auth-card">
+    <div class="auth-logo">Tu<b>IA</b>lista</div>
+    <h2 id="auth-title">Entra a tu cuenta</h2>
+    <p class="sub" id="auth-sub">Accede con el correo de tu compra.</p>
+    <form id="auth-form" novalidate>
+      <label id="auth-l-email">Correo</label>
+      <input id="auth-email" type="email" autocomplete="email" required>
+      <label id="auth-l-pw">Contraseña</label>
+      <input id="auth-pw" type="password" autocomplete="current-password" required>
+      <button id="auth-btn" type="submit">Entrar</button>
+      <div class="auth-err" id="auth-err"></div>
+    </form>
+  </div>
+</div>
+<button id="portal-logout" type="button">Salir</button>
+<script>
+(function(){
+  var API=(window.PORTAL_API_BASE||"https://tuialista-core.onrender.com").replace(/\/$/,"");
+  var TKEY="tuialista_portal_token";
+  var lang=(typeof detectLang==="function")?detectLang():"es", EN=lang==="en";
+  var T={
+    title:EN?"Sign in to your account":"Entra a tu cuenta",
+    sub:EN?"Use the email from your purchase.":"Accede con el correo de tu compra.",
+    email:EN?"Email":"Correo", pw:EN?"Password":"Contraseña",
+    enter:EN?"Sign in":"Entrar", wait:EN?"Signing in…":"Entrando…",
+    bad:EN?"Wrong email or password.":"Correo o contraseña incorrectos.",
+    neterr:EN?"Connection error. Try again.":"Error de conexión. Inténtalo de nuevo.",
+    logout:EN?"Sign out":"Salir", soon:EN?"Download coming soon":"Descarga disponible pronto",
+    lic:EN?"License":"Licencia", copy:EN?"Copy":"Copiar",
+    renews:EN?"Renews":"Renueva", trial:EN?"Trial ends":"Prueba termina", dl:EN?"Download agent":"Descargar agente"
+  };
+  var $=function(id){return document.getElementById(id);};
+  function tok(){return sessionStorage.getItem(TKEY);}
+  function setTok(t){t?sessionStorage.setItem(TKEY,t):sessionStorage.removeItem(TKEY);}
+  function showAuth(){$("portal-auth").style.display="flex";$("portal-logout").style.display="none";}
+  function hideAuth(){$("portal-auth").style.display="none";$("portal-logout").style.display="block";}
+  function logout(){setTok(null);showAuth();}
+  function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+  function fmt(v){if(!v)return"—";var d=new Date(v);return isNaN(d.getTime())?esc(v):d.toISOString().slice(0,10);}
+  function api(path){
+    return fetch(API+path,{headers:{Authorization:"Bearer "+tok()}}).then(function(r){
+      if(r.status===401){logout();throw new Error("unauth");}
+      if(!r.ok)throw new Error("HTTP "+r.status);
+      return r.json();
+    });
+  }
+  function renderLicenses(list){
+    var wrap=document.querySelector("#sec-licenses .lic-cards"), empty=$("lic-empty");
+    if(!wrap)return;
+    if(!list||!list.length){wrap.innerHTML="";if(empty)empty.style.display="";return;}
+    if(empty)empty.style.display="none";
+    wrap.innerHTML=list.map(function(l){
+      var active=(l.status==="active"||l.status==="trial");
+      var lbl=l.current_period_end?T.renews:(l.trial_ends_at?T.trial:""), when=fmt(l.current_period_end||l.trial_ends_at);
+      var k=esc(l.license_key);
+      return '<div class="lic-card"><div class="lic-head"><div class="lic-ico-wrap">'+
+        '<div class="lic-ico"><i class="ti ti-robot"></i></div>'+
+        '<div class="lic-name">'+esc(l.agent_name||l.agent_id)+'</div></div>'+
+        '<span class="pill'+(active?" ok":"")+'"><span style="width:6px;height:6px;border-radius:50%;background:'+(active?"#1d9e75":"#94a3b8")+';display:inline-block"></span> '+esc(l.status)+'</span></div>'+
+        '<table class="lic-table"><tr><td>'+T.lic+'</td><td class="v"><div class="lic-key">'+
+        '<span class="mono">'+k+'</span> <button class="copy-btn" data-key="'+k+'"><i class="ti ti-copy" style="font-size:11px"></i> '+T.copy+'</button></div></td></tr>'+
+        (lbl?'<tr><td>'+lbl+'</td><td class="v">'+when+'</td></tr>':'')+
+        '</table><div class="lic-acts">'+
+        '<a class="btn btn-solid btn-flex btn-sm" style="opacity:.55;pointer-events:none" title="'+T.soon+'"><i class="ti ti-download"></i> '+T.dl+'</a>'+
+        '</div></div>';
+    }).join("");
+    if(typeof initCopyButtons==="function")initCopyButtons();
+  }
+  function loadData(){ api("/api/me/licenses").then(function(d){renderLicenses(d.licenses||[]);}).catch(function(){}); }
+  function doLogin(e){
+    e.preventDefault();
+    var email=$("auth-email").value.trim(), pw=$("auth-pw").value;
+    if(!email||!pw)return;
+    var btn=$("auth-btn"), err=$("auth-err");
+    err.style.display="none"; btn.disabled=true; btn.textContent=T.wait;
+    fetch(API+"/api/auth/login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:email,password:pw,role:"customer"})})
+      .then(function(r){return r.json().then(function(j){return {ok:r.ok,j:j};});})
+      .then(function(res){
+        if(res.ok&&res.j.token){setTok(res.j.token);hideAuth();loadData();}
+        else{err.textContent=T.bad;err.style.display="block";}
+      })
+      .catch(function(){err.textContent=T.neterr;err.style.display="block";})
+      .finally(function(){btn.disabled=false;btn.textContent=T.enter;});
+  }
+  document.addEventListener("DOMContentLoaded",function(){
+    $("auth-title").textContent=T.title; $("auth-sub").textContent=T.sub;
+    $("auth-l-email").textContent=T.email; $("auth-l-pw").textContent=T.pw;
+    $("auth-btn").textContent=T.enter; $("portal-logout").textContent=T.logout;
+    $("auth-form").addEventListener("submit",doLogin);
+    $("portal-logout").addEventListener("click",logout);
+    if(tok()){ api("/api/auth/me").then(function(){hideAuth();loadData();}).catch(function(){showAuth();}); }
+    else { showAuth(); }
+  });
+})();
+</script>
 </body>
 </html>
