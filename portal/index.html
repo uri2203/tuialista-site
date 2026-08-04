@@ -1509,7 +1509,7 @@ document.addEventListener("DOMContentLoaded", () => {
         '<span class="mono">'+k+'</span> <button class="copy-btn" data-key="'+k+'"><i class="ti ti-copy" style="font-size:11px"></i> '+T.copy+'</button></div></td></tr>'+
         (lbl?'<tr><td>'+lbl+'</td><td class="v">'+when+'</td></tr>':'')+
         '</table><div class="lic-acts">'+
-        '<a class="btn btn-solid btn-flex btn-sm" style="opacity:.55;pointer-events:none" title="'+T.soon+'"><i class="ti ti-download"></i> '+T.dl+'</a>'+
+        '<a class="btn btn-solid btn-flex btn-sm" href="/descargas/agent-'+esc(l.agent_id)+'.exe" download><i class="ti ti-download"></i> '+T.dl+'</a>'+
         '</div></div>';
     }).join("");
     if(typeof initCopyButtons==="function")initCopyButtons();
