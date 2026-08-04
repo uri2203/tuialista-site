@@ -1787,20 +1787,64 @@ document.addEventListener("DOMContentLoaded", () => {
   #aff-auth button:disabled{opacity:.6;cursor:default}
   #aff-auth .auth-err{display:none;margin-top:14px;color:#c0392b;font-size:13px}
   #aff-logout{position:fixed;top:14px;right:16px;z-index:60;background:#fff;border:1px solid var(--line,#d4d8d2);border-radius:8px;padding:7px 12px;font-size:13px;color:var(--muted,#5a6b73);cursor:pointer;display:none}
+  #aff-auth .auth-switch{margin-top:16px;font-size:13px;color:var(--muted,#5a6b73);text-align:center}
+  #aff-auth .auth-switch a{color:var(--signal-dim,#c46a12);text-decoration:none;font-weight:500;cursor:pointer}
+  #aff-auth label.chk{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;color:var(--muted,#5a6b73);font-weight:400;margin-top:14px;cursor:pointer}
+  #aff-auth label.chk input{width:auto;margin-top:2px}
+  #aff-auth label.chk a{color:var(--signal-dim,#c46a12)}
 </style>
 <div id="aff-auth">
   <div class="auth-card">
     <div class="auth-logo">Tu<b>IA</b>lista</div>
-    <h2 id="aff-title">Panel de afiliado</h2>
-    <p class="sub" id="aff-sub">Entra con tu correo de afiliado.</p>
-    <form id="aff-form" novalidate>
-      <label id="aff-l-email">Correo</label>
-      <input id="aff-email" type="email" autocomplete="email" required>
-      <label id="aff-l-pw">Contraseña</label>
-      <input id="aff-pw" type="password" autocomplete="current-password" required>
-      <button id="aff-btn" type="submit">Entrar</button>
-      <div class="auth-err" id="aff-err"></div>
-    </form>
+
+    <!-- VISTA: LOGIN -->
+    <div id="aff-view-login">
+      <h2 id="aff-title">Panel de afiliado</h2>
+      <p class="sub" id="aff-sub">Entra con tu correo de afiliado.</p>
+      <form id="aff-form" novalidate>
+        <label id="aff-l-email">Correo</label>
+        <input id="aff-email" type="email" autocomplete="email" required>
+        <label id="aff-l-pw">Contraseña</label>
+        <input id="aff-pw" type="password" autocomplete="current-password" required>
+        <button id="aff-btn" type="submit">Entrar</button>
+        <div class="auth-err" id="aff-err"></div>
+      </form>
+      <p class="auth-switch"><span id="aff-sw-no-acct">¿Aún no eres afiliado?</span> <a id="aff-go-register">Crear cuenta</a></p>
+    </div>
+
+    <!-- VISTA: REGISTRO -->
+    <div id="aff-view-register" style="display:none">
+      <h2 id="aff-reg-title">Únete al programa</h2>
+      <p class="sub" id="aff-reg-sub">Regístrate para ganar comisiones recurrentes.</p>
+      <form id="aff-reg-form" novalidate>
+        <label id="aff-reg-l-name">Nombre o marca <span style="color:#94a3b8">(opcional)</span></label>
+        <input id="aff-reg-name" type="text" autocomplete="name">
+        <label id="aff-reg-l-email">Correo</label>
+        <input id="aff-reg-email" type="email" autocomplete="email" required>
+        <label id="aff-reg-l-pw">Contraseña <span style="color:#94a3b8">(mín. 8)</span></label>
+        <input id="aff-reg-pw" type="password" autocomplete="new-password" required>
+        <label id="aff-reg-l-bd">Fecha de nacimiento</label>
+        <input id="aff-reg-bd" type="date" required>
+        <label class="chk"><input type="checkbox" id="aff-reg-accept"> <span id="aff-reg-legal">Acepto los <a href="/legal/terminos" target="_blank">Términos</a>, el <a href="/legal/privacidad" target="_blank">Aviso de Privacidad</a>, el <a href="/legal/deslinde-ia" target="_blank">Deslinde de IA</a> y el <a href="/legal/afiliados" target="_blank">Contrato de Afiliados</a>.</span></label>
+        <button id="aff-reg-btn" type="submit">Crear cuenta</button>
+        <div class="auth-err" id="aff-reg-err"></div>
+      </form>
+      <p class="auth-switch"><span id="aff-sw-has-acct">¿Ya tienes cuenta?</span> <a id="aff-go-login">Entrar</a></p>
+    </div>
+
+    <!-- VISTA: VERIFICACIÓN -->
+    <div id="aff-view-verify" style="display:none">
+      <h2 id="aff-ver-title">Verifica tu correo</h2>
+      <p class="sub"><span id="aff-ver-sub">Te enviamos un código de 6 dígitos a</span> <b id="aff-ver-email"></b>.</p>
+      <form id="aff-ver-form" novalidate>
+        <label id="aff-ver-l-code">Código</label>
+        <input id="aff-ver-code" type="text" inputmode="numeric" maxlength="6" autocomplete="one-time-code" required>
+        <button id="aff-ver-btn" type="submit">Verificar</button>
+        <div class="auth-err" id="aff-ver-err"></div>
+      </form>
+      <p class="auth-switch"><a id="aff-go-resend">Reenviar código</a> · <a id="aff-go-login2">Volver</a></p>
+    </div>
+
   </div>
 </div>
 <button id="aff-logout" type="button">Salir</button>
@@ -1813,12 +1857,43 @@ document.addEventListener("DOMContentLoaded", () => {
     title:EN?"Affiliate panel":"Panel de afiliado", sub:EN?"Sign in with your affiliate email.":"Entra con tu correo de afiliado.",
     email:EN?"Email":"Correo", pw:EN?"Password":"Contraseña", enter:EN?"Sign in":"Entrar", wait:EN?"Signing in…":"Entrando…",
     bad:EN?"Wrong email or password.":"Correo o contraseña incorrectos.", neterr:EN?"Connection error. Try again.":"Error de conexión. Inténtalo de nuevo.",
-    logout:EN?"Sign out":"Salir", na:"—"
+    logout:EN?"Sign out":"Salir", na:"—",
+    noAcct:EN?"Not an affiliate yet?":"¿Aún no eres afiliado?", createAcct:EN?"Create account":"Crear cuenta",
+    hasAcct:EN?"Already have an account?":"¿Ya tienes cuenta?",
+    regTitle:EN?"Join the program":"Únete al programa",
+    regSub:EN?"Sign up to earn recurring commissions.":"Regístrate para ganar comisiones recurrentes.",
+    name:EN?"Name or brand":"Nombre o marca", optional:EN?"(optional)":"(opcional)",
+    bd:EN?"Date of birth":"Fecha de nacimiento",
+    legal:EN?'I accept the <a href="/legal/terminos" target="_blank">Terms</a>, the <a href="/legal/privacidad" target="_blank">Privacy Notice</a>, the <a href="/legal/deslinde-ia" target="_blank">AI Disclaimer</a> and the <a href="/legal/afiliados" target="_blank">Affiliate Agreement</a>.':'Acepto los <a href="/legal/terminos" target="_blank">Términos</a>, el <a href="/legal/privacidad" target="_blank">Aviso de Privacidad</a>, el <a href="/legal/deslinde-ia" target="_blank">Deslinde de IA</a> y el <a href="/legal/afiliados" target="_blank">Contrato de Afiliados</a>.',
+    create:EN?"Create account":"Crear cuenta", creating:EN?"Creating…":"Creando…",
+    verTitle:EN?"Verify your email":"Verifica tu correo",
+    verSub:EN?"We sent a 6-digit code to":"Te enviamos un código de 6 dígitos a",
+    code:EN?"Code":"Código", verify:EN?"Verify":"Verificar", verifying:EN?"Verifying…":"Verificando…",
+    resend:EN?"Resend code":"Reenviar código", back:EN?"Back":"Volver", resent:EN?"Code sent again.":"Código reenviado."
   };
+  function errmsg(c){
+    var M={
+      menor_de_edad:EN?"You must be of legal age.":"Debes ser mayor de edad.",
+      email_ya_registrado:EN?"That email is already registered. Sign in.":"Ese correo ya está registrado. Inicia sesión.",
+      password_corto:EN?"Password must be at least 8 characters.":"La contraseña debe tener al menos 8 caracteres.",
+      email_invalido:EN?"Invalid email.":"Correo no válido.",
+      fecha_invalida:EN?"Invalid date of birth.":"Fecha de nacimiento no válida.",
+      legal_not_accepted:EN?"You must accept the terms.":"Debes aceptar los términos.",
+      rate_limited:EN?"Too many attempts. Try later.":"Demasiados intentos. Intenta más tarde.",
+      codigo_incorrecto:EN?"Incorrect code.":"Código incorrecto.",
+      codigo_expirado:EN?"The code expired. Request a new one.":"El código expiró. Reenvía uno nuevo.",
+      demasiados_intentos:EN?"Too many attempts. Request a new code.":"Demasiados intentos. Reenvía un código nuevo.",
+      sin_codigo:EN?"Request a new code.":"Solicita un código nuevo.",
+      cuenta_no_encontrada:EN?"Account not found.":"Cuenta no encontrada.",
+      espera:EN?"Wait a moment before resending.":"Espera un momento antes de reenviar.",
+      ya_verificado:EN?"Already verified. Sign in.":"Ya verificado. Inicia sesión."
+    };
+    return M[c]||(EN?"Something went wrong.":"Algo salió mal.");
+  }
   var $=function(id){return document.getElementById(id);};
   function tok(){return sessionStorage.getItem(TKEY);}
   function setTok(t){t?sessionStorage.setItem(TKEY,t):sessionStorage.removeItem(TKEY);}
-  function showAuth(){$("aff-auth").style.display="flex";$("aff-logout").style.display="none";}
+  function showAuth(){$("aff-auth").style.display="flex";$("aff-logout").style.display="none";if(typeof showView==="function")showView("login");}
   function hideAuth(){$("aff-auth").style.display="none";$("aff-logout").style.display="block";}
   function logout(){setTok(null);showAuth();}
   function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
@@ -1863,27 +1938,83 @@ document.addEventListener("DOMContentLoaded", () => {
     api("/api/affiliate/summary").then(renderSummary).catch(function(){});
     api("/api/affiliate/commissions?limit=50").then(function(d){renderCommissions(d.commissions||[]);}).catch(function(){});
   }
+  var pendingEmail="";
+  function showView(name){
+    ["login","register","verify"].forEach(function(v){var el=$("aff-view-"+v);if(el)el.style.display=(v===name?"block":"none");});
+    ["aff-err","aff-reg-err","aff-ver-err"].forEach(function(id){var e=$(id);if(e)e.style.display="none";});
+  }
+  function setErr(id,msg,okColor){var e=$(id);e.style.color=okColor?"var(--ok,#1d9e75)":"#c0392b";e.textContent=msg;e.style.display="block";}
+  function toVerify(email){pendingEmail=email;$("aff-ver-email").textContent=email;showView("verify");$("aff-ver-code").focus();}
+
   function doLogin(e){
     e.preventDefault();
-    var email=$("aff-email").value.trim(), pw=$("aff-pw").value;
+    var email=$("aff-email").value.trim().toLowerCase(), pw=$("aff-pw").value;
     if(!email||!pw)return;
-    var btn=$("aff-btn"), err=$("aff-err");
-    err.style.display="none"; btn.disabled=true; btn.textContent=T.wait;
+    var btn=$("aff-btn"); $("aff-err").style.display="none"; btn.disabled=true; btn.textContent=T.wait;
     fetch(API+"/api/auth/login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:email,password:pw,role:"affiliate"})})
-      .then(function(r){return r.json().then(function(j){return {ok:r.ok,j:j};});})
+      .then(function(r){return r.json().then(function(j){return {s:r.status,j:j};});})
       .then(function(res){
-        if(res.ok&&res.j.token){setTok(res.j.token);hideAuth();loadData();}
-        else{err.textContent=T.bad;err.style.display="block";}
+        if(res.s===200&&res.j.token){setTok(res.j.token);hideAuth();loadData();}
+        else if(res.s===403&&res.j.error==="email_not_verified"){toVerify(email);}
+        else{setErr("aff-err",T.bad);}
       })
-      .catch(function(){err.textContent=T.neterr;err.style.display="block";})
+      .catch(function(){setErr("aff-err",T.neterr);})
       .finally(function(){btn.disabled=false;btn.textContent=T.enter;});
+  }
+  function doRegister(e){
+    e.preventDefault();
+    var email=$("aff-reg-email").value.trim().toLowerCase(), pw=$("aff-reg-pw").value,
+        bd=$("aff-reg-bd").value, name=$("aff-reg-name").value.trim();
+    if(!$("aff-reg-accept").checked){setErr("aff-reg-err",errmsg("legal_not_accepted"));return;}
+    if(!email||!pw||!bd)return;
+    var btn=$("aff-reg-btn"); $("aff-reg-err").style.display="none"; btn.disabled=true; btn.textContent=T.creating;
+    fetch(API+"/api/auth/register",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:email,password:pw,birthdate:bd,name:name,accepted:true,role:"affiliate",lang:lang})})
+      .then(function(r){return r.json().then(function(j){return {s:r.status,j:j};});})
+      .then(function(res){ if(res.s===200){toVerify(email);} else {setErr("aff-reg-err",errmsg(res.j.error));} })
+      .catch(function(){setErr("aff-reg-err",T.neterr);})
+      .finally(function(){btn.disabled=false;btn.textContent=T.create;});
+  }
+  function doVerify(e){
+    e.preventDefault();
+    var code=$("aff-ver-code").value.trim();
+    if(!code||!pendingEmail)return;
+    var btn=$("aff-ver-btn"); $("aff-ver-err").style.display="none"; btn.disabled=true; btn.textContent=T.verifying;
+    fetch(API+"/api/auth/verify-email",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:pendingEmail,code:code,role:"affiliate"})})
+      .then(function(r){return r.json().then(function(j){return {s:r.status,j:j};});})
+      .then(function(res){ if(res.s===200&&res.j.token){setTok(res.j.token);hideAuth();loadData();} else {setErr("aff-ver-err",errmsg(res.j.error));} })
+      .catch(function(){setErr("aff-ver-err",T.neterr);})
+      .finally(function(){btn.disabled=false;btn.textContent=T.verify;});
+  }
+  function doResend(){
+    if(!pendingEmail)return;
+    fetch(API+"/api/auth/resend-code",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:pendingEmail,role:"affiliate",lang:lang})})
+      .then(function(r){return r.json().then(function(j){return {s:r.status,j:j};});})
+      .then(function(res){ res.s===200 ? setErr("aff-ver-err",T.resent,true) : setErr("aff-ver-err",errmsg(res.j.error)); })
+      .catch(function(){});
   }
   document.addEventListener("DOMContentLoaded",function(){
     $("aff-title").textContent=T.title; $("aff-sub").textContent=T.sub;
     $("aff-l-email").textContent=T.email; $("aff-l-pw").textContent=T.pw;
     $("aff-btn").textContent=T.enter; $("aff-logout").textContent=T.logout;
+    $("aff-sw-no-acct").textContent=T.noAcct; $("aff-go-register").textContent=T.createAcct;
+    $("aff-reg-title").textContent=T.regTitle; $("aff-reg-sub").textContent=T.regSub;
+    $("aff-reg-l-name").innerHTML=T.name+' <span style="color:#94a3b8">'+T.optional+'</span>';
+    $("aff-reg-l-email").textContent=T.email;
+    $("aff-reg-l-pw").innerHTML=T.pw+' <span style="color:#94a3b8">('+(EN?"min. 8":"mín. 8")+')</span>';
+    $("aff-reg-l-bd").textContent=T.bd; $("aff-reg-legal").innerHTML=T.legal; $("aff-reg-btn").textContent=T.create;
+    $("aff-sw-has-acct").textContent=T.hasAcct; $("aff-go-login").textContent=T.enter;
+    $("aff-ver-title").textContent=T.verTitle; $("aff-ver-sub").textContent=T.verSub;
+    $("aff-ver-l-code").textContent=T.code; $("aff-ver-btn").textContent=T.verify;
+    $("aff-go-resend").textContent=T.resend; $("aff-go-login2").textContent=T.back;
     $("aff-form").addEventListener("submit",doLogin);
+    $("aff-reg-form").addEventListener("submit",doRegister);
+    $("aff-ver-form").addEventListener("submit",doVerify);
     $("aff-logout").addEventListener("click",logout);
+    $("aff-go-register").addEventListener("click",function(e){e.preventDefault();showView("register");$("aff-reg-email").focus();});
+    $("aff-go-login").addEventListener("click",function(e){e.preventDefault();showView("login");});
+    $("aff-go-login2").addEventListener("click",function(e){e.preventDefault();showView("login");});
+    $("aff-go-resend").addEventListener("click",function(e){e.preventDefault();doResend();});
+    showView("login");
     if(tok()){ api("/api/auth/me").then(function(){hideAuth();loadData();}).catch(function(){showAuth();}); }
     else { showAuth(); }
   });
