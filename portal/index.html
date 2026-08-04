@@ -1444,20 +1444,60 @@ document.addEventListener("DOMContentLoaded", () => {
   #portal-auth button:disabled{opacity:.6;cursor:default}
   #portal-auth .auth-err{display:none;margin-top:14px;color:#c0392b;font-size:13px}
   #portal-logout{position:fixed;top:14px;right:16px;z-index:60;background:#fff;border:1px solid var(--line,#d4d8d2);border-radius:8px;padding:7px 12px;font-size:13px;color:var(--muted,#5a6b73);cursor:pointer;display:none}
+  #portal-auth .auth-switch{margin-top:16px;font-size:13px;color:var(--muted,#5a6b73);text-align:center}
+  #portal-auth .auth-switch a{color:var(--signal-dim,#c46a12);text-decoration:none;font-weight:500;cursor:pointer}
+  #portal-auth label.chk{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;color:var(--muted,#5a6b73);font-weight:400;margin-top:14px;cursor:pointer}
+  #portal-auth label.chk input{width:auto;margin-top:2px}
+  #portal-auth label.chk a{color:var(--signal-dim,#c46a12)}
 </style>
 <div id="portal-auth">
   <div class="auth-card">
     <div class="auth-logo">Tu<b>IA</b>lista</div>
-    <h2 id="auth-title">Entra a tu cuenta</h2>
-    <p class="sub" id="auth-sub">Accede con el correo de tu compra.</p>
-    <form id="auth-form" novalidate>
-      <label id="auth-l-email">Correo</label>
-      <input id="auth-email" type="email" autocomplete="email" required>
-      <label id="auth-l-pw">Contraseña</label>
-      <input id="auth-pw" type="password" autocomplete="current-password" required>
-      <button id="auth-btn" type="submit">Entrar</button>
-      <div class="auth-err" id="auth-err"></div>
-    </form>
+    <!-- VISTA: LOGIN -->
+    <div id="view-login">
+      <h2 id="auth-title">Entra a tu cuenta</h2>
+      <p class="sub" id="auth-sub">Accede con tu correo y contraseña.</p>
+      <form id="auth-form" novalidate>
+        <label id="auth-l-email">Correo</label>
+        <input id="auth-email" type="email" autocomplete="email" required>
+        <label id="auth-l-pw">Contraseña</label>
+        <input id="auth-pw" type="password" autocomplete="current-password" required>
+        <button id="auth-btn" type="submit">Entrar</button>
+        <div class="auth-err" id="auth-err"></div>
+      </form>
+      <p class="auth-switch"><span id="sw-no-acct">¿No tienes cuenta?</span> <a id="go-register">Crear cuenta</a></p>
+    </div>
+
+    <!-- VISTA: REGISTRO -->
+    <div id="view-register" style="display:none">
+      <h2 id="reg-title">Crea tu cuenta</h2>
+      <p class="sub" id="reg-sub">Regístrate para acceder a tus agentes.</p>
+      <form id="reg-form" novalidate>
+        <label id="reg-l-email">Correo</label>
+        <input id="reg-email" type="email" autocomplete="email" required>
+        <label id="reg-l-pw">Contraseña <span style="color:#94a3b8">(mín. 8)</span></label>
+        <input id="reg-pw" type="password" autocomplete="new-password" required>
+        <label id="reg-l-bd">Fecha de nacimiento</label>
+        <input id="reg-bd" type="date" required>
+        <label class="chk"><input type="checkbox" id="reg-accept"> <span id="reg-legal">Acepto los <a href="/legal/terminos" target="_blank">Términos</a>, el <a href="/legal/privacidad" target="_blank">Aviso de Privacidad</a> y el <a href="/legal/deslinde-ia" target="_blank">Deslinde de IA</a>.</span></label>
+        <button id="reg-btn" type="submit">Crear cuenta</button>
+        <div class="auth-err" id="reg-err"></div>
+      </form>
+      <p class="auth-switch"><span id="sw-has-acct">¿Ya tienes cuenta?</span> <a id="go-login">Entrar</a></p>
+    </div>
+
+    <!-- VISTA: VERIFICACIÓN -->
+    <div id="view-verify" style="display:none">
+      <h2 id="ver-title">Verifica tu correo</h2>
+      <p class="sub"><span id="ver-sub">Te enviamos un código de 6 dígitos a</span> <b id="ver-email"></b>.</p>
+      <form id="ver-form" novalidate>
+        <label id="ver-l-code">Código</label>
+        <input id="ver-code" type="text" inputmode="numeric" maxlength="6" autocomplete="one-time-code" required>
+        <button id="ver-btn" type="submit">Verificar</button>
+        <div class="auth-err" id="ver-err"></div>
+      </form>
+      <p class="auth-switch"><a id="go-resend">Reenviar código</a> · <a id="go-login2">Volver</a></p>
+    </div>
   </div>
 </div>
 <button id="portal-logout" type="button">Salir</button>
@@ -1468,15 +1508,45 @@ document.addEventListener("DOMContentLoaded", () => {
   var lang=(typeof detectLang==="function")?detectLang():"es", EN=lang==="en";
   var T={
     title:EN?"Sign in to your account":"Entra a tu cuenta",
-    sub:EN?"Use the email from your purchase.":"Accede con el correo de tu compra.",
+    sub:EN?"Sign in with your email and password.":"Accede con tu correo y contraseña.",
     email:EN?"Email":"Correo", pw:EN?"Password":"Contraseña",
     enter:EN?"Sign in":"Entrar", wait:EN?"Signing in…":"Entrando…",
     bad:EN?"Wrong email or password.":"Correo o contraseña incorrectos.",
     neterr:EN?"Connection error. Try again.":"Error de conexión. Inténtalo de nuevo.",
     logout:EN?"Sign out":"Salir", soon:EN?"Download coming soon":"Descarga disponible pronto",
     lic:EN?"License":"Licencia", copy:EN?"Copy":"Copiar",
-    renews:EN?"Renews":"Renueva", trial:EN?"Trial ends":"Prueba termina", dl:EN?"Download agent":"Descargar agente"
+    renews:EN?"Renews":"Renueva", trial:EN?"Trial ends":"Prueba termina", dl:EN?"Download agent":"Descargar agente",
+    noAcct:EN?"No account?":"¿No tienes cuenta?", createAcct:EN?"Create account":"Crear cuenta",
+    hasAcct:EN?"Already have an account?":"¿Ya tienes cuenta?",
+    regTitle:EN?"Create your account":"Crea tu cuenta",
+    regSub:EN?"Sign up to access your agents.":"Regístrate para acceder a tus agentes.",
+    bd:EN?"Date of birth":"Fecha de nacimiento",
+    legal:EN?'I accept the <a href="/legal/terminos" target="_blank">Terms</a>, the <a href="/legal/privacidad" target="_blank">Privacy Notice</a> and the <a href="/legal/deslinde-ia" target="_blank">AI Disclaimer</a>.':'Acepto los <a href="/legal/terminos" target="_blank">Términos</a>, el <a href="/legal/privacidad" target="_blank">Aviso de Privacidad</a> y el <a href="/legal/deslinde-ia" target="_blank">Deslinde de IA</a>.',
+    create:EN?"Create account":"Crear cuenta", creating:EN?"Creating…":"Creando…",
+    verTitle:EN?"Verify your email":"Verifica tu correo",
+    verSub:EN?"We sent a 6-digit code to":"Te enviamos un código de 6 dígitos a",
+    code:EN?"Code":"Código", verify:EN?"Verify":"Verificar", verifying:EN?"Verifying…":"Verificando…",
+    resend:EN?"Resend code":"Reenviar código", back:EN?"Back":"Volver", resent:EN?"Code sent again.":"Código reenviado."
   };
+  function errmsg(c){
+    var M={
+      menor_de_edad:EN?"You must be of legal age.":"Debes ser mayor de edad.",
+      email_ya_registrado:EN?"That email is already registered. Sign in.":"Ese correo ya está registrado. Inicia sesión.",
+      password_corto:EN?"Password must be at least 8 characters.":"La contraseña debe tener al menos 8 caracteres.",
+      email_invalido:EN?"Invalid email.":"Correo no válido.",
+      fecha_invalida:EN?"Invalid date of birth.":"Fecha de nacimiento no válida.",
+      legal_not_accepted:EN?"You must accept the terms.":"Debes aceptar los términos.",
+      rate_limited:EN?"Too many attempts. Try later.":"Demasiados intentos. Intenta más tarde.",
+      codigo_incorrecto:EN?"Incorrect code.":"Código incorrecto.",
+      codigo_expirado:EN?"The code expired. Request a new one.":"El código expiró. Reenvía uno nuevo.",
+      demasiados_intentos:EN?"Too many attempts. Request a new code.":"Demasiados intentos. Reenvía un código nuevo.",
+      sin_codigo:EN?"Request a new code.":"Solicita un código nuevo.",
+      cuenta_no_encontrada:EN?"Account not found.":"Cuenta no encontrada.",
+      espera:EN?"Wait a moment before resending.":"Espera un momento antes de reenviar.",
+      ya_verificado:EN?"Already verified. Sign in.":"Ya verificado. Inicia sesión."
+    };
+    return M[c]||(EN?"Something went wrong.":"Algo salió mal.");
+  }
   var $=function(id){return document.getElementById(id);};
   function tok(){return sessionStorage.getItem(TKEY);}
   function setTok(t){t?sessionStorage.setItem(TKEY,t):sessionStorage.removeItem(TKEY);}
@@ -1515,27 +1585,81 @@ document.addEventListener("DOMContentLoaded", () => {
     if(typeof initCopyButtons==="function")initCopyButtons();
   }
   function loadData(){ api("/api/me/licenses").then(function(d){renderLicenses(d.licenses||[]);}).catch(function(){}); }
+  var pendingEmail="";
+  function showView(name){
+    ["login","register","verify"].forEach(function(v){var el=$("view-"+v);if(el)el.style.display=(v===name?"block":"none");});
+    ["auth-err","reg-err","ver-err"].forEach(function(id){var e=$(id);if(e)e.style.display="none";});
+  }
+  function setErr(id,msg,okColor){var e=$(id);e.style.color=okColor?"var(--ok,#1d9e75)":"#c0392b";e.textContent=msg;e.style.display="block";}
+  function toVerify(email){pendingEmail=email;$("ver-email").textContent=email;showView("verify");$("ver-code").focus();}
+
   function doLogin(e){
     e.preventDefault();
-    var email=$("auth-email").value.trim(), pw=$("auth-pw").value;
+    var email=$("auth-email").value.trim().toLowerCase(), pw=$("auth-pw").value;
     if(!email||!pw)return;
-    var btn=$("auth-btn"), err=$("auth-err");
-    err.style.display="none"; btn.disabled=true; btn.textContent=T.wait;
+    var btn=$("auth-btn"); $("auth-err").style.display="none"; btn.disabled=true; btn.textContent=T.wait;
     fetch(API+"/api/auth/login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:email,password:pw,role:"customer"})})
-      .then(function(r){return r.json().then(function(j){return {ok:r.ok,j:j};});})
+      .then(function(r){return r.json().then(function(j){return {s:r.status,j:j};});})
       .then(function(res){
-        if(res.ok&&res.j.token){setTok(res.j.token);hideAuth();loadData();}
-        else{err.textContent=T.bad;err.style.display="block";}
+        if(res.s===200&&res.j.token){setTok(res.j.token);hideAuth();loadData();}
+        else if(res.s===403&&res.j.error==="email_not_verified"){toVerify(email);}
+        else{setErr("auth-err",T.bad);}
       })
-      .catch(function(){err.textContent=T.neterr;err.style.display="block";})
+      .catch(function(){setErr("auth-err",T.neterr);})
       .finally(function(){btn.disabled=false;btn.textContent=T.enter;});
+  }
+  function doRegister(e){
+    e.preventDefault();
+    var email=$("reg-email").value.trim().toLowerCase(), pw=$("reg-pw").value, bd=$("reg-bd").value;
+    if(!$("reg-accept").checked){setErr("reg-err",errmsg("legal_not_accepted"));return;}
+    if(!email||!pw||!bd)return;
+    var btn=$("reg-btn"); $("reg-err").style.display="none"; btn.disabled=true; btn.textContent=T.creating;
+    fetch(API+"/api/auth/register",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:email,password:pw,birthdate:bd,accepted:true,lang:lang})})
+      .then(function(r){return r.json().then(function(j){return {s:r.status,j:j};});})
+      .then(function(res){ if(res.s===200){toVerify(email);} else {setErr("reg-err",errmsg(res.j.error));} })
+      .catch(function(){setErr("reg-err",T.neterr);})
+      .finally(function(){btn.disabled=false;btn.textContent=T.create;});
+  }
+  function doVerify(e){
+    e.preventDefault();
+    var code=$("ver-code").value.trim();
+    if(!code||!pendingEmail)return;
+    var btn=$("ver-btn"); $("ver-err").style.display="none"; btn.disabled=true; btn.textContent=T.verifying;
+    fetch(API+"/api/auth/verify-email",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:pendingEmail,code:code})})
+      .then(function(r){return r.json().then(function(j){return {s:r.status,j:j};});})
+      .then(function(res){ if(res.s===200&&res.j.token){setTok(res.j.token);hideAuth();loadData();} else {setErr("ver-err",errmsg(res.j.error));} })
+      .catch(function(){setErr("ver-err",T.neterr);})
+      .finally(function(){btn.disabled=false;btn.textContent=T.verify;});
+  }
+  function doResend(){
+    if(!pendingEmail)return;
+    fetch(API+"/api/auth/resend-code",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:pendingEmail,lang:lang})})
+      .then(function(r){return r.json().then(function(j){return {s:r.status,j:j};});})
+      .then(function(res){ res.s===200 ? setErr("ver-err",T.resent,true) : setErr("ver-err",errmsg(res.j.error)); })
+      .catch(function(){});
   }
   document.addEventListener("DOMContentLoaded",function(){
     $("auth-title").textContent=T.title; $("auth-sub").textContent=T.sub;
     $("auth-l-email").textContent=T.email; $("auth-l-pw").textContent=T.pw;
     $("auth-btn").textContent=T.enter; $("portal-logout").textContent=T.logout;
+    $("sw-no-acct").textContent=T.noAcct; $("go-register").textContent=T.createAcct;
+    $("reg-title").textContent=T.regTitle; $("reg-sub").textContent=T.regSub;
+    $("reg-l-email").textContent=T.email;
+    $("reg-l-pw").innerHTML=T.pw+' <span style="color:#94a3b8">('+(EN?"min. 8":"mín. 8")+')</span>';
+    $("reg-l-bd").textContent=T.bd; $("reg-legal").innerHTML=T.legal; $("reg-btn").textContent=T.create;
+    $("sw-has-acct").textContent=T.hasAcct; $("go-login").textContent=T.enter;
+    $("ver-title").textContent=T.verTitle; $("ver-sub").textContent=T.verSub;
+    $("ver-l-code").textContent=T.code; $("ver-btn").textContent=T.verify;
+    $("go-resend").textContent=T.resend; $("go-login2").textContent=T.back;
     $("auth-form").addEventListener("submit",doLogin);
+    $("reg-form").addEventListener("submit",doRegister);
+    $("ver-form").addEventListener("submit",doVerify);
     $("portal-logout").addEventListener("click",logout);
+    $("go-register").addEventListener("click",function(e){e.preventDefault();showView("register");$("reg-email").focus();});
+    $("go-login").addEventListener("click",function(e){e.preventDefault();showView("login");});
+    $("go-login2").addEventListener("click",function(e){e.preventDefault();showView("login");});
+    $("go-resend").addEventListener("click",function(e){e.preventDefault();doResend();});
+    showView("login");
     if(tok()){ api("/api/auth/me").then(function(){hideAuth();loadData();}).catch(function(){showAuth();}); }
     else { showAuth(); }
   });
