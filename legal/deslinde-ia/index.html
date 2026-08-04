@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deslinde de Responsabilidad sobre IA — TuIAlista</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--steel-900:#0f1922;--paper:#f5f6f4;--ink:#0f1922;--muted:#5a6b73;--signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+header{position:sticky;top:0;background:rgba(245,246,244,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+.nav{max-width:820px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+.logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+.logo b{color:var(--signal)}
+.nav a.back{color:var(--muted);text-decoration:none;font-size:14px}
+.nav a.back:hover{color:var(--ink)}
+main{max-width:820px;margin:0 auto;padding:40px 24px 80px}
+.doc h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,36px);line-height:1.15;margin-bottom:8px}
+.doc h2{font-family:'Space Grotesk';font-size:22px;margin:34px 0 12px}
+.doc h3{font-family:'Space Grotesk';font-size:17px;margin:22px 0 8px}
+.doc p{margin:12px 0;color:#243541}
+.doc ul,.doc ol{margin:12px 0 12px 22px;color:#243541}
+.doc li{margin:6px 0}
+.doc a{color:var(--signal-dim)}
+.doc strong{color:var(--ink)}
+.doc blockquote{border-left:3px solid var(--signal);background:#eceee9;padding:12px 18px;margin:16px 0;border-radius:0 8px 8px 0;color:var(--muted);font-size:14.5px}
+.doc hr{border:none;border-top:1px solid var(--line);margin:28px 0}
+.doc table{border-collapse:collapse;margin:16px 0;font-size:14px;width:100%}
+.doc th,.doc td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px}
+footer a{color:#cdd5d9;text-decoration:none}
+</style>
+</head>
+<body>
+<header><div class="nav"><a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a><a class="back" href="/portal/">&larr; Volver al portal</a></div></header>
+<main><div class="doc"><h1>Deslinde de Responsabilidad sobre Inteligencia Artificial</h1>
+<blockquote>
+<p>La versión vigente de este documento se publica en <a href="https://www.tuialista.com">www.tuialista.com</a>.</p>
+</blockquote>
+<p><strong>Versión:</strong> 1.0 · <strong>Última actualización:</strong> 21 de julio de 2026 · <strong>Vigente a partir de:</strong> 21 de julio de 2026</p>
+<hr />
+<h2>0. Aviso destacado (léase antes de usar cualquier resultado)</h2>
+<blockquote>
+<p><strong>Los agentes de TuIAlista utilizan inteligencia artificial y su contenido PUEDE CONTENER ERRORES, OMISIONES O IMPRECISIONES.</strong></p>
+<p><strong>Ningún resultado constituye asesoría fiscal, legal, contable, laboral, financiera ni profesional de ninguna clase.</strong></p>
+<p><strong>Usted es el único responsable de verificar y validar todo resultado con un profesional calificado y con las fuentes oficiales antes de utilizarlo, presentarlo ante cualquier autoridad o tomar decisiones con base en él.</strong></p>
+</blockquote>
+<hr />
+<h2>1. Objeto de este documento</h2>
+<p>1.1. Este Deslinde de Responsabilidad sobre Inteligencia Artificial (el <strong>"Deslinde"</strong>) forma parte integral de los <a href="/legal/terminos">Términos de Servicio</a> de <strong>TuIAlista</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a>), operada por <strong>Edgar Apolonio Aguilera</strong>, <strong>persona física con actividad empresarial</strong> que opera bajo el nombre comercial <strong>"TuIAlista"</strong>, con RFC <strong>AOAE781008V98</strong> y domicilio fiscal en <strong>Calle Malitzin, Manzana 10, Lote 23, Colonia Tepeaca, C.P. 01550, Alcaldía Álvaro Obregón</strong>, Ciudad de México, México.</p>
+<blockquote>
+<p><strong>Nota sobre la estructura del negocio.</strong> TuIAlista opera actualmente como negocio de persona física con actividad empresarial. Se prevé la futura constitución de la persona moral <strong>ORDINAL-BiA</strong>, a la que se transferirá la titularidad y la marca; los documentos se actualizarán en ese momento.</p>
+</blockquote>
+<p>1.2. Al instalar o usar cualquier agente, el Cliente declara conocer y aceptar este Deslinde. En caso de conflicto entre este Deslinde y otros documentos respecto de la responsabilidad por resultados de IA, <strong>prevalece este Deslinde</strong>.</p>
+<hr />
+<h2>2. Naturaleza de los agentes de IA</h2>
+<p>2.1. Los agentes de TuIAlista generan contenido mediante <strong>modelos de inteligencia artificial de carácter probabilístico</strong>. Esto implica que sus resultados:</p>
+<ul>
+<li><strong>pueden contener errores, imprecisiones, omisiones o afirmaciones incorrectas</strong> ("alucinaciones");</li>
+<li><strong>pueden no estar actualizados</strong> respecto de la normativa, tarifas, formatos o criterios vigentes;</li>
+<li><strong>pueden variar</strong> ante entradas iguales o similares; y</li>
+<li><strong>no deben presumirse exactos ni completos</strong> por el solo hecho de haber sido generados por el agente.</li>
+</ul>
+<p>2.2. Los agentes son <strong>herramientas de apoyo a la productividad</strong>, no sustitutos del juicio humano ni de la asesoría de un profesional calificado.</p>
+<p>2.3. <strong>Procesamiento local.</strong> El análisis de los documentos y datos del Cliente ocurre <strong>localmente en su equipo</strong> (ver <a href="/legal/compromiso-local">Compromiso de Procesamiento Local</a>). Los modelos de IA de terceros se emplean únicamente para <strong>redactar respuestas</strong>; ello no garantiza la exactitud del contenido.</p>
+<hr />
+<h2>3. Ausencia de asesoría profesional y de relación profesional-cliente</h2>
+<p>3.1. Ningún resultado, texto, cálculo, clasificación, borrador o recomendación generado por un agente <strong>constituye asesoría fiscal, legal, contable, laboral, financiera, de cumplimiento ni profesional de ninguna clase</strong>, ni debe interpretarse como tal.</p>
+<p>3.2. El uso de los agentes <strong>no crea</strong> relación profesional-cliente, contable-cliente, abogado-cliente ni ninguna relación de asesoría entre el Cliente y TuIAlista (su titular, la persona física con actividad empresarial).</p>
+<p>3.3. <strong>Verifique con un profesional.</strong> Antes de actuar sobre cualquier resultado, el Cliente debe consultarlo con un contador, abogado, especialista en nóminas u otro profesional calificado, y contrastarlo con las <strong>fuentes oficiales</strong> aplicables.</p>
+<hr />
+<h2>4. Deber de verificación del Cliente</h2>
+<p>4.1. El Cliente es el <strong>único responsable</strong> de <strong>revisar, verificar y validar la totalidad de los resultados</strong> antes de utilizarlos, distribuirlos, presentarlos ante autoridades o terceros, o tomar decisiones con base en ellos.</p>
+<p>4.2. En particular, y sin limitar, el Cliente debe verificar de forma independiente, según corresponda:</p>
+<ul>
+<li><strong>Declaraciones y cálculos fiscales</strong>, tasas, retenciones, plazos y formatos ante la autoridad tributaria competente;</li>
+<li><strong>Nóminas, cálculos laborales, prestaciones, cuotas y aportaciones</strong> de seguridad social;</li>
+<li><strong>Contratos, cláusulas y textos legales</strong>, su validez, suficiencia y adecuación al caso concreto;</li>
+<li><strong>Facturas y comprobantes</strong>, sus datos, importes, impuestos y requisitos de validez;</li>
+<li>Cualquier dato, cifra, cita normativa o referencia contenida en el resultado.</li>
+</ul>
+<p>4.3. TuIAlista <strong>no revisa, aprueba ni valida</strong> los resultados generados por los agentes ni las decisiones que el Cliente tome con base en ellos.</p>
+<hr />
+<h2>5. Agentes en materias sensibles (deslinde reforzado)</h2>
+<p>5.1. Determinados agentes operan en materias de <strong>alto impacto y riesgo</strong>, entre ellos —sin limitar— los agentes de <strong>Cumplimiento Fiscal</strong>, <strong>Nóminas y Recursos Humanos</strong>, <strong>Contratos</strong> y <strong>Facturas</strong>.</p>
+<p>5.2. Respecto de estos agentes, el Cliente reconoce y acepta expresamente que:</p>
+<ul>
+<li>sus resultados <strong>no sustituyen</strong> la revisión de un contador público, abogado, especialista en nóminas o profesional competente;</li>
+<li><strong>un error no detectado puede tener consecuencias graves</strong> (por ejemplo, contingencias fiscales, multas, recargos, sanciones, controversias laborales, invalidez o insuficiencia de contratos, o rechazo de comprobantes);</li>
+<li><strong>la presentación de declaraciones, el pago de nóminas, la firma de contratos y la emisión de facturas son actos de la exclusiva responsabilidad del Cliente</strong>, quien debe validarlos íntegramente antes de ejecutarlos; y</li>
+<li>TuIAlista <strong>no asume responsabilidad</strong> por dichas consecuencias, en la máxima medida permitida por la ley.</li>
+</ul>
+<hr />
+<h2>6. Modelos de IA de terceros (Groq / Gemini)</h2>
+<p>6.1. Los agentes invocan <strong>modelos de IA operados por terceros</strong> (por defecto <strong>Groq</strong>, con conmutación por error a <strong>Gemini</strong>) exclusivamente para redactar respuestas.</p>
+<p>6.2. TuIAlista <strong>no garantiza</strong> la exactitud, idoneidad, calidad, continuidad ni disponibilidad de dichos modelos de terceros, y <strong>no es responsable</strong> por sus fallas, interrupciones, cambios, degradaciones de calidad o resultados. Estos proveedores son entidades ajenas a TuIAlista y se rigen por sus propios términos.</p>
+<p>6.3. La disponibilidad de estas funciones puede verse afectada por causas ajenas a TuIAlista (por ejemplo, indisponibilidad del proveedor de IA o del enlace de red).</p>
+<hr />
+<h2>7. Sin garantías</h2>
+<p>7.1. En la máxima medida permitida por la ley aplicable, el Servicio y los resultados generados por los agentes se proporcionan <strong>"tal cual" y "según disponibilidad"</strong>, sin garantías de ningún tipo, expresas o implícitas, incluyendo —sin limitar— garantías de <strong>exactitud, integridad, idoneidad para un fin particular, comerciabilidad, no infracción o disponibilidad</strong>.</p>
+<p>7.2. TuIAlista <strong>no garantiza</strong> que los resultados sean correctos, completos, actualizados o adecuados para el propósito del Cliente, ni que el Servicio opere de forma ininterrumpida o libre de errores.</p>
+<hr />
+<h2>8. Limitación de responsabilidad</h2>
+<p>8.1. En la máxima medida permitida por la ley aplicable, TuIAlista (su titular, la persona física con actividad empresarial) y sus colaboradores <strong>no serán responsables</strong> por daños indirectos, incidentales, especiales, punitivos, ejemplares o consecuenciales, ni por <strong>lucro cesante, pérdida de ingresos, pérdida de datos, contingencias fiscales, multas, recargos o sanciones</strong>, aun cuando se hubiere advertido de su posibilidad.</p>
+<p>8.2. <strong>Tope de responsabilidad.</strong> En la máxima medida permitida por la ley, la <strong>responsabilidad total y acumulada</strong> de TuIAlista derivada de o relacionada con el Servicio y con los resultados de los agentes <strong>no excederá el monto efectivamente pagado por el Cliente por el Servicio durante los doce (12) meses anteriores</strong> al hecho que dio origen a la reclamación.</p>
+<p>8.3. <strong>Asignación de riesgo.</strong> El Cliente reconoce que los precios del Servicio reflejan esta asignación de riesgo y que, sin estas limitaciones, TuIAlista no podría ofrecer el Servicio en las condiciones actuales.</p>
+<h2>8.4. Nada en este Deslinde excluye o limita responsabilidades que, conforme a la ley aplicable, <strong>no puedan excluirse ni limitarse</strong> (por ejemplo, dolo o determinadas responsabilidades frente a consumidores).</h2>
+<h2>9. Responsabilidad del usuario y uso adecuado</h2>
+<p>9.1. El Cliente se obliga a usar los agentes de forma diligente, a <strong>conservar respaldos</strong> de su información y a <strong>no depender exclusivamente</strong> de los resultados de IA para decisiones críticas.</p>
+<p>9.2. El Cliente es responsable del uso que haga de los resultados y de su cumplimiento con la normativa que le resulte aplicable.</p>
+<hr />
+<h2>10. Relación con otros documentos y ley aplicable</h2>
+<p>10.1. Este Deslinde complementa los <a href="/legal/terminos">Términos de Servicio</a>, la <a href="/legal/privacidad">Política de Privacidad</a> y el <a href="/legal/compromiso-local">Compromiso de Procesamiento Local</a>.</p>
+<p>10.2. Este Deslinde se rige por las <strong>leyes de los Estados Unidos Mexicanos</strong>, con jurisdicción de los <strong>tribunales de la Ciudad de México (CDMX)</strong>, en los términos de la Sección 17 de los <a href="/legal/terminos">Términos de Servicio</a>.</p>
+<p>10.3. La versión en <strong>español</strong> es la versión rectora; las traducciones se ofrecen por comodidad.</p>
+<hr />
+<h2>11. Contacto</h2>
+<p>Dudas sobre este Deslinde: <strong>legal@tuialista.com</strong> · <a href="https://www.tuialista.com">www.tuialista.com</a></p>
+<hr />
+<p><em>Fin del documento.</em></p></div></main>
+<footer>&copy; <span id="y"></span> TuIAlista &middot; <a href="/soporte">Soporte</a> &middot; <a href="/">Inicio</a><script>document.getElementById("y").textContent=new Date().getFullYear()</script></footer>
+</body>
+</html>
