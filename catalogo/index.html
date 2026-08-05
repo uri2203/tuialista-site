@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catálogo de agentes — TuIAlista</title>
+<meta name="description" content="Elige tus agentes de IA local. Licencia mensual, 7 días de prueba, cancela cuando quieras.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{--steel-900:#0f1922;--paper:#f5f6f4;--paper-2:#eceee9;--ink:#0f1922;--muted:#5a6b73;--signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2;--ok:#1d9e75}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper-2);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  header{position:sticky;top:0;background:rgba(245,246,244,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+  .nav{max-width:1080px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+  .logo b{color:var(--signal)}
+  .nav .r{display:flex;align-items:center;gap:18px}
+  .nav .r a{font-size:14px;color:var(--muted);text-decoration:none}
+  .nav .r a:hover{color:var(--ink)}
+  main{max-width:1080px;margin:0 auto;padding:38px 24px 80px}
+  .head{margin-bottom:26px}
+  .eyebrow{font-family:'JetBrains Mono';font-size:11.5px;letter-spacing:.1em;color:var(--signal-dim);margin-bottom:8px}
+  h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,34px);line-height:1.12;margin-bottom:8px}
+  .sub{color:var(--muted);font-size:15px;max-width:640px}
+  .trust{display:flex;gap:18px;flex-wrap:wrap;margin-top:16px;font-size:13px;color:var(--muted)}
+  .trust span{display:flex;align-items:center;gap:6px}
+  .trust .ti{color:var(--ok)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-top:26px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;flex-direction:column}
+  .ico{width:42px;height:42px;border-radius:11px;background:var(--paper-2);display:flex;align-items:center;justify-content:center;font-size:21px;color:var(--signal-dim);margin-bottom:13px}
+  .card h3{font-family:'Space Grotesk';font-size:17px;font-weight:600;margin-bottom:7px}
+  .card p{font-size:13.5px;color:var(--muted);line-height:1.55;flex:1;margin-bottom:14px}
+  .price{font-family:'Space Grotesk';font-size:22px;font-weight:500;margin-bottom:14px}
+  .price small{font-size:13px;color:var(--muted);font-weight:400}
+  .buy{width:100%;padding:11px;border:none;border-radius:9px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:.15s}
+  .buy:hover{background:var(--signal);color:#1a1206}
+  .state{grid-column:1/-1;text-align:center;color:var(--muted);padding:50px 0;font-size:15px}
+  footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px}
+  footer a{color:#cdd5d9;text-decoration:none}
+  @media(max-width:520px){.nav .r a.hide-sm{display:none}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+  <div class="r">
+    <a class="hide-sm" href="/soporte/" id="l-support">Soporte</a>
+    <a href="/portal/" id="l-portal">Entrar</a>
+  </div>
+</div></header>
+
+<main>
+  <div class="head">
+    <div class="eyebrow" id="eyebrow">EL CATÁLOGO</div>
+    <h1 id="title">Elige tus agentes</h1>
+    <p class="sub" id="sub">Licencia mensual, cada agente corre localmente en tu equipo. 7 días de prueba y cancelas cuando quieras.</p>
+    <div class="trust">
+      <span id="t1"><i class="ti ti-lock"></i> Datos 100% locales</span>
+      <span id="t2"><i class="ti ti-calendar"></i> 7 días de prueba</span>
+      <span id="t3"><i class="ti ti-ban"></i> Cancela cuando quieras</span>
+    </div>
+  </div>
+  <div class="grid" id="grid">
+    <div class="state" id="loading">Cargando catálogo…</div>
+  </div>
+</main>
+
+<footer>&copy; <span id="y"></span> TuIAlista &middot; <a href="/soporte/">Soporte</a> &middot; <a href="/">Inicio</a></footer>
+
+<script src="/checkout.js"></script>
+<script>
+(function(){
+  var API=(window.CHECKOUT_API_BASE||"https://tuialista-xrtd.onrender.com").replace(/\/$/,"");
+  var EN=(function(){try{return (localStorage.getItem("tuialista_lang")||"es").indexOf("en")===0;}catch(e){return false;}})();
+  document.getElementById("y").textContent=new Date().getFullYear();
+  var ICON={documents:"file-text",excel:"table",database:"database",fiscal:"report-money",
+    contratos:"file-certificate","docs-tecnica":"file-code",tramites:"building-bank",
+    "contratos-personales":"signature",garantias:"shield-check",facturas:"file-invoice",
+    conocimiento:"books",nominas:"id-badge-2",inventario:"box-seam",actas:"clipboard-text",
+    correo:"inbox",as400:"server-2"};
+  if(EN){
+    document.documentElement.lang="en";
+    document.getElementById("eyebrow").textContent="THE CATALOG";
+    document.getElementById("title").textContent="Choose your agents";
+    document.getElementById("sub").textContent="Monthly license, each agent runs locally on your machine. 7-day trial, cancel anytime.";
+    document.getElementById("t1").innerHTML='<i class="ti ti-lock"></i> 100% local data';
+    document.getElementById("t2").innerHTML='<i class="ti ti-calendar"></i> 7-day trial';
+    document.getElementById("t3").innerHTML='<i class="ti ti-ban"></i> Cancel anytime';
+    document.getElementById("l-support").textContent="Support";
+    document.getElementById("l-portal").textContent="Sign in";
+  }
+  var BUY=EN?"Subscribe":"Suscribirme", MO=EN?" / mo":" / mes";
+  function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+  var byId={};
+  function render(list){
+    var grid=document.getElementById("grid");
+    if(!list||!list.length){grid.innerHTML='<div class="state">'+(EN?"Catalog unavailable right now.":"El catálogo no está disponible ahora.")+'</div>';return;}
+    grid.innerHTML=list.map(function(a){
+      byId[a.id]={name:a.name,price:a.price_usd};
+      var icon=ICON[a.id]||"robot";
+      return '<div class="card">'+
+        '<div class="ico"><i class="ti ti-'+icon+'"></i></div>'+
+        '<h3>'+esc(a.name)+'</h3>'+
+        '<p>'+esc(a.description||"")+'</p>'+
+        '<div class="price">$'+Number(a.price_usd).toFixed(0)+'<small>'+MO+'</small></div>'+
+        '<button class="buy" data-agent="'+esc(a.id)+'"><i class="ti ti-arrow-right"></i> '+BUY+'</button>'+
+        '</div>';
+    }).join("");
+    [].forEach.call(grid.querySelectorAll(".buy"),function(b){
+      b.addEventListener("click",function(){
+        var id=b.getAttribute("data-agent"), a=byId[id]||{};
+        if(window.TuiaCheckout)TuiaCheckout.open(id,a.name,a.price);
+      });
+    });
+    // Deep-link ?agent=<id> -> abre el modal directo
+    try{
+      var want=new URLSearchParams(location.search).get("agent");
+      if(want&&byId[want]&&window.TuiaCheckout)TuiaCheckout.open(want,byId[want].name,byId[want].price);
+    }catch(e){}
+  }
+  fetch(API+"/api/catalog").then(function(r){return r.json();})
+    .then(function(d){render(d.agents||[]);})
+    .catch(function(){document.getElementById("grid").innerHTML='<div class="state">'+(EN?"Couldn't load the catalog. Please try again.":"No se pudo cargar el catálogo. Inténtalo de nuevo.")+'</div>';});
+})();
+</script>
+</body>
+</html>

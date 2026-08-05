@@ -410,7 +410,7 @@
       <div class="panel">
         <h3 data-i18n="pricing.p1_title">Licencia mensual, sin ataduras</h3>
         <p data-i18n="pricing.p1_text">Eliges los agentes que necesitas y pagas solo por esos. Cada uno tiene 7 días de prueba. Cancela cuando quieras desde tu panel.</p>
-        <a class="btn btn-solid" href="portal/" data-i18n="pricing.p1_cta">Empezar prueba gratis</a>
+        <a class="btn btn-solid" href="/catalogo/" data-i18n="pricing.p1_cta">Empezar prueba gratis</a>
       </div>
       <div class="panel dark" id="afiliados">
         <h3 data-i18n="pricing.p2_title">Gana vendiendo TuIAlista</h3>
@@ -425,7 +425,7 @@
   <div class="wrap">
     <h2 data-i18n="final.title">Pon la IA a trabajar sin entregar tus datos.</h2>
     <p data-i18n="final.text">Elige tu primer agente y pruébalo gratis 7 días en tu propio equipo.</p>
-    <a class="btn btn-signal" href="#agentes" style="font-size:16px;padding:14px 30px"><span data-i18n="final.cta">Ver los agentes</span> <i class="ti ti-arrow-right"></i></a>
+    <a class="btn btn-signal" href="/catalogo/" style="font-size:16px;padding:14px 30px"><span data-i18n="final.cta">Ver los agentes</span> <i class="ti ti-arrow-right"></i></a>
   </div>
 </section>
 
@@ -445,7 +445,14 @@
 
 <script>
   document.getElementById('y').textContent=new Date().getFullYear();
+  // Las tarjetas de agente llevan al catálogo (donde se compra). El hover ya invita.
+  document.querySelectorAll('#agentes .agent').forEach(function(card){
+    card.style.cursor='pointer';
+    card.addEventListener('click',function(){window.location.href='/catalogo/';});
+  });
 </script>
+<!-- Captura del ?ref= de afiliado (para atribuir la compra) + módulo de compra -->
+<script src="checkout.js"></script>
 <script src="i18n.js"></script>
 <script>
   (function(){

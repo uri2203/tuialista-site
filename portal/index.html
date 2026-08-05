@@ -1711,5 +1711,38 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 })();
 </script>
+
+<!-- Compra de más agentes desde el portal (abre el checkout con el correo del cliente) -->
+<script src="/checkout.js"></script>
+<script>
+(function(){
+  function loggedEmail(){
+    try{
+      var t=sessionStorage.getItem("tuialista_portal_token"); if(!t)return "";
+      var b=t.split(".")[0].replace(/-/g,"+").replace(/_/g,"/");
+      b+="=".repeat((4-b.length%4)%4);
+      var p=JSON.parse(decodeURIComponent(escape(atob(b))));
+      return p.email||"";
+    }catch(e){return "";}
+  }
+  function wire(){
+    document.querySelectorAll("#sec-catalog .store-card").forEach(function(card){
+      var nameEl=card.querySelector('[data-i18n^="agent."]');
+      if(!nameEl)return;
+      var m=(nameEl.getAttribute("data-i18n")||"").match(/^agent\.(.+)\.name$/);
+      if(!m)return;
+      var id=m[1], name=(nameEl.textContent||"").trim();
+      card.querySelectorAll("a.btn-solid, a.btn-signal").forEach(function(b){
+        b.style.cursor="pointer";
+        b.addEventListener("click",function(e){
+          e.preventDefault();
+          if(window.TuiaCheckout)TuiaCheckout.open(id,name,null,loggedEmail());
+        });
+      });
+    });
+  }
+  if(document.readyState!=="loading")wire();else document.addEventListener("DOMContentLoaded",wire);
+})();
+</script>
 </body>
 </html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>¡Gracias por tu compra! — TuIAlista</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{--steel-900:#0f1922;--paper:#f5f6f4;--paper-2:#eceee9;--ink:#0f1922;--muted:#5a6b73;--signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2;--ok:#1d9e75}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper-2);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
+  a{color:var(--signal-dim)}
+  header{border-bottom:1px solid var(--line);background:var(--paper)}
+  .nav{max-width:720px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+  .logo b{color:var(--signal)}
+  main{max-width:640px;margin:0 auto;padding:44px 24px;flex:1;width:100%}
+  .seal{width:60px;height:60px;border-radius:50%;background:rgba(29,158,117,.12);color:var(--ok);display:flex;align-items:center;justify-content:center;font-size:32px;margin-bottom:20px}
+  h1{font-family:'Space Grotesk';font-size:clamp(24px,4vw,32px);line-height:1.15;margin-bottom:10px}
+  .lead{color:var(--muted);font-size:15.5px;margin-bottom:26px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:16px}
+  .card h2{font-family:'Space Grotesk';font-size:16px;font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .card h2 .ti{color:var(--signal-dim)}
+  .steps{list-style:none;counter-reset:s}
+  .steps li{counter-increment:s;position:relative;padding:9px 0 9px 34px;font-size:14px;color:var(--ink);border-top:1px solid var(--line)}
+  .steps li:first-child{border-top:none}
+  .steps li::before{content:counter(s);position:absolute;left:0;top:8px;width:22px;height:22px;border-radius:50%;background:var(--paper-2);color:var(--signal-dim);font-family:'JetBrains Mono';font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center}
+  .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+  .btn{padding:11px 18px;border-radius:9px;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;text-decoration:none;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:7px}
+  .btn-solid{background:var(--steel-900);color:#fff}
+  .btn-ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .look{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
+  .look input{flex:1;min-width:200px;padding:10px 13px;border:1px solid var(--line);border-radius:9px;font-size:14px;font-family:inherit}
+  .look button{padding:10px 16px;border:none;border-radius:9px;background:var(--signal);color:#1a1206;font-weight:600;font-family:'Space Grotesk',sans-serif;cursor:pointer}
+  .keybox{display:none;margin-top:12px;background:var(--paper-2);border:1px solid var(--line);border-radius:9px;padding:12px 14px}
+  .keybox .k{font-family:'JetBrains Mono';font-size:15px;font-weight:600;word-break:break-all;color:var(--ink)}
+  .keybox .s{font-size:12.5px;color:var(--muted);margin-top:4px}
+  .hint{font-size:12.5px;color:var(--muted);margin-top:10px}
+  .err{display:none;color:#c0392b;font-size:13px;margin-top:8px}
+  footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:22px;font-size:13px}
+  footer a{color:#cdd5d9;text-decoration:none}
+</style>
+</head>
+<body>
+<header><div class="nav"><a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a></div></header>
+<main>
+  <div class="seal"><i class="ti ti-check"></i></div>
+  <h1 id="title">¡Gracias por tu compra!</h1>
+  <p class="lead" id="lead">Tu suscripción quedó activa. Te enviamos por correo tu licencia y los pasos para empezar.</p>
+
+  <div class="card">
+    <h2 id="next-title"><i class="ti ti-list-check"></i> <span>Próximos pasos</span></h2>
+    <ol class="steps">
+      <li id="step1">Revisa tu correo: ahí está tu clave de licencia y el enlace de descarga.</li>
+      <li id="step2">Crea tu cuenta en el portal con el mismo correo para gestionar tus agentes y licencias.</li>
+      <li id="step3">Descarga el agente e ingresa tu clave de licencia para activarlo.</li>
+    </ol>
+    <div class="btns">
+      <a class="btn btn-solid" href="/portal/" id="btn-portal"><i class="ti ti-layout-dashboard"></i> Ir a mi portal</a>
+      <a class="btn btn-ghost" href="/catalogo/" id="btn-more"><i class="ti ti-plus"></i> Agregar más agentes</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 id="look-title"><i class="ti ti-key"></i> <span>¿Ver tu licencia ahora?</span></h2>
+    <p class="hint" id="look-sub" style="margin-top:0;margin-bottom:10px">Escribe el correo que usaste al pagar y te mostramos tu clave (también te llega por email).</p>
+    <div class="look">
+      <input type="email" id="look-email" placeholder="tu@empresa.com" autocomplete="email">
+      <button id="look-btn">Ver licencia</button>
+    </div>
+    <div class="err" id="look-err"></div>
+    <div class="keybox" id="keybox">
+      <div class="k" id="key-val"></div>
+      <div class="s" id="key-status"></div>
+      <div class="hint" id="key-activate">Actívala con la variable <b>TUIALISTA_LICENSE_KEY</b> o desde tu portal.</div>
+    </div>
+  </div>
+</main>
+<footer>&copy; <span id="y"></span> TuIAlista &middot; <a href="/soporte/">Soporte</a> &middot; <a href="/">Inicio</a></footer>
+
+<script>
+(function(){
+  var API=(window.CHECKOUT_API_BASE||"https://tuialista-xrtd.onrender.com").replace(/\/$/,"");
+  var EN=(function(){try{return (localStorage.getItem("tuialista_lang")||"es").indexOf("en")===0;}catch(e){return false;}})();
+  document.getElementById("y").textContent=new Date().getFullYear();
+  var agent=null;
+  try{agent=new URLSearchParams(location.search).get("agent");}catch(e){}
+  function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+  if(EN){
+    document.documentElement.lang="en";
+    document.getElementById("title").textContent="Thank you for your purchase!";
+    document.getElementById("lead").textContent="Your subscription is active. We've emailed your license key and the steps to get started.";
+    document.querySelector("#next-title span").textContent="Next steps";
+    document.getElementById("step1").textContent="Check your email: your license key and download link are there.";
+    document.getElementById("step2").textContent="Create your account in the portal with the same email to manage your agents and licenses.";
+    document.getElementById("step3").textContent="Download the agent and enter your license key to activate it.";
+    document.getElementById("btn-portal").innerHTML='<i class="ti ti-layout-dashboard"></i> Go to my portal';
+    document.getElementById("btn-more").innerHTML='<i class="ti ti-plus"></i> Add more agents';
+    document.querySelector("#look-title span").textContent="See your license now?";
+    document.getElementById("look-sub").textContent="Enter the email you paid with and we'll show your key (it's also emailed to you).";
+    document.getElementById("look-btn").textContent="Show license";
+    document.getElementById("look-email").placeholder="you@company.com";
+    document.getElementById("key-activate").innerHTML="Activate it with the <b>TUIALISTA_LICENSE_KEY</b> variable or from your portal.";
+  }
+  function setErr(m){var e=document.getElementById("look-err");if(!m){e.style.display="none";return;}e.textContent=m;e.style.display="block";}
+  function lookup(){
+    var email=(document.getElementById("look-email").value||"").trim().toLowerCase();
+    if(!email||email.indexOf("@")<1){setErr(EN?"Enter a valid email.":"Escribe un correo válido.");return;}
+    if(!agent){setErr(EN?"Missing agent reference.":"Falta la referencia del agente.");return;}
+    setErr("");
+    var btn=document.getElementById("look-btn");btn.disabled=true;
+    fetch(API+"/api/license/lookup?email="+encodeURIComponent(email)+"&agent_id="+encodeURIComponent(agent))
+      .then(function(r){return r.json().then(function(j){return {s:r.status,j:j};});})
+      .then(function(res){
+        if(res.s===200&&res.j.found){
+          document.getElementById("key-val").textContent=res.j.license_key;
+          document.getElementById("key-status").textContent=(EN?"Status: ":"Estado: ")+res.j.status;
+          document.getElementById("keybox").style.display="block";
+        } else {
+          setErr(EN?"No license found yet for that email. It may take a moment — check your inbox.":"Aún no encontramos licencia para ese correo. Puede tardar un momento — revisa tu bandeja.");
+        }
+      })
+      .catch(function(){setErr(EN?"Connection error. Try again.":"Error de conexión. Inténtalo de nuevo.");})
+      .finally(function(){btn.disabled=false;});
+  }
+  document.getElementById("look-btn").addEventListener("click",lookup);
+  document.getElementById("look-email").addEventListener("keydown",function(e){if(e.key==="Enter")lookup();});
+})();
+</script>
+</body>
+</html>
