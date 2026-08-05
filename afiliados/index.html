@@ -1907,13 +1907,22 @@ document.addEventListener("DOMContentLoaded", () => {
       return r.json();
     });
   }
+  function moneyMes(n){return "$"+Number(n||0).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2})+"/"+(EN?"mo":"mes");}
   function renderSummary(s){
     var total=Number(s.paid_usd||0)+Number(s.pending_usd||0);
+    var cl=s.clients||{active:0,trial:0,cancelled:0};
+    var rec=s.recurring_monthly_usd||0;
     // Dashboard: fila de 4 (saldo, acumulado, pendiente, recurrente) + fila de 3 (activos, prueba, cancelados)
-    setVals("#sec-dashboard .metrics:not(.metrics-3) .val",[money(s.pending_usd),money(total),money(s.pending_usd),T.na]);
-    setVals("#sec-dashboard .metrics-3 .val",[String(s.referrals_count),T.na,T.na]);
+    setVals("#sec-dashboard .metrics:not(.metrics-3) .val",[money(s.pending_usd),money(total),money(s.pending_usd),money(rec)]);
+    setVals("#sec-dashboard .metrics-3 .val",[String(cl.active||0),String(cl.trial||0),String(cl.cancelled||0)]);
     // Comisiones: total, pagado, pendiente, tasa
     setVals("#sec-commissions .metrics .val",[money(total),money(s.paid_usd),money(s.pending_usd),(Number(s.commission_pct||0))+"%"]);
+    // Chips de "Mis clientes": activos, prueba, cancelados, comisión recurrente
+    var chips=document.querySelectorAll("#sec-clients .chips .chip b");
+    if(chips[0])chips[0].textContent=String(cl.active||0);
+    if(chips[1])chips[1].textContent=String(cl.trial||0);
+    if(chips[2])chips[2].textContent=String(cl.cancelled||0);
+    if(chips[3])chips[3].textContent=moneyMes(rec);
     // Enlace de referido real
     var link="https://tuialista.com/?ref="+encodeURIComponent(s.ref_code||"");
     var dl=$("dash-link"); if(dl) dl.textContent=link;
@@ -1922,6 +1931,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // Ocultar tarjetas de DEMO con datos por cliente (no reales / privacidad)
     hide("#sec-dashboard .grid2");
     hide("#sec-commissions .grid2");
+    // Tabla de clientes DEMO: por privacidad no listamos cada referido; mostramos los
+    // totales (arriba en chips/métricas) y ocultamos la tabla + filtros + nota demo.
+    var ctb=$("clients-tbody");
+    if(ctb)ctb.innerHTML='<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:22px">'+
+      (EN?"For privacy we don't list individual referred clients — you see the totals above."
+        :"Por privacidad no listamos a cada cliente referido — arriba ves los totales.")+'</td></tr>';
+    hide("#sec-clients .toolbar");
+    hide("#sec-clients table.data + div");
   }
   function renderCommissions(list){
     var tb=document.querySelector("#sec-commissions table.data tbody");

@@ -1584,7 +1584,53 @@ document.addEventListener("DOMContentLoaded", () => {
     }).join("");
     if(typeof initCopyButtons==="function")initCopyButtons();
   }
-  function loadData(){ api("/api/me/licenses").then(function(d){renderLicenses(d.licenses||[]);}).catch(function(){}); }
+  function money(n){return "$"+Number(n||0).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});}
+  function fmtShort(v){if(!v)return"—";var d=new Date(v);return isNaN(d.getTime())?esc(v):d.toLocaleDateString(EN?"en-US":"es-ES",{day:"numeric",month:"short",timeZone:"UTC"});}
+  function renderSummary(s){
+    var a=s.agents||{active:0,trial:0,canceled:0,total:0};
+    var vals=document.querySelectorAll("#sec-agents .metrics .val");
+    if(vals[0])vals[0].textContent=String(a.active||0);
+    if(vals[1])vals[1].textContent=String(a.trial||0);
+    if(vals[2])vals[2].textContent=s.next_renewal?fmtShort(s.next_renewal):"—";
+    if(vals[3])vals[3].innerHTML=money(s.monthly_total_usd)+"<small> USD</small>";
+  }
+  function renderAgents(list){
+    var wrap=document.querySelector("#sec-agents .agents");
+    if(!wrap)return;
+    if(!list||!list.length){
+      wrap.innerHTML='<div style="grid-column:1/-1;color:var(--muted);font-size:14px;padding:8px 0">'+
+        (EN?"You don't have any agents yet. ":"Aún no tienes agentes. ")+
+        '<a class="sec-go-cat" style="color:var(--signal-dim);cursor:pointer">'+
+        (EN?"Browse the catalog →":"Ver el catálogo →")+'</a></div>';
+      var lk=wrap.querySelector(".sec-go-cat");
+      if(lk)lk.addEventListener("click",function(e){e.preventDefault();
+        if(typeof showSection==="function")showSection("catalog");
+        else if(window.showSection)window.showSection("catalog");});
+      return;
+    }
+    wrap.innerHTML=list.map(function(l){
+      var trial=l.status==="trial", active=l.status==="active";
+      var pill=active?'<span class="pill ok"><span style="width:6px;height:6px;border-radius:50%;background:#1d9e75;display:inline-block"></span> '+esc(EN?"Active":"Activo")+'</span>'
+             :(trial?'<span class="pill trial"><i class="ti ti-clock" style="font-size:12px"></i> '+esc(EN?"Trial":"Prueba")+'</span>'
+             :'<span class="pill">'+esc(l.status)+'</span>');
+      var whenLbl=active?T.renews:(trial?T.trial:""), whenVal=fmt(l.current_period_end||l.trial_ends_at);
+      var k=esc(l.license_key);
+      return '<div class="acard'+(trial?' trial':'')+'">'+
+        '<div class="acard-head"><div class="acard-ico"><i class="ti ti-robot"></i></div>'+pill+'</div>'+
+        '<h3>'+esc(l.agent_name||l.agent_id)+'</h3>'+
+        '<table><tr><td>'+T.lic+'</td><td class="v"><span class="mono">'+k+'</span> '+
+        '<button class="copy-btn" data-key="'+k+'"><i class="ti ti-copy" style="font-size:11px"></i> '+T.copy+'</button></td></tr>'+
+        (whenLbl?'<tr><td>'+whenLbl+'</td><td class="v">'+whenVal+'</td></tr>':'')+'</table>'+
+        '<div class="acts">'+
+        '<a class="btn btn-solid btn-flex" href="https://github.com/uri2203/tuialista-site/releases/download/agents/agent-'+esc(l.agent_id)+'.exe" download><i class="ti ti-download"></i> '+T.dl+'</a>'+
+        '</div></div>';
+    }).join("");
+    if(typeof initCopyButtons==="function")initCopyButtons();
+  }
+  function loadData(){
+    api("/api/me/summary").then(renderSummary).catch(function(){});
+    api("/api/me/licenses").then(function(d){var l=d.licenses||[];renderLicenses(l);renderAgents(l);}).catch(function(){});
+  }
   var pendingEmail="";
   function showView(name){
     ["login","register","verify"].forEach(function(v){var el=$("view-"+v);if(el)el.style.display=(v===name?"block":"none");});
