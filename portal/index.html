@@ -604,6 +604,14 @@
     ══════════════════════════════════════════ -->
     <div id="sec-billing" class="sec-content">
 
+      <div class="card-box" style="display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:18px">
+        <div>
+          <h3 style="margin-bottom:4px"><i class="ti ti-settings-dollar"></i> <span id="mng-title">Gestionar suscripción</span></h3>
+          <div style="font-size:13px;color:var(--muted)" id="mng-sub">Cancela, cambia tu tarjeta o descarga tus facturas en el portal seguro de Stripe.</div>
+        </div>
+        <button class="btn btn-solid" id="btn-manage-billing" style="flex:0 0 auto"><i class="ti ti-external-link"></i> <span id="mng-btn">Gestionar</span></button>
+      </div>
+
       <div class="metrics metrics-3">
         <div class="metric">
           <div class="lbl"><i class="ti ti-calendar" style="font-size:15px"></i> <span data-i18n="portal.metric.billing">Próximo cobro</span></div>
@@ -1684,7 +1692,31 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(function(res){ res.s===200 ? setErr("ver-err",T.resent,true) : setErr("ver-err",errmsg(res.j.error)); })
       .catch(function(){});
   }
+  function openBilling(){
+    var btn=$("btn-manage-billing"); if(!btn)return;
+    var orig=btn.innerHTML; btn.disabled=true;
+    function notify(m){ if(typeof showToast==="function")showToast(m); else alert(m); }
+    fetch(API+"/api/me/billing-portal",{method:"POST",headers:{Authorization:"Bearer "+tok()}})
+      .then(function(r){return r.json().then(function(j){return {s:r.status,j:j};});})
+      .then(function(res){
+        if(res.s===200&&res.j.url){window.location.href=res.j.url;return;}
+        if(res.s===401){logout();return;}
+        var m=res.s===409?(EN?"You don't have active subscriptions in Stripe yet.":"Aún no tienes suscripciones activas en Stripe.")
+             :res.s===503?(EN?"Billing management isn't enabled yet. Contact support.":"La gestión de facturación aún no está habilitada. Contacta a soporte.")
+             :(EN?"Couldn't open billing. Try again.":"No se pudo abrir la facturación. Inténtalo de nuevo.");
+        notify(m); btn.disabled=false; btn.innerHTML=orig;
+      })
+      .catch(function(){ notify(EN?"Connection error.":"Error de conexión."); btn.disabled=false; btn.innerHTML=orig; });
+  }
   document.addEventListener("DOMContentLoaded",function(){
+    // Textos de "Gestionar suscripción" (Facturación)
+    if($("mng-title")){
+      $("mng-title").textContent=EN?"Manage subscription":"Gestionar suscripción";
+      $("mng-sub").textContent=EN?"Cancel, update your card or download invoices in Stripe's secure portal."
+        :"Cancela, cambia tu tarjeta o descarga tus facturas en el portal seguro de Stripe.";
+      $("mng-btn").textContent=EN?"Manage":"Gestionar";
+      $("btn-manage-billing").addEventListener("click",openBilling);
+    }
     $("auth-title").textContent=T.title; $("auth-sub").textContent=T.sub;
     $("auth-l-email").textContent=T.email; $("auth-l-pw").textContent=T.pw;
     $("auth-btn").textContent=T.enter; $("portal-logout").textContent=T.logout;
