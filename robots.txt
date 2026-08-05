@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Disallow: /Portales/
+Disallow: /Logros/
+Disallow: /sql/
+Disallow: /supabase/
+Disallow: /.env
+Disallow: /flow-automation/
+Disallow: /tests/
+Disallow: /node_modules/
+
+Sitemap: https://tuialista.com/sitemap.xml
+Sitemap: https://tuialista.com/sitemap_index.xml
