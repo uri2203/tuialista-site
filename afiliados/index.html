@@ -994,8 +994,11 @@ Te escribo porque creo que TuIAlista encaja contigo: agentes de IA especializado
               <div style="display:flex;justify-content:space-between"><span data-i18n="aff.set.member_since">Afiliado desde</span><span class="mono">dic 2025</span></div>
             </div>
             <div class="danger-zone">
-              <span data-i18n="aff.set.close_hint">Para cerrar tu cuenta de afiliado escríbenos a</span>
-              <a href="mailto:afiliados@tuialista.com">afiliados@tuialista.com</a>
+              <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+                <button class="btn btn-ghost" id="aff-export-data"><i class="ti ti-download"></i> <span id="aff-lbl-export">Descargar mis datos</span></button>
+                <button class="btn btn-ghost" id="aff-delete-account" style="border-color:rgba(163,45,45,.4);color:var(--danger)"><i class="ti ti-trash"></i> <span id="aff-lbl-delete">Eliminar mi cuenta</span></button>
+              </div>
+              <div style="margin-top:10px;font-size:12px" id="aff-delete-hint">Eliminar tu cuenta borra tus datos personales y de cobro. Tus comisiones y tu código se conservan anonimizados por obligación legal.</div>
             </div>
           </div>
         </div>
@@ -2029,7 +2032,48 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(function(res){ res.s===200 ? setErr("aff-ver-err",T.resent,true) : setErr("aff-ver-err",errmsg(res.j.error)); })
       .catch(function(){});
   }
+  function affToast(m){var t=$("toast"),tm=$("toast-msg");if(t&&tm){tm.textContent=m;t.classList.add("show");setTimeout(function(){t.classList.remove("show");},2600);}else{window.alert(m);}}
+  function doAffExport(){
+    var b=$("aff-export-data"); if(!b)return; b.disabled=true;
+    fetch(API+"/api/affiliate/export",{headers:{Authorization:"Bearer "+tok()}})
+      .then(function(r){ if(r.status===401){logout();throw new Error("unauth");} if(!r.ok)throw new Error("http"); return r.json(); })
+      .then(function(data){
+        var blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+        var url=URL.createObjectURL(blob), a=document.createElement("a");
+        a.href=url; a.download="tuialista-afiliado-mis-datos.json"; document.body.appendChild(a); a.click();
+        a.remove(); URL.revokeObjectURL(url);
+      })
+      .catch(function(){ affToast(EN?"Couldn't export your data.":"No se pudieron exportar tus datos."); })
+      .finally(function(){ b.disabled=false; });
+  }
+  function doAffDelete(){
+    var msg=EN?"This erases your personal and payout data. Pending commissions are settled separately. This cannot be undone. Continue?"
+              :"Esto borra tus datos personales y de cobro. Las comisiones pendientes se liquidan aparte. No se puede deshacer. ¿Continuar?";
+    if(!window.confirm(msg))return;
+    var b=$("aff-delete-account"); if(!b)return; b.disabled=true;
+    fetch(API+"/api/affiliate/delete",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+tok()},body:JSON.stringify({confirm:true})})
+      .then(function(r){return r.json().then(function(j){return {s:r.status,j:j};});})
+      .then(function(res){
+        if(res.s===200){
+          var pend=Number(res.j.pending_commissions_usd||0);
+          var extra=pend>0?(EN?" You had $"+pend.toFixed(2)+" in pending commissions; contact support to collect them.":" Tenías $"+pend.toFixed(2)+" en comisiones pendientes; contacta a soporte para cobrarlas."):"";
+          window.alert((EN?"Your affiliate account has been deleted.":"Tu cuenta de afiliado ha sido eliminada.")+extra);
+          setTok(null); window.location.href="/";
+        } else if(res.s===401){ logout(); }
+        else { affToast(EN?"Couldn't delete your account.":"No se pudo eliminar tu cuenta."); b.disabled=false; }
+      })
+      .catch(function(){ affToast(EN?"Connection error.":"Error de conexión."); b.disabled=false; });
+  }
   document.addEventListener("DOMContentLoaded",function(){
+    if($("aff-export-data")){
+      $("aff-lbl-export").textContent=EN?"Download my data":"Descargar mis datos";
+      $("aff-lbl-delete").textContent=EN?"Delete my account":"Eliminar mi cuenta";
+      $("aff-delete-hint").textContent=EN
+        ? "Deleting your account erases your personal and payout data. Your commissions and code are kept anonymized as required by law."
+        : "Eliminar tu cuenta borra tus datos personales y de cobro. Tus comisiones y tu código se conservan anonimizados por obligación legal.";
+      $("aff-export-data").addEventListener("click",doAffExport);
+      $("aff-delete-account").addEventListener("click",doAffDelete);
+    }
     $("aff-title").textContent=T.title; $("aff-sub").textContent=T.sub;
     $("aff-l-email").textContent=T.email; $("aff-l-pw").textContent=T.pw;
     $("aff-btn").textContent=T.enter; $("aff-logout").textContent=T.logout;
