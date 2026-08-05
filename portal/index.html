@@ -950,8 +950,11 @@
           <div class="card-box">
             <h3 style="color:var(--muted)"><i class="ti ti-alert-triangle"></i> <span data-i18n="portal.settings.danger">Cuenta</span></h3>
             <div class="danger-zone">
-              <span data-i18n="portal.settings.cancel_hint">Para cancelar tu suscripción o eliminar tu cuenta escríbenos a</span>
-              <a>soporte@tuialista.com</a>
+              <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+                <button class="btn btn-ghost" id="btn-export-data"><i class="ti ti-download"></i> <span id="lbl-export">Descargar mis datos</span></button>
+                <button class="btn btn-ghost" id="btn-delete-account" style="border-color:rgba(163,45,45,.4);color:#a32d2d"><i class="ti ti-trash"></i> <span id="lbl-delete">Eliminar mi cuenta</span></button>
+              </div>
+              <div style="margin-top:10px;font-size:12px" id="delete-hint">Eliminar tu cuenta cancela tus suscripciones y borra tus datos personales. Los registros de facturación se conservan anonimizados por obligación legal.</div>
             </div>
           </div>
         </div>
@@ -1708,6 +1711,33 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .catch(function(){ notify(EN?"Connection error.":"Error de conexión."); btn.disabled=false; btn.innerHTML=orig; });
   }
+  function doExport(){
+    var btn=$("btn-export-data"); if(!btn)return; btn.disabled=true;
+    fetch(API+"/api/me/export",{headers:{Authorization:"Bearer "+tok()}})
+      .then(function(r){ if(r.status===401){logout();throw new Error("unauth");} if(!r.ok)throw new Error("http"); return r.json(); })
+      .then(function(data){
+        var blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+        var url=URL.createObjectURL(blob), a=document.createElement("a");
+        a.href=url; a.download="tuialista-mis-datos.json"; document.body.appendChild(a); a.click();
+        a.remove(); URL.revokeObjectURL(url);
+      })
+      .catch(function(){ if(typeof showToast==="function")showToast(EN?"Couldn't export your data.":"No se pudieron exportar tus datos."); })
+      .finally(function(){ btn.disabled=false; });
+  }
+  function doDelete(){
+    var msg=EN?"This cancels your subscriptions and deletes your personal data. This cannot be undone. Continue?"
+              :"Esto cancela tus suscripciones y borra tus datos personales. No se puede deshacer. ¿Continuar?";
+    if(!window.confirm(msg))return;
+    var btn=$("btn-delete-account"); if(!btn)return; btn.disabled=true;
+    fetch(API+"/api/me/delete",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+tok()},body:JSON.stringify({confirm:true})})
+      .then(function(r){return r.json().then(function(j){return {s:r.status,j:j};});})
+      .then(function(res){
+        if(res.s===200){ window.alert(EN?"Your account has been deleted.":"Tu cuenta ha sido eliminada."); setTok(null); window.location.href="/"; }
+        else if(res.s===401){ logout(); }
+        else { if(typeof showToast==="function")showToast(EN?"Couldn't delete your account.":"No se pudo eliminar tu cuenta."); btn.disabled=false; }
+      })
+      .catch(function(){ if(typeof showToast==="function")showToast(EN?"Connection error.":"Error de conexión."); btn.disabled=false; });
+  }
   document.addEventListener("DOMContentLoaded",function(){
     // Textos de "Gestionar suscripción" (Facturación)
     if($("mng-title")){
@@ -1716,6 +1746,16 @@ document.addEventListener("DOMContentLoaded", () => {
         :"Cancela, cambia tu tarjeta o descarga tus facturas en el portal seguro de Stripe.";
       $("mng-btn").textContent=EN?"Manage":"Gestionar";
       $("btn-manage-billing").addEventListener("click",openBilling);
+    }
+    // Datos y baja de cuenta (ARCO/GDPR)
+    if($("btn-export-data")){
+      $("lbl-export").textContent=EN?"Download my data":"Descargar mis datos";
+      $("lbl-delete").textContent=EN?"Delete my account":"Eliminar mi cuenta";
+      $("delete-hint").textContent=EN
+        ? "Deleting your account cancels your subscriptions and erases your personal data. Billing records are kept anonymized as required by law."
+        : "Eliminar tu cuenta cancela tus suscripciones y borra tus datos personales. Los registros de facturación se conservan anonimizados por obligación legal.";
+      $("btn-export-data").addEventListener("click",doExport);
+      $("btn-delete-account").addEventListener("click",doDelete);
     }
     $("auth-title").textContent=T.title; $("auth-sub").textContent=T.sub;
     $("auth-l-email").textContent=T.email; $("auth-l-pw").textContent=T.pw;
