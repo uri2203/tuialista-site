@@ -915,19 +915,20 @@
             <h3><i class="ti ti-lock"></i> <span data-i18n="portal.settings.password">Cambiar contraseña</span></h3>
             <div class="form-group">
               <label data-i18n="portal.settings.pwd_current">Contraseña actual</label>
-              <input type="password" placeholder="••••••••">
+              <input type="password" id="pwd-current" placeholder="••••••••" autocomplete="current-password">
             </div>
             <div class="form-row">
               <div class="form-group">
                 <label data-i18n="portal.settings.pwd_new">Nueva contraseña</label>
-                <input type="password" placeholder="••••••••">
+                <input type="password" id="pwd-new" placeholder="••••••••" autocomplete="new-password">
               </div>
               <div class="form-group">
                 <label data-i18n="portal.settings.pwd_confirm">Confirmar contraseña</label>
-                <input type="password" placeholder="••••••••">
+                <input type="password" id="pwd-confirm" placeholder="••••••••" autocomplete="new-password">
               </div>
             </div>
-            <a class="btn btn-ghost" style="width:100%"><i class="ti ti-lock-check"></i> <span data-i18n="portal.settings.pwd_save">Actualizar contraseña</span></a>
+            <div id="pwd-msg" style="display:none;font-size:13px;margin-bottom:10px"></div>
+            <button class="btn btn-solid" id="pwd-save-btn" style="width:100%"><i class="ti ti-lock-check"></i> <span data-i18n="portal.settings.pwd_save">Actualizar contraseña</span></button>
           </div>
         </div>
 
@@ -1731,6 +1732,25 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .catch(function(){ notify(EN?"Connection error.":"Error de conexión."); btn.disabled=false; btn.innerHTML=orig; });
   }
+  function pwdMsg(m,ok){var e=$("pwd-msg");if(!e)return;if(!m){e.style.display="none";return;}e.textContent=m;e.style.color=ok?"var(--ok,#1d9e75)":"#c0392b";e.style.display="block";}
+  function doChangePassword(){
+    var cur=$("pwd-current").value, nw=$("pwd-new").value, cf=$("pwd-confirm").value;
+    if(!cur||!nw){pwdMsg(EN?"Fill in all fields.":"Completa todos los campos.");return;}
+    if(nw.length<8){pwdMsg(EN?"New password must be at least 8 characters.":"La nueva contraseña debe tener al menos 8 caracteres.");return;}
+    if(nw!==cf){pwdMsg(EN?"Passwords don't match.":"Las contraseñas no coinciden.");return;}
+    var b=$("pwd-save-btn"); b.disabled=true; pwdMsg("");
+    fetch(API+"/api/me/change-password",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+tok()},body:JSON.stringify({current_password:cur,new_password:nw})})
+      .then(function(r){return r.json().then(function(j){return {s:r.status,j:j};});})
+      .then(function(res){
+        if(res.s===200){ pwdMsg(EN?"Password updated.":"Contraseña actualizada.",true); $("pwd-current").value=$("pwd-new").value=$("pwd-confirm").value=""; }
+        else if(res.s===401){ logout(); }
+        else { pwdMsg(res.j.error==="current_password_wrong"?(EN?"Current password is incorrect.":"La contraseña actual es incorrecta.")
+             :res.j.error==="password_corto"?(EN?"New password must be at least 8 characters.":"La nueva contraseña debe tener al menos 8 caracteres.")
+             :(EN?"Couldn't update password.":"No se pudo actualizar la contraseña.")); }
+      })
+      .catch(function(){ pwdMsg(EN?"Connection error.":"Error de conexión."); })
+      .finally(function(){ b.disabled=false; });
+  }
   function doExport(){
     var btn=$("btn-export-data"); if(!btn)return; btn.disabled=true;
     fetch(API+"/api/me/export",{headers:{Authorization:"Bearer "+tok()}})
@@ -1777,6 +1797,7 @@ document.addEventListener("DOMContentLoaded", () => {
       $("btn-export-data").addEventListener("click",doExport);
       $("btn-delete-account").addEventListener("click",doDelete);
     }
+    if($("pwd-save-btn")) $("pwd-save-btn").addEventListener("click",doChangePassword);
     $("auth-title").textContent=T.title; $("auth-sub").textContent=T.sub;
     $("auth-l-email").textContent=T.email; $("auth-l-pw").textContent=T.pw;
     $("auth-btn").textContent=T.enter; $("portal-logout").textContent=T.logout;

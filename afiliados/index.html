@@ -928,19 +928,20 @@ Te escribo porque creo que TuIAlista encaja contigo: agentes de IA especializado
             <h3><i class="ti ti-lock"></i> <span data-i18n="aff.set.password">Cambiar contraseña</span></h3>
             <div class="form-group">
               <label data-i18n="aff.set.pwd_current">Contraseña actual</label>
-              <input type="password" placeholder="••••••••">
+              <input type="password" id="aff-pwd-current" placeholder="••••••••" autocomplete="current-password">
             </div>
             <div class="form-row">
               <div class="form-group">
                 <label data-i18n="aff.set.pwd_new">Nueva contraseña</label>
-                <input type="password" placeholder="••••••••">
+                <input type="password" id="aff-pwd-new" placeholder="••••••••" autocomplete="new-password">
               </div>
               <div class="form-group">
                 <label data-i18n="aff.set.pwd_confirm">Confirmar contraseña</label>
-                <input type="password" placeholder="••••••••">
+                <input type="password" id="aff-pwd-confirm" placeholder="••••••••" autocomplete="new-password">
               </div>
             </div>
-            <button class="btn btn-ghost" style="width:100%" data-save-toast><i class="ti ti-lock-check"></i> <span data-i18n="aff.set.pwd_save">Actualizar contraseña</span></button>
+            <div id="aff-pwd-msg" style="display:none;font-size:13px;margin-bottom:10px"></div>
+            <button class="btn btn-solid" id="aff-pwd-save" style="width:100%"><i class="ti ti-lock-check"></i> <span data-i18n="aff.set.pwd_save">Actualizar contraseña</span></button>
           </div>
         </div>
 
@@ -2033,6 +2034,25 @@ document.addEventListener("DOMContentLoaded", () => {
       .catch(function(){});
   }
   function affToast(m){var t=$("toast"),tm=$("toast-msg");if(t&&tm){tm.textContent=m;t.classList.add("show");setTimeout(function(){t.classList.remove("show");},2600);}else{window.alert(m);}}
+  function affPwdMsg(m,ok){var e=$("aff-pwd-msg");if(!e)return;if(!m){e.style.display="none";return;}e.textContent=m;e.style.color=ok?"var(--ok,#1d9e75)":"#c0392b";e.style.display="block";}
+  function doAffChangePassword(){
+    var cur=$("aff-pwd-current").value, nw=$("aff-pwd-new").value, cf=$("aff-pwd-confirm").value;
+    if(!cur||!nw){affPwdMsg(EN?"Fill in all fields.":"Completa todos los campos.");return;}
+    if(nw.length<8){affPwdMsg(EN?"New password must be at least 8 characters.":"La nueva contraseña debe tener al menos 8 caracteres.");return;}
+    if(nw!==cf){affPwdMsg(EN?"Passwords don't match.":"Las contraseñas no coinciden.");return;}
+    var b=$("aff-pwd-save"); b.disabled=true; affPwdMsg("");
+    fetch(API+"/api/me/change-password",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+tok()},body:JSON.stringify({current_password:cur,new_password:nw})})
+      .then(function(r){return r.json().then(function(j){return {s:r.status,j:j};});})
+      .then(function(res){
+        if(res.s===200){ affPwdMsg(EN?"Password updated.":"Contraseña actualizada.",true); $("aff-pwd-current").value=$("aff-pwd-new").value=$("aff-pwd-confirm").value=""; }
+        else if(res.s===401){ logout(); }
+        else { affPwdMsg(res.j.error==="current_password_wrong"?(EN?"Current password is incorrect.":"La contraseña actual es incorrecta.")
+             :res.j.error==="password_corto"?(EN?"New password must be at least 8 characters.":"La nueva contraseña debe tener al menos 8 caracteres.")
+             :(EN?"Couldn't update password.":"No se pudo actualizar la contraseña.")); }
+      })
+      .catch(function(){ affPwdMsg(EN?"Connection error.":"Error de conexión."); })
+      .finally(function(){ b.disabled=false; });
+  }
   function doAffExport(){
     var b=$("aff-export-data"); if(!b)return; b.disabled=true;
     fetch(API+"/api/affiliate/export",{headers:{Authorization:"Bearer "+tok()}})
@@ -2074,6 +2094,7 @@ document.addEventListener("DOMContentLoaded", () => {
       $("aff-export-data").addEventListener("click",doAffExport);
       $("aff-delete-account").addEventListener("click",doAffDelete);
     }
+    if($("aff-pwd-save")) $("aff-pwd-save").addEventListener("click",doAffChangePassword);
     $("aff-title").textContent=T.title; $("aff-sub").textContent=T.sub;
     $("aff-l-email").textContent=T.email; $("aff-l-pw").textContent=T.pw;
     $("aff-btn").textContent=T.enter; $("aff-logout").textContent=T.logout;
