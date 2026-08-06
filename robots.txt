@@ -8,6 +8,9 @@ Disallow: /.env
 Disallow: /flow-automation/
 Disallow: /tests/
 Disallow: /node_modules/
+Disallow: /projects/_template/
 
 Sitemap: https://tuialista.com/sitemap.xml
 Sitemap: https://tuialista.com/sitemap_index.xml
+Sitemap: https://tuialista.com/lastmile/sitemap.xml
+Sitemap: https://tuialista.com/nocmonitor/sitemap.xml

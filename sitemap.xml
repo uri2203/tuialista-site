@@ -2,107 +2,126 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://tuialista.com/</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-08-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://tuialista.com/"/>
   </url>
   <url>
     <loc>https://tuialista.com/afiliados/</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>daily</changefreq>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://tuialista.com/afiliados/"/>
   </url>
   <url>
     <loc>https://tuialista.com/catalogo/</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>daily</changefreq>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://tuialista.com/catalogo/"/>
   </url>
   <url>
     <loc>https://tuialista.com/gracias/</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://tuialista.com/gracias/"/>
   </url>
   <url>
     <loc>https://tuialista.com/portal/</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>daily</changefreq>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://tuialista.com/portal/"/>
   </url>
   <url>
     <loc>https://tuialista.com/soporte/</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>daily</changefreq>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://tuialista.com/soporte/"/>
   </url>
   <url>
-    <loc>https://tuialista.com/legal\afiliados/</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://tuialista.com/legal\afiliados/"/>
+    <loc>https://tuialista.com/legal/afiliados/</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tuialista.com/legal/afiliados/"/>
   </url>
   <url>
-    <loc>https://tuialista.com/legal\aviso-simplificado/</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://tuialista.com/legal\aviso-simplificado/"/>
+    <loc>https://tuialista.com/legal/aviso-simplificado/</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tuialista.com/legal/aviso-simplificado/"/>
   </url>
   <url>
-    <loc>https://tuialista.com/legal\compromiso-local/</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://tuialista.com/legal\compromiso-local/"/>
+    <loc>https://tuialista.com/legal/compromiso-local/</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tuialista.com/legal/compromiso-local/"/>
   </url>
   <url>
-    <loc>https://tuialista.com/legal\cookies/</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://tuialista.com/legal\cookies/"/>
+    <loc>https://tuialista.com/legal/cookies/</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tuialista.com/legal/cookies/"/>
   </url>
   <url>
-    <loc>https://tuialista.com/legal\deslinde-ia/</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://tuialista.com/legal\deslinde-ia/"/>
+    <loc>https://tuialista.com/legal/deslinde-ia/</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tuialista.com/legal/deslinde-ia/"/>
   </url>
   <url>
-    <loc>https://tuialista.com/legal\privacidad/</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://tuialista.com/legal\privacidad/"/>
+    <loc>https://tuialista.com/legal/privacidad/</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tuialista.com/legal/privacidad/"/>
   </url>
   <url>
-    <loc>https://tuialista.com/legal\reembolsos/</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://tuialista.com/legal\reembolsos/"/>
+    <loc>https://tuialista.com/legal/reembolsos/</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tuialista.com/legal/reembolsos/"/>
   </url>
   <url>
-    <loc>https://tuialista.com/legal\terminos/</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://tuialista.com/legal\terminos/"/>
+    <loc>https://tuialista.com/legal/terminos/</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tuialista.com/legal/terminos/"/>
   </url>
   <url>
-    <loc>https://tuialista.com/legal\uso-aceptable/</loc>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://tuialista.com/legal\uso-aceptable/"/>
+    <loc>https://tuialista.com/legal/uso-aceptable/</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tuialista.com/legal/uso-aceptable/"/>
+  </url>
+  <url>
+    <loc>https://tuialista.com/lastmile/</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tuialista.com/lastmile/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tuialista.com/lastmile/es/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tuialista.com/lastmile/en/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://tuialista.com/lastmile/pt/"/>
+  </url>
+  <url>
+    <loc>https://tuialista.com/nocmonitor/</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tuialista.com/nocmonitor/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tuialista.com/nocmonitor/en/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://tuialista.com/nocmonitor/es/"/>
   </url>
 </urlset>

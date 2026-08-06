@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{PROJECT_NAME}} — TuIAlista Ecosystem</title>
+    <meta name="description" content="{{DESCRIPTION}}">
+    <meta name="keywords" content="{{KEYWORDS}}">
+    <link rel="canonical" href="https://tuialista.com/{{PROJECT_SLUG}}/">
+    
+    <!-- hreflang tags -->
+    <link rel="alternate" hreflang="es" href="https://tuialista.com/{{PROJECT_SLUG}}/es/">
+    <link rel="alternate" hreflang="en" href="https://tuialista.com/{{PROJECT_SLUG}}/en/">
+    <link rel="alternate" hreflang="x-default" href="https://tuialista.com/{{PROJECT_SLUG}}/">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{PROJECT_NAME}} — TuIAlista">
+    <meta property="og:description" content="{{DESCRIPTION}}">
+    <meta property="og:url" content="https://tuialista.com/{{PROJECT_SLUG}}/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://tuialista.com/assets/img/og-{{PROJECT_SLUG}}.png">
+    <meta property="og:site_name" content="TuIAlista">
+    <meta property="og:locale" content="es_MX">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{PROJECT_NAME}} — TuIAlista">
+    <meta name="twitter:description" content="{{DESCRIPTION}}">
+    
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "{{PROJECT_NAME}}",
+        "description": "{{DESCRIPTION}}",
+        "url": "https://tuialista.com/{{PROJECT_SLUG}}/",
+        "brand": {
+            "@type": "Brand",
+            "name": "TuIAlista"
+        },
+        "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "USD",
+            "lowPrice": "{{LOW_PRICE}}",
+            "highPrice": "{{HIGH_PRICE}}"
+        }
+    }
+    </script>
+    
+    <!-- Plausible Analytics -->
+    <script defer data-domain="tuialista.com" src="https://plausible.io/js/script.js"></script>
+    
+    <style>
+        :root {
+            --steel-900: #0f1922;
+            --steel-800: #16242f;
+            --paper: #f5f6f4;
+            --ink: #0f1922;
+            --muted: #5a6b73;
+            --signal: #e8821e;
+            --line: #d4d8d2;
+            --ok: #1d9e75;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+        
+        .wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+        
+        /* Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(245, 246, 244, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--line);
+        }
+        
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 68px;
+        }
+        
+        .logo {
+            font-weight: 700;
+            font-size: 21px;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+        
+        .logo .dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--signal);
+        }
+        
+        .nav-links { display: flex; gap: 32px; align-items: center; }
+        .nav-links a { color: var(--muted); text-decoration: none; font-size: 14.5px; }
+        .nav-links a:hover { color: var(--ink); }
+        
+        /* Hero */
+        .hero { padding: 90px 0 70px; }
+        .hero h1 { font-size: clamp(38px, 5vw, 62px); font-weight: 700; margin-bottom: 24px; }
+        .hero h1 em { font-style: normal; color: var(--signal); }
+        .hero-lead { font-size: 19px; color: var(--muted); max-width: 46ch; margin-bottom: 36px; }
+        .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+        
+        .btn {
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 14.5px;
+            padding: 11px 22px;
+            border-radius: 8px;
+            transition: 0.18s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn-solid { background: var(--steel-900); color: var(--paper); }
+        .btn-solid:hover { background: var(--steel-800); }
+        .btn-signal { background: var(--signal); color: #1a1206; }
+        .btn-signal:hover { background: #c46a12; }
+        
+        /* Features */
+        .features { padding: 80px 0; }
+        .features h2 { font-size: 32px; margin-bottom: 48px; }
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
+        .feature-card { padding: 32px; border: 1px solid var(--line); border-radius: 12px; }
+        .feature-card h3 { font-size: 18px; margin-bottom: 12px; }
+        .feature-card p { color: var(--muted); }
+        
+        /* Footer */
+        footer {
+            background: var(--steel-900);
+            color: rgba(255, 255, 255, 0.5);
+            text-align: center;
+            padding: 40px 32px;
+            margin-top: 80px;
+        }
+        
+        footer a { color: var(--signal); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+        
+        /* Projects list */
+        .projects { padding: 60px 0; }
+        .projects h2 { font-size: 28px; margin-bottom: 32px; }
+        .project-list { display: flex; flex-direction: column; gap: 16px; }
+        .project-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 24px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--ink);
+            transition: 0.18s;
+        }
+        .project-item:hover { border-color: var(--signal); }
+        .project-status {
+            font-size: 12px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        .status-live { background: #d4edda; color: #155724; }
+        .status-soon { background: #fff3cd; color: #856404; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="wrap nav">
+            <div class="logo"><span class="dot"></span>Tu<b>IA</b>lista</div>
+            <div class="nav-links">
+                <a href="#proyectos">Proyectos</a>
+                <a href="#como">Cómo funciona</a>
+                <a href="https://tuialista.com">Volver a TuIAlista</a>
+            </div>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="wrap">
+            <h1><em>{{PROJECT_NAME}}</em></h1>
+            <p class="hero-lead">{{TAGLINE}}</p>
+            <div class="hero-cta">
+                <a href="#proyectos" class="btn btn-signal">Ver proyectos</a>
+                <a href="https://tuialista.com" class="btn btn-solid">Volver a TuIAlista</a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="projects" id="proyectos">
+        <div class="wrap">
+            <h2>Ecosistema de Proyectos</h2>
+            <div class="project-list">
+                <!-- LASTMILE -->
+                <a href="/lastmile/" class="project-item">
+                    <div>
+                        <strong>LastMile</strong>
+                        <p style="color: var(--muted); font-size: 14px;">Entregas y logística para LATAM</p>
+                    </div>
+                    <span class="project-status status-soon">Próximamente</span>
+                </a>
+                
+                <!-- NOC MONITOR -->
+                <a href="/nocmonitor/" class="project-item">
+                    <div>
+                        <strong>NOC Monitor</strong>
+                        <p style="color: var(--muted); font-size: 14px;">Monitoreo global de infraestructura IT</p>
+                    </div>
+                    <span class="project-status status-soon">Próximamente</span>
+                </a>
+                
+                <!-- YAYIKA -->
+                <a href="https://yayika.com" class="project-item" target="_blank">
+                    <div>
+                        <strong>Yayika</strong>
+                        <p style="color: var(--muted); font-size: 14px;">Productos digitales para mujeres</p>
+                    </div>
+                    <span class="project-status status-live">Activo</span>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="wrap">
+            <p>© 2026 TuIAlista · Todos los derechos reservados</p>
+            <p style="margin-top: 8px;">
+                <a href="https://tuialista.com">TuIAlista</a> · 
+                <a href="/lastmile/">LastMile</a> · 
+                <a href="/nocmonitor/">NOC Monitor</a> · 
+                <a href="https://yayika.com">Yayika</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
