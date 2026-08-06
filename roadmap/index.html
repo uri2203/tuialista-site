@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planificacion — TuIAlista Ecosystem</title>
+    <meta name="description" content="Roadmap y planificacion de proyectos del ecosistema TuIAlista">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f5f6f4;
+            --surface: #ffffff;
+            --ink: #0f1922;
+            --muted: #5a6b73;
+            --signal: #e8821e;
+            --line: #d4d8d2;
+            --ok: #1d9e75;
+            --warn: #eab308;
+            --danger: #ef4444;
+            --info: #3b82f6;
+            --planning: #a78bfa;
+            --progress: #3b82f6;
+            --beta: #f59e0b;
+            --live: #22c55e;
+            --archived: #9ca3af;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+        .wrap { max-width: 1400px; margin: 0 auto; padding: 0 32px; }
+        
+        /* NAV */
+        header {
+            background: var(--surface);
+            border-bottom: 1px solid var(--line);
+            padding: 16px 0;
+        }
+        .nav { display: flex; align-items: center; justify-content: space-between; }
+        .logo { display: flex; align-items: center; gap: 10px; font-family: 'Space Grotesk'; font-weight: 700; font-size: 20px; text-decoration: none; color: var(--ink); }
+        .logo .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--signal); }
+        .nav-links { display: flex; gap: 24px; }
+        .nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; }
+        .nav-links a:hover { color: var(--ink); }
+        .nav-links a.active { color: var(--signal); }
+        
+        /* HEADER */
+        .page-header { padding: 48px 0 32px; }
+        .page-header h1 { font-family: 'Space Grotesk'; font-size: 36px; margin-bottom: 8px; }
+        .page-header p { color: var(--muted); font-size: 16px; }
+        
+        /* STATS */
+        .stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 48px; }
+        .stat-card {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        .stat-card .value { font-family: 'Space Grotesk'; font-size: 32px; font-weight: 700; }
+        .stat-card .label { font-size: 13px; color: var(--muted); margin-top: 4px; }
+        .stat-card.planning .value { color: var(--planning); }
+        .stat-card.progress .value { color: var(--progress); }
+        .stat-card.beta .value { color: var(--beta); }
+        .stat-card.live .value { color: var(--live); }
+        .stat-card.total .value { color: var(--ink); }
+        
+        /* PROJECTS GRID */
+        .projects-section { margin-bottom: 48px; }
+        .section-title { font-family: 'Space Grotesk'; font-size: 24px; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+        .section-title .badge { font-size: 12px; padding: 4px 10px; border-radius: 100px; font-weight: 600; }
+        .badge-planning { background: #f3e8ff; color: #7c3aed; }
+        .badge-progress { background: #dbeafe; color: #2563eb; }
+        .badge-beta { background: #fef3c7; color: #d97706; }
+        .badge-live { background: #dcfce7; color: #16a34a; }
+        
+        .project-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 24px; }
+        .project-card {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+        .project-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+        .project-card-header {
+            padding: 24px 24px 16px;
+            border-bottom: 1px solid var(--line);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .project-card-header h3 { font-family: 'Space Grotesk'; font-size: 20px; }
+        .project-card-header .status {
+            font-size: 11px;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .status-planning { background: #f3e8ff; color: #7c3aed; }
+        .status-progress { background: #dbeafe; color: #2563eb; }
+        .status-beta { background: #fef3c7; color: #d97706; }
+        .status-live { background: #dcfce7; color: #16a34a; }
+        .status-archived { background: #f3f4f6; color: #6b7280; }
+        
+        .project-card-body { padding: 24px; }
+        .project-card-body p { color: var(--muted); font-size: 14px; margin-bottom: 16px; }
+        
+        /* ROADMAP ITEMS */
+        .roadmap { margin-top: 16px; }
+        .roadmap-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--line);
+            font-size: 13px;
+        }
+        .roadmap-item:last-child { border-bottom: none; }
+        .roadmap-check {
+            width: 18px;
+            height: 18px;
+            border-radius: 4px;
+            border: 2px solid var(--line);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .roadmap-check.done { background: var(--ok); border-color: var(--ok); color: white; font-size: 10px; }
+        .roadmap-check.active { border-color: var(--info); background: #dbeafe; }
+        .roadmap-text { flex: 1; }
+        .roadmap-text.done { text-decoration: line-through; color: var(--muted); }
+        .roadmap-text .tag {
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-left: 6px;
+            font-weight: 600;
+        }
+        .tag-blocker { background: #fee2e2; color: #dc2626; }
+        .tag-dependency { background: #fef3c7; color: #d97706; }
+        .tag-optional { background: #e0e7ff; color: #4f46e5; }
+        
+        /* PROGRESS BAR */
+        .progress-bar { margin-top: 16px; }
+        .progress-bar .bar-bg {
+            height: 6px;
+            background: var(--line);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .progress-bar .bar-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.3s;
+        }
+        .progress-bar .bar-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 6px;
+        }
+        
+        /* TIMELINE */
+        .timeline-section { margin-bottom: 48px; }
+        .timeline {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 32px;
+        }
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 120px 20px 1fr;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--line);
+        }
+        .timeline-item:last-child { border-bottom: none; }
+        .timeline-date { font-family: 'Space Grotesk'; font-size: 14px; color: var(--muted); text-align: right; padding-top: 2px; }
+        .timeline-dot { display: flex; justify-content: center; }
+        .timeline-dot::before {
+            content: '';
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--line);
+            border: 2px solid var(--surface);
+            box-shadow: 0 0 0 2px var(--line);
+        }
+        .timeline-dot.active::before { background: var(--info); box-shadow: 0 0 0 2px var(--info); }
+        .timeline-dot.done::before { background: var(--ok); box-shadow: 0 0 0 2px var(--ok); }
+        .timeline-content h4 { font-size: 15px; margin-bottom: 4px; }
+        .timeline-content p { font-size: 13px; color: var(--muted); }
+        
+        /* BLOCKERS */
+        .blockers-section { margin-bottom: 48px; }
+        .blocker-list {
+            background: var(--surface);
+            border: 1px solid var(--danger);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .blocker-header {
+            background: #fef2f2;
+            padding: 16px 24px;
+            border-bottom: 1px solid #fecaca;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            color: var(--danger);
+        }
+        .blocker-item {
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--line);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .blocker-item:last-child { border-bottom: none; }
+        .blocker-item .project { font-size: 12px; color: var(--muted); }
+        
+        /* FOOTER */
+        footer {
+            background: var(--ink);
+            color: rgba(255,255,255,0.5);
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 60px;
+        }
+        footer a { color: var(--signal); text-decoration: none; }
+        
+        @media (max-width: 768px) {
+            .stats { grid-template-columns: repeat(2, 1fr); }
+            .project-cards { grid-template-columns: 1fr; }
+            .timeline-item { grid-template-columns: 80px 16px 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="wrap nav">
+            <a href="/" class="logo"><span class="dot"></span>TuIAlista Ecosystem</a>
+            <div class="nav-links">
+                <a href="https://tuialista.com">Sitio Principal</a>
+                <a href="/lastmile/">LastMile</a>
+                <a href="/nocmonitor/">NOC Monitor</a>
+                <a href="/roadmap/" class="active">Roadmap</a>
+            </div>
+        </div>
+    </header>
+    
+    <section class="page-header">
+        <div class="wrap">
+            <h1>Roadmap del Ecosistema</h1>
+            <p>Estado actual de cada proyecto, lo que falta, y bloqueos pendientes.</p>
+        </div>
+    </section>
+    
+    <div class="wrap">
+        <!-- STATS -->
+        <div class="stats">
+            <div class="stat-card total">
+                <div class="value">4</div>
+                <div class="label">Proyectos Totales</div>
+            </div>
+            <div class="stat-card live">
+                <div class="value">1</div>
+                <div class="label">En Produccion</div>
+            </div>
+            <div class="stat-card planning">
+                <div class="value">2</div>
+                <div class="label">En Planificacion</div>
+            </div>
+            <div class="stat-card progress">
+                <div class="value">0</div>
+                <div class="label">En Desarrollo</div>
+            </div>
+            <div class="stat-card beta">
+                <div class="value">0</div>
+                <div class="label">En Beta</div>
+            </div>
+        </div>
+        
+        <!-- PROJECTS -->
+        <div class="projects-section">
+            <div class="section-title">Proyectos</div>
+            <div class="project-cards">
+                
+                <!-- TUIALISTA -->
+                <div class="project-card">
+                    <div class="project-card-header">
+                        <h3>TuIAlista</h3>
+                        <span class="status status-live">LIVE</span>
+                    </div>
+                    <div class="project-card-body">
+                        <p>Plataforma principal de agentes de IA para negocios. Sitio web, checkout, portal de clientes.</p>
+                        <div class="progress-bar">
+                            <div class="bar-bg"><div class="bar-fill" style="width: 85%; background: var(--ok);"></div></div>
+                            <div class="bar-label"><span>85% completo</span><span>Activo</span></div>
+                        </div>
+                        <div class="roadmap">
+                            <div class="roadmap-item">
+                                <div class="roadmap-check done">✓</div>
+                                <div class="roadmap-text done">Sitio web principal con i18n</div>
+                            </div>
+                            <div class="roadmap-item">
+                                <div class="roadmap-check done">✓</div>
+                                <div class="roadmap-text done">Checkout y pagos integrados</div>
+                            </div>
+                            <div class="roadmap-item">
+                                <div class="roadmap-check done">✓</div>
+                                <div class="roadmap-text done">Portal de clientes</div>
+                            </div>
+                            <div class="roadmap-item">
+                                <div class="roadmap-check done">✓</div>
+                                <div class="roadmap-text done">SEO optimizado (Google Search Console)</div>
+                            </div>
+                            <div class="roadmap-item">
+                                <div class="roadmap-check active"></div>
+                                <div class="roadmap-text">Verificar dominio en Google Search Console <span class="tag tag-blocker">BLOQUEADO</span></div>
+                            </div>
+                            <div class="roadmap-item">
+                                <div class="roadmap-check"></div>
+                                <div class="roadmap-text">Ecosistema de proyectos (LastMile, NOC Monitor)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- YAYIKA -->
+                <div class="project-card">
+                    <div class="project-card-header">
+                        <h3>Yayika</h3>
+                        <span class="status status-live">LIVE</span>
+                    </div>
+                    <div class="project-card-body">
+                        <p>Productos digitales para mujeres emprendedoras. Ya activo en yayika.com.</p>
+                        <div class="progress-bar">
+                            <div class="bar-bg"><div class="bar-fill" style="width: 90%; background: var(--ok);"></div></div>
+                            <div class="bar-label"><span>90% completo</span><span>Activo</span></div>
+                        </div>
+                        <div class="roadmap">
+                            <div class="roadmap-item">
+                                <div class="roadmap-check done">✓</div>
+                                <div class="roadmap-text done">Sitio web en yayika.com</div>
+                            </div>
+                            <div class="roadmap-item">
+                                <div class="roadmap-check done">✓</div>
+                                <div class="roadmap-text done">3 productos (Semilla, Guerrera, Diamante)</div>
+                            </div>
+                            <div class="roadmap-item">
+                                <div class="roadmap-check done">✓</div>
+                                <div class="roadmap-text done">SEO optimizado en yayika.com</div>
+                            </div>
+                            <div class="roadmap-item">
+                                <div class="roadmap-check done">✓</div>
+                                <div class="roadmap-text done">Google Search Console verificado</div>
+                            </div>
+                            <div class="roadmap-item">
+                                <div class="roadmap-check active"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- LASTMILE -->
+                <div class="project-card">
+                    <div class="project-card-header">
+                        <h3>LastMile</h3>
+                        <span class="status status-planning">PLANNING</span>
+                    </div>
+                    <div class="project-card-body">
+                        <p>Plataforma de entrega y logistica para LATAM. Landing page creada, pendiente desarrollo completo.</p>
+                        <div class="progress-bar">
+                            <div class="bar-bg"><div class="bar-fill" style="width: 15%; background: var(--planning);"></div></div>
+                            <div class="bar-label"><span>15% completo</span><span>Fase: Planificacion</span></div>
+                        </div>
+                        <div class="roadmap">
+                            <div class="roadmap-item">
+                                <div class="roadmap-check done">✓</div>
+                                <div class="roadmap-text done">Landing page con diseño propio</div>
+                            </div>
+                            <div class="roadmap-item">
+                                <div class="roadmap-check done">✓</div>
+                                <div class="roadmap-text done">Sitemap y SEO basico</div>
+                            </div>
+                            <div class="roadmap-item">
+                                <div class="roadmap-check active"></div>
+                                <div class="roadmap-text">Definir modelo de negocio y pricing final <span class="tag tag-dependency">PENDIENTE</span></div>
+                            </div>
+                            <div class="roadmap-item">
+                                <div class="roadmap-check"></div>
+                                <div class="roadmap-text">Elegir dominio propio o subdominio <span class="tag tag-blocker">BLOQUEADO</span></div>
+                            </div>
+                            <div class="roadmap-item">
+                                <div class="roadmap-check"></div>
+                                <div class="roadmap-text">Desarrollar backend (API de entregas)</div>
+                            </div>
+                            <div class="roadmap-item">
+                                <div class="roadmap-check"></div>
+                                <div class="roadmap-text">App de repartidor (movil)</div>
+                            </div>
+                            <div class="roadmap-item">
+                                <div class="roadmap-check"></div>
+                                <div class="roadmap-text">Integracion con pasarelas de pago</div>
+                            </div>
+                            <div class="roadmap-item">
+                                <div class="roadmap-check"></div>
+                                <div class="roadmap-text">Documentos legales (terminos, privacidad)</div>
+                            </div>
+                            <div class="roadmap-item">
+                                <div class="roadmap-check"></div>
+                                <div class="roadmap-text">Beta cerrada con 5-10 negocios piloto</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- NOC MONITOR -->
+                <div class="project-card">
+                    <div class="project-card-header">
+                        <h3>NOC Monitor</h3>
+                        <span class="status status-planning">PLANNING</span>
+                    </div>
+                    <div class="project-card-body">
+                        <p>Monitoreo global de infraestructura IT. Landing page creada, pendiente desarrollo completo.</p>
+                        <div class="progress-bar">
+                            <div class="bar-bg"><div class="bar-fill" style="width: 15%; background: var(--planning);"></div></div>
+                            <div class="bar-label"><span>15% completo</span><span>Fase: Planificacion</span></div>
+                        </div>
+                        <div class="roadmap">
+                            <div class="roadmap-item">
+                                <div class="roadmap-check done">✓</div>
+                                <div class="roadmap-text done">Landing page con diseño propio</div>
+                            </div>
+                            <div class="roadmap-item">
+                                <div class="roadmap-check done">✓</div>
+                                <div class="roadmap-text done">Sitemap y SEO basico</div>
+                            </div>
+                            <div class="roadmap-item">
+                                <div class="roadmap-check active"></div>
+                                <div class="roadmap-text">Definir arquitectura del sistema de monitoreo <span class="tag tag-dependency">PENDIENTE</span></div>
+                            </div>
+                            <div class="roadmap-item">
+                                <div class="roadmap-check"></div>
+                                <div class="roadmap-text">Elegir dominio propio o subdominio <span class="tag tag-blocker">BLOQUEADO</span></div>
+                            </div>
+                            <div class="roadmap-item">
+                                <div class="roadmap-check"></div>
+                                <div class="roadmap-text">Desarrollar agente de monitoreo (daemon)</div>
+                            </div>
+                            <div class="roadmap-item">
+                                <div class="roadmap-check"></div>
+                                <div class="roadmap-text">Dashboard en tiempo real (WebSocket)</div>
+                            </div>
+                            <div class="roadmap-item">
+                                <div class="roadmap-check"></div>
+                                <div class="roadmap-text">Sistema de alertas (email, Slack, PagerDuty)</div>
+                            </div>
+                            <div class="roadmap-item">
+                                <div class="roadmap-check"></div>
+                                <div class="roadmap-text">API para integraciones</div>
+                            </div>
+                            <div class="roadmap-item">
+                                <div class="roadmap-check"></div>
+                                <div class="roadmap-text">Documentos legales (terminos, privacidad)</div>
+                            </div>
+                            <div class="roadmap-item">
+                                <div class="roadmap-check"></div>
+                                <div class="roadmap-text">Beta cerrada con 3-5 clientes piloto</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- BLOCKERS -->
+        <div class="blockers-section">
+            <div class="section-title">Bloqueos Activos</div>
+            <div class="blocker-list">
+                <div class="blocker-header">
+                    <span>!</span> Estos elementos estan bloqueando el avance
+                </div>
+                <div class="blocker-item">
+                    <div>
+                        <strong>Verificar tuialista.com en Google Search Console</strong>
+                        <p style="font-size: 13px; color: var(--muted);">Necesita DNS verification via IONOS. Ya esta todo listo del lado del codigo.</p>
+                    </div>
+                    <span class="project">TuIAlista</span>
+                </div>
+                <div class="blocker-item">
+                    <div>
+                        <strong>LastMile: Definir si usa dominio propio o subdominio</strong>
+                        <p style="font-size: 13px; color: var(--muted);">lastmile.com? lastmile.mx? tuialista.com/lastmile? Decision pendiente del usuario.</p>
+                    </div>
+                    <span class="project">LastMile</span>
+                </div>
+                <div class="blocker-item">
+                    <div>
+                        <strong>NOC Monitor: Definir si usa dominio propio o subdominio</strong>
+                        <p style="font-size: 13px; color: var(--muted);">nocmonitor.com? nocmonitor.io? tuialista.com/nocmonitor? Decision pendiente del usuario.</p>
+                    </div>
+                    <span class="project">NOC Monitor</span>
+                </div>
+                <div class="blocker-item">
+                    <div>
+                        <strong>LastMile: Definir modelo de negocio final</strong>
+                        <p style="font-size: 13px; color: var(--muted);">Que paga el cliente? Por entrega? Suscripcion? Hybrid? Necesita investigacion de mercado.</p>
+                    </div>
+                    <span class="project">LastMile</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- TIMELINE -->
+        <div class="timeline-section">
+            <div class="section-title">Timeline Estimado</div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">Agosto 2026</div>
+                    <div class="timeline-dot done"></div>
+                    <div class="timeline-content">
+                        <h4>TuIAlista + Yayika — SEO Optimizado</h4>
+                        <p>Sitios web optimizados, sitemaps, Google Search Console configurado.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Agosto 2026</div>
+                    <div class="timeline-dot active"></div>
+                    <div class="timeline-content">
+                        <h4>Ecosistema de Proyectos — Landing Pages</h4>
+                        <p>LastMile y NOC Monitor con landing pages y sitemaps creados.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Sept 2026</div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4>LastMile — Definicion de Negocio</h4>
+                        <p>Modelo de negocio, pricing, dominio, y arquitectura tecnica definidos.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Sept 2026</div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4>NOC Monitor — Definicion Tecnica</h4>
+                        <p>Arquitectura del sistema de monitoreo, stack tecnologico, dominio definido.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Oct 2026</div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4>LastMile — Desarrollo MVP</h4>
+                        <p>Backend API, dashboard basico, app de repartidor funcional.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Nov 2026</div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4>NOC Monitor — Desarrollo MVP</h4>
+                        <p>Agente de monitoreo, dashboard en tiempo real, sistema de alertas basico.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Dic 2026</div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4>LastMile — Beta Cerrada</h4>
+                        <p>5-10 negocios piloto usando la plataforma.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Ene 2027</div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4>NOC Monitor — Beta Cerrada</h4>
+                        <p>3-5 clientes piloto monitoreando su infraestructura.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+    <footer>
+        <div class="wrap">
+            <p>Roadmap actualizado: 6 de Agosto 2026 · <a href="https://tuialista.com">TuIAlista Ecosystem</a></p>
+        </div>
+    </footer>
+</body>
+</html>

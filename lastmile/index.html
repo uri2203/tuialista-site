@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LastMile — Entregas rapidas para LATAM</title>
+    <meta name="description" content="Plataforma de entrega y logistica para negocios en Latinoamerica. Entregas el mismo dia, rastreo en tiempo real, precios justos.">
+    <meta name="keywords" content="entrega a domicilio, logistica, last mile delivery, envios Mexico, entregas LATAM">
+    <link rel="canonical" href="https://tuialista.com/lastmile/">
+    <link rel="alternate" hreflang="es" href="https://tuialista.com/lastmile/es/">
+    <link rel="alternate" hreflang="en" href="https://tuialista.com/lastmile/en/">
+    <link rel="alternate" hreflang="pt" href="https://tuialista.com/lastmile/pt/">
+    <link rel="alternate" hreflang="x-default" href="https://tuialista.com/lastmile/">
+    <meta property="og:title" content="LastMile — Entregas rapidas para LATAM">
+    <meta property="og:description" content="Plataforma de entrega y logistica para negocios en Latinoamerica.">
+    <meta property="og:url" content="https://tuialista.com/lastmile/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="LastMile by TuIAlista">
+    <meta name="twitter:card" content="summary_large_image">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "LastMile",
+        "description": "Plataforma de entrega y logistica para negocios en Latinoamerica",
+        "url": "https://tuialista.com/lastmile/",
+        "provider": {
+            "@type": "Organization",
+            "name": "TuIAlista"
+        },
+        "areaServed": {
+            "@type": "Place",
+            "name": "Latinoamerica"
+        },
+        "serviceType": "Delivery"
+    }
+    </script>
+    <script defer data-domain="tuialista.com" src="https://plausible.io/js/script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fafbfc;
+            --surface: #ffffff;
+            --ink: #1a1a2e;
+            --muted: #6b7280;
+            --primary: #0ea5e9;
+            --primary-dark: #0284c7;
+            --accent: #22c55e;
+            --accent-dark: #16a34a;
+            --gradient: linear-gradient(135deg, #0ea5e9, #22c55e);
+            --border: #e5e7eb;
+            --radius: 16px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'DM Sans', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+        .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        
+        /* NAV */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(250, 251, 252, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+        .logo { display: flex; align-items: center; gap: 10px; font-family: 'Space Grotesk'; font-weight: 700; font-size: 22px; text-decoration: none; color: var(--ink); }
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+        .nav-links { display: flex; gap: 28px; align-items: center; }
+        .nav-links a { color: var(--muted); text-decoration: none; font-size: 15px; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--ink); }
+        
+        /* HERO */
+        .hero {
+            padding: 100px 0 80px;
+            background: linear-gradient(180deg, #f0f9ff 0%, var(--bg) 100%);
+        }
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #ecfdf5;
+            color: var(--accent-dark);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+        .badge .dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+        h1 { font-family: 'Space Grotesk'; font-size: clamp(42px, 5vw, 68px); font-weight: 700; line-height: 1.05; margin-bottom: 24px; }
+        h1 .highlight { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-desc { font-size: 19px; color: var(--muted); max-width: 44ch; margin-bottom: 36px; }
+        .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
+        .btn {
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 15px;
+            padding: 14px 28px;
+            border-radius: 12px;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(14,165,233,0.3); }
+        .btn-outline { background: var(--surface); color: var(--ink); border: 1.5px solid var(--border); }
+        .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+        
+        /* STATS BAR */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 60px;
+            padding: 32px;
+            background: var(--surface);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+        .stat { text-align: center; }
+        .stat-value { font-family: 'Space Grotesk'; font-size: 36px; font-weight: 700; color: var(--primary); }
+        .stat-label { font-size: 14px; color: var(--muted); margin-top: 4px; }
+        
+        /* FEATURES */
+        .features { padding: 100px 0; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-family: 'Space Grotesk'; font-size: 40px; margin-bottom: 16px; }
+        .section-header p { font-size: 18px; color: var(--muted); max-width: 50ch; margin: 0 auto; }
+        .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .feature-card {
+            padding: 36px;
+            background: var(--surface);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            transition: all 0.25s;
+        }
+        .feature-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.06); }
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+        .icon-blue { background: #e0f2fe; color: var(--primary); }
+        .icon-green { background: #ecfdf5; color: var(--accent); }
+        .icon-purple { background: #f3e8ff; color: #9333ea; }
+        .feature-card h3 { font-family: 'Space Grotesk'; font-size: 20px; margin-bottom: 12px; }
+        .feature-card p { color: var(--muted); font-size: 15px; }
+        
+        /* HOW IT WORKS */
+        .how-it-works { padding: 100px 0; background: #f0f9ff; }
+        .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 60px; }
+        .step { text-align: center; }
+        .step-num {
+            width: 64px;
+            height: 64px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk';
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            margin: 0 auto 20px;
+        }
+        .step h3 { font-family: 'Space Grotesk'; font-size: 20px; margin-bottom: 12px; }
+        .step p { color: var(--muted); max-width: 28ch; margin: 0 auto; }
+        
+        /* PRICING */
+        .pricing { padding: 100px 0; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .price-card {
+            padding: 40px 32px;
+            background: var(--surface);
+            border-radius: var(--radius);
+            border: 1.5px solid var(--border);
+            text-align: center;
+            transition: all 0.25s;
+        }
+        .price-card:hover { border-color: var(--primary); }
+        .price-card.featured { border-color: var(--primary); background: linear-gradient(180deg, #f0f9ff, white); }
+        .price-card h3 { font-family: 'Space Grotesk'; font-size: 22px; margin-bottom: 8px; }
+        .price-card .price { font-family: 'Space Grotesk'; font-size: 48px; font-weight: 700; margin: 20px 0; }
+        .price-card .price span { font-size: 18px; font-weight: 400; color: var(--muted); }
+        .price-card ul { list-style: none; text-align: left; margin: 24px 0; }
+        .price-card ul li { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 15px; display: flex; align-items: center; gap: 10px; }
+        .price-card ul li::before { content: "✓"; color: var(--accent); font-weight: 700; }
+        
+        /* FOOTER */
+        footer {
+            background: var(--ink);
+            color: rgba(255,255,255,0.6);
+            padding: 60px 0 40px;
+            margin-top: 100px;
+        }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+        .footer-brand .logo { color: white; margin-bottom: 16px; }
+        .footer-brand .logo-icon { width: 36px; height: 36px; font-size: 18px; }
+        .footer-col h4 { color: white; font-family: 'Space Grotesk'; font-size: 15px; margin-bottom: 16px; }
+        .footer-col a { display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px; padding: 4px 0; }
+        .footer-col a:hover { color: var(--primary); }
+        .footer-bottom { padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; font-size: 13px; }
+        
+        @media (max-width: 768px) {
+            .hero-grid, .feature-grid, .pricing-grid, .steps, .footer-grid { grid-template-columns: 1fr; }
+            .stats-bar { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="wrap nav">
+            <a href="/" class="logo">
+                <div class="logo-icon">📦</div>
+                Last<span style="color: var(--primary)">Mile</span>
+            </a>
+            <div class="nav-links">
+                <a href="#como-funciona">Como funciona</a>
+                <a href="#precios">Precios</a>
+                <a href="#caracteristicas">Caracteristicas</a>
+                <a href="https://tuialista.com">Volver a TuIAlista</a>
+            </div>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="wrap">
+            <div class="hero-grid">
+                <div>
+                    <div class="badge"><span class="dot"></span>Disponible en Mexico y Colombia</div>
+                    <h1>Tus entregas,<br><span class="highlight">en minutos</span></h1>
+                    <p class="hero-desc">Plataforma de logistica para negocios que necesitan entregar rapido. Rastreo en tiempo real, precios transparentes, sin sorpresas.</p>
+                    <div class="hero-cta">
+                        <a href="#precios" class="btn btn-primary">Empezar ahora →</a>
+                        <a href="#como-funciona" class="btn btn-outline">Ver como funciona</a>
+                    </div>
+                </div>
+                <div>
+                    <div class="stats-bar">
+                        <div class="stat">
+                            <div class="stat-value">35min</div>
+                            <div class="stat-label">Tiempo promedio</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">98%</div>
+                            <div class="stat-label">Entregas exitosas</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">24/7</div>
+                            <div class="stat-label">Soporte activo</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="features" id="caracteristicas">
+        <div class="wrap">
+            <div class="section-header">
+                <h2>Todo lo que necesitas para entregar</h2>
+                <p>Herramientas simples para que te enfoques en vender, no en logistica.</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon icon-blue">📍</div>
+                    <h3>Rastreo en tiempo real</h3>
+                    <p>Tu cliente ve exactamente donde esta su pedido. Sin llamadas, sin mensajes de "ya va en camino".</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon icon-green">⚡</div>
+                    <h3>Entregas express</h3>
+                    <p>Desde 35 minutos. Ideal para restaurantes, farmacias y tiendas que necesitan velocidad.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon icon-purple">📊</div>
+                    <h3>Dashboard completo</h3>
+                    <p>Ve todas tus entregas, estadisticas de tiempo y costos en un solo lugar.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon icon-green">💰</div>
+                    <h3>Precios transparentes</h3>
+                    <p>Sin costos ocultos. Sabes exactamente cuanto pagas antes de confirmar cada envio.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon icon-blue">🔌</div>
+                    <h3>Integracion facil</h3>
+                    <p>Conecta tu tienda online o POS en 5 minutos. Soportamos Shopify, WooCommerce y mas.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon icon-purple">🛡️</div>
+                    <h3>Seguro incluido</h3>
+                    <p>Cada paquete esta protegido. Si se pierde o danamos, lo cubrimos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="how-it-works" id="como-funciona">
+        <div class="wrap">
+            <div class="section-header">
+                <h2>En 3 pasos estas listo</h2>
+                <p>Sin contratos largos, sin configuracion compleja.</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <h3>Crea tu cuenta</h3>
+                    <p>Registrate gratis. Sin tarjeta de credito, sin compromiso.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <h3>Conecta tu negocio</h3>
+                    <p>Integra tu tienda o simplemente pega las direcciones de entrega.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <h3>Entrega rapido</h3>
+                    <p>Un repartidor recoge y entrega. Tu cliente rastrea en tiempo real.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="pricing" id="precios">
+        <div class="wrap">
+            <div class="section-header">
+                <h2>Precios simples</h2>
+                <p>Escala segun tu negocio crece.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3>Starter</h3>
+                    <p style="color: var(--muted);">Para negocios pequenos</p>
+                    <div class="price">$49<span>/mes</span></div>
+                    <ul>
+                        <li>Hasta 100 entregas/mes</li>
+                        <li>Rastreo en tiempo real</li>
+                        <li>Soporte por email</li>
+                        <li>1 usuario</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline" style="width: 100%; justify-content: center;">Empezar</a>
+                </div>
+                <div class="price-card featured">
+                    <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--primary); color: white; padding: 4px 16px; border-radius: 100px; font-size: 12px; font-weight: 600;">MAS POPULAR</div>
+                    <h3>Pro</h3>
+                    <p style="color: var(--muted);">Para negocios en crecimiento</p>
+                    <div class="price">$149<span>/mes</span></div>
+                    <ul>
+                        <li>Hasta 500 entregas/mes</li>
+                        <li>Rastreo en tiempo real</li>
+                        <li>Soporte prioritario 24/7</li>
+                        <li>5 usuarios</li>
+                        <li>API para integraciones</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary" style="width: 100%; justify-content: center;">Empezar</a>
+                </div>
+                <div class="price-card">
+                    <h3>Enterprise</h3>
+                    <p style="color: var(--muted);">Para operaciones grandes</p>
+                    <div class="price">$399<span>/mes</span></div>
+                    <ul>
+                        <li>Entregas ilimitadas</li>
+                        <li>Rastreo en tiempo real</li>
+                        <li>Soporte dedicado</li>
+                        <li>Usuarios ilimitados</li>
+                        <li>API personalizada</li>
+                        <li>Integracion ERP</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline" style="width: 100%; justify-content: center;">Contactar ventas</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="wrap">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="logo">
+                        <div class="logo-icon">📦</div>
+                        Last<span style="color: var(--primary)">Mile</span>
+                    </a>
+                    <p style="margin-top: 12px; max-width: 30ch;">Logistica simple para negocios que quieren entregar rapido.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Producto</h4>
+                    <a href="#caracteristicas">Caracteristicas</a>
+                    <a href="#precios">Precios</a>
+                    <a href="#como-funciona">Como funciona</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Soporte</h4>
+                    <a href="#">Centro de ayuda</a>
+                    <a href="#">Documentacion</a>
+                    <a href="#">API</a>
+                </div>
+                <div class="footer-col">
+                    <h4>TuIAlista</h4>
+                    <a href="https://tuialista.com">TuIAlista.com</a>
+                    <a href="https://yayika.com">Yayika</a>
+                    <a href="/nocmonitor/">NOC Monitor</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>2026 LastMile by TuIAlista. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
