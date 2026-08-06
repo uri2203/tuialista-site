@@ -1834,6 +1834,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="auth-err" id="aff-err"></div>
       </form>
       <p class="auth-switch"><span id="aff-sw-no-acct">¿Aún no eres afiliado?</span> <a id="aff-go-register">Crear cuenta</a></p>
+      <p class="auth-switch" style="margin-top:6px"><a id="aff-go-forgot">¿Olvidaste tu contraseña?</a></p>
     </div>
 
     <!-- VISTA: REGISTRO -->
@@ -1869,6 +1870,34 @@ document.addEventListener("DOMContentLoaded", () => {
       <p class="auth-switch"><a id="aff-go-resend">Reenviar código</a> · <a id="aff-go-login2">Volver</a></p>
     </div>
 
+    <!-- VISTA: OLVIDÉ CONTRASEÑA -->
+    <div id="aff-view-forgot" style="display:none">
+      <h2 id="aff-fgt-title">Restablecer contraseña</h2>
+      <p class="sub" id="aff-fgt-sub">Escribe tu correo y te enviaremos un código.</p>
+      <form id="aff-fgt-form" novalidate>
+        <label id="aff-fgt-l-email">Correo</label>
+        <input id="aff-fgt-email" type="email" autocomplete="email" required>
+        <button id="aff-fgt-btn" type="submit">Enviar código</button>
+        <div class="auth-err" id="aff-fgt-err"></div>
+      </form>
+      <p class="auth-switch"><a id="aff-go-login3">Volver</a></p>
+    </div>
+
+    <!-- VISTA: NUEVA CONTRASEÑA -->
+    <div id="aff-view-reset" style="display:none">
+      <h2 id="aff-rst-title">Nueva contraseña</h2>
+      <p class="sub"><span id="aff-rst-sub">Escribe el código que enviamos a</span> <b id="aff-rst-email"></b> y tu nueva contraseña.</p>
+      <form id="aff-rst-form" novalidate>
+        <label id="aff-rst-l-code">Código</label>
+        <input id="aff-rst-code" type="text" inputmode="numeric" maxlength="6" autocomplete="one-time-code" required>
+        <label id="aff-rst-l-pw">Nueva contraseña <span style="color:#94a3b8">(mín. 8)</span></label>
+        <input id="aff-rst-pw" type="password" autocomplete="new-password" required>
+        <button id="aff-rst-btn" type="submit">Cambiar contraseña</button>
+        <div class="auth-err" id="aff-rst-err"></div>
+      </form>
+      <p class="auth-switch"><a id="aff-go-forgot2">Reenviar código</a> · <a id="aff-go-login4">Volver</a></p>
+    </div>
+
   </div>
 </div>
 <button id="aff-logout" type="button">Salir</button>
@@ -1893,7 +1922,15 @@ document.addEventListener("DOMContentLoaded", () => {
     verTitle:EN?"Verify your email":"Verifica tu correo",
     verSub:EN?"We sent a 6-digit code to":"Te enviamos un código de 6 dígitos a",
     code:EN?"Code":"Código", verify:EN?"Verify":"Verificar", verifying:EN?"Verifying…":"Verificando…",
-    resend:EN?"Resend code":"Reenviar código", back:EN?"Back":"Volver", resent:EN?"Code sent again.":"Código reenviado."
+    resend:EN?"Resend code":"Reenviar código", back:EN?"Back":"Volver", resent:EN?"Code sent again.":"Código reenviado.",
+    forgot:EN?"Forgot your password?":"¿Olvidaste tu contraseña?",
+    fgtTitle:EN?"Reset password":"Restablecer contraseña",
+    fgtSub:EN?"Enter your email and we'll send you a code.":"Escribe tu correo y te enviaremos un código.",
+    sendCode:EN?"Send code":"Enviar código", sending:EN?"Sending…":"Enviando…",
+    rstTitle:EN?"New password":"Nueva contraseña",
+    rstSub:EN?"Enter the code we sent to":"Escribe el código que enviamos a",
+    savePw:EN?"Change password":"Cambiar contraseña", saving:EN?"Saving…":"Guardando…",
+    pwChanged:EN?"Password changed. Sign in.":"Contraseña cambiada. Inicia sesión."
   };
   function errmsg(c){
     var M={
@@ -1981,11 +2018,38 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   var pendingEmail="";
   function showView(name){
-    ["login","register","verify"].forEach(function(v){var el=$("aff-view-"+v);if(el)el.style.display=(v===name?"block":"none");});
-    ["aff-err","aff-reg-err","aff-ver-err"].forEach(function(id){var e=$(id);if(e)e.style.display="none";});
+    ["login","register","verify","forgot","reset"].forEach(function(v){var el=$("aff-view-"+v);if(el)el.style.display=(v===name?"block":"none");});
+    ["aff-err","aff-reg-err","aff-ver-err","aff-fgt-err","aff-rst-err"].forEach(function(id){var e=$(id);if(e)e.style.display="none";});
   }
   function setErr(id,msg,okColor){var e=$(id);e.style.color=okColor?"var(--ok,#1d9e75)":"#c0392b";e.textContent=msg;e.style.display="block";}
   function toVerify(email){pendingEmail=email;$("aff-ver-email").textContent=email;showView("verify");$("aff-ver-code").focus();}
+  function toReset(email){pendingEmail=email;$("aff-rst-email").textContent=email;showView("reset");$("aff-rst-code").focus();}
+  function doForgot(e){
+    e.preventDefault();
+    var email=$("aff-fgt-email").value.trim().toLowerCase();
+    if(!email)return;
+    var btn=$("aff-fgt-btn"); $("aff-fgt-err").style.display="none"; btn.disabled=true; btn.textContent=T.sending;
+    fetch(API+"/api/auth/forgot-password",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:email,role:"affiliate",lang:lang})})
+      .then(function(r){return r.json().then(function(j){return {s:r.status,j:j};});})
+      .then(function(res){ if(res.s===200){toReset(email);} else {setErr("aff-fgt-err",errmsg(res.j.error));} })
+      .catch(function(){setErr("aff-fgt-err",T.neterr);})
+      .finally(function(){btn.disabled=false;btn.textContent=T.sendCode;});
+  }
+  function doReset(e){
+    e.preventDefault();
+    var code=$("aff-rst-code").value.trim(), pw=$("aff-rst-pw").value;
+    if(!code||!pw||!pendingEmail)return;
+    if(pw.length<8){setErr("aff-rst-err",errmsg("password_corto"));return;}
+    var btn=$("aff-rst-btn"); $("aff-rst-err").style.display="none"; btn.disabled=true; btn.textContent=T.saving;
+    fetch(API+"/api/auth/reset-password",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:pendingEmail,code:code,new_password:pw,role:"affiliate"})})
+      .then(function(r){return r.json().then(function(j){return {s:r.status,j:j};});})
+      .then(function(res){
+        if(res.s===200){ showView("login"); $("aff-email").value=pendingEmail; setErr("aff-err",T.pwChanged,true); }
+        else {setErr("aff-rst-err",errmsg(res.j.error));}
+      })
+      .catch(function(){setErr("aff-rst-err",T.neterr);})
+      .finally(function(){btn.disabled=false;btn.textContent=T.savePw;});
+  }
 
   function doLogin(e){
     e.preventDefault();
@@ -2108,13 +2172,26 @@ document.addEventListener("DOMContentLoaded", () => {
     $("aff-ver-title").textContent=T.verTitle; $("aff-ver-sub").textContent=T.verSub;
     $("aff-ver-l-code").textContent=T.code; $("aff-ver-btn").textContent=T.verify;
     $("aff-go-resend").textContent=T.resend; $("aff-go-login2").textContent=T.back;
+    $("aff-go-forgot").textContent=T.forgot;
+    $("aff-fgt-title").textContent=T.fgtTitle; $("aff-fgt-sub").textContent=T.fgtSub;
+    $("aff-fgt-l-email").textContent=T.email; $("aff-fgt-btn").textContent=T.sendCode; $("aff-go-login3").textContent=T.back;
+    $("aff-rst-title").textContent=T.rstTitle; $("aff-rst-sub").textContent=T.rstSub;
+    $("aff-rst-l-code").textContent=T.code;
+    $("aff-rst-l-pw").innerHTML=T.pw+' <span style="color:#94a3b8">('+(EN?"min. 8":"mín. 8")+')</span>';
+    $("aff-rst-btn").textContent=T.savePw; $("aff-go-forgot2").textContent=T.resend; $("aff-go-login4").textContent=T.back;
     $("aff-form").addEventListener("submit",doLogin);
     $("aff-reg-form").addEventListener("submit",doRegister);
     $("aff-ver-form").addEventListener("submit",doVerify);
+    $("aff-fgt-form").addEventListener("submit",doForgot);
+    $("aff-rst-form").addEventListener("submit",doReset);
     $("aff-logout").addEventListener("click",logout);
     $("aff-go-register").addEventListener("click",function(e){e.preventDefault();showView("register");$("aff-reg-email").focus();});
     $("aff-go-login").addEventListener("click",function(e){e.preventDefault();showView("login");});
     $("aff-go-login2").addEventListener("click",function(e){e.preventDefault();showView("login");});
+    $("aff-go-login3").addEventListener("click",function(e){e.preventDefault();showView("login");});
+    $("aff-go-login4").addEventListener("click",function(e){e.preventDefault();showView("login");});
+    $("aff-go-forgot").addEventListener("click",function(e){e.preventDefault();showView("forgot");$("aff-fgt-email").value=($("aff-email").value||"").trim();$("aff-fgt-email").focus();});
+    $("aff-go-forgot2").addEventListener("click",function(e){e.preventDefault();$("aff-fgt-email").value=pendingEmail;showView("forgot");});
     $("aff-go-resend").addEventListener("click",function(e){e.preventDefault();doResend();});
     showView("login");
     if(tok()){ api("/api/auth/me").then(function(){hideAuth();loadData();}).catch(function(){showAuth();}); }

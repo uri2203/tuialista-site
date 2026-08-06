@@ -1498,6 +1498,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="auth-err" id="auth-err"></div>
       </form>
       <p class="auth-switch"><span id="sw-no-acct">¿No tienes cuenta?</span> <a id="go-register">Crear cuenta</a></p>
+      <p class="auth-switch" style="margin-top:6px"><a id="go-forgot">¿Olvidaste tu contraseña?</a></p>
     </div>
 
     <!-- VISTA: REGISTRO -->
@@ -1530,6 +1531,34 @@ document.addEventListener("DOMContentLoaded", () => {
       </form>
       <p class="auth-switch"><a id="go-resend">Reenviar código</a> · <a id="go-login2">Volver</a></p>
     </div>
+
+    <!-- VISTA: OLVIDÉ CONTRASEÑA -->
+    <div id="view-forgot" style="display:none">
+      <h2 id="fgt-title">Restablecer contraseña</h2>
+      <p class="sub" id="fgt-sub">Escribe tu correo y te enviaremos un código.</p>
+      <form id="fgt-form" novalidate>
+        <label id="fgt-l-email">Correo</label>
+        <input id="fgt-email" type="email" autocomplete="email" required>
+        <button id="fgt-btn" type="submit">Enviar código</button>
+        <div class="auth-err" id="fgt-err"></div>
+      </form>
+      <p class="auth-switch"><a id="go-login3">Volver</a></p>
+    </div>
+
+    <!-- VISTA: NUEVA CONTRASEÑA -->
+    <div id="view-reset" style="display:none">
+      <h2 id="rst-title">Nueva contraseña</h2>
+      <p class="sub"><span id="rst-sub">Escribe el código que enviamos a</span> <b id="rst-email"></b> y tu nueva contraseña.</p>
+      <form id="rst-form" novalidate>
+        <label id="rst-l-code">Código</label>
+        <input id="rst-code" type="text" inputmode="numeric" maxlength="6" autocomplete="one-time-code" required>
+        <label id="rst-l-pw">Nueva contraseña <span style="color:#94a3b8">(mín. 8)</span></label>
+        <input id="rst-pw" type="password" autocomplete="new-password" required>
+        <button id="rst-btn" type="submit">Cambiar contraseña</button>
+        <div class="auth-err" id="rst-err"></div>
+      </form>
+      <p class="auth-switch"><a id="go-forgot2">Reenviar código</a> · <a id="go-login4">Volver</a></p>
+    </div>
   </div>
 </div>
 <button id="portal-logout" type="button">Salir</button>
@@ -1558,7 +1587,15 @@ document.addEventListener("DOMContentLoaded", () => {
     verTitle:EN?"Verify your email":"Verifica tu correo",
     verSub:EN?"We sent a 6-digit code to":"Te enviamos un código de 6 dígitos a",
     code:EN?"Code":"Código", verify:EN?"Verify":"Verificar", verifying:EN?"Verifying…":"Verificando…",
-    resend:EN?"Resend code":"Reenviar código", back:EN?"Back":"Volver", resent:EN?"Code sent again.":"Código reenviado."
+    resend:EN?"Resend code":"Reenviar código", back:EN?"Back":"Volver", resent:EN?"Code sent again.":"Código reenviado.",
+    forgot:EN?"Forgot your password?":"¿Olvidaste tu contraseña?",
+    fgtTitle:EN?"Reset password":"Restablecer contraseña",
+    fgtSub:EN?"Enter your email and we'll send you a code.":"Escribe tu correo y te enviaremos un código.",
+    sendCode:EN?"Send code":"Enviar código", sending:EN?"Sending…":"Enviando…",
+    rstTitle:EN?"New password":"Nueva contraseña",
+    rstSub:EN?"Enter the code we sent to":"Escribe el código que enviamos a",
+    savePw:EN?"Change password":"Cambiar contraseña", saving:EN?"Saving…":"Guardando…",
+    pwChanged:EN?"Password changed. Sign in.":"Contraseña cambiada. Inicia sesión."
   };
   function errmsg(c){
     var M={
@@ -1665,11 +1702,38 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   var pendingEmail="";
   function showView(name){
-    ["login","register","verify"].forEach(function(v){var el=$("view-"+v);if(el)el.style.display=(v===name?"block":"none");});
-    ["auth-err","reg-err","ver-err"].forEach(function(id){var e=$(id);if(e)e.style.display="none";});
+    ["login","register","verify","forgot","reset"].forEach(function(v){var el=$("view-"+v);if(el)el.style.display=(v===name?"block":"none");});
+    ["auth-err","reg-err","ver-err","fgt-err","rst-err"].forEach(function(id){var e=$(id);if(e)e.style.display="none";});
   }
   function setErr(id,msg,okColor){var e=$(id);e.style.color=okColor?"var(--ok,#1d9e75)":"#c0392b";e.textContent=msg;e.style.display="block";}
   function toVerify(email){pendingEmail=email;$("ver-email").textContent=email;showView("verify");$("ver-code").focus();}
+  function toReset(email){pendingEmail=email;$("rst-email").textContent=email;showView("reset");$("rst-code").focus();}
+  function doForgot(e){
+    e.preventDefault();
+    var email=$("fgt-email").value.trim().toLowerCase();
+    if(!email)return;
+    var btn=$("fgt-btn"); $("fgt-err").style.display="none"; btn.disabled=true; btn.textContent=T.sending;
+    fetch(API+"/api/auth/forgot-password",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:email,role:"customer",lang:lang})})
+      .then(function(r){return r.json().then(function(j){return {s:r.status,j:j};});})
+      .then(function(res){ if(res.s===200){toReset(email);} else {setErr("fgt-err",errmsg(res.j.error));} })
+      .catch(function(){setErr("fgt-err",T.neterr);})
+      .finally(function(){btn.disabled=false;btn.textContent=T.sendCode;});
+  }
+  function doReset(e){
+    e.preventDefault();
+    var code=$("rst-code").value.trim(), pw=$("rst-pw").value;
+    if(!code||!pw||!pendingEmail)return;
+    if(pw.length<8){setErr("rst-err",errmsg("password_corto"));return;}
+    var btn=$("rst-btn"); $("rst-err").style.display="none"; btn.disabled=true; btn.textContent=T.saving;
+    fetch(API+"/api/auth/reset-password",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:pendingEmail,code:code,new_password:pw,role:"customer"})})
+      .then(function(r){return r.json().then(function(j){return {s:r.status,j:j};});})
+      .then(function(res){
+        if(res.s===200){ showView("login"); $("auth-email").value=pendingEmail; setErr("auth-err",T.pwChanged,true); }
+        else {setErr("rst-err",errmsg(res.j.error));}
+      })
+      .catch(function(){setErr("rst-err",T.neterr);})
+      .finally(function(){btn.disabled=false;btn.textContent=T.savePw;});
+  }
 
   function doLogin(e){
     e.preventDefault();
@@ -1810,13 +1874,26 @@ document.addEventListener("DOMContentLoaded", () => {
     $("ver-title").textContent=T.verTitle; $("ver-sub").textContent=T.verSub;
     $("ver-l-code").textContent=T.code; $("ver-btn").textContent=T.verify;
     $("go-resend").textContent=T.resend; $("go-login2").textContent=T.back;
+    $("go-forgot").textContent=T.forgot;
+    $("fgt-title").textContent=T.fgtTitle; $("fgt-sub").textContent=T.fgtSub;
+    $("fgt-l-email").textContent=T.email; $("fgt-btn").textContent=T.sendCode; $("go-login3").textContent=T.back;
+    $("rst-title").textContent=T.rstTitle; $("rst-sub").textContent=T.rstSub;
+    $("rst-l-code").textContent=T.code;
+    $("rst-l-pw").innerHTML=T.pw+' <span style="color:#94a3b8">('+(EN?"min. 8":"mín. 8")+')</span>';
+    $("rst-btn").textContent=T.savePw; $("go-forgot2").textContent=T.resend; $("go-login4").textContent=T.back;
     $("auth-form").addEventListener("submit",doLogin);
     $("reg-form").addEventListener("submit",doRegister);
     $("ver-form").addEventListener("submit",doVerify);
+    $("fgt-form").addEventListener("submit",doForgot);
+    $("rst-form").addEventListener("submit",doReset);
     $("portal-logout").addEventListener("click",logout);
     $("go-register").addEventListener("click",function(e){e.preventDefault();showView("register");$("reg-email").focus();});
     $("go-login").addEventListener("click",function(e){e.preventDefault();showView("login");});
     $("go-login2").addEventListener("click",function(e){e.preventDefault();showView("login");});
+    $("go-login3").addEventListener("click",function(e){e.preventDefault();showView("login");});
+    $("go-login4").addEventListener("click",function(e){e.preventDefault();showView("login");});
+    $("go-forgot").addEventListener("click",function(e){e.preventDefault();showView("forgot");$("fgt-email").value=($("auth-email").value||"").trim();$("fgt-email").focus();});
+    $("go-forgot2").addEventListener("click",function(e){e.preventDefault();$("fgt-email").value=pendingEmail;showView("forgot");});
     $("go-resend").addEventListener("click",function(e){e.preventDefault();doResend();});
     showView("login");
     if(tok()){ api("/api/auth/me").then(function(){hideAuth();loadData();}).catch(function(){showAuth();}); }
