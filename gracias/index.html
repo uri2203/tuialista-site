@@ -85,13 +85,10 @@
     </div>
   </div>
 
-  <div class="card">
-    <h2 id="look-title"><i class="ti ti-key"></i> <span>¿Ver tu licencia ahora?</span></h2>
-    <p class="hint" id="look-sub" style="margin-top:0;margin-bottom:10px">Escribe el correo que usaste al pagar y te mostramos tu clave (también te llega por email).</p>
-    <div class="look">
-      <input type="email" id="look-email" placeholder="tu@empresa.com" autocomplete="email">
-      <button id="look-btn">Ver licencia</button>
-    </div>
+  <div class="card" id="lic-card">
+    <h2 id="look-title"><i class="ti ti-key"></i> <span>Tu licencia</span></h2>
+    <p class="hint" id="look-sub" style="margin-top:0;margin-bottom:10px">Aquí tienes tu clave (también te la enviamos por correo).</p>
+    <div class="hint" id="look-loading" style="display:none">Cargando tu licencia…</div>
     <div class="err" id="look-err"></div>
     <div class="keybox" id="keybox">
       <div class="k" id="key-val"></div>
@@ -107,48 +104,49 @@
   var API=(window.CHECKOUT_API_BASE||"https://tuialista-xrtd.onrender.com").replace(/\/$/,"");
   var EN=(function(){try{return (localStorage.getItem("tuialista_lang")||"es").indexOf("en")===0;}catch(e){return false;}})();
   document.getElementById("y").textContent=new Date().getFullYear();
-  var agent=null;
-  try{agent=new URLSearchParams(location.search).get("agent");}catch(e){}
-  function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+  var dt=null;
+  try{dt=new URLSearchParams(location.search).get("dt");}catch(e){}
+  var $=function(id){return document.getElementById(id);};
   if(EN){
     document.documentElement.lang="en";
-    document.getElementById("title").textContent="Thank you for your purchase!";
-    document.getElementById("lead").textContent="Your subscription is active. We've emailed your license key and the steps to get started.";
+    $("title").textContent="Thank you for your purchase!";
+    $("lead").textContent="Your subscription is active. We've emailed your license key and the steps to get started.";
     document.querySelector("#next-title span").textContent="Next steps";
-    document.getElementById("step1").textContent="Check your email: your license key and download link are there.";
-    document.getElementById("step2").textContent="Create your account in the portal with the same email to manage your agents and licenses.";
-    document.getElementById("step3").textContent="Download the agent and enter your license key to activate it.";
-    document.getElementById("btn-portal").innerHTML='<i class="ti ti-layout-dashboard"></i> Go to my portal';
-    document.getElementById("btn-more").innerHTML='<i class="ti ti-plus"></i> Add more agents';
-    document.querySelector("#look-title span").textContent="See your license now?";
-    document.getElementById("look-sub").textContent="Enter the email you paid with and we'll show your key (it's also emailed to you).";
-    document.getElementById("look-btn").textContent="Show license";
-    document.getElementById("look-email").placeholder="you@company.com";
-    document.getElementById("key-activate").innerHTML="Activate it with the <b>TUIALISTA_LICENSE_KEY</b> variable or from your portal.";
+    $("step1").textContent="Check your email: your license key and download link are there.";
+    $("step2").textContent="Create your account in the portal with the same email to manage your agents and licenses.";
+    $("step3").textContent="Download the agent and enter your license key to activate it.";
+    $("btn-portal").innerHTML='<i class="ti ti-layout-dashboard"></i> Go to my portal';
+    $("btn-more").innerHTML='<i class="ti ti-plus"></i> Add more agents';
+    document.querySelector("#look-title span").textContent="Your license";
+    $("look-sub").textContent="Here's your key (it's also emailed to you).";
+    $("look-loading").textContent="Loading your license…";
+    $("key-activate").innerHTML="Activate it with the <b>TUIALISTA_LICENSE_KEY</b> variable or from your portal.";
   }
-  function setErr(m){var e=document.getElementById("look-err");if(!m){e.style.display="none";return;}e.textContent=m;e.style.display="block";}
-  function lookup(){
-    var email=(document.getElementById("look-email").value||"").trim().toLowerCase();
-    if(!email||email.indexOf("@")<1){setErr(EN?"Enter a valid email.":"Escribe un correo válido.");return;}
-    if(!agent){setErr(EN?"Missing agent reference.":"Falta la referencia del agente.");return;}
-    setErr("");
-    var btn=document.getElementById("look-btn");btn.disabled=true;
-    fetch(API+"/api/license/lookup?email="+encodeURIComponent(email)+"&agent_id="+encodeURIComponent(agent))
+  function setErr(m){var e=$("look-err");if(!m){e.style.display="none";return;}e.textContent=m;e.style.display="block";}
+  function fail(m){$("look-loading").style.display="none";setErr(m);}
+  // La licencia se entrega con el token firmado del success_url (?dt=), no por correo a la vista.
+  function tryLookup(attempt){
+    if(!dt){ $("lic-card").style.display="none"; return; }   // sin token: usa correo/portal (pasos de arriba)
+    $("look-loading").style.display="block"; setErr("");
+    fetch(API+"/api/license/lookup?dt="+encodeURIComponent(dt))
       .then(function(r){return r.json().then(function(j){return {s:r.status,j:j};});})
       .then(function(res){
         if(res.s===200&&res.j.found){
-          document.getElementById("key-val").textContent=res.j.license_key;
-          document.getElementById("key-status").textContent=(EN?"Status: ":"Estado: ")+res.j.status;
-          document.getElementById("keybox").style.display="block";
+          $("look-loading").style.display="none";
+          $("key-val").textContent=res.j.license_key;
+          $("key-status").textContent=(EN?"Status: ":"Estado: ")+res.j.status;
+          $("keybox").style.display="block";
+        } else if(res.s===404 && attempt<3){
+          setTimeout(function(){tryLookup(attempt+1);},2500);   // el webhook puede tardar un momento
+        } else if(res.s===400){
+          fail(EN?"This link has expired. Check your email or sign in to your portal.":"Este enlace caducó. Revisa tu correo o entra a tu portal.");
         } else {
-          setErr(EN?"No license found yet for that email. It may take a moment — check your inbox.":"Aún no encontramos licencia para ese correo. Puede tardar un momento — revisa tu bandeja.");
+          fail(EN?"We couldn't show your license here yet. Check your email or your portal.":"Aún no pudimos mostrar tu licencia aquí. Revísala en tu correo o en tu portal.");
         }
       })
-      .catch(function(){setErr(EN?"Connection error. Try again.":"Error de conexión. Inténtalo de nuevo.");})
-      .finally(function(){btn.disabled=false;});
+      .catch(function(){ if(attempt<3){setTimeout(function(){tryLookup(attempt+1);},2500);} else {fail(EN?"Connection error.":"Error de conexión.");} });
   }
-  document.getElementById("look-btn").addEventListener("click",lookup);
-  document.getElementById("look-email").addEventListener("keydown",function(e){if(e.key==="Enter")lookup();});
+  tryLookup(0);
 })();
 </script>
 </body>
