@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cómo activar tu agente — TuIAlista</title>
+<meta name="description" content="Guía paso a paso para activar y usar tu agente de TuIAlista en Windows: clave de licencia y arranque. Tus datos nunca salen de tu equipo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{--steel-900:#0f1922;--paper:#f5f6f4;--paper-2:#eceee9;--ink:#0f1922;--muted:#5a6b73;--signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2;--ok:#1d9e75;--warn:#ba7517}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+  header{position:sticky;top:0;background:rgba(245,246,244,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+  .nav{max-width:800px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+  .logo b{color:var(--signal)}
+  .nav a.back{color:var(--muted);text-decoration:none;font-size:14px}
+  .nav a.back:hover{color:var(--ink)}
+  main{max-width:800px;margin:0 auto;padding:40px 24px 80px}
+  h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,36px);line-height:1.15;margin-bottom:8px}
+  .lead{color:var(--muted);font-size:16px;margin-bottom:26px}
+  .req{background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:28px}
+  .req h2{font-family:'Space Grotesk';font-size:15px;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+  .req ul{margin:0 0 0 18px;font-size:14.5px;color:#243541}
+  .req li{margin:5px 0}
+  .step{display:flex;gap:16px;margin-bottom:26px}
+  .step .n{flex:0 0 32px;height:32px;border-radius:50%;background:var(--steel-900);color:#fff;font-family:'Space Grotesk';font-weight:600;display:flex;align-items:center;justify-content:center;font-size:15px}
+  .step .b{flex:1;min-width:0}
+  .step h3{font-family:'Space Grotesk';font-size:17px;margin-bottom:4px}
+  .step p{font-size:14.5px;color:#243541;margin-bottom:10px}
+  pre{background:var(--steel-900);color:#e6e8e4;border-radius:10px;padding:14px 16px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:13.5px;line-height:1.6;margin:8px 0}
+  pre .c{color:#5a6b73}
+  pre .k{color:#9fe1cb}
+  code.inl{font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--paper-2);border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  .note{display:flex;gap:11px;align-items:flex-start;border-radius:10px;padding:13px 15px;font-size:13.5px;line-height:1.6;margin:10px 0}
+  .note .ti{font-size:18px;flex-shrink:0;margin-top:1px}
+  .note.ok{background:rgba(29,158,117,.08);border:1px solid rgba(29,158,117,.25);color:#0f6e56}
+  .note.warn{background:rgba(186,117,23,.08);border:1px solid rgba(186,117,23,.28);color:#854f0b}
+  .note.warn .ti{color:var(--warn)}
+  .note.ok .ti{color:var(--ok)}
+  h2.sec{font-family:'Space Grotesk';font-size:20px;margin:34px 0 14px;padding-top:8px;border-top:1px solid var(--line)}
+  .faq{margin-bottom:12px}
+  .faq b{font-size:14.5px}
+  .faq p{font-size:14px;color:#243541;margin-top:3px}
+  footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px}
+  footer a{color:#cdd5d9;text-decoration:none}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+  <a class="back" href="/portal/" id="l-back">&larr; Volver al portal</a>
+</div></header>
+
+<main>
+  <h1 id="title">Cómo activar tu agente</h1>
+  <p class="lead" id="lead">En unos minutos. No necesitas saber programar — solo copiar y pegar. Tus datos nunca salen de tu equipo.</p>
+
+  <div class="req">
+    <h2 id="req-t"><i class="ti ti-checklist" style="color:var(--signal-dim)"></i> Qué necesitas</h2>
+    <ul>
+      <li id="req1">Una computadora con <b>Windows</b>.</li>
+      <li id="req2">Tu <b>clave de licencia</b> (te llega por correo y está en tu portal). Se ve así: <code class="inl">TIA-XXXX-XXXX-XXXX-XXXX</code>.</li>
+      <li id="req3">Según el agente, la <b>carpeta o archivo</b> con tus datos (el agente te lo indica al arrancar).</li>
+    </ul>
+  </div>
+
+  <div class="step">
+    <div class="n">1</div>
+    <div class="b">
+      <h3 id="s1-t">Descarga tu agente</h3>
+      <p id="s1-p">Entra a tu <a href="/portal/">portal</a> → <b>Mis agentes</b> y pulsa <b>Descargar</b>. Se guarda un archivo <code class="inl">agent-....exe</code> (por ejemplo en tu carpeta Descargas).</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="n">2</div>
+    <div class="b">
+      <h3 id="s2-t">Abre PowerShell</h3>
+      <p id="s2-p">Pulsa el menú Inicio, escribe <b>PowerShell</b> y ábrelo. Es una ventana donde pegarás dos líneas.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="n">3</div>
+    <div class="b">
+      <h3 id="s3-t">Pega tu clave de licencia</h3>
+      <p id="s3-p">Copia esta línea, cambia la clave por la tuya y pégala en PowerShell (Enter):</p>
+      <pre>$env:TUIALISTA_LICENSE_KEY = "<span class="k">TIA-XXXX-XXXX-XXXX-XXXX</span>"</pre>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="n">4</div>
+    <div class="b">
+      <h3 id="s4-t">Indica tus datos (si el agente lo pide)</h3>
+      <p id="s4-p">Algunos agentes trabajan sobre una carpeta o archivo tuyo. Por ejemplo, el Agente de Documentos usa una carpeta:</p>
+      <pre>$env:DOCS_FOLDER = "<span class="k">C:\Users\TuNombre\Documentos</span>"</pre>
+      <p id="s4-p2" style="margin-top:8px">Si tu agente no pide datos, salta este paso. Cuando lo arranques, te dirá exactamente qué necesita.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="n">5</div>
+    <div class="b">
+      <h3 id="s5-t">Arranca el agente</h3>
+      <p id="s5-p">En la <b>misma</b> ventana de PowerShell, arrastra el archivo <code class="inl">.exe</code> a la ventana y pulsa Enter. O escribe su ruta, por ejemplo:</p>
+      <pre>.\Downloads\agent-documents.exe</pre>
+      <div class="note warn"><i class="ti ti-shield-half"></i><span id="s5-warn">Si Windows muestra <b>"Windows protegió tu PC"</b>, pulsa <b>Más información → Ejecutar de todas formas</b>. Es porque el programa aún no está firmado; es seguro.</span></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="n">6</div>
+    <div class="b">
+      <h3 id="s6-t">Escribe tus preguntas</h3>
+      <p id="s6-p">Cuando veas el símbolo <code class="inl">&gt;</code>, escribe lo que quieras en lenguaje normal y pulsa Enter. Para terminar, escribe <code class="inl">salir</code>.</p>
+      <div class="note ok"><i class="ti ti-lock"></i><span id="s6-ok">Todo se procesa en tu equipo. Tus archivos y datos nunca se suben a ningún lado — la plataforma solo valida tu licencia.</span></div>
+    </div>
+  </div>
+
+  <h2 class="sec" id="tr-t">¿Algo no funcionó?</h2>
+  <div class="faq"><b id="f1-q">Dice que la licencia no es válida</b><p id="f1-a">Revisa que la clave esté pegada completa y sin espacios de más, y que tu suscripción esté activa en el portal. La clave va entre comillas.</p></div>
+  <div class="faq"><b id="f2-q">La ventana se cierra sola al terminar</b><p id="f2-a">Arranca el agente desde PowerShell (paso 5), no con doble clic; así ves los mensajes y puedes escribir tus preguntas.</p></div>
+  <div class="faq"><b id="f3-q">"No se reconoce el comando"</b><p id="f3-a">Asegúrate de escribir la ruta correcta del archivo <code class="inl">.exe</code> (lo más fácil: arrástralo a la ventana de PowerShell).</p></div>
+  <div class="faq"><b id="f4-q">Necesito más ayuda</b><p id="f4-a">Escríbenos a <a href="/soporte/">soporte</a> y te ayudamos a activarlo.</p></div>
+</main>
+
+<footer>&copy; <span id="y"></span> TuIAlista &middot; <a href="/soporte/">Soporte</a> &middot; <a href="/portal/">Portal</a></footer>
+
+<script>
+(function(){
+  document.getElementById("y").textContent=new Date().getFullYear();
+  var EN=(function(){try{return (localStorage.getItem("tuialista_lang")||"es").indexOf("en")===0;}catch(e){return false;}})();
+  if(!EN)return;
+  document.documentElement.lang="en";
+  var T={
+    title:"How to activate your agent",
+    lead:"In a few minutes. No coding needed — just copy and paste. Your data never leaves your computer.",
+    "req-t":'<i class="ti ti-checklist" style="color:var(--signal-dim)"></i> What you need',
+    req1:"A computer running <b>Windows</b>.",
+    req2:'Your <b>license key</b> (emailed to you and in your portal). It looks like <code class="inl">TIA-XXXX-XXXX-XXXX-XXXX</code>.',
+    req3:"Depending on the agent, the <b>folder or file</b> with your data (the agent tells you when it starts).",
+    "s1-t":"Download your agent",
+    "s1-p":'Go to your <a href="/portal/">portal</a> → <b>My agents</b> and click <b>Download</b>. You get an <code class="inl">agent-....exe</code> file (e.g. in your Downloads folder).',
+    "s2-t":"Open PowerShell",
+    "s2-p":"Click the Start menu, type <b>PowerShell</b> and open it. This is where you'll paste two lines.",
+    "s3-t":"Paste your license key",
+    "s3-p":"Copy this line, replace it with your key and paste it in PowerShell (Enter):",
+    "s4-t":"Point it to your data (if the agent asks)",
+    "s4-p":"Some agents work on a folder or file of yours. For example, the Documents agent uses a folder:",
+    "s4-p2":"If your agent doesn't need data, skip this step. When it starts, it tells you exactly what it needs.",
+    "s5-t":"Run the agent",
+    "s5-p":'In the <b>same</b> PowerShell window, drag the <code class="inl">.exe</code> file onto the window and press Enter. Or type its path, e.g.:',
+    "s5-warn":'If Windows shows <b>"Windows protected your PC"</b>, click <b>More info → Run anyway</b>. It\'s because the app isn\'t signed yet; it\'s safe.',
+    "s6-t":"Type your questions",
+    "s6-p":'When you see the <code class="inl">&gt;</code> prompt, type anything in plain language and press Enter. To quit, type <code class="inl">exit</code>.',
+    "s6-ok":"Everything runs on your machine. Your files and data are never uploaded anywhere — the platform only validates your license.",
+    "tr-t":"Something didn't work?",
+    "f1-q":"It says the license is invalid",
+    "f1-a":"Check the key is pasted in full with no extra spaces, and that your subscription is active in the portal. The key goes in quotes.",
+    "f2-q":"The window closes by itself",
+    "f2-a":"Run the agent from PowerShell (step 5), not by double-clicking; that way you see the messages and can type your questions.",
+    "f3-q":'"Command not recognized"',
+    "f3-a":'Make sure you type the correct path to the <code class="inl">.exe</code> (easiest: drag it onto the PowerShell window).',
+    "f4-q":"I need more help",
+    "f4-a":'Write to <a href="/soporte/">support</a> and we\'ll help you activate it.',
+    "l-back":"← Back to portal"
+  };
+  Object.keys(T).forEach(function(id){var e=document.getElementById(id);if(e)e.innerHTML=T[id];});
+})();
+</script>
+</body>
+</html>

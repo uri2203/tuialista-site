@@ -1649,6 +1649,7 @@ document.addEventListener("DOMContentLoaded", () => {
         (lbl?'<tr><td>'+lbl+'</td><td class="v">'+when+'</td></tr>':'')+
         '</table><div class="lic-acts">'+
         '<a class="btn btn-solid btn-flex btn-sm" href="https://github.com/uri2203/tuialista-site/releases/download/agents/agent-'+esc(l.agent_id)+'.exe" download><i class="ti ti-download"></i> '+T.dl+'</a>'+
+        '<a class="btn btn-ghost btn-flex btn-sm" href="/activar/"><i class="ti ti-book" style="font-size:13px"></i> '+(EN?"Guide":"Guía")+'</a>'+
         '</div></div>';
     }).join("");
     if(typeof initCopyButtons==="function")initCopyButtons();
@@ -1692,6 +1693,7 @@ document.addEventListener("DOMContentLoaded", () => {
         (whenLbl?'<tr><td>'+whenLbl+'</td><td class="v">'+whenVal+'</td></tr>':'')+'</table>'+
         '<div class="acts">'+
         '<a class="btn btn-solid btn-flex" href="https://github.com/uri2203/tuialista-site/releases/download/agents/agent-'+esc(l.agent_id)+'.exe" download><i class="ti ti-download"></i> '+T.dl+'</a>'+
+        '<a class="btn btn-ghost btn-flex" href="/activar/"><i class="ti ti-book"></i> '+(EN?"Guide":"Guía")+'</a>'+
         '</div></div>';
     }).join("");
     if(typeof initCopyButtons==="function")initCopyButtons();
@@ -1895,6 +1897,8 @@ document.addEventListener("DOMContentLoaded", () => {
     $("go-forgot").addEventListener("click",function(e){e.preventDefault();showView("forgot");$("fgt-email").value=($("auth-email").value||"").trim();$("fgt-email").focus();});
     $("go-forgot2").addEventListener("click",function(e){e.preventDefault();$("fgt-email").value=pendingEmail;showView("forgot");});
     $("go-resend").addEventListener("click",function(e){e.preventDefault();doResend();});
+    // Los botones "Manual" (tienda/facturación) llevan a la guía de activación.
+    document.querySelectorAll('a[data-i18n="portal.card.manual"]').forEach(function(a){a.setAttribute("href","/activar/");});
     showView("login");
     if(tok()){ api("/api/auth/me").then(function(){hideAuth();loadData();}).catch(function(){showAuth();}); }
     else { showAuth(); }
