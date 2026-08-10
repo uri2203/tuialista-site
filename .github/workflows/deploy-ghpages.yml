@@ -12,7 +12,9 @@ permissions:
 
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  # true: ante varios pushes seguidos, cancela los deploys viejos y publica solo el
+  # último (evita la cola/backlog de deploys que hacía tardar las publicaciones).
+  cancel-in-progress: true
 
 jobs:
   build:

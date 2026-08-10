@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Página no encontrada — TuIAlista</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{--steel-900:#0f1922;--paper:#f5f6f4;--paper-2:#eceee9;--ink:#0f1922;--muted:#5a6b73;--signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
+  header{border-bottom:1px solid var(--line)}
+  .nav{max-width:900px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:20px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:9px}
+  .logo .dot{width:9px;height:9px;border-radius:50%;background:var(--signal);box-shadow:0 0 0 3px rgba(232,130,30,.2)}
+  .logo b{color:var(--signal)}
+  main{flex:1;display:flex;align-items:center;justify-content:center;padding:48px 24px}
+  .box{max-width:520px;text-align:center}
+  .code{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--signal-dim);letter-spacing:.14em;margin-bottom:14px}
+  h1{font-family:'Space Grotesk';font-size:clamp(30px,6vw,52px);line-height:1.05;margin-bottom:12px}
+  p{color:var(--muted);font-size:16px;margin-bottom:28px}
+  .actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+  .btn{padding:11px 20px;border-radius:9px;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14.5px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);color:var(--ink);background:#fff;transition:.15s}
+  .btn:hover{border-color:var(--signal)}
+  .btn.solid{background:var(--steel-900);color:#fff;border-color:var(--steel-900)}
+  .btn.solid:hover{background:var(--signal);color:#1a1206;border-color:var(--signal)}
+  footer{border-top:1px solid var(--line);text-align:center;padding:18px;font-size:13px;color:var(--muted)}
+  footer a{color:var(--signal-dim);text-decoration:none}
+</style>
+</head>
+<body>
+<header><div class="nav"><a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a></div></header>
+<main>
+  <div class="box">
+    <div class="code">ERROR 404</div>
+    <h1 id="title">Esta página no existe</h1>
+    <p id="lead">El enlace puede estar roto o la página se movió. Desde aquí puedes volver a lo importante.</p>
+    <div class="actions">
+      <a class="btn solid" href="/" id="b-home"><i class="ti ti-home"></i> Inicio</a>
+      <a class="btn" href="/catalogo/" id="b-cat"><i class="ti ti-apps"></i> Catálogo</a>
+      <a class="btn" href="/portal/" id="b-portal"><i class="ti ti-layout-dashboard"></i> Portal</a>
+      <a class="btn" href="/soporte/" id="b-help"><i class="ti ti-lifebuoy"></i> Soporte</a>
+    </div>
+  </div>
+</main>
+<footer>&copy; <span id="y"></span> TuIAlista &middot; <a href="/">tuialista.com</a></footer>
+<script>
+  document.getElementById("y").textContent=new Date().getFullYear();
+  (function(){
+    var EN=false; try{EN=(localStorage.getItem("tuialista_lang")||"es").indexOf("en")===0;}catch(e){}
+    if(!EN)return;
+    document.documentElement.lang="en";
+    document.getElementById("title").textContent="This page doesn't exist";
+    document.getElementById("lead").textContent="The link may be broken or the page moved. Here are the useful places to go.";
+    document.getElementById("b-home").innerHTML='<i class="ti ti-home"></i> Home';
+    document.getElementById("b-cat").innerHTML='<i class="ti ti-apps"></i> Catalog';
+    document.getElementById("b-portal").innerHTML='<i class="ti ti-layout-dashboard"></i> Portal';
+    document.getElementById("b-help").innerHTML='<i class="ti ti-lifebuoy"></i> Support';
+  })();
+</script>
+</body>
+</html>
