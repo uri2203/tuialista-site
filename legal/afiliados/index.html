@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Programa de Afiliados — TuIAlista</title>
+<title>Términos del Programa de Afiliados — TuIAlista</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -11,12 +11,14 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Inter',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
 header{position:sticky;top:0;background:rgba(245,246,244,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
-.nav{max-width:820px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.nav{max-width:820px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
 .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
 .logo b{color:var(--signal)}
+.nav-right{display:flex;align-items:center;gap:14px}
 .nav a.back{color:var(--muted);text-decoration:none;font-size:14px}
 .nav a.back:hover{color:var(--ink)}
+#lang-sel{font-family:'Inter',sans-serif;font-size:13.5px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:7px;padding:5px 8px;cursor:pointer}
 main{max-width:820px;margin:0 auto;padding:40px 24px 80px}
 .doc h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,36px);line-height:1.15;margin-bottom:8px}
 .doc h2{font-family:'Space Grotesk';font-size:22px;margin:34px 0 12px}
@@ -26,53 +28,40 @@ main{max-width:820px;margin:0 auto;padding:40px 24px 80px}
 .doc li{margin:6px 0}
 .doc a{color:var(--signal-dim)}
 .doc strong{color:var(--ink)}
+.doc code{background:#eceee9;padding:1px 5px;border-radius:4px;font-size:.92em}
+.doc pre{background:#0f1922;color:#e6e9e7;padding:14px 16px;border-radius:8px;overflow:auto;margin:16px 0;font-size:13px}
+.doc pre code{background:none;color:inherit;padding:0}
 .doc blockquote{border-left:3px solid var(--signal);background:#eceee9;padding:12px 18px;margin:16px 0;border-radius:0 8px 8px 0;color:var(--muted);font-size:14.5px}
+.doc blockquote p{margin:6px 0;color:var(--muted)}
 .doc hr{border:none;border-top:1px solid var(--line);margin:28px 0}
-.doc table{border-collapse:collapse;margin:16px 0;font-size:14px;width:100%}
-.doc th,.doc td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+.trnote{background:#eef2f5;border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--muted);margin-bottom:24px}
 footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px}
 footer a{color:#cdd5d9;text-decoration:none}
 </style>
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Programa de Afiliados \u2014 TuIAlista",
-  "description": "",
-  "url": "https://tuialista.com/legal\\afiliados/",
-  "isPartOf": {
-    "@type": "WebSite",
-    "name": "Tuialista",
-    "url": "https://tuialista.com"
-  }
-}
+{"@context":"https://schema.org","@type":"WebPage","name":"Términos del Programa de Afiliados — TuIAlista","url":"https://tuialista.com/legal/afiliados/","isPartOf":{"@type":"WebSite","name":"Tuialista","url":"https://tuialista.com"}}
 </script>
-<meta property="og:title" content="Programa de Afiliados — TuIAlista">
-<meta property="og:description" content="">
-<meta property="og:url" content="https://tuialista.com/legal\afiliados/">
+<meta property="og:title" content="Términos del Programa de Afiliados — TuIAlista">
+<meta property="og:url" content="https://tuialista.com/legal/afiliados/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://tuialista.com/assets/img/icon-512.png">
 <meta property="og:site_name" content="Tuialista">
 <meta property="og:locale" content="es_MX">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Programa de Afiliados — TuIAlista">
-<meta name="twitter:description" content="">
 <script defer data-domain="tuialista.com" src="https://plausible.io/js/script.js"></script>
 </head>
 <body>
-<header><div class="nav"><a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a><a class="back" href="/portal/">&larr; Volver al portal</a></div></header>
-<main><div class="doc"><h1>Términos del Programa de Afiliados de TuIAlista</h1>
-<blockquote>
-<p>La versión vigente de este documento se publica en <a href="https://www.tuialista.com">www.tuialista.com</a>.</p>
-</blockquote>
+<header><div class="nav"><a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+<div class="nav-right"><select id="lang-sel" aria-label="Idioma / Language"><option value="es">Español</option><option value="en">English</option><option value="pt">Português</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="it">Italiano</option></select><a class="back" href="/portal/" id="back-link">← Volver al portal</a></div></div></header>
+<main>
+<article class="doc" id="doc-es" data-lang="es"><h1>Términos del Programa de Afiliados de TuIAlista</h1>
+<blockquote><p>La versión vigente de este documento se publica en <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
 <p><strong>Versión:</strong> 1.0 · <strong>Última actualización:</strong> 21 de julio de 2026 · <strong>Vigente a partir de:</strong> 21 de julio de 2026</p>
 <hr />
 <h2>1. Objeto y relación con los Términos de Servicio</h2>
 <p>1.1. Estos Términos del Programa de Afiliados (los <strong>"Términos de Afiliados"</strong>) regulan la participación en el programa de afiliados de <strong>TuIAlista</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a>), operado por <strong>Edgar Apolonio Aguilera</strong>, <strong>persona física con actividad empresarial</strong> que opera bajo el nombre comercial <strong>"TuIAlista"</strong>, con RFC <strong>AOAE781008V98</strong> y domicilio fiscal en <strong>Calle Malitzin, Manzana 10, Lote 23, Colonia Tepeaca, C.P. 01550, Alcaldía Álvaro Obregón</strong>, Ciudad de México, México.</p>
-<blockquote>
-<p><strong>Nota sobre la estructura del negocio.</strong> TuIAlista opera actualmente como negocio de persona física con actividad empresarial. Se prevé la futura constitución de la persona moral <strong>ORDINAL-BiA</strong>, a la que se transferirá la titularidad y la marca; los documentos se actualizarán en ese momento.</p>
-</blockquote>
-<p>1.2. Estos Términos de Afiliados <strong>forman parte integral</strong> de los <a href="/legal/terminos">Términos de Servicio</a> y se complementan con ellos. En caso de conflicto respecto de la participación como afiliado, prevalecen estos Términos de Afiliados.</p>
+<blockquote><p><strong>Nota sobre la estructura del negocio.</strong> TuIAlista opera actualmente como negocio de persona física con actividad empresarial. Se prevé la futura constitución de la persona moral <strong>ORDINAL-BiA</strong>, a la que se transferirá la titularidad y la marca; los documentos se actualizarán en ese momento.</p></blockquote>
+<p>1.2. Estos Términos de Afiliados <strong>forman parte integral</strong> de los <a href="/legal/terminos/">Términos de Servicio</a> y se complementan con ellos. En caso de conflicto respecto de la participación como afiliado, prevalecen estos Términos de Afiliados.</p>
 <p>1.3. Al inscribirse en el programa, la persona (el <strong>"Afiliado"</strong>) declara haber leído, entendido y aceptado estos Términos de Afiliados.</p>
 <hr />
 <h2>2. Naturaleza de la relación</h2>
@@ -82,19 +71,14 @@ footer a{color:#cdd5d9;text-decoration:none}
 <hr />
 <h2>3. Elegibilidad</h2>
 <p>3.1. Para participar, el Afiliado debe: (i) ser mayor de edad y tener capacidad legal para contratar; (ii) registrarse y ser aprobado en el programa; y (iii) mantener una cuenta y datos de contacto y de pago válidos.</p>
-<p>3.2. TuIAlista podrá <strong>aprobar o rechazar</strong> solicitudes de afiliación a su discreción razonable, así como establecer requisitos adicionales por país.
-3.3. No podrán participar personas que hayan sido dadas de baja del programa por incumplimiento o fraude, salvo readmisión expresa.</p>
+<p>3.2. TuIAlista podrá <strong>aprobar o rechazar</strong> solicitudes de afiliación a su discreción razonable, así como establecer requisitos adicionales por país. 3.3. No podrán participar personas que hayan sido dadas de baja del programa por incumplimiento o fraude, salvo readmisión expresa.</p>
 <hr />
 <h2>4. Comisión: 30% recurrente</h2>
 <p>4.1. <strong>Tasa de comisión.</strong> El Afiliado tiene derecho a una comisión del <strong>treinta por ciento (30%)</strong> sobre los <strong>pagos netos válidos</strong> efectivamente cobrados de los <strong>clientes referidos</strong> a través de su enlace o código de afiliado, mientras dichos clientes mantengan una suscripción de pago activa (<strong>comisión recurrente</strong>).</p>
-<p>4.2. <strong>Base de cálculo.</strong> La comisión se calcula sobre el importe <strong>neto efectivamente cobrado y no reembolsado</strong>, es decir, <strong>después</strong> de impuestos, comisiones de la pasarela/Comerciante Registrado, descuentos, reembolsos y contracargos.
-4.3. <strong>Atribución.</strong> La atribución de un cliente referido se determina mediante el mecanismo de seguimiento del programa (enlace/código y ventana de atribución).
-4.4. <strong>Duración de la recurrencia.</strong> La comisión recurrente se paga mientras el cliente referido siga pagando y no se actualice una causal de reversión (Sección 6). TuIAlista podrá establecer un límite temporal a la recurrencia, que se comunicará previamente.</p>
+<p>4.2. <strong>Base de cálculo.</strong> La comisión se calcula sobre el importe <strong>neto efectivamente cobrado y no reembolsado</strong>, es decir, <strong>después</strong> de impuestos, comisiones de la pasarela/Comerciante Registrado, descuentos, reembolsos y contracargos. 4.3. <strong>Atribución.</strong> La atribución de un cliente referido se determina mediante el mecanismo de seguimiento del programa (enlace/código y ventana de atribución). 4.4. <strong>Duración de la recurrencia.</strong> La comisión recurrente se paga mientras el cliente referido siga pagando y no se actualice una causal de reversión (Sección 6). TuIAlista podrá establecer un límite temporal a la recurrencia, que se comunicará previamente.</p>
 <hr />
 <h2>5. Pago de comisiones</h2>
-<p>5.1. <strong>Umbral y calendario.</strong> Las comisiones se acumulan y se pagan cuando el saldo del Afiliado alcanza el <strong>umbral mínimo</strong> y transcurre el <strong>periodo de maduración</strong> (para cubrir posibles reembolsos/contracargos).
-5.2. <strong>Medio de pago y relación con Creem.</strong> Los cobros de los clientes se procesan a través de <strong>Creem</strong> como <strong>Comerciante Registrado (Merchant of Record)</strong>. El pago de las comisiones al Afiliado podrá gestionarse a través de Creem o del medio que TuIAlista habilite.
-5.3. <strong>Datos correctos.</strong> El Afiliado es responsable de proporcionar datos de pago y fiscales correctos. TuIAlista no responde por pagos fallidos derivados de datos erróneos.</p>
+<p>5.1. <strong>Umbral y calendario.</strong> Las comisiones se acumulan y se pagan cuando el saldo del Afiliado alcanza el <strong>umbral mínimo</strong> y transcurre el <strong>periodo de maduración</strong> (para cubrir posibles reembolsos/contracargos). 5.2. <strong>Medio de pago y relación con Creem.</strong> Los cobros de los clientes se procesan a través de <strong>Creem</strong> como <strong>Comerciante Registrado (Merchant of Record)</strong>. El pago de las comisiones al Afiliado podrá gestionarse a través de Creem o del medio que TuIAlista habilite. 5.3. <strong>Datos correctos.</strong> El Afiliado es responsable de proporcionar datos de pago y fiscales correctos. TuIAlista no responde por pagos fallidos derivados de datos erróneos.</p>
 <p>5.4. <strong>Moneda.</strong> Las comisiones podrán pagarse en la moneda que TuIAlista determine; las diferencias por tipo de cambio o comisiones del medio de pago corren por cuenta del Afiliado.</p>
 <hr />
 <h2>6. Retención y reversión de comisiones</h2>
@@ -105,7 +89,7 @@ footer a{color:#cdd5d9;text-decoration:none}
 <h2>7. Obligaciones y conductas prohibidas del Afiliado</h2>
 <p>7.1. El Afiliado se obliga a promover TuIAlista de forma <strong>honesta, lícita y no engañosa</strong>. En particular, <strong>no</strong> podrá:</p>
 <p>a) Enviar <strong>spam</strong> o comunicaciones no solicitadas, ni incumplir la normativa de comunicaciones comerciales y protección de datos aplicable;</p>
-<p>b) Realizar <strong>publicidad engañosa</strong> o afirmaciones falsas sobre el Servicio, sus resultados, precios o capacidades, ni prometer "cumplimiento" o "exactitud" que contradigan el <a href="/legal/deslinde-ia">Deslinde de Responsabilidad sobre Inteligencia Artificial</a>;</p>
+<p>b) Realizar <strong>publicidad engañosa</strong> o afirmaciones falsas sobre el Servicio, sus resultados, precios o capacidades, ni prometer "cumplimiento" o "exactitud" que contradigan el <a href="/legal/deslinde-ia/">Deslinde de Responsabilidad sobre Inteligencia Artificial</a>;</p>
 <p>c) Realizar <strong>autocompras</strong> para generar comisión, ni referir cuentas propias o de terceros coludidos, ni inflar artificialmente las conversiones (<strong>fraude</strong>);</p>
 <p>d) Usar las <strong>marcas, logotipos, nombre o materiales</strong> de TuIAlista sin autorización, ni registrar dominios, cuentas, marcas o nombres confundibles con TuIAlista;</p>
 <p>e) Pujar por <strong>palabras clave de marca</strong> ("TuIAlista" y variantes) en publicidad de buscadores, salvo autorización expresa;</p>
@@ -123,24 +107,407 @@ footer a{color:#cdd5d9;text-decoration:none}
 <hr />
 <h2>10. Impuestos</h2>
 <p>10.1. El Afiliado es el <strong>único responsable</strong> de determinar, declarar y pagar los <strong>impuestos</strong> que le correspondan por las comisiones recibidas, conforme a la normativa de su país y su régimen fiscal.</p>
-<h2>10.2. TuIAlista podrá solicitar la <strong>documentación fiscal</strong> necesaria y practicar <strong>retenciones</strong> cuando la ley se lo exija. Las comisiones se entienden <strong>sin incluir</strong> impuestos que deba enterar el Afiliado, salvo que la ley disponga otra cosa.</h2>
+<p>10.2. TuIAlista podrá solicitar la <strong>documentación fiscal</strong> necesaria y practicar <strong>retenciones</strong> cuando la ley se lo exija. Las comisiones se entienden <strong>sin incluir</strong> impuestos que deba enterar el Afiliado, salvo que la ley disponga otra cosa.</p>
+<hr />
 <h2>11. Modificaciones del programa</h2>
-<p>11.1. TuIAlista podrá <strong>modificar</strong> estos Términos de Afiliados, la tasa de comisión, la ventana de atribución, los umbrales y las condiciones del programa, publicando la versión vigente con su fecha. Los cambios aplican hacia el futuro; las comisiones ya devengadas se respetan conforme a las reglas vigentes al momento de generarse.
-11.2. TuIAlista podrá <strong>suspender o terminar</strong> el programa de afiliados en su conjunto, con aviso razonable.</p>
+<p>11.1. TuIAlista podrá <strong>modificar</strong> estos Términos de Afiliados, la tasa de comisión, la ventana de atribución, los umbrales y las condiciones del programa, publicando la versión vigente con su fecha. Los cambios aplican hacia el futuro; las comisiones ya devengadas se respetan conforme a las reglas vigentes al momento de generarse. 11.2. TuIAlista podrá <strong>suspender o terminar</strong> el programa de afiliados en su conjunto, con aviso razonable.</p>
 <hr />
 <h2>12. Limitación de responsabilidad</h2>
-<p>En la máxima medida permitida por la ley, la responsabilidad de TuIAlista frente al Afiliado se limita a las <strong>comisiones devengadas y no pagadas</strong>. Aplican, en lo conducente, las exclusiones y el tope de responsabilidad previstos en los <a href="/legal/terminos">Términos de Servicio</a> y en el <a href="/legal/deslinde-ia">Deslinde de Responsabilidad sobre Inteligencia Artificial</a>.</p>
+<p>En la máxima medida permitida por la ley, la responsabilidad de TuIAlista frente al Afiliado se limita a las <strong>comisiones devengadas y no pagadas</strong>. Aplican, en lo conducente, las exclusiones y el tope de responsabilidad previstos en los <a href="/legal/terminos/">Términos de Servicio</a> y en el <a href="/legal/deslinde-ia/">Deslinde de Responsabilidad sobre Inteligencia Artificial</a>.</p>
 <hr />
 <h2>13. Ley aplicable y jurisdicción</h2>
 <p>Estos Términos de Afiliados se rigen por las <strong>leyes de los Estados Unidos Mexicanos</strong>, con jurisdicción de los <strong>tribunales competentes de la Ciudad de México (CDMX)</strong>, renunciando el Afiliado a cualquier otro fuero. La versión en <strong>español</strong> es la rectora.</p>
 <hr />
 <h2>14. Contacto</h2>
-<ul>
-<li>Programa de afiliados: <strong>afiliados@tuialista.com</strong></li>
-<li>Sitio: <a href="https://www.tuialista.com">www.tuialista.com</a></li>
-</ul>
+<ul><li>Programa de afiliados: <strong>afiliados@tuialista.com</strong></li><li>Sitio: <a href="https://www.tuialista.com">www.tuialista.com</a></li></ul>
 <hr />
-<p><em>Fin del documento.</em></p></div></main>
-<footer>&copy; <span id="y"></span> TuIAlista &middot; <a href="/soporte">Soporte</a> &middot; <a href="/">Inicio</a><script>document.getElementById("y").textContent=new Date().getFullYear()</script></footer>
+<p><em>Fin del documento.</em></p></article>
+<article class="doc" id="doc-en" data-lang="en" hidden><div class="trnote">This is a courtesy translation. The Spanish version is the governing version.</div><h1>TuIAlista Affiliate Program Terms</h1>
+<blockquote><p>The current version of this document is published at <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
+<p><strong>Version:</strong> 1.0 · <strong>Last updated:</strong> 21 July 2026 · <strong>Effective:</strong> 21 July 2026</p>
+<hr />
+<h2>1. Purpose and relationship to the Terms of Service</h2>
+<p>1.1. These Affiliate Program Terms (the <strong>"Affiliate Terms"</strong>) govern participation in the affiliate program of <strong>TuIAlista</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a>), operated by <strong>Edgar Apolonio Aguilera</strong>, an <strong>individual with business activity</strong> trading under the commercial name <strong>"TuIAlista"</strong>, with Tax ID (RFC) <strong>AOAE781008V98</strong> and registered address at <strong>Calle Malitzin, Manzana 10, Lote 23, Colonia Tepeaca, C.P. 01550, Alcaldía Álvaro Obregón</strong>, Mexico City, Mexico.</p>
+<blockquote><p><strong>Note on business structure.</strong> TuIAlista currently operates as an individual with business activity. The future incorporation of the legal entity <strong>ORDINAL-BiA</strong> is planned, to which ownership and the brand will be transferred; the documents will be updated at that time.</p></blockquote>
+<p>1.2. These Affiliate Terms are an <strong>integral part</strong> of the <a href="/legal/terminos/">Terms of Service</a> and complement them. In the event of a conflict regarding participation as an affiliate, these Affiliate Terms prevail.</p>
+<p>1.3. By enrolling in the program, the person (the <strong>"Affiliate"</strong>) declares that they have read, understood, and accepted these Affiliate Terms.</p>
+<hr />
+<h2>2. Nature of the relationship</h2>
+<p>2.1. The Affiliate participates as an <strong>independent contractor</strong>. These Affiliate Terms <strong>do not create</strong> any employment, partnership, joint-venture, agency, franchise, or representation relationship between the Affiliate and TuIAlista (its owner, the individual with business activity).</p>
+<p>2.2. The Affiliate is <strong>not authorized</strong> to bind TuIAlista, to make commitments on its behalf, or to present themselves as an employee, partner, or representative of TuIAlista.</p>
+<p>2.3. The Affiliate is responsible for their own expenses, tools, taxes, and legal obligations arising from their promotional activity.</p>
+<hr />
+<h2>3. Eligibility</h2>
+<p>3.1. To participate, the Affiliate must: (i) be of legal age and have legal capacity to contract; (ii) register and be approved in the program; and (iii) maintain an account and valid contact and payment details.</p>
+<p>3.2. TuIAlista may <strong>approve or reject</strong> affiliate applications at its reasonable discretion, and may set additional requirements by country.</p>
+<p>3.3. Persons who have been removed from the program for breach or fraud may not participate, except upon express readmission.</p>
+<hr />
+<h2>4. Commission: 30% recurring</h2>
+<p>4.1. <strong>Commission rate.</strong> The Affiliate is entitled to a commission of <strong>thirty percent (30%)</strong> on the <strong>valid net payments</strong> actually collected from <strong>referred customers</strong> through their affiliate link or code, for as long as those customers maintain an active paid subscription (<strong>recurring commission</strong>).</p>
+<p>4.2. <strong>Calculation base.</strong> The commission is calculated on the amount <strong>actually collected net and not refunded</strong>, that is, <strong>after</strong> taxes, payment-gateway/Merchant-of-Record fees, discounts, refunds, and chargebacks.</p>
+<p>4.3. <strong>Attribution.</strong> Attribution of a referred customer is determined by the program's tracking mechanism (link/code and attribution window).</p>
+<p>4.4. <strong>Duration of recurrence.</strong> The recurring commission is paid for as long as the referred customer keeps paying and no reversal event (Section 6) is triggered. TuIAlista may set a time limit on the recurrence, which will be communicated in advance.</p>
+<hr />
+<h2>5. Commission payment</h2>
+<p>5.1. <strong>Threshold and schedule.</strong> Commissions accrue and are paid when the Affiliate's balance reaches the <strong>minimum threshold</strong> and the <strong>maturation period</strong> has elapsed (to cover possible refunds/chargebacks).</p>
+<p>5.2. <strong>Payment method and relationship with Creem.</strong> Customer payments are processed through <strong>Creem</strong> as <strong>Merchant of Record</strong>. Payment of commissions to the Affiliate may be handled through Creem or through the means TuIAlista makes available.</p>
+<p>5.3. <strong>Correct details.</strong> The Affiliate is responsible for providing correct payment and tax details. TuIAlista is not liable for failed payments arising from incorrect details.</p>
+<p>5.4. <strong>Currency.</strong> Commissions may be paid in the currency TuIAlista determines; exchange-rate differences or payment-method fees are borne by the Affiliate.</p>
+<hr />
+<h2>6. Withholding and reversal of commissions</h2>
+<p>6.1. <strong>Refunds and chargebacks.</strong> If a referred customer's payment is <strong>refunded, reversed, or charged back</strong>, the corresponding commission <strong>does not accrue</strong> or, if already paid, is <strong>deducted</strong> from future balances or its return is requested.</p>
+<p>6.2. <strong>Fraud.</strong> TuIAlista may <strong>withhold, cancel, or reverse</strong> commissions associated with fraudulent activity, self-purchases, fictitious referrals, unauthorized incentivized traffic, or any manipulation of the attribution system.</p>
+<p>6.3. <strong>Preventive suspension.</strong> Upon reasonable suspicion of fraud or breach, TuIAlista may <strong>preventively suspend</strong> payments while it investigates.</p>
+<hr />
+<h2>7. Affiliate obligations and prohibited conduct</h2>
+<p>7.1. The Affiliate undertakes to promote TuIAlista in an <strong>honest, lawful, and non-deceptive</strong> manner. In particular, they <strong>may not</strong>:</p>
+<p>a) Send <strong>spam</strong> or unsolicited communications, or breach applicable commercial-communications and data-protection rules;</p>
+<p>b) Engage in <strong>misleading advertising</strong> or make false claims about the Service, its results, prices, or capabilities, or promise "compliance" or "accuracy" that contradict the <a href="/legal/deslinde-ia/">AI Liability Disclaimer</a>;</p>
+<p>c) Make <strong>self-purchases</strong> to generate commission, refer their own accounts or those of colluding third parties, or artificially inflate conversions (<strong>fraud</strong>);</p>
+<p>d) Use TuIAlista's <strong>trademarks, logos, name, or materials</strong> without authorization, or register domains, accounts, trademarks, or names confusingly similar to TuIAlista;</p>
+<p>e) Bid on <strong>brand keywords</strong> ("TuIAlista" and variants) in search advertising, except with express authorization;</p>
+<p>f) Present themselves as TuIAlista or as its representative, or offer unauthorized discounts, warranties, or terms;</p>
+<p>g) Promote the Service on <strong>illegal, defamatory, discriminatory, sexually explicit</strong> sites or contexts, or ones that harm TuIAlista's reputation.</p>
+<p>7.2. The Affiliate must <strong>disclose</strong> their affiliate relationship where applicable advertising rules require it (e.g., an "affiliate link" notice).</p>
+<hr />
+<h2>8. Use of brand and materials</h2>
+<p>8.1. TuIAlista may make <strong>promotional materials</strong> (banners, copy, links) available to the Affiliate. The Affiliate may only use them in accordance with the guidelines TuIAlista publishes and solely to promote the Service.</p>
+<p>8.2. The brand-use license is <strong>limited, revocable, and non-exclusive</strong>, and terminates automatically upon the end of participation in the program.</p>
+<hr />
+<h2>9. Suspension and removal</h2>
+<p>9.1. TuIAlista may <strong>suspend or remove</strong> the Affiliate, with or without cause, upon notice. With <strong>cause</strong> (breach of Section 7, fraud, harm to the brand), removal may be <strong>immediate</strong> and with <strong>loss of the pending commissions</strong> associated with the conduct.</p>
+<p>9.2. The Affiliate may <strong>withdraw</strong> at any time. Withdrawal does not create any right to future commissions once the relationship has ended, except those already earned and not subject to reversal.</p>
+<hr />
+<h2>10. Taxes</h2>
+<p>10.1. The Affiliate is <strong>solely responsible</strong> for determining, declaring, and paying the <strong>taxes</strong> applicable to the commissions received, in accordance with the rules of their country and tax regime.</p>
+<p>10.2. TuIAlista may request the necessary <strong>tax documentation</strong> and apply <strong>withholdings</strong> where the law requires. Commissions are understood to be <strong>exclusive of</strong> taxes payable by the Affiliate, unless the law provides otherwise.</p>
+<hr />
+<h2>11. Program changes</h2>
+<p>11.1. TuIAlista may <strong>modify</strong> these Affiliate Terms, the commission rate, the attribution window, the thresholds, and the program conditions, by publishing the current version with its date. Changes apply going forward; commissions already earned are honored under the rules in force at the time they accrued.</p>
+<p>11.2. TuIAlista may <strong>suspend or terminate</strong> the affiliate program as a whole, with reasonable notice.</p>
+<hr />
+<h2>12. Limitation of liability</h2>
+<p>To the maximum extent permitted by law, TuIAlista's liability to the Affiliate is limited to <strong>commissions earned and unpaid</strong>. The exclusions and liability cap set out in the <a href="/legal/terminos/">Terms of Service</a> and the <a href="/legal/deslinde-ia/">AI Liability Disclaimer</a> apply, as applicable.</p>
+<hr />
+<h2>13. Governing law and jurisdiction</h2>
+<p>These Affiliate Terms are governed by the <strong>laws of the United Mexican States</strong>, with jurisdiction of the <strong>competent courts of Mexico City (CDMX)</strong>, the Affiliate waiving any other venue. The <strong>Spanish</strong> version is the governing version.</p>
+<hr />
+<h2>14. Contact</h2>
+<ul><li>Affiliate program: <strong>afiliados@tuialista.com</strong></li><li>Website: <a href="https://www.tuialista.com">www.tuialista.com</a></li></ul>
+<hr />
+<p><em>End of document.</em></p></article>
+<article class="doc" id="doc-pt" data-lang="pt" hidden><div class="trnote">Esta é uma tradução de cortesia. A versão em espanhol é a versão vigente.</div><h1>Termos do Programa de Afiliados da TuIAlista</h1>
+<blockquote><p>A versão vigente deste documento é publicada em <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
+<p><strong>Versão:</strong> 1.0 · <strong>Última atualização:</strong> 21 de julho de 2026 · <strong>Em vigor a partir de:</strong> 21 de julho de 2026</p>
+<hr />
+<h2>1. Objeto e relação com os Termos de Serviço</h2>
+<p>1.1. Estes Termos do Programa de Afiliados (os <strong>"Termos de Afiliados"</strong>) regulam a participação no programa de afiliados da <strong>TuIAlista</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a>), operada por <strong>Edgar Apolonio Aguilera</strong>, <strong>pessoa física com atividade empresarial</strong> que atua sob o nome comercial <strong>"TuIAlista"</strong>, com RFC <strong>AOAE781008V98</strong> e domicílio fiscal em <strong>Calle Malitzin, Manzana 10, Lote 23, Colonia Tepeaca, C.P. 01550, Alcaldía Álvaro Obregón</strong>, Cidade do México, México.</p>
+<blockquote><p><strong>Nota sobre a estrutura do negócio.</strong> A TuIAlista opera atualmente como negócio de pessoa física com atividade empresarial. Prevê-se a futura constituição da pessoa jurídica <strong>ORDINAL-BiA</strong>, à qual serão transferidas a titularidade e a marca; os documentos serão atualizados nesse momento.</p></blockquote>
+<p>1.2. Estes Termos de Afiliados <strong>são parte integrante</strong> dos <a href="/legal/terminos/">Termos de Serviço</a> e os complementam. Em caso de conflito quanto à participação como afiliado, prevalecem estes Termos de Afiliados.</p>
+<p>1.3. Ao se inscrever no programa, a pessoa (o <strong>"Afiliado"</strong>) declara ter lido, entendido e aceitado estes Termos de Afiliados.</p>
+<hr />
+<h2>2. Natureza da relação</h2>
+<p>2.1. O Afiliado participa como <strong>contratante independente</strong>. Estes Termos de Afiliados <strong>não criam</strong> relação de emprego, sociedade, joint venture, agência, franquia nem representação entre o Afiliado e a TuIAlista (seu titular, a pessoa física com atividade empresarial).</p>
+<p>2.2. O Afiliado <strong>não está autorizado</strong> a obrigar a TuIAlista, a assumir compromissos em seu nome, nem a se apresentar como funcionário, sócio ou representante da TuIAlista.</p>
+<p>2.3. O Afiliado é responsável por suas próprias despesas, ferramentas, impostos e obrigações legais decorrentes de sua atividade de promoção.</p>
+<hr />
+<h2>3. Elegibilidade</h2>
+<p>3.1. Para participar, o Afiliado deve: (i) ser maior de idade e ter capacidade legal para contratar; (ii) cadastrar-se e ser aprovado no programa; e (iii) manter uma conta e dados de contato e de pagamento válidos.</p>
+<p>3.2. A TuIAlista poderá <strong>aprovar ou recusar</strong> solicitações de afiliação a seu critério razoável, bem como estabelecer requisitos adicionais por país.</p>
+<p>3.3. Não poderão participar pessoas que tenham sido excluídas do programa por descumprimento ou fraude, salvo readmissão expressa.</p>
+<hr />
+<h2>4. Comissão: 30% recorrente</h2>
+<p>4.1. <strong>Taxa de comissão.</strong> O Afiliado tem direito a uma comissão de <strong>trinta por cento (30%)</strong> sobre os <strong>pagamentos líquidos válidos</strong> efetivamente recebidos dos <strong>clientes indicados</strong> por meio de seu link ou código de afiliado, enquanto tais clientes mantiverem uma assinatura paga ativa (<strong>comissão recorrente</strong>).</p>
+<p>4.2. <strong>Base de cálculo.</strong> A comissão é calculada sobre o valor <strong>efetivamente recebido líquido e não reembolsado</strong>, ou seja, <strong>após</strong> impostos, taxas da plataforma de pagamento/Comerciante Registrado, descontos, reembolsos e estornos.</p>
+<p>4.3. <strong>Atribuição.</strong> A atribuição de um cliente indicado é determinada pelo mecanismo de rastreamento do programa (link/código e janela de atribuição).</p>
+<p>4.4. <strong>Duração da recorrência.</strong> A comissão recorrente é paga enquanto o cliente indicado continuar pagando e não se verificar uma causa de reversão (Seção 6). A TuIAlista poderá estabelecer um limite temporal à recorrência, que será comunicado previamente.</p>
+<hr />
+<h2>5. Pagamento de comissões</h2>
+<p>5.1. <strong>Limite mínimo e calendário.</strong> As comissões acumulam-se e são pagas quando o saldo do Afiliado atinge o <strong>limite mínimo</strong> e transcorre o <strong>período de maturação</strong> (para cobrir possíveis reembolsos/estornos).</p>
+<p>5.2. <strong>Meio de pagamento e relação com a Creem.</strong> Os pagamentos dos clientes são processados através da <strong>Creem</strong> como <strong>Comerciante Registrado (Merchant of Record)</strong>. O pagamento das comissões ao Afiliado poderá ser gerido através da Creem ou do meio que a TuIAlista disponibilizar.</p>
+<p>5.3. <strong>Dados corretos.</strong> O Afiliado é responsável por fornecer dados de pagamento e fiscais corretos. A TuIAlista não responde por pagamentos falhados decorrentes de dados incorretos.</p>
+<p>5.4. <strong>Moeda.</strong> As comissões poderão ser pagas na moeda que a TuIAlista determinar; as diferenças por taxa de câmbio ou taxas do meio de pagamento correm por conta do Afiliado.</p>
+<hr />
+<h2>6. Retenção e reversão de comissões</h2>
+<p>6.1. <strong>Reembolsos e estornos.</strong> Se o pagamento de um cliente indicado for <strong>reembolsado, revertido ou objeto de estorno</strong>, a comissão correspondente <strong>não é gerada</strong> ou, se já paga, é <strong>descontada</strong> de saldos futuros ou sua devolução é solicitada.</p>
+<p>6.2. <strong>Fraude.</strong> A TuIAlista poderá <strong>reter, cancelar ou reverter</strong> comissões associadas a atividade fraudulenta, autocompras, indicações fictícias, tráfego incentivado não autorizado ou qualquer manipulação do sistema de atribuição.</p>
+<p>6.3. <strong>Suspensão preventiva.</strong> Diante de suspeita razoável de fraude ou descumprimento, a TuIAlista poderá <strong>suspender preventivamente</strong> os pagamentos enquanto investiga.</p>
+<hr />
+<h2>7. Obrigações e condutas proibidas do Afiliado</h2>
+<p>7.1. O Afiliado obriga-se a promover a TuIAlista de forma <strong>honesta, lícita e não enganosa</strong>. Em particular, <strong>não</strong> poderá:</p>
+<p>a) Enviar <strong>spam</strong> ou comunicações não solicitadas, nem descumprir as normas de comunicações comerciais e proteção de dados aplicáveis;</p>
+<p>b) Realizar <strong>publicidade enganosa</strong> ou afirmações falsas sobre o Serviço, seus resultados, preços ou capacidades, nem prometer "conformidade" ou "exatidão" que contradigam o <a href="/legal/deslinde-ia/">Aviso sobre IA</a>;</p>
+<p>c) Realizar <strong>autocompras</strong> para gerar comissão, indicar contas próprias ou de terceiros em conluio, ou inflar artificialmente as conversões (<strong>fraude</strong>);</p>
+<p>d) Usar as <strong>marcas, logotipos, nome ou materiais</strong> da TuIAlista sem autorização, nem registrar domínios, contas, marcas ou nomes confundíveis com a TuIAlista;</p>
+<p>e) Dar lances em <strong>palavras-chave de marca</strong> ("TuIAlista" e variantes) em publicidade de buscadores, salvo autorização expressa;</p>
+<p>f) Apresentar-se como TuIAlista ou como seu representante, nem oferecer descontos, garantias ou condições não autorizadas;</p>
+<p>g) Promover o Serviço em sites ou contextos <strong>ilegais, difamatórios, discriminatórios, sexualmente explícitos</strong> ou que prejudiquem a reputação da TuIAlista.</p>
+<p>7.2. O Afiliado deve <strong>divulgar</strong> sua relação de afiliação quando as normas de publicidade aplicáveis o exigirem (p. ex., aviso de "link de afiliado").</p>
+<hr />
+<h2>8. Uso da marca e materiais</h2>
+<p>8.1. A TuIAlista poderá disponibilizar ao Afiliado <strong>materiais promocionais</strong> (banners, textos, links). O Afiliado só poderá usá-los conforme as diretrizes que a TuIAlista publicar e unicamente para promover o Serviço.</p>
+<p>8.2. A licença de uso da marca é <strong>limitada, revogável e não exclusiva</strong>, e termina automaticamente ao concluir a participação no programa.</p>
+<hr />
+<h2>9. Suspensão e exclusão</h2>
+<p>9.1. A TuIAlista poderá <strong>suspender ou excluir</strong> o Afiliado, com ou sem causa, mediante aviso. Com <strong>causa</strong> (descumprimento da Seção 7, fraude, dano à marca), a exclusão poderá ser <strong>imediata</strong> e com <strong>perda das comissões</strong> pendentes associadas à conduta.</p>
+<p>9.2. O Afiliado pode <strong>cancelar sua participação</strong> a qualquer momento. O cancelamento não gera direito a comissões futuras uma vez encerrada a relação, salvo as já devidas e não sujeitas a reversão.</p>
+<hr />
+<h2>10. Impostos</h2>
+<p>10.1. O Afiliado é o <strong>único responsável</strong> por determinar, declarar e pagar os <strong>impostos</strong> que lhe correspondam pelas comissões recebidas, conforme as normas de seu país e seu regime fiscal.</p>
+<p>10.2. A TuIAlista poderá solicitar a <strong>documentação fiscal</strong> necessária e praticar <strong>retenções</strong> quando a lei o exigir. As comissões entendem-se <strong>sem incluir</strong> impostos que o Afiliado deva recolher, salvo disposição legal em contrário.</p>
+<hr />
+<h2>11. Modificações do programa</h2>
+<p>11.1. A TuIAlista poderá <strong>modificar</strong> estes Termos de Afiliados, a taxa de comissão, a janela de atribuição, os limites e as condições do programa, publicando a versão vigente com sua data. As alterações aplicam-se para o futuro; as comissões já devidas são respeitadas conforme as regras vigentes no momento em que foram geradas.</p>
+<p>11.2. A TuIAlista poderá <strong>suspender ou encerrar</strong> o programa de afiliados como um todo, com aviso razoável.</p>
+<hr />
+<h2>12. Limitação de responsabilidade</h2>
+<p>Na máxima medida permitida por lei, a responsabilidade da TuIAlista perante o Afiliado limita-se às <strong>comissões devidas e não pagas</strong>. Aplicam-se, no que couber, as exclusões e o limite de responsabilidade previstos nos <a href="/legal/terminos/">Termos de Serviço</a> e no <a href="/legal/deslinde-ia/">Aviso sobre IA</a>.</p>
+<hr />
+<h2>13. Lei aplicável e jurisdição</h2>
+<p>Estes Termos de Afiliados regem-se pelas <strong>leis dos Estados Unidos Mexicanos</strong>, com jurisdição dos <strong>tribunais competentes da Cidade do México (CDMX)</strong>, renunciando o Afiliado a qualquer outro foro. A versão em <strong>espanhol</strong> é a vigente.</p>
+<hr />
+<h2>14. Contato</h2>
+<ul><li>Programa de afiliados: <strong>afiliados@tuialista.com</strong></li><li>Site: <a href="https://www.tuialista.com">www.tuialista.com</a></li></ul>
+<hr />
+<p><em>Fim do documento.</em></p></article>
+<article class="doc" id="doc-fr" data-lang="fr" hidden><div class="trnote">Ceci est une traduction de courtoisie. La version espagnole fait foi.</div><h1>Conditions du Programme d'Affiliation de TuIAlista</h1>
+<blockquote><p>La version en vigueur de ce document est publiée sur <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
+<p><strong>Version :</strong> 1.0 · <strong>Dernière mise à jour :</strong> 21 juillet 2026 · <strong>En vigueur à partir du :</strong> 21 juillet 2026</p>
+<hr />
+<h2>1. Objet et relation avec les Conditions de Service</h2>
+<p>1.1. Les présentes Conditions du Programme d'Affiliation (les <strong>« Conditions d'Affiliation »</strong>) régissent la participation au programme d'affiliation de <strong>TuIAlista</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a>), exploité par <strong>Edgar Apolonio Aguilera</strong>, <strong>personne physique exerçant une activité commerciale</strong> sous le nom commercial <strong>« TuIAlista »</strong>, immatriculée sous le numéro fiscal (RFC) <strong>AOAE781008V98</strong> et domiciliée à <strong>Calle Malitzin, Manzana 10, Lote 23, Colonia Tepeaca, C.P. 01550, Alcaldía Álvaro Obregón</strong>, Mexico, Mexique.</p>
+<blockquote><p><strong>Note sur la structure de l'entreprise.</strong> TuIAlista opère actuellement en tant que personne physique exerçant une activité commerciale. La constitution future de la personne morale <strong>ORDINAL-BiA</strong> est prévue, à laquelle seront transférées la propriété et la marque ; les documents seront mis à jour à ce moment-là.</p></blockquote>
+<p>1.2. Les présentes Conditions d'Affiliation <strong>font partie intégrante</strong> des <a href="/legal/terminos/">Conditions de Service</a> et les complètent. En cas de conflit concernant la participation en tant qu'affilié, les présentes Conditions d'Affiliation prévalent.</p>
+<p>1.3. En s'inscrivant au programme, la personne (l'<strong>« Affilié »</strong>) déclare avoir lu, compris et accepté les présentes Conditions d'Affiliation.</p>
+<hr />
+<h2>2. Nature de la relation</h2>
+<p>2.1. L'Affilié participe en tant qu'<strong>entrepreneur indépendant</strong>. Les présentes Conditions d'Affiliation <strong>ne créent</strong> aucune relation d'emploi, de partenariat, de coentreprise, d'agence, de franchise ni de représentation entre l'Affilié et TuIAlista (son titulaire, la personne physique exerçant une activité commerciale).</p>
+<p>2.2. L'Affilié <strong>n'est pas autorisé</strong> à engager TuIAlista, à prendre des engagements en son nom, ni à se présenter comme employé, associé ou représentant de TuIAlista.</p>
+<p>2.3. L'Affilié est responsable de ses propres frais, outils, impôts et obligations légales découlant de son activité de promotion.</p>
+<hr />
+<h2>3. Éligibilité</h2>
+<p>3.1. Pour participer, l'Affilié doit : (i) être majeur et avoir la capacité juridique de contracter ; (ii) s'inscrire et être approuvé dans le programme ; et (iii) maintenir un compte ainsi que des coordonnées et des données de paiement valides.</p>
+<p>3.2. TuIAlista peut <strong>approuver ou refuser</strong> les demandes d'affiliation à sa discrétion raisonnable, et fixer des exigences supplémentaires par pays.</p>
+<p>3.3. Les personnes exclues du programme pour manquement ou fraude ne peuvent pas participer, sauf réadmission expresse.</p>
+<hr />
+<h2>4. Commission : 30 % récurrente</h2>
+<p>4.1. <strong>Taux de commission.</strong> L'Affilié a droit à une commission de <strong>trente pour cent (30 %)</strong> sur les <strong>paiements nets valides</strong> effectivement encaissés auprès des <strong>clients parrainés</strong> via son lien ou code d'affilié, tant que ces clients conservent un abonnement payant actif (<strong>commission récurrente</strong>).</p>
+<p>4.2. <strong>Base de calcul.</strong> La commission est calculée sur le montant <strong>effectivement encaissé net et non remboursé</strong>, c'est-à-dire <strong>après</strong> impôts, frais de la passerelle de paiement/Commerçant Enregistré, remises, remboursements et rétrofacturations.</p>
+<p>4.3. <strong>Attribution.</strong> L'attribution d'un client parrainé est déterminée par le mécanisme de suivi du programme (lien/code et fenêtre d'attribution).</p>
+<p>4.4. <strong>Durée de la récurrence.</strong> La commission récurrente est versée tant que le client parrainé continue de payer et qu'aucun cas de reversement (Section 6) n'est déclenché. TuIAlista peut fixer une limite temporelle à la récurrence, qui sera communiquée à l'avance.</p>
+<hr />
+<h2>5. Paiement des commissions</h2>
+<p>5.1. <strong>Seuil et calendrier.</strong> Les commissions s'accumulent et sont versées lorsque le solde de l'Affilié atteint le <strong>seuil minimum</strong> et que la <strong>période de maturation</strong> s'est écoulée (pour couvrir d'éventuels remboursements/rétrofacturations).</p>
+<p>5.2. <strong>Moyen de paiement et relation avec Creem.</strong> Les paiements des clients sont traités via <strong>Creem</strong> en tant que <strong>Commerçant Enregistré (Merchant of Record)</strong>. Le paiement des commissions à l'Affilié peut être géré via Creem ou par le moyen que TuIAlista met à disposition.</p>
+<p>5.3. <strong>Données correctes.</strong> L'Affilié est responsable de fournir des données de paiement et fiscales correctes. TuIAlista n'est pas responsable des paiements échoués découlant de données erronées.</p>
+<p>5.4. <strong>Devise.</strong> Les commissions peuvent être payées dans la devise que TuIAlista détermine ; les différences de taux de change ou les frais du moyen de paiement sont à la charge de l'Affilié.</p>
+<hr />
+<h2>6. Retenue et reversement des commissions</h2>
+<p>6.1. <strong>Remboursements et rétrofacturations.</strong> Si le paiement d'un client parrainé est <strong>remboursé, annulé ou fait l'objet d'une rétrofacturation</strong>, la commission correspondante <strong>n'est pas générée</strong> ou, si elle a déjà été versée, est <strong>déduite</strong> des soldes futurs ou sa restitution est demandée.</p>
+<p>6.2. <strong>Fraude.</strong> TuIAlista peut <strong>retenir, annuler ou reverser</strong> les commissions associées à une activité frauduleuse, des auto-achats, des parrainages fictifs, un trafic incité non autorisé ou toute manipulation du système d'attribution.</p>
+<p>6.3. <strong>Suspension préventive.</strong> En cas de soupçon raisonnable de fraude ou de manquement, TuIAlista peut <strong>suspendre préventivement</strong> les paiements pendant qu'elle enquête.</p>
+<hr />
+<h2>7. Obligations et conduites interdites de l'Affilié</h2>
+<p>7.1. L'Affilié s'engage à promouvoir TuIAlista de manière <strong>honnête, licite et non trompeuse</strong>. En particulier, il <strong>ne peut pas</strong> :</p>
+<p>a) Envoyer du <strong>spam</strong> ou des communications non sollicitées, ni enfreindre la réglementation applicable en matière de communications commerciales et de protection des données ;</p>
+<p>b) Faire de la <strong>publicité trompeuse</strong> ou des affirmations fausses sur le Service, ses résultats, ses prix ou ses capacités, ni promettre une « conformité » ou une « exactitude » contredisant l'<a href="/legal/deslinde-ia/">Avertissement IA</a> ;</p>
+<p>c) Effectuer des <strong>auto-achats</strong> pour générer une commission, parrainer ses propres comptes ou ceux de tiers complices, ni gonfler artificiellement les conversions (<strong>fraude</strong>) ;</p>
+<p>d) Utiliser les <strong>marques, logos, nom ou supports</strong> de TuIAlista sans autorisation, ni enregistrer des domaines, comptes, marques ou noms susceptibles d'être confondus avec TuIAlista ;</p>
+<p>e) Enchérir sur des <strong>mots-clés de marque</strong> (« TuIAlista » et variantes) dans la publicité des moteurs de recherche, sauf autorisation expresse ;</p>
+<p>f) Se présenter comme TuIAlista ou comme son représentant, ni offrir des remises, garanties ou conditions non autorisées ;</p>
+<p>g) Promouvoir le Service sur des sites ou dans des contextes <strong>illégaux, diffamatoires, discriminatoires, sexuellement explicites</strong> ou nuisant à la réputation de TuIAlista.</p>
+<p>7.2. L'Affilié doit <strong>divulguer</strong> sa relation d'affiliation lorsque la réglementation publicitaire applicable l'exige (par ex. une mention « lien d'affilié »).</p>
+<hr />
+<h2>8. Utilisation de la marque et des supports</h2>
+<p>8.1. TuIAlista peut mettre à la disposition de l'Affilié des <strong>supports promotionnels</strong> (bannières, textes, liens). L'Affilié ne peut les utiliser que conformément aux directives publiées par TuIAlista et uniquement pour promouvoir le Service.</p>
+<p>8.2. La licence d'utilisation de la marque est <strong>limitée, révocable et non exclusive</strong>, et prend fin automatiquement à la fin de la participation au programme.</p>
+<hr />
+<h2>9. Suspension et exclusion</h2>
+<p>9.1. TuIAlista peut <strong>suspendre ou exclure</strong> l'Affilié, avec ou sans motif, moyennant préavis. Avec <strong>motif</strong> (manquement à la Section 7, fraude, atteinte à la marque), l'exclusion peut être <strong>immédiate</strong> et entraîner la <strong>perte des commissions</strong> en attente associées à la conduite.</p>
+<p>9.2. L'Affilié peut <strong>se retirer</strong> à tout moment. Le retrait ne crée aucun droit à des commissions futures une fois la relation terminée, à l'exception de celles déjà acquises et non soumises à reversement.</p>
+<hr />
+<h2>10. Impôts</h2>
+<p>10.1. L'Affilié est le <strong>seul responsable</strong> de déterminer, déclarer et payer les <strong>impôts</strong> applicables aux commissions reçues, conformément à la réglementation de son pays et de son régime fiscal.</p>
+<p>10.2. TuIAlista peut demander la <strong>documentation fiscale</strong> nécessaire et pratiquer des <strong>retenues</strong> lorsque la loi l'exige. Les commissions s'entendent <strong>hors</strong> impôts dus par l'Affilié, sauf disposition légale contraire.</p>
+<hr />
+<h2>11. Modifications du programme</h2>
+<p>11.1. TuIAlista peut <strong>modifier</strong> les présentes Conditions d'Affiliation, le taux de commission, la fenêtre d'attribution, les seuils et les conditions du programme, en publiant la version en vigueur avec sa date. Les modifications s'appliquent pour l'avenir ; les commissions déjà acquises sont respectées selon les règles en vigueur au moment de leur acquisition.</p>
+<p>11.2. TuIAlista peut <strong>suspendre ou mettre fin</strong> au programme d'affiliation dans son ensemble, moyennant un préavis raisonnable.</p>
+<hr />
+<h2>12. Limitation de responsabilité</h2>
+<p>Dans la mesure maximale permise par la loi, la responsabilité de TuIAlista envers l'Affilié est limitée aux <strong>commissions acquises et impayées</strong>. Les exclusions et le plafond de responsabilité prévus dans les <a href="/legal/terminos/">Conditions de Service</a> et l'<a href="/legal/deslinde-ia/">Avertissement IA</a> s'appliquent, le cas échéant.</p>
+<hr />
+<h2>13. Loi applicable et juridiction</h2>
+<p>Les présentes Conditions d'Affiliation sont régies par les <strong>lois des États-Unis mexicains</strong>, avec compétence des <strong>tribunaux compétents de Mexico (CDMX)</strong>, l'Affilié renonçant à toute autre juridiction. La version <strong>espagnole</strong> fait foi.</p>
+<hr />
+<h2>14. Contact</h2>
+<ul><li>Programme d'affiliation : <strong>afiliados@tuialista.com</strong></li><li>Site web : <a href="https://www.tuialista.com">www.tuialista.com</a></li></ul>
+<hr />
+<p><em>Fin du document.</em></p></article>
+<article class="doc" id="doc-de" data-lang="de" hidden><div class="trnote">Dies ist eine Übersetzung als Serviceleistung. Maßgeblich ist die spanische Fassung.</div><h1>Bedingungen des TuIAlista-Partnerprogramms</h1>
+<blockquote><p>Die aktuelle Fassung dieses Dokuments wird unter <a href="https://www.tuialista.com">www.tuialista.com</a> veröffentlicht.</p></blockquote>
+<p><strong>Version:</strong> 1.0 · <strong>Zuletzt aktualisiert:</strong> 21. Juli 2026 · <strong>Gültig ab:</strong> 21. Juli 2026</p>
+<hr />
+<h2>1. Gegenstand und Verhältnis zu den Nutzungsbedingungen</h2>
+<p>1.1. Diese Partnerprogramm-Bedingungen (die <strong>„Partnerbedingungen"</strong>) regeln die Teilnahme am Partnerprogramm von <strong>TuIAlista</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a>), betrieben von <strong>Edgar Apolonio Aguilera</strong>, einer <strong>natürlichen Person mit unternehmerischer Tätigkeit</strong>, die unter dem Handelsnamen <strong>„TuIAlista"</strong> auftritt, mit Steuernummer (RFC) <strong>AOAE781008V98</strong> und Geschäftssitz in <strong>Calle Malitzin, Manzana 10, Lote 23, Colonia Tepeaca, C.P. 01550, Alcaldía Álvaro Obregón</strong>, Mexiko-Stadt, Mexiko.</p>
+<blockquote><p><strong>Hinweis zur Unternehmensstruktur.</strong> TuIAlista wird derzeit als Geschäft einer natürlichen Person mit unternehmerischer Tätigkeit betrieben. Die künftige Gründung der juristischen Person <strong>ORDINAL-BiA</strong> ist vorgesehen, auf die Inhaberschaft und Marke übertragen werden; die Dokumente werden zu diesem Zeitpunkt aktualisiert.</p></blockquote>
+<p>1.2. Diese Partnerbedingungen sind <strong>integraler Bestandteil</strong> der <a href="/legal/terminos/">Nutzungsbedingungen</a> und ergänzen diese. Bei Widersprüchen hinsichtlich der Teilnahme als Partner gehen diese Partnerbedingungen vor.</p>
+<p>1.3. Mit der Anmeldung zum Programm erklärt die Person (der <strong>„Partner"</strong>), diese Partnerbedingungen gelesen, verstanden und akzeptiert zu haben.</p>
+<hr />
+<h2>2. Art der Beziehung</h2>
+<p>2.1. Der Partner nimmt als <strong>unabhängiger Auftragnehmer</strong> teil. Diese Partnerbedingungen <strong>begründen</strong> kein Arbeits-, Gesellschafts-, Joint-Venture-, Vertretungs-, Franchise- oder Repräsentationsverhältnis zwischen dem Partner und TuIAlista (seinem Inhaber, der natürlichen Person mit unternehmerischer Tätigkeit).</p>
+<p>2.2. Der Partner ist <strong>nicht berechtigt</strong>, TuIAlista zu verpflichten, Verpflichtungen in dessen Namen einzugehen oder sich als Mitarbeiter, Gesellschafter oder Vertreter von TuIAlista auszugeben.</p>
+<p>2.3. Der Partner ist für seine eigenen Ausgaben, Werkzeuge, Steuern und rechtlichen Pflichten verantwortlich, die sich aus seiner Werbetätigkeit ergeben.</p>
+<hr />
+<h2>3. Teilnahmeberechtigung</h2>
+<p>3.1. Zur Teilnahme muss der Partner: (i) volljährig und geschäftsfähig sein; (ii) sich registrieren und im Programm zugelassen werden; und (iii) ein Konto sowie gültige Kontakt- und Zahlungsdaten unterhalten.</p>
+<p>3.2. TuIAlista kann Partneranträge nach billigem Ermessen <strong>annehmen oder ablehnen</strong> und zusätzliche Anforderungen je Land festlegen.</p>
+<p>3.3. Personen, die wegen Verstoßes oder Betrugs aus dem Programm ausgeschlossen wurden, dürfen nicht teilnehmen, außer bei ausdrücklicher Wiederzulassung.</p>
+<hr />
+<h2>4. Provision: 30 % wiederkehrend</h2>
+<p>4.1. <strong>Provisionssatz.</strong> Der Partner hat Anspruch auf eine Provision von <strong>dreißig Prozent (30 %)</strong> auf die <strong>gültigen Netto-Zahlungen</strong>, die tatsächlich von <strong>geworbenen Kunden</strong> über seinen Partnerlink oder -code eingezogen werden, solange diese Kunden ein aktives kostenpflichtiges Abonnement unterhalten (<strong>wiederkehrende Provision</strong>).</p>
+<p>4.2. <strong>Berechnungsgrundlage.</strong> Die Provision wird auf den <strong>tatsächlich eingezogenen, nicht erstatteten Nettobetrag</strong> berechnet, das heißt <strong>nach</strong> Steuern, Gebühren des Zahlungsdienstleisters/Registrierten Händlers, Rabatten, Erstattungen und Rückbuchungen.</p>
+<p>4.3. <strong>Zuordnung.</strong> Die Zuordnung eines geworbenen Kunden erfolgt über den Tracking-Mechanismus des Programms (Link/Code und Zuordnungsfenster).</p>
+<p>4.4. <strong>Dauer der Wiederkehr.</strong> Die wiederkehrende Provision wird gezahlt, solange der geworbene Kunde weiter zahlt und kein Rückabwicklungsgrund (Abschnitt 6) eintritt. TuIAlista kann die Wiederkehr zeitlich begrenzen; dies wird vorab mitgeteilt.</p>
+<hr />
+<h2>5. Zahlung der Provisionen</h2>
+<p>5.1. <strong>Schwelle und Zeitplan.</strong> Provisionen werden angesammelt und ausgezahlt, wenn das Guthaben des Partners die <strong>Mindestschwelle</strong> erreicht und die <strong>Reifezeit</strong> verstrichen ist (zur Deckung möglicher Erstattungen/Rückbuchungen).</p>
+<p>5.2. <strong>Zahlungsmittel und Verhältnis zu Creem.</strong> Die Kundenzahlungen werden über <strong>Creem</strong> als <strong>Registrierter Händler (Merchant of Record)</strong> abgewickelt. Die Auszahlung der Provisionen an den Partner kann über Creem oder über das von TuIAlista bereitgestellte Mittel erfolgen.</p>
+<p>5.3. <strong>Korrekte Daten.</strong> Der Partner ist für die Angabe korrekter Zahlungs- und Steuerdaten verantwortlich. TuIAlista haftet nicht für fehlgeschlagene Zahlungen aufgrund fehlerhafter Daten.</p>
+<p>5.4. <strong>Währung.</strong> Provisionen können in der von TuIAlista bestimmten Währung gezahlt werden; Wechselkursdifferenzen oder Gebühren des Zahlungsmittels trägt der Partner.</p>
+<hr />
+<h2>6. Einbehalt und Rückabwicklung von Provisionen</h2>
+<p>6.1. <strong>Erstattungen und Rückbuchungen.</strong> Wird die Zahlung eines geworbenen Kunden <strong>erstattet, storniert oder zurückgebucht</strong>, so <strong>entsteht</strong> die entsprechende Provision <strong>nicht</strong> oder wird, falls bereits gezahlt, mit künftigen Guthaben <strong>verrechnet</strong> bzw. zurückgefordert.</p>
+<p>6.2. <strong>Betrug.</strong> TuIAlista kann Provisionen <strong>einbehalten, stornieren oder rückabwickeln</strong>, die mit betrügerischer Aktivität, Eigenkäufen, fiktiven Empfehlungen, nicht genehmigtem incentiviertem Traffic oder jeglicher Manipulation des Zuordnungssystems verbunden sind.</p>
+<p>6.3. <strong>Vorsorgliche Aussetzung.</strong> Bei begründetem Verdacht auf Betrug oder Verstoß kann TuIAlista Zahlungen während der Untersuchung <strong>vorsorglich aussetzen</strong>.</p>
+<hr />
+<h2>7. Pflichten und verbotenes Verhalten des Partners</h2>
+<p>7.1. Der Partner verpflichtet sich, TuIAlista <strong>ehrlich, rechtmäßig und nicht irreführend</strong> zu bewerben. Insbesondere darf er <strong>nicht</strong>:</p>
+<p>a) <strong>Spam</strong> oder unerwünschte Mitteilungen versenden oder gegen geltende Vorschriften zu kommerzieller Kommunikation und Datenschutz verstoßen;</p>
+<p>b) <strong>Irreführende Werbung</strong> betreiben oder falsche Angaben über den Dienst, seine Ergebnisse, Preise oder Fähigkeiten machen oder „Konformität" oder „Genauigkeit" versprechen, die dem <a href="/legal/deslinde-ia/">KI-Haftungsausschluss</a> widersprechen;</p>
+<p>c) <strong>Eigenkäufe</strong> zur Provisionserzeugung tätigen, eigene Konten oder solche kollusiver Dritter werben oder Conversions künstlich aufblähen (<strong>Betrug</strong>);</p>
+<p>d) <strong>Marken, Logos, Namen oder Materialien</strong> von TuIAlista ohne Genehmigung nutzen oder Domains, Konten, Marken oder Namen registrieren, die mit TuIAlista verwechselbar sind;</p>
+<p>e) Auf <strong>Markenschlüsselwörter</strong> („TuIAlista" und Varianten) in Suchmaschinenwerbung bieten, außer mit ausdrücklicher Genehmigung;</p>
+<p>f) Sich als TuIAlista oder dessen Vertreter ausgeben oder nicht genehmigte Rabatte, Garantien oder Bedingungen anbieten;</p>
+<p>g) Den Dienst auf <strong>illegalen, verleumderischen, diskriminierenden, sexuell expliziten</strong> Seiten oder in solchen Kontexten bewerben oder auf solchen, die dem Ruf von TuIAlista schaden.</p>
+<p>7.2. Der Partner muss seine Partnerbeziehung <strong>offenlegen</strong>, wenn die geltenden Werberegeln dies verlangen (z. B. Hinweis „Partnerlink").</p>
+<hr />
+<h2>8. Nutzung von Marke und Materialien</h2>
+<p>8.1. TuIAlista kann dem Partner <strong>Werbematerialien</strong> (Banner, Texte, Links) zur Verfügung stellen. Der Partner darf sie nur gemäß den von TuIAlista veröffentlichten Richtlinien und ausschließlich zur Bewerbung des Dienstes verwenden.</p>
+<p>8.2. Die Markennutzungslizenz ist <strong>beschränkt, widerruflich und nicht ausschließlich</strong> und endet automatisch mit dem Ende der Teilnahme am Programm.</p>
+<hr />
+<h2>9. Aussetzung und Ausschluss</h2>
+<p>9.1. TuIAlista kann den Partner mit oder ohne Grund nach Mitteilung <strong>aussetzen oder ausschließen</strong>. Bei <strong>Grund</strong> (Verstoß gegen Abschnitt 7, Betrug, Schädigung der Marke) kann der Ausschluss <strong>sofort</strong> erfolgen und mit dem <strong>Verlust der ausstehenden Provisionen</strong> verbunden sein, die mit dem Verhalten zusammenhängen.</p>
+<p>9.2. Der Partner kann seine Teilnahme jederzeit <strong>beenden</strong>. Die Beendigung begründet nach dem Ende der Beziehung keinen Anspruch auf künftige Provisionen, mit Ausnahme der bereits verdienten und nicht rückabwicklungspflichtigen.</p>
+<hr />
+<h2>10. Steuern</h2>
+<p>10.1. Der Partner ist <strong>allein verantwortlich</strong> dafür, die auf die erhaltenen Provisionen anfallenden <strong>Steuern</strong> gemäß den Vorschriften seines Landes und seines Steuerregimes zu ermitteln, zu erklären und zu zahlen.</p>
+<p>10.2. TuIAlista kann die erforderliche <strong>Steuerdokumentation</strong> anfordern und <strong>Einbehalte</strong> vornehmen, wenn das Gesetz dies verlangt. Provisionen verstehen sich <strong>ohne</strong> vom Partner abzuführende Steuern, sofern das Gesetz nichts anderes bestimmt.</p>
+<hr />
+<h2>11. Änderungen des Programms</h2>
+<p>11.1. TuIAlista kann diese Partnerbedingungen, den Provisionssatz, das Zuordnungsfenster, die Schwellen und die Programmbedingungen <strong>ändern</strong>, indem es die geltende Fassung mit Datum veröffentlicht. Änderungen gelten für die Zukunft; bereits verdiente Provisionen werden nach den zum Zeitpunkt ihrer Entstehung geltenden Regeln respektiert.</p>
+<p>11.2. TuIAlista kann das Partnerprogramm insgesamt mit angemessener Ankündigung <strong>aussetzen oder beenden</strong>.</p>
+<hr />
+<h2>12. Haftungsbeschränkung</h2>
+<p>Soweit gesetzlich zulässig, ist die Haftung von TuIAlista gegenüber dem Partner auf die <strong>verdienten und nicht gezahlten Provisionen</strong> beschränkt. Die in den <a href="/legal/terminos/">Nutzungsbedingungen</a> und im <a href="/legal/deslinde-ia/">KI-Haftungsausschluss</a> vorgesehenen Ausschlüsse und die Haftungsobergrenze gelten entsprechend.</p>
+<hr />
+<h2>13. Anwendbares Recht und Gerichtsstand</h2>
+<p>Diese Partnerbedingungen unterliegen den <strong>Gesetzen der Vereinigten Mexikanischen Staaten</strong>, mit Zuständigkeit der <strong>zuständigen Gerichte von Mexiko-Stadt (CDMX)</strong>, wobei der Partner auf jeden anderen Gerichtsstand verzichtet. Die <strong>spanische</strong> Fassung ist maßgeblich.</p>
+<hr />
+<h2>14. Kontakt</h2>
+<ul><li>Partnerprogramm: <strong>afiliados@tuialista.com</strong></li><li>Website: <a href="https://www.tuialista.com">www.tuialista.com</a></li></ul>
+<hr />
+<p><em>Ende des Dokuments.</em></p></article>
+<article class="doc" id="doc-it" data-lang="it" hidden><div class="trnote">Questa è una traduzione di cortesia. La versione spagnola è quella vigente.</div><h1>Termini del Programma di Affiliazione di TuIAlista</h1>
+<blockquote><p>La versione vigente di questo documento è pubblicata su <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
+<p><strong>Versione:</strong> 1.0 · <strong>Ultimo aggiornamento:</strong> 21 luglio 2026 · <strong>In vigore dal:</strong> 21 luglio 2026</p>
+<hr />
+<h2>1. Oggetto e relazione con i Termini di Servizio</h2>
+<p>1.1. I presenti Termini del Programma di Affiliazione (i <strong>"Termini di Affiliazione"</strong>) disciplinano la partecipazione al programma di affiliazione di <strong>TuIAlista</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a>), gestito da <strong>Edgar Apolonio Aguilera</strong>, <strong>persona fisica con attività imprenditoriale</strong> che opera con il nome commerciale <strong>"TuIAlista"</strong>, con codice fiscale (RFC) <strong>AOAE781008V98</strong> e domicilio fiscale in <strong>Calle Malitzin, Manzana 10, Lote 23, Colonia Tepeaca, C.P. 01550, Alcaldía Álvaro Obregón</strong>, Città del Messico, Messico.</p>
+<blockquote><p><strong>Nota sulla struttura aziendale.</strong> TuIAlista opera attualmente come attività di persona fisica con attività imprenditoriale. È prevista la futura costituzione della persona giuridica <strong>ORDINAL-BiA</strong>, alla quale saranno trasferiti la titolarità e il marchio; i documenti saranno aggiornati in quel momento.</p></blockquote>
+<p>1.2. I presenti Termini di Affiliazione sono <strong>parte integrante</strong> dei <a href="/legal/terminos/">Termini di Servizio</a> e li integrano. In caso di conflitto in merito alla partecipazione come affiliato, prevalgono i presenti Termini di Affiliazione.</p>
+<p>1.3. Iscrivendosi al programma, la persona (l'<strong>"Affiliato"</strong>) dichiara di aver letto, compreso e accettato i presenti Termini di Affiliazione.</p>
+<hr />
+<h2>2. Natura del rapporto</h2>
+<p>2.1. L'Affiliato partecipa come <strong>contraente indipendente</strong>. I presenti Termini di Affiliazione <strong>non creano</strong> alcun rapporto di lavoro, di società, di joint venture, di agenzia, di franchising né di rappresentanza tra l'Affiliato e TuIAlista (il suo titolare, la persona fisica con attività imprenditoriale).</p>
+<p>2.2. L'Affiliato <strong>non è autorizzato</strong> a obbligare TuIAlista, ad assumere impegni in suo nome, né a presentarsi come dipendente, socio o rappresentante di TuIAlista.</p>
+<p>2.3. L'Affiliato è responsabile delle proprie spese, strumenti, imposte e obblighi legali derivanti dalla sua attività di promozione.</p>
+<hr />
+<h2>3. Idoneità</h2>
+<p>3.1. Per partecipare, l'Affiliato deve: (i) essere maggiorenne e avere la capacità giuridica di contrarre; (ii) registrarsi ed essere approvato nel programma; e (iii) mantenere un account e dati di contatto e di pagamento validi.</p>
+<p>3.2. TuIAlista può <strong>approvare o rifiutare</strong> le richieste di affiliazione a sua ragionevole discrezione, nonché stabilire requisiti aggiuntivi per Paese.</p>
+<p>3.3. Non possono partecipare le persone escluse dal programma per inadempimento o frode, salvo espressa riammissione.</p>
+<hr />
+<h2>4. Commissione: 30% ricorrente</h2>
+<p>4.1. <strong>Aliquota di commissione.</strong> L'Affiliato ha diritto a una commissione del <strong>trenta per cento (30%)</strong> sui <strong>pagamenti netti validi</strong> effettivamente incassati dai <strong>clienti segnalati</strong> tramite il suo link o codice di affiliazione, finché tali clienti mantengono un abbonamento a pagamento attivo (<strong>commissione ricorrente</strong>).</p>
+<p>4.2. <strong>Base di calcolo.</strong> La commissione è calcolata sull'importo <strong>effettivamente incassato al netto e non rimborsato</strong>, ossia <strong>dopo</strong> imposte, commissioni del gateway di pagamento/Commerciante Registrato, sconti, rimborsi e storni (chargeback).</p>
+<p>4.3. <strong>Attribuzione.</strong> L'attribuzione di un cliente segnalato è determinata dal meccanismo di tracciamento del programma (link/codice e finestra di attribuzione).</p>
+<p>4.4. <strong>Durata della ricorrenza.</strong> La commissione ricorrente è pagata finché il cliente segnalato continua a pagare e non si verifica una causa di storno (Sezione 6). TuIAlista può stabilire un limite temporale alla ricorrenza, che sarà comunicato in anticipo.</p>
+<hr />
+<h2>5. Pagamento delle commissioni</h2>
+<p>5.1. <strong>Soglia e calendario.</strong> Le commissioni si accumulano e vengono pagate quando il saldo dell'Affiliato raggiunge la <strong>soglia minima</strong> ed è trascorso il <strong>periodo di maturazione</strong> (per coprire eventuali rimborsi/storni).</p>
+<p>5.2. <strong>Mezzo di pagamento e relazione con Creem.</strong> I pagamenti dei clienti sono elaborati tramite <strong>Creem</strong> in qualità di <strong>Commerciante Registrato (Merchant of Record)</strong>. Il pagamento delle commissioni all'Affiliato può essere gestito tramite Creem o con il mezzo che TuIAlista renderà disponibile.</p>
+<p>5.3. <strong>Dati corretti.</strong> L'Affiliato è responsabile di fornire dati di pagamento e fiscali corretti. TuIAlista non risponde per pagamenti falliti derivanti da dati errati.</p>
+<p>5.4. <strong>Valuta.</strong> Le commissioni possono essere pagate nella valuta che TuIAlista determina; le differenze di cambio o le commissioni del mezzo di pagamento sono a carico dell'Affiliato.</p>
+<hr />
+<h2>6. Trattenuta e storno delle commissioni</h2>
+<p>6.1. <strong>Rimborsi e storni.</strong> Se il pagamento di un cliente segnalato è <strong>rimborsato, revocato o oggetto di storno</strong>, la commissione corrispondente <strong>non matura</strong> o, se già pagata, viene <strong>detratta</strong> dai saldi futuri o ne viene richiesta la restituzione.</p>
+<p>6.2. <strong>Frode.</strong> TuIAlista può <strong>trattenere, annullare o stornare</strong> le commissioni associate ad attività fraudolenta, autoacquisti, segnalazioni fittizie, traffico incentivato non autorizzato o qualsiasi manipolazione del sistema di attribuzione.</p>
+<p>6.3. <strong>Sospensione preventiva.</strong> In caso di ragionevole sospetto di frode o inadempimento, TuIAlista può <strong>sospendere preventivamente</strong> i pagamenti durante le indagini.</p>
+<hr />
+<h2>7. Obblighi e condotte vietate dell'Affiliato</h2>
+<p>7.1. L'Affiliato si obbliga a promuovere TuIAlista in modo <strong>onesto, lecito e non ingannevole</strong>. In particolare, <strong>non</strong> potrà:</p>
+<p>a) Inviare <strong>spam</strong> o comunicazioni non richieste, né violare la normativa applicabile in materia di comunicazioni commerciali e protezione dei dati;</p>
+<p>b) Effettuare <strong>pubblicità ingannevole</strong> o affermazioni false sul Servizio, sui suoi risultati, prezzi o capacità, né promettere "conformità" o "esattezza" che contraddicano il <a href="/legal/deslinde-ia/">Disclaimer IA</a>;</p>
+<p>c) Effettuare <strong>autoacquisti</strong> per generare commissioni, segnalare account propri o di terzi in collusione, o gonfiare artificialmente le conversioni (<strong>frode</strong>);</p>
+<p>d) Usare <strong>marchi, loghi, nome o materiali</strong> di TuIAlista senza autorizzazione, né registrare domini, account, marchi o nomi confondibili con TuIAlista;</p>
+<p>e) Fare offerte su <strong>parole chiave di marca</strong> ("TuIAlista" e varianti) nella pubblicità sui motori di ricerca, salvo autorizzazione espressa;</p>
+<p>f) Presentarsi come TuIAlista o come suo rappresentante, né offrire sconti, garanzie o condizioni non autorizzate;</p>
+<p>g) Promuovere il Servizio su siti o in contesti <strong>illegali, diffamatori, discriminatori, sessualmente espliciti</strong> o che danneggino la reputazione di TuIAlista.</p>
+<p>7.2. L'Affiliato deve <strong>divulgare</strong> il proprio rapporto di affiliazione quando la normativa pubblicitaria applicabile lo richieda (ad es. avviso di "link di affiliazione").</p>
+<hr />
+<h2>8. Uso del marchio e dei materiali</h2>
+<p>8.1. TuIAlista può mettere a disposizione dell'Affiliato <strong>materiali promozionali</strong> (banner, testi, link). L'Affiliato potrà utilizzarli solo in conformità alle linee guida pubblicate da TuIAlista e unicamente per promuovere il Servizio.</p>
+<p>8.2. La licenza d'uso del marchio è <strong>limitata, revocabile e non esclusiva</strong>, e termina automaticamente al termine della partecipazione al programma.</p>
+<hr />
+<h2>9. Sospensione ed esclusione</h2>
+<p>9.1. TuIAlista può <strong>sospendere o escludere</strong> l'Affiliato, con o senza motivo, previo avviso. Con <strong>motivo</strong> (violazione della Sezione 7, frode, danno al marchio), l'esclusione può essere <strong>immediata</strong> e con <strong>perdita delle commissioni</strong> in sospeso associate alla condotta.</p>
+<p>9.2. L'Affiliato può <strong>recedere</strong> in qualsiasi momento. Il recesso non genera diritto a commissioni future una volta conclusa la relazione, salvo quelle già maturate e non soggette a storno.</p>
+<hr />
+<h2>10. Imposte</h2>
+<p>10.1. L'Affiliato è l'<strong>unico responsabile</strong> di determinare, dichiarare e pagare le <strong>imposte</strong> dovute sulle commissioni ricevute, in conformità alla normativa del proprio Paese e del proprio regime fiscale.</p>
+<p>10.2. TuIAlista può richiedere la <strong>documentazione fiscale</strong> necessaria e applicare <strong>ritenute</strong> quando la legge lo richieda. Le commissioni si intendono <strong>al netto</strong> delle imposte che l'Affiliato deve versare, salvo diversa disposizione di legge.</p>
+<hr />
+<h2>11. Modifiche del programma</h2>
+<p>11.1. TuIAlista può <strong>modificare</strong> i presenti Termini di Affiliazione, l'aliquota di commissione, la finestra di attribuzione, le soglie e le condizioni del programma, pubblicando la versione vigente con la relativa data. Le modifiche si applicano per il futuro; le commissioni già maturate sono rispettate secondo le regole vigenti al momento della loro maturazione.</p>
+<p>11.2. TuIAlista può <strong>sospendere o terminare</strong> il programma di affiliazione nel suo complesso, con un preavviso ragionevole.</p>
+<hr />
+<h2>12. Limitazione di responsabilità</h2>
+<p>Nella massima misura consentita dalla legge, la responsabilità di TuIAlista nei confronti dell'Affiliato è limitata alle <strong>commissioni maturate e non pagate</strong>. Si applicano, per quanto pertinente, le esclusioni e il limite di responsabilità previsti nei <a href="/legal/terminos/">Termini di Servizio</a> e nel <a href="/legal/deslinde-ia/">Disclaimer IA</a>.</p>
+<hr />
+<h2>13. Legge applicabile e giurisdizione</h2>
+<p>I presenti Termini di Affiliazione sono regolati dalle <strong>leggi degli Stati Uniti Messicani</strong>, con giurisdizione dei <strong>tribunali competenti di Città del Messico (CDMX)</strong>, rinunciando l'Affiliato a qualsiasi altro foro. La versione in <strong>spagnolo</strong> è quella vigente.</p>
+<hr />
+<h2>14. Contatto</h2>
+<ul><li>Programma di affiliazione: <strong>afiliados@tuialista.com</strong></li><li>Sito: <a href="https://www.tuialista.com">www.tuialista.com</a></li></ul>
+<hr />
+<p><em>Fine del documento.</em></p></article>
+</main>
+<footer>&copy; <span id="y"></span> TuIAlista &middot; <a href="/soporte">Soporte</a> &middot; <a href="/">Inicio</a></footer>
+<script>
+document.getElementById("y").textContent=new Date().getFullYear();
+(function(){
+  var LANGS=["es", "en", "pt", "fr", "de", "it"];
+  var BACK={"es": "← Volver al portal", "en": "← Back to portal", "pt": "← Voltar ao portal", "fr": "← Retour à l'espace", "de": "← Zurück zum Portal", "it": "← Torna al portale"};
+  function detect(){try{var l=(localStorage.getItem("tuialista_lang")||"es").slice(0,2).toLowerCase();return LANGS.indexOf(l)>=0?l:"es";}catch(e){return "es";}}
+  var sel=document.getElementById("lang-sel"), back=document.getElementById("back-link");
+  function show(l){
+    LANGS.forEach(function(x){var a=document.getElementById("doc-"+x);if(a)a.hidden=(x!==l);});
+    document.documentElement.lang=l; if(sel)sel.value=l; if(back&&BACK[l])back.textContent=BACK[l];
+  }
+  if(sel)sel.addEventListener("change",function(){try{localStorage.setItem("tuialista_lang",sel.value);}catch(e){}show(sel.value);});
+  show(detect());
+})();
+</script>
 </body>
 </html>

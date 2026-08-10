@@ -11,12 +11,14 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Inter',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
 header{position:sticky;top:0;background:rgba(245,246,244,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
-.nav{max-width:820px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.nav{max-width:820px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
 .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
 .logo b{color:var(--signal)}
+.nav-right{display:flex;align-items:center;gap:14px}
 .nav a.back{color:var(--muted);text-decoration:none;font-size:14px}
 .nav a.back:hover{color:var(--ink)}
+#lang-sel{font-family:'Inter',sans-serif;font-size:13.5px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:7px;padding:5px 8px;cursor:pointer}
 main{max-width:820px;margin:0 auto;padding:40px 24px 80px}
 .doc h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,36px);line-height:1.15;margin-bottom:8px}
 .doc h2{font-family:'Space Grotesk';font-size:22px;margin:34px 0 12px}
@@ -26,71 +28,50 @@ main{max-width:820px;margin:0 auto;padding:40px 24px 80px}
 .doc li{margin:6px 0}
 .doc a{color:var(--signal-dim)}
 .doc strong{color:var(--ink)}
+.doc code{background:#eceee9;padding:1px 5px;border-radius:4px;font-size:.92em}
+.doc pre{background:#0f1922;color:#e6e9e7;padding:14px 16px;border-radius:8px;overflow:auto;margin:16px 0;font-size:13px}
+.doc pre code{background:none;color:inherit;padding:0}
 .doc blockquote{border-left:3px solid var(--signal);background:#eceee9;padding:12px 18px;margin:16px 0;border-radius:0 8px 8px 0;color:var(--muted);font-size:14.5px}
+.doc blockquote p{margin:6px 0;color:var(--muted)}
 .doc hr{border:none;border-top:1px solid var(--line);margin:28px 0}
-.doc table{border-collapse:collapse;margin:16px 0;font-size:14px;width:100%}
-.doc th,.doc td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+.trnote{background:#eef2f5;border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--muted);margin-bottom:24px}
 footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px}
 footer a{color:#cdd5d9;text-decoration:none}
 </style>
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "T\u00e9rminos de Servicio \u2014 TuIAlista",
-  "description": "",
-  "url": "https://tuialista.com/legal\\terminos/",
-  "isPartOf": {
-    "@type": "WebSite",
-    "name": "Tuialista",
-    "url": "https://tuialista.com"
-  }
-}
+{"@context":"https://schema.org","@type":"WebPage","name":"Términos de Servicio — TuIAlista","url":"https://tuialista.com/legal/terminos/","isPartOf":{"@type":"WebSite","name":"Tuialista","url":"https://tuialista.com"}}
 </script>
 <meta property="og:title" content="Términos de Servicio — TuIAlista">
-<meta property="og:description" content="">
-<meta property="og:url" content="https://tuialista.com/legal\terminos/">
+<meta property="og:url" content="https://tuialista.com/legal/terminos/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://tuialista.com/assets/img/icon-512.png">
 <meta property="og:site_name" content="Tuialista">
 <meta property="og:locale" content="es_MX">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Términos de Servicio — TuIAlista">
-<meta name="twitter:description" content="">
 <script defer data-domain="tuialista.com" src="https://plausible.io/js/script.js"></script>
 </head>
 <body>
-<header><div class="nav"><a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a><a class="back" href="/portal/">&larr; Volver al portal</a></div></header>
-<main><div class="doc"><h1>Términos de Servicio de TuIAlista</h1>
-<blockquote>
-<p>La versión vigente de este documento se publica en <a href="https://www.tuialista.com">www.tuialista.com</a>.</p>
-</blockquote>
+<header><div class="nav"><a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+<div class="nav-right"><select id="lang-sel" aria-label="Idioma / Language"><option value="es">Español</option><option value="en">English</option><option value="pt">Português</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="it">Italiano</option></select><a class="back" href="/portal/" id="back-link">← Volver al portal</a></div></div></header>
+<main>
+<article class="doc" id="doc-es" data-lang="es"><h1>Términos de Servicio de TuIAlista</h1>
+<blockquote><p>La versión vigente de este documento se publica en <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
 <p><strong>Versión:</strong> 1.0 · <strong>Última actualización:</strong> 21 de julio de 2026 · <strong>Vigente a partir de:</strong> 21 de julio de 2026</p>
 <hr />
 <h2>1. Identificación del proveedor y aceptación</h2>
 <p>1.1. Estos Términos de Servicio (los <strong>"Términos"</strong>) regulan el acceso y uso de la plataforma <strong>TuIAlista</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a>) y de los agentes de inteligencia artificial que se distribuyen a través de ella (conjuntamente, el <strong>"Servicio"</strong>).</p>
 <p>1.2. El Servicio es operado por <strong>Edgar Apolonio Aguilera</strong>, <strong>persona física con actividad empresarial</strong> que opera bajo el nombre comercial <strong>"TuIAlista"</strong>, con Registro Federal de Contribuyentes <strong>AOAE781008V98</strong> y domicilio fiscal en <strong>Calle Malitzin, Manzana 10, Lote 23, Colonia Tepeaca, C.P. 01550, Alcaldía Álvaro Obregón</strong>, Ciudad de México, México (en adelante, <strong>"TuIAlista"</strong>, "nosotros" o "el Proveedor"). El titular tributa en el <strong>Régimen de las Actividades Empresariales con ingresos a través de Plataformas Tecnológicas</strong>.</p>
-<blockquote>
-<p><strong>Nota sobre la estructura del negocio.</strong> TuIAlista opera actualmente como negocio de persona física con actividad empresarial. Se prevé la futura constitución de la persona moral <strong>ORDINAL-BiA</strong>, a la que se transferirá la titularidad y la marca; los documentos se actualizarán en ese momento.</p>
-</blockquote>
-<p>1.3. Al crear una cuenta, contratar una suscripción, instalar o usar cualquier agente, el usuario (<strong>"Cliente"</strong> o "usted") declara haber leído, entendido y aceptado estos Términos, así como el <a href="/legal/deslinde-ia">Deslinde de Responsabilidad sobre Inteligencia Artificial</a>, la <a href="/legal/privacidad">Política de Privacidad</a>, la <a href="/legal/reembolsos">Política de Reembolsos</a> y el <a href="/legal/compromiso-local">Compromiso de Procesamiento Local y Privacidad</a>, que forman parte integral de estos Términos.</p>
+<blockquote><p><strong>Nota sobre la estructura del negocio.</strong> TuIAlista opera actualmente como negocio de persona física con actividad empresarial. Se prevé la futura constitución de la persona moral <strong>ORDINAL-BiA</strong>, a la que se transferirá la titularidad y la marca; los documentos se actualizarán en ese momento.</p></blockquote>
+<p>1.3. Al crear una cuenta, contratar una suscripción, instalar o usar cualquier agente, el usuario (<strong>"Cliente"</strong> o "usted") declara haber leído, entendido y aceptado estos Términos, así como el <a href="/legal/deslinde-ia/">Deslinde de Responsabilidad sobre Inteligencia Artificial</a>, la <a href="/legal/privacidad/">Política de Privacidad</a>, la <a href="/legal/reembolsos/">Política de Reembolsos</a> y el <a href="/legal/compromiso-local/">Compromiso de Procesamiento Local y Privacidad</a>, que forman parte integral de estos Términos.</p>
 <p>1.4. Si el Cliente contrata a nombre de una persona moral, declara contar con facultades suficientes para obligarla. Si no está de acuerdo con estos Términos, debe abstenerse de usar el Servicio.</p>
 <hr />
 <h2>2. Definiciones</h2>
-<ul>
-<li><strong>Agente:</strong> programa de software especializado del catálogo de TuIAlista (por ejemplo, documentos, Excel, base de datos, facturas, fiscal, nóminas, contratos, entre otros) que el Cliente instala y ejecuta <strong>localmente</strong> en su propio equipo.</li>
-<li><strong>Plataforma / Núcleo:</strong> infraestructura central de TuIAlista que emite y valida licencias, gestiona cuentas y suscripciones y administra el programa de afiliados. No procesa el contenido del Cliente.</li>
-<li><strong>Licencia:</strong> autorización de uso, personal, limitada, revocable y no exclusiva, que habilita a ejecutar un Agente mientras la suscripción esté vigente.</li>
-<li><strong>Suscripción:</strong> contratación recurrente (por defecto mensual) que mantiene activa una o más Licencias.</li>
-<li><strong>Creem:</strong> proveedor que actúa como <strong>Comerciante Registrado (Merchant of Record)</strong> del Servicio (ver Sección 7).</li>
-<li><strong>Modelos de IA de terceros:</strong> motores de inteligencia artificial externos (por defecto <strong>Groq</strong>, con conmutación por error a <strong>Gemini</strong>) que los Agentes invocan únicamente para redactar respuestas.</li>
-<li><strong>Equipo:</strong> el dispositivo físico o virtual, identificado mediante una huella técnica, en el que se activa una Licencia.</li>
-</ul>
+<ul><li><strong>Agente:</strong> programa de software especializado del catálogo de TuIAlista (por ejemplo, documentos, Excel, base de datos, facturas, fiscal, nóminas, contratos, entre otros) que el Cliente instala y ejecuta <strong>localmente</strong> en su propio equipo.</li><li><strong>Plataforma / Núcleo:</strong> infraestructura central de TuIAlista que emite y valida licencias, gestiona cuentas y suscripciones y administra el programa de afiliados. No procesa el contenido del Cliente.</li><li><strong>Licencia:</strong> autorización de uso, personal, limitada, revocable y no exclusiva, que habilita a ejecutar un Agente mientras la suscripción esté vigente.</li><li><strong>Suscripción:</strong> contratación recurrente (por defecto mensual) que mantiene activa una o más Licencias.</li><li><strong>Creem:</strong> proveedor que actúa como <strong>Comerciante Registrado (Merchant of Record)</strong> del Servicio (ver Sección 7).</li><li><strong>Modelos de IA de terceros:</strong> motores de inteligencia artificial externos (por defecto <strong>Groq</strong>, con conmutación por error a <strong>Gemini</strong>) que los Agentes invocan únicamente para redactar respuestas.</li><li><strong>Equipo:</strong> el dispositivo físico o virtual, identificado mediante una huella técnica, en el que se activa una Licencia.</li></ul>
 <hr />
 <h2>3. Objeto del Servicio</h2>
-<p>3.1. TuIAlista ofrece <strong>suscripciones</strong> a un catálogo de Agentes de IA que se ejecutan <strong>localmente en el equipo del Cliente</strong>. El procesamiento de los archivos, documentos y datos del Cliente ocurre en su propio equipo y <strong>no se transmite a TuIAlista</strong>, conforme al <a href="/legal/compromiso-local">Compromiso de Procesamiento Local y Privacidad</a>.</p>
+<p>3.1. TuIAlista ofrece <strong>suscripciones</strong> a un catálogo de Agentes de IA que se ejecutan <strong>localmente en el equipo del Cliente</strong>. El procesamiento de los archivos, documentos y datos del Cliente ocurre en su propio equipo y <strong>no se transmite a TuIAlista</strong>, conforme al <a href="/legal/compromiso-local/">Compromiso de Procesamiento Local y Privacidad</a>.</p>
 <p>3.2. La función de la Plataforma se limita a: (i) gestionar la cuenta y la suscripción del Cliente; (ii) emitir y validar la Licencia; y (iii) permitir la descarga de los Agentes contratados.</p>
-<p>3.3. Los Agentes utilizan Modelos de IA de terceros <strong>únicamente para generar el texto de las respuestas</strong>. Las tareas de detección, extracción y organización se realizan localmente. El Cliente reconoce que el contenido generado por IA <strong>puede contener errores</strong> y se sujeta al <a href="/legal/deslinde-ia">Deslinde de Responsabilidad sobre Inteligencia Artificial</a>.</p>
+<p>3.3. Los Agentes utilizan Modelos de IA de terceros <strong>únicamente para generar el texto de las respuestas</strong>. Las tareas de detección, extracción y organización se realizan localmente. El Cliente reconoce que el contenido generado por IA <strong>puede contener errores</strong> y se sujeta al <a href="/legal/deslinde-ia/">Deslinde de Responsabilidad sobre Inteligencia Artificial</a>.</p>
 <hr />
 <h2>4. Naturaleza de la contratación: licencia de uso, no venta de software</h2>
 <p>4.1. El Servicio se contrata bajo un modelo de <strong>licencia de uso por suscripción</strong>. TuIAlista <strong>no vende el software</strong> ni transfiere su titularidad. El Cliente <strong>no adquiere propiedad alguna</strong> sobre los Agentes, la Plataforma, su código, su arquitectura o su documentación.</p>
@@ -118,13 +99,13 @@ footer a{color:#cdd5d9;text-decoration:none}
 <p>7.1. <strong>Creem como Merchant of Record.</strong> Las ventas y cobros del Servicio se procesan a través de <strong>Creem</strong>, que actúa como <strong>Comerciante Registrado (Merchant of Record)</strong>. Esto significa que, para efectos de la transacción de pago, <strong>Creem es el vendedor registrado</strong> y es responsable de procesar el cobro, calcular y recaudar los <strong>impuestos aplicables</strong> y emitir la documentación de la operación. La contratación de pago puede quedar sujeta, adicionalmente, a los <strong>términos y condiciones de Creem</strong>.</p>
 <p>7.2. <strong>Precios y moneda.</strong> Los precios son los publicados al momento de la contratación. El Servicio se ofrece a nivel <strong>mundial y multi-moneda</strong>; el importe podrá presentarse y cobrarse en la moneda que corresponda, con conversión sobre un precio base. Los impuestos aplicables se determinan y recaudan a través de Creem según la jurisdicción del Cliente.</p>
 <p>7.3. <strong>Recurrencia y renovación automática.</strong> Salvo cancelación, la suscripción <strong>se renueva automáticamente</strong> al inicio de cada periodo, cobrándose el importe vigente mediante el método de pago registrado. El Cliente autoriza dichos cargos recurrentes.</p>
-<p>7.4. <strong>Reembolsos.</strong> Los reembolsos se rigen por la <a href="/legal/reembolsos">Política de Reembolsos</a>, compatible con la operación de Creem como Comerciante Registrado.</p>
+<p>7.4. <strong>Reembolsos.</strong> Los reembolsos se rigen por la <a href="/legal/reembolsos/">Política de Reembolsos</a>, compatible con la operación de Creem como Comerciante Registrado.</p>
 <p>7.5. <strong>Cambios de plan.</strong> El Cliente puede subir o bajar de plan; los cambios de alcance y precio surten efecto conforme a las reglas del plan y del ciclo de facturación.</p>
 <hr />
 <h2>8. Disponibilidad y modificaciones del Servicio</h2>
 <p>8.1. TuIAlista procura una disponibilidad razonable de la Plataforma de validación de licencias, <strong>sin garantizar</strong> operación ininterrumpida o libre de errores. La ejecución de los Agentes es local y no depende de la conexión continua con TuIAlista, salvo para la revalidación periódica de la Licencia (ver Sección 5.5).</p>
 <p>8.2. TuIAlista podrá <strong>modificar, actualizar, mejorar o descontinuar</strong> Agentes o funciones del Servicio, así como incorporar nuevos Agentes al catálogo. Cuando un cambio afecte de forma sustancial y adversa una funcionalidad esencial del Servicio contratado, TuIAlista procurará avisar con antelación razonable por medios electrónicos.</p>
-<p>8.3. Los <strong>Modelos de IA de terceros</strong> (Groq/Gemini) son provistos por terceros ajenos a TuIAlista. Su disponibilidad, rendimiento y continuidad <strong>no están garantizados</strong> por TuIAlista, conforme al <a href="/legal/deslinde-ia">Deslinde de Responsabilidad sobre Inteligencia Artificial</a>.</p>
+<p>8.3. Los <strong>Modelos de IA de terceros</strong> (Groq/Gemini) son provistos por terceros ajenos a TuIAlista. Su disponibilidad, rendimiento y continuidad <strong>no están garantizados</strong> por TuIAlista, conforme al <a href="/legal/deslinde-ia/">Deslinde de Responsabilidad sobre Inteligencia Artificial</a>.</p>
 <hr />
 <h2>9. Suspensión por impago y por incumplimiento</h2>
 <p>9.1. <strong>Impago.</strong> Si un cargo recurrente no se completa (por ejemplo, por rechazo del método de pago), la Licencia pasará a estado <strong>suspendido</strong> y el Agente <strong>dejará de validarse y operar</strong> hasta regularizar el pago. La suspensión por impago no genera responsabilidad para TuIAlista.</p>
@@ -134,47 +115,562 @@ footer a{color:#cdd5d9;text-decoration:none}
 <h2>10. Propiedad intelectual</h2>
 <p>10.1. Los Agentes, la Plataforma, el SDK, el código fuente, la arquitectura, las marcas, los nombres comerciales, los logotipos y la documentación son <strong>propiedad de TuIAlista</strong> (o de sus licenciantes) y están protegidos por la legislación aplicable de propiedad intelectual e industrial.</p>
 <p>10.2. Estos Términos <strong>no transfieren</strong> al Cliente ningún derecho de propiedad intelectual, salvo la licencia de uso limitada descrita en la Sección 4.</p>
-<p>10.3. <strong>Contenido del Cliente.</strong> Los archivos, datos y resultados que el Cliente procesa con los Agentes son y seguirán siendo <strong>propiedad del Cliente</strong>. TuIAlista no accede a ellos ni reclama derecho alguno sobre ellos (ver <a href="/legal/compromiso-local">Compromiso de Procesamiento Local</a> y <a href="/legal/privacidad">Política de Privacidad</a>).</p>
-<h2>10.4. <strong>No entrenamiento de modelos de IA con datos del Cliente.</strong> Dado que el procesamiento de los archivos y datos del Cliente ocurre <strong>localmente en su Equipo</strong> y que ese contenido <strong>nunca se transmite a TuIAlista ni a terceros</strong> (ver <a href="/legal/compromiso-local">Compromiso de Procesamiento Local</a>), dichos datos <strong>no se usan —ni pueden usarse— para entrenar, reentrenar, ajustar (<em>fine-tuning</em>) ni mejorar</strong> modelos de inteligencia artificial, ni propios ni de terceros. Debe distinguirse el <strong>contenido del Cliente</strong> (local, nunca recibido por TuIAlista) de la <strong>telemetría mínima de validación de licencia</strong> (clave, estado de la suscripción y huella del Equipo), que es lo único que viaja a la Plataforma y que <strong>no incluye</strong> contenido del Cliente. Cuando el Cliente use una función de redacción, el Agente enviará al <strong>Modelo de IA de terceros (Groq/Gemini)</strong> únicamente la <strong>consulta puntual</strong> necesaria para redactar la respuesta, <strong>no</strong> sus archivos. Esta cláusula es coherente con la Sección 4-bis de la <a href="/legal/privacidad">Política de Privacidad</a>.</h2>
+<p>10.3. <strong>Contenido del Cliente.</strong> Los archivos, datos y resultados que el Cliente procesa con los Agentes son y seguirán siendo <strong>propiedad del Cliente</strong>. TuIAlista no accede a ellos ni reclama derecho alguno sobre ellos (ver <a href="/legal/compromiso-local/">Compromiso de Procesamiento Local</a> y <a href="/legal/privacidad/">Política de Privacidad</a>).</p>
+<p>10.4. <strong>No entrenamiento de modelos de IA con datos del Cliente.</strong> Dado que el procesamiento de los archivos y datos del Cliente ocurre <strong>localmente en su Equipo</strong> y que ese contenido <strong>nunca se transmite a TuIAlista ni a terceros</strong> (ver <a href="/legal/compromiso-local/">Compromiso de Procesamiento Local</a>), dichos datos **no se usan —ni pueden usarse— para entrenar, reentrenar, ajustar (<em>fine-tuning</em>) ni mejorar<strong> modelos de inteligencia artificial, ni propios ni de terceros. Debe distinguirse el </strong>contenido del Cliente<strong> (local, nunca recibido por TuIAlista) de la </strong>telemetría mínima de validación de licencia<strong> (clave, estado de la suscripción y huella del Equipo), que es lo único que viaja a la Plataforma y que </strong>no incluye<strong> contenido del Cliente. Cuando el Cliente use una función de redacción, el Agente enviará al </strong>Modelo de IA de terceros (Groq/Gemini)<strong> únicamente la </strong>consulta puntual<strong> necesaria para redactar la respuesta, </strong>no** sus archivos. Esta cláusula es coherente con la Sección 4-bis de la <a href="/legal/privacidad/">Política de Privacidad</a>.</p>
+<hr />
 <h2>11. Ausencia de asesoría profesional y contenido generado por IA</h2>
 <p>11.1. Los Agentes son herramientas de apoyo. El contenido que generan <strong>puede contener errores</strong> y <strong>no constituye asesoría fiscal, legal, contable, laboral, financiera ni profesional de ningún tipo</strong>.</p>
-<p>11.2. El Cliente es el <strong>único responsable</strong> de revisar, verificar y validar todo resultado antes de utilizarlo, presentarlo ante autoridades o tomar decisiones con base en él, especialmente en materias sensibles (fiscal, nóminas y recursos humanos, contratos y facturación). Esta materia se desarrolla en el <a href="/legal/deslinde-ia">Deslinde de Responsabilidad sobre Inteligencia Artificial</a>, que el Cliente declara conocer y aceptar.</p>
+<p>11.2. El Cliente es el <strong>único responsable</strong> de revisar, verificar y validar todo resultado antes de utilizarlo, presentarlo ante autoridades o tomar decisiones con base en él, especialmente en materias sensibles (fiscal, nóminas y recursos humanos, contratos y facturación). Esta materia se desarrolla en el <a href="/legal/deslinde-ia/">Deslinde de Responsabilidad sobre Inteligencia Artificial</a>, que el Cliente declara conocer y aceptar.</p>
 <hr />
 <h2>12. Garantías y limitación de responsabilidad</h2>
 <p>12.1. <strong>Sin garantías.</strong> El Servicio se proporciona <strong>"tal cual" y "según disponibilidad"</strong>, sin garantías de ningún tipo, expresas o implícitas, incluyendo —sin limitar— idoneidad para un fin particular, exactitud de resultados o disponibilidad de los Modelos de IA de terceros, en la máxima medida permitida por la ley aplicable.</p>
-<p>12.2. <strong>Límite de responsabilidad.</strong> En la máxima medida permitida por la ley, la responsabilidad total y acumulada de TuIAlista derivada de o relacionada con el Servicio <strong>no excederá el monto efectivamente pagado por el Cliente por el Servicio durante los doce (12) meses anteriores</strong> al hecho que originó la reclamación. TuIAlista <strong>no será responsable</strong> por daños indirectos, incidentales, especiales, punitivos o consecuenciales, ni por lucro cesante o pérdida de datos. Los detalles y alcances se establecen en el <a href="/legal/deslinde-ia">Deslinde de Responsabilidad sobre Inteligencia Artificial</a>.</p>
+<p>12.2. <strong>Límite de responsabilidad.</strong> En la máxima medida permitida por la ley, la responsabilidad total y acumulada de TuIAlista derivada de o relacionada con el Servicio <strong>no excederá el monto efectivamente pagado por el Cliente por el Servicio durante los doce (12) meses anteriores</strong> al hecho que originó la reclamación. TuIAlista <strong>no será responsable</strong> por daños indirectos, incidentales, especiales, punitivos o consecuenciales, ni por lucro cesante o pérdida de datos. Los detalles y alcances se establecen en el <a href="/legal/deslinde-ia/">Deslinde de Responsabilidad sobre Inteligencia Artificial</a>.</p>
 <hr />
 <h2>13. Indemnización</h2>
 <p>El Cliente se obliga a sacar en paz y a salvo, y a indemnizar, a TuIAlista (su titular, la persona física con actividad empresarial) y sus colaboradores frente a reclamaciones, daños o gastos (incluidos honorarios razonables de abogados) derivados de: (i) el uso indebido del Servicio; (ii) la violación de estos Términos o de la Sección 6; (iii) el uso de resultados generados por los Agentes sin la verificación debida; o (iv) la infracción de derechos de terceros o de la normativa aplicable.</p>
 <hr />
 <h2>14. Programa de afiliados</h2>
-<p>El programa de afiliados (comisión recurrente del <strong>30%</strong> sobre los pagos válidos de clientes referidos) se rige por los <a href="/legal/afiliados">Términos del Programa de Afiliados</a>, que forman parte integral de estos Términos. La participación como afiliado no crea relación laboral, sociedad ni representación con TuIAlista.</p>
+<p>El programa de afiliados (comisión recurrente del <strong>30%</strong> sobre los pagos válidos de clientes referidos) se rige por los <a href="/legal/afiliados/">Términos del Programa de Afiliados</a>, que forman parte integral de estos Términos. La participación como afiliado no crea relación laboral, sociedad ni representación con TuIAlista.</p>
 <hr />
 <h2>15. Vigencia, cancelación y terminación</h2>
 <p>15.1. Estos Términos rigen mientras el Cliente mantenga una cuenta o suscripción activa.</p>
-<p>15.2. El Cliente puede <strong>cancelar en cualquier momento</strong> desde el portal; la cancelación <strong>evita el siguiente cargo</strong> y la Licencia permanece activa hasta el final del periodo ya pagado, conforme a la <a href="/legal/reembolsos">Política de Reembolsos</a>.</p>
+<p>15.2. El Cliente puede <strong>cancelar en cualquier momento</strong> desde el portal; la cancelación <strong>evita el siguiente cargo</strong> y la Licencia permanece activa hasta el final del periodo ya pagado, conforme a la <a href="/legal/reembolsos/">Política de Reembolsos</a>.</p>
 <p>15.3. TuIAlista puede terminar o suspender el Servicio por las causas previstas en estos Términos. Las disposiciones que por su naturaleza deban subsistir (propiedad intelectual, limitación de responsabilidad, indemnización, ley aplicable) <strong>sobrevivirán</strong> a la terminación.</p>
 <hr />
 <h2>16. Modificaciones a estos Términos</h2>
-<h2>TuIAlista podrá modificar estos Términos. Los cambios se publicarán en <a href="https://www.tuialista.com">www.tuialista.com</a> con su fecha de actualización y, cuando sean sustanciales, se procurará avisar por medios electrónicos. El uso continuado del Servicio tras la entrada en vigor de los cambios implica su aceptación.</h2>
+<p>TuIAlista podrá modificar estos Términos. Los cambios se publicarán en <a href="https://www.tuialista.com">www.tuialista.com</a> con su fecha de actualización y, cuando sean sustanciales, se procurará avisar por medios electrónicos. El uso continuado del Servicio tras la entrada en vigor de los cambios implica su aceptación.</p>
+<hr />
 <h2>17. Ley aplicable y jurisdicción</h2>
 <p>17.1. Estos Términos se rigen por las <strong>leyes de los Estados Unidos Mexicanos</strong>.</p>
-<h2>17.2. Para la interpretación y cumplimiento, las partes se someten a la jurisdicción de los <strong>tribunales competentes de la Ciudad de México (CDMX)</strong>, renunciando a cualquier otro fuero que pudiera corresponderles por su domicilio presente o futuro.</h2>
+<p>17.2. Para la interpretación y cumplimiento, las partes se someten a la jurisdicción de los <strong>tribunales competentes de la Ciudad de México (CDMX)</strong>, renunciando a cualquier otro fuero que pudiera corresponderles por su domicilio presente o futuro.</p>
+<hr />
 <h2>18. Disposiciones generales</h2>
 <p>18.1. <strong>Divisibilidad.</strong> Si alguna cláusula se declara inválida, las demás conservan su plena vigencia.</p>
 <p>18.2. <strong>Cesión.</strong> El Cliente no puede ceder estos Términos sin autorización de TuIAlista. TuIAlista podrá cederlos a una entidad afiliada o sucesora.</p>
 <p>18.3. <strong>No renuncia.</strong> La tolerancia a un incumplimiento no implica renuncia a exigir el cumplimiento futuro.</p>
 <p>18.4. <strong>Acuerdo íntegro.</strong> Estos Términos, junto con los documentos referidos en la Sección 1.3, constituyen el acuerdo íntegro entre las partes respecto del Servicio.</p>
-<h2>18.5. <strong>Idioma.</strong> La versión en <strong>español</strong> es la versión rectora. Las traducciones (por ejemplo, al inglés) se ofrecen por comodidad; en caso de discrepancia, prevalece el español.</h2>
-<h2>19. Contacto</h2>
-<ul>
-<li>Soporte: <strong>soporte@tuialista.com</strong></li>
-<li>Asuntos legales: <strong>legal@tuialista.com</strong></li>
-<li>Privacidad: <strong>privacidad@tuialista.com</strong></li>
-<li>Sitio: <a href="https://www.tuialista.com">www.tuialista.com</a></li>
-</ul>
+<p>18.5. <strong>Idioma.</strong> La versión en <strong>español</strong> es la versión rectora. Las traducciones (por ejemplo, al inglés) se ofrecen por comodidad; en caso de discrepancia, prevalece el español.</p>
 <hr />
-<p><em>Fin del documento.</em></p></div></main>
-<footer>&copy; <span id="y"></span> TuIAlista &middot; <a href="/soporte">Soporte</a> &middot; <a href="/">Inicio</a><script>document.getElementById("y").textContent=new Date().getFullYear()</script></footer>
+<h2>19. Contacto</h2>
+<ul><li>Soporte: <strong>soporte@tuialista.com</strong></li><li>Asuntos legales: <strong>legal@tuialista.com</strong></li><li>Privacidad: <strong>privacidad@tuialista.com</strong></li><li>Sitio: <a href="https://www.tuialista.com">www.tuialista.com</a></li></ul>
+<hr />
+<p><em>Fin del documento.</em></p></article>
+<article class="doc" id="doc-en" data-lang="en" hidden><div class="trnote">This is a courtesy translation. The Spanish version is the governing version.</div><h1>TuIAlista Terms of Service</h1>
+<blockquote><p>The current version of this document is published at <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
+<p><strong>Version:</strong> 1.0 · <strong>Last updated:</strong> 21 July 2026 · <strong>Effective:</strong> 21 July 2026</p>
+<hr />
+<h2>1. Provider identification and acceptance</h2>
+<p>1.1. These Terms of Service (the <strong>"Terms"</strong>) govern access to and use of the <strong>TuIAlista</strong> platform (<a href="https://www.tuialista.com">www.tuialista.com</a>) and the artificial-intelligence agents distributed through it (together, the <strong>"Service"</strong>).</p>
+<p>1.2. The Service is operated by **<strong> (trade name "TuIAlista", parent company </strong>ORDINAL-BiA<strong>), Federal Taxpayer Registry </strong><strong>, with registered address at </strong><strong>, Mexico City, Mexico (</strong>"TuIAlista"**, "we", or the "Provider").</p>
+<p>1.3. By creating an account, purchasing a subscription, installing or using any agent, the user (<strong>"Customer"</strong> or "you") represents that they have read, understood, and accepted these Terms, as well as the <a href="/legal/deslinde-ia/">AI Disclaimer</a>, the <a href="/legal/privacidad/">Privacy Policy</a>, the <a href="/legal/reembolsos/">Refund Policy</a>, and the <a href="/legal/compromiso-local/">Local Processing and Privacy Commitment</a>, all of which form an integral part of these Terms.</p>
+<p>1.4. If the Customer contracts on behalf of a legal entity, they represent that they have sufficient authority to bind it. If you do not agree with these Terms, you must not use the Service.</p>
+<hr />
+<h2>2. Definitions</h2>
+<ul><li><strong>Agent:</strong> a specialized software program from TuIAlista's catalog (for example: documents, Excel, database, invoices, tax, payroll, contracts, among others) that the Customer installs and runs <strong>locally</strong> on their own device.</li><li><strong>Platform / Core:</strong> TuIAlista's central infrastructure that issues and validates licenses, manages accounts and subscriptions, and administers the affiliate program. It does not process Customer content.</li><li><strong>License:</strong> a personal, limited, revocable, and non-exclusive authorization to run an Agent while the subscription is active.</li><li><strong>Subscription:</strong> a recurring (by default monthly) contract that keeps one or more Licenses active.</li><li><strong>Creem:</strong> the provider acting as <strong>Merchant of Record</strong> for the Service (see Section 7).</li><li><strong>Third-party AI models:</strong> external AI engines (by default <strong>Groq</strong>, with failover to <strong>Gemini</strong>) that Agents call solely to draft responses.</li><li><strong>Device:</strong> the physical or virtual device, identified via a technical fingerprint, on which a License is activated.</li></ul>
+<hr />
+<h2>3. Purpose of the Service</h2>
+<p>3.1. TuIAlista offers <strong>subscriptions</strong> to a catalog of AI Agents that run <strong>locally on the Customer's device</strong>. Processing of the Customer's files, documents, and data happens on their own device and <strong>is not transmitted to TuIAlista</strong>, in accordance with the <a href="/legal/compromiso-local/">Local Processing and Privacy Commitment</a>.</p>
+<p>3.2. The Platform's role is limited to: (i) managing the Customer's account and subscription; (ii) issuing and validating the License; and (iii) enabling download of the contracted Agents.</p>
+<p>3.3. Agents use third-party AI models <strong>only to generate the text of responses</strong>. Detection, extraction, and organization tasks are performed locally. The Customer acknowledges that AI-generated content <strong>may contain errors</strong> and is subject to the <a href="/legal/deslinde-ia/">AI Disclaimer</a>.</p>
+<hr />
+<h2>4. Nature of the contract: license to use, not a sale of software</h2>
+<p>4.1. The Service is contracted under a <strong>subscription license-to-use</strong> model. TuIAlista <strong>does not sell the software</strong> and does not transfer title to it. The Customer <strong>acquires no ownership</strong> over the Agents, the Platform, its code, architecture, or documentation.</p>
+<p>4.2. Subject to current payment and compliance with these Terms, TuIAlista grants the Customer a <strong>non-exclusive, non-transferable, non-sublicensable, limited, and revocable</strong> license to install and run the contracted Agent(s) during the subscription term.</p>
+<p>4.3. The license <strong>terminates automatically</strong> upon cancellation or expiration of the subscription, without further notice.</p>
+<hr />
+<h2>5. Scope of the license per Agent</h2>
+<p>5.1. <strong>One License per Agent and per Device.</strong> Each subscription authorizes use of <strong>one (1) Agent</strong> on <strong>one (1) Device</strong>. On first activation, the License is <strong>bound to the technical fingerprint of the Customer's Device</strong>. Validation attempts from a different Device will be rejected (<code>machine_mismatch</code>).</p>
+<p>5.2. To use the same Agent on more than one Device, or to use multiple Agents, the Customer must contract the corresponding Licenses. A change of authorized Device (for example, hardware replacement) may be handled through support, per the mechanisms TuIAlista makes available.</p>
+<p>5.3. The License is for the Customer's internal use. It does not authorize exploitation for the benefit of third parties as a service (for example, resale as "software-as-a-service", bureau, or processing on behalf of others) unless expressly agreed in writing.</p>
+<p>5.4. <strong>Trial period.</strong> TuIAlista may offer a trial period (by default <strong>7 days</strong>) per Agent. At the end of the trial, if there is no active subscription, the License stops validating and the Agent is blocked.</p>
+<p>5.5. <strong>Offline operation (grace period).</strong> Because it runs locally, an Agent can operate offline during a <strong>grace period</strong> (by default <strong>3 days</strong>), relying on the last valid, signed license verdict. Beyond that period without revalidation, the Agent is blocked until connectivity is restored.</p>
+<hr />
+<h2>6. Use restrictions and anti-piracy protection</h2>
+<p>6.1. The Customer agrees <strong>not to</strong>, and not to allow any third party to:</p>
+<p>a) <strong>Reverse engineer</strong>, decompile, disassemble, or attempt to derive the source code, architecture, or algorithms of the Agents or the Platform, except to the extent applicable law imperatively and unwaivably permits;</p>
+<p>b) <strong>Copy, redistribute, resell, lease, lend, sublicense, or publish</strong> the Agents, the Platform, or their documentation, in whole or in part;</p>
+<p>c) <strong>Circumvent, disable, forge, or tamper with</strong> the licensing system, the cryptographic validation signature (Ed25519), the Device binding, usage counters, or any technical protection measure;</p>
+<p>d) <strong>Generate, distribute, or use unauthorized licenses</strong>, forged keys, or patches ("cracks") that simulate an active subscription;</p>
+<p>e) Use the Service for <strong>unlawful</strong> purposes, to infringe third-party rights, or in violation of applicable law;</p>
+<p>f) Remove or alter <strong>proprietary notices</strong>, trademarks, or legal legends of the Agents or the Platform.</p>
+<p>6.2. TuIAlista's licensing system incorporates <strong>technical protection measures</strong> (cryptographic signing of validation verdicts, signature verification within the Agent, and Device binding). Attempting to defeat them constitutes a <strong>material breach</strong> of these Terms and may result in immediate suspension or revocation of the License, without prejudice to any applicable legal action.</p>
+<hr />
+<h2>7. Subscription, pricing, and billing (Creem as Merchant of Record)</h2>
+<p>7.1. <strong>Creem as Merchant of Record.</strong> Sales and charges for the Service are processed through <strong>Creem</strong>, acting as <strong>Merchant of Record</strong>. This means that, for purposes of the payment transaction, <strong>Creem is the seller of record</strong> and is responsible for processing the charge, calculating and collecting <strong>applicable taxes</strong>, and issuing transaction documentation. The payment contract may additionally be subject to <strong>Creem's terms and conditions</strong>.</p>
+<p>7.2. <strong>Prices and currency.</strong> Prices are those published at the time of contracting. The Service is offered <strong>worldwide and multi-currency</strong>; the amount may be displayed and charged in the applicable currency, converted from a base price. Applicable taxes are determined and collected through Creem according to the Customer's jurisdiction.</p>
+<p>7.3. <strong>Recurrence and automatic renewal.</strong> Unless cancelled, the subscription <strong>renews automatically</strong> at the start of each period, charging the current amount to the registered payment method. The Customer authorizes such recurring charges.</p>
+<p>7.4. <strong>Refunds.</strong> Refunds are governed by the <a href="/legal/reembolsos/">Refund Policy</a>, which is compatible with Creem's operation as Merchant of Record.</p>
+<p>7.5. <strong>Plan changes.</strong> The Customer may upgrade or downgrade; scope and price changes take effect according to the rules of the plan and billing cycle.</p>
+<hr />
+<h2>8. Availability and modifications to the Service</h2>
+<p>8.1. TuIAlista aims for reasonable availability of the license-validation Platform, <strong>without guaranteeing</strong> uninterrupted or error-free operation. Agents run locally and do not depend on continuous connection to TuIAlista, except for periodic License revalidation (see Section 5.5).</p>
+<p>8.2. TuIAlista may <strong>modify, update, improve, or discontinue</strong> Agents or Service features, and add new Agents to the catalog. Where a change materially and adversely affects an essential feature of the contracted Service, TuIAlista will endeavor to give reasonable prior notice by electronic means.</p>
+<p>8.3. <strong>Third-party AI models</strong> (Groq/Gemini) are provided by third parties unrelated to TuIAlista. Their availability, performance, and continuity are <strong>not guaranteed</strong> by TuIAlista, in accordance with the <a href="/legal/deslinde-ia/">AI Disclaimer</a>.</p>
+<hr />
+<h2>9. Suspension for non-payment and for breach</h2>
+<p>9.1. <strong>Non-payment.</strong> If a recurring charge fails (for example, due to a declined payment method), the License will move to a <strong>suspended</strong> state and the Agent <strong>will stop validating and operating</strong> until payment is regularized. Suspension for non-payment does not give rise to liability for TuIAlista.</p>
+<p>9.2. <strong>Breach.</strong> TuIAlista may <strong>immediately suspend or revoke</strong> the License in the event of a violation of Section 6 (restrictions and anti-piracy), fraudulent use, or material breach of these Terms, without prejudice to other remedies.</p>
+<p>9.3. Regularizing payment or curing the breach, where applicable, may restore the License in accordance with the Platform's mechanisms.</p>
+<hr />
+<h2>10. Intellectual property</h2>
+<p>10.1. The Agents, the Platform, the SDK, the source code, the architecture, trademarks, trade names, logos, and documentation are the <strong>property of TuIAlista</strong> (or its licensors) and are protected by applicable intellectual and industrial property law.</p>
+<p>10.2. These Terms <strong>do not transfer</strong> any intellectual property right to the Customer, other than the limited license to use described in Section 4.</p>
+<p>10.3. <strong>Customer content.</strong> The files, data, and results the Customer processes with the Agents are and remain the <strong>Customer's property</strong>. TuIAlista does not access them and claims no right over them (see the <a href="/legal/compromiso-local/">Local Processing Commitment</a> and the <a href="/legal/privacidad/">Privacy Policy</a>).</p>
+<hr />
+<h2>11. No professional advice and AI-generated content</h2>
+<p>11.1. Agents are support tools. The content they generate <strong>may contain errors</strong> and <strong>does not constitute tax, legal, accounting, labor, financial, or professional advice of any kind</strong>.</p>
+<p>11.2. The Customer is <strong>solely responsible</strong> for reviewing, verifying, and validating every result before using it, filing it with any authority, or making decisions based on it, especially in sensitive matters (tax, payroll and human resources, contracts, and invoicing). This is developed in the <a href="/legal/deslinde-ia/">AI Disclaimer</a>, which the Customer acknowledges and accepts.</p>
+<hr />
+<h2>12. Warranties and limitation of liability</h2>
+<p>12.1. <strong>No warranties.</strong> The Service is provided <strong>"as is" and "as available"</strong>, without warranties of any kind, express or implied, including —without limitation— fitness for a particular purpose, accuracy of results, or availability of third-party AI models, to the maximum extent permitted by applicable law.</p>
+<p>12.2. <strong>Liability cap.</strong> To the maximum extent permitted by law, TuIAlista's total aggregate liability arising out of or relating to the Service <strong>shall not exceed the amount actually paid by the Customer for the Service during the twelve (12) months preceding</strong> the event giving rise to the claim. TuIAlista <strong>shall not be liable</strong> for indirect, incidental, special, punitive, or consequential damages, nor for lost profits or loss of data. Details and scope are set out in the <a href="/legal/deslinde-ia/">AI Disclaimer</a>.</p>
+<hr />
+<h2>13. Indemnification</h2>
+<p>The Customer agrees to defend, hold harmless, and indemnify TuIAlista, its parent ORDINAL-BiA, and its collaborators against claims, damages, or expenses (including reasonable attorneys' fees) arising from: (i) misuse of the Service; (ii) breach of these Terms or of Section 6; (iii) use of results generated by the Agents without due verification; or (iv) infringement of third-party rights or applicable law.</p>
+<hr />
+<h2>14. Affiliate program</h2>
+<p>The affiliate program (recurring commission of <strong>30%</strong> on valid payments by referred customers) is governed by its own terms. Participation as an affiliate does not create any employment, partnership, or agency relationship with TuIAlista.</p>
+<hr />
+<h2>15. Term, cancellation, and termination</h2>
+<p>15.1. These Terms apply while the Customer maintains an active account or subscription.</p>
+<p>15.2. The Customer may <strong>cancel at any time</strong> from the portal; cancellation <strong>prevents the next charge</strong> and the License remains active until the end of the already-paid period, per the <a href="/legal/reembolsos/">Refund Policy</a>.</p>
+<p>15.3. TuIAlista may terminate or suspend the Service for the causes set out in these Terms. Provisions that by their nature should survive (intellectual property, limitation of liability, indemnification, governing law) <strong>shall survive</strong> termination.</p>
+<hr />
+<h2>16. Modifications to these Terms</h2>
+<p>TuIAlista may modify these Terms. Changes will be published at <a href="https://www.tuialista.com">www.tuialista.com</a> with their update date and, where material, TuIAlista will endeavor to notify by electronic means. Continued use of the Service after the changes take effect constitutes acceptance.</p>
+<hr />
+<h2>17. Governing law and jurisdiction</h2>
+<p>17.1. These Terms are governed by the <strong>laws of the United Mexican States</strong>.</p>
+<p>17.2. For interpretation and enforcement, the parties submit to the jurisdiction of the <strong>competent courts of Mexico City (CDMX)</strong>, waiving any other venue that may correspond to them by reason of their present or future domicile.</p>
+<hr />
+<h2>18. General provisions</h2>
+<p>18.1. <strong>Severability.</strong> If any clause is held invalid, the remaining clauses retain full effect.</p>
+<p>18.2. <strong>Assignment.</strong> The Customer may not assign these Terms without TuIAlista's authorization. TuIAlista may assign them to an affiliate or successor entity.</p>
+<p>18.3. <strong>No waiver.</strong> Tolerating a breach does not waive the right to require future compliance.</p>
+<p>18.4. <strong>Entire agreement.</strong> These Terms, together with the documents referenced in Section 1.3, constitute the entire agreement between the parties regarding the Service.</p>
+<p>18.5. <strong>Language.</strong> The <strong>Spanish</strong> version is the governing version. Translations (for example, into English) are provided for convenience; in the event of discrepancy, Spanish prevails.</p>
+<hr />
+<h2>19. Contact</h2>
+<ul><li>Support: <strong>soporte@tuialista.com</strong></li><li>Legal matters: <strong>legal@tuialista.com</strong></li><li>Privacy: <strong>privacidad@tuialista.com</strong></li><li>Website: <a href="https://www.tuialista.com">www.tuialista.com</a></li></ul>
+<hr />
+<hr />
+<p><em>End of document.</em></p></article>
+<article class="doc" id="doc-pt" data-lang="pt" hidden><div class="trnote">Esta é uma tradução de cortesia. A versão em espanhol é a versão vigente.</div><h1>Termos de Serviço da TuIAlista</h1>
+<blockquote><p>A versão vigente deste documento é publicada em <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
+<p><strong>Versão:</strong> 1.0 · <strong>Última atualização:</strong> 21 de julho de 2026 · <strong>Em vigor a partir de:</strong> 21 de julho de 2026</p>
+<hr />
+<h2>1. Identificação do provedor e aceitação</h2>
+<p>1.1. Estes Termos de Serviço (os <strong>"Termos"</strong>) regulam o acesso e o uso da plataforma <strong>TuIAlista</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a>) e dos agentes de inteligência artificial distribuídos por meio dela (em conjunto, o <strong>"Serviço"</strong>).</p>
+<p>1.2. O Serviço é operado por **<strong> (nome comercial "TuIAlista", matriz </strong>ORDINAL-BiA<strong>), com Registro Federal de Contribuintes </strong><strong> e domicílio fiscal em </strong><strong>, Cidade do México, México (doravante, </strong>"TuIAlista"**, "nós" ou o "Provedor").</p>
+<p>1.3. Ao criar uma conta, contratar uma assinatura, instalar ou usar qualquer agente, o usuário (<strong>"Cliente"</strong> ou "você") declara ter lido, compreendido e aceito estes Termos, bem como o <a href="/legal/deslinde-ia/">Aviso de Isenção sobre Inteligência Artificial</a>, a <a href="/legal/privacidad/">Política de Privacidade</a>, a <a href="/legal/reembolsos/">Política de Reembolsos</a> e o <a href="/legal/compromiso-local/">Compromisso de Processamento Local e Privacidade</a>, que fazem parte integral destes Termos.</p>
+<p>1.4. Se o Cliente contrata em nome de uma pessoa jurídica, declara ter poderes suficientes para obrigá-la. Se você não concorda com estes Termos, deve abster-se de usar o Serviço.</p>
+<hr />
+<h2>2. Definições</h2>
+<ul><li><strong>Agente:</strong> programa de software especializado do catálogo da TuIAlista (por exemplo, documentos, Excel, banco de dados, faturas, fiscal, folha de pagamento, contratos, entre outros) que o Cliente instala e executa <strong>localmente</strong> em seu próprio equipamento.</li><li><strong>Plataforma / Núcleo:</strong> infraestrutura central da TuIAlista que emite e valida licenças, gerencia contas e assinaturas e administra o programa de afiliados. Não processa o conteúdo do Cliente.</li><li><strong>Licença:</strong> autorização de uso, pessoal, limitada, revogável e não exclusiva, que habilita a execução de um Agente enquanto a assinatura estiver vigente.</li><li><strong>Assinatura:</strong> contratação recorrente (por padrão mensal) que mantém ativa uma ou mais Licenças.</li><li><strong>Creem:</strong> provedor que atua como <strong>Comerciante Registrado (Merchant of Record)</strong> do Serviço (ver Seção 7).</li><li><strong>Modelos de IA de terceiros:</strong> motores de inteligência artificial externos (por padrão <strong>Groq</strong>, com comutação por falha para <strong>Gemini</strong>) que os Agentes invocam unicamente para redigir respostas.</li><li><strong>Equipamento:</strong> o dispositivo físico ou virtual, identificado por uma impressão técnica, no qual uma Licença é ativada.</li></ul>
+<hr />
+<h2>3. Objeto do Serviço</h2>
+<p>3.1. A TuIAlista oferece <strong>assinaturas</strong> a um catálogo de Agentes de IA que são executados <strong>localmente no equipamento do Cliente</strong>. O processamento dos arquivos, documentos e dados do Cliente ocorre em seu próprio equipamento e <strong>não é transmitido à TuIAlista</strong>, conforme o <a href="/legal/compromiso-local/">Compromisso de Processamento Local e Privacidade</a>.</p>
+<p>3.2. A função da Plataforma limita-se a: (i) gerenciar a conta e a assinatura do Cliente; (ii) emitir e validar a Licença; e (iii) permitir o download dos Agentes contratados.</p>
+<p>3.3. Os Agentes utilizam Modelos de IA de terceiros <strong>unicamente para gerar o texto das respostas</strong>. As tarefas de detecção, extração e organização são realizadas localmente. O Cliente reconhece que o conteúdo gerado por IA <strong>pode conter erros</strong> e sujeita-se ao <a href="/legal/deslinde-ia/">Aviso de Isenção sobre Inteligência Artificial</a>.</p>
+<hr />
+<h2>4. Natureza da contratação: licença de uso, não venda de software</h2>
+<p>4.1. O Serviço é contratado sob um modelo de <strong>licença de uso por assinatura</strong>. A TuIAlista <strong>não vende o software</strong> nem transfere sua titularidade. O Cliente <strong>não adquire propriedade alguma</strong> sobre os Agentes, a Plataforma, seu código, sua arquitetura ou sua documentação.</p>
+<p>4.2. Sujeito ao pagamento vigente e ao cumprimento destes Termos, a TuIAlista concede ao Cliente uma licença <strong>não exclusiva, intransferível, não sublicenciável, limitada e revogável</strong> para instalar e executar o(s) Agente(s) contratado(s) durante a vigência da assinatura.</p>
+<p>4.3. A licença <strong>termina automaticamente</strong> ao ser cancelada ou extinta a assinatura, sem necessidade de declaração adicional.</p>
+<hr />
+<h2>5. Alcance da licença por Agente</h2>
+<p>5.1. <strong>Uma Licença por Agente e por Equipamento.</strong> Cada assinatura autoriza o uso de <strong>um (1) Agente</strong> em <strong>um (1) Equipamento</strong>. Na primeira ativação, a Licença fica <strong>vinculada à impressão técnica do Equipamento</strong> do Cliente. As tentativas de validação a partir de um Equipamento diferente serão rejeitadas (<code>machine_mismatch</code>).</p>
+<p>5.2. Para usar o mesmo Agente em mais de um Equipamento, ou vários Agentes, o Cliente deve contratar as Licenças correspondentes. A mudança de Equipamento autorizado (por exemplo, por substituição de hardware) poderá ser gerenciada por meio do suporte, conforme os mecanismos que a TuIAlista disponibilizar.</p>
+<p>5.3. A Licença é de uso interno do Cliente. Não autoriza sua exploração em benefício de terceiros como serviço (por exemplo, revenda como "software como serviço", bureau ou processamento por conta de terceiros), salvo acordo expresso por escrito.</p>
+<p>5.4. <strong>Período de teste.</strong> A TuIAlista pode oferecer um período de teste (por padrão <strong>7 dias</strong>) por Agente. Ao término do teste, se não houver assinatura ativa, a Licença deixa de ser validada e o Agente é bloqueado.</p>
+<p>5.5. <strong>Operação sem conexão (tolerância).</strong> Por ser local, um Agente pode operar sem conexão durante um <strong>período de tolerância</strong> (por padrão <strong>3 dias</strong>), apoiando-se no último veredicto de licença válido e assinado. Ultrapassado esse período sem revalidar, o Agente é bloqueado até restabelecer a conexão.</p>
+<hr />
+<h2>6. Restrições de uso e proteção antipirataria</h2>
+<p>6.1. O Cliente obriga-se a <strong>não</strong>, nem permitir a terceiros:</p>
+<p>a) <strong>Realizar engenharia reversa</strong>, descompilar, desmontar ou tentar derivar o código-fonte, a arquitetura ou os algoritmos dos Agentes ou da Plataforma, salvo na medida em que a lei aplicável o permita de forma imperativa e irrenunciável;</p>
+<p>b) <strong>Copiar, redistribuir, revender, arrendar, emprestar, sublicenciar ou publicar</strong> os Agentes, a Plataforma ou sua documentação, no todo ou em parte;</p>
+<p>c) <strong>Contornar, desativar, falsificar ou manipular</strong> o sistema de licenças, a assinatura criptográfica de validação (Ed25519), a vinculação ao Equipamento, os contadores de uso ou qualquer medida técnica de proteção;</p>
+<p>d) <strong>Gerar, distribuir ou utilizar licenças não autorizadas</strong>, chaves falsas ou correções ("cracks") que simulem uma assinatura ativa;</p>
+<p>e) Usar o Serviço para fins <strong>ilícitos</strong>, para violar direitos de terceiros ou em contravenção à normativa aplicável;</p>
+<p>f) Remover ou alterar os <strong>avisos de propriedade</strong>, marcas ou legendas legais dos Agentes ou da Plataforma.</p>
+<p>6.2. O sistema de licenças da TuIAlista incorpora <strong>medidas técnicas de proteção</strong> (assinatura criptográfica dos veredictos de validação, verificação de assinatura no Agente e vinculação ao Equipamento). A tentativa de violá-las constitui uma <strong>violação grave</strong> destes Termos e poderá resultar na suspensão ou revogação imediata da Licença, sem prejuízo das ações legais cabíveis.</p>
+<hr />
+<h2>7. Assinatura, preços e faturamento (Creem como Comerciante Registrado)</h2>
+<p>7.1. <strong>Creem como Merchant of Record.</strong> As vendas e cobranças do Serviço são processadas por meio da <strong>Creem</strong>, que atua como <strong>Comerciante Registrado (Merchant of Record)</strong>. Isso significa que, para efeitos da transação de pagamento, <strong>a Creem é o vendedor registrado</strong> e é responsável por processar a cobrança, calcular e recolher os <strong>impostos aplicáveis</strong> e emitir a documentação da operação. A contratação de pagamento pode ficar sujeita, adicionalmente, aos <strong>termos e condições da Creem</strong>.</p>
+<p>7.2. <strong>Preços e moeda.</strong> Os preços são os publicados no momento da contratação. O Serviço é oferecido em nível <strong>mundial e multimoeda</strong>; o valor poderá ser apresentado e cobrado na moeda correspondente, com conversão sobre um preço-base. Os impostos aplicáveis são determinados e recolhidos por meio da Creem conforme a jurisdição do Cliente.</p>
+<p>7.3. <strong>Recorrência e renovação automática.</strong> Salvo cancelamento, a assinatura <strong>é renovada automaticamente</strong> no início de cada período, cobrando-se o valor vigente por meio do método de pagamento registrado. O Cliente autoriza tais cobranças recorrentes.</p>
+<p>7.4. <strong>Reembolsos.</strong> Os reembolsos regem-se pela <a href="/legal/reembolsos/">Política de Reembolsos</a>, compatível com a operação da Creem como Comerciante Registrado.</p>
+<p>7.5. <strong>Mudanças de plano.</strong> O Cliente pode subir ou descer de plano; as mudanças de alcance e preço produzem efeito conforme as regras do plano e do ciclo de faturamento.</p>
+<hr />
+<h2>8. Disponibilidade e modificações do Serviço</h2>
+<p>8.1. A TuIAlista busca uma disponibilidade razoável da Plataforma de validação de licenças, <strong>sem garantir</strong> operação ininterrupta ou livre de erros. A execução dos Agentes é local e não depende da conexão contínua com a TuIAlista, salvo para a revalidação periódica da Licença (ver Seção 5.5).</p>
+<p>8.2. A TuIAlista poderá <strong>modificar, atualizar, melhorar ou descontinuar</strong> Agentes ou funções do Serviço, bem como incorporar novos Agentes ao catálogo. Quando uma mudança afetar de forma substancial e adversa uma funcionalidade essencial do Serviço contratado, a TuIAlista procurará avisar com antecedência razoável por meios eletrônicos.</p>
+<p>8.3. Os <strong>Modelos de IA de terceiros</strong> (Groq/Gemini) são fornecidos por terceiros alheios à TuIAlista. Sua disponibilidade, desempenho e continuidade <strong>não são garantidos</strong> pela TuIAlista, conforme o <a href="/legal/deslinde-ia/">Aviso de Isenção sobre Inteligência Artificial</a>.</p>
+<hr />
+<h2>9. Suspensão por falta de pagamento e por descumprimento</h2>
+<p>9.1. <strong>Falta de pagamento.</strong> Se uma cobrança recorrente não for concluída (por exemplo, por recusa do método de pagamento), a Licença passará ao estado <strong>suspenso</strong> e o Agente <strong>deixará de ser validado e operar</strong> até a regularização do pagamento. A suspensão por falta de pagamento não gera responsabilidade para a TuIAlista.</p>
+<p>9.2. <strong>Descumprimento.</strong> A TuIAlista poderá <strong>suspender ou revogar</strong> imediatamente a Licença em caso de violação da Seção 6 (restrições e antipirataria), uso fraudulento ou descumprimento grave destes Termos, sem prejuízo de outras ações.</p>
+<p>9.3. A regularização do pagamento ou a sanação do descumprimento, quando cabível, poderá restabelecer a Licença conforme os mecanismos da Plataforma.</p>
+<hr />
+<h2>10. Propriedade intelectual</h2>
+<p>10.1. Os Agentes, a Plataforma, o SDK, o código-fonte, a arquitetura, as marcas, os nomes comerciais, os logotipos e a documentação são <strong>propriedade da TuIAlista</strong> (ou de seus licenciantes) e estão protegidos pela legislação aplicável de propriedade intelectual e industrial.</p>
+<p>10.2. Estes Termos <strong>não transferem</strong> ao Cliente nenhum direito de propriedade intelectual, salvo a licença de uso limitada descrita na Seção 4.</p>
+<p>10.3. <strong>Conteúdo do Cliente.</strong> Os arquivos, dados e resultados que o Cliente processa com os Agentes são e continuarão sendo <strong>propriedade do Cliente</strong>. A TuIAlista não os acessa nem reivindica qualquer direito sobre eles (ver <a href="/legal/compromiso-local/">Compromisso de Processamento Local</a> e <a href="/legal/privacidad/">Política de Privacidade</a>).</p>
+<hr />
+<h2>11. Ausência de assessoria profissional e conteúdo gerado por IA</h2>
+<p>11.1. Os Agentes são ferramentas de apoio. O conteúdo que geram <strong>pode conter erros</strong> e <strong>não constitui assessoria fiscal, jurídica, contábil, trabalhista, financeira nem profissional de nenhum tipo</strong>.</p>
+<p>11.2. O Cliente é o <strong>único responsável</strong> por revisar, verificar e validar todo resultado antes de utilizá-lo, apresentá-lo a autoridades ou tomar decisões com base nele, especialmente em matérias sensíveis (fiscal, folha de pagamento e recursos humanos, contratos e faturamento). Esta matéria é desenvolvida no <a href="/legal/deslinde-ia/">Aviso de Isenção sobre Inteligência Artificial</a>, que o Cliente declara conhecer e aceitar.</p>
+<hr />
+<h2>12. Garantias e limitação de responsabilidade</h2>
+<p>12.1. <strong>Sem garantias.</strong> O Serviço é fornecido <strong>"no estado em que se encontra" e "conforme disponibilidade"</strong>, sem garantias de nenhum tipo, expressas ou implícitas, incluindo —sem limitar— adequação a um fim específico, exatidão de resultados ou disponibilidade dos Modelos de IA de terceiros, na máxima medida permitida pela lei aplicável.</p>
+<p>12.2. <strong>Limite de responsabilidade.</strong> Na máxima medida permitida pela lei, a responsabilidade total e acumulada da TuIAlista decorrente de ou relacionada ao Serviço <strong>não excederá o valor efetivamente pago pelo Cliente pelo Serviço durante os doze (12) meses anteriores</strong> ao fato que originou a reclamação. A TuIAlista <strong>não será responsável</strong> por danos indiretos, incidentais, especiais, punitivos ou consequenciais, nem por lucros cessantes ou perda de dados. Os detalhes e alcances estão estabelecidos no <a href="/legal/deslinde-ia/">Aviso de Isenção sobre Inteligência Artificial</a>.</p>
+<hr />
+<h2>13. Indenização</h2>
+<p>O Cliente obriga-se a manter indene e a indenizar a TuIAlista, sua matriz ORDINAL-BiA e seus colaboradores frente a reclamações, danos ou despesas (incluídos honorários advocatícios razoáveis) decorrentes de: (i) uso indevido do Serviço; (ii) violação destes Termos ou da Seção 6; (iii) uso de resultados gerados pelos Agentes sem a devida verificação; ou (iv) infração de direitos de terceiros ou da normativa aplicável.</p>
+<hr />
+<h2>14. Programa de afiliados</h2>
+<p>O programa de afiliados (comissão recorrente de <strong>30%</strong> sobre os pagamentos válidos de clientes indicados) rege-se por seus próprios termos. A participação como afiliado não cria relação trabalhista, sociedade nem representação com a TuIAlista.</p>
+<hr />
+<h2>15. Vigência, cancelamento e rescisão</h2>
+<p>15.1. Estes Termos vigoram enquanto o Cliente mantiver uma conta ou assinatura ativa.</p>
+<p>15.2. O Cliente pode <strong>cancelar a qualquer momento</strong> a partir do portal; o cancelamento <strong>evita a próxima cobrança</strong> e a Licença permanece ativa até o final do período já pago, conforme a <a href="/legal/reembolsos/">Política de Reembolsos</a>.</p>
+<p>15.3. A TuIAlista pode rescindir ou suspender o Serviço pelas causas previstas nestes Termos. As disposições que por sua natureza devam subsistir (propriedade intelectual, limitação de responsabilidade, indenização, lei aplicável) <strong>sobreviverão</strong> à rescisão.</p>
+<hr />
+<h2>16. Modificações a estes Termos</h2>
+<p>A TuIAlista poderá modificar estes Termos. As mudanças serão publicadas em <a href="https://www.tuialista.com">www.tuialista.com</a> com sua data de atualização e, quando substanciais, procurará avisar por meios eletrônicos. O uso continuado do Serviço após a entrada em vigor das mudanças implica sua aceitação.</p>
+<hr />
+<h2>17. Lei aplicável e jurisdição</h2>
+<p>17.1. Estes Termos regem-se pelas <strong>leis dos Estados Unidos Mexicanos</strong>.</p>
+<p>17.2. Para a interpretação e o cumprimento, as partes submetem-se à jurisdição dos <strong>tribunais competentes da Cidade do México (CDMX)</strong>, renunciando a qualquer outro foro que possa lhes corresponder por seu domicílio presente ou futuro.</p>
+<hr />
+<h2>18. Disposições gerais</h2>
+<p>18.1. <strong>Divisibilidade.</strong> Se alguma cláusula for declarada inválida, as demais conservam sua plena vigência.</p>
+<p>18.2. <strong>Cessão.</strong> O Cliente não pode ceder estes Termos sem autorização da TuIAlista. A TuIAlista poderá cedê-los a uma entidade afiliada ou sucessora.</p>
+<p>18.3. <strong>Não renúncia.</strong> A tolerância a um descumprimento não implica renúncia a exigir o cumprimento futuro.</p>
+<p>18.4. <strong>Acordo integral.</strong> Estes Termos, juntamente com os documentos referidos na Seção 1.3, constituem o acordo integral entre as partes a respeito do Serviço.</p>
+<p>18.5. <strong>Idioma.</strong> A versão em <strong>espanhol</strong> é a versão reitora. As traduções (por exemplo, para o português) são oferecidas por conveniência; em caso de discrepância, prevalece o espanhol.</p>
+<hr />
+<h2>19. Contato</h2>
+<ul><li>Suporte: <strong>soporte@tuialista.com</strong></li><li>Assuntos jurídicos: <strong>legal@tuialista.com</strong></li><li>Privacidade: <strong>privacidad@tuialista.com</strong></li><li>Site: <a href="https://www.tuialista.com">www.tuialista.com</a></li></ul>
+<hr />
+<hr />
+<p><em>Fim do documento.</em></p></article>
+<article class="doc" id="doc-fr" data-lang="fr" hidden><div class="trnote">Ceci est une traduction de courtoisie. La version espagnole fait foi.</div><h1>Conditions de Service de TuIAlista</h1>
+<blockquote><p>La version en vigueur de ce document est publiée sur <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
+<p><strong>Version :</strong> 1.0 · <strong>Dernière mise à jour :</strong> 21 juillet 2026 · <strong>En vigueur à partir du :</strong> 21 juillet 2026</p>
+<hr />
+<h2>1. Identification du fournisseur et acceptation</h2>
+<p>1.1. Les présentes Conditions de Service (les <strong>« Conditions »</strong>) régissent l'accès et l'utilisation de la plateforme <strong>TuIAlista</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a>) et des agents d'intelligence artificielle distribués par son intermédiaire (ensemble, le <strong>« Service »</strong>).</p>
+<p>1.2. Le Service est exploité par **<strong> (nom commercial « TuIAlista », société mère </strong>ORDINAL-BiA<strong>), immatriculée au Registre Fédéral des Contribuables </strong><strong>, dont le domicile fiscal est </strong><strong>, Mexico, Mexique (ci-après, </strong>« TuIAlista »**, « nous » ou le « Fournisseur »).</p>
+<p>1.3. En créant un compte, en souscrivant un abonnement, en installant ou en utilisant tout agent, l'utilisateur (<strong>« Client »</strong> ou « vous ») déclare avoir lu, compris et accepté les présentes Conditions, ainsi que la <a href="/legal/deslinde-ia/">Clause de Non-Responsabilité relative à l'Intelligence Artificielle</a>, la <a href="/legal/privacidad/">Politique de Confidentialité</a>, la <a href="/legal/reembolsos/">Politique de Remboursement</a> et l'<a href="/legal/compromiso-local/">Engagement de Traitement Local et de Confidentialité</a>, qui font partie intégrante des présentes Conditions.</p>
+<p>1.4. Si le Client contracte au nom d'une personne morale, il déclare disposer des pouvoirs suffisants pour l'engager. Si vous n'êtes pas d'accord avec les présentes Conditions, vous devez vous abstenir d'utiliser le Service.</p>
+<hr />
+<h2>2. Définitions</h2>
+<ul><li><strong>Agent :</strong> logiciel spécialisé du catalogue de TuIAlista (par exemple : documents, Excel, base de données, factures, fiscalité, paie, contrats, entre autres) que le Client installe et exécute <strong>localement</strong> sur son propre équipement.</li><li><strong>Plateforme / Cœur :</strong> infrastructure centrale de TuIAlista qui émet et valide les licences, gère les comptes et les abonnements et administre le programme d'affiliation. Elle ne traite pas le contenu du Client.</li><li><strong>Licence :</strong> autorisation d'utilisation, personnelle, limitée, révocable et non exclusive, qui permet d'exécuter un Agent tant que l'abonnement est en vigueur.</li><li><strong>Abonnement :</strong> contrat récurrent (mensuel par défaut) qui maintient active une ou plusieurs Licences.</li><li><strong>Creem :</strong> prestataire agissant en tant que <strong>Vendeur Enregistré (Merchant of Record)</strong> du Service (voir Section 7).</li><li><strong>Modèles d'IA de tiers :</strong> moteurs d'intelligence artificielle externes (par défaut <strong>Groq</strong>, avec bascule vers <strong>Gemini</strong>) que les Agents appellent uniquement pour rédiger des réponses.</li><li><strong>Équipement :</strong> l'appareil physique ou virtuel, identifié par une empreinte technique, sur lequel une Licence est activée.</li></ul>
+<hr />
+<h2>3. Objet du Service</h2>
+<p>3.1. TuIAlista propose des <strong>abonnements</strong> à un catalogue d'Agents d'IA qui s'exécutent <strong>localement sur l'équipement du Client</strong>. Le traitement des fichiers, documents et données du Client a lieu sur son propre équipement et <strong>n'est pas transmis à TuIAlista</strong>, conformément à l'<a href="/legal/compromiso-local/">Engagement de Traitement Local et de Confidentialité</a>.</p>
+<p>3.2. Le rôle de la Plateforme se limite à : (i) gérer le compte et l'abonnement du Client ; (ii) émettre et valider la Licence ; et (iii) permettre le téléchargement des Agents souscrits.</p>
+<p>3.3. Les Agents utilisent des Modèles d'IA de tiers <strong>uniquement pour générer le texte des réponses</strong>. Les tâches de détection, d'extraction et d'organisation sont réalisées localement. Le Client reconnaît que le contenu généré par IA <strong>peut contenir des erreurs</strong> et est soumis à la <a href="/legal/deslinde-ia/">Clause de Non-Responsabilité relative à l'IA</a>.</p>
+<hr />
+<h2>4. Nature du contrat : licence d'utilisation, non vente de logiciel</h2>
+<p>4.1. Le Service est souscrit selon un modèle de <strong>licence d'utilisation par abonnement</strong>. TuIAlista <strong>ne vend pas le logiciel</strong> et n'en transfère pas la titularité. Le Client <strong>n'acquiert aucune propriété</strong> sur les Agents, la Plateforme, son code, son architecture ou sa documentation.</p>
+<p>4.2. Sous réserve du paiement en vigueur et du respect des présentes Conditions, TuIAlista accorde au Client une licence <strong>non exclusive, non transférable, non sous-licenciable, limitée et révocable</strong> pour installer et exécuter le(s) Agent(s) souscrit(s) pendant la durée de l'abonnement.</p>
+<p>4.3. La licence <strong>prend fin automatiquement</strong> en cas de résiliation ou d'extinction de l'abonnement, sans besoin de déclaration supplémentaire.</p>
+<hr />
+<h2>5. Portée de la licence par Agent</h2>
+<p>5.1. <strong>Une Licence par Agent et par Équipement.</strong> Chaque abonnement autorise l'utilisation d'<strong>un (1) Agent</strong> sur <strong>un (1) Équipement</strong>. Lors de la première activation, la Licence est <strong>liée à l'empreinte technique de l'Équipement</strong> du Client. Les tentatives de validation depuis un Équipement différent seront rejetées (<code>machine_mismatch</code>).</p>
+<p>5.2. Pour utiliser le même Agent sur plus d'un Équipement, ou plusieurs Agents, le Client doit souscrire les Licences correspondantes. Le changement d'Équipement autorisé (par exemple, remplacement de matériel) pourra être géré via le support, selon les mécanismes que TuIAlista met à disposition.</p>
+<p>5.3. La Licence est à usage interne du Client. Elle n'autorise pas son exploitation au bénéfice de tiers en tant que service (par exemple, revente en « logiciel en tant que service », bureau ou traitement pour le compte d'autrui), sauf accord exprès écrit.</p>
+<p>5.4. <strong>Période d'essai.</strong> TuIAlista peut proposer une période d'essai (par défaut <strong>7 jours</strong>) par Agent. À la fin de l'essai, en l'absence d'abonnement actif, la Licence cesse d'être validée et l'Agent est bloqué.</p>
+<p>5.5. <strong>Fonctionnement hors ligne (tolérance).</strong> Étant local, un Agent peut fonctionner hors ligne pendant une <strong>période de tolérance</strong> (par défaut <strong>3 jours</strong>), en s'appuyant sur le dernier verdict de licence valide et signé. Passé ce délai sans revalidation, l'Agent est bloqué jusqu'au rétablissement de la connexion.</p>
+<hr />
+<h2>6. Restrictions d'utilisation et protection anti-piratage</h2>
+<p>6.1. Le Client s'engage à <strong>ne pas</strong>, ni à permettre à des tiers de :</p>
+<p>a) <strong>Procéder à de l'ingénierie inverse</strong>, décompiler, désassembler ou tenter de dériver le code source, l'architecture ou les algorithmes des Agents ou de la Plateforme, sauf dans la mesure où la loi applicable le permet de manière impérative et à laquelle il ne peut être renoncé ;</p>
+<p>b) <strong>Copier, redistribuer, revendre, louer, prêter, sous-licencier ou publier</strong> les Agents, la Plateforme ou leur documentation, en tout ou en partie ;</p>
+<p>c) <strong>Contourner, désactiver, falsifier ou manipuler</strong> le système de licences, la signature cryptographique de validation (Ed25519), la liaison à l'Équipement, les compteurs d'utilisation ou toute mesure technique de protection ;</p>
+<p>d) <strong>Générer, distribuer ou utiliser des licences non autorisées</strong>, des clés falsifiées ou des correctifs (« cracks ») simulant un abonnement actif ;</p>
+<p>e) Utiliser le Service à des fins <strong>illicites</strong>, pour porter atteinte aux droits de tiers ou en violation de la réglementation applicable ;</p>
+<p>f) Retirer ou altérer les <strong>mentions de propriété</strong>, marques ou légendes légales des Agents ou de la Plateforme.</p>
+<p>6.2. Le système de licences de TuIAlista intègre des <strong>mesures techniques de protection</strong> (signature cryptographique des verdicts de validation, vérification de la signature dans l'Agent et liaison à l'Équipement). Toute tentative de les contourner constitue une <strong>violation grave</strong> des présentes Conditions et pourra entraîner la suspension ou la révocation immédiate de la Licence, sans préjudice des actions légales applicables.</p>
+<hr />
+<h2>7. Abonnement, prix et facturation (Creem en tant que Vendeur Enregistré)</h2>
+<p>7.1. <strong>Creem en tant que Merchant of Record.</strong> Les ventes et les prélèvements du Service sont traités via <strong>Creem</strong>, agissant en tant que <strong>Vendeur Enregistré (Merchant of Record)</strong>. Cela signifie que, aux fins de la transaction de paiement, <strong>Creem est le vendeur enregistré</strong> et est responsable du traitement du prélèvement, du calcul et de la collecte des <strong>taxes applicables</strong> et de l'émission des justificatifs de l'opération. La souscription de paiement peut en outre être soumise aux <strong>conditions générales de Creem</strong>.</p>
+<p>7.2. <strong>Prix et devise.</strong> Les prix sont ceux publiés au moment de la souscription. Le Service est proposé au niveau <strong>mondial et multidevise</strong> ; le montant pourra être présenté et prélevé dans la devise correspondante, avec conversion sur un prix de base. Les taxes applicables sont déterminées et collectées via Creem selon la juridiction du Client.</p>
+<p>7.3. <strong>Récurrence et renouvellement automatique.</strong> Sauf résiliation, l'abonnement <strong>se renouvelle automatiquement</strong> au début de chaque période, le montant en vigueur étant prélevé sur le moyen de paiement enregistré. Le Client autorise ces prélèvements récurrents.</p>
+<p>7.4. <strong>Remboursements.</strong> Les remboursements sont régis par la <a href="/legal/reembolsos/">Politique de Remboursement</a>, compatible avec le fonctionnement de Creem en tant que Vendeur Enregistré.</p>
+<p>7.5. <strong>Changements de forfait.</strong> Le Client peut passer à un forfait supérieur ou inférieur ; les changements de portée et de prix prennent effet selon les règles du forfait et du cycle de facturation.</p>
+<hr />
+<h2>8. Disponibilité et modifications du Service</h2>
+<p>8.1. TuIAlista vise une disponibilité raisonnable de la Plateforme de validation des licences, <strong>sans garantir</strong> un fonctionnement ininterrompu ou exempt d'erreurs. L'exécution des Agents est locale et ne dépend pas d'une connexion continue à TuIAlista, sauf pour la revalidation périodique de la Licence (voir Section 5.5).</p>
+<p>8.2. TuIAlista pourra <strong>modifier, mettre à jour, améliorer ou interrompre</strong> des Agents ou fonctions du Service, ainsi qu'ajouter de nouveaux Agents au catalogue. Lorsqu'un changement affecte de manière substantielle et défavorable une fonctionnalité essentielle du Service souscrit, TuIAlista s'efforcera d'avertir dans un délai raisonnable par voie électronique.</p>
+<p>8.3. Les <strong>Modèles d'IA de tiers</strong> (Groq/Gemini) sont fournis par des tiers étrangers à TuIAlista. Leur disponibilité, leur performance et leur continuité <strong>ne sont pas garanties</strong> par TuIAlista, conformément à la <a href="/legal/deslinde-ia/">Clause de Non-Responsabilité relative à l'IA</a>.</p>
+<hr />
+<h2>9. Suspension pour défaut de paiement et pour manquement</h2>
+<p>9.1. <strong>Défaut de paiement.</strong> Si un prélèvement récurrent n'aboutit pas (par exemple, refus du moyen de paiement), la Licence passera à l'état <strong>suspendu</strong> et l'Agent <strong>cessera d'être validé et de fonctionner</strong> jusqu'à régularisation du paiement. La suspension pour défaut de paiement n'engendre aucune responsabilité pour TuIAlista.</p>
+<p>9.2. <strong>Manquement.</strong> TuIAlista pourra <strong>suspendre ou révoquer</strong> immédiatement la Licence en cas de violation de la Section 6 (restrictions et anti-piratage), d'usage frauduleux ou de manquement grave aux présentes Conditions, sans préjudice d'autres recours.</p>
+<p>9.3. La régularisation du paiement ou la cessation du manquement, le cas échéant, pourra rétablir la Licence selon les mécanismes de la Plateforme.</p>
+<hr />
+<h2>10. Propriété intellectuelle</h2>
+<p>10.1. Les Agents, la Plateforme, le SDK, le code source, l'architecture, les marques, les noms commerciaux, les logos et la documentation sont la <strong>propriété de TuIAlista</strong> (ou de ses concédants) et sont protégés par la législation applicable en matière de propriété intellectuelle et industrielle.</p>
+<p>10.2. Les présentes Conditions <strong>ne transfèrent</strong> au Client aucun droit de propriété intellectuelle, hormis la licence d'utilisation limitée décrite à la Section 4.</p>
+<p>10.3. <strong>Contenu du Client.</strong> Les fichiers, données et résultats que le Client traite avec les Agents sont et demeurent la <strong>propriété du Client</strong>. TuIAlista n'y accède pas et ne revendique aucun droit sur eux (voir l'<a href="/legal/compromiso-local/">Engagement de Traitement Local</a> et la <a href="/legal/privacidad/">Politique de Confidentialité</a>).</p>
+<hr />
+<h2>11. Absence de conseil professionnel et contenu généré par IA</h2>
+<p>11.1. Les Agents sont des outils d'aide. Le contenu qu'ils génèrent <strong>peut contenir des erreurs</strong> et <strong>ne constitue pas un conseil fiscal, juridique, comptable, en droit du travail, financier ou professionnel d'aucune sorte</strong>.</p>
+<p>11.2. Le Client est le <strong>seul responsable</strong> de la révision, de la vérification et de la validation de chaque résultat avant de l'utiliser, de le présenter à une autorité ou de prendre des décisions sur cette base, en particulier dans des matières sensibles (fiscalité, paie et ressources humaines, contrats et facturation). Ce point est développé dans la <a href="/legal/deslinde-ia/">Clause de Non-Responsabilité relative à l'IA</a>, que le Client déclare connaître et accepter.</p>
+<hr />
+<h2>12. Garanties et limitation de responsabilité</h2>
+<p>12.1. <strong>Aucune garantie.</strong> Le Service est fourni <strong>« en l'état » et « selon disponibilité »</strong>, sans garantie d'aucune sorte, expresse ou implicite, y compris —sans s'y limiter— l'adéquation à un usage particulier, l'exactitude des résultats ou la disponibilité des Modèles d'IA de tiers, dans la mesure maximale permise par la loi applicable.</p>
+<p>12.2. <strong>Plafond de responsabilité.</strong> Dans la mesure maximale permise par la loi, la responsabilité totale et cumulée de TuIAlista découlant du Service ou en lien avec celui-ci <strong>n'excédera pas le montant effectivement payé par le Client pour le Service au cours des douze (12) mois précédant</strong> le fait à l'origine de la réclamation. TuIAlista <strong>ne sera pas responsable</strong> des dommages indirects, accessoires, spéciaux, punitifs ou consécutifs, ni du manque à gagner ou de la perte de données. Les détails et la portée figurent dans la <a href="/legal/deslinde-ia/">Clause de Non-Responsabilité relative à l'IA</a>.</p>
+<hr />
+<h2>13. Indemnisation</h2>
+<p>Le Client s'engage à garantir et à indemniser TuIAlista, sa société mère ORDINAL-BiA et ses collaborateurs contre les réclamations, dommages ou frais (y compris les honoraires d'avocat raisonnables) découlant de : (i) l'usage abusif du Service ; (ii) la violation des présentes Conditions ou de la Section 6 ; (iii) l'utilisation de résultats générés par les Agents sans la vérification requise ; ou (iv) l'atteinte aux droits de tiers ou à la réglementation applicable.</p>
+<hr />
+<h2>14. Programme d'affiliation</h2>
+<p>Le programme d'affiliation (commission récurrente de <strong>30 %</strong> sur les paiements valides des clients parrainés) est régi par ses propres conditions. La participation en tant qu'affilié ne crée aucune relation d'emploi, de société ni de représentation avec TuIAlista.</p>
+<hr />
+<h2>15. Durée, résiliation et fin de contrat</h2>
+<p>15.1. Les présentes Conditions s'appliquent tant que le Client conserve un compte ou un abonnement actif.</p>
+<p>15.2. Le Client peut <strong>résilier à tout moment</strong> depuis le portail ; la résiliation <strong>empêche le prochain prélèvement</strong> et la Licence reste active jusqu'à la fin de la période déjà payée, conformément à la <a href="/legal/reembolsos/">Politique de Remboursement</a>.</p>
+<p>15.3. TuIAlista peut mettre fin au Service ou le suspendre pour les motifs prévus aux présentes Conditions. Les dispositions qui, par leur nature, doivent subsister (propriété intellectuelle, limitation de responsabilité, indemnisation, loi applicable) <strong>survivront</strong> à la fin du contrat.</p>
+<hr />
+<h2>16. Modifications des présentes Conditions</h2>
+<p>TuIAlista pourra modifier les présentes Conditions. Les changements seront publiés sur <a href="https://www.tuialista.com">www.tuialista.com</a> avec leur date de mise à jour et, lorsqu'ils sont substantiels, TuIAlista s'efforcera d'avertir par voie électronique. La poursuite de l'utilisation du Service après l'entrée en vigueur des changements vaut acceptation.</p>
+<hr />
+<h2>17. Loi applicable et juridiction</h2>
+<p>17.1. Les présentes Conditions sont régies par les <strong>lois des États-Unis Mexicains</strong>.</p>
+<p>17.2. Pour l'interprétation et l'exécution, les parties se soumettent à la juridiction des <strong>tribunaux compétents de Mexico (CDMX)</strong>, renonçant à tout autre for pouvant leur correspondre en raison de leur domicile présent ou futur.</p>
+<hr />
+<h2>18. Dispositions générales</h2>
+<p>18.1. <strong>Divisibilité.</strong> Si une clause est déclarée invalide, les autres conservent leur plein effet.</p>
+<p>18.2. <strong>Cession.</strong> Le Client ne peut céder les présentes Conditions sans l'autorisation de TuIAlista. TuIAlista pourra les céder à une entité affiliée ou successeur.</p>
+<p>18.3. <strong>Absence de renonciation.</strong> La tolérance d'un manquement n'implique pas la renonciation à exiger l'exécution future.</p>
+<p>18.4. <strong>Intégralité de l'accord.</strong> Les présentes Conditions, avec les documents visés à la Section 1.3, constituent l'intégralité de l'accord entre les parties concernant le Service.</p>
+<p>18.5. <strong>Langue.</strong> La version en <strong>espagnol</strong> fait foi. Les traductions (par exemple, en français) sont fournies à titre de commodité ; en cas de divergence, l'espagnol prévaut.</p>
+<hr />
+<h2>19. Contact</h2>
+<ul><li>Support : <strong>soporte@tuialista.com</strong></li><li>Questions juridiques : <strong>legal@tuialista.com</strong></li><li>Confidentialité : <strong>privacidad@tuialista.com</strong></li><li>Site : <a href="https://www.tuialista.com">www.tuialista.com</a></li></ul>
+<hr />
+<hr />
+<p><em>Fin du document.</em></p></article>
+<article class="doc" id="doc-de" data-lang="de" hidden><div class="trnote">Dies ist eine Übersetzung als Serviceleistung. Maßgeblich ist die spanische Fassung.</div><h1>Nutzungsbedingungen von TuIAlista</h1>
+<blockquote><p>Die aktuelle Fassung dieses Dokuments wird unter <a href="https://www.tuialista.com">www.tuialista.com</a> veröffentlicht.</p></blockquote>
+<p><strong>Version:</strong> 1.0 · <strong>Zuletzt aktualisiert:</strong> 21. Juli 2026 · <strong>Gültig ab:</strong> 21. Juli 2026</p>
+<hr />
+<h2>1. Identifizierung des Anbieters und Annahme</h2>
+<p>1.1. Diese Nutzungsbedingungen (die <strong>„Bedingungen"</strong>) regeln den Zugang zu und die Nutzung der Plattform <strong>TuIAlista</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a>) sowie der über sie vertriebenen Agenten für künstliche Intelligenz (gemeinsam der <strong>„Dienst"</strong>).</p>
+<p>1.2. Der Dienst wird betrieben von **<strong> (Handelsname „TuIAlista", Muttergesellschaft </strong>ORDINAL-BiA<strong>), mit der Steuernummer (RFC) </strong><strong> und Sitz in </strong><strong>, Mexiko-Stadt, Mexiko (nachfolgend </strong>„TuIAlista"**, „wir" oder der „Anbieter").</p>
+<p>1.3. Mit der Erstellung eines Kontos, dem Abschluss eines Abonnements, der Installation oder der Nutzung eines Agenten erklärt der Nutzer (<strong>„Kunde"</strong> oder „Sie"), diese Bedingungen sowie den <a href="/legal/deslinde-ia/">Haftungsausschluss zur Künstlichen Intelligenz</a>, die <a href="/legal/privacidad/">Datenschutzrichtlinie</a>, die <a href="/legal/reembolsos/">Rückerstattungsrichtlinie</a> und die <a href="/legal/compromiso-local/">Verpflichtung zur lokalen Verarbeitung und zum Datenschutz</a> gelesen, verstanden und akzeptiert zu haben; diese sind integraler Bestandteil dieser Bedingungen.</p>
+<p>1.4. Schließt der Kunde im Namen einer juristischen Person ab, erklärt er, über ausreichende Vollmacht zu deren Bindung zu verfügen. Wenn Sie mit diesen Bedingungen nicht einverstanden sind, dürfen Sie den Dienst nicht nutzen.</p>
+<hr />
+<h2>2. Definitionen</h2>
+<ul><li><strong>Agent:</strong> spezialisiertes Softwareprogramm aus dem Katalog von TuIAlista (z. B. Dokumente, Excel, Datenbank, Rechnungen, Steuern, Lohnabrechnung, Verträge u. a.), das der Kunde <strong>lokal</strong> auf seinem eigenen Gerät installiert und ausführt.</li><li><strong>Plattform / Kern:</strong> zentrale Infrastruktur von TuIAlista, die Lizenzen ausstellt und validiert, Konten und Abonnements verwaltet und das Partnerprogramm betreibt. Sie verarbeitet keine Kundeninhalte.</li><li><strong>Lizenz:</strong> persönliche, beschränkte, widerrufliche und nicht ausschließliche Nutzungserlaubnis, die die Ausführung eines Agenten für die Dauer des gültigen Abonnements ermöglicht.</li><li><strong>Abonnement:</strong> wiederkehrender Vertrag (standardmäßig monatlich), der eine oder mehrere Lizenzen aktiv hält.</li><li><strong>Creem:</strong> Anbieter, der als <strong>eingetragener Verkäufer (Merchant of Record)</strong> des Dienstes handelt (siehe Abschnitt 7).</li><li><strong>KI-Modelle Dritter:</strong> externe KI-Engines (standardmäßig <strong>Groq</strong>, mit Ausweichung auf <strong>Gemini</strong>), die die Agenten ausschließlich zur Formulierung von Antworten aufrufen.</li><li><strong>Gerät:</strong> das physische oder virtuelle Gerät, identifiziert durch einen technischen Fingerabdruck, auf dem eine Lizenz aktiviert wird.</li></ul>
+<hr />
+<h2>3. Gegenstand des Dienstes</h2>
+<p>3.1. TuIAlista bietet <strong>Abonnements</strong> für einen Katalog von KI-Agenten an, die <strong>lokal auf dem Gerät des Kunden</strong> ausgeführt werden. Die Verarbeitung der Dateien, Dokumente und Daten des Kunden erfolgt auf seinem eigenen Gerät und <strong>wird nicht an TuIAlista übertragen</strong>, gemäß der <a href="/legal/compromiso-local/">Verpflichtung zur lokalen Verarbeitung und zum Datenschutz</a>.</p>
+<p>3.2. Die Funktion der Plattform beschränkt sich auf: (i) Verwaltung des Kontos und des Abonnements des Kunden; (ii) Ausstellung und Validierung der Lizenz; und (iii) Ermöglichung des Downloads der abonnierten Agenten.</p>
+<p>3.3. Die Agenten nutzen KI-Modelle Dritter <strong>ausschließlich zur Erzeugung des Antworttextes</strong>. Die Aufgaben der Erkennung, Extraktion und Organisation werden lokal ausgeführt. Der Kunde erkennt an, dass durch KI erzeugte Inhalte <strong>Fehler enthalten können</strong>, und unterliegt dem <a href="/legal/deslinde-ia/">Haftungsausschluss zur KI</a>.</p>
+<hr />
+<h2>4. Art des Vertrags: Nutzungslizenz, kein Softwareverkauf</h2>
+<p>4.1. Der Dienst wird nach einem <strong>Nutzungslizenzmodell im Abonnement</strong> abgeschlossen. TuIAlista <strong>verkauft die Software nicht</strong> und überträgt kein Eigentum daran. Der Kunde <strong>erwirbt kein Eigentum</strong> an den Agenten, der Plattform, deren Code, Architektur oder Dokumentation.</p>
+<p>4.2. Vorbehaltlich der laufenden Zahlung und der Einhaltung dieser Bedingungen gewährt TuIAlista dem Kunden eine <strong>nicht ausschließliche, nicht übertragbare, nicht unterlizenzierbare, beschränkte und widerrufliche</strong> Lizenz zur Installation und Ausführung des/der abonnierten Agenten während der Laufzeit des Abonnements.</p>
+<p>4.3. Die Lizenz <strong>endet automatisch</strong> mit Kündigung oder Erlöschen des Abonnements, ohne dass es einer weiteren Erklärung bedarf.</p>
+<hr />
+<h2>5. Umfang der Lizenz je Agent</h2>
+<p>5.1. <strong>Eine Lizenz je Agent und je Gerät.</strong> Jedes Abonnement berechtigt zur Nutzung <strong>eines (1) Agenten</strong> auf <strong>einem (1) Gerät</strong>. Bei der ersten Aktivierung wird die Lizenz <strong>an den technischen Fingerabdruck des Geräts</strong> des Kunden gebunden. Validierungsversuche von einem anderen Gerät werden abgelehnt (<code>machine_mismatch</code>).</p>
+<p>5.2. Zur Nutzung desselben Agenten auf mehr als einem Gerät oder mehrerer Agenten muss der Kunde die entsprechenden Lizenzen abschließen. Ein Wechsel des autorisierten Geräts (z. B. bei Hardwaretausch) kann über den Support gemäß den von TuIAlista bereitgestellten Mechanismen abgewickelt werden.</p>
+<p>5.3. Die Lizenz ist zur internen Nutzung durch den Kunden bestimmt. Sie berechtigt nicht zur Verwertung zugunsten Dritter als Dienst (z. B. Weiterverkauf als „Software as a Service", Bureau oder Verarbeitung im Auftrag Dritter), außer bei ausdrücklicher schriftlicher Vereinbarung.</p>
+<p>5.4. <strong>Testzeitraum.</strong> TuIAlista kann je Agent einen Testzeitraum (standardmäßig <strong>7 Tage</strong>) anbieten. Nach Ablauf des Tests wird die Lizenz ohne aktives Abonnement nicht mehr validiert und der Agent gesperrt.</p>
+<p>5.5. <strong>Offline-Betrieb (Toleranz).</strong> Da er lokal läuft, kann ein Agent während eines <strong>Toleranzzeitraums</strong> (standardmäßig <strong>3 Tage</strong>) offline betrieben werden, gestützt auf das letzte gültige, signierte Lizenzurteil. Nach Überschreitung dieses Zeitraums ohne erneute Validierung wird der Agent gesperrt, bis die Verbindung wiederhergestellt ist.</p>
+<hr />
+<h2>6. Nutzungsbeschränkungen und Piraterieschutz</h2>
+<p>6.1. Der Kunde verpflichtet sich, <strong>nicht</strong> und Dritten nicht zu gestatten:</p>
+<p>a) <strong>Reverse Engineering</strong> durchzuführen, zu dekompilieren, zu disassemblieren oder zu versuchen, den Quellcode, die Architektur oder die Algorithmen der Agenten oder der Plattform abzuleiten, außer soweit das anwendbare Recht dies zwingend und unabdingbar erlaubt;</p>
+<p>b) die Agenten, die Plattform oder deren Dokumentation ganz oder teilweise zu <strong>kopieren, weiterzuverbreiten, weiterzuverkaufen, zu vermieten, zu verleihen, unterzulizenzieren oder zu veröffentlichen</strong>;</p>
+<p>c) das Lizenzsystem, die kryptografische Validierungssignatur (Ed25519), die Gerätebindung, die Nutzungszähler oder jegliche technische Schutzmaßnahme zu <strong>umgehen, zu deaktivieren, zu fälschen oder zu manipulieren</strong>;</p>
+<p>d) <strong>nicht autorisierte Lizenzen</strong>, gefälschte Schlüssel oder Patches („Cracks"), die ein aktives Abonnement vortäuschen, zu <strong>erzeugen, zu verbreiten oder zu nutzen</strong>;</p>
+<p>e) den Dienst für <strong>rechtswidrige</strong> Zwecke, zur Verletzung von Rechten Dritter oder unter Verstoß gegen die anwendbaren Vorschriften zu nutzen;</p>
+<p>f) <strong>Eigentumshinweise</strong>, Marken oder rechtliche Vermerke der Agenten oder der Plattform zu entfernen oder zu ändern.</p>
+<p>6.2. Das Lizenzsystem von TuIAlista umfasst <strong>technische Schutzmaßnahmen</strong> (kryptografische Signatur der Validierungsurteile, Signaturprüfung im Agenten und Gerätebindung). Der Versuch, sie zu umgehen, stellt einen <strong>schwerwiegenden Verstoß</strong> gegen diese Bedingungen dar und kann zur sofortigen Aussetzung oder zum Widerruf der Lizenz führen, unbeschadet entsprechender rechtlicher Schritte.</p>
+<hr />
+<h2>7. Abonnement, Preise und Abrechnung (Creem als eingetragener Verkäufer)</h2>
+<p>7.1. <strong>Creem als Merchant of Record.</strong> Verkäufe und Abbuchungen des Dienstes werden über <strong>Creem</strong> abgewickelt, das als <strong>eingetragener Verkäufer (Merchant of Record)</strong> handelt. Das bedeutet, dass für Zwecke der Zahlungstransaktion <strong>Creem der eingetragene Verkäufer</strong> ist und für die Abwicklung der Abbuchung, die Berechnung und Erhebung der <strong>anwendbaren Steuern</strong> sowie die Ausstellung der Transaktionsbelege verantwortlich ist. Der Zahlungsabschluss kann zusätzlich den <strong>Bedingungen von Creem</strong> unterliegen.</p>
+<p>7.2. <strong>Preise und Währung.</strong> Die Preise sind die zum Zeitpunkt des Abschlusses veröffentlichten. Der Dienst wird <strong>weltweit und mehrwährungsfähig</strong> angeboten; der Betrag kann in der entsprechenden Währung dargestellt und abgebucht werden, mit Umrechnung auf einen Basispreis. Die anwendbaren Steuern werden über Creem gemäß der Rechtsordnung des Kunden bestimmt und erhoben.</p>
+<p>7.3. <strong>Wiederkehr und automatische Verlängerung.</strong> Sofern nicht gekündigt, <strong>verlängert sich das Abonnement automatisch</strong> zu Beginn jedes Zeitraums, wobei der geltende Betrag über die hinterlegte Zahlungsmethode abgebucht wird. Der Kunde autorisiert diese wiederkehrenden Abbuchungen.</p>
+<p>7.4. <strong>Rückerstattungen.</strong> Rückerstattungen richten sich nach der <a href="/legal/reembolsos/">Rückerstattungsrichtlinie</a>, die mit dem Betrieb von Creem als eingetragener Verkäufer vereinbar ist.</p>
+<p>7.5. <strong>Tarifänderungen.</strong> Der Kunde kann höher- oder herabstufen; Änderungen von Umfang und Preis werden gemäß den Regeln des Tarifs und des Abrechnungszyklus wirksam.</p>
+<hr />
+<h2>8. Verfügbarkeit und Änderungen des Dienstes</h2>
+<p>8.1. TuIAlista strebt eine angemessene Verfügbarkeit der Lizenzvalidierungs-Plattform an, <strong>ohne</strong> einen unterbrechungsfreien oder fehlerfreien Betrieb <strong>zu garantieren</strong>. Die Ausführung der Agenten ist lokal und hängt nicht von einer ständigen Verbindung zu TuIAlista ab, außer für die regelmäßige erneute Validierung der Lizenz (siehe Abschnitt 5.5).</p>
+<p>8.2. TuIAlista kann Agenten oder Funktionen des Dienstes <strong>ändern, aktualisieren, verbessern oder einstellen</strong> sowie neue Agenten in den Katalog aufnehmen. Wenn eine Änderung eine wesentliche Funktion des abonnierten Dienstes erheblich und nachteilig beeinträchtigt, wird sich TuIAlista bemühen, mit angemessener Vorlaufzeit auf elektronischem Weg zu informieren.</p>
+<p>8.3. Die <strong>KI-Modelle Dritter</strong> (Groq/Gemini) werden von TuIAlista fremden Dritten bereitgestellt. Ihre Verfügbarkeit, Leistung und Kontinuität werden von TuIAlista <strong>nicht garantiert</strong>, gemäß dem <a href="/legal/deslinde-ia/">Haftungsausschluss zur KI</a>.</p>
+<hr />
+<h2>9. Aussetzung bei Zahlungsverzug und bei Verstoß</h2>
+<p>9.1. <strong>Zahlungsverzug.</strong> Wird eine wiederkehrende Abbuchung nicht abgeschlossen (z. B. bei Ablehnung der Zahlungsmethode), geht die Lizenz in den Status <strong>ausgesetzt</strong> über, und der Agent <strong>wird nicht mehr validiert und betrieben</strong>, bis die Zahlung ausgeglichen ist. Die Aussetzung bei Zahlungsverzug begründet keine Haftung von TuIAlista.</p>
+<p>9.2. <strong>Verstoß.</strong> TuIAlista kann die Lizenz bei Verstoß gegen Abschnitt 6 (Beschränkungen und Piraterieschutz), betrügerischer Nutzung oder schwerwiegendem Verstoß gegen diese Bedingungen <strong>sofort aussetzen oder widerrufen</strong>, unbeschadet weiterer Rechtsbehelfe.</p>
+<p>9.3. Der Ausgleich der Zahlung oder die Behebung des Verstoßes kann die Lizenz gegebenenfalls gemäß den Mechanismen der Plattform wiederherstellen.</p>
+<hr />
+<h2>10. Geistiges Eigentum</h2>
+<p>10.1. Die Agenten, die Plattform, das SDK, der Quellcode, die Architektur, die Marken, die Handelsnamen, die Logos und die Dokumentation sind <strong>Eigentum von TuIAlista</strong> (oder seiner Lizenzgeber) und durch die anwendbaren Rechtsvorschriften über geistiges und gewerbliches Eigentum geschützt.</p>
+<p>10.2. Diese Bedingungen <strong>übertragen</strong> dem Kunden kein Recht am geistigen Eigentum, außer der in Abschnitt 4 beschriebenen beschränkten Nutzungslizenz.</p>
+<p>10.3. <strong>Kundeninhalte.</strong> Die Dateien, Daten und Ergebnisse, die der Kunde mit den Agenten verarbeitet, sind und bleiben <strong>Eigentum des Kunden</strong>. TuIAlista greift nicht darauf zu und beansprucht kein Recht daran (siehe <a href="/legal/compromiso-local/">Verpflichtung zur lokalen Verarbeitung</a> und <a href="/legal/privacidad/">Datenschutzrichtlinie</a>).</p>
+<hr />
+<h2>11. Keine Fachberatung und durch KI erzeugte Inhalte</h2>
+<p>11.1. Die Agenten sind Hilfswerkzeuge. Die von ihnen erzeugten Inhalte <strong>können Fehler enthalten</strong> und <strong>stellen keine steuerliche, rechtliche, buchhalterische, arbeitsrechtliche, finanzielle oder fachliche Beratung jeglicher Art dar</strong>.</p>
+<p>11.2. Der Kunde ist <strong>allein verantwortlich</strong> für die Überprüfung, Verifizierung und Validierung jedes Ergebnisses, bevor er es verwendet, bei Behörden einreicht oder darauf gestützte Entscheidungen trifft, insbesondere in sensiblen Bereichen (Steuern, Lohnabrechnung und Personalwesen, Verträge und Rechnungsstellung). Dies wird im <a href="/legal/deslinde-ia/">Haftungsausschluss zur KI</a> ausgeführt, den der Kunde als bekannt und akzeptiert erklärt.</p>
+<hr />
+<h2>12. Gewährleistung und Haftungsbeschränkung</h2>
+<p>12.1. <strong>Keine Gewährleistung.</strong> Der Dienst wird <strong>„wie besehen" und „nach Verfügbarkeit"</strong> bereitgestellt, ohne jegliche ausdrückliche oder stillschweigende Gewährleistung, einschließlich —ohne Beschränkung— der Eignung für einen bestimmten Zweck, der Richtigkeit der Ergebnisse oder der Verfügbarkeit der KI-Modelle Dritter, im maximal gesetzlich zulässigen Umfang.</p>
+<p>12.2. <strong>Haftungsobergrenze.</strong> Im maximal gesetzlich zulässigen Umfang <strong>übersteigt</strong> die gesamte kumulierte Haftung von TuIAlista aus oder im Zusammenhang mit dem Dienst <strong>nicht den Betrag, den der Kunde für den Dienst in den zwölf (12) Monaten vor</strong> dem haftungsauslösenden Ereignis tatsächlich gezahlt hat. TuIAlista <strong>haftet nicht</strong> für mittelbare, beiläufige, besondere, Straf- oder Folgeschäden noch für entgangenen Gewinn oder Datenverlust. Einzelheiten und Umfang sind im <a href="/legal/deslinde-ia/">Haftungsausschluss zur KI</a> festgelegt.</p>
+<hr />
+<h2>13. Freistellung</h2>
+<p>Der Kunde verpflichtet sich, TuIAlista, seine Muttergesellschaft ORDINAL-BiA und deren Mitarbeiter von Ansprüchen, Schäden oder Aufwendungen (einschließlich angemessener Anwaltskosten) freizustellen und schadlos zu halten, die entstehen aus: (i) der missbräuchlichen Nutzung des Dienstes; (ii) dem Verstoß gegen diese Bedingungen oder Abschnitt 6; (iii) der Nutzung von durch die Agenten erzeugten Ergebnissen ohne die gebotene Überprüfung; oder (iv) der Verletzung von Rechten Dritter oder der anwendbaren Vorschriften.</p>
+<hr />
+<h2>14. Partnerprogramm</h2>
+<p>Das Partnerprogramm (wiederkehrende Provision von <strong>30 %</strong> auf gültige Zahlungen geworbener Kunden) richtet sich nach seinen eigenen Bedingungen. Die Teilnahme als Partner begründet kein Arbeits-, Gesellschafts- oder Vertretungsverhältnis mit TuIAlista.</p>
+<hr />
+<h2>15. Laufzeit, Kündigung und Beendigung</h2>
+<p>15.1. Diese Bedingungen gelten, solange der Kunde ein aktives Konto oder Abonnement unterhält.</p>
+<p>15.2. Der Kunde kann <strong>jederzeit über das Portal kündigen</strong>; die Kündigung <strong>verhindert die nächste Abbuchung</strong>, und die Lizenz bleibt bis zum Ende des bereits bezahlten Zeitraums aktiv, gemäß der <a href="/legal/reembolsos/">Rückerstattungsrichtlinie</a>.</p>
+<p>15.3. TuIAlista kann den Dienst aus den in diesen Bedingungen vorgesehenen Gründen beenden oder aussetzen. Bestimmungen, die ihrer Natur nach fortbestehen sollen (geistiges Eigentum, Haftungsbeschränkung, Freistellung, anwendbares Recht), <strong>überdauern</strong> die Beendigung.</p>
+<hr />
+<h2>16. Änderungen dieser Bedingungen</h2>
+<p>TuIAlista kann diese Bedingungen ändern. Änderungen werden auf <a href="https://www.tuialista.com">www.tuialista.com</a> mit ihrem Aktualisierungsdatum veröffentlicht; bei wesentlichen Änderungen bemüht sich TuIAlista, auf elektronischem Weg zu informieren. Die fortgesetzte Nutzung des Dienstes nach Inkrafttreten der Änderungen gilt als Annahme.</p>
+<hr />
+<h2>17. Anwendbares Recht und Gerichtsstand</h2>
+<p>17.1. Diese Bedingungen unterliegen den <strong>Gesetzen der Vereinigten Mexikanischen Staaten</strong>.</p>
+<p>17.2. Für Auslegung und Erfüllung unterwerfen sich die Parteien der Zuständigkeit der <strong>zuständigen Gerichte von Mexiko-Stadt (CDMX)</strong> und verzichten auf jeden anderen Gerichtsstand, der ihnen aufgrund ihres gegenwärtigen oder künftigen Wohnsitzes zustehen könnte.</p>
+<hr />
+<h2>18. Allgemeine Bestimmungen</h2>
+<p>18.1. <strong>Salvatorische Klausel.</strong> Wird eine Klausel für unwirksam erklärt, behalten die übrigen ihre volle Gültigkeit.</p>
+<p>18.2. <strong>Abtretung.</strong> Der Kunde darf diese Bedingungen nicht ohne Genehmigung von TuIAlista abtreten. TuIAlista kann sie an ein verbundenes oder Nachfolgeunternehmen abtreten.</p>
+<p>18.3. <strong>Kein Verzicht.</strong> Die Duldung eines Verstoßes bedeutet keinen Verzicht auf die Durchsetzung künftiger Erfüllung.</p>
+<p>18.4. <strong>Gesamte Vereinbarung.</strong> Diese Bedingungen bilden zusammen mit den in Abschnitt 1.3 genannten Dokumenten die gesamte Vereinbarung zwischen den Parteien bezüglich des Dienstes.</p>
+<p>18.5. <strong>Sprache.</strong> Die <strong>spanische</strong> Fassung ist maßgeblich. Übersetzungen (z. B. ins Deutsche) werden aus Bequemlichkeit bereitgestellt; bei Abweichungen gilt die spanische Fassung.</p>
+<hr />
+<h2>19. Kontakt</h2>
+<ul><li>Support: <strong>soporte@tuialista.com</strong></li><li>Rechtsangelegenheiten: <strong>legal@tuialista.com</strong></li><li>Datenschutz: <strong>privacidad@tuialista.com</strong></li><li>Website: <a href="https://www.tuialista.com">www.tuialista.com</a></li></ul>
+<hr />
+<hr />
+<p><em>Ende des Dokuments.</em></p></article>
+<article class="doc" id="doc-it" data-lang="it" hidden><div class="trnote">Questa è una traduzione di cortesia. La versione spagnola è quella vigente.</div><h1>Termini di Servizio di TuIAlista</h1>
+<blockquote><p>La versione vigente di questo documento è pubblicata su <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
+<p><strong>Versione:</strong> 1.0 · <strong>Ultimo aggiornamento:</strong> 21 luglio 2026 · <strong>In vigore dal:</strong> 21 luglio 2026</p>
+<hr />
+<h2>1. Identificazione del fornitore e accettazione</h2>
+<p>1.1. I presenti Termini di Servizio (i <strong>«Termini»</strong>) regolano l'accesso e l'uso della piattaforma <strong>TuIAlista</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a>) e degli agenti di intelligenza artificiale distribuiti tramite essa (congiuntamente, il <strong>«Servizio»</strong>).</p>
+<p>1.2. Il Servizio è gestito da **<strong> (nome commerciale «TuIAlista», casa madre </strong>ORDINAL-BiA<strong>), con Registro Federale dei Contribuenti </strong><strong> e domicilio fiscale in </strong><strong>, Città del Messico, Messico (di seguito, </strong>«TuIAlista»**, «noi» o il «Fornitore»).</p>
+<p>1.3. Creando un account, sottoscrivendo un abbonamento, installando o utilizzando qualsiasi agente, l'utente (<strong>«Cliente»</strong> o «lei») dichiara di aver letto, compreso e accettato i presenti Termini, nonché l'<a href="/legal/deslinde-ia/">Esclusione di Responsabilità sull'Intelligenza Artificiale</a>, l'<a href="/legal/privacidad/">Informativa sulla Privacy</a>, la <a href="/legal/reembolsos/">Politica di Rimborso</a> e l'<a href="/legal/compromiso-local/">Impegno di Elaborazione Locale e Privacy</a>, che formano parte integrante dei presenti Termini.</p>
+<p>1.4. Se il Cliente contratta a nome di una persona giuridica, dichiara di disporre dei poteri sufficienti per obbligarla. Se non è d'accordo con i presenti Termini, deve astenersi dall'utilizzare il Servizio.</p>
+<hr />
+<h2>2. Definizioni</h2>
+<ul><li><strong>Agente:</strong> programma software specializzato del catalogo di TuIAlista (ad esempio: documenti, Excel, database, fatture, fiscale, buste paga, contratti, tra gli altri) che il Cliente installa ed esegue <strong>localmente</strong> sul proprio dispositivo.</li><li><strong>Piattaforma / Nucleo:</strong> infrastruttura centrale di TuIAlista che emette e convalida le licenze, gestisce account e abbonamenti e amministra il programma di affiliazione. Non elabora il contenuto del Cliente.</li><li><strong>Licenza:</strong> autorizzazione d'uso, personale, limitata, revocabile e non esclusiva, che abilita l'esecuzione di un Agente finché l'abbonamento è in vigore.</li><li><strong>Abbonamento:</strong> contratto ricorrente (mensile per impostazione predefinita) che mantiene attiva una o più Licenze.</li><li><strong>Creem:</strong> fornitore che agisce come <strong>Venditore Registrato (Merchant of Record)</strong> del Servizio (vedere Sezione 7).</li><li><strong>Modelli di IA di terzi:</strong> motori di intelligenza artificiale esterni (per impostazione predefinita <strong>Groq</strong>, con commutazione di riserva su <strong>Gemini</strong>) che gli Agenti invocano unicamente per redigere risposte.</li><li><strong>Dispositivo:</strong> l'apparecchio fisico o virtuale, identificato tramite un'impronta tecnica, sul quale viene attivata una Licenza.</li></ul>
+<hr />
+<h2>3. Oggetto del Servizio</h2>
+<p>3.1. TuIAlista offre <strong>abbonamenti</strong> a un catalogo di Agenti di IA che vengono eseguiti <strong>localmente sul dispositivo del Cliente</strong>. L'elaborazione dei file, documenti e dati del Cliente avviene sul suo dispositivo e <strong>non viene trasmessa a TuIAlista</strong>, conformemente all'<a href="/legal/compromiso-local/">Impegno di Elaborazione Locale e Privacy</a>.</p>
+<p>3.2. La funzione della Piattaforma si limita a: (i) gestire l'account e l'abbonamento del Cliente; (ii) emettere e convalidare la Licenza; e (iii) consentire il download degli Agenti sottoscritti.</p>
+<p>3.3. Gli Agenti utilizzano Modelli di IA di terzi <strong>unicamente per generare il testo delle risposte</strong>. Le attività di rilevamento, estrazione e organizzazione vengono eseguite localmente. Il Cliente riconosce che il contenuto generato dall'IA <strong>può contenere errori</strong> ed è soggetto all'<a href="/legal/deslinde-ia/">Esclusione di Responsabilità sull'IA</a>.</p>
+<hr />
+<h2>4. Natura del contratto: licenza d'uso, non vendita di software</h2>
+<p>4.1. Il Servizio è sottoscritto secondo un modello di <strong>licenza d'uso in abbonamento</strong>. TuIAlista <strong>non vende il software</strong> né ne trasferisce la titolarità. Il Cliente <strong>non acquisisce alcuna proprietà</strong> sugli Agenti, sulla Piattaforma, sul suo codice, sulla sua architettura o sulla sua documentazione.</p>
+<p>4.2. Fatto salvo il pagamento in vigore e il rispetto dei presenti Termini, TuIAlista concede al Cliente una licenza <strong>non esclusiva, non trasferibile, non sublicenziabile, limitata e revocabile</strong> per installare ed eseguire l'Agente/gli Agenti sottoscritti durante la durata dell'abbonamento.</p>
+<p>4.3. La licenza <strong>termina automaticamente</strong> con la cancellazione o l'estinzione dell'abbonamento, senza necessità di dichiarazione aggiuntiva.</p>
+<hr />
+<h2>5. Ambito della licenza per Agente</h2>
+<p>5.1. <strong>Una Licenza per Agente e per Dispositivo.</strong> Ogni abbonamento autorizza l'uso di <strong>un (1) Agente</strong> su <strong>un (1) Dispositivo</strong>. Alla prima attivazione, la Licenza resta <strong>vincolata all'impronta tecnica del Dispositivo</strong> del Cliente. I tentativi di convalida da un Dispositivo diverso saranno rifiutati (<code>machine_mismatch</code>).</p>
+<p>5.2. Per utilizzare lo stesso Agente su più di un Dispositivo, o più Agenti, il Cliente deve sottoscrivere le Licenze corrispondenti. Il cambio di Dispositivo autorizzato (ad esempio, per sostituzione dell'hardware) potrà essere gestito tramite il supporto, secondo i meccanismi che TuIAlista mette a disposizione.</p>
+<p>5.3. La Licenza è per uso interno del Cliente. Non autorizza il suo sfruttamento a beneficio di terzi come servizio (ad esempio, rivendita come «software come servizio», bureau o elaborazione per conto di terzi), salvo accordo espresso per iscritto.</p>
+<p>5.4. <strong>Periodo di prova.</strong> TuIAlista può offrire un periodo di prova (per impostazione predefinita <strong>7 giorni</strong>) per Agente. Al termine della prova, in assenza di abbonamento attivo, la Licenza cessa di essere convalidata e l'Agente viene bloccato.</p>
+<p>5.5. <strong>Funzionamento offline (tolleranza).</strong> Essendo locale, un Agente può funzionare offline durante un <strong>periodo di tolleranza</strong> (per impostazione predefinita <strong>3 giorni</strong>), appoggiandosi all'ultimo verdetto di licenza valido e firmato. Superato tale periodo senza riconvalida, l'Agente viene bloccato fino al ripristino della connessione.</p>
+<hr />
+<h2>6. Restrizioni d'uso e protezione anti-pirateria</h2>
+<p>6.1. Il Cliente si obbliga a <strong>non</strong>, né a permettere a terzi di:</p>
+<p>a) <strong>Effettuare ingegneria inversa</strong>, decompilare, disassemblare o tentare di derivare il codice sorgente, l'architettura o gli algoritmi degli Agenti o della Piattaforma, salvo nella misura in cui la legge applicabile lo consenta in modo imperativo e irrinunciabile;</p>
+<p>b) <strong>Copiare, ridistribuire, rivendere, noleggiare, prestare, sublicenziare o pubblicare</strong> gli Agenti, la Piattaforma o la loro documentazione, in tutto o in parte;</p>
+<p>c) <strong>Eludere, disattivare, falsificare o manipolare</strong> il sistema di licenze, la firma crittografica di convalida (Ed25519), il vincolo al Dispositivo, i contatori d'uso o qualsiasi misura tecnica di protezione;</p>
+<p>d) <strong>Generare, distribuire o utilizzare licenze non autorizzate</strong>, chiavi false o patch («crack») che simulino un abbonamento attivo;</p>
+<p>e) Utilizzare il Servizio per fini <strong>illeciti</strong>, per violare diritti di terzi o in contrasto con la normativa applicabile;</p>
+<p>f) Rimuovere o alterare gli <strong>avvisi di proprietà</strong>, marchi o diciture legali degli Agenti o della Piattaforma.</p>
+<p>6.2. Il sistema di licenze di TuIAlista incorpora <strong>misure tecniche di protezione</strong> (firma crittografica dei verdetti di convalida, verifica della firma nell'Agente e vincolo al Dispositivo). Il tentativo di violarle costituisce una <strong>violazione grave</strong> dei presenti Termini e potrà comportare la sospensione o la revoca immediata della Licenza, fatte salve le azioni legali del caso.</p>
+<hr />
+<h2>7. Abbonamento, prezzi e fatturazione (Creem come Venditore Registrato)</h2>
+<p>7.1. <strong>Creem come Merchant of Record.</strong> Le vendite e gli addebiti del Servizio sono elaborati tramite <strong>Creem</strong>, che agisce come <strong>Venditore Registrato (Merchant of Record)</strong>. Ciò significa che, ai fini della transazione di pagamento, <strong>Creem è il venditore registrato</strong> ed è responsabile dell'elaborazione dell'addebito, del calcolo e della riscossione delle <strong>imposte applicabili</strong> e dell'emissione della documentazione dell'operazione. La sottoscrizione di pagamento può essere inoltre soggetta ai <strong>termini e condizioni di Creem</strong>.</p>
+<p>7.2. <strong>Prezzi e valuta.</strong> I prezzi sono quelli pubblicati al momento della sottoscrizione. Il Servizio è offerto a livello <strong>mondiale e multivaluta</strong>; l'importo potrà essere presentato e addebitato nella valuta corrispondente, con conversione su un prezzo base. Le imposte applicabili sono determinate e riscosse tramite Creem secondo la giurisdizione del Cliente.</p>
+<p>7.3. <strong>Ricorrenza e rinnovo automatico.</strong> Salvo cancellazione, l'abbonamento <strong>si rinnova automaticamente</strong> all'inizio di ciascun periodo, addebitando l'importo in vigore tramite il metodo di pagamento registrato. Il Cliente autorizza tali addebiti ricorrenti.</p>
+<p>7.4. <strong>Rimborsi.</strong> I rimborsi sono regolati dalla <a href="/legal/reembolsos/">Politica di Rimborso</a>, compatibile con l'operatività di Creem come Venditore Registrato.</p>
+<p>7.5. <strong>Cambi di piano.</strong> Il Cliente può passare a un piano superiore o inferiore; le variazioni di ambito e prezzo hanno effetto secondo le regole del piano e del ciclo di fatturazione.</p>
+<hr />
+<h2>8. Disponibilità e modifiche del Servizio</h2>
+<p>8.1. TuIAlista mira a una disponibilità ragionevole della Piattaforma di convalida delle licenze, <strong>senza garantire</strong> un funzionamento ininterrotto o esente da errori. L'esecuzione degli Agenti è locale e non dipende dalla connessione continua con TuIAlista, salvo per la riconvalida periodica della Licenza (vedere Sezione 5.5).</p>
+<p>8.2. TuIAlista potrà <strong>modificare, aggiornare, migliorare o interrompere</strong> Agenti o funzioni del Servizio, nonché aggiungere nuovi Agenti al catalogo. Qualora una modifica incida in modo sostanziale e sfavorevole su una funzionalità essenziale del Servizio sottoscritto, TuIAlista si adopererà per avvisare con ragionevole anticipo tramite mezzi elettronici.</p>
+<p>8.3. I <strong>Modelli di IA di terzi</strong> (Groq/Gemini) sono forniti da terzi estranei a TuIAlista. La loro disponibilità, prestazione e continuità <strong>non sono garantite</strong> da TuIAlista, conformemente all'<a href="/legal/deslinde-ia/">Esclusione di Responsabilità sull'IA</a>.</p>
+<hr />
+<h2>9. Sospensione per mancato pagamento e per inadempimento</h2>
+<p>9.1. <strong>Mancato pagamento.</strong> Se un addebito ricorrente non va a buon fine (ad esempio, per rifiuto del metodo di pagamento), la Licenza passerà allo stato <strong>sospeso</strong> e l'Agente <strong>cesserà di essere convalidato e di operare</strong> fino alla regolarizzazione del pagamento. La sospensione per mancato pagamento non genera responsabilità per TuIAlista.</p>
+<p>9.2. <strong>Inadempimento.</strong> TuIAlista potrà <strong>sospendere o revocare</strong> immediatamente la Licenza in caso di violazione della Sezione 6 (restrizioni e anti-pirateria), uso fraudolento o grave inadempimento dei presenti Termini, fatte salve altre azioni.</p>
+<p>9.3. La regolarizzazione del pagamento o la sanatoria dell'inadempimento, ove applicabile, potrà ripristinare la Licenza secondo i meccanismi della Piattaforma.</p>
+<hr />
+<h2>10. Proprietà intellettuale</h2>
+<p>10.1. Gli Agenti, la Piattaforma, l'SDK, il codice sorgente, l'architettura, i marchi, i nomi commerciali, i loghi e la documentazione sono <strong>proprietà di TuIAlista</strong> (o dei suoi licenzianti) e sono protetti dalla legislazione applicabile in materia di proprietà intellettuale e industriale.</p>
+<p>10.2. I presenti Termini <strong>non trasferiscono</strong> al Cliente alcun diritto di proprietà intellettuale, salvo la licenza d'uso limitata descritta nella Sezione 4.</p>
+<p>10.3. <strong>Contenuto del Cliente.</strong> I file, i dati e i risultati che il Cliente elabora con gli Agenti sono e restano <strong>proprietà del Cliente</strong>. TuIAlista non vi accede né rivendica alcun diritto su di essi (vedere <a href="/legal/compromiso-local/">Impegno di Elaborazione Locale</a> e <a href="/legal/privacidad/">Informativa sulla Privacy</a>).</p>
+<hr />
+<h2>11. Assenza di consulenza professionale e contenuto generato dall'IA</h2>
+<p>11.1. Gli Agenti sono strumenti di supporto. Il contenuto che generano <strong>può contenere errori</strong> e <strong>non costituisce consulenza fiscale, legale, contabile, giuslavoristica, finanziaria né professionale di alcun tipo</strong>.</p>
+<p>11.2. Il Cliente è l'<strong>unico responsabile</strong> della revisione, verifica e validazione di ogni risultato prima di utilizzarlo, presentarlo ad autorità o prendere decisioni sulla base di esso, specialmente in materie sensibili (fiscale, buste paga e risorse umane, contratti e fatturazione). Questo aspetto è sviluppato nell'<a href="/legal/deslinde-ia/">Esclusione di Responsabilità sull'IA</a>, che il Cliente dichiara di conoscere e accettare.</p>
+<hr />
+<h2>12. Garanzie e limitazione di responsabilità</h2>
+<p>12.1. <strong>Nessuna garanzia.</strong> Il Servizio è fornito <strong>«così com'è» e «secondo disponibilità»</strong>, senza garanzie di alcun tipo, espresse o implicite, incluse —senza limitazione— l'idoneità a uno scopo particolare, l'esattezza dei risultati o la disponibilità dei Modelli di IA di terzi, nella misura massima consentita dalla legge applicabile.</p>
+<p>12.2. <strong>Limite di responsabilità.</strong> Nella misura massima consentita dalla legge, la responsabilità totale e cumulativa di TuIAlista derivante da o relativa al Servizio <strong>non eccederà l'importo effettivamente pagato dal Cliente per il Servizio durante i dodici (12) mesi precedenti</strong> al fatto che ha originato il reclamo. TuIAlista <strong>non sarà responsabile</strong> per danni indiretti, incidentali, speciali, punitivi o consequenziali, né per mancato guadagno o perdita di dati. I dettagli e la portata sono stabiliti nell'<a href="/legal/deslinde-ia/">Esclusione di Responsabilità sull'IA</a>.</p>
+<hr />
+<h2>13. Indennizzo</h2>
+<p>Il Cliente si obbliga a manlevare e a indennizzare TuIAlista, la sua casa madre ORDINAL-BiA e i suoi collaboratori da reclami, danni o spese (compresi ragionevoli onorari legali) derivanti da: (i) uso improprio del Servizio; (ii) violazione dei presenti Termini o della Sezione 6; (iii) uso di risultati generati dagli Agenti senza la dovuta verifica; o (iv) violazione di diritti di terzi o della normativa applicabile.</p>
+<hr />
+<h2>14. Programma di affiliazione</h2>
+<p>Il programma di affiliazione (commissione ricorrente del <strong>30%</strong> sui pagamenti validi dei clienti segnalati) è regolato da propri termini. La partecipazione come affiliato non crea alcun rapporto di lavoro, di società né di rappresentanza con TuIAlista.</p>
+<hr />
+<h2>15. Durata, cancellazione e risoluzione</h2>
+<p>15.1. I presenti Termini si applicano finché il Cliente mantiene un account o un abbonamento attivo.</p>
+<p>15.2. Il Cliente può <strong>cancellare in qualsiasi momento</strong> dal portale; la cancellazione <strong>evita il prossimo addebito</strong> e la Licenza rimane attiva fino alla fine del periodo già pagato, conformemente alla <a href="/legal/reembolsos/">Politica di Rimborso</a>.</p>
+<p>15.3. TuIAlista può risolvere o sospendere il Servizio per le cause previste nei presenti Termini. Le disposizioni che per loro natura devono sopravvivere (proprietà intellettuale, limitazione di responsabilità, indennizzo, legge applicabile) <strong>sopravvivranno</strong> alla risoluzione.</p>
+<hr />
+<h2>16. Modifiche ai presenti Termini</h2>
+<p>TuIAlista potrà modificare i presenti Termini. Le modifiche saranno pubblicate su <a href="https://www.tuialista.com">www.tuialista.com</a> con la relativa data di aggiornamento e, quando sostanziali, TuIAlista si adopererà per avvisare tramite mezzi elettronici. L'uso continuato del Servizio dopo l'entrata in vigore delle modifiche ne implica l'accettazione.</p>
+<hr />
+<h2>17. Legge applicabile e giurisdizione</h2>
+<p>17.1. I presenti Termini sono regolati dalle <strong>leggi degli Stati Uniti Messicani</strong>.</p>
+<p>17.2. Per l'interpretazione e l'adempimento, le parti si sottomettono alla giurisdizione dei <strong>tribunali competenti di Città del Messico (CDMX)</strong>, rinunciando a qualsiasi altro foro che potesse loro competere in ragione del domicilio presente o futuro.</p>
+<hr />
+<h2>18. Disposizioni generali</h2>
+<p>18.1. <strong>Divisibilità.</strong> Se una clausola è dichiarata invalida, le restanti conservano la loro piena efficacia.</p>
+<p>18.2. <strong>Cessione.</strong> Il Cliente non può cedere i presenti Termini senza l'autorizzazione di TuIAlista. TuIAlista potrà cederli a un'entità collegata o successore.</p>
+<p>18.3. <strong>Nessuna rinuncia.</strong> La tolleranza di un inadempimento non implica rinuncia a esigere l'adempimento futuro.</p>
+<p>18.4. <strong>Accordo integrale.</strong> I presenti Termini, insieme ai documenti richiamati nella Sezione 1.3, costituiscono l'accordo integrale tra le parti riguardo al Servizio.</p>
+<p>18.5. <strong>Lingua.</strong> La versione in <strong>spagnolo</strong> è la versione facente fede. Le traduzioni (ad esempio, in italiano) sono fornite per comodità; in caso di discrepanza, prevale lo spagnolo.</p>
+<hr />
+<h2>19. Contatto</h2>
+<ul><li>Supporto: <strong>soporte@tuialista.com</strong></li><li>Questioni legali: <strong>legal@tuialista.com</strong></li><li>Privacy: <strong>privacidad@tuialista.com</strong></li><li>Sito: <a href="https://www.tuialista.com">www.tuialista.com</a></li></ul>
+<hr />
+<hr />
+<p><em>Fine del documento.</em></p></article>
+</main>
+<footer>&copy; <span id="y"></span> TuIAlista &middot; <a href="/soporte">Soporte</a> &middot; <a href="/">Inicio</a></footer>
+<script>
+document.getElementById("y").textContent=new Date().getFullYear();
+(function(){
+  var LANGS=["es", "en", "pt", "fr", "de", "it"];
+  var BACK={"es": "← Volver al portal", "en": "← Back to portal", "pt": "← Voltar ao portal", "fr": "← Retour à l'espace", "de": "← Zurück zum Portal", "it": "← Torna al portale"};
+  function detect(){try{var l=(localStorage.getItem("tuialista_lang")||"es").slice(0,2).toLowerCase();return LANGS.indexOf(l)>=0?l:"es";}catch(e){return "es";}}
+  var sel=document.getElementById("lang-sel"), back=document.getElementById("back-link");
+  function show(l){
+    LANGS.forEach(function(x){var a=document.getElementById("doc-"+x);if(a)a.hidden=(x!==l);});
+    document.documentElement.lang=l; if(sel)sel.value=l; if(back&&BACK[l])back.textContent=BACK[l];
+  }
+  if(sel)sel.addEventListener("change",function(){try{localStorage.setItem("tuialista_lang",sel.value);}catch(e){}show(sel.value);});
+  show(detect());
+})();
+</script>
 </body>
 </html>

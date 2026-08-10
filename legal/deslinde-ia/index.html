@@ -11,12 +11,14 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Inter',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
 header{position:sticky;top:0;background:rgba(245,246,244,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
-.nav{max-width:820px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.nav{max-width:820px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
 .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
 .logo b{color:var(--signal)}
+.nav-right{display:flex;align-items:center;gap:14px}
 .nav a.back{color:var(--muted);text-decoration:none;font-size:14px}
 .nav a.back:hover{color:var(--ink)}
+#lang-sel{font-family:'Inter',sans-serif;font-size:13.5px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:7px;padding:5px 8px;cursor:pointer}
 main{max-width:820px;margin:0 auto;padding:40px 24px 80px}
 .doc h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,36px);line-height:1.15;margin-bottom:8px}
 .doc h2{font-family:'Space Grotesk';font-size:22px;margin:34px 0 12px}
@@ -26,71 +28,49 @@ main{max-width:820px;margin:0 auto;padding:40px 24px 80px}
 .doc li{margin:6px 0}
 .doc a{color:var(--signal-dim)}
 .doc strong{color:var(--ink)}
+.doc code{background:#eceee9;padding:1px 5px;border-radius:4px;font-size:.92em}
+.doc pre{background:#0f1922;color:#e6e9e7;padding:14px 16px;border-radius:8px;overflow:auto;margin:16px 0;font-size:13px}
+.doc pre code{background:none;color:inherit;padding:0}
 .doc blockquote{border-left:3px solid var(--signal);background:#eceee9;padding:12px 18px;margin:16px 0;border-radius:0 8px 8px 0;color:var(--muted);font-size:14.5px}
+.doc blockquote p{margin:6px 0;color:var(--muted)}
 .doc hr{border:none;border-top:1px solid var(--line);margin:28px 0}
-.doc table{border-collapse:collapse;margin:16px 0;font-size:14px;width:100%}
-.doc th,.doc td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+.trnote{background:#eef2f5;border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--muted);margin-bottom:24px}
 footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px}
 footer a{color:#cdd5d9;text-decoration:none}
 </style>
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Deslinde de Responsabilidad sobre IA \u2014 TuIAlista",
-  "description": "",
-  "url": "https://tuialista.com/legal\\deslinde-ia/",
-  "isPartOf": {
-    "@type": "WebSite",
-    "name": "Tuialista",
-    "url": "https://tuialista.com"
-  }
-}
+{"@context":"https://schema.org","@type":"WebPage","name":"Deslinde de Responsabilidad sobre IA — TuIAlista","url":"https://tuialista.com/legal/deslinde-ia/","isPartOf":{"@type":"WebSite","name":"Tuialista","url":"https://tuialista.com"}}
 </script>
 <meta property="og:title" content="Deslinde de Responsabilidad sobre IA — TuIAlista">
-<meta property="og:description" content="">
-<meta property="og:url" content="https://tuialista.com/legal\deslinde-ia/">
+<meta property="og:url" content="https://tuialista.com/legal/deslinde-ia/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://tuialista.com/assets/img/icon-512.png">
 <meta property="og:site_name" content="Tuialista">
 <meta property="og:locale" content="es_MX">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Deslinde de Responsabilidad sobre IA — TuIAlista">
-<meta name="twitter:description" content="">
 <script defer data-domain="tuialista.com" src="https://plausible.io/js/script.js"></script>
 </head>
 <body>
-<header><div class="nav"><a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a><a class="back" href="/portal/">&larr; Volver al portal</a></div></header>
-<main><div class="doc"><h1>Deslinde de Responsabilidad sobre Inteligencia Artificial</h1>
-<blockquote>
-<p>La versión vigente de este documento se publica en <a href="https://www.tuialista.com">www.tuialista.com</a>.</p>
-</blockquote>
+<header><div class="nav"><a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+<div class="nav-right"><select id="lang-sel" aria-label="Idioma / Language"><option value="es">Español</option><option value="en">English</option><option value="pt">Português</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="it">Italiano</option></select><a class="back" href="/portal/" id="back-link">← Volver al portal</a></div></div></header>
+<main>
+<article class="doc" id="doc-es" data-lang="es"><h1>Deslinde de Responsabilidad sobre Inteligencia Artificial</h1>
+<blockquote><p>La versión vigente de este documento se publica en <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
 <p><strong>Versión:</strong> 1.0 · <strong>Última actualización:</strong> 21 de julio de 2026 · <strong>Vigente a partir de:</strong> 21 de julio de 2026</p>
 <hr />
 <h2>0. Aviso destacado (léase antes de usar cualquier resultado)</h2>
-<blockquote>
-<p><strong>Los agentes de TuIAlista utilizan inteligencia artificial y su contenido PUEDE CONTENER ERRORES, OMISIONES O IMPRECISIONES.</strong></p>
-<p><strong>Ningún resultado constituye asesoría fiscal, legal, contable, laboral, financiera ni profesional de ninguna clase.</strong></p>
-<p><strong>Usted es el único responsable de verificar y validar todo resultado con un profesional calificado y con las fuentes oficiales antes de utilizarlo, presentarlo ante cualquier autoridad o tomar decisiones con base en él.</strong></p>
-</blockquote>
+<blockquote><p><strong>Los agentes de TuIAlista utilizan inteligencia artificial y su contenido PUEDE CONTENER ERRORES, OMISIONES O IMPRECISIONES.</strong></p><p><strong>Ningún resultado constituye asesoría fiscal, legal, contable, laboral, financiera ni profesional de ninguna clase.</strong></p><p><strong>Usted es el único responsable de verificar y validar todo resultado con un profesional calificado y con las fuentes oficiales antes de utilizarlo, presentarlo ante cualquier autoridad o tomar decisiones con base en él.</strong></p></blockquote>
 <hr />
 <h2>1. Objeto de este documento</h2>
-<p>1.1. Este Deslinde de Responsabilidad sobre Inteligencia Artificial (el <strong>"Deslinde"</strong>) forma parte integral de los <a href="/legal/terminos">Términos de Servicio</a> de <strong>TuIAlista</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a>), operada por <strong>Edgar Apolonio Aguilera</strong>, <strong>persona física con actividad empresarial</strong> que opera bajo el nombre comercial <strong>"TuIAlista"</strong>, con RFC <strong>AOAE781008V98</strong> y domicilio fiscal en <strong>Calle Malitzin, Manzana 10, Lote 23, Colonia Tepeaca, C.P. 01550, Alcaldía Álvaro Obregón</strong>, Ciudad de México, México.</p>
-<blockquote>
-<p><strong>Nota sobre la estructura del negocio.</strong> TuIAlista opera actualmente como negocio de persona física con actividad empresarial. Se prevé la futura constitución de la persona moral <strong>ORDINAL-BiA</strong>, a la que se transferirá la titularidad y la marca; los documentos se actualizarán en ese momento.</p>
-</blockquote>
+<p>1.1. Este Deslinde de Responsabilidad sobre Inteligencia Artificial (el <strong>"Deslinde"</strong>) forma parte integral de los <a href="/legal/terminos/">Términos de Servicio</a> de <strong>TuIAlista</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a>), operada por <strong>Edgar Apolonio Aguilera</strong>, <strong>persona física con actividad empresarial</strong> que opera bajo el nombre comercial <strong>"TuIAlista"</strong>, con RFC <strong>AOAE781008V98</strong> y domicilio fiscal en <strong>Calle Malitzin, Manzana 10, Lote 23, Colonia Tepeaca, C.P. 01550, Alcaldía Álvaro Obregón</strong>, Ciudad de México, México.</p>
+<blockquote><p><strong>Nota sobre la estructura del negocio.</strong> TuIAlista opera actualmente como negocio de persona física con actividad empresarial. Se prevé la futura constitución de la persona moral <strong>ORDINAL-BiA</strong>, a la que se transferirá la titularidad y la marca; los documentos se actualizarán en ese momento.</p></blockquote>
 <p>1.2. Al instalar o usar cualquier agente, el Cliente declara conocer y aceptar este Deslinde. En caso de conflicto entre este Deslinde y otros documentos respecto de la responsabilidad por resultados de IA, <strong>prevalece este Deslinde</strong>.</p>
 <hr />
 <h2>2. Naturaleza de los agentes de IA</h2>
 <p>2.1. Los agentes de TuIAlista generan contenido mediante <strong>modelos de inteligencia artificial de carácter probabilístico</strong>. Esto implica que sus resultados:</p>
-<ul>
-<li><strong>pueden contener errores, imprecisiones, omisiones o afirmaciones incorrectas</strong> ("alucinaciones");</li>
-<li><strong>pueden no estar actualizados</strong> respecto de la normativa, tarifas, formatos o criterios vigentes;</li>
-<li><strong>pueden variar</strong> ante entradas iguales o similares; y</li>
-<li><strong>no deben presumirse exactos ni completos</strong> por el solo hecho de haber sido generados por el agente.</li>
-</ul>
+<ul><li><strong>pueden contener errores, imprecisiones, omisiones o afirmaciones incorrectas</strong> ("alucinaciones");</li><li><strong>pueden no estar actualizados</strong> respecto de la normativa, tarifas, formatos o criterios vigentes;</li><li><strong>pueden variar</strong> ante entradas iguales o similares; y</li><li><strong>no deben presumirse exactos ni completos</strong> por el solo hecho de haber sido generados por el agente.</li></ul>
 <p>2.2. Los agentes son <strong>herramientas de apoyo a la productividad</strong>, no sustitutos del juicio humano ni de la asesoría de un profesional calificado.</p>
-<p>2.3. <strong>Procesamiento local.</strong> El análisis de los documentos y datos del Cliente ocurre <strong>localmente en su equipo</strong> (ver <a href="/legal/compromiso-local">Compromiso de Procesamiento Local</a>). Los modelos de IA de terceros se emplean únicamente para <strong>redactar respuestas</strong>; ello no garantiza la exactitud del contenido.</p>
+<p>2.3. <strong>Procesamiento local.</strong> El análisis de los documentos y datos del Cliente ocurre <strong>localmente en su equipo</strong> (ver <a href="/legal/compromiso-local/">Compromiso de Procesamiento Local</a>). Los modelos de IA de terceros se emplean únicamente para <strong>redactar respuestas</strong>; ello no garantiza la exactitud del contenido.</p>
 <hr />
 <h2>3. Ausencia de asesoría profesional y de relación profesional-cliente</h2>
 <p>3.1. Ningún resultado, texto, cálculo, clasificación, borrador o recomendación generado por un agente <strong>constituye asesoría fiscal, legal, contable, laboral, financiera, de cumplimiento ni profesional de ninguna clase</strong>, ni debe interpretarse como tal.</p>
@@ -100,24 +80,13 @@ footer a{color:#cdd5d9;text-decoration:none}
 <h2>4. Deber de verificación del Cliente</h2>
 <p>4.1. El Cliente es el <strong>único responsable</strong> de <strong>revisar, verificar y validar la totalidad de los resultados</strong> antes de utilizarlos, distribuirlos, presentarlos ante autoridades o terceros, o tomar decisiones con base en ellos.</p>
 <p>4.2. En particular, y sin limitar, el Cliente debe verificar de forma independiente, según corresponda:</p>
-<ul>
-<li><strong>Declaraciones y cálculos fiscales</strong>, tasas, retenciones, plazos y formatos ante la autoridad tributaria competente;</li>
-<li><strong>Nóminas, cálculos laborales, prestaciones, cuotas y aportaciones</strong> de seguridad social;</li>
-<li><strong>Contratos, cláusulas y textos legales</strong>, su validez, suficiencia y adecuación al caso concreto;</li>
-<li><strong>Facturas y comprobantes</strong>, sus datos, importes, impuestos y requisitos de validez;</li>
-<li>Cualquier dato, cifra, cita normativa o referencia contenida en el resultado.</li>
-</ul>
+<ul><li><strong>Declaraciones y cálculos fiscales</strong>, tasas, retenciones, plazos y formatos ante la autoridad tributaria competente;</li><li><strong>Nóminas, cálculos laborales, prestaciones, cuotas y aportaciones</strong> de seguridad social;</li><li><strong>Contratos, cláusulas y textos legales</strong>, su validez, suficiencia y adecuación al caso concreto;</li><li><strong>Facturas y comprobantes</strong>, sus datos, importes, impuestos y requisitos de validez;</li><li>Cualquier dato, cifra, cita normativa o referencia contenida en el resultado.</li></ul>
 <p>4.3. TuIAlista <strong>no revisa, aprueba ni valida</strong> los resultados generados por los agentes ni las decisiones que el Cliente tome con base en ellos.</p>
 <hr />
 <h2>5. Agentes en materias sensibles (deslinde reforzado)</h2>
 <p>5.1. Determinados agentes operan en materias de <strong>alto impacto y riesgo</strong>, entre ellos —sin limitar— los agentes de <strong>Cumplimiento Fiscal</strong>, <strong>Nóminas y Recursos Humanos</strong>, <strong>Contratos</strong> y <strong>Facturas</strong>.</p>
 <p>5.2. Respecto de estos agentes, el Cliente reconoce y acepta expresamente que:</p>
-<ul>
-<li>sus resultados <strong>no sustituyen</strong> la revisión de un contador público, abogado, especialista en nóminas o profesional competente;</li>
-<li><strong>un error no detectado puede tener consecuencias graves</strong> (por ejemplo, contingencias fiscales, multas, recargos, sanciones, controversias laborales, invalidez o insuficiencia de contratos, o rechazo de comprobantes);</li>
-<li><strong>la presentación de declaraciones, el pago de nóminas, la firma de contratos y la emisión de facturas son actos de la exclusiva responsabilidad del Cliente</strong>, quien debe validarlos íntegramente antes de ejecutarlos; y</li>
-<li>TuIAlista <strong>no asume responsabilidad</strong> por dichas consecuencias, en la máxima medida permitida por la ley.</li>
-</ul>
+<ul><li>sus resultados <strong>no sustituyen</strong> la revisión de un contador público, abogado, especialista en nóminas o profesional competente;</li><li><strong>un error no detectado puede tener consecuencias graves</strong> (por ejemplo, contingencias fiscales, multas, recargos, sanciones, controversias laborales, invalidez o insuficiencia de contratos, o rechazo de comprobantes);</li><li><strong>la presentación de declaraciones, el pago de nóminas, la firma de contratos y la emisión de facturas son actos de la exclusiva responsabilidad del Cliente</strong>, quien debe validarlos íntegramente antes de ejecutarlos; y</li><li>TuIAlista <strong>no asume responsabilidad</strong> por dichas consecuencias, en la máxima medida permitida por la ley.</li></ul>
 <hr />
 <h2>6. Modelos de IA de terceros (Groq / Gemini)</h2>
 <p>6.1. Los agentes invocan <strong>modelos de IA operados por terceros</strong> (por defecto <strong>Groq</strong>, con conmutación por error a <strong>Gemini</strong>) exclusivamente para redactar respuestas.</p>
@@ -132,20 +101,347 @@ footer a{color:#cdd5d9;text-decoration:none}
 <p>8.1. En la máxima medida permitida por la ley aplicable, TuIAlista (su titular, la persona física con actividad empresarial) y sus colaboradores <strong>no serán responsables</strong> por daños indirectos, incidentales, especiales, punitivos, ejemplares o consecuenciales, ni por <strong>lucro cesante, pérdida de ingresos, pérdida de datos, contingencias fiscales, multas, recargos o sanciones</strong>, aun cuando se hubiere advertido de su posibilidad.</p>
 <p>8.2. <strong>Tope de responsabilidad.</strong> En la máxima medida permitida por la ley, la <strong>responsabilidad total y acumulada</strong> de TuIAlista derivada de o relacionada con el Servicio y con los resultados de los agentes <strong>no excederá el monto efectivamente pagado por el Cliente por el Servicio durante los doce (12) meses anteriores</strong> al hecho que dio origen a la reclamación.</p>
 <p>8.3. <strong>Asignación de riesgo.</strong> El Cliente reconoce que los precios del Servicio reflejan esta asignación de riesgo y que, sin estas limitaciones, TuIAlista no podría ofrecer el Servicio en las condiciones actuales.</p>
-<h2>8.4. Nada en este Deslinde excluye o limita responsabilidades que, conforme a la ley aplicable, <strong>no puedan excluirse ni limitarse</strong> (por ejemplo, dolo o determinadas responsabilidades frente a consumidores).</h2>
+<p>8.4. Nada en este Deslinde excluye o limita responsabilidades que, conforme a la ley aplicable, <strong>no puedan excluirse ni limitarse</strong> (por ejemplo, dolo o determinadas responsabilidades frente a consumidores).</p>
+<hr />
 <h2>9. Responsabilidad del usuario y uso adecuado</h2>
 <p>9.1. El Cliente se obliga a usar los agentes de forma diligente, a <strong>conservar respaldos</strong> de su información y a <strong>no depender exclusivamente</strong> de los resultados de IA para decisiones críticas.</p>
 <p>9.2. El Cliente es responsable del uso que haga de los resultados y de su cumplimiento con la normativa que le resulte aplicable.</p>
 <hr />
 <h2>10. Relación con otros documentos y ley aplicable</h2>
-<p>10.1. Este Deslinde complementa los <a href="/legal/terminos">Términos de Servicio</a>, la <a href="/legal/privacidad">Política de Privacidad</a> y el <a href="/legal/compromiso-local">Compromiso de Procesamiento Local</a>.</p>
-<p>10.2. Este Deslinde se rige por las <strong>leyes de los Estados Unidos Mexicanos</strong>, con jurisdicción de los <strong>tribunales de la Ciudad de México (CDMX)</strong>, en los términos de la Sección 17 de los <a href="/legal/terminos">Términos de Servicio</a>.</p>
+<p>10.1. Este Deslinde complementa los <a href="/legal/terminos/">Términos de Servicio</a>, la <a href="/legal/privacidad/">Política de Privacidad</a> y el <a href="/legal/compromiso-local/">Compromiso de Procesamiento Local</a>.</p>
+<p>10.2. Este Deslinde se rige por las <strong>leyes de los Estados Unidos Mexicanos</strong>, con jurisdicción de los <strong>tribunales de la Ciudad de México (CDMX)</strong>, en los términos de la Sección 17 de los <a href="/legal/terminos/">Términos de Servicio</a>.</p>
 <p>10.3. La versión en <strong>español</strong> es la versión rectora; las traducciones se ofrecen por comodidad.</p>
 <hr />
 <h2>11. Contacto</h2>
 <p>Dudas sobre este Deslinde: <strong>legal@tuialista.com</strong> · <a href="https://www.tuialista.com">www.tuialista.com</a></p>
 <hr />
-<p><em>Fin del documento.</em></p></div></main>
-<footer>&copy; <span id="y"></span> TuIAlista &middot; <a href="/soporte">Soporte</a> &middot; <a href="/">Inicio</a><script>document.getElementById("y").textContent=new Date().getFullYear()</script></footer>
+<p><em>Fin del documento.</em></p></article>
+<article class="doc" id="doc-en" data-lang="en" hidden><div class="trnote">This is a courtesy translation. The Spanish version is the governing version.</div><h1>Artificial Intelligence Disclaimer</h1>
+<blockquote><p>The current version of this document is published at <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
+<p><strong>Version:</strong> 1.0 · <strong>Last updated:</strong> 21 July 2026 · <strong>Effective:</strong> 21 July 2026</p>
+<hr />
+<h2>0. Prominent notice (read before using any result)</h2>
+<blockquote><p><strong>TuIAlista agents use artificial intelligence, and their content MAY CONTAIN ERRORS, OMISSIONS, OR INACCURACIES.</strong></p><p><strong>No result constitutes tax, legal, accounting, labor, financial, or professional advice of any kind.</strong></p><p><strong>You are solely responsible for verifying and validating every result with a qualified professional and official sources before using it, filing it with any authority, or making decisions based on it.</strong></p></blockquote>
+<hr />
+<h2>1. Purpose of this document</h2>
+<p>1.1. This Artificial Intelligence Disclaimer (the <strong>"Disclaimer"</strong>) forms an integral part of the <a href="/legal/terminos/">Terms of Service</a> of <strong>TuIAlista</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a>), operated by **<strong> (trade name "TuIAlista", parent company </strong>ORDINAL-BiA<strong>), RFC </strong><strong>, with address at </strong>**, Mexico City, Mexico.</p>
+<p>1.2. By installing or using any agent, the Customer acknowledges and accepts this Disclaimer. In the event of conflict between this Disclaimer and other documents regarding liability for AI results, <strong>this Disclaimer prevails</strong>.</p>
+<hr />
+<h2>2. Nature of the AI agents</h2>
+<p>2.1. TuIAlista agents generate content using <strong>probabilistic artificial-intelligence models</strong>. This means their outputs:</p>
+<ul><li><strong>may contain errors, inaccuracies, omissions, or incorrect statements</strong> ("hallucinations");</li><li><strong>may be out of date</strong> with respect to current regulations, rates, formats, or criteria;</li><li><strong>may vary</strong> for identical or similar inputs; and</li><li><strong>must not be presumed accurate or complete</strong> merely because the agent generated them.</li></ul>
+<p>2.2. The agents are <strong>productivity support tools</strong>, not substitutes for human judgment or for the advice of a qualified professional.</p>
+<p>2.3. <strong>Local processing.</strong> Analysis of the Customer's documents and data happens <strong>locally on their device</strong> (see the <a href="/legal/compromiso-local/">Local Processing Commitment</a>). Third-party AI models are used only to <strong>draft responses</strong>; this does not guarantee the accuracy of the content.</p>
+<hr />
+<h2>3. No professional advice and no professional-client relationship</h2>
+<p>3.1. No result, text, calculation, classification, draft, or recommendation generated by an agent <strong>constitutes tax, legal, accounting, labor, financial, compliance, or professional advice of any kind</strong>, nor should it be interpreted as such.</p>
+<p>3.2. Use of the agents <strong>does not create</strong> a professional-client, accountant-client, attorney-client, or any advisory relationship between the Customer and TuIAlista or its parent ORDINAL-BiA.</p>
+<p>3.3. <strong>Verify with a professional.</strong> Before acting on any result, the Customer must consult it with an accountant, attorney, payroll specialist, or other qualified professional, and check it against the applicable <strong>official sources</strong>.</p>
+<hr />
+<h2>4. Customer's duty to verify</h2>
+<p>4.1. The Customer is <strong>solely responsible</strong> for <strong>reviewing, verifying, and validating all results</strong> before using, distributing, filing with authorities or third parties, or making decisions based on them.</p>
+<p>4.2. In particular, and without limitation, the Customer must independently verify, as applicable:</p>
+<ul><li><strong>Tax filings and calculations</strong>, rates, withholdings, deadlines, and formats before the competent tax authority;</li><li><strong>Payroll, labor calculations, benefits, and social-security contributions</strong>;</li><li><strong>Contracts, clauses, and legal texts</strong>, their validity, sufficiency, and suitability for the specific case;</li><li><strong>Invoices and receipts</strong>, their data, amounts, taxes, and validity requirements;</li><li>Any data, figure, legal citation, or reference contained in the result.</li></ul>
+<p>4.3. TuIAlista <strong>does not review, approve, or validate</strong> the results generated by the agents or the decisions the Customer makes based on them.</p>
+<hr />
+<h2>5. Agents in sensitive matters (enhanced disclaimer)</h2>
+<p>5.1. Certain agents operate in <strong>high-impact, high-risk</strong> areas, including —without limitation— the <strong>Tax Compliance</strong>, <strong>Payroll and Human Resources</strong>, <strong>Contracts</strong>, and <strong>Invoices</strong> agents.</p>
+<p>5.2. With respect to these agents, the Customer expressly acknowledges and accepts that:</p>
+<ul><li>their results <strong>do not replace</strong> review by a certified public accountant, attorney, payroll specialist, or competent professional;</li><li><strong>an undetected error may have serious consequences</strong> (for example, tax contingencies, fines, surcharges, penalties, labor disputes, invalid or insufficient contracts, or rejected receipts);</li><li><strong>filing returns, paying payroll, signing contracts, and issuing invoices are the Customer's exclusive responsibility</strong>, and must be fully validated before execution; and</li><li>TuIAlista <strong>assumes no liability</strong> for such consequences, to the maximum extent permitted by law.</li></ul>
+<hr />
+<h2>6. Third-party AI models (Groq / Gemini)</h2>
+<p>6.1. The agents call <strong>AI models operated by third parties</strong> (by default <strong>Groq</strong>, with failover to <strong>Gemini</strong>) exclusively to draft responses.</p>
+<p>6.2. TuIAlista <strong>does not guarantee</strong> the accuracy, suitability, quality, continuity, or availability of such third-party models, and is <strong>not liable</strong> for their failures, interruptions, changes, quality degradation, or results. These providers are entities unrelated to TuIAlista and are governed by their own terms.</p>
+<p>6.3. Availability of these features may be affected by causes outside TuIAlista's control (for example, unavailability of the AI provider or the network link).</p>
+<hr />
+<h2>7. No warranties</h2>
+<p>7.1. To the maximum extent permitted by applicable law, the Service and the results generated by the agents are provided <strong>"as is" and "as available"</strong>, without warranties of any kind, express or implied, including —without limitation— warranties of <strong>accuracy, completeness, fitness for a particular purpose, merchantability, non-infringement, or availability</strong>.</p>
+<p>7.2. TuIAlista <strong>does not guarantee</strong> that results are correct, complete, current, or suitable for the Customer's purpose, nor that the Service will operate uninterrupted or error-free.</p>
+<hr />
+<h2>8. Limitation of liability</h2>
+<p>8.1. To the maximum extent permitted by applicable law, TuIAlista, its parent <strong>ORDINAL-BiA</strong>, and its collaborators <strong>shall not be liable</strong> for indirect, incidental, special, punitive, exemplary, or consequential damages, nor for <strong>lost profits, lost revenue, loss of data, tax contingencies, fines, surcharges, or penalties</strong>, even if advised of their possibility.</p>
+<p>8.2. <strong>Liability cap.</strong> To the maximum extent permitted by law, TuIAlista's <strong>total aggregate liability</strong> arising out of or relating to the Service and the agents' results <strong>shall not exceed the amount actually paid by the Customer for the Service during the twelve (12) months preceding</strong> the event giving rise to the claim.</p>
+<p>8.3. <strong>Allocation of risk.</strong> The Customer acknowledges that the Service pricing reflects this allocation of risk and that, without these limitations, TuIAlista could not offer the Service on current terms.</p>
+<p>8.4. Nothing in this Disclaimer excludes or limits liabilities that, under applicable law, <strong>cannot be excluded or limited</strong> (for example, willful misconduct or certain consumer liabilities).</p>
+<hr />
+<h2>9. User responsibility and appropriate use</h2>
+<p>9.1. The Customer agrees to use the agents diligently, to <strong>keep backups</strong> of their information, and <strong>not to rely exclusively</strong> on AI results for critical decisions.</p>
+<p>9.2. The Customer is responsible for how they use the results and for their compliance with the regulations applicable to them.</p>
+<hr />
+<h2>10. Relationship with other documents and governing law</h2>
+<p>10.1. This Disclaimer complements the <a href="/legal/terminos/">Terms of Service</a>, the <a href="/legal/privacidad/">Privacy Policy</a>, and the <a href="/legal/compromiso-local/">Local Processing Commitment</a>.</p>
+<p>10.2. This Disclaimer is governed by the <strong>laws of the United Mexican States</strong>, with jurisdiction of the <strong>courts of Mexico City (CDMX)</strong>, per Section 17 of the <a href="/legal/terminos/">Terms of Service</a>.</p>
+<p>10.3. The <strong>Spanish</strong> version is the governing version; translations are provided for convenience.</p>
+<hr />
+<h2>11. Contact</h2>
+<p>Questions about this Disclaimer: <strong>legal@tuialista.com</strong> · <a href="https://www.tuialista.com">www.tuialista.com</a></p>
+<hr />
+<hr />
+<p><em>End of document.</em></p></article>
+<article class="doc" id="doc-pt" data-lang="pt" hidden><div class="trnote">Esta é uma tradução de cortesia. A versão em espanhol é a versão vigente.</div><h1>Aviso de Isenção de Responsabilidade sobre Inteligência Artificial</h1>
+<blockquote><p>A versão vigente deste documento é publicada em <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
+<p><strong>Versão:</strong> 1.0 · <strong>Última atualização:</strong> 21 de julho de 2026 · <strong>Em vigor a partir de:</strong> 21 de julho de 2026</p>
+<hr />
+<h2>0. Aviso em destaque (leia antes de usar qualquer resultado)</h2>
+<blockquote><p><strong>Os agentes da TuIAlista utilizam inteligência artificial e seu conteúdo PODE CONTER ERROS, OMISSÕES OU IMPRECISÕES.</strong></p><p><strong>Nenhum resultado constitui assessoria fiscal, jurídica, contábil, trabalhista, financeira nem profissional de nenhuma espécie.</strong></p><p><strong>Você é o único responsável por verificar e validar todo resultado com um profissional qualificado e com as fontes oficiais antes de utilizá-lo, apresentá-lo a qualquer autoridade ou tomar decisões com base nele.</strong></p></blockquote>
+<hr />
+<h2>1. Objeto deste documento</h2>
+<p>1.1. Este Aviso de Isenção de Responsabilidade sobre Inteligência Artificial (o <strong>"Aviso de Isenção"</strong>) faz parte integral dos <a href="/legal/terminos/">Termos de Serviço</a> da <strong>TuIAlista</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a>), operada por **<strong> (nome comercial "TuIAlista", matriz </strong>ORDINAL-BiA<strong>), com RFC </strong><strong> e domicílio em </strong>**, Cidade do México, México.</p>
+<p>1.2. Ao instalar ou usar qualquer agente, o Cliente declara conhecer e aceitar este Aviso de Isenção. Em caso de conflito entre este Aviso de Isenção e outros documentos quanto à responsabilidade por resultados de IA, <strong>prevalece este Aviso de Isenção</strong>.</p>
+<hr />
+<h2>2. Natureza dos agentes de IA</h2>
+<p>2.1. Os agentes da TuIAlista geram conteúdo por meio de <strong>modelos de inteligência artificial de caráter probabilístico</strong>. Isso implica que seus resultados:</p>
+<ul><li><strong>podem conter erros, imprecisões, omissões ou afirmações incorretas</strong> ("alucinações");</li><li><strong>podem não estar atualizados</strong> em relação à normativa, tarifas, formatos ou critérios vigentes;</li><li><strong>podem variar</strong> diante de entradas iguais ou semelhantes; e</li><li><strong>não devem ser presumidos exatos nem completos</strong> apenas por terem sido gerados pelo agente.</li></ul>
+<p>2.2. Os agentes são <strong>ferramentas de apoio à produtividade</strong>, não substitutos do juízo humano nem da assessoria de um profissional qualificado.</p>
+<p>2.3. <strong>Processamento local.</strong> A análise dos documentos e dados do Cliente ocorre <strong>localmente em seu equipamento</strong> (ver <a href="/legal/compromiso-local/">Compromisso de Processamento Local</a>). Os modelos de IA de terceiros são usados unicamente para <strong>redigir respostas</strong>; isso não garante a exatidão do conteúdo.</p>
+<hr />
+<h2>3. Ausência de assessoria profissional e de relação profissional-cliente</h2>
+<p>3.1. Nenhum resultado, texto, cálculo, classificação, minuta ou recomendação gerado por um agente <strong>constitui assessoria fiscal, jurídica, contábil, trabalhista, financeira, de conformidade nem profissional de nenhuma espécie</strong>, nem deve ser interpretado como tal.</p>
+<p>3.2. O uso dos agentes <strong>não cria</strong> relação profissional-cliente, contador-cliente, advogado-cliente nem qualquer relação de assessoria entre o Cliente e a TuIAlista ou sua matriz ORDINAL-BiA.</p>
+<p>3.3. <strong>Verifique com um profissional.</strong> Antes de agir com base em qualquer resultado, o Cliente deve consultá-lo com um contador, advogado, especialista em folha de pagamento ou outro profissional qualificado, e confrontá-lo com as <strong>fontes oficiais</strong> aplicáveis.</p>
+<hr />
+<h2>4. Dever de verificação do Cliente</h2>
+<p>4.1. O Cliente é o <strong>único responsável</strong> por <strong>revisar, verificar e validar a totalidade dos resultados</strong> antes de utilizá-los, distribuí-los, apresentá-los a autoridades ou terceiros, ou tomar decisões com base neles.</p>
+<p>4.2. Em particular, e sem limitar, o Cliente deve verificar de forma independente, conforme o caso:</p>
+<ul><li><strong>Declarações e cálculos fiscais</strong>, alíquotas, retenções, prazos e formatos perante a autoridade tributária competente;</li><li><strong>Folhas de pagamento, cálculos trabalhistas, benefícios e contribuições</strong> de seguridade social;</li><li><strong>Contratos, cláusulas e textos legais</strong>, sua validade, suficiência e adequação ao caso concreto;</li><li><strong>Faturas e comprovantes</strong>, seus dados, valores, impostos e requisitos de validade;</li><li>Qualquer dado, cifra, citação normativa ou referência contida no resultado.</li></ul>
+<p>4.3. A TuIAlista <strong>não revisa, aprova nem valida</strong> os resultados gerados pelos agentes nem as decisões que o Cliente tome com base neles.</p>
+<hr />
+<h2>5. Agentes em matérias sensíveis (isenção reforçada)</h2>
+<p>5.1. Determinados agentes operam em matérias de <strong>alto impacto e risco</strong>, entre eles —sem limitar— os agentes de <strong>Conformidade Fiscal</strong>, <strong>Folha de Pagamento e Recursos Humanos</strong>, <strong>Contratos</strong> e <strong>Faturas</strong>.</p>
+<p>5.2. A respeito desses agentes, o Cliente reconhece e aceita expressamente que:</p>
+<ul><li>seus resultados <strong>não substituem</strong> a revisão de um contador, advogado, especialista em folha de pagamento ou profissional competente;</li><li><strong>um erro não detectado pode ter consequências graves</strong> (por exemplo, contingências fiscais, multas, encargos, sanções, controvérsias trabalhistas, invalidade ou insuficiência de contratos, ou rejeição de comprovantes);</li><li><strong>a apresentação de declarações, o pagamento de folhas, a assinatura de contratos e a emissão de faturas são atos da exclusiva responsabilidade do Cliente</strong>, que deve validá-los integralmente antes de executá-los; e</li><li>a TuIAlista <strong>não assume responsabilidade</strong> por tais consequências, na máxima medida permitida pela lei.</li></ul>
+<hr />
+<h2>6. Modelos de IA de terceiros (Groq / Gemini)</h2>
+<p>6.1. Os agentes invocam <strong>modelos de IA operados por terceiros</strong> (por padrão <strong>Groq</strong>, com comutação por falha para <strong>Gemini</strong>) exclusivamente para redigir respostas.</p>
+<p>6.2. A TuIAlista <strong>não garante</strong> a exatidão, adequação, qualidade, continuidade nem disponibilidade de tais modelos de terceiros, e <strong>não é responsável</strong> por suas falhas, interrupções, mudanças, degradações de qualidade ou resultados. Esses provedores são entidades alheias à TuIAlista e regem-se por seus próprios termos.</p>
+<p>6.3. A disponibilidade dessas funções pode ser afetada por causas alheias à TuIAlista (por exemplo, indisponibilidade do provedor de IA ou do enlace de rede).</p>
+<hr />
+<h2>7. Sem garantias</h2>
+<p>7.1. Na máxima medida permitida pela lei aplicável, o Serviço e os resultados gerados pelos agentes são fornecidos <strong>"no estado em que se encontram" e "conforme disponibilidade"</strong>, sem garantias de nenhum tipo, expressas ou implícitas, incluindo —sem limitar— garantias de <strong>exatidão, integridade, adequação a um fim específico, comerciabilidade, não infração ou disponibilidade</strong>.</p>
+<p>7.2. A TuIAlista <strong>não garante</strong> que os resultados sejam corretos, completos, atualizados ou adequados ao propósito do Cliente, nem que o Serviço opere de forma ininterrupta ou livre de erros.</p>
+<hr />
+<h2>8. Limitação de responsabilidade</h2>
+<p>8.1. Na máxima medida permitida pela lei aplicável, a TuIAlista, sua matriz <strong>ORDINAL-BiA</strong> e seus colaboradores <strong>não serão responsáveis</strong> por danos indiretos, incidentais, especiais, punitivos, exemplares ou consequenciais, nem por <strong>lucros cessantes, perda de receitas, perda de dados, contingências fiscais, multas, encargos ou sanções</strong>, ainda que se tenha advertido sobre sua possibilidade.</p>
+<p>8.2. <strong>Limite de responsabilidade.</strong> Na máxima medida permitida pela lei, a <strong>responsabilidade total e acumulada</strong> da TuIAlista decorrente de ou relacionada ao Serviço e aos resultados dos agentes <strong>não excederá o valor efetivamente pago pelo Cliente pelo Serviço durante os doze (12) meses anteriores</strong> ao fato que deu origem à reclamação.</p>
+<p>8.3. <strong>Alocação de risco.</strong> O Cliente reconhece que os preços do Serviço refletem essa alocação de risco e que, sem estas limitações, a TuIAlista não poderia oferecer o Serviço nas condições atuais.</p>
+<p>8.4. Nada neste Aviso de Isenção exclui ou limita responsabilidades que, conforme a lei aplicável, <strong>não possam ser excluídas nem limitadas</strong> (por exemplo, dolo ou determinadas responsabilidades frente a consumidores).</p>
+<hr />
+<h2>9. Responsabilidade do usuário e uso adequado</h2>
+<p>9.1. O Cliente obriga-se a usar os agentes de forma diligente, a <strong>manter backups</strong> de suas informações e a <strong>não depender exclusivamente</strong> dos resultados de IA para decisões críticas.</p>
+<p>9.2. O Cliente é responsável pelo uso que fizer dos resultados e por seu cumprimento da normativa que lhe seja aplicável.</p>
+<hr />
+<h2>10. Relação com outros documentos e lei aplicável</h2>
+<p>10.1. Este Aviso de Isenção complementa os <a href="/legal/terminos/">Termos de Serviço</a>, a <a href="/legal/privacidad/">Política de Privacidade</a> e o <a href="/legal/compromiso-local/">Compromisso de Processamento Local</a>.</p>
+<p>10.2. Este Aviso de Isenção rege-se pelas <strong>leis dos Estados Unidos Mexicanos</strong>, com jurisdição dos <strong>tribunais da Cidade do México (CDMX)</strong>, nos termos da Seção 17 dos <a href="/legal/terminos/">Termos de Serviço</a>.</p>
+<p>10.3. A versão em <strong>espanhol</strong> é a versão reitora; as traduções são oferecidas por conveniência.</p>
+<hr />
+<h2>11. Contato</h2>
+<p>Dúvidas sobre este Aviso de Isenção: <strong>legal@tuialista.com</strong> · <a href="https://www.tuialista.com">www.tuialista.com</a></p>
+<hr />
+<hr />
+<p><em>Fim do documento.</em></p></article>
+<article class="doc" id="doc-fr" data-lang="fr" hidden><div class="trnote">Ceci est une traduction de courtoisie. La version espagnole fait foi.</div><h1>Clause de Non-Responsabilité relative à l'Intelligence Artificielle</h1>
+<blockquote><p>La version en vigueur de ce document est publiée sur <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
+<p><strong>Version :</strong> 1.0 · <strong>Dernière mise à jour :</strong> 21 juillet 2026 · <strong>En vigueur à partir du :</strong> 21 juillet 2026</p>
+<hr />
+<h2>0. Avertissement en évidence (à lire avant d'utiliser tout résultat)</h2>
+<blockquote><p><strong>Les agents de TuIAlista utilisent l'intelligence artificielle et leur contenu PEUT CONTENIR DES ERREURS, DES OMISSIONS OU DES IMPRÉCISIONS.</strong></p><p><strong>Aucun résultat ne constitue un conseil fiscal, juridique, comptable, en droit du travail, financier ou professionnel d'aucune sorte.</strong></p><p><strong>Vous êtes seul responsable de vérifier et de valider chaque résultat auprès d'un professionnel qualifié et des sources officielles avant de l'utiliser, de le présenter à toute autorité ou de prendre des décisions sur cette base.</strong></p></blockquote>
+<hr />
+<h2>1. Objet de ce document</h2>
+<p>1.1. La présente Clause de Non-Responsabilité relative à l'Intelligence Artificielle (la <strong>« Clause »</strong>) fait partie intégrante des <a href="/legal/terminos/">Conditions de Service</a> de <strong>TuIAlista</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a>), exploitée par **<strong> (nom commercial « TuIAlista », société mère </strong>ORDINAL-BiA<strong>), RFC </strong><strong>, domiciliée à </strong>**, Mexico, Mexique.</p>
+<p>1.2. En installant ou en utilisant tout agent, le Client déclare connaître et accepter la présente Clause. En cas de conflit entre la présente Clause et d'autres documents quant à la responsabilité pour les résultats de l'IA, <strong>la présente Clause prévaut</strong>.</p>
+<hr />
+<h2>2. Nature des agents d'IA</h2>
+<p>2.1. Les agents de TuIAlista génèrent du contenu au moyen de <strong>modèles d'intelligence artificielle de nature probabiliste</strong>. Cela implique que leurs résultats :</p>
+<ul><li><strong>peuvent contenir des erreurs, des imprécisions, des omissions ou des affirmations incorrectes</strong> (« hallucinations ») ;</li><li><strong>peuvent ne pas être à jour</strong> par rapport à la réglementation, aux tarifs, aux formats ou aux critères en vigueur ;</li><li><strong>peuvent varier</strong> pour des entrées identiques ou similaires ; et</li><li><strong>ne doivent pas être présumés exacts ni complets</strong> du seul fait qu'ils ont été générés par l'agent.</li></ul>
+<p>2.2. Les agents sont des <strong>outils d'aide à la productivité</strong>, non des substituts au jugement humain ni au conseil d'un professionnel qualifié.</p>
+<p>2.3. <strong>Traitement local.</strong> L'analyse des documents et données du Client a lieu <strong>localement sur son équipement</strong> (voir l'<a href="/legal/compromiso-local/">Engagement de Traitement Local</a>). Les modèles d'IA de tiers ne sont utilisés que pour <strong>rédiger des réponses</strong> ; cela ne garantit pas l'exactitude du contenu.</p>
+<hr />
+<h2>3. Absence de conseil professionnel et de relation professionnel-client</h2>
+<p>3.1. Aucun résultat, texte, calcul, classification, projet ou recommandation généré par un agent <strong>ne constitue un conseil fiscal, juridique, comptable, en droit du travail, financier, de conformité ou professionnel d'aucune sorte</strong>, et ne doit pas être interprété comme tel.</p>
+<p>3.2. L'utilisation des agents <strong>ne crée</strong> aucune relation professionnel-client, comptable-client, avocat-client ni aucune relation de conseil entre le Client et TuIAlista ou sa société mère ORDINAL-BiA.</p>
+<p>3.3. <strong>Vérifiez auprès d'un professionnel.</strong> Avant d'agir sur la base d'un résultat, le Client doit le consulter auprès d'un comptable, avocat, spécialiste de la paie ou autre professionnel qualifié, et le confronter aux <strong>sources officielles</strong> applicables.</p>
+<hr />
+<h2>4. Devoir de vérification du Client</h2>
+<p>4.1. Le Client est le <strong>seul responsable</strong> de la <strong>révision, de la vérification et de la validation de l'ensemble des résultats</strong> avant de les utiliser, de les diffuser, de les présenter à des autorités ou à des tiers, ou de prendre des décisions sur leur base.</p>
+<p>4.2. En particulier, et sans s'y limiter, le Client doit vérifier de manière indépendante, le cas échéant :</p>
+<ul><li><strong>Déclarations et calculs fiscaux</strong>, taux, retenues, délais et formats auprès de l'autorité fiscale compétente ;</li><li><strong>Paies, calculs de droit du travail, prestations et cotisations</strong> de sécurité sociale ;</li><li><strong>Contrats, clauses et textes juridiques</strong>, leur validité, leur suffisance et leur adéquation au cas concret ;</li><li><strong>Factures et justificatifs</strong>, leurs données, montants, taxes et conditions de validité ;</li><li>Toute donnée, tout chiffre, toute citation réglementaire ou référence contenus dans le résultat.</li></ul>
+<p>4.3. TuIAlista <strong>ne révise, n'approuve ni ne valide</strong> les résultats générés par les agents ni les décisions que le Client prend sur leur base.</p>
+<hr />
+<h2>5. Agents dans des matières sensibles (clause renforcée)</h2>
+<p>5.1. Certains agents opèrent dans des matières à <strong>fort impact et à haut risque</strong>, parmi lesquels —sans s'y limiter— les agents de <strong>Conformité Fiscale</strong>, de <strong>Paie et Ressources Humaines</strong>, de <strong>Contrats</strong> et de <strong>Factures</strong>.</p>
+<p>5.2. À l'égard de ces agents, le Client reconnaît et accepte expressément que :</p>
+<ul><li>leurs résultats <strong>ne remplacent pas</strong> la révision par un expert-comptable, un avocat, un spécialiste de la paie ou un professionnel compétent ;</li><li><strong>une erreur non détectée peut avoir des conséquences graves</strong> (par exemple, redressements fiscaux, amendes, majorations, sanctions, litiges du travail, invalidité ou insuffisance de contrats, ou rejet de justificatifs) ;</li><li><strong>le dépôt des déclarations, le paiement de la paie, la signature des contrats et l'émission des factures relèvent de la responsabilité exclusive du Client</strong>, qui doit les valider intégralement avant de les exécuter ; et</li><li>TuIAlista <strong>n'assume aucune responsabilité</strong> pour de telles conséquences, dans la mesure maximale permise par la loi.</li></ul>
+<hr />
+<h2>6. Modèles d'IA de tiers (Groq / Gemini)</h2>
+<p>6.1. Les agents appellent des <strong>modèles d'IA exploités par des tiers</strong> (par défaut <strong>Groq</strong>, avec bascule vers <strong>Gemini</strong>) exclusivement pour rédiger des réponses.</p>
+<p>6.2. TuIAlista <strong>ne garantit pas</strong> l'exactitude, l'adéquation, la qualité, la continuité ni la disponibilité de tels modèles de tiers, et <strong>n'est pas responsable</strong> de leurs pannes, interruptions, changements, dégradations de qualité ou résultats. Ces prestataires sont des entités étrangères à TuIAlista et régis par leurs propres conditions.</p>
+<p>6.3. La disponibilité de ces fonctions peut être affectée par des causes étrangères à TuIAlista (par exemple, indisponibilité du fournisseur d'IA ou de la liaison réseau).</p>
+<hr />
+<h2>7. Aucune garantie</h2>
+<p>7.1. Dans la mesure maximale permise par la loi applicable, le Service et les résultats générés par les agents sont fournis <strong>« en l'état » et « selon disponibilité »</strong>, sans garantie d'aucune sorte, expresse ou implicite, y compris —sans s'y limiter— les garanties d'<strong>exactitude, d'exhaustivité, d'adéquation à un usage particulier, de qualité marchande, de non-contrefaçon ou de disponibilité</strong>.</p>
+<p>7.2. TuIAlista <strong>ne garantit pas</strong> que les résultats sont corrects, complets, à jour ou adéquats à l'usage du Client, ni que le Service fonctionnera de manière ininterrompue ou exempte d'erreurs.</p>
+<hr />
+<h2>8. Limitation de responsabilité</h2>
+<p>8.1. Dans la mesure maximale permise par la loi applicable, TuIAlista, sa société mère <strong>ORDINAL-BiA</strong> et ses collaborateurs <strong>ne seront pas responsables</strong> des dommages indirects, accessoires, spéciaux, punitifs, exemplaires ou consécutifs, ni du <strong>manque à gagner, de la perte de revenus, de la perte de données, des redressements fiscaux, amendes, majorations ou sanctions</strong>, même si la possibilité en avait été signalée.</p>
+<p>8.2. <strong>Plafond de responsabilité.</strong> Dans la mesure maximale permise par la loi, la <strong>responsabilité totale et cumulée</strong> de TuIAlista découlant du Service et des résultats des agents ou en lien avec ceux-ci <strong>n'excédera pas le montant effectivement payé par le Client pour le Service au cours des douze (12) mois précédant</strong> le fait à l'origine de la réclamation.</p>
+<p>8.3. <strong>Répartition du risque.</strong> Le Client reconnaît que les prix du Service reflètent cette répartition du risque et que, sans ces limitations, TuIAlista ne pourrait pas offrir le Service aux conditions actuelles.</p>
+<p>8.4. Rien dans la présente Clause n'exclut ni ne limite les responsabilités qui, selon la loi applicable, <strong>ne peuvent être exclues ni limitées</strong> (par exemple, la faute intentionnelle ou certaines responsabilités envers les consommateurs).</p>
+<hr />
+<h2>9. Responsabilité de l'utilisateur et usage approprié</h2>
+<p>9.1. Le Client s'engage à utiliser les agents avec diligence, à <strong>conserver des sauvegardes</strong> de ses informations et à <strong>ne pas dépendre exclusivement</strong> des résultats de l'IA pour des décisions critiques.</p>
+<p>9.2. Le Client est responsable de l'usage qu'il fait des résultats et de sa conformité à la réglementation qui lui est applicable.</p>
+<hr />
+<h2>10. Relation avec d'autres documents et loi applicable</h2>
+<p>10.1. La présente Clause complète les <a href="/legal/terminos/">Conditions de Service</a>, la <a href="/legal/privacidad/">Politique de Confidentialité</a> et l'<a href="/legal/compromiso-local/">Engagement de Traitement Local</a>.</p>
+<p>10.2. La présente Clause est régie par les <strong>lois des États-Unis Mexicains</strong>, avec juridiction des <strong>tribunaux de Mexico (CDMX)</strong>, conformément à la Section 17 des <a href="/legal/terminos/">Conditions de Service</a>.</p>
+<p>10.3. La version en <strong>espagnol</strong> fait foi ; les traductions sont fournies à titre de commodité.</p>
+<hr />
+<h2>11. Contact</h2>
+<p>Questions sur la présente Clause : <strong>legal@tuialista.com</strong> · <a href="https://www.tuialista.com">www.tuialista.com</a></p>
+<hr />
+<hr />
+<p><em>Fin du document.</em></p></article>
+<article class="doc" id="doc-de" data-lang="de" hidden><div class="trnote">Dies ist eine Übersetzung als Serviceleistung. Maßgeblich ist die spanische Fassung.</div><h1>Haftungsausschluss zur Künstlichen Intelligenz</h1>
+<blockquote><p>Die aktuelle Fassung dieses Dokuments wird unter <a href="https://www.tuialista.com">www.tuialista.com</a> veröffentlicht.</p></blockquote>
+<p><strong>Version:</strong> 1.0 · <strong>Zuletzt aktualisiert:</strong> 21. Juli 2026 · <strong>Gültig ab:</strong> 21. Juli 2026</p>
+<hr />
+<h2>0. Hervorgehobener Hinweis (vor Verwendung eines Ergebnisses lesen)</h2>
+<blockquote><p><strong>Die Agenten von TuIAlista nutzen künstliche Intelligenz, und ihre Inhalte KÖNNEN FEHLER, AUSLASSUNGEN ODER UNGENAUIGKEITEN ENTHALTEN.</strong></p><p><strong>Kein Ergebnis stellt eine steuerliche, rechtliche, buchhalterische, arbeitsrechtliche, finanzielle oder fachliche Beratung jeglicher Art dar.</strong></p><p><strong>Sie sind allein verantwortlich, jedes Ergebnis mit einer qualifizierten Fachperson und amtlichen Quellen zu überprüfen und zu validieren, bevor Sie es verwenden, bei einer Behörde einreichen oder darauf gestützte Entscheidungen treffen.</strong></p></blockquote>
+<hr />
+<h2>1. Gegenstand dieses Dokuments</h2>
+<p>1.1. Dieser Haftungsausschluss zur Künstlichen Intelligenz (der <strong>„Haftungsausschluss"</strong>) ist integraler Bestandteil der <a href="/legal/terminos/">Nutzungsbedingungen</a> von <strong>TuIAlista</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a>), betrieben von **<strong> (Handelsname „TuIAlista", Muttergesellschaft </strong>ORDINAL-BiA<strong>), RFC </strong><strong>, mit Sitz in </strong>**, Mexiko-Stadt, Mexiko.</p>
+<p>1.2. Mit der Installation oder Nutzung eines Agenten erklärt der Kunde, diesen Haftungsausschluss zu kennen und zu akzeptieren. Bei Widerspruch zwischen diesem Haftungsausschluss und anderen Dokumenten bezüglich der Haftung für KI-Ergebnisse <strong>hat dieser Haftungsausschluss Vorrang</strong>.</p>
+<hr />
+<h2>2. Wesen der KI-Agenten</h2>
+<p>2.1. Die Agenten von TuIAlista erzeugen Inhalte mittels <strong>probabilistischer Modelle der künstlichen Intelligenz</strong>. Das bedeutet, dass ihre Ergebnisse:</p>
+<ul><li><strong>Fehler, Ungenauigkeiten, Auslassungen oder falsche Aussagen enthalten können</strong> („Halluzinationen");</li><li><strong>möglicherweise nicht aktuell</strong> in Bezug auf geltende Vorschriften, Tarife, Formate oder Kriterien sind;</li><li><strong>bei gleichen oder ähnlichen Eingaben variieren können</strong>; und</li><li><strong>nicht allein deshalb als richtig oder vollständig vermutet werden dürfen</strong>, weil sie vom Agenten erzeugt wurden.</li></ul>
+<p>2.2. Die Agenten sind <strong>Werkzeuge zur Produktivitätsunterstützung</strong>, kein Ersatz für menschliches Urteilsvermögen oder die Beratung durch eine qualifizierte Fachperson.</p>
+<p>2.3. <strong>Lokale Verarbeitung.</strong> Die Analyse der Dokumente und Daten des Kunden erfolgt <strong>lokal auf seinem Gerät</strong> (siehe <a href="/legal/compromiso-local/">Verpflichtung zur lokalen Verarbeitung</a>). Die KI-Modelle Dritter werden nur zum <strong>Formulieren von Antworten</strong> genutzt; dies garantiert nicht die Richtigkeit der Inhalte.</p>
+<hr />
+<h2>3. Keine Fachberatung und kein Mandatsverhältnis</h2>
+<p>3.1. Kein von einem Agenten erzeugtes Ergebnis, Text, keine Berechnung, Klassifizierung, Entwurf oder Empfehlung <strong>stellt eine steuerliche, rechtliche, buchhalterische, arbeitsrechtliche, finanzielle, Compliance- oder fachliche Beratung jeglicher Art dar</strong> und ist nicht als solche auszulegen.</p>
+<p>3.2. Die Nutzung der Agenten <strong>begründet kein</strong> Mandats-, Buchhalter-Mandanten-, Anwalt-Mandanten- oder sonstiges Beratungsverhältnis zwischen dem Kunden und TuIAlista oder seiner Muttergesellschaft ORDINAL-BiA.</p>
+<p>3.3. <strong>Prüfen Sie mit einer Fachperson.</strong> Bevor der Kunde auf ein Ergebnis hin handelt, muss er es mit einem Buchhalter, Anwalt, Lohnspezialisten oder einer anderen qualifizierten Fachperson besprechen und mit den anwendbaren <strong>amtlichen Quellen</strong> abgleichen.</p>
+<hr />
+<h2>4. Prüfpflicht des Kunden</h2>
+<p>4.1. Der Kunde ist <strong>allein verantwortlich</strong> für die <strong>Überprüfung, Verifizierung und Validierung sämtlicher Ergebnisse</strong>, bevor er sie verwendet, verteilt, bei Behörden oder Dritten einreicht oder darauf gestützte Entscheidungen trifft.</p>
+<p>4.2. Insbesondere und ohne Beschränkung muss der Kunde je nach Fall unabhängig prüfen:</p>
+<ul><li><strong>Steuererklärungen und -berechnungen</strong>, Sätze, Einbehalte, Fristen und Formate bei der zuständigen Steuerbehörde;</li><li><strong>Lohnabrechnungen, arbeitsrechtliche Berechnungen, Leistungen und Beiträge</strong> zur Sozialversicherung;</li><li><strong>Verträge, Klauseln und Rechtstexte</strong>, deren Gültigkeit, Hinlänglichkeit und Eignung für den konkreten Fall;</li><li><strong>Rechnungen und Belege</strong>, deren Daten, Beträge, Steuern und Gültigkeitsanforderungen;</li><li>jegliche im Ergebnis enthaltenen Daten, Zahlen, Rechtszitate oder Verweise.</li></ul>
+<p>4.3. TuIAlista <strong>prüft, genehmigt oder validiert</strong> weder die von den Agenten erzeugten Ergebnisse noch die Entscheidungen, die der Kunde darauf stützt.</p>
+<hr />
+<h2>5. Agenten in sensiblen Bereichen (verstärkter Haftungsausschluss)</h2>
+<p>5.1. Bestimmte Agenten arbeiten in Bereichen mit <strong>hoher Tragweite und hohem Risiko</strong>, darunter —ohne Beschränkung— die Agenten für <strong>Steuer-Compliance</strong>, <strong>Lohnabrechnung und Personalwesen</strong>, <strong>Verträge</strong> und <strong>Rechnungen</strong>.</p>
+<p>5.2. Hinsichtlich dieser Agenten erkennt der Kunde ausdrücklich an und akzeptiert, dass:</p>
+<ul><li>ihre Ergebnisse <strong>die Prüfung durch einen Wirtschaftsprüfer/Steuerberater, Anwalt, Lohnspezialisten oder eine zuständige Fachperson nicht ersetzen</strong>;</li><li><strong>ein unentdeckter Fehler schwerwiegende Folgen haben kann</strong> (z. B. steuerliche Nachforderungen, Bußgelder, Zuschläge, Sanktionen, arbeitsrechtliche Streitigkeiten, Ungültigkeit oder Unzulänglichkeit von Verträgen oder Ablehnung von Belegen);</li><li><strong>die Einreichung von Erklärungen, die Auszahlung von Löhnen, die Unterzeichnung von Verträgen und die Ausstellung von Rechnungen in der ausschließlichen Verantwortung des Kunden liegen</strong>, der sie vor der Ausführung vollständig validieren muss; und</li><li>TuIAlista <strong>keine Haftung</strong> für solche Folgen übernimmt, im maximal gesetzlich zulässigen Umfang.</li></ul>
+<hr />
+<h2>6. KI-Modelle Dritter (Groq / Gemini)</h2>
+<p>6.1. Die Agenten rufen <strong>von Dritten betriebene KI-Modelle</strong> (standardmäßig <strong>Groq</strong>, mit Ausweichung auf <strong>Gemini</strong>) ausschließlich zum Formulieren von Antworten auf.</p>
+<p>6.2. TuIAlista <strong>garantiert weder</strong> die Richtigkeit, Eignung, Qualität, Kontinuität noch die Verfügbarkeit solcher Drittmodelle und <strong>haftet nicht</strong> für deren Ausfälle, Unterbrechungen, Änderungen, Qualitätsverschlechterungen oder Ergebnisse. Diese Anbieter sind TuIAlista fremde Einrichtungen und unterliegen ihren eigenen Bedingungen.</p>
+<p>6.3. Die Verfügbarkeit dieser Funktionen kann durch von TuIAlista nicht zu vertretende Ursachen beeinträchtigt werden (z. B. Nichtverfügbarkeit des KI-Anbieters oder der Netzverbindung).</p>
+<hr />
+<h2>7. Keine Gewährleistung</h2>
+<p>7.1. Im maximal gesetzlich zulässigen Umfang werden der Dienst und die von den Agenten erzeugten Ergebnisse <strong>„wie besehen" und „nach Verfügbarkeit"</strong> bereitgestellt, ohne jegliche ausdrückliche oder stillschweigende Gewährleistung, einschließlich —ohne Beschränkung— der Gewährleistung von <strong>Richtigkeit, Vollständigkeit, Eignung für einen bestimmten Zweck, Marktgängigkeit, Nichtverletzung oder Verfügbarkeit</strong>.</p>
+<p>7.2. TuIAlista <strong>garantiert nicht</strong>, dass die Ergebnisse korrekt, vollständig, aktuell oder für den Zweck des Kunden geeignet sind, noch dass der Dienst unterbrechungsfrei oder fehlerfrei arbeitet.</p>
+<hr />
+<h2>8. Haftungsbeschränkung</h2>
+<p>8.1. Im maximal gesetzlich zulässigen Umfang <strong>haften</strong> TuIAlista, seine Muttergesellschaft <strong>ORDINAL-BiA</strong> und deren Mitarbeiter <strong>nicht</strong> für mittelbare, beiläufige, besondere, Straf-, exemplarische oder Folgeschäden noch für <strong>entgangenen Gewinn, Einnahmeverluste, Datenverlust, steuerliche Nachforderungen, Bußgelder, Zuschläge oder Sanktionen</strong>, selbst wenn auf deren Möglichkeit hingewiesen wurde.</p>
+<p>8.2. <strong>Haftungsobergrenze.</strong> Im maximal gesetzlich zulässigen Umfang <strong>übersteigt</strong> die <strong>gesamte kumulierte Haftung</strong> von TuIAlista aus oder im Zusammenhang mit dem Dienst und den Ergebnissen der Agenten <strong>nicht den Betrag, den der Kunde für den Dienst in den zwölf (12) Monaten vor</strong> dem den Anspruch auslösenden Ereignis tatsächlich gezahlt hat.</p>
+<p>8.3. <strong>Risikoverteilung.</strong> Der Kunde erkennt an, dass die Preise des Dienstes diese Risikoverteilung widerspiegeln und dass TuIAlista den Dienst ohne diese Beschränkungen nicht zu den aktuellen Bedingungen anbieten könnte.</p>
+<p>8.4. Nichts in diesem Haftungsausschluss schließt Haftungen aus oder beschränkt sie, die nach anwendbarem Recht <strong>nicht ausgeschlossen oder beschränkt werden können</strong> (z. B. Vorsatz oder bestimmte Haftungen gegenüber Verbrauchern).</p>
+<hr />
+<h2>9. Verantwortung des Nutzers und angemessene Nutzung</h2>
+<p>9.1. Der Kunde verpflichtet sich, die Agenten sorgfältig zu nutzen, <strong>Sicherungskopien</strong> seiner Informationen aufzubewahren und sich bei kritischen Entscheidungen <strong>nicht ausschließlich</strong> auf KI-Ergebnisse zu verlassen.</p>
+<p>9.2. Der Kunde ist für die Verwendung der Ergebnisse und für seine Einhaltung der auf ihn anwendbaren Vorschriften verantwortlich.</p>
+<hr />
+<h2>10. Verhältnis zu anderen Dokumenten und anwendbares Recht</h2>
+<p>10.1. Dieser Haftungsausschluss ergänzt die <a href="/legal/terminos/">Nutzungsbedingungen</a>, die <a href="/legal/privacidad/">Datenschutzrichtlinie</a> und die <a href="/legal/compromiso-local/">Verpflichtung zur lokalen Verarbeitung</a>.</p>
+<p>10.2. Dieser Haftungsausschluss unterliegt den <strong>Gesetzen der Vereinigten Mexikanischen Staaten</strong>, mit Zuständigkeit der <strong>Gerichte von Mexiko-Stadt (CDMX)</strong>, gemäß Abschnitt 17 der <a href="/legal/terminos/">Nutzungsbedingungen</a>.</p>
+<p>10.3. Die <strong>spanische</strong> Fassung ist maßgeblich; Übersetzungen werden aus Bequemlichkeit bereitgestellt.</p>
+<hr />
+<h2>11. Kontakt</h2>
+<p>Fragen zu diesem Haftungsausschluss: <strong>legal@tuialista.com</strong> · <a href="https://www.tuialista.com">www.tuialista.com</a></p>
+<hr />
+<hr />
+<p><em>Ende des Dokuments.</em></p></article>
+<article class="doc" id="doc-it" data-lang="it" hidden><div class="trnote">Questa è una traduzione di cortesia. La versione spagnola è quella vigente.</div><h1>Esclusione di Responsabilità sull'Intelligenza Artificiale</h1>
+<blockquote><p>La versione vigente di questo documento è pubblicata su <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
+<p><strong>Versione:</strong> 1.0 · <strong>Ultimo aggiornamento:</strong> 21 luglio 2026 · <strong>In vigore dal:</strong> 21 luglio 2026</p>
+<hr />
+<h2>0. Avviso in evidenza (leggere prima di usare qualsiasi risultato)</h2>
+<blockquote><p><strong>Gli agenti di TuIAlista utilizzano l'intelligenza artificiale e il loro contenuto PUÒ CONTENERE ERRORI, OMISSIONI O IMPRECISIONI.</strong></p><p><strong>Nessun risultato costituisce consulenza fiscale, legale, contabile, giuslavoristica, finanziaria né professionale di alcun genere.</strong></p><p><strong>Lei è l'unico responsabile di verificare e validare ogni risultato con un professionista qualificato e con le fonti ufficiali prima di utilizzarlo, presentarlo a qualsiasi autorità o prendere decisioni sulla base di esso.</strong></p></blockquote>
+<hr />
+<h2>1. Oggetto di questo documento</h2>
+<p>1.1. La presente Esclusione di Responsabilità sull'Intelligenza Artificiale (l'<strong>«Esclusione»</strong>) forma parte integrante dei <a href="/legal/terminos/">Termini di Servizio</a> di <strong>TuIAlista</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a>), gestita da **<strong> (nome commerciale «TuIAlista», casa madre </strong>ORDINAL-BiA<strong>), RFC </strong><strong> e domicilio in </strong>**, Città del Messico, Messico.</p>
+<p>1.2. Installando o utilizzando qualsiasi agente, il Cliente dichiara di conoscere e accettare la presente Esclusione. In caso di conflitto tra la presente Esclusione e altri documenti riguardo alla responsabilità per i risultati dell'IA, <strong>prevale la presente Esclusione</strong>.</p>
+<hr />
+<h2>2. Natura degli agenti di IA</h2>
+<p>2.1. Gli agenti di TuIAlista generano contenuto mediante <strong>modelli di intelligenza artificiale di carattere probabilistico</strong>. Ciò implica che i loro risultati:</p>
+<ul><li><strong>possono contenere errori, imprecisioni, omissioni o affermazioni scorrette</strong> («allucinazioni»);</li><li><strong>possono non essere aggiornati</strong> rispetto alla normativa, alle tariffe, ai formati o ai criteri vigenti;</li><li><strong>possono variare</strong> a fronte di input uguali o simili; e</li><li><strong>non devono essere presunti esatti né completi</strong> per il solo fatto di essere stati generati dall'agente.</li></ul>
+<p>2.2. Gli agenti sono <strong>strumenti di supporto alla produttività</strong>, non sostituti del giudizio umano né della consulenza di un professionista qualificato.</p>
+<p>2.3. <strong>Elaborazione locale.</strong> L'analisi dei documenti e dei dati del Cliente avviene <strong>localmente sul suo dispositivo</strong> (vedere <a href="/legal/compromiso-local/">Impegno di Elaborazione Locale</a>). I modelli di IA di terzi sono utilizzati unicamente per <strong>redigere risposte</strong>; ciò non garantisce l'esattezza del contenuto.</p>
+<hr />
+<h2>3. Assenza di consulenza professionale e di rapporto professionista-cliente</h2>
+<p>3.1. Nessun risultato, testo, calcolo, classificazione, bozza o raccomandazione generato da un agente <strong>costituisce consulenza fiscale, legale, contabile, giuslavoristica, finanziaria, di conformità né professionale di alcun genere</strong>, né deve essere interpretato come tale.</p>
+<p>3.2. L'uso degli agenti <strong>non crea</strong> alcun rapporto professionista-cliente, contabile-cliente, avvocato-cliente né alcun rapporto di consulenza tra il Cliente e TuIAlista o la sua casa madre ORDINAL-BiA.</p>
+<p>3.3. <strong>Verifichi con un professionista.</strong> Prima di agire sulla base di qualsiasi risultato, il Cliente deve consultarlo con un contabile, avvocato, specialista di buste paga o altro professionista qualificato, e confrontarlo con le <strong>fonti ufficiali</strong> applicabili.</p>
+<hr />
+<h2>4. Dovere di verifica del Cliente</h2>
+<p>4.1. Il Cliente è l'<strong>unico responsabile</strong> della <strong>revisione, verifica e validazione della totalità dei risultati</strong> prima di utilizzarli, distribuirli, presentarli ad autorità o terzi, o prendere decisioni sulla base di essi.</p>
+<p>4.2. In particolare, e senza limitazione, il Cliente deve verificare in modo indipendente, secondo il caso:</p>
+<ul><li><strong>Dichiarazioni e calcoli fiscali</strong>, aliquote, ritenute, termini e formati presso l'autorità tributaria competente;</li><li><strong>Buste paga, calcoli giuslavoristici, prestazioni e contributi</strong> previdenziali;</li><li><strong>Contratti, clausole e testi legali</strong>, la loro validità, sufficienza e adeguatezza al caso concreto;</li><li><strong>Fatture e giustificativi</strong>, i loro dati, importi, imposte e requisiti di validità;</li><li>Qualsiasi dato, cifra, citazione normativa o riferimento contenuto nel risultato.</li></ul>
+<p>4.3. TuIAlista <strong>non revisiona, approva né valida</strong> i risultati generati dagli agenti né le decisioni che il Cliente prende sulla base di essi.</p>
+<hr />
+<h2>5. Agenti in materie sensibili (esclusione rafforzata)</h2>
+<p>5.1. Determinati agenti operano in materie ad <strong>alto impatto e rischio</strong>, tra cui —senza limitazione— gli agenti di <strong>Conformità Fiscale</strong>, <strong>Buste Paga e Risorse Umane</strong>, <strong>Contratti</strong> e <strong>Fatture</strong>.</p>
+<p>5.2. Riguardo a tali agenti, il Cliente riconosce e accetta espressamente che:</p>
+<ul><li>i loro risultati <strong>non sostituiscono</strong> la revisione di un commercialista, avvocato, specialista di buste paga o professionista competente;</li><li><strong>un errore non rilevato può avere conseguenze gravi</strong> (ad esempio, contenziosi fiscali, sanzioni, more, penalità, controversie di lavoro, invalidità o insufficienza di contratti, o rifiuto di giustificativi);</li><li><strong>la presentazione di dichiarazioni, il pagamento delle buste paga, la firma di contratti e l'emissione di fatture sono atti di esclusiva responsabilità del Cliente</strong>, che deve validarli integralmente prima di eseguirli; e</li><li>TuIAlista <strong>non assume responsabilità</strong> per tali conseguenze, nella misura massima consentita dalla legge.</li></ul>
+<hr />
+<h2>6. Modelli di IA di terzi (Groq / Gemini)</h2>
+<p>6.1. Gli agenti invocano <strong>modelli di IA gestiti da terzi</strong> (per impostazione predefinita <strong>Groq</strong>, con commutazione di riserva su <strong>Gemini</strong>) esclusivamente per redigere risposte.</p>
+<p>6.2. TuIAlista <strong>non garantisce</strong> l'esattezza, l'idoneità, la qualità, la continuità né la disponibilità di tali modelli di terzi, e <strong>non è responsabile</strong> per i loro guasti, interruzioni, modifiche, degradi di qualità o risultati. Tali fornitori sono entità estranee a TuIAlista e sono regolati dai propri termini.</p>
+<p>6.3. La disponibilità di queste funzioni può essere influenzata da cause estranee a TuIAlista (ad esempio, indisponibilità del fornitore di IA o del collegamento di rete).</p>
+<hr />
+<h2>7. Nessuna garanzia</h2>
+<p>7.1. Nella misura massima consentita dalla legge applicabile, il Servizio e i risultati generati dagli agenti sono forniti <strong>«così com'è» e «secondo disponibilità»</strong>, senza garanzie di alcun tipo, espresse o implicite, incluse —senza limitazione— le garanzie di <strong>esattezza, completezza, idoneità a uno scopo particolare, commerciabilità, non violazione o disponibilità</strong>.</p>
+<p>7.2. TuIAlista <strong>non garantisce</strong> che i risultati siano corretti, completi, aggiornati o adeguati allo scopo del Cliente, né che il Servizio funzioni in modo ininterrotto o esente da errori.</p>
+<hr />
+<h2>8. Limitazione di responsabilità</h2>
+<p>8.1. Nella misura massima consentita dalla legge applicabile, TuIAlista, la sua casa madre <strong>ORDINAL-BiA</strong> e i suoi collaboratori <strong>non saranno responsabili</strong> per danni indiretti, incidentali, speciali, punitivi, esemplari o consequenziali, né per <strong>mancato guadagno, perdita di ricavi, perdita di dati, contenziosi fiscali, sanzioni, more o penalità</strong>, anche se fosse stata avvertita la loro possibilità.</p>
+<p>8.2. <strong>Limite di responsabilità.</strong> Nella misura massima consentita dalla legge, la <strong>responsabilità totale e cumulativa</strong> di TuIAlista derivante da o relativa al Servizio e ai risultati degli agenti <strong>non eccederà l'importo effettivamente pagato dal Cliente per il Servizio durante i dodici (12) mesi precedenti</strong> al fatto che ha dato origine al reclamo.</p>
+<p>8.3. <strong>Allocazione del rischio.</strong> Il Cliente riconosce che i prezzi del Servizio riflettono tale allocazione del rischio e che, senza queste limitazioni, TuIAlista non potrebbe offrire il Servizio alle condizioni attuali.</p>
+<p>8.4. Nulla nella presente Esclusione esclude o limita responsabilità che, ai sensi della legge applicabile, <strong>non possano essere escluse né limitate</strong> (ad esempio, dolo o determinate responsabilità verso i consumatori).</p>
+<hr />
+<h2>9. Responsabilità dell'utente e uso adeguato</h2>
+<p>9.1. Il Cliente si obbliga a usare gli agenti con diligenza, a <strong>conservare copie di backup</strong> delle proprie informazioni e a <strong>non dipendere esclusivamente</strong> dai risultati dell'IA per decisioni critiche.</p>
+<p>9.2. Il Cliente è responsabile dell'uso che fa dei risultati e del proprio rispetto della normativa a lui applicabile.</p>
+<hr />
+<h2>10. Rapporto con altri documenti e legge applicabile</h2>
+<p>10.1. La presente Esclusione integra i <a href="/legal/terminos/">Termini di Servizio</a>, l'<a href="/legal/privacidad/">Informativa sulla Privacy</a> e l'<a href="/legal/compromiso-local/">Impegno di Elaborazione Locale</a>.</p>
+<p>10.2. La presente Esclusione è regolata dalle <strong>leggi degli Stati Uniti Messicani</strong>, con giurisdizione dei <strong>tribunali di Città del Messico (CDMX)</strong>, ai sensi della Sezione 17 dei <a href="/legal/terminos/">Termini di Servizio</a>.</p>
+<p>10.3. La versione in <strong>spagnolo</strong> è la versione facente fede; le traduzioni sono fornite per comodità.</p>
+<hr />
+<h2>11. Contatto</h2>
+<p>Domande sulla presente Esclusione: <strong>legal@tuialista.com</strong> · <a href="https://www.tuialista.com">www.tuialista.com</a></p>
+<hr />
+<hr />
+<p><em>Fine del documento.</em></p></article>
+</main>
+<footer>&copy; <span id="y"></span> TuIAlista &middot; <a href="/soporte">Soporte</a> &middot; <a href="/">Inicio</a></footer>
+<script>
+document.getElementById("y").textContent=new Date().getFullYear();
+(function(){
+  var LANGS=["es", "en", "pt", "fr", "de", "it"];
+  var BACK={"es": "← Volver al portal", "en": "← Back to portal", "pt": "← Voltar ao portal", "fr": "← Retour à l'espace", "de": "← Zurück zum Portal", "it": "← Torna al portale"};
+  function detect(){try{var l=(localStorage.getItem("tuialista_lang")||"es").slice(0,2).toLowerCase();return LANGS.indexOf(l)>=0?l:"es";}catch(e){return "es";}}
+  var sel=document.getElementById("lang-sel"), back=document.getElementById("back-link");
+  function show(l){
+    LANGS.forEach(function(x){var a=document.getElementById("doc-"+x);if(a)a.hidden=(x!==l);});
+    document.documentElement.lang=l; if(sel)sel.value=l; if(back&&BACK[l])back.textContent=BACK[l];
+  }
+  if(sel)sel.addEventListener("change",function(){try{localStorage.setItem("tuialista_lang",sel.value);}catch(e){}show(sel.value);});
+  show(detect());
+})();
+</script>
 </body>
 </html>

@@ -11,12 +11,14 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Inter',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
 header{position:sticky;top:0;background:rgba(245,246,244,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
-.nav{max-width:820px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.nav{max-width:820px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
 .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
 .logo b{color:var(--signal)}
+.nav-right{display:flex;align-items:center;gap:14px}
 .nav a.back{color:var(--muted);text-decoration:none;font-size:14px}
 .nav a.back:hover{color:var(--ink)}
+#lang-sel{font-family:'Inter',sans-serif;font-size:13.5px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:7px;padding:5px 8px;cursor:pointer}
 main{max-width:820px;margin:0 auto;padding:40px 24px 80px}
 .doc h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,36px);line-height:1.15;margin-bottom:8px}
 .doc h2{font-family:'Space Grotesk';font-size:22px;margin:34px 0 12px}
@@ -26,45 +28,34 @@ main{max-width:820px;margin:0 auto;padding:40px 24px 80px}
 .doc li{margin:6px 0}
 .doc a{color:var(--signal-dim)}
 .doc strong{color:var(--ink)}
+.doc code{background:#eceee9;padding:1px 5px;border-radius:4px;font-size:.92em}
+.doc pre{background:#0f1922;color:#e6e9e7;padding:14px 16px;border-radius:8px;overflow:auto;margin:16px 0;font-size:13px}
+.doc pre code{background:none;color:inherit;padding:0}
 .doc blockquote{border-left:3px solid var(--signal);background:#eceee9;padding:12px 18px;margin:16px 0;border-radius:0 8px 8px 0;color:var(--muted);font-size:14.5px}
+.doc blockquote p{margin:6px 0;color:var(--muted)}
 .doc hr{border:none;border-top:1px solid var(--line);margin:28px 0}
-.doc table{border-collapse:collapse;margin:16px 0;font-size:14px;width:100%}
-.doc th,.doc td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+.trnote{background:#eef2f5;border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--muted);margin-bottom:24px}
 footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px}
 footer a{color:#cdd5d9;text-decoration:none}
 </style>
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Compromiso de Procesamiento Local \u2014 TuIAlista",
-  "description": "",
-  "url": "https://tuialista.com/legal\\compromiso-local/",
-  "isPartOf": {
-    "@type": "WebSite",
-    "name": "Tuialista",
-    "url": "https://tuialista.com"
-  }
-}
+{"@context":"https://schema.org","@type":"WebPage","name":"Compromiso de Procesamiento Local — TuIAlista","url":"https://tuialista.com/legal/compromiso-local/","isPartOf":{"@type":"WebSite","name":"Tuialista","url":"https://tuialista.com"}}
 </script>
 <meta property="og:title" content="Compromiso de Procesamiento Local — TuIAlista">
-<meta property="og:description" content="">
-<meta property="og:url" content="https://tuialista.com/legal\compromiso-local/">
+<meta property="og:url" content="https://tuialista.com/legal/compromiso-local/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://tuialista.com/assets/img/icon-512.png">
 <meta property="og:site_name" content="Tuialista">
 <meta property="og:locale" content="es_MX">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Compromiso de Procesamiento Local — TuIAlista">
-<meta name="twitter:description" content="">
 <script defer data-domain="tuialista.com" src="https://plausible.io/js/script.js"></script>
 </head>
 <body>
-<header><div class="nav"><a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a><a class="back" href="/portal/">&larr; Volver al portal</a></div></header>
-<main><div class="doc"><h1>Compromiso de Procesamiento Local y Privacidad</h1>
-<blockquote>
-<p>La versión vigente de este documento se publica en <a href="https://www.tuialista.com">www.tuialista.com</a>.</p>
-</blockquote>
+<header><div class="nav"><a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+<div class="nav-right"><select id="lang-sel" aria-label="Idioma / Language"><option value="es">Español</option><option value="en">English</option><option value="pt">Português</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="it">Italiano</option></select><a class="back" href="/portal/" id="back-link">← Volver al portal</a></div></div></header>
+<main>
+<article class="doc" id="doc-es" data-lang="es"><h1>Compromiso de Procesamiento Local y Privacidad</h1>
+<blockquote><p>La versión vigente de este documento se publica en <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
 <p>En TuIAlista construimos nuestros agentes sobre un principio simple: <strong>el trabajo ocurre en tu equipo y tus datos se quedan contigo.</strong> Este documento explica, de forma verificable, cómo está diseñada nuestra arquitectura para que así sea.</p>
 <hr />
 <h2>1. Nuestro compromiso</h2>
@@ -73,59 +64,230 @@ footer a{color:#cdd5d9;text-decoration:none}
 <p>Este es el mayor diferenciador de TuIAlista: no somos un servicio en la nube al que le entregas tus datos. Somos software que corre donde tú decides.</p>
 <hr />
 <h2>2. Cómo funciona técnicamente</h2>
-<ul>
-<li><strong>Los agentes se ejecutan localmente.</strong> Se instalan y corren en tu equipo. Leen los archivos que tú les indicas, en las carpetas que tú defines, sin copiarlos ni subirlos a ningún lado.</li>
-<li><strong>El procesamiento es local.</strong> La extracción de datos, la detección de patrones y la organización de tu información ocurren dentro de tu máquina.</li>
-<li><strong>La plataforma solo valida la licencia.</strong> El único intercambio con nuestros servidores es una comprobación periódica de que tu suscripción está activa. Esa comprobación viaja firmada criptográficamente y <strong>no incluye el contenido de lo que procesas.</strong></li>
-<li><strong>Funciona sin conexión.</strong> Como el trabajo es local, los agentes pueden operar incluso sin internet durante un periodo de tolerancia; la conexión solo se necesita para revalidar la licencia.</li>
-<li><strong>Las funciones de redacción con IA son la excepción acotada.</strong> Algunas funciones opcionales (por ejemplo, generar un resumen) envían un fragmento del texto a un motor de IA para redactar la respuesta. Esto se indica en cada función, y las tareas de detección y organización no lo requieren.</li>
-</ul>
+<ul><li><strong>Los agentes se ejecutan localmente.</strong> Se instalan y corren en tu equipo. Leen los archivos que tú les indicas, en las carpetas que tú defines, sin copiarlos ni subirlos a ningún lado.</li><li><strong>El procesamiento es local.</strong> La extracción de datos, la detección de patrones y la organización de tu información ocurren dentro de tu máquina.</li><li><strong>La plataforma solo valida la licencia.</strong> El único intercambio con nuestros servidores es una comprobación periódica de que tu suscripción está activa. Esa comprobación viaja firmada criptográficamente y <strong>no incluye el contenido de lo que procesas.</strong></li><li><strong>Funciona sin conexión.</strong> Como el trabajo es local, los agentes pueden operar incluso sin internet durante un periodo de tolerancia; la conexión solo se necesita para revalidar la licencia.</li><li><strong>Las funciones de redacción con IA son la excepción acotada.</strong> Algunas funciones opcionales (por ejemplo, generar un resumen) envían un fragmento del texto a un motor de IA para redactar la respuesta. Esto se indica en cada función, y las tareas de detección y organización no lo requieren.</li></ul>
 <hr />
 <h2>3. Qué recibe la plataforma y qué no</h2>
 <p><strong>Lo que SÍ recibe la plataforma (lo mínimo para validar tu licencia):</strong></p>
-<ul>
-<li>Tu <strong>clave de licencia</strong>.</li>
-<li>El <strong>estado de tu suscripción</strong> (activa, en prueba, vencida).</li>
-<li>Un <strong>identificador técnico del equipo</strong> (una huella derivada del hardware) para vincular la licencia a tu dispositivo y prevenir uso no autorizado.</li>
-</ul>
+<ul><li>Tu <strong>clave de licencia</strong>.</li><li>El <strong>estado de tu suscripción</strong> (activa, en prueba, vencida).</li><li>Un <strong>identificador técnico del equipo</strong> (una huella derivada del hardware) para vincular la licencia a tu dispositivo y prevenir uso no autorizado.</li></ul>
 <p><strong>Lo que NO recibe NUNCA:</strong></p>
-<ul>
-<li>El contenido de tus <strong>archivos, documentos, contratos, facturas, correos o bases de datos</strong>.</li>
-<li>Los <strong>datos que procesas</strong> con el agente ni los resultados de ese procesamiento.</li>
-<li>Cualquier información personal o confidencial contenida en el material que analizas.</li>
-</ul>
+<ul><li>El contenido de tus <strong>archivos, documentos, contratos, facturas, correos o bases de datos</strong>.</li><li>Los <strong>datos que procesas</strong> con el agente ni los resultados de ese procesamiento.</li><li>Cualquier información personal o confidencial contenida en el material que analizas.</li></ul>
 <p>En otras palabras: recibimos lo justo para saber que tienes derecho a usar el software, y nada de lo que el software lee o produce.</p>
 <hr />
 <h2>4. Cómo puedes verificarlo tú mismo</h2>
 <p>No te pedimos que confíes a ciegas. Como el agente corre en tu equipo, puedes comprobarlo:</p>
-<ul>
-<li><strong>Monitorea las conexiones de red del agente</strong> con las herramientas de tu sistema operativo o un analizador de tráfico (por ejemplo, un cortafuegos, <code>Resource Monitor</code> en Windows, <code>Little Snitch</code> en macOS, o <code>Wireshark</code>). Verás que las conexiones se limitan a la validación de licencia y, cuando corresponda, al motor de IA de las funciones opcionales.</li>
-<li><strong>Observa que tus archivos no se transmiten.</strong> El contenido de tus documentos no aparece en el tráfico saliente durante el análisis local.</li>
-<li><strong>Desconéctate de internet.</strong> Las funciones locales (detección, extracción, organización) siguen funcionando dentro del periodo de tolerancia, lo que confirma que el procesamiento no depende de nuestros servidores.</li>
-</ul>
+<ul><li><strong>Monitorea las conexiones de red del agente</strong> con las herramientas de tu sistema operativo o un analizador de tráfico (por ejemplo, un cortafuegos, <code>Resource Monitor</code> en Windows, <code>Little Snitch</code> en macOS, o <code>Wireshark</code>). Verás que las conexiones se limitan a la validación de licencia y, cuando corresponda, al motor de IA de las funciones opcionales.</li><li><strong>Observa que tus archivos no se transmiten.</strong> El contenido de tus documentos no aparece en el tráfico saliente durante el análisis local.</li><li><strong>Desconéctate de internet.</strong> Las funciones locales (detección, extracción, organización) siguen funcionando dentro del periodo de tolerancia, lo que confirma que el procesamiento no depende de nuestros servidores.</li></ul>
 <p>Tu equipo de TI puede realizar estas verificaciones en el marco de su propia evaluación de seguridad.</p>
 <hr />
 <h2>5. Ventaja para tu cumplimiento</h2>
 <p>Que los datos no salgan de tu control facilita tu cumplimiento normativo, porque reduce la superficie de exposición y evita transferencias a terceros. Este diseño te ayuda a alinearte con marcos como:</p>
-<ul>
-<li><strong>GDPR</strong> (Reglamento General de Protección de Datos, Unión Europea).</li>
-<li><strong>LFPDPPP</strong> (Ley Federal de Protección de Datos Personales en Posesión de los Particulares, México).</li>
-<li><strong>LGPD</strong> (Lei Geral de Proteção de Dados, Brasil).</li>
-<li>Y otras normativas locales de protección de datos.</li>
-</ul>
+<ul><li><strong>GDPR</strong> (Reglamento General de Protección de Datos, Unión Europea).</li><li><strong>LFPDPPP</strong> (Ley Federal de Protección de Datos Personales en Posesión de los Particulares, México).</li><li><strong>LGPD</strong> (Lei Geral de Proteção de Dados, Brasil).</li><li>Y otras normativas locales de protección de datos.</li></ul>
 <p>Al mantener el procesamiento en tu equipo, <strong>tú sigues siendo el responsable y custodio de tus datos</strong>, sin intermediarios que los reciban o almacenen. Esto simplifica tus evaluaciones de impacto, tus registros de tratamiento y tus obligaciones frente a terceros.</p>
 <p>Este documento describe una arquitectura, no constituye asesoría legal ni una certificación de cumplimiento. La responsabilidad de cumplir con la normativa aplicable a tu organización sigue siendo tuya.</p>
 <hr />
 <h2>6. Nota legal</h2>
 <p>Este Compromiso es operado y publicado por <strong>Edgar Apolonio Aguilera</strong>, <strong>persona física con actividad empresarial</strong> que opera bajo el nombre comercial <strong>"TuIAlista"</strong>, con RFC <strong>AOAE781008V98</strong> y domicilio fiscal en <strong>Calle Malitzin, Manzana 10, Lote 23, Colonia Tepeaca, C.P. 01550, Alcaldía Álvaro Obregón</strong>, Ciudad de México, México.</p>
-<blockquote>
-<p><strong>Nota sobre la estructura del negocio.</strong> TuIAlista opera actualmente como negocio de persona física con actividad empresarial. Se prevé la futura constitución de la persona moral <strong>ORDINAL-BiA</strong>, a la que se transferirá la titularidad y la marca; los documentos se actualizarán en ese momento.</p>
-</blockquote>
+<blockquote><p><strong>Nota sobre la estructura del negocio.</strong> TuIAlista opera actualmente como negocio de persona física con actividad empresarial. Se prevé la futura constitución de la persona moral <strong>ORDINAL-BiA</strong>, a la que se transferirá la titularidad y la marca; los documentos se actualizarán en ese momento.</p></blockquote>
 <p>Este Compromiso de Procesamiento Local y Privacidad describe el diseño técnico de nuestros agentes y <strong>se complementa con nuestros Términos y Condiciones y nuestra Política de Privacidad</strong>, que rigen la relación contractual completa. En caso de discrepancia, prevalecen esos documentos.</p>
 <p>Este compromiso es una declaración de arquitectura verificable, no una garantía absoluta frente a todo escenario posible. Te recomendamos <strong>validar su aplicación según la normativa vigente en tu país y sector</strong>, e involucrar a tu equipo legal y de seguridad antes de tomar decisiones de cumplimiento basadas en este documento.</p>
 <p>Si tienes preguntas sobre este compromiso, escríbenos a <strong>privacidad@tuialista.com</strong>.</p>
 <hr />
-<p><em>Fin del documento.</em></p></div></main>
-<footer>&copy; <span id="y"></span> TuIAlista &middot; <a href="/soporte">Soporte</a> &middot; <a href="/">Inicio</a><script>document.getElementById("y").textContent=new Date().getFullYear()</script></footer>
+<p><em>Fin del documento.</em></p></article>
+<article class="doc" id="doc-en" data-lang="en" hidden><div class="trnote">This is a courtesy translation. The Spanish version is the governing version.</div><h1>Local Processing and Privacy Commitment</h1>
+<blockquote><p>The current version of this document is published at <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
+<p>At TuIAlista we build our agents on a simple principle: <strong>the work happens on your machine, and your data stays with you.</strong> This document explains, in a verifiable way, how our architecture is designed to make that true.</p>
+<hr />
+<h2>1. Our commitment</h2>
+<p>TuIAlista agents process your information <strong>locally, on your own machine</strong>. The content of your files, documents, and data <strong>is not sent, is not received by us, and is not stored</strong> on our servers.</p>
+<p>Our role is limited to validating that your license is active. All analysis —reading a contract, reviewing an invoice, querying a database, organizing an inbox— happens on the machine where you installed the agent.</p>
+<p>This is TuIAlista's biggest differentiator: we are not a cloud service you hand your data to. We are software that runs where you decide.</p>
+<hr />
+<h2>2. How it works technically</h2>
+<ul><li><strong>Agents run locally.</strong> They are installed and run on your machine. They read the files you point them to, in the folders you define, without copying or uploading them anywhere.</li><li><strong>Processing is local.</strong> Data extraction, pattern detection, and the organization of your information happen inside your machine.</li><li><strong>The platform only validates the license.</strong> The only exchange with our servers is a periodic check that your subscription is active. That check travels cryptographically signed and <strong>does not include the content of what you process.</strong></li><li><strong>It works offline.</strong> Because the work is local, agents can operate even without internet during a grace period; a connection is only needed to re-validate the license.</li><li><strong>AI drafting features are the limited exception.</strong> Some optional features (for example, generating a summary) send a fragment of the text to an AI engine to draft the response. This is indicated on each feature, and the detection and organization tasks do not require it.</li></ul>
+<hr />
+<h2>3. What the platform receives and what it does not</h2>
+<p><strong>What the platform DOES receive (the minimum to validate your license):</strong></p>
+<ul><li>Your <strong>license key</strong>.</li><li>Your <strong>subscription status</strong> (active, in trial, expired).</li><li>A <strong>technical device identifier</strong> (a fingerprint derived from the hardware) to bind the license to your device and prevent unauthorized use.</li></ul>
+<p><strong>What it NEVER receives:</strong></p>
+<ul><li>The content of your <strong>files, documents, contracts, invoices, emails, or databases</strong>.</li><li>The <strong>data you process</strong> with the agent, or the results of that processing.</li><li>Any personal or confidential information contained in the material you analyze.</li></ul>
+<p>In other words: we receive just enough to know you are entitled to use the software, and nothing of what the software reads or produces.</p>
+<hr />
+<h2>4. How you can verify it yourself</h2>
+<p>We don't ask you to trust us blindly. Because the agent runs on your machine, you can check for yourself:</p>
+<ul><li><strong>Monitor the agent's network connections</strong> with your operating system's tools or a traffic analyzer (for example, a firewall, <code>Resource Monitor</code> on Windows, <code>Little Snitch</code> on macOS, or <code>Wireshark</code>). You will see that connections are limited to license validation and, where applicable, the AI engine of the optional features.</li><li><strong>Observe that your files are not transmitted.</strong> The content of your documents does not appear in outbound traffic during local analysis.</li><li><strong>Disconnect from the internet.</strong> The local features (detection, extraction, organization) keep working within the grace period, confirming that processing does not depend on our servers.</li></ul>
+<p>Your IT team can perform these checks as part of their own security assessment.</p>
+<hr />
+<h2>5. Advantage for your compliance</h2>
+<p>Keeping data out of external hands supports your regulatory compliance, because it reduces the exposure surface and avoids transfers to third parties. This design helps you align with frameworks such as:</p>
+<ul><li><strong>GDPR</strong> (General Data Protection Regulation, European Union).</li><li><strong>LFPDPPP</strong> (Federal Law on the Protection of Personal Data Held by Private Parties, Mexico).</li><li><strong>LGPD</strong> (Lei Geral de Proteção de Dados, Brazil).</li><li>And other local data protection regulations.</li></ul>
+<p>By keeping processing on your machine, <strong>you remain the controller and custodian of your data</strong>, with no intermediary receiving or storing it. This simplifies your impact assessments, your records of processing, and your obligations toward third parties.</p>
+<p>This document describes an architecture; it does not constitute legal advice or a compliance certification. The responsibility to comply with the regulations applicable to your organization remains yours.</p>
+<hr />
+<h2>6. Legal note</h2>
+<p>This Local Processing and Privacy Commitment describes the technical design of our agents and <strong>is complemented by our Terms and Conditions and our Privacy Policy</strong>, which govern the full contractual relationship. In the event of any discrepancy, those documents prevail.</p>
+<p>This commitment is a verifiable statement of architecture, not an absolute guarantee against every possible scenario. We recommend that you <strong>validate its application according to the regulations in force in your country and sector</strong>, and involve your legal and security teams before making compliance decisions based on this document.</p>
+<p>If you have questions about this commitment, write to us at <strong>privacidad@tuialista.com</strong>.</p>
+<hr />
+<p><em>End of document.</em></p></article>
+<article class="doc" id="doc-pt" data-lang="pt" hidden><div class="trnote">Esta é uma tradução de cortesia. A versão em espanhol é a versão vigente.</div><h1>Compromisso de Processamento Local e Privacidade</h1>
+<blockquote><p>A versão vigente deste documento é publicada em <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
+<p>Na TuIAlista construímos os nossos agentes sobre um princípio simples: <strong>o trabalho acontece no seu equipamento e os seus dados ficam com você.</strong> Este documento explica, de forma verificável, como a nossa arquitetura foi projetada para que assim seja.</p>
+<hr />
+<h2>1. O nosso compromisso</h2>
+<p>Os agentes da TuIAlista processam as suas informações <strong>localmente, no seu próprio equipamento</strong>. O conteúdo dos seus arquivos, documentos e dados <strong>não é enviado, não é recebido por nós e não é armazenado</strong> nos nossos servidores.</p>
+<p>O nosso papel limita-se a validar que a sua licença está ativa. Toda a análise —ler um contrato, revisar uma fatura, consultar um banco de dados, organizar um e-mail— acontece na máquina onde você instalou o agente.</p>
+<p>Este é o maior diferencial da TuIAlista: não somos um serviço na nuvem ao qual você entrega os seus dados. Somos software que roda onde você decide.</p>
+<hr />
+<h2>2. Como funciona tecnicamente</h2>
+<ul><li><strong>Os agentes são executados localmente.</strong> São instalados e rodam no seu equipamento. Leem os arquivos que você indica, nas pastas que você define, sem copiá-los nem enviá-los para lugar nenhum.</li><li><strong>O processamento é local.</strong> A extração de dados, a detecção de padrões e a organização das suas informações acontecem dentro da sua máquina.</li><li><strong>A plataforma apenas valida a licença.</strong> A única troca com os nossos servidores é uma verificação periódica de que a sua assinatura está ativa. Essa verificação trafega assinada criptograficamente e <strong>não inclui o conteúdo daquilo que você processa.</strong></li><li><strong>Funciona sem conexão.</strong> Como o trabalho é local, os agentes podem operar mesmo sem internet durante um período de tolerância; a conexão só é necessária para revalidar a licença.</li><li><strong>As funções de redação com IA são a exceção delimitada.</strong> Algumas funções opcionais (por exemplo, gerar um resumo) enviam um trecho do texto a um motor de IA para redigir a resposta. Isso é indicado em cada função, e as tarefas de detecção e organização não o exigem.</li></ul>
+<hr />
+<h2>3. O que a plataforma recebe e o que não recebe</h2>
+<p><strong>O que a plataforma RECEBE (o mínimo para validar a sua licença):</strong></p>
+<ul><li>A sua <strong>chave de licença</strong>.</li><li>O <strong>estado da sua assinatura</strong> (ativa, em teste, vencida).</li><li>Um <strong>identificador técnico do equipamento</strong> (uma impressão derivada do hardware) para vincular a licença ao seu dispositivo e prevenir uso não autorizado.</li></ul>
+<p><strong>O que NUNCA recebe:</strong></p>
+<ul><li>O conteúdo dos seus <strong>arquivos, documentos, contratos, faturas, e-mails ou bancos de dados</strong>.</li><li>Os <strong>dados que você processa</strong> com o agente nem os resultados desse processamento.</li><li>Qualquer informação pessoal ou confidencial contida no material que você analisa.</li></ul>
+<p>Em outras palavras: recebemos apenas o suficiente para saber que você tem direito de usar o software, e nada do que o software lê ou produz.</p>
+<hr />
+<h2>4. Como você mesmo pode verificar</h2>
+<p>Não pedimos que você confie às cegas. Como o agente roda no seu equipamento, você pode comprovar:</p>
+<ul><li><strong>Monitore as conexões de rede do agente</strong> com as ferramentas do seu sistema operacional ou um analisador de tráfego (por exemplo, um firewall, o <code>Resource Monitor</code> no Windows, o <code>Little Snitch</code> no macOS ou o <code>Wireshark</code>). Você verá que as conexões se limitam à validação de licença e, quando aplicável, ao motor de IA das funções opcionais.</li><li><strong>Observe que os seus arquivos não são transmitidos.</strong> O conteúdo dos seus documentos não aparece no tráfego de saída durante a análise local.</li><li><strong>Desconecte-se da internet.</strong> As funções locais (detecção, extração, organização) continuam funcionando dentro do período de tolerância, o que confirma que o processamento não depende dos nossos servidores.</li></ul>
+<p>A sua equipe de TI pode realizar essas verificações no âmbito da sua própria avaliação de segurança.</p>
+<hr />
+<h2>5. Vantagem para a sua conformidade</h2>
+<p>Manter os dados fora do alcance de terceiros favorece a sua conformidade regulatória, pois reduz a superfície de exposição e evita transferências a terceiros. Este design ajuda você a se alinhar com marcos como:</p>
+<ul><li><strong>GDPR</strong> (Regulamento Geral sobre a Proteção de Dados, União Europeia).</li><li><strong>LFPDPPP</strong> (Lei Federal de Proteção de Dados Pessoais em Posse de Particulares, México).</li><li><strong>LGPD</strong> (Lei Geral de Proteção de Dados, Brasil).</li><li>E outras normas locais de proteção de dados.</li></ul>
+<p>Ao manter o processamento no seu equipamento, <strong>você continua sendo o responsável e o custodiante dos seus dados</strong>, sem intermediários que os recebam ou armazenem. Isso simplifica as suas avaliações de impacto, os seus registros de tratamento e as suas obrigações perante terceiros.</p>
+<p>Este documento descreve uma arquitetura; não constitui aconselhamento jurídico nem uma certificação de conformidade. A responsabilidade de cumprir a normativa aplicável à sua organização continua sendo sua.</p>
+<hr />
+<h2>6. Nota legal</h2>
+<p>Este Compromisso de Processamento Local e Privacidade descreve o desenho técnico dos nossos agentes e <strong>é complementado pelos nossos Termos e Condições e pela nossa Política de Privacidade</strong>, que regem a relação contratual completa. Em caso de divergência, prevalecem esses documentos.</p>
+<p>Este compromisso é uma declaração de arquitetura verificável, não uma garantia absoluta contra todo cenário possível. Recomendamos que você <strong>valide a sua aplicação de acordo com a normativa vigente no seu país e setor</strong> e envolva as suas equipes jurídica e de segurança antes de tomar decisões de conformidade com base neste documento.</p>
+<p>Se tiver dúvidas sobre este compromisso, escreva para <strong>privacidad@tuialista.com</strong>.</p>
+<hr />
+<p><em>Fim do documento.</em></p></article>
+<article class="doc" id="doc-fr" data-lang="fr" hidden><div class="trnote">Ceci est une traduction de courtoisie. La version espagnole fait foi.</div><h1>Engagement de traitement local et de confidentialité</h1>
+<blockquote><p>La version en vigueur de ce document est publiée sur <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
+<p>Chez TuIAlista, nous construisons nos agents sur un principe simple : <strong>le travail se fait sur votre machine, et vos données restent chez vous.</strong> Ce document explique, de manière vérifiable, comment notre architecture est conçue pour qu'il en soit ainsi.</p>
+<hr />
+<h2>1. Notre engagement</h2>
+<p>Les agents TuIAlista traitent vos informations <strong>localement, sur votre propre machine</strong>. Le contenu de vos fichiers, documents et données <strong>n'est pas envoyé, n'est pas reçu par nous et n'est pas stocké</strong> sur nos serveurs.</p>
+<p>Notre rôle se limite à valider que votre licence est active. Toute l'analyse —lire un contrat, examiner une facture, interroger une base de données, organiser une messagerie— se déroule sur la machine où vous avez installé l'agent.</p>
+<p>C'est le plus grand facteur de différenciation de TuIAlista : nous ne sommes pas un service cloud auquel vous confiez vos données. Nous sommes un logiciel qui s'exécute là où vous le décidez.</p>
+<hr />
+<h2>2. Comment cela fonctionne techniquement</h2>
+<ul><li><strong>Les agents s'exécutent localement.</strong> Ils sont installés et fonctionnent sur votre machine. Ils lisent les fichiers que vous leur indiquez, dans les dossiers que vous définissez, sans les copier ni les téléverser où que ce soit.</li><li><strong>Le traitement est local.</strong> L'extraction des données, la détection des motifs et l'organisation de vos informations se font au sein de votre machine.</li><li><strong>La plateforme ne fait que valider la licence.</strong> Le seul échange avec nos serveurs est une vérification périodique du caractère actif de votre abonnement. Cette vérification circule signée cryptographiquement et <strong>n'inclut pas le contenu de ce que vous traitez.</strong></li><li><strong>Cela fonctionne hors ligne.</strong> Comme le travail est local, les agents peuvent fonctionner même sans internet pendant une période de tolérance ; une connexion n'est nécessaire que pour revalider la licence.</li><li><strong>Les fonctions de rédaction par IA sont l'exception encadrée.</strong> Certaines fonctions optionnelles (par exemple, générer un résumé) envoient un fragment du texte à un moteur d'IA pour rédiger la réponse. Cela est indiqué sur chaque fonction, et les tâches de détection et d'organisation ne le requièrent pas.</li></ul>
+<hr />
+<h2>3. Ce que la plateforme reçoit et ce qu'elle ne reçoit pas</h2>
+<p><strong>Ce que la plateforme REÇOIT (le minimum pour valider votre licence) :</strong></p>
+<ul><li>Votre <strong>clé de licence</strong>.</li><li>L'<strong>état de votre abonnement</strong> (actif, en essai, expiré).</li><li>Un <strong>identifiant technique de l'appareil</strong> (une empreinte dérivée du matériel) pour lier la licence à votre appareil et empêcher toute utilisation non autorisée.</li></ul>
+<p><strong>Ce qu'elle ne reçoit JAMAIS :</strong></p>
+<ul><li>Le contenu de vos <strong>fichiers, documents, contrats, factures, e-mails ou bases de données</strong>.</li><li>Les <strong>données que vous traitez</strong> avec l'agent, ni les résultats de ce traitement.</li><li>Toute information personnelle ou confidentielle contenue dans le matériel que vous analysez.</li></ul>
+<p>Autrement dit : nous recevons juste ce qu'il faut pour savoir que vous avez le droit d'utiliser le logiciel, et rien de ce que le logiciel lit ou produit.</p>
+<hr />
+<h2>4. Comment le vérifier vous-même</h2>
+<p>Nous ne vous demandons pas une confiance aveugle. Comme l'agent s'exécute sur votre machine, vous pouvez le vérifier :</p>
+<ul><li><strong>Surveillez les connexions réseau de l'agent</strong> avec les outils de votre système d'exploitation ou un analyseur de trafic (par exemple, un pare-feu, le <code>Moniteur de ressources</code> sous Windows, <code>Little Snitch</code> sous macOS ou <code>Wireshark</code>). Vous constaterez que les connexions se limitent à la validation de licence et, le cas échéant, au moteur d'IA des fonctions optionnelles.</li><li><strong>Constatez que vos fichiers ne sont pas transmis.</strong> Le contenu de vos documents n'apparaît pas dans le trafic sortant pendant l'analyse locale.</li><li><strong>Déconnectez-vous d'internet.</strong> Les fonctions locales (détection, extraction, organisation) continuent de fonctionner pendant la période de tolérance, ce qui confirme que le traitement ne dépend pas de nos serveurs.</li></ul>
+<p>Votre équipe informatique peut effectuer ces vérifications dans le cadre de sa propre évaluation de sécurité.</p>
+<hr />
+<h2>5. Un atout pour votre conformité</h2>
+<p>Le fait que les données ne quittent pas votre contrôle favorise votre conformité réglementaire, car cela réduit la surface d'exposition et évite les transferts à des tiers. Cette conception vous aide à vous aligner sur des cadres tels que :</p>
+<ul><li><strong>RGPD</strong> (Règlement général sur la protection des données, Union européenne).</li><li><strong>LFPDPPP</strong> (Loi fédérale sur la protection des données personnelles détenues par les particuliers, Mexique).</li><li><strong>LGPD</strong> (Lei Geral de Proteção de Dados, Brésil).</li><li>Et d'autres réglementations locales de protection des données.</li></ul>
+<p>En maintenant le traitement sur votre machine, <strong>vous restez le responsable et le dépositaire de vos données</strong>, sans intermédiaire pour les recevoir ou les stocker. Cela simplifie vos analyses d'impact, vos registres de traitement et vos obligations envers les tiers.</p>
+<p>Ce document décrit une architecture ; il ne constitue ni un conseil juridique ni une certification de conformité. La responsabilité de respecter la réglementation applicable à votre organisation vous incombe toujours.</p>
+<hr />
+<h2>6. Mention légale</h2>
+<p>Le présent Engagement de traitement local et de confidentialité décrit la conception technique de nos agents et <strong>est complété par nos Conditions générales et notre Politique de confidentialité</strong>, qui régissent l'ensemble de la relation contractuelle. En cas de divergence, ces documents prévalent.</p>
+<p>Cet engagement est une déclaration d'architecture vérifiable, non une garantie absolue contre tout scénario possible. Nous vous recommandons de <strong>valider son application selon la réglementation en vigueur dans votre pays et votre secteur</strong>, et d'impliquer vos équipes juridique et de sécurité avant de prendre des décisions de conformité fondées sur ce document.</p>
+<p>Pour toute question sur cet engagement, écrivez-nous à <strong>privacidad@tuialista.com</strong>.</p>
+<hr />
+<p><em>Fin du document.</em></p></article>
+<article class="doc" id="doc-de" data-lang="de" hidden><div class="trnote">Dies ist eine Übersetzung als Serviceleistung. Maßgeblich ist die spanische Fassung.</div><h1>Zusage zur lokalen Verarbeitung und zum Datenschutz</h1>
+<blockquote><p>Die aktuelle Fassung dieses Dokuments wird unter <a href="https://www.tuialista.com">www.tuialista.com</a> veröffentlicht.</p></blockquote>
+<p>Bei TuIAlista bauen wir unsere Agenten auf einem einfachen Grundsatz auf: <strong>Die Arbeit geschieht auf Ihrem Gerät, und Ihre Daten bleiben bei Ihnen.</strong> Dieses Dokument erklärt auf nachprüfbare Weise, wie unsere Architektur darauf ausgelegt ist, dies zu gewährleisten.</p>
+<hr />
+<h2>1. Unsere Zusage</h2>
+<p>Die Agenten von TuIAlista verarbeiten Ihre Informationen <strong>lokal, auf Ihrem eigenen Gerät</strong>. Der Inhalt Ihrer Dateien, Dokumente und Daten <strong>wird nicht gesendet, nicht von uns empfangen und nicht gespeichert</strong> auf unseren Servern.</p>
+<p>Unsere Rolle beschränkt sich darauf, zu prüfen, ob Ihre Lizenz aktiv ist. Die gesamte Analyse —einen Vertrag lesen, eine Rechnung prüfen, eine Datenbank abfragen, ein Postfach organisieren— erfolgt auf dem Gerät, auf dem Sie den Agenten installiert haben.</p>
+<p>Das ist das größte Unterscheidungsmerkmal von TuIAlista: Wir sind kein Cloud-Dienst, dem Sie Ihre Daten anvertrauen. Wir sind Software, die dort läuft, wo Sie es bestimmen.</p>
+<hr />
+<h2>2. Wie es technisch funktioniert</h2>
+<ul><li><strong>Die Agenten laufen lokal.</strong> Sie werden auf Ihrem Gerät installiert und ausgeführt. Sie lesen die Dateien, die Sie ihnen angeben, in den Ordnern, die Sie festlegen, ohne sie zu kopieren oder irgendwohin hochzuladen.</li><li><strong>Die Verarbeitung ist lokal.</strong> Die Datenextraktion, die Mustererkennung und die Organisation Ihrer Informationen finden innerhalb Ihres Geräts statt.</li><li><strong>Die Plattform validiert nur die Lizenz.</strong> Der einzige Austausch mit unseren Servern ist eine regelmäßige Prüfung, ob Ihr Abonnement aktiv ist. Diese Prüfung wird kryptografisch signiert übertragen und <strong>enthält nicht den Inhalt dessen, was Sie verarbeiten.</strong></li><li><strong>Es funktioniert offline.</strong> Da die Arbeit lokal erfolgt, können die Agenten während eines Toleranzzeitraums auch ohne Internet arbeiten; eine Verbindung wird nur benötigt, um die Lizenz erneut zu validieren.</li><li><strong>Die KI-Textfunktionen sind die begrenzte Ausnahme.</strong> Einige optionale Funktionen (zum Beispiel das Erstellen einer Zusammenfassung) senden einen Textausschnitt an eine KI-Engine, um die Antwort zu formulieren. Dies wird bei jeder Funktion angezeigt, und die Aufgaben zur Erkennung und Organisation erfordern es nicht.</li></ul>
+<hr />
+<h2>3. Was die Plattform empfängt und was nicht</h2>
+<p><strong>Was die Plattform EMPFÄNGT (das Minimum zur Validierung Ihrer Lizenz):</strong></p>
+<ul><li>Ihren <strong>Lizenzschlüssel</strong>.</li><li>Den <strong>Status Ihres Abonnements</strong> (aktiv, in Testphase, abgelaufen).</li><li>Eine <strong>technische Gerätekennung</strong> (ein aus der Hardware abgeleiteter Fingerabdruck), um die Lizenz an Ihr Gerät zu binden und unbefugte Nutzung zu verhindern.</li></ul>
+<p><strong>Was sie NIEMALS empfängt:</strong></p>
+<ul><li>Den Inhalt Ihrer <strong>Dateien, Dokumente, Verträge, Rechnungen, E-Mails oder Datenbanken</strong>.</li><li>Die <strong>Daten, die Sie verarbeiten</strong> mit dem Agenten, noch die Ergebnisse dieser Verarbeitung.</li><li>Jegliche persönlichen oder vertraulichen Informationen, die in dem von Ihnen analysierten Material enthalten sind.</li></ul>
+<p>Mit anderen Worten: Wir empfangen gerade genug, um zu wissen, dass Sie zur Nutzung der Software berechtigt sind, und nichts von dem, was die Software liest oder erzeugt.</p>
+<hr />
+<h2>4. Wie Sie es selbst überprüfen können</h2>
+<p>Wir verlangen kein blindes Vertrauen. Da der Agent auf Ihrem Gerät läuft, können Sie es selbst überprüfen:</p>
+<ul><li><strong>Überwachen Sie die Netzwerkverbindungen des Agenten</strong> mit den Werkzeugen Ihres Betriebssystems oder einem Datenverkehrsanalysator (zum Beispiel eine Firewall, der <code>Ressourcenmonitor</code> unter Windows, <code>Little Snitch</code> unter macOS oder <code>Wireshark</code>). Sie werden feststellen, dass sich die Verbindungen auf die Lizenzvalidierung und, sofern zutreffend, auf die KI-Engine der optionalen Funktionen beschränken.</li><li><strong>Beobachten Sie, dass Ihre Dateien nicht übertragen werden.</strong> Der Inhalt Ihrer Dokumente erscheint während der lokalen Analyse nicht im ausgehenden Datenverkehr.</li><li><strong>Trennen Sie die Internetverbindung.</strong> Die lokalen Funktionen (Erkennung, Extraktion, Organisation) funktionieren innerhalb des Toleranzzeitraums weiter, was bestätigt, dass die Verarbeitung nicht von unseren Servern abhängt.</li></ul>
+<p>Ihr IT-Team kann diese Überprüfungen im Rahmen seiner eigenen Sicherheitsbewertung durchführen.</p>
+<hr />
+<h2>5. Vorteil für Ihre Compliance</h2>
+<p>Dass die Daten Ihren Einflussbereich nicht verlassen, unterstützt Ihre regulatorische Compliance, da es die Angriffsfläche verringert und Übermittlungen an Dritte vermeidet. Dieses Design hilft Ihnen, sich an Rahmenwerken auszurichten wie:</p>
+<ul><li><strong>DSGVO</strong> (Datenschutz-Grundverordnung, Europäische Union).</li><li><strong>LFPDPPP</strong> (Bundesgesetz zum Schutz personenbezogener Daten im Besitz Privater, Mexiko).</li><li><strong>LGPD</strong> (Lei Geral de Proteção de Dados, Brasilien).</li><li>Und weiteren lokalen Datenschutzvorschriften.</li></ul>
+<p>Indem die Verarbeitung auf Ihrem Gerät bleibt, <strong>bleiben Sie der Verantwortliche und Verwahrer Ihrer Daten</strong>, ohne einen Vermittler, der sie empfängt oder speichert. Das vereinfacht Ihre Datenschutz-Folgenabschätzungen, Ihre Verarbeitungsverzeichnisse und Ihre Pflichten gegenüber Dritten.</p>
+<p>Dieses Dokument beschreibt eine Architektur; es stellt weder eine Rechtsberatung noch eine Compliance-Zertifizierung dar. Die Verantwortung, die für Ihre Organisation geltenden Vorschriften einzuhalten, verbleibt bei Ihnen.</p>
+<hr />
+<h2>6. Rechtlicher Hinweis</h2>
+<p>Diese Zusage zur lokalen Verarbeitung und zum Datenschutz beschreibt die technische Gestaltung unserer Agenten und <strong>wird durch unsere Allgemeinen Geschäftsbedingungen und unsere Datenschutzrichtlinie ergänzt</strong>, die das gesamte Vertragsverhältnis regeln. Im Falle von Widersprüchen haben diese Dokumente Vorrang.</p>
+<p>Diese Zusage ist eine nachprüfbare Architekturerklärung, keine absolute Garantie gegen jedes denkbare Szenario. Wir empfehlen Ihnen, <strong>ihre Anwendung anhand der in Ihrem Land und Ihrer Branche geltenden Vorschriften zu prüfen</strong> und Ihre Rechts- und Sicherheitsteams einzubeziehen, bevor Sie auf Grundlage dieses Dokuments Compliance-Entscheidungen treffen.</p>
+<p>Bei Fragen zu dieser Zusage schreiben Sie uns an <strong>privacidad@tuialista.com</strong>.</p>
+<hr />
+<p><em>Ende des Dokuments.</em></p></article>
+<article class="doc" id="doc-it" data-lang="it" hidden><div class="trnote">Questa è una traduzione di cortesia. La versione spagnola è quella vigente.</div><h1>Impegno di Elaborazione Locale e Privacy</h1>
+<blockquote><p>La versione vigente di questo documento è pubblicata su <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
+<p>In TuIAlista costruiamo i nostri agenti su un principio semplice: <strong>il lavoro avviene sul tuo dispositivo e i tuoi dati restano con te.</strong> Questo documento spiega, in modo verificabile, come la nostra architettura è progettata affinché sia così.</p>
+<hr />
+<h2>1. Il nostro impegno</h2>
+<p>Gli agenti di TuIAlista elaborano le tue informazioni <strong>localmente, sul tuo dispositivo</strong>. Il contenuto dei tuoi file, documenti e dati <strong>non viene inviato, non viene ricevuto da noi e non viene archiviato</strong> sui nostri server.</p>
+<p>Il nostro ruolo si limita a validare che la tua licenza sia attiva. Tutta l'analisi —leggere un contratto, esaminare una fattura, interrogare un database, organizzare una casella di posta— avviene sulla macchina in cui hai installato l'agente.</p>
+<p>Questo è il maggiore fattore distintivo di TuIAlista: non siamo un servizio nel cloud a cui affidi i tuoi dati. Siamo software che gira dove decidi tu.</p>
+<hr />
+<h2>2. Come funziona tecnicamente</h2>
+<ul><li><strong>Gli agenti vengono eseguiti localmente.</strong> Vengono installati ed eseguiti sul tuo dispositivo. Leggono i file che indichi, nelle cartelle che definisci, senza copiarli né caricarli da nessuna parte.</li><li><strong>L'elaborazione è locale.</strong> L'estrazione dei dati, il rilevamento dei pattern e l'organizzazione delle tue informazioni avvengono all'interno della tua macchina.</li><li><strong>La piattaforma valida solo la licenza.</strong> L'unico scambio con i nostri server è una verifica periodica che il tuo abbonamento sia attivo. Tale verifica viaggia firmata crittograficamente e <strong>non include il contenuto di ciò che elabori.</strong></li><li><strong>Funziona offline.</strong> Poiché il lavoro è locale, gli agenti possono operare anche senza internet durante un periodo di tolleranza; la connessione serve solo a rivalidare la licenza.</li><li><strong>Le funzioni di redazione con IA sono l'eccezione delimitata.</strong> Alcune funzioni opzionali (ad esempio, generare un riassunto) inviano un frammento del testo a un motore di IA per redigere la risposta. Questo è indicato in ciascuna funzione, e le attività di rilevamento e organizzazione non lo richiedono.</li></ul>
+<hr />
+<h2>3. Cosa riceve la piattaforma e cosa no</h2>
+<p><strong>Cosa RICEVE la piattaforma (il minimo per validare la tua licenza):</strong></p>
+<ul><li>La tua <strong>chiave di licenza</strong>.</li><li>Lo <strong>stato del tuo abbonamento</strong> (attivo, in prova, scaduto).</li><li>Un <strong>identificatore tecnico del dispositivo</strong> (un'impronta derivata dall'hardware) per collegare la licenza al tuo dispositivo e prevenire un uso non autorizzato.</li></ul>
+<p><strong>Cosa non riceve MAI:</strong></p>
+<ul><li>Il contenuto dei tuoi <strong>file, documenti, contratti, fatture, e-mail o database</strong>.</li><li>I <strong>dati che elabori</strong> con l'agente né i risultati di tale elaborazione.</li><li>Qualsiasi informazione personale o riservata contenuta nel materiale che analizzi.</li></ul>
+<p>In altre parole: riceviamo solo quanto basta per sapere che hai il diritto di usare il software, e nulla di ciò che il software legge o produce.</p>
+<hr />
+<h2>4. Come puoi verificarlo tu stesso</h2>
+<p>Non ti chiediamo di fidarti alla cieca. Poiché l'agente gira sul tuo dispositivo, puoi verificarlo:</p>
+<ul><li><strong>Monitora le connessioni di rete dell'agente</strong> con gli strumenti del tuo sistema operativo o un analizzatore di traffico (ad esempio, un firewall, <code>Monitoraggio risorse</code> su Windows, <code>Little Snitch</code> su macOS o <code>Wireshark</code>). Vedrai che le connessioni si limitano alla validazione della licenza e, ove applicabile, al motore di IA delle funzioni opzionali.</li><li><strong>Osserva che i tuoi file non vengono trasmessi.</strong> Il contenuto dei tuoi documenti non compare nel traffico in uscita durante l'analisi locale.</li><li><strong>Disconnettiti da internet.</strong> Le funzioni locali (rilevamento, estrazione, organizzazione) continuano a funzionare entro il periodo di tolleranza, il che conferma che l'elaborazione non dipende dai nostri server.</li></ul>
+<p>Il tuo team IT può eseguire queste verifiche nell'ambito della propria valutazione di sicurezza.</p>
+<hr />
+<h2>5. Vantaggio per la tua conformità</h2>
+<p>Il fatto che i dati non escano dal tuo controllo favorisce la tua conformità normativa, perché riduce la superficie di esposizione ed evita trasferimenti a terzi. Questa progettazione ti aiuta ad allinearti a quadri normativi come:</p>
+<ul><li><strong>GDPR</strong> (Regolamento generale sulla protezione dei dati, Unione europea).</li><li><strong>LFPDPPP</strong> (Legge federale sulla protezione dei dati personali in possesso dei privati, Messico).</li><li><strong>LGPD</strong> (Lei Geral de Proteção de Dados, Brasile).</li><li>E altre normative locali di protezione dei dati.</li></ul>
+<p>Mantenendo l'elaborazione sul tuo dispositivo, <strong>rimani il titolare e il custode dei tuoi dati</strong>, senza intermediari che li ricevano o li archivino. Questo semplifica le tue valutazioni d'impatto, i tuoi registri dei trattamenti e i tuoi obblighi verso terzi.</p>
+<p>Questo documento descrive un'architettura; non costituisce consulenza legale né una certificazione di conformità. La responsabilità di rispettare la normativa applicabile alla tua organizzazione rimane tua.</p>
+<hr />
+<h2>6. Nota legale</h2>
+<p>Il presente Impegno di Elaborazione Locale e Privacy descrive il design tecnico dei nostri agenti ed <strong>è integrato dai nostri Termini e Condizioni e dalla nostra Informativa sulla Privacy</strong>, che regolano l'intero rapporto contrattuale. In caso di discrepanza, prevalgono tali documenti.</p>
+<p>Questo impegno è una dichiarazione di architettura verificabile, non una garanzia assoluta contro ogni scenario possibile. Ti raccomandiamo di <strong>validarne l'applicazione in base alla normativa vigente nel tuo paese e settore</strong> e di coinvolgere i tuoi team legale e di sicurezza prima di prendere decisioni di conformità basate su questo documento.</p>
+<p>Se hai domande su questo impegno, scrivici a <strong>privacidad@tuialista.com</strong>.</p>
+<hr />
+<p><em>Fine del documento.</em></p></article>
+</main>
+<footer>&copy; <span id="y"></span> TuIAlista &middot; <a href="/soporte">Soporte</a> &middot; <a href="/">Inicio</a></footer>
+<script>
+document.getElementById("y").textContent=new Date().getFullYear();
+(function(){
+  var LANGS=["es", "en", "pt", "fr", "de", "it"];
+  var BACK={"es": "← Volver al portal", "en": "← Back to portal", "pt": "← Voltar ao portal", "fr": "← Retour à l'espace", "de": "← Zurück zum Portal", "it": "← Torna al portale"};
+  function detect(){try{var l=(localStorage.getItem("tuialista_lang")||"es").slice(0,2).toLowerCase();return LANGS.indexOf(l)>=0?l:"es";}catch(e){return "es";}}
+  var sel=document.getElementById("lang-sel"), back=document.getElementById("back-link");
+  function show(l){
+    LANGS.forEach(function(x){var a=document.getElementById("doc-"+x);if(a)a.hidden=(x!==l);});
+    document.documentElement.lang=l; if(sel)sel.value=l; if(back&&BACK[l])back.textContent=BACK[l];
+  }
+  if(sel)sel.addEventListener("change",function(){try{localStorage.setItem("tuialista_lang",sel.value);}catch(e){}show(sel.value);});
+  show(detect());
+})();
+</script>
 </body>
 </html>

@@ -11,12 +11,14 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Inter',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
 header{position:sticky;top:0;background:rgba(245,246,244,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
-.nav{max-width:820px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.nav{max-width:820px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
 .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
 .logo b{color:var(--signal)}
+.nav-right{display:flex;align-items:center;gap:14px}
 .nav a.back{color:var(--muted);text-decoration:none;font-size:14px}
 .nav a.back:hover{color:var(--ink)}
+#lang-sel{font-family:'Inter',sans-serif;font-size:13.5px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:7px;padding:5px 8px;cursor:pointer}
 main{max-width:820px;margin:0 auto;padding:40px 24px 80px}
 .doc h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,36px);line-height:1.15;margin-bottom:8px}
 .doc h2{font-family:'Space Grotesk';font-size:22px;margin:34px 0 12px}
@@ -26,57 +28,44 @@ main{max-width:820px;margin:0 auto;padding:40px 24px 80px}
 .doc li{margin:6px 0}
 .doc a{color:var(--signal-dim)}
 .doc strong{color:var(--ink)}
+.doc code{background:#eceee9;padding:1px 5px;border-radius:4px;font-size:.92em}
+.doc pre{background:#0f1922;color:#e6e9e7;padding:14px 16px;border-radius:8px;overflow:auto;margin:16px 0;font-size:13px}
+.doc pre code{background:none;color:inherit;padding:0}
 .doc blockquote{border-left:3px solid var(--signal);background:#eceee9;padding:12px 18px;margin:16px 0;border-radius:0 8px 8px 0;color:var(--muted);font-size:14.5px}
+.doc blockquote p{margin:6px 0;color:var(--muted)}
 .doc hr{border:none;border-top:1px solid var(--line);margin:28px 0}
-.doc table{border-collapse:collapse;margin:16px 0;font-size:14px;width:100%}
-.doc th,.doc td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+.trnote{background:#eef2f5;border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--muted);margin-bottom:24px}
 footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px}
 footer a{color:#cdd5d9;text-decoration:none}
 </style>
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Pol\u00edtica de Uso Aceptable \u2014 TuIAlista",
-  "description": "",
-  "url": "https://tuialista.com/legal\\uso-aceptable/",
-  "isPartOf": {
-    "@type": "WebSite",
-    "name": "Tuialista",
-    "url": "https://tuialista.com"
-  }
-}
+{"@context":"https://schema.org","@type":"WebPage","name":"Política de Uso Aceptable — TuIAlista","url":"https://tuialista.com/legal/uso-aceptable/","isPartOf":{"@type":"WebSite","name":"Tuialista","url":"https://tuialista.com"}}
 </script>
 <meta property="og:title" content="Política de Uso Aceptable — TuIAlista">
-<meta property="og:description" content="">
-<meta property="og:url" content="https://tuialista.com/legal\uso-aceptable/">
+<meta property="og:url" content="https://tuialista.com/legal/uso-aceptable/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://tuialista.com/assets/img/icon-512.png">
 <meta property="og:site_name" content="Tuialista">
 <meta property="og:locale" content="es_MX">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Política de Uso Aceptable — TuIAlista">
-<meta name="twitter:description" content="">
 <script defer data-domain="tuialista.com" src="https://plausible.io/js/script.js"></script>
 </head>
 <body>
-<header><div class="nav"><a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a><a class="back" href="/portal/">&larr; Volver al portal</a></div></header>
-<main><div class="doc"><h1>Política de Uso Aceptable (AUP) de TuIAlista</h1>
-<blockquote>
-<p>La versión vigente de este documento se publica en <a href="https://www.tuialista.com">www.tuialista.com</a>.</p>
-</blockquote>
+<header><div class="nav"><a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+<div class="nav-right"><select id="lang-sel" aria-label="Idioma / Language"><option value="es">Español</option><option value="en">English</option><option value="pt">Português</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="it">Italiano</option></select><a class="back" href="/portal/" id="back-link">← Volver al portal</a></div></div></header>
+<main>
+<article class="doc" id="doc-es" data-lang="es"><h1>Política de Uso Aceptable (AUP) de TuIAlista</h1>
+<blockquote><p>La versión vigente de este documento se publica en <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
 <p><strong>Versión:</strong> 1.0 · <strong>Última actualización:</strong> 21 de julio de 2026 · <strong>Vigente a partir de:</strong> 21 de julio de 2026</p>
 <hr />
 <h2>1. Objeto y relación con los Términos de Servicio</h2>
 <p>1.1. Esta Política de Uso Aceptable (la <strong>"AUP"</strong>) define los usos <strong>prohibidos</strong> de los agentes y del Servicio de <strong>TuIAlista</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a>), operado por <strong>Edgar Apolonio Aguilera</strong>, <strong>persona física con actividad empresarial</strong> que opera bajo el nombre comercial <strong>"TuIAlista"</strong>, con RFC <strong>AOAE781008V98</strong> y domicilio fiscal en <strong>Calle Malitzin, Manzana 10, Lote 23, Colonia Tepeaca, C.P. 01550, Alcaldía Álvaro Obregón</strong>, Ciudad de México, México.</p>
-<blockquote>
-<p><strong>Nota sobre la estructura del negocio.</strong> TuIAlista opera actualmente como negocio de persona física con actividad empresarial. Se prevé la futura constitución de la persona moral <strong>ORDINAL-BiA</strong>, a la que se transferirá la titularidad y la marca; los documentos se actualizarán en ese momento.</p>
-</blockquote>
-<p>1.2. Esta AUP <strong>forma parte integral</strong> de los <a href="/legal/terminos">Términos de Servicio</a> y se complementa con la Sección 6 (restricciones y anti-piratería) de dichos Términos y con el <a href="/legal/deslinde-ia">Deslinde de Responsabilidad sobre Inteligencia Artificial</a>.</p>
+<blockquote><p><strong>Nota sobre la estructura del negocio.</strong> TuIAlista opera actualmente como negocio de persona física con actividad empresarial. Se prevé la futura constitución de la persona moral <strong>ORDINAL-BiA</strong>, a la que se transferirá la titularidad y la marca; los documentos se actualizarán en ese momento.</p></blockquote>
+<p>1.2. Esta AUP <strong>forma parte integral</strong> de los <a href="/legal/terminos/">Términos de Servicio</a> y se complementa con la Sección 6 (restricciones y anti-piratería) de dichos Términos y con el <a href="/legal/deslinde-ia/">Deslinde de Responsabilidad sobre Inteligencia Artificial</a>.</p>
 <p>1.3. Al usar cualquier agente, el Cliente acepta esta AUP.</p>
 <hr />
 <h2>2. Principio: responsabilidad del Cliente por el uso local</h2>
-<p>2.1. Los agentes de TuIAlista se <strong>ejecutan localmente en el equipo del Cliente</strong> y procesan la información que el propio Cliente les proporciona (ver <a href="/legal/compromiso-local">Compromiso de Procesamiento Local</a>). En consecuencia, <strong>el Cliente es el único responsable del uso que da a los agentes</strong>, de los datos que decide procesar y de los resultados que genera y utiliza.</p>
+<p>2.1. Los agentes de TuIAlista se <strong>ejecutan localmente en el equipo del Cliente</strong> y procesan la información que el propio Cliente les proporciona (ver <a href="/legal/compromiso-local/">Compromiso de Procesamiento Local</a>). En consecuencia, <strong>el Cliente es el único responsable del uso que da a los agentes</strong>, de los datos que decide procesar y de los resultados que genera y utiliza.</p>
 <p>2.2. Como TuIAlista <strong>no recibe ni supervisa</strong> el contenido procesado localmente, la prevención del uso indebido recae en el Cliente. TuIAlista no vigila el contenido, pero <strong>sí puede actuar</strong> (suspender/revocar la licencia) ante evidencia de un uso que viole esta AUP o la ley.</p>
 <hr />
 <h2>3. Usos prohibidos</h2>
@@ -87,15 +76,16 @@ footer a{color:#cdd5d9;text-decoration:none}
 <p><strong>d) Vulneración técnica del Servicio.</strong> Realizar <strong>ingeniería inversa</strong>, descompilar, "crackear", parchear o eludir el sistema de licencias, la firma criptográfica de validación o cualquier medida técnica de protección (ver Sección 6 de los Términos).</p>
 <p><strong>e) Reventa o explotación no autorizada.</strong> <strong>Revender, sublicenciar, arrendar</strong> o explotar los agentes en beneficio de terceros (p. ej., como <em>bureau</em> o "software como servicio") sin autorización expresa por escrito.</p>
 <p><strong>f) Abuso de infraestructura o de modelos de IA de terceros.</strong> Usar el Servicio para <strong>sobrecargar, atacar o abusar</strong> de la plataforma de validación o de los modelos de IA de terceros (Groq/Gemini), extraer datos de forma automatizada no autorizada, o evadir límites de uso.</p>
-<p><strong>g) Datos y contextos de alto riesgo sin control humano.</strong> Emplear los resultados de IA como <strong>decisión final automatizada</strong> en materias sensibles (fiscal, nóminas, contratos, facturación) <strong>sin la verificación humana</strong> exigida por el <a href="/legal/deslinde-ia">Deslinde de Responsabilidad sobre Inteligencia Artificial</a>.</p>
+<p><strong>g) Datos y contextos de alto riesgo sin control humano.</strong> Emplear los resultados de IA como <strong>decisión final automatizada</strong> en materias sensibles (fiscal, nóminas, contratos, facturación) <strong>sin la verificación humana</strong> exigida por el <a href="/legal/deslinde-ia/">Deslinde de Responsabilidad sobre Inteligencia Artificial</a>.</p>
 <p><strong>h) Suplantación.</strong> Hacerse pasar por TuIAlista, por otra persona o entidad, o tergiversar el origen o la autoría del contenido generado.</p>
 <hr />
 <h2>4. Uso responsable de resultados de IA</h2>
-<p>4.1. El Cliente reconoce que los resultados de IA <strong>pueden contener errores</strong> y que es su <strong>único responsable</strong> de verificarlos antes de usarlos, presentarlos ante autoridades o tomar decisiones (ver <a href="/legal/deslinde-ia">Deslinde de Responsabilidad sobre Inteligencia Artificial</a>).</p>
-<h2>4.2. El Cliente es responsable de que su uso de los agentes cumpla la <strong>normativa que le resulte aplicable</strong> (fiscal, laboral, de protección de datos, sectorial).</h2>
+<p>4.1. El Cliente reconoce que los resultados de IA <strong>pueden contener errores</strong> y que es su <strong>único responsable</strong> de verificarlos antes de usarlos, presentarlos ante autoridades o tomar decisiones (ver <a href="/legal/deslinde-ia/">Deslinde de Responsabilidad sobre Inteligencia Artificial</a>).</p>
+<p>4.2. El Cliente es responsable de que su uso de los agentes cumpla la <strong>normativa que le resulte aplicable</strong> (fiscal, laboral, de protección de datos, sectorial).</p>
+<hr />
 <h2>5. Consecuencias del incumplimiento</h2>
 <p>5.1. La violación de esta AUP constituye un <strong>incumplimiento grave</strong> de los Términos de Servicio y podrá dar lugar, según su gravedad, a: (i) <strong>advertencia</strong>; (ii) <strong>suspensión</strong> de la Licencia; o (iii) <strong>revocación/terminación inmediata</strong> de la Licencia y de la cuenta, <strong>sin derecho a reembolso</strong>.</p>
-<p>5.2. Lo anterior es <strong>sin perjuicio</strong> de las acciones civiles, penales o administrativas que correspondan y de la obligación del Cliente de indemnizar a TuIAlista conforme a la Sección 13 de los <a href="/legal/terminos">Términos de Servicio</a>.</p>
+<p>5.2. Lo anterior es <strong>sin perjuicio</strong> de las acciones civiles, penales o administrativas que correspondan y de la obligación del Cliente de indemnizar a TuIAlista conforme a la Sección 13 de los <a href="/legal/terminos/">Términos de Servicio</a>.</p>
 <p>5.3. TuIAlista podrá <strong>conservar y aportar</strong> a las autoridades competentes la información de cuenta y licencia (no el contenido local, que no posee) cuando la ley lo requiera.</p>
 <hr />
 <h2>6. Reportes</h2>
@@ -104,7 +94,228 @@ footer a{color:#cdd5d9;text-decoration:none}
 <h2>7. Cambios a esta Política</h2>
 <p>TuIAlista podrá actualizar esta AUP; la versión vigente se publicará en <a href="https://www.tuialista.com">www.tuialista.com</a> con su fecha. El uso continuado tras la entrada en vigor implica su aceptación.</p>
 <hr />
-<p><em>Fin del documento.</em></p></div></main>
-<footer>&copy; <span id="y"></span> TuIAlista &middot; <a href="/soporte">Soporte</a> &middot; <a href="/">Inicio</a><script>document.getElementById("y").textContent=new Date().getFullYear()</script></footer>
+<p><em>Fin del documento.</em></p></article>
+<article class="doc" id="doc-en" data-lang="en" hidden><div class="trnote">This is a courtesy translation. The Spanish version is the governing version.</div><h1>TuIAlista Acceptable Use Policy (AUP)</h1>
+<blockquote><p>The current version of this document is published at <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
+<p><strong>Version:</strong> 1.0 · <strong>Last updated:</strong> 21 July 2026 · <strong>Effective:</strong> 21 July 2026</p>
+<hr />
+<h2>1. Purpose and relationship to the Terms of Service</h2>
+<p>1.1. This Acceptable Use Policy (the <strong>"AUP"</strong>) defines the <strong>prohibited</strong> uses of the agents and Service of <strong>TuIAlista</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a>), operated by <strong>Edgar Apolonio Aguilera</strong>, an <strong>individual with business activity</strong> trading under the commercial name <strong>"TuIAlista"</strong>, with Tax ID (RFC) <strong>AOAE781008V98</strong> and registered address at <strong>Calle Malitzin, Manzana 10, Lote 23, Colonia Tepeaca, C.P. 01550, Alcaldía Álvaro Obregón</strong>, Mexico City, Mexico.</p>
+<blockquote><p><strong>Note on business structure.</strong> TuIAlista currently operates as an individual with business activity. The future incorporation of the legal entity <strong>ORDINAL-BiA</strong> is planned, to which ownership and the brand will be transferred; the documents will be updated at that time.</p></blockquote>
+<p>1.2. This AUP is an <strong>integral part</strong> of the <a href="/legal/terminos/">Terms of Service</a> and complements Section 6 (restrictions and anti-piracy) of those Terms and the <a href="/legal/deslinde-ia/">AI Liability Disclaimer</a>.</p>
+<p>1.3. By using any agent, the Client accepts this AUP.</p>
+<hr />
+<h2>2. Principle: Client responsibility for local use</h2>
+<p>2.1. TuIAlista's agents <strong>run locally on the Client's device</strong> and process the information the Client itself provides to them (see <a href="/legal/compromiso-local/">Local Processing Commitment</a>). Accordingly, <strong>the Client is solely responsible for the use it makes of the agents</strong>, for the data it decides to process, and for the results it generates and uses.</p>
+<p>2.2. Because TuIAlista <strong>does not receive or supervise</strong> the content processed locally, the prevention of misuse rests with the Client. TuIAlista does not monitor content, but it <strong>may act</strong> (suspend/revoke the license) upon evidence of use that violates this AUP or the law.</p>
+<hr />
+<h2>3. Prohibited uses</h2>
+<p>It is <strong>prohibited</strong> to use the agents or the Service to:</p>
+<p><strong>a) Illegal activities.</strong> Any purpose that infringes applicable law or that facilitates or conceals the commission of crimes.</p>
+<p><strong>b) Fraud and forgery.</strong> Generate, alter, or process content to <strong>defraud</strong>, including—without limitation—<strong>false invoices or receipts</strong>, forged tax documentation, <strong>tax-evasion</strong> schemes, money laundering, document forgery, or the simulation of non-existent transactions.</p>
+<p><strong>c) Harm to third parties.</strong> Produce or disseminate content that is <strong>defamatory, discriminatory, harassing, threatening</strong>, that incites violence or hatred, or that <strong>infringes the rights</strong> of third parties (privacy, intellectual property, honor, personal data).</p>
+<p><strong>d) Technical compromise of the Service.</strong> Perform <strong>reverse engineering</strong>, decompile, "crack," patch, or circumvent the licensing system, the cryptographic validation signature, or any technical protection measure (see Section 6 of the Terms).</p>
+<p><strong>e) Unauthorized resale or exploitation.</strong> <strong>Resell, sublicense, lease,</strong> or exploit the agents for the benefit of third parties (e.g., as a <em>bureau</em> or "software as a service") without express written authorization.</p>
+<p><strong>f) Abuse of infrastructure or third-party AI models.</strong> Use the Service to <strong>overload, attack, or abuse</strong> the validation platform or the third-party AI models (Groq/Gemini), extract data through unauthorized automated means, or evade usage limits.</p>
+<p><strong>g) High-risk data and contexts without human oversight.</strong> Use AI results as an <strong>automated final decision</strong> in sensitive matters (tax, payroll, contracts, invoicing) <strong>without the human verification</strong> required by the <a href="/legal/deslinde-ia/">AI Liability Disclaimer</a>.</p>
+<p><strong>h) Impersonation.</strong> Impersonate TuIAlista, another person or entity, or misrepresent the origin or authorship of the generated content.</p>
+<hr />
+<h2>4. Responsible use of AI results</h2>
+<p>4.1. The Client acknowledges that AI results <strong>may contain errors</strong> and that it is <strong>solely responsible</strong> for verifying them before using them, submitting them to authorities, or making decisions (see <a href="/legal/deslinde-ia/">AI Liability Disclaimer</a>).</p>
+<p>4.2. The Client is responsible for ensuring that its use of the agents complies with the <strong>rules applicable to it</strong> (tax, labor, data protection, sectoral).</p>
+<hr />
+<h2>5. Consequences of breach</h2>
+<p>5.1. A violation of this AUP constitutes a <strong>material breach</strong> of the Terms of Service and may give rise, depending on its severity, to: (i) a <strong>warning</strong>; (ii) <strong>suspension</strong> of the License; or (iii) <strong>immediate revocation/termination</strong> of the License and the account, <strong>with no right to a refund</strong>.</p>
+<p>5.2. The foregoing is <strong>without prejudice</strong> to any applicable civil, criminal, or administrative actions and to the Client's obligation to indemnify TuIAlista under Section 13 of the <a href="/legal/terminos/">Terms of Service</a>.</p>
+<p>5.3. TuIAlista may <strong>retain and provide</strong> to the competent authorities the account and license information (not the local content, which it does not hold) where the law requires.</p>
+<hr />
+<h2>6. Reports</h2>
+<p>To report misuse or a vulnerability, write to <strong>abuso@tuialista.com</strong> or <strong>legal@tuialista.com</strong>.</p>
+<hr />
+<h2>7. Changes to this Policy</h2>
+<p>TuIAlista may update this AUP; the current version will be published at <a href="https://www.tuialista.com">www.tuialista.com</a> with its date. Continued use after it takes effect constitutes acceptance.</p>
+<hr />
+<p><em>End of document.</em></p></article>
+<article class="doc" id="doc-pt" data-lang="pt" hidden><div class="trnote">Esta é uma tradução de cortesia. A versão em espanhol é a versão vigente.</div><h1>Política de Uso Aceitável (AUP) da TuIAlista</h1>
+<blockquote><p>A versão vigente deste documento é publicada em <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
+<p><strong>Versão:</strong> 1.0 · <strong>Última atualização:</strong> 21 de julho de 2026 · <strong>Em vigor a partir de:</strong> 21 de julho de 2026</p>
+<hr />
+<h2>1. Objeto e relação com os Termos de Serviço</h2>
+<p>1.1. Esta Política de Uso Aceitável (a <strong>"AUP"</strong>) define os usos <strong>proibidos</strong> dos agentes e do Serviço da <strong>TuIAlista</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a>), operada por <strong>Edgar Apolonio Aguilera</strong>, <strong>pessoa física com atividade empresarial</strong> que atua sob o nome comercial <strong>"TuIAlista"</strong>, com RFC <strong>AOAE781008V98</strong> e domicílio fiscal em <strong>Calle Malitzin, Manzana 10, Lote 23, Colonia Tepeaca, C.P. 01550, Alcaldía Álvaro Obregón</strong>, Cidade do México, México.</p>
+<blockquote><p><strong>Nota sobre a estrutura do negócio.</strong> A TuIAlista opera atualmente como negócio de pessoa física com atividade empresarial. Prevê-se a futura constituição da pessoa jurídica <strong>ORDINAL-BiA</strong>, à qual serão transferidas a titularidade e a marca; os documentos serão atualizados nesse momento.</p></blockquote>
+<p>1.2. Esta AUP <strong>é parte integrante</strong> dos <a href="/legal/terminos/">Termos de Serviço</a> e complementa a Seção 6 (restrições e antipirataria) dos referidos Termos e o <a href="/legal/deslinde-ia/">Aviso sobre IA</a>.</p>
+<p>1.3. Ao usar qualquer agente, o Cliente aceita esta AUP.</p>
+<hr />
+<h2>2. Princípio: responsabilidade do Cliente pelo uso local</h2>
+<p>2.1. Os agentes da TuIAlista <strong>executam-se localmente no equipamento do Cliente</strong> e processam a informação que o próprio Cliente lhes fornece (ver <a href="/legal/compromiso-local/">Compromisso de Processamento Local</a>). Em consequência, <strong>o Cliente é o único responsável pelo uso que faz dos agentes</strong>, pelos dados que decide processar e pelos resultados que gera e utiliza.</p>
+<p>2.2. Como a TuIAlista <strong>não recebe nem supervisiona</strong> o conteúdo processado localmente, a prevenção do uso indevido recai sobre o Cliente. A TuIAlista não vigia o conteúdo, mas <strong>pode atuar</strong> (suspender/revogar a licença) diante de evidência de um uso que viole esta AUP ou a lei.</p>
+<hr />
+<h2>3. Usos proibidos</h2>
+<p>Fica <strong>proibido</strong> usar os agentes ou o Serviço para:</p>
+<p><strong>a) Atividades ilegais.</strong> Qualquer finalidade que infrinja a lei aplicável ou que facilite ou encubra a prática de crimes.</p>
+<p><strong>b) Fraude e falsificação.</strong> Gerar, alterar ou processar conteúdo para <strong>fraudar</strong>, incluindo — sem limitação — <strong>faturas ou comprovantes falsos</strong>, documentação fiscal apócrifa, esquemas de <strong>sonegação fiscal</strong>, lavagem de dinheiro, falsificação de documentos ou simulação de operações inexistentes.</p>
+<p><strong>c) Dano a terceiros.</strong> Produzir ou difundir conteúdo <strong>difamatório, discriminatório, de assédio, ameaçador</strong>, que incite à violência ou ao ódio, ou que <strong>viole direitos</strong> de terceiros (privacidade, propriedade intelectual, honra, dados pessoais).</p>
+<p><strong>d) Comprometimento técnico do Serviço.</strong> Realizar <strong>engenharia reversa</strong>, descompilar, "crackear", aplicar patches ou contornar o sistema de licenças, a assinatura criptográfica de validação ou qualquer medida técnica de proteção (ver Seção 6 dos Termos).</p>
+<p><strong>e) Revenda ou exploração não autorizada.</strong> <strong>Revender, sublicenciar, arrendar</strong> ou explorar os agentes em benefício de terceiros (p. ex., como <em>bureau</em> ou "software como serviço") sem autorização expressa por escrito.</p>
+<p><strong>f) Abuso de infraestrutura ou de modelos de IA de terceiros.</strong> Usar o Serviço para <strong>sobrecarregar, atacar ou abusar</strong> da plataforma de validação ou dos modelos de IA de terceiros (Groq/Gemini), extrair dados de forma automatizada não autorizada, ou evadir limites de uso.</p>
+<p><strong>g) Dados e contextos de alto risco sem controle humano.</strong> Empregar os resultados de IA como <strong>decisão final automatizada</strong> em matérias sensíveis (fiscal, folha de pagamento, contratos, faturamento) <strong>sem a verificação humana</strong> exigida pelo <a href="/legal/deslinde-ia/">Aviso sobre IA</a>.</p>
+<p><strong>h) Falsidade de identidade.</strong> Fazer-se passar pela TuIAlista, por outra pessoa ou entidade, ou deturpar a origem ou a autoria do conteúdo gerado.</p>
+<hr />
+<h2>4. Uso responsável dos resultados de IA</h2>
+<p>4.1. O Cliente reconhece que os resultados de IA <strong>podem conter erros</strong> e que é o <strong>único responsável</strong> por verificá-los antes de usá-los, apresentá-los às autoridades ou tomar decisões (ver <a href="/legal/deslinde-ia/">Aviso sobre IA</a>).</p>
+<p>4.2. O Cliente é responsável por assegurar que seu uso dos agentes cumpra a <strong>normativa que lhe seja aplicável</strong> (fiscal, trabalhista, de proteção de dados, setorial).</p>
+<hr />
+<h2>5. Consequências do descumprimento</h2>
+<p>5.1. A violação desta AUP constitui um <strong>descumprimento grave</strong> dos Termos de Serviço e poderá dar lugar, conforme sua gravidade, a: (i) <strong>advertência</strong>; (ii) <strong>suspensão</strong> da Licença; ou (iii) <strong>revogação/rescisão imediata</strong> da Licença e da conta, <strong>sem direito a reembolso</strong>.</p>
+<p>5.2. O anterior é <strong>sem prejuízo</strong> das ações civis, penais ou administrativas cabíveis e da obrigação do Cliente de indenizar a TuIAlista conforme a Seção 13 dos <a href="/legal/terminos/">Termos de Serviço</a>.</p>
+<p>5.3. A TuIAlista poderá <strong>conservar e fornecer</strong> às autoridades competentes as informações de conta e licença (não o conteúdo local, que não possui) quando a lei o exigir.</p>
+<hr />
+<h2>6. Denúncias</h2>
+<p>Para denunciar um uso indevido ou uma vulnerabilidade, escreva para <strong>abuso@tuialista.com</strong> ou <strong>legal@tuialista.com</strong>.</p>
+<hr />
+<h2>7. Alterações a esta Política</h2>
+<p>A TuIAlista poderá atualizar esta AUP; a versão vigente será publicada em <a href="https://www.tuialista.com">www.tuialista.com</a> com sua data. O uso continuado após a entrada em vigor implica sua aceitação.</p>
+<hr />
+<p><em>Fim do documento.</em></p></article>
+<article class="doc" id="doc-fr" data-lang="fr" hidden><div class="trnote">Ceci est une traduction de courtoisie. La version espagnole fait foi.</div><h1>Politique d'Utilisation Acceptable (AUP) de TuIAlista</h1>
+<blockquote><p>La version en vigueur de ce document est publiée sur <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
+<p><strong>Version :</strong> 1.0 · <strong>Dernière mise à jour :</strong> 21 juillet 2026 · <strong>En vigueur à partir du :</strong> 21 juillet 2026</p>
+<hr />
+<h2>1. Objet et relation avec les Conditions de Service</h2>
+<p>1.1. La présente Politique d'Utilisation Acceptable (l'<strong>« AUP »</strong>) définit les utilisations <strong>interdites</strong> des agents et du Service de <strong>TuIAlista</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a>), exploité par <strong>Edgar Apolonio Aguilera</strong>, <strong>personne physique exerçant une activité commerciale</strong> sous le nom commercial <strong>« TuIAlista »</strong>, immatriculée sous le numéro fiscal (RFC) <strong>AOAE781008V98</strong> et domiciliée à <strong>Calle Malitzin, Manzana 10, Lote 23, Colonia Tepeaca, C.P. 01550, Alcaldía Álvaro Obregón</strong>, Mexico, Mexique.</p>
+<blockquote><p><strong>Note sur la structure de l'entreprise.</strong> TuIAlista opère actuellement en tant que personne physique exerçant une activité commerciale. La constitution future de la personne morale <strong>ORDINAL-BiA</strong> est prévue, à laquelle seront transférées la propriété et la marque ; les documents seront mis à jour à ce moment-là.</p></blockquote>
+<p>1.2. La présente AUP <strong>fait partie intégrante</strong> des <a href="/legal/terminos/">Conditions de Service</a> et complète la Section 6 (restrictions et anti-piratage) desdites Conditions ainsi que l'<a href="/legal/deslinde-ia/">Avertissement IA</a>.</p>
+<p>1.3. En utilisant un agent quelconque, le Client accepte la présente AUP.</p>
+<hr />
+<h2>2. Principe : responsabilité du Client pour l'utilisation locale</h2>
+<p>2.1. Les agents de TuIAlista <strong>s'exécutent localement sur l'appareil du Client</strong> et traitent les informations que le Client lui-même leur fournit (voir <a href="/legal/compromiso-local/">Engagement de Traitement Local</a>). Par conséquent, <strong>le Client est seul responsable de l'usage qu'il fait des agents</strong>, des données qu'il décide de traiter et des résultats qu'il génère et utilise.</p>
+<p>2.2. Comme TuIAlista <strong>ne reçoit ni ne supervise</strong> le contenu traité localement, la prévention des abus incombe au Client. TuIAlista ne surveille pas le contenu, mais <strong>peut agir</strong> (suspendre/révoquer la licence) en présence de preuves d'un usage violant la présente AUP ou la loi.</p>
+<hr />
+<h2>3. Utilisations interdites</h2>
+<p>Il est <strong>interdit</strong> d'utiliser les agents ou le Service pour :</p>
+<p><strong>a) Activités illégales.</strong> Toute finalité qui enfreint la loi applicable ou qui facilite ou dissimule la commission d'infractions.</p>
+<p><strong>b) Fraude et falsification.</strong> Générer, altérer ou traiter du contenu pour <strong>frauder</strong>, y compris — sans s'y limiter — <strong>des factures ou reçus faux</strong>, de la documentation fiscale apocryphe, des schémas d'<strong>évasion fiscale</strong>, du blanchiment d'argent, la falsification de documents ou la simulation d'opérations inexistantes.</p>
+<p><strong>c) Préjudice à des tiers.</strong> Produire ou diffuser du contenu <strong>diffamatoire, discriminatoire, de harcèlement, menaçant</strong>, incitant à la violence ou à la haine, ou qui <strong>porte atteinte aux droits</strong> de tiers (vie privée, propriété intellectuelle, honneur, données personnelles).</p>
+<p><strong>d) Compromission technique du Service.</strong> Effectuer de l'<strong>ingénierie inverse</strong>, décompiler, « cracker », patcher ou contourner le système de licences, la signature cryptographique de validation ou toute mesure technique de protection (voir Section 6 des Conditions).</p>
+<p><strong>e) Revente ou exploitation non autorisée.</strong> <strong>Revendre, sous-licencier, louer</strong> ou exploiter les agents au profit de tiers (par ex. en tant que <em>bureau</em> ou « logiciel en tant que service ») sans autorisation écrite expresse.</p>
+<p><strong>f) Abus d'infrastructure ou de modèles d'IA tiers.</strong> Utiliser le Service pour <strong>surcharger, attaquer ou abuser</strong> de la plateforme de validation ou des modèles d'IA tiers (Groq/Gemini), extraire des données par des moyens automatisés non autorisés, ou contourner les limites d'utilisation.</p>
+<p><strong>g) Données et contextes à haut risque sans contrôle humain.</strong> Employer les résultats de l'IA comme <strong>décision finale automatisée</strong> dans des matières sensibles (fiscal, paie, contrats, facturation) <strong>sans la vérification humaine</strong> exigée par l'<a href="/legal/deslinde-ia/">Avertissement IA</a>.</p>
+<p><strong>h) Usurpation d'identité.</strong> Se faire passer pour TuIAlista, pour une autre personne ou entité, ou dénaturer l'origine ou la paternité du contenu généré.</p>
+<hr />
+<h2>4. Utilisation responsable des résultats de l'IA</h2>
+<p>4.1. Le Client reconnaît que les résultats de l'IA <strong>peuvent contenir des erreurs</strong> et qu'il est <strong>seul responsable</strong> de les vérifier avant de les utiliser, de les présenter aux autorités ou de prendre des décisions (voir <a href="/legal/deslinde-ia/">Avertissement IA</a>).</p>
+<p>4.2. Le Client est responsable de veiller à ce que son utilisation des agents respecte la <strong>réglementation qui lui est applicable</strong> (fiscale, du travail, de protection des données, sectorielle).</p>
+<hr />
+<h2>5. Conséquences du manquement</h2>
+<p>5.1. Une violation de la présente AUP constitue un <strong>manquement grave</strong> aux Conditions de Service et peut donner lieu, selon sa gravité, à : (i) un <strong>avertissement</strong> ; (ii) la <strong>suspension</strong> de la Licence ; ou (iii) la <strong>révocation/résiliation immédiate</strong> de la Licence et du compte, <strong>sans droit à remboursement</strong>.</p>
+<p>5.2. Ce qui précède est <strong>sans préjudice</strong> des actions civiles, pénales ou administratives applicables et de l'obligation du Client d'indemniser TuIAlista conformément à la Section 13 des <a href="/legal/terminos/">Conditions de Service</a>.</p>
+<p>5.3. TuIAlista peut <strong>conserver et communiquer</strong> aux autorités compétentes les informations de compte et de licence (non le contenu local, qu'elle ne détient pas) lorsque la loi l'exige.</p>
+<hr />
+<h2>6. Signalements</h2>
+<p>Pour signaler un abus ou une vulnérabilité, écrivez à <strong>abuso@tuialista.com</strong> ou <strong>legal@tuialista.com</strong>.</p>
+<hr />
+<h2>7. Modifications de la présente Politique</h2>
+<p>TuIAlista peut mettre à jour la présente AUP ; la version en vigueur sera publiée sur <a href="https://www.tuialista.com">www.tuialista.com</a> avec sa date. L'utilisation continue après son entrée en vigueur vaut acceptation.</p>
+<hr />
+<p><em>Fin du document.</em></p></article>
+<article class="doc" id="doc-de" data-lang="de" hidden><div class="trnote">Dies ist eine Übersetzung als Serviceleistung. Maßgeblich ist die spanische Fassung.</div><h1>TuIAlista-Richtlinie zur akzeptablen Nutzung (AUP)</h1>
+<blockquote><p>Die aktuelle Fassung dieses Dokuments wird unter <a href="https://www.tuialista.com">www.tuialista.com</a> veröffentlicht.</p></blockquote>
+<p><strong>Version:</strong> 1.0 · <strong>Zuletzt aktualisiert:</strong> 21. Juli 2026 · <strong>Gültig ab:</strong> 21. Juli 2026</p>
+<hr />
+<h2>1. Gegenstand und Verhältnis zu den Nutzungsbedingungen</h2>
+<p>1.1. Diese Richtlinie zur akzeptablen Nutzung (die <strong>„AUP"</strong>) legt die <strong>verbotenen</strong> Nutzungen der Agenten und des Dienstes von <strong>TuIAlista</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a>) fest, betrieben von <strong>Edgar Apolonio Aguilera</strong>, einer <strong>natürlichen Person mit unternehmerischer Tätigkeit</strong>, die unter dem Handelsnamen <strong>„TuIAlista"</strong> auftritt, mit Steuernummer (RFC) <strong>AOAE781008V98</strong> und Geschäftssitz in <strong>Calle Malitzin, Manzana 10, Lote 23, Colonia Tepeaca, C.P. 01550, Alcaldía Álvaro Obregón</strong>, Mexiko-Stadt, Mexiko.</p>
+<blockquote><p><strong>Hinweis zur Unternehmensstruktur.</strong> TuIAlista wird derzeit als Geschäft einer natürlichen Person mit unternehmerischer Tätigkeit betrieben. Die künftige Gründung der juristischen Person <strong>ORDINAL-BiA</strong> ist vorgesehen, auf die Inhaberschaft und Marke übertragen werden; die Dokumente werden zu diesem Zeitpunkt aktualisiert.</p></blockquote>
+<p>1.2. Diese AUP ist <strong>integraler Bestandteil</strong> der <a href="/legal/terminos/">Nutzungsbedingungen</a> und ergänzt Abschnitt 6 (Beschränkungen und Anti-Piraterie) dieser Bedingungen sowie den <a href="/legal/deslinde-ia/">KI-Haftungsausschluss</a>.</p>
+<p>1.3. Mit der Nutzung eines Agenten akzeptiert der Kunde diese AUP.</p>
+<hr />
+<h2>2. Grundsatz: Verantwortung des Kunden für die lokale Nutzung</h2>
+<p>2.1. Die Agenten von TuIAlista <strong>laufen lokal auf dem Gerät des Kunden</strong> und verarbeiten die Informationen, die der Kunde ihnen selbst bereitstellt (siehe <a href="/legal/compromiso-local/">Verpflichtung zur lokalen Verarbeitung</a>). Folglich ist <strong>der Kunde allein verantwortlich für die Nutzung der Agenten</strong>, für die Daten, die er verarbeiten möchte, und für die Ergebnisse, die er erzeugt und verwendet.</p>
+<p>2.2. Da TuIAlista die lokal verarbeiteten Inhalte <strong>weder empfängt noch überwacht</strong>, liegt die Verhinderung von Missbrauch beim Kunden. TuIAlista überwacht die Inhalte nicht, kann jedoch <strong>eingreifen</strong> (die Lizenz aussetzen/widerrufen), wenn Beweise für eine Nutzung vorliegen, die gegen diese AUP oder das Gesetz verstößt.</p>
+<hr />
+<h2>3. Verbotene Nutzungen</h2>
+<p>Es ist <strong>verboten</strong>, die Agenten oder den Dienst zu nutzen, um:</p>
+<p><strong>a) Illegale Aktivitäten.</strong> Jeder Zweck, der gegen geltendes Recht verstößt oder die Begehung von Straftaten erleichtert oder verschleiert.</p>
+<p><strong>b) Betrug und Fälschung.</strong> Inhalte zu erzeugen, zu verändern oder zu verarbeiten, um zu <strong>betrügen</strong>, einschließlich – ohne Einschränkung – <strong>falscher Rechnungen oder Belege</strong>, gefälschter Steuerunterlagen, <strong>Steuerhinterziehungs</strong>-Modelle, Geldwäsche, Urkundenfälschung oder Vortäuschung nicht existierender Vorgänge.</p>
+<p><strong>c) Schädigung Dritter.</strong> Inhalte zu erzeugen oder zu verbreiten, die <strong>verleumderisch, diskriminierend, belästigend, bedrohend</strong> sind, zu Gewalt oder Hass aufrufen oder <strong>Rechte Dritter verletzen</strong> (Privatsphäre, geistiges Eigentum, Ehre, personenbezogene Daten).</p>
+<p><strong>d) Technische Kompromittierung des Dienstes.</strong> <strong>Reverse Engineering</strong> durchzuführen, zu dekompilieren, zu „cracken", zu patchen oder das Lizenzsystem, die kryptografische Validierungssignatur oder jede technische Schutzmaßnahme zu umgehen (siehe Abschnitt 6 der Bedingungen).</p>
+<p><strong>e) Nicht genehmigter Weiterverkauf oder Verwertung.</strong> Die Agenten zugunsten Dritter (z. B. als <em>Bureau</em> oder „Software as a Service") ohne ausdrückliche schriftliche Genehmigung <strong>weiterzuverkaufen, unterzulizenzieren, zu vermieten</strong> oder zu verwerten.</p>
+<p><strong>f) Missbrauch der Infrastruktur oder von KI-Modellen Dritter.</strong> Den Dienst zu nutzen, um die Validierungsplattform oder die KI-Modelle Dritter (Groq/Gemini) zu <strong>überlasten, anzugreifen oder zu missbrauchen</strong>, Daten durch nicht genehmigte automatisierte Mittel zu extrahieren oder Nutzungslimits zu umgehen.</p>
+<p><strong>g) Hochriskante Daten und Kontexte ohne menschliche Kontrolle.</strong> KI-Ergebnisse als <strong>automatisierte Endentscheidung</strong> in sensiblen Bereichen (Steuern, Gehaltsabrechnung, Verträge, Rechnungsstellung) <strong>ohne die vom <a href="/legal/deslinde-ia/">KI-Haftungsausschluss</a> geforderte menschliche Überprüfung</strong> zu verwenden.</p>
+<p><strong>h) Identitätsvortäuschung.</strong> Sich als TuIAlista, als eine andere Person oder Einrichtung auszugeben oder die Herkunft oder Urheberschaft der erzeugten Inhalte falsch darzustellen.</p>
+<hr />
+<h2>4. Verantwortungsvoller Umgang mit KI-Ergebnissen</h2>
+<p>4.1. Der Kunde erkennt an, dass KI-Ergebnisse <strong>Fehler enthalten können</strong> und dass er <strong>allein verantwortlich</strong> ist, sie zu überprüfen, bevor er sie verwendet, Behörden vorlegt oder Entscheidungen trifft (siehe <a href="/legal/deslinde-ia/">KI-Haftungsausschluss</a>).</p>
+<p>4.2. Der Kunde ist dafür verantwortlich, dass seine Nutzung der Agenten die <strong>auf ihn anwendbaren Vorschriften</strong> (Steuer-, Arbeits-, Datenschutz-, Branchenrecht) einhält.</p>
+<hr />
+<h2>5. Folgen eines Verstoßes</h2>
+<p>5.1. Ein Verstoß gegen diese AUP stellt einen <strong>schwerwiegenden Verstoß</strong> gegen die Nutzungsbedingungen dar und kann je nach Schwere zu Folgendem führen: (i) einer <strong>Verwarnung</strong>; (ii) der <strong>Aussetzung</strong> der Lizenz; oder (iii) dem <strong>sofortigen Widerruf/der sofortigen Kündigung</strong> der Lizenz und des Kontos, <strong>ohne Anspruch auf Erstattung</strong>.</p>
+<p>5.2. Das Vorstehende gilt <strong>unbeschadet</strong> etwaiger zivil-, straf- oder verwaltungsrechtlicher Maßnahmen und der Pflicht des Kunden, TuIAlista gemäß Abschnitt 13 der <a href="/legal/terminos/">Nutzungsbedingungen</a> schadlos zu halten.</p>
+<p>5.3. TuIAlista kann die Konto- und Lizenzinformationen (nicht die lokalen Inhalte, die es nicht besitzt) <strong>aufbewahren und den zuständigen Behörden übermitteln</strong>, wenn das Gesetz dies verlangt.</p>
+<hr />
+<h2>6. Meldungen</h2>
+<p>Um einen Missbrauch oder eine Schwachstelle zu melden, schreiben Sie an <strong>abuso@tuialista.com</strong> oder <strong>legal@tuialista.com</strong>.</p>
+<hr />
+<h2>7. Änderungen dieser Richtlinie</h2>
+<p>TuIAlista kann diese AUP aktualisieren; die geltende Fassung wird unter <a href="https://www.tuialista.com">www.tuialista.com</a> mit ihrem Datum veröffentlicht. Die fortgesetzte Nutzung nach Inkrafttreten gilt als Annahme.</p>
+<hr />
+<p><em>Ende des Dokuments.</em></p></article>
+<article class="doc" id="doc-it" data-lang="it" hidden><div class="trnote">Questa è una traduzione di cortesia. La versione spagnola è quella vigente.</div><h1>Politica di Uso Accettabile (AUP) di TuIAlista</h1>
+<blockquote><p>La versione vigente di questo documento è pubblicata su <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
+<p><strong>Versione:</strong> 1.0 · <strong>Ultimo aggiornamento:</strong> 21 luglio 2026 · <strong>In vigore dal:</strong> 21 luglio 2026</p>
+<hr />
+<h2>1. Oggetto e relazione con i Termini di Servizio</h2>
+<p>1.1. La presente Politica di Uso Accettabile (l'<strong>"AUP"</strong>) definisce gli usi <strong>vietati</strong> degli agenti e del Servizio di <strong>TuIAlista</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a>), gestito da <strong>Edgar Apolonio Aguilera</strong>, <strong>persona fisica con attività imprenditoriale</strong> che opera con il nome commerciale <strong>"TuIAlista"</strong>, con codice fiscale (RFC) <strong>AOAE781008V98</strong> e domicilio fiscale in <strong>Calle Malitzin, Manzana 10, Lote 23, Colonia Tepeaca, C.P. 01550, Alcaldía Álvaro Obregón</strong>, Città del Messico, Messico.</p>
+<blockquote><p><strong>Nota sulla struttura aziendale.</strong> TuIAlista opera attualmente come attività di persona fisica con attività imprenditoriale. È prevista la futura costituzione della persona giuridica <strong>ORDINAL-BiA</strong>, alla quale saranno trasferiti la titolarità e il marchio; i documenti saranno aggiornati in quel momento.</p></blockquote>
+<p>1.2. La presente AUP <strong>è parte integrante</strong> dei <a href="/legal/terminos/">Termini di Servizio</a> e integra la Sezione 6 (restrizioni e anti-pirateria) di tali Termini e il <a href="/legal/deslinde-ia/">Disclaimer IA</a>.</p>
+<p>1.3. Utilizzando qualsiasi agente, il Cliente accetta la presente AUP.</p>
+<hr />
+<h2>2. Principio: responsabilità del Cliente per l'uso locale</h2>
+<p>2.1. Gli agenti di TuIAlista <strong>vengono eseguiti localmente sul dispositivo del Cliente</strong> ed elaborano le informazioni che il Cliente stesso fornisce loro (vedi <a href="/legal/compromiso-local/">Impegno di Elaborazione Locale</a>). Di conseguenza, <strong>il Cliente è l'unico responsabile dell'uso che fa degli agenti</strong>, dei dati che decide di elaborare e dei risultati che genera e utilizza.</p>
+<p>2.2. Poiché TuIAlista <strong>non riceve né supervisiona</strong> il contenuto elaborato localmente, la prevenzione dell'uso improprio spetta al Cliente. TuIAlista non sorveglia il contenuto, ma <strong>può intervenire</strong> (sospendere/revocare la licenza) in presenza di prove di un uso che violi la presente AUP o la legge.</p>
+<hr />
+<h2>3. Usi vietati</h2>
+<p>È <strong>vietato</strong> usare gli agenti o il Servizio per:</p>
+<p><strong>a) Attività illegali.</strong> Qualsiasi finalità che violi la legge applicabile o che agevoli o occulti la commissione di reati.</p>
+<p><strong>b) Frode e falsificazione.</strong> Generare, alterare o elaborare contenuti per <strong>frodare</strong>, incluse — senza limitazione — <strong>fatture o ricevute false</strong>, documentazione fiscale apocrifa, schemi di <strong>evasione fiscale</strong>, riciclaggio di denaro, falsificazione di documenti o simulazione di operazioni inesistenti.</p>
+<p><strong>c) Danno a terzi.</strong> Produrre o diffondere contenuti <strong>diffamatori, discriminatori, di molestia, minacciosi</strong>, che incitino alla violenza o all'odio, o che <strong>violino i diritti</strong> di terzi (privacy, proprietà intellettuale, onore, dati personali).</p>
+<p><strong>d) Compromissione tecnica del Servizio.</strong> Effettuare <strong>ingegneria inversa</strong>, decompilare, "craccare", applicare patch o eludere il sistema di licenze, la firma crittografica di validazione o qualsiasi misura tecnica di protezione (vedi Sezione 6 dei Termini).</p>
+<p><strong>e) Rivendita o sfruttamento non autorizzati.</strong> <strong>Rivendere, concedere in sublicenza, noleggiare</strong> o sfruttare gli agenti a beneficio di terzi (ad es. come <em>bureau</em> o "software come servizio") senza autorizzazione espressa per iscritto.</p>
+<p><strong>f) Abuso dell'infrastruttura o dei modelli di IA di terzi.</strong> Usare il Servizio per <strong>sovraccaricare, attaccare o abusare</strong> della piattaforma di validazione o dei modelli di IA di terzi (Groq/Gemini), estrarre dati con mezzi automatizzati non autorizzati, o eludere i limiti di utilizzo.</p>
+<p><strong>g) Dati e contesti ad alto rischio senza controllo umano.</strong> Impiegare i risultati dell'IA come <strong>decisione finale automatizzata</strong> in materie sensibili (fiscale, buste paga, contratti, fatturazione) <strong>senza la verifica umana</strong> richiesta dal <a href="/legal/deslinde-ia/">Disclaimer IA</a>.</p>
+<p><strong>h) Sostituzione di persona.</strong> Spacciarsi per TuIAlista, per un'altra persona o entità, o travisare l'origine o la paternità del contenuto generato.</p>
+<hr />
+<h2>4. Uso responsabile dei risultati dell'IA</h2>
+<p>4.1. Il Cliente riconosce che i risultati dell'IA <strong>possono contenere errori</strong> e che è l'<strong>unico responsabile</strong> di verificarli prima di usarli, presentarli alle autorità o prendere decisioni (vedi <a href="/legal/deslinde-ia/">Disclaimer IA</a>).</p>
+<p>4.2. Il Cliente è responsabile di garantire che il suo uso degli agenti rispetti la <strong>normativa a lui applicabile</strong> (fiscale, del lavoro, di protezione dei dati, settoriale).</p>
+<hr />
+<h2>5. Conseguenze dell'inadempimento</h2>
+<p>5.1. La violazione della presente AUP costituisce un <strong>inadempimento grave</strong> dei Termini di Servizio e potrà dar luogo, a seconda della sua gravità, a: (i) un <strong>avvertimento</strong>; (ii) la <strong>sospensione</strong> della Licenza; o (iii) la <strong>revoca/risoluzione immediata</strong> della Licenza e dell'account, <strong>senza diritto a rimborso</strong>.</p>
+<p>5.2. Quanto precede è <strong>fatto salvo</strong> ogni intervento civile, penale o amministrativo applicabile e l'obbligo del Cliente di manlevare TuIAlista ai sensi della Sezione 13 dei <a href="/legal/terminos/">Termini di Servizio</a>.</p>
+<p>5.3. TuIAlista potrà <strong>conservare e fornire</strong> alle autorità competenti le informazioni di account e licenza (non il contenuto locale, che non possiede) quando la legge lo richieda.</p>
+<hr />
+<h2>6. Segnalazioni</h2>
+<p>Per segnalare un uso improprio o una vulnerabilità, scrivere a <strong>abuso@tuialista.com</strong> o <strong>legal@tuialista.com</strong>.</p>
+<hr />
+<h2>7. Modifiche alla presente Politica</h2>
+<p>TuIAlista potrà aggiornare la presente AUP; la versione vigente sarà pubblicata su <a href="https://www.tuialista.com">www.tuialista.com</a> con la relativa data. L'uso continuato dopo l'entrata in vigore ne implica l'accettazione.</p>
+<hr />
+<p><em>Fine del documento.</em></p></article>
+</main>
+<footer>&copy; <span id="y"></span> TuIAlista &middot; <a href="/soporte">Soporte</a> &middot; <a href="/">Inicio</a></footer>
+<script>
+document.getElementById("y").textContent=new Date().getFullYear();
+(function(){
+  var LANGS=["es", "en", "pt", "fr", "de", "it"];
+  var BACK={"es": "← Volver al portal", "en": "← Back to portal", "pt": "← Voltar ao portal", "fr": "← Retour à l'espace", "de": "← Zurück zum Portal", "it": "← Torna al portale"};
+  function detect(){try{var l=(localStorage.getItem("tuialista_lang")||"es").slice(0,2).toLowerCase();return LANGS.indexOf(l)>=0?l:"es";}catch(e){return "es";}}
+  var sel=document.getElementById("lang-sel"), back=document.getElementById("back-link");
+  function show(l){
+    LANGS.forEach(function(x){var a=document.getElementById("doc-"+x);if(a)a.hidden=(x!==l);});
+    document.documentElement.lang=l; if(sel)sel.value=l; if(back&&BACK[l])back.textContent=BACK[l];
+  }
+  if(sel)sel.addEventListener("change",function(){try{localStorage.setItem("tuialista_lang",sel.value);}catch(e){}show(sel.value);});
+  show(detect());
+})();
+</script>
 </body>
 </html>

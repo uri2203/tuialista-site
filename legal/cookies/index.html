@@ -11,12 +11,14 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Inter',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
 header{position:sticky;top:0;background:rgba(245,246,244,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
-.nav{max-width:820px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.nav{max-width:820px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
 .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
 .logo b{color:var(--signal)}
+.nav-right{display:flex;align-items:center;gap:14px}
 .nav a.back{color:var(--muted);text-decoration:none;font-size:14px}
 .nav a.back:hover{color:var(--ink)}
+#lang-sel{font-family:'Inter',sans-serif;font-size:13.5px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:7px;padding:5px 8px;cursor:pointer}
 main{max-width:820px;margin:0 auto;padding:40px 24px 80px}
 .doc h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,36px);line-height:1.15;margin-bottom:8px}
 .doc h2{font-family:'Space Grotesk';font-size:22px;margin:34px 0 12px}
@@ -26,78 +28,59 @@ main{max-width:820px;margin:0 auto;padding:40px 24px 80px}
 .doc li{margin:6px 0}
 .doc a{color:var(--signal-dim)}
 .doc strong{color:var(--ink)}
+.doc code{background:#eceee9;padding:1px 5px;border-radius:4px;font-size:.92em}
+.doc pre{background:#0f1922;color:#e6e9e7;padding:14px 16px;border-radius:8px;overflow:auto;margin:16px 0;font-size:13px}
+.doc pre code{background:none;color:inherit;padding:0}
 .doc blockquote{border-left:3px solid var(--signal);background:#eceee9;padding:12px 18px;margin:16px 0;border-radius:0 8px 8px 0;color:var(--muted);font-size:14.5px}
+.doc blockquote p{margin:6px 0;color:var(--muted)}
 .doc hr{border:none;border-top:1px solid var(--line);margin:28px 0}
-.doc table{border-collapse:collapse;margin:16px 0;font-size:14px;width:100%}
-.doc th,.doc td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+.trnote{background:#eef2f5;border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--muted);margin-bottom:24px}
 footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px}
 footer a{color:#cdd5d9;text-decoration:none}
 </style>
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Pol\u00edtica de Cookies \u2014 TuIAlista",
-  "description": "",
-  "url": "https://tuialista.com/legal\\cookies/",
-  "isPartOf": {
-    "@type": "WebSite",
-    "name": "Tuialista",
-    "url": "https://tuialista.com"
-  }
-}
+{"@context":"https://schema.org","@type":"WebPage","name":"Política de Cookies — TuIAlista","url":"https://tuialista.com/legal/cookies/","isPartOf":{"@type":"WebSite","name":"Tuialista","url":"https://tuialista.com"}}
 </script>
 <meta property="og:title" content="Política de Cookies — TuIAlista">
-<meta property="og:description" content="">
-<meta property="og:url" content="https://tuialista.com/legal\cookies/">
+<meta property="og:url" content="https://tuialista.com/legal/cookies/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://tuialista.com/assets/img/icon-512.png">
 <meta property="og:site_name" content="Tuialista">
 <meta property="og:locale" content="es_MX">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Política de Cookies — TuIAlista">
-<meta name="twitter:description" content="">
+<script defer data-domain="tuialista.com" src="https://plausible.io/js/script.js"></script>
 </head>
 <body>
-<header><div class="nav"><a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a><a class="back" href="/portal/">&larr; Volver al portal</a></div></header>
-<main><div class="doc"><h1>Política de Cookies de TuIAlista</h1>
-<blockquote>
-<p>La versión vigente de este documento se publica en <a href="https://www.tuialista.com">www.tuialista.com</a>.</p>
-</blockquote>
+<header><div class="nav"><a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+<div class="nav-right"><select id="lang-sel" aria-label="Idioma / Language"><option value="es">Español</option><option value="en">English</option><option value="pt">Português</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="it">Italiano</option></select><a class="back" href="/portal/" id="back-link">← Volver al portal</a></div></div></header>
+<main>
+<article class="doc" id="doc-es" data-lang="es"><h1>Política de Cookies de TuIAlista</h1>
+<blockquote><p>La versión vigente de este documento se publica en <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
 <p><strong>Versión:</strong> 1.0 · <strong>Última actualización:</strong> 21 de julio de 2026 · <strong>Vigente a partir de:</strong> 21 de julio de 2026</p>
 <hr />
 <h2>1. Alcance</h2>
 <p>1.1. Esta Política de Cookies explica cómo el sitio web <strong><a href="https://www.tuialista.com">www.tuialista.com</a></strong> (el "Sitio"), operado por <strong>Edgar Apolonio Aguilera</strong>, <strong>persona física con actividad empresarial</strong> que opera bajo el nombre comercial <strong>"TuIAlista"</strong>, con RFC <strong>AOAE781008V98</strong> y domicilio fiscal en <strong>Calle Malitzin, Manzana 10, Lote 23, Colonia Tepeaca, C.P. 01550, Alcaldía Álvaro Obregón</strong>, Ciudad de México, México, utiliza cookies y tecnologías similares.</p>
-<blockquote>
-<p><strong>Nota sobre la estructura del negocio.</strong> TuIAlista opera actualmente como negocio de persona física con actividad empresarial. Se prevé la futura constitución de la persona moral <strong>ORDINAL-BiA</strong>, a la que se transferirá la titularidad y la marca; los documentos se actualizarán en ese momento.</p>
-</blockquote>
-<p>1.2. Esta Política <strong>se refiere únicamente al Sitio web</strong>. <strong>No</strong> aplica a los <strong>agentes</strong> de TuIAlista, que se ejecutan <strong>localmente en el equipo del Cliente</strong> y <strong>no usan cookies del navegador</strong> para procesar su contenido (ver <a href="/legal/compromiso-local">Compromiso de Procesamiento Local</a>).</p>
-<p>1.3. Esta Política se complementa con la <a href="/legal/privacidad">Política de Privacidad</a>, que describe el tratamiento general de datos personales.</p>
+<blockquote><p><strong>Nota sobre la estructura del negocio.</strong> TuIAlista opera actualmente como negocio de persona física con actividad empresarial. Se prevé la futura constitución de la persona moral <strong>ORDINAL-BiA</strong>, a la que se transferirá la titularidad y la marca; los documentos se actualizarán en ese momento.</p></blockquote>
+<p>1.2. Esta Política <strong>se refiere únicamente al Sitio web</strong>. <strong>No</strong> aplica a los <strong>agentes</strong> de TuIAlista, que se ejecutan <strong>localmente en el equipo del Cliente</strong> y <strong>no usan cookies del navegador</strong> para procesar su contenido (ver <a href="/legal/compromiso-local/">Compromiso de Procesamiento Local</a>).</p>
+<p>1.3. Esta Política se complementa con la <a href="/legal/privacidad/">Política de Privacidad</a>, que describe el tratamiento general de datos personales.</p>
 <hr />
 <h2>2. Qué son las cookies</h2>
 <p>2.1. Las <strong>cookies</strong> son pequeños archivos de texto que un sitio web almacena en el navegador o dispositivo del usuario para que el sitio funcione, recuerde preferencias o mida su uso. Existen tecnologías similares (almacenamiento local, píxeles, etiquetas) a las que también se refiere esta Política.</p>
 <p>2.2. Según su <strong>duración</strong>, las cookies pueden ser <strong>de sesión</strong> (se borran al cerrar el navegador) o <strong>persistentes</strong> (permanecen un tiempo definido). Según su <strong>origen</strong>, pueden ser <strong>propias</strong> (de TuIAlista) o <strong>de terceros</strong> (de proveedores como analítica o pasarela de pago).</p>
 <hr />
 <h2>3. Cookies que utiliza el Sitio</h2>
-<blockquote>
-<p>[VERIFICAR: inventario real de cookies del Sitio. Las categorías siguientes son las típicas de un sitio de este tipo; deben confirmarse con una auditoría técnica del Sitio antes de publicar, indicando nombre, proveedor, finalidad y duración de cada cookie.]</p>
-</blockquote>
-<p><strong>a) Cookies estrictamente necesarias (esenciales).</strong>
-Permiten el funcionamiento básico del Sitio y del portal del Cliente: seguridad, balanceo de carga, mantenimiento de la sesión iniciada y recuerdo del estado de aceptación de cookies. <strong>No requieren consentimiento</strong> porque son imprescindibles para prestar el servicio solicitado. Sin ellas, el Sitio no funciona correctamente.</p>
-<p><strong>b) Cookies de preferencias.</strong>
-Recuerdan opciones del usuario, como el <strong>idioma</strong> seleccionado (es/en/pt/fr/de/it) o la región. Mejoran la experiencia, pero no son imprescindibles. [VERIFICAR: si el Sitio usa este tipo de cookie.]</p>
-<p><strong>c) Cookies de analítica/medición.</strong>
-Ayudan a entender de forma <strong>agregada</strong> cómo se usa el Sitio (páginas visitadas, origen del tráfico) para mejorarlo. Pueden ser provistas por terceros. Se activan <strong>solo con el consentimiento</strong> del usuario cuando la ley lo exige. [VERIFICAR: si se usa analítica (p. ej., Google Analytics, Plausible u otra) y su configuración.]</p>
-<p><strong>d) Cookies de afiliados/atribución.</strong>
-Si el usuario llega al Sitio a través del enlace de un afiliado, puede establecerse una cookie para <strong>atribuir</strong> correctamente el referido conforme a los <a href="/legal/afiliados">Términos del Programa de Afiliados</a>. [VERIFICAR: existencia, proveedor y duración de la cookie/ventana de atribución.]</p>
-<p><strong>e) Cookies de la pasarela de pago (Creem).</strong>
-El proceso de pago se realiza a través de <strong>Creem</strong> como Comerciante Registrado; el entorno de pago de Creem puede establecer sus propias cookies, sujetas a la política de Creem. [VERIFICAR: cookies establecidas por Creem en el flujo de checkout.]</p>
+<p><strong>a) Cookies estrictamente necesarias (esenciales).</strong> Permiten el funcionamiento básico del Sitio y del portal del Cliente: seguridad, balanceo de carga, mantenimiento de la sesión iniciada y recuerdo del estado de aceptación de cookies. <strong>No requieren consentimiento</strong> porque son imprescindibles para prestar el servicio solicitado. Sin ellas, el Sitio no funciona correctamente.</p>
+<p><strong>b) Cookies de preferencias.</strong> Recuerdan opciones del usuario, como el <strong>idioma</strong> seleccionado (es/en/pt/fr/de/it) o la región. Mejoran la experiencia, pero no son imprescindibles.</p>
+<p><strong>c) Cookies de analítica/medición.</strong> Ayudan a entender de forma <strong>agregada</strong> cómo se usa el Sitio (páginas visitadas, origen del tráfico) para mejorarlo. Pueden ser provistas por terceros. Se activan <strong>solo con el consentimiento</strong> del usuario cuando la ley lo exige.</p>
+<p><strong>d) Cookies de afiliados/atribución.</strong> Si el usuario llega al Sitio a través del enlace de un afiliado, puede establecerse una cookie para <strong>atribuir</strong> correctamente el referido conforme a los <a href="/legal/afiliados/">Términos del Programa de Afiliados</a>.</p>
+<p><strong>e) Cookies de la pasarela de pago (Creem).</strong> El proceso de pago se realiza a través de <strong>Creem</strong> como Comerciante Registrado; el entorno de pago de Creem puede establecer sus propias cookies, sujetas a la política de Creem.</p>
 <hr />
 <h2>4. Base legal y consentimiento</h2>
 <p>4.1. Las cookies <strong>estrictamente necesarias</strong> se utilizan con base en el <strong>interés legítimo</strong> de operar el Sitio y prestar el servicio solicitado; no requieren consentimiento previo.</p>
-<h2>4.2. Las cookies <strong>de analítica, preferencias, afiliados y de terceros</strong> no esenciales se utilizan, cuando la ley aplicable lo exija (p. ej., usuarios de la UE), <strong>previo consentimiento</strong> del usuario, recabado mediante el mecanismo de gestión de cookies del Sitio.</h2>
+<p>4.2. Las cookies <strong>de analítica, preferencias, afiliados y de terceros</strong> no esenciales se utilizan, cuando la ley aplicable lo exija (p. ej., usuarios de la UE), <strong>previo consentimiento</strong> del usuario, recabado mediante el mecanismo de gestión de cookies del Sitio.</p>
+<hr />
 <h2>5. Cómo gestionar o rechazar las cookies</h2>
-<p>5.1. <strong>Panel de cookies del Sitio.</strong> Cuando esté disponible, el usuario podrá aceptar, rechazar o configurar las cookies no esenciales desde el panel/banner del Sitio, y cambiar su elección en cualquier momento. [VERIFICAR: existencia del panel de preferencias de cookies.]</p>
+<p>5.1. <strong>Panel de cookies del Sitio.</strong> Cuando esté disponible, el usuario podrá aceptar, rechazar o configurar las cookies no esenciales desde el panel/banner del Sitio, y cambiar su elección en cualquier momento.</p>
 <p>5.2. <strong>Configuración del navegador.</strong> El usuario puede <strong>bloquear o eliminar</strong> cookies desde la configuración de su navegador (Chrome, Firefox, Edge, Safari, etc.). Bloquear las cookies <strong>esenciales</strong> puede impedir el funcionamiento correcto del Sitio y del portal del Cliente.</p>
 <p>5.3. <strong>Opt-out de terceros.</strong> Para las cookies de analítica de terceros, el usuario puede además usar los mecanismos de exclusión que ofrezca el proveedor correspondiente.</p>
 <hr />
@@ -105,12 +88,210 @@ El proceso de pago se realiza a través de <strong>Creem</strong> como Comercian
 <p>Podemos actualizar esta Política de Cookies para reflejar cambios en el Sitio o en la normativa. Publicaremos la versión vigente en el Sitio con su fecha de actualización.</p>
 <hr />
 <h2>7. Contacto</h2>
-<ul>
-<li>Privacidad y cookies: <strong>privacidad@tuialista.com</strong></li>
-<li>Sitio: <a href="https://www.tuialista.com">www.tuialista.com</a></li>
-</ul>
+<ul><li>Privacidad y cookies: <strong>privacidad@tuialista.com</strong></li><li>Sitio: <a href="https://www.tuialista.com">www.tuialista.com</a></li></ul>
 <hr />
-<p><em>Fin del documento.</em></p></div></main>
-<footer>&copy; <span id="y"></span> TuIAlista &middot; <a href="/soporte">Soporte</a> &middot; <a href="/">Inicio</a><script>document.getElementById("y").textContent=new Date().getFullYear()</script></footer>
+<p><em>Fin del documento.</em></p></article>
+<article class="doc" id="doc-en" data-lang="en" hidden><div class="trnote">This is a courtesy translation. The Spanish version is the governing version.</div><h1>TuIAlista Cookie Policy</h1>
+<blockquote><p>The current version of this document is published at <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
+<p><strong>Version:</strong> 1.0 · <strong>Last updated:</strong> 21 July 2026 · <strong>Effective:</strong> 21 July 2026</p>
+<hr />
+<h2>1. Scope</h2>
+<p>1.1. This Cookie Policy explains how the website <strong><a href="https://www.tuialista.com">www.tuialista.com</a></strong> (the "Site"), operated by <strong>Edgar Apolonio Aguilera</strong>, an <strong>individual with business activity</strong> trading under the commercial name <strong>"TuIAlista"</strong>, with Tax ID (RFC) <strong>AOAE781008V98</strong> and registered address at <strong>Calle Malitzin, Manzana 10, Lote 23, Colonia Tepeaca, C.P. 01550, Alcaldía Álvaro Obregón</strong>, Mexico City, Mexico, uses cookies and similar technologies.</p>
+<blockquote><p><strong>Note on business structure.</strong> TuIAlista currently operates as an individual with business activity. The future incorporation of the legal entity <strong>ORDINAL-BiA</strong> is planned, to which ownership and the brand will be transferred; the documents will be updated at that time.</p></blockquote>
+<p>1.2. This Policy <strong>relates only to the website</strong>. It does <strong>not</strong> apply to TuIAlista's <strong>agents</strong>, which run <strong>locally on the Client's device</strong> and <strong>do not use browser cookies</strong> to process its content (see <a href="/legal/compromiso-local/">Local Processing Commitment</a>).</p>
+<p>1.3. This Policy complements the <a href="/legal/privacidad/">Privacy Policy</a>, which describes the general processing of personal data.</p>
+<hr />
+<h2>2. What cookies are</h2>
+<p>2.1. <strong>Cookies</strong> are small text files that a website stores in the user's browser or device so the site can work, remember preferences, or measure its use. There are similar technologies (local storage, pixels, tags) that this Policy also covers.</p>
+<p>2.2. By their <strong>duration</strong>, cookies can be <strong>session</strong> cookies (deleted when the browser closes) or <strong>persistent</strong> (remaining for a defined time). By their <strong>origin</strong>, they can be <strong>first-party</strong> (from TuIAlista) or <strong>third-party</strong> (from providers such as analytics or a payment gateway).</p>
+<hr />
+<h2>3. Cookies used by the Site</h2>
+<p><strong>a) Strictly necessary (essential) cookies.</strong> They enable the basic operation of the Site and the Client portal: security, load balancing, keeping the session signed in, and remembering the cookie-acceptance state. They <strong>do not require consent</strong> because they are essential to provide the requested service. Without them, the Site does not work correctly.</p>
+<p><strong>b) Preference cookies.</strong> They remember user options, such as the selected <strong>language</strong> (es/en/pt/fr/de/it) or the region. They improve the experience but are not essential.</p>
+<p><strong>c) Analytics/measurement cookies.</strong> They help understand, on an <strong>aggregate</strong> basis, how the Site is used (pages visited, traffic source) in order to improve it. They may be provided by third parties. They are activated <strong>only with the user's consent</strong> where the law requires.</p>
+<p><strong>d) Affiliate/attribution cookies.</strong> If the user reaches the Site through an affiliate's link, a cookie may be set to correctly <strong>attribute</strong> the referral in accordance with the <a href="/legal/afiliados/">Affiliate Program Terms</a>.</p>
+<p><strong>e) Payment-gateway (Creem) cookies.</strong> The payment process is carried out through <strong>Creem</strong> as Merchant of Record; Creem's payment environment may set its own cookies, subject to Creem's policy.</p>
+<hr />
+<h2>4. Legal basis and consent</h2>
+<p>4.1. <strong>Strictly necessary</strong> cookies are used on the basis of the <strong>legitimate interest</strong> of operating the Site and providing the requested service; they do not require prior consent.</p>
+<p>4.2. <strong>Analytics, preference, affiliate, and non-essential third-party</strong> cookies are used, where applicable law requires it (e.g., EU users), <strong>subject to the user's prior consent</strong>, obtained through the Site's cookie-management mechanism.</p>
+<hr />
+<h2>5. How to manage or reject cookies</h2>
+<p>5.1. <strong>Site cookie panel.</strong> Where available, the user may accept, reject, or configure non-essential cookies from the Site's panel/banner, and change their choice at any time.</p>
+<p>5.2. <strong>Browser settings.</strong> The user may <strong>block or delete</strong> cookies from their browser settings (Chrome, Firefox, Edge, Safari, etc.). Blocking <strong>essential</strong> cookies may prevent the correct operation of the Site and the Client portal.</p>
+<p>5.3. <strong>Third-party opt-out.</strong> For third-party analytics cookies, the user may also use the opt-out mechanisms offered by the relevant provider.</p>
+<hr />
+<h2>6. Changes to this Policy</h2>
+<p>We may update this Cookie Policy to reflect changes in the Site or in the applicable rules. We will publish the current version on the Site with its update date.</p>
+<hr />
+<h2>7. Contact</h2>
+<ul><li>Privacy and cookies: <strong>privacidad@tuialista.com</strong></li><li>Website: <a href="https://www.tuialista.com">www.tuialista.com</a></li></ul>
+<hr />
+<p><em>End of document.</em></p></article>
+<article class="doc" id="doc-pt" data-lang="pt" hidden><div class="trnote">Esta é uma tradução de cortesia. A versão em espanhol é a versão vigente.</div><h1>Política de Cookies da TuIAlista</h1>
+<blockquote><p>A versão vigente deste documento é publicada em <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
+<p><strong>Versão:</strong> 1.0 · <strong>Última atualização:</strong> 21 de julho de 2026 · <strong>Em vigor a partir de:</strong> 21 de julho de 2026</p>
+<hr />
+<h2>1. Alcance</h2>
+<p>1.1. Esta Política de Cookies explica como o site <strong><a href="https://www.tuialista.com">www.tuialista.com</a></strong> (o "Site"), operado por <strong>Edgar Apolonio Aguilera</strong>, <strong>pessoa física com atividade empresarial</strong> que atua sob o nome comercial <strong>"TuIAlista"</strong>, com RFC <strong>AOAE781008V98</strong> e domicílio fiscal em <strong>Calle Malitzin, Manzana 10, Lote 23, Colonia Tepeaca, C.P. 01550, Alcaldía Álvaro Obregón</strong>, Cidade do México, México, utiliza cookies e tecnologias similares.</p>
+<blockquote><p><strong>Nota sobre a estrutura do negócio.</strong> A TuIAlista opera atualmente como negócio de pessoa física com atividade empresarial. Prevê-se a futura constituição da pessoa jurídica <strong>ORDINAL-BiA</strong>, à qual serão transferidas a titularidade e a marca; os documentos serão atualizados nesse momento.</p></blockquote>
+<p>1.2. Esta Política <strong>refere-se unicamente ao site</strong>. <strong>Não</strong> se aplica aos <strong>agentes</strong> da TuIAlista, que se executam <strong>localmente no equipamento do Cliente</strong> e <strong>não usam cookies do navegador</strong> para processar seu conteúdo (ver <a href="/legal/compromiso-local/">Compromisso de Processamento Local</a>).</p>
+<p>1.3. Esta Política complementa a <a href="/legal/privacidad/">Política de Privacidade</a>, que descreve o tratamento geral de dados pessoais.</p>
+<hr />
+<h2>2. O que são os cookies</h2>
+<p>2.1. Os <strong>cookies</strong> são pequenos arquivos de texto que um site armazena no navegador ou dispositivo do usuário para que o site funcione, lembre preferências ou meça seu uso. Existem tecnologias similares (armazenamento local, pixels, tags) às quais esta Política também se refere.</p>
+<p>2.2. Segundo sua <strong>duração</strong>, os cookies podem ser <strong>de sessão</strong> (apagam-se ao fechar o navegador) ou <strong>persistentes</strong> (permanecem por um tempo definido). Segundo sua <strong>origem</strong>, podem ser <strong>próprios</strong> (da TuIAlista) ou <strong>de terceiros</strong> (de fornecedores como analítica ou gateway de pagamento).</p>
+<hr />
+<h2>3. Cookies utilizados pelo Site</h2>
+<p><strong>a) Cookies estritamente necessários (essenciais).</strong> Permitem o funcionamento básico do Site e do portal do Cliente: segurança, balanceamento de carga, manutenção da sessão iniciada e memória do estado de aceitação de cookies. <strong>Não requerem consentimento</strong> por serem imprescindíveis para prestar o serviço solicitado. Sem eles, o Site não funciona corretamente.</p>
+<p><strong>b) Cookies de preferências.</strong> Lembram opções do usuário, como o <strong>idioma</strong> selecionado (es/en/pt/fr/de/it) ou a região. Melhoram a experiência, mas não são imprescindíveis.</p>
+<p><strong>c) Cookies de analítica/medição.</strong> Ajudam a entender de forma <strong>agregada</strong> como o Site é usado (páginas visitadas, origem do tráfego) para melhorá-lo. Podem ser fornecidos por terceiros. Ativam-se <strong>somente com o consentimento</strong> do usuário quando a lei o exige.</p>
+<p><strong>d) Cookies de afiliados/atribuição.</strong> Se o usuário chega ao Site através do link de um afiliado, pode ser estabelecido um cookie para <strong>atribuir</strong> corretamente a indicação conforme os <a href="/legal/afiliados/">Termos do Programa de Afiliados</a>.</p>
+<p><strong>e) Cookies do gateway de pagamento (Creem).</strong> O processo de pagamento é realizado através da <strong>Creem</strong> como Comerciante Registrado; o ambiente de pagamento da Creem pode estabelecer seus próprios cookies, sujeitos à política da Creem.</p>
+<hr />
+<h2>4. Base legal e consentimento</h2>
+<p>4.1. Os cookies <strong>estritamente necessários</strong> são utilizados com base no <strong>interesse legítimo</strong> de operar o Site e prestar o serviço solicitado; não requerem consentimento prévio.</p>
+<p>4.2. Os cookies <strong>de analítica, preferências, afiliados e de terceiros</strong> não essenciais são utilizados, quando a lei aplicável o exija (p. ex., usuários da UE), <strong>mediante consentimento prévio</strong> do usuário, obtido através do mecanismo de gestão de cookies do Site.</p>
+<hr />
+<h2>5. Como gerir ou recusar os cookies</h2>
+<p>5.1. <strong>Painel de cookies do Site.</strong> Quando disponível, o usuário poderá aceitar, recusar ou configurar os cookies não essenciais a partir do painel/banner do Site, e alterar sua escolha a qualquer momento.</p>
+<p>5.2. <strong>Configuração do navegador.</strong> O usuário pode <strong>bloquear ou eliminar</strong> cookies a partir da configuração de seu navegador (Chrome, Firefox, Edge, Safari, etc.). Bloquear os cookies <strong>essenciais</strong> pode impedir o funcionamento correto do Site e do portal do Cliente.</p>
+<p>5.3. <strong>Opt-out de terceiros.</strong> Para os cookies de analítica de terceiros, o usuário pode ainda usar os mecanismos de exclusão que o fornecedor correspondente oferecer.</p>
+<hr />
+<h2>6. Alterações a esta Política</h2>
+<p>Podemos atualizar esta Política de Cookies para refletir alterações no Site ou na normativa. Publicaremos a versão vigente no Site com sua data de atualização.</p>
+<hr />
+<h2>7. Contato</h2>
+<ul><li>Privacidade e cookies: <strong>privacidad@tuialista.com</strong></li><li>Site: <a href="https://www.tuialista.com">www.tuialista.com</a></li></ul>
+<hr />
+<p><em>Fim do documento.</em></p></article>
+<article class="doc" id="doc-fr" data-lang="fr" hidden><div class="trnote">Ceci est une traduction de courtoisie. La version espagnole fait foi.</div><h1>Politique relative aux Cookies de TuIAlista</h1>
+<blockquote><p>La version en vigueur de ce document est publiée sur <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
+<p><strong>Version :</strong> 1.0 · <strong>Dernière mise à jour :</strong> 21 juillet 2026 · <strong>En vigueur à partir du :</strong> 21 juillet 2026</p>
+<hr />
+<h2>1. Champ d'application</h2>
+<p>1.1. La présente Politique relative aux Cookies explique comment le site web <strong><a href="https://www.tuialista.com">www.tuialista.com</a></strong> (le « Site »), exploité par <strong>Edgar Apolonio Aguilera</strong>, <strong>personne physique exerçant une activité commerciale</strong> sous le nom commercial <strong>« TuIAlista »</strong>, immatriculée sous le numéro fiscal (RFC) <strong>AOAE781008V98</strong> et domiciliée à <strong>Calle Malitzin, Manzana 10, Lote 23, Colonia Tepeaca, C.P. 01550, Alcaldía Álvaro Obregón</strong>, Mexico, Mexique, utilise des cookies et des technologies similaires.</p>
+<blockquote><p><strong>Note sur la structure de l'entreprise.</strong> TuIAlista opère actuellement en tant que personne physique exerçant une activité commerciale. La constitution future de la personne morale <strong>ORDINAL-BiA</strong> est prévue, à laquelle seront transférées la propriété et la marque ; les documents seront mis à jour à ce moment-là.</p></blockquote>
+<p>1.2. La présente Politique <strong>concerne uniquement le site web</strong>. Elle ne s'applique <strong>pas</strong> aux <strong>agents</strong> de TuIAlista, qui s'exécutent <strong>localement sur l'appareil du Client</strong> et <strong>n'utilisent pas de cookies de navigateur</strong> pour traiter son contenu (voir <a href="/legal/compromiso-local/">Engagement de Traitement Local</a>).</p>
+<p>1.3. La présente Politique complète la <a href="/legal/privacidad/">Politique de Confidentialité</a>, qui décrit le traitement général des données personnelles.</p>
+<hr />
+<h2>2. Que sont les cookies</h2>
+<p>2.1. Les <strong>cookies</strong> sont de petits fichiers texte qu'un site web stocke dans le navigateur ou l'appareil de l'utilisateur pour que le site fonctionne, se souvienne de préférences ou mesure son utilisation. Il existe des technologies similaires (stockage local, pixels, balises) que la présente Politique couvre également.</p>
+<p>2.2. Selon leur <strong>durée</strong>, les cookies peuvent être <strong>de session</strong> (supprimés à la fermeture du navigateur) ou <strong>persistants</strong> (conservés pour une durée définie). Selon leur <strong>origine</strong>, ils peuvent être <strong>internes</strong> (de TuIAlista) ou <strong>tiers</strong> (de fournisseurs tels que l'analytique ou une passerelle de paiement).</p>
+<hr />
+<h2>3. Cookies utilisés par le Site</h2>
+<p><strong>a) Cookies strictement nécessaires (essentiels).</strong> Ils permettent le fonctionnement de base du Site et de l'espace Client : sécurité, répartition de charge, maintien de la session ouverte et mémorisation de l'état d'acceptation des cookies. Ils <strong>ne requièrent pas de consentement</strong> car ils sont indispensables à la fourniture du service demandé. Sans eux, le Site ne fonctionne pas correctement.</p>
+<p><strong>b) Cookies de préférences.</strong> Ils mémorisent des options de l'utilisateur, telles que la <strong>langue</strong> sélectionnée (es/en/pt/fr/de/it) ou la région. Ils améliorent l'expérience mais ne sont pas indispensables.</p>
+<p><strong>c) Cookies d'analytique/de mesure.</strong> Ils aident à comprendre, de manière <strong>agrégée</strong>, l'utilisation du Site (pages visitées, source du trafic) afin de l'améliorer. Ils peuvent être fournis par des tiers. Ils sont activés <strong>uniquement avec le consentement</strong> de l'utilisateur lorsque la loi l'exige.</p>
+<p><strong>d) Cookies d'affiliation/d'attribution.</strong> Si l'utilisateur arrive sur le Site via le lien d'un affilié, un cookie peut être défini pour <strong>attribuer</strong> correctement le parrainage conformément aux <a href="/legal/afiliados/">Conditions du Programme d'Affiliation</a>.</p>
+<p><strong>e) Cookies de la passerelle de paiement (Creem).</strong> Le processus de paiement s'effectue via <strong>Creem</strong> en tant que Commerçant Enregistré ; l'environnement de paiement de Creem peut définir ses propres cookies, soumis à la politique de Creem.</p>
+<hr />
+<h2>4. Base légale et consentement</h2>
+<p>4.1. Les cookies <strong>strictement nécessaires</strong> sont utilisés sur la base de l'<strong>intérêt légitime</strong> d'exploiter le Site et de fournir le service demandé ; ils ne requièrent pas de consentement préalable.</p>
+<p>4.2. Les cookies <strong>d'analytique, de préférences, d'affiliation et tiers</strong> non essentiels sont utilisés, lorsque la loi applicable l'exige (par ex. utilisateurs de l'UE), <strong>sous réserve du consentement préalable</strong> de l'utilisateur, recueilli via le mécanisme de gestion des cookies du Site.</p>
+<hr />
+<h2>5. Comment gérer ou refuser les cookies</h2>
+<p>5.1. <strong>Panneau de cookies du Site.</strong> Lorsqu'il est disponible, l'utilisateur peut accepter, refuser ou configurer les cookies non essentiels depuis le panneau/bandeau du Site, et modifier son choix à tout moment.</p>
+<p>5.2. <strong>Paramètres du navigateur.</strong> L'utilisateur peut <strong>bloquer ou supprimer</strong> les cookies depuis les paramètres de son navigateur (Chrome, Firefox, Edge, Safari, etc.). Bloquer les cookies <strong>essentiels</strong> peut empêcher le bon fonctionnement du Site et de l'espace Client.</p>
+<p>5.3. <strong>Opt-out des tiers.</strong> Pour les cookies d'analytique tiers, l'utilisateur peut en outre recourir aux mécanismes d'exclusion proposés par le fournisseur concerné.</p>
+<hr />
+<h2>6. Modifications de la présente Politique</h2>
+<p>Nous pouvons mettre à jour la présente Politique relative aux Cookies pour refléter des changements du Site ou de la réglementation. Nous publierons la version en vigueur sur le Site avec sa date de mise à jour.</p>
+<hr />
+<h2>7. Contact</h2>
+<ul><li>Confidentialité et cookies : <strong>privacidad@tuialista.com</strong></li><li>Site web : <a href="https://www.tuialista.com">www.tuialista.com</a></li></ul>
+<hr />
+<p><em>Fin du document.</em></p></article>
+<article class="doc" id="doc-de" data-lang="de" hidden><div class="trnote">Dies ist eine Übersetzung als Serviceleistung. Maßgeblich ist die spanische Fassung.</div><h1>TuIAlista-Cookie-Richtlinie</h1>
+<blockquote><p>Die aktuelle Fassung dieses Dokuments wird unter <a href="https://www.tuialista.com">www.tuialista.com</a> veröffentlicht.</p></blockquote>
+<p><strong>Version:</strong> 1.0 · <strong>Zuletzt aktualisiert:</strong> 21. Juli 2026 · <strong>Gültig ab:</strong> 21. Juli 2026</p>
+<hr />
+<h2>1. Geltungsbereich</h2>
+<p>1.1. Diese Cookie-Richtlinie erläutert, wie die Website <strong><a href="https://www.tuialista.com">www.tuialista.com</a></strong> (die „Website"), betrieben von <strong>Edgar Apolonio Aguilera</strong>, einer <strong>natürlichen Person mit unternehmerischer Tätigkeit</strong> unter dem Handelsnamen <strong>„TuIAlista"</strong>, mit Steuernummer (RFC) <strong>AOAE781008V98</strong> und Geschäftssitz in <strong>Calle Malitzin, Manzana 10, Lote 23, Colonia Tepeaca, C.P. 01550, Alcaldía Álvaro Obregón</strong>, Mexiko-Stadt, Mexiko, Cookies und ähnliche Technologien verwendet.</p>
+<blockquote><p><strong>Hinweis zur Unternehmensstruktur.</strong> TuIAlista wird derzeit als Geschäft einer natürlichen Person mit unternehmerischer Tätigkeit betrieben. Die künftige Gründung der juristischen Person <strong>ORDINAL-BiA</strong> ist vorgesehen, auf die Inhaberschaft und Marke übertragen werden; die Dokumente werden zu diesem Zeitpunkt aktualisiert.</p></blockquote>
+<p>1.2. Diese Richtlinie <strong>betrifft ausschließlich die Website</strong>. Sie gilt <strong>nicht</strong> für die <strong>Agenten</strong> von TuIAlista, die <strong>lokal auf dem Gerät des Kunden</strong> laufen und <strong>keine Browser-Cookies</strong> verwenden, um dessen Inhalte zu verarbeiten (siehe <a href="/legal/compromiso-local/">Verpflichtung zur lokalen Verarbeitung</a>).</p>
+<p>1.3. Diese Richtlinie ergänzt die <a href="/legal/privacidad/">Datenschutzerklärung</a>, die die allgemeine Verarbeitung personenbezogener Daten beschreibt.</p>
+<hr />
+<h2>2. Was Cookies sind</h2>
+<p>2.1. <strong>Cookies</strong> sind kleine Textdateien, die eine Website im Browser oder auf dem Gerät des Nutzers speichert, damit die Website funktioniert, Präferenzen speichert oder ihre Nutzung misst. Es gibt ähnliche Technologien (lokaler Speicher, Pixel, Tags), auf die sich diese Richtlinie ebenfalls bezieht.</p>
+<p>2.2. Nach ihrer <strong>Dauer</strong> können Cookies <strong>Sitzungscookies</strong> (werden beim Schließen des Browsers gelöscht) oder <strong>dauerhafte</strong> Cookies (bleiben für eine bestimmte Zeit) sein. Nach ihrer <strong>Herkunft</strong> können sie <strong>eigene</strong> (von TuIAlista) oder <strong>Drittanbieter-Cookies</strong> (von Anbietern wie Analyse oder Zahlungsdienstleister) sein.</p>
+<hr />
+<h2>3. Von der Website verwendete Cookies</h2>
+<p><strong>a) Unbedingt erforderliche (essenzielle) Cookies.</strong> Sie ermöglichen den Grundbetrieb der Website und des Kundenportals: Sicherheit, Lastverteilung, Aufrechterhaltung der angemeldeten Sitzung und Speicherung des Cookie-Einwilligungsstatus. Sie <strong>erfordern keine Einwilligung</strong>, da sie zur Erbringung des angeforderten Dienstes unerlässlich sind. Ohne sie funktioniert die Website nicht korrekt.</p>
+<p><strong>b) Präferenz-Cookies.</strong> Sie speichern Nutzeroptionen wie die gewählte <strong>Sprache</strong> (es/en/pt/fr/de/it) oder die Region. Sie verbessern das Erlebnis, sind aber nicht unerlässlich.</p>
+<p><strong>c) Analyse-/Mess-Cookies.</strong> Sie helfen, auf <strong>aggregierter</strong> Basis zu verstehen, wie die Website genutzt wird (besuchte Seiten, Traffic-Quelle), um sie zu verbessern. Sie können von Dritten bereitgestellt werden. Sie werden <strong>nur mit Einwilligung</strong> des Nutzers aktiviert, sofern das Gesetz dies verlangt.</p>
+<p><strong>d) Partner-/Attributions-Cookies.</strong> Wenn der Nutzer über den Link eines Partners auf die Website gelangt, kann ein Cookie gesetzt werden, um die Empfehlung gemäß den <a href="/legal/afiliados/">Bedingungen des Partnerprogramms</a> korrekt <strong>zuzuordnen</strong>.</p>
+<p><strong>e) Cookies des Zahlungsdienstleisters (Creem).</strong> Der Zahlungsvorgang wird über <strong>Creem</strong> als Registrierter Händler abgewickelt; die Zahlungsumgebung von Creem kann eigene Cookies setzen, die der Richtlinie von Creem unterliegen.</p>
+<hr />
+<h2>4. Rechtsgrundlage und Einwilligung</h2>
+<p>4.1. <strong>Unbedingt erforderliche</strong> Cookies werden auf Grundlage des <strong>berechtigten Interesses</strong> am Betrieb der Website und der Erbringung des angeforderten Dienstes verwendet; sie erfordern keine vorherige Einwilligung.</p>
+<p>4.2. <strong>Analyse-, Präferenz-, Partner- und nicht essenzielle Drittanbieter-Cookies</strong> werden, sofern das anwendbare Recht dies verlangt (z. B. EU-Nutzer), <strong>nach vorheriger Einwilligung</strong> des Nutzers verwendet, die über den Cookie-Verwaltungsmechanismus der Website eingeholt wird.</p>
+<hr />
+<h2>5. So verwalten oder lehnen Sie Cookies ab</h2>
+<p>5.1. <strong>Cookie-Panel der Website.</strong> Sofern verfügbar, kann der Nutzer nicht essenzielle Cookies über das Panel/Banner der Website akzeptieren, ablehnen oder konfigurieren und seine Wahl jederzeit ändern.</p>
+<p>5.2. <strong>Browsereinstellungen.</strong> Der Nutzer kann Cookies über die Einstellungen seines Browsers (Chrome, Firefox, Edge, Safari usw.) <strong>blockieren oder löschen</strong>. Das Blockieren <strong>essenzieller</strong> Cookies kann den ordnungsgemäßen Betrieb der Website und des Kundenportals verhindern.</p>
+<p>5.3. <strong>Opt-out von Drittanbietern.</strong> Für Analyse-Cookies von Drittanbietern kann der Nutzer zudem die vom jeweiligen Anbieter angebotenen Opt-out-Mechanismen nutzen.</p>
+<hr />
+<h2>6. Änderungen dieser Richtlinie</h2>
+<p>Wir können diese Cookie-Richtlinie aktualisieren, um Änderungen der Website oder der Vorschriften widerzuspiegeln. Wir veröffentlichen die geltende Fassung auf der Website mit ihrem Aktualisierungsdatum.</p>
+<hr />
+<h2>7. Kontakt</h2>
+<ul><li>Datenschutz und Cookies: <strong>privacidad@tuialista.com</strong></li><li>Website: <a href="https://www.tuialista.com">www.tuialista.com</a></li></ul>
+<hr />
+<p><em>Ende des Dokuments.</em></p></article>
+<article class="doc" id="doc-it" data-lang="it" hidden><div class="trnote">Questa è una traduzione di cortesia. La versione spagnola è quella vigente.</div><h1>Politica sui Cookie di TuIAlista</h1>
+<blockquote><p>La versione vigente di questo documento è pubblicata su <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
+<p><strong>Versione:</strong> 1.0 · <strong>Ultimo aggiornamento:</strong> 21 luglio 2026 · <strong>In vigore dal:</strong> 21 luglio 2026</p>
+<hr />
+<h2>1. Ambito</h2>
+<p>1.1. La presente Politica sui Cookie spiega come il sito web <strong><a href="https://www.tuialista.com">www.tuialista.com</a></strong> (il "Sito"), gestito da <strong>Edgar Apolonio Aguilera</strong>, <strong>persona fisica con attività imprenditoriale</strong> che opera con il nome commerciale <strong>"TuIAlista"</strong>, con codice fiscale (RFC) <strong>AOAE781008V98</strong> e domicilio fiscale in <strong>Calle Malitzin, Manzana 10, Lote 23, Colonia Tepeaca, C.P. 01550, Alcaldía Álvaro Obregón</strong>, Città del Messico, Messico, utilizza cookie e tecnologie similari.</p>
+<blockquote><p><strong>Nota sulla struttura aziendale.</strong> TuIAlista opera attualmente come attività di persona fisica con attività imprenditoriale. È prevista la futura costituzione della persona giuridica <strong>ORDINAL-BiA</strong>, alla quale saranno trasferiti la titolarità e il marchio; i documenti saranno aggiornati in quel momento.</p></blockquote>
+<p>1.2. La presente Politica <strong>riguarda unicamente il sito web</strong>. <strong>Non</strong> si applica agli <strong>agenti</strong> di TuIAlista, che vengono eseguiti <strong>localmente sul dispositivo del Cliente</strong> e <strong>non usano cookie del browser</strong> per elaborare il suo contenuto (vedi <a href="/legal/compromiso-local/">Impegno di Elaborazione Locale</a>).</p>
+<p>1.3. La presente Politica integra la <a href="/legal/privacidad/">Politica sulla Privacy</a>, che descrive il trattamento generale dei dati personali.</p>
+<hr />
+<h2>2. Cosa sono i cookie</h2>
+<p>2.1. I <strong>cookie</strong> sono piccoli file di testo che un sito web memorizza nel browser o nel dispositivo dell'utente affinché il sito funzioni, ricordi le preferenze o ne misuri l'uso. Esistono tecnologie similari (archiviazione locale, pixel, tag) a cui la presente Politica si riferisce anch'esse.</p>
+<p>2.2. In base alla loro <strong>durata</strong>, i cookie possono essere <strong>di sessione</strong> (si eliminano alla chiusura del browser) o <strong>persistenti</strong> (rimangono per un tempo definito). In base alla loro <strong>origine</strong>, possono essere <strong>propri</strong> (di TuIAlista) o <strong>di terzi</strong> (di fornitori come analitica o gateway di pagamento).</p>
+<hr />
+<h2>3. Cookie utilizzati dal Sito</h2>
+<p><strong>a) Cookie strettamente necessari (essenziali).</strong> Consentono il funzionamento di base del Sito e del portale del Cliente: sicurezza, bilanciamento del carico, mantenimento della sessione avviata e memoria dello stato di accettazione dei cookie. <strong>Non richiedono consenso</strong> perché indispensabili per fornire il servizio richiesto. Senza di essi, il Sito non funziona correttamente.</p>
+<p><strong>b) Cookie di preferenze.</strong> Ricordano le opzioni dell'utente, come la <strong>lingua</strong> selezionata (es/en/pt/fr/de/it) o la regione. Migliorano l'esperienza, ma non sono indispensabili.</p>
+<p><strong>c) Cookie di analitica/misurazione.</strong> Aiutano a comprendere in forma <strong>aggregata</strong> come viene usato il Sito (pagine visitate, origine del traffico) per migliorarlo. Possono essere forniti da terzi. Si attivano <strong>solo con il consenso</strong> dell'utente quando la legge lo richiede.</p>
+<p><strong>d) Cookie di affiliazione/attribuzione.</strong> Se l'utente arriva al Sito tramite il link di un affiliato, può essere impostato un cookie per <strong>attribuire</strong> correttamente la segnalazione conformemente ai <a href="/legal/afiliados/">Termini del Programma di Affiliazione</a>.</p>
+<p><strong>e) Cookie del gateway di pagamento (Creem).</strong> Il processo di pagamento avviene tramite <strong>Creem</strong> in qualità di Commerciante Registrato; l'ambiente di pagamento di Creem può impostare propri cookie, soggetti alla politica di Creem.</p>
+<hr />
+<h2>4. Base giuridica e consenso</h2>
+<p>4.1. I cookie <strong>strettamente necessari</strong> sono utilizzati sulla base dell'<strong>interesse legittimo</strong> di gestire il Sito e fornire il servizio richiesto; non richiedono consenso preventivo.</p>
+<p>4.2. I cookie <strong>di analitica, preferenze, affiliazione e di terzi</strong> non essenziali sono utilizzati, quando la legge applicabile lo richieda (ad es. utenti dell'UE), <strong>previo consenso</strong> dell'utente, raccolto tramite il meccanismo di gestione dei cookie del Sito.</p>
+<hr />
+<h2>5. Come gestire o rifiutare i cookie</h2>
+<p>5.1. <strong>Pannello dei cookie del Sito.</strong> Quando disponibile, l'utente potrà accettare, rifiutare o configurare i cookie non essenziali dal pannello/banner del Sito, e modificare la propria scelta in qualsiasi momento.</p>
+<p>5.2. <strong>Impostazioni del browser.</strong> L'utente può <strong>bloccare o eliminare</strong> i cookie dalle impostazioni del proprio browser (Chrome, Firefox, Edge, Safari, ecc.). Bloccare i cookie <strong>essenziali</strong> può impedire il corretto funzionamento del Sito e del portale del Cliente.</p>
+<p>5.3. <strong>Opt-out di terzi.</strong> Per i cookie di analitica di terzi, l'utente può inoltre usare i meccanismi di esclusione offerti dal fornitore corrispondente.</p>
+<hr />
+<h2>6. Modifiche alla presente Politica</h2>
+<p>Possiamo aggiornare la presente Politica sui Cookie per riflettere modifiche del Sito o della normativa. Pubblicheremo la versione vigente sul Sito con la relativa data di aggiornamento.</p>
+<hr />
+<h2>7. Contatto</h2>
+<ul><li>Privacy e cookie: <strong>privacidad@tuialista.com</strong></li><li>Sito: <a href="https://www.tuialista.com">www.tuialista.com</a></li></ul>
+<hr />
+<p><em>Fine del documento.</em></p></article>
+</main>
+<footer>&copy; <span id="y"></span> TuIAlista &middot; <a href="/soporte">Soporte</a> &middot; <a href="/">Inicio</a></footer>
+<script>
+document.getElementById("y").textContent=new Date().getFullYear();
+(function(){
+  var LANGS=["es", "en", "pt", "fr", "de", "it"];
+  var BACK={"es": "← Volver al portal", "en": "← Back to portal", "pt": "← Voltar ao portal", "fr": "← Retour à l'espace", "de": "← Zurück zum Portal", "it": "← Torna al portale"};
+  function detect(){try{var l=(localStorage.getItem("tuialista_lang")||"es").slice(0,2).toLowerCase();return LANGS.indexOf(l)>=0?l:"es";}catch(e){return "es";}}
+  var sel=document.getElementById("lang-sel"), back=document.getElementById("back-link");
+  function show(l){
+    LANGS.forEach(function(x){var a=document.getElementById("doc-"+x);if(a)a.hidden=(x!==l);});
+    document.documentElement.lang=l; if(sel)sel.value=l; if(back&&BACK[l])back.textContent=BACK[l];
+  }
+  if(sel)sel.addEventListener("change",function(){try{localStorage.setItem("tuialista_lang",sel.value);}catch(e){}show(sel.value);});
+  show(detect());
+})();
+</script>
 </body>
 </html>

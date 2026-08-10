@@ -11,12 +11,14 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Inter',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
 header{position:sticky;top:0;background:rgba(245,246,244,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
-.nav{max-width:820px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.nav{max-width:820px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
 .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
 .logo b{color:var(--signal)}
+.nav-right{display:flex;align-items:center;gap:14px}
 .nav a.back{color:var(--muted);text-decoration:none;font-size:14px}
 .nav a.back:hover{color:var(--ink)}
+#lang-sel{font-family:'Inter',sans-serif;font-size:13.5px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:7px;padding:5px 8px;cursor:pointer}
 main{max-width:820px;margin:0 auto;padding:40px 24px 80px}
 .doc h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,36px);line-height:1.15;margin-bottom:8px}
 .doc h2{font-family:'Space Grotesk';font-size:22px;margin:34px 0 12px}
@@ -26,52 +28,39 @@ main{max-width:820px;margin:0 auto;padding:40px 24px 80px}
 .doc li{margin:6px 0}
 .doc a{color:var(--signal-dim)}
 .doc strong{color:var(--ink)}
+.doc code{background:#eceee9;padding:1px 5px;border-radius:4px;font-size:.92em}
+.doc pre{background:#0f1922;color:#e6e9e7;padding:14px 16px;border-radius:8px;overflow:auto;margin:16px 0;font-size:13px}
+.doc pre code{background:none;color:inherit;padding:0}
 .doc blockquote{border-left:3px solid var(--signal);background:#eceee9;padding:12px 18px;margin:16px 0;border-radius:0 8px 8px 0;color:var(--muted);font-size:14.5px}
+.doc blockquote p{margin:6px 0;color:var(--muted)}
 .doc hr{border:none;border-top:1px solid var(--line);margin:28px 0}
-.doc table{border-collapse:collapse;margin:16px 0;font-size:14px;width:100%}
-.doc th,.doc td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+.trnote{background:#eef2f5;border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--muted);margin-bottom:24px}
 footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px}
 footer a{color:#cdd5d9;text-decoration:none}
 </style>
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Pol\u00edtica de Reembolsos \u2014 TuIAlista",
-  "description": "",
-  "url": "https://tuialista.com/legal\\reembolsos/",
-  "isPartOf": {
-    "@type": "WebSite",
-    "name": "Tuialista",
-    "url": "https://tuialista.com"
-  }
-}
+{"@context":"https://schema.org","@type":"WebPage","name":"Política de Reembolsos — TuIAlista","url":"https://tuialista.com/legal/reembolsos/","isPartOf":{"@type":"WebSite","name":"Tuialista","url":"https://tuialista.com"}}
 </script>
 <meta property="og:title" content="Política de Reembolsos — TuIAlista">
-<meta property="og:description" content="">
-<meta property="og:url" content="https://tuialista.com/legal\reembolsos/">
+<meta property="og:url" content="https://tuialista.com/legal/reembolsos/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://tuialista.com/assets/img/icon-512.png">
 <meta property="og:site_name" content="Tuialista">
 <meta property="og:locale" content="es_MX">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Política de Reembolsos — TuIAlista">
-<meta name="twitter:description" content="">
 <script defer data-domain="tuialista.com" src="https://plausible.io/js/script.js"></script>
 </head>
 <body>
-<header><div class="nav"><a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a><a class="back" href="/portal/">&larr; Volver al portal</a></div></header>
-<main><div class="doc"><h1>Política de Reembolsos de TuIAlista</h1>
-<blockquote>
-<p>La versión vigente de este documento se publica en <a href="https://www.tuialista.com">www.tuialista.com</a>.</p>
-</blockquote>
+<header><div class="nav"><a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+<div class="nav-right"><select id="lang-sel" aria-label="Idioma / Language"><option value="es">Español</option><option value="en">English</option><option value="pt">Português</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="it">Italiano</option></select><a class="back" href="/portal/" id="back-link">← Volver al portal</a></div></div></header>
+<main>
+<article class="doc" id="doc-es" data-lang="es"><h1>Política de Reembolsos de TuIAlista</h1>
+<blockquote><p>La versión vigente de este documento se publica en <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
 <p><strong>Versión:</strong> 1.0 · <strong>Última actualización:</strong> 21 de julio de 2026 · <strong>Vigente a partir de:</strong> 21 de julio de 2026</p>
 <hr />
 <h2>1. Marco general y relación con Creem (Comerciante Registrado)</h2>
-<p>1.1. Esta Política de Reembolsos forma parte de los <a href="/legal/terminos">Términos de Servicio</a> de <strong>TuIAlista</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a>), operada por <strong>Edgar Apolonio Aguilera</strong>, <strong>persona física con actividad empresarial</strong> que opera bajo el nombre comercial <strong>"TuIAlista"</strong>, con RFC <strong>AOAE781008V98</strong> y domicilio fiscal en <strong>Calle Malitzin, Manzana 10, Lote 23, Colonia Tepeaca, C.P. 01550, Alcaldía Álvaro Obregón</strong>, Ciudad de México, México.</p>
-<blockquote>
-<p><strong>Nota sobre la estructura del negocio.</strong> TuIAlista opera actualmente como negocio de persona física con actividad empresarial. Se prevé la futura constitución de la persona moral <strong>ORDINAL-BiA</strong>, a la que se transferirá la titularidad y la marca; los documentos se actualizarán en ese momento.</p>
-</blockquote>
+<p>1.1. Esta Política de Reembolsos forma parte de los <a href="/legal/terminos/">Términos de Servicio</a> de <strong>TuIAlista</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a>), operada por <strong>Edgar Apolonio Aguilera</strong>, <strong>persona física con actividad empresarial</strong> que opera bajo el nombre comercial <strong>"TuIAlista"</strong>, con RFC <strong>AOAE781008V98</strong> y domicilio fiscal en <strong>Calle Malitzin, Manzana 10, Lote 23, Colonia Tepeaca, C.P. 01550, Alcaldía Álvaro Obregón</strong>, Ciudad de México, México.</p>
+<blockquote><p><strong>Nota sobre la estructura del negocio.</strong> TuIAlista opera actualmente como negocio de persona física con actividad empresarial. Se prevé la futura constitución de la persona moral <strong>ORDINAL-BiA</strong>, a la que se transferirá la titularidad y la marca; los documentos se actualizarán en ese momento.</p></blockquote>
 <p>1.2. <strong>Creem como Merchant of Record.</strong> La compra y el cobro del Servicio se procesan a través de <strong>Creem</strong>, que actúa como <strong>Comerciante Registrado (Merchant of Record)</strong>. En consecuencia, <strong>el reembolso es procesado y ejecutado por Creem</strong> conforme a esta Política y a los <strong>términos y política de reembolsos propios de Creem</strong>, que también pueden resultar aplicables a la transacción. En caso de conflicto sobre la mecánica del pago o del reembolso, prevalecen los términos de Creem respecto de dicha mecánica.</p>
 <p>1.3. Esta Política busca ser <strong>compatible</strong> con la operación de Creem y transparente para el Cliente.</p>
 <hr />
@@ -81,8 +70,7 @@ footer a{color:#cdd5d9;text-decoration:none}
 <hr />
 <h2>3. Garantía de reembolso de 14 días (primera suscripción)</h2>
 <p>3.1. <strong>Reembolso completo dentro de los primeros 14 días.</strong> El Cliente puede solicitar el <strong>reembolso íntegro</strong> del primer pago de la <strong>primera suscripción a un Agente</strong> si lo solicita <strong>dentro de los catorce (14) días naturales</strong> siguientes a la fecha de ese primer cargo.</p>
-<p>3.2. Esta garantía aplica <strong>una vez por Agente</strong> y se refiere a la <strong>primera</strong> suscripción de dicho Agente. No aplica a suscripciones recontratadas del mismo Agente después de una cancelación previa.
-3.3. Al reembolsarse, la <strong>licencia se cancela</strong> y el acceso al Agente se desactiva.</p>
+<p>3.2. Esta garantía aplica <strong>una vez por Agente</strong> y se refiere a la <strong>primera</strong> suscripción de dicho Agente. No aplica a suscripciones recontratadas del mismo Agente después de una cancelación previa. 3.3. Al reembolsarse, la <strong>licencia se cancela</strong> y el acceso al Agente se desactiva.</p>
 <hr />
 <h2>4. Renovaciones: sin reembolso, pero cancelación libre</h2>
 <p>4.1. <strong>Los pagos de renovación no son reembolsables.</strong> Una vez que la suscripción se renueva y se genera el cargo del nuevo periodo, ese cargo <strong>no es objeto de reembolso</strong>.</p>
@@ -90,8 +78,7 @@ footer a{color:#cdd5d9;text-decoration:none}
 <hr />
 <h2>5. Excepción: falla técnica no resuelta</h2>
 <p>5.1. El Cliente podrá tener derecho a un <strong>reembolso</strong> —incluso fuera de la ventana de 14 días— cuando exista una <strong>falla técnica atribuible al Servicio</strong> que <strong>impida sustancialmente</strong> el uso del Agente y que TuIAlista <strong>no logre resolver</strong> en un plazo razonable tras haber sido reportada por el Cliente.</p>
-<p>5.2. Para invocar esta excepción, el Cliente debe <strong>reportar la falla</strong> a soporte, permitir el diagnóstico razonable y otorgar a TuIAlista una oportunidad de subsanarla.
-5.3. No se considera falla técnica reembolsable: la indisponibilidad temporal de <strong>modelos de IA de terceros</strong> (Groq/Gemini) ajena a TuIAlista, la falta de conexión del Cliente, requisitos de hardware no cumplidos, ni la <strong>insatisfacción con la exactitud de los resultados de IA</strong>, sujeta al <a href="/legal/deslinde-ia">Deslinde de Responsabilidad sobre IA</a>.</p>
+<p>5.2. Para invocar esta excepción, el Cliente debe <strong>reportar la falla</strong> a soporte, permitir el diagnóstico razonable y otorgar a TuIAlista una oportunidad de subsanarla. 5.3. No se considera falla técnica reembolsable: la indisponibilidad temporal de <strong>modelos de IA de terceros</strong> (Groq/Gemini) ajena a TuIAlista, la falta de conexión del Cliente, requisitos de hardware no cumplidos, ni la <strong>insatisfacción con la exactitud de los resultados de IA</strong>, sujeta al <a href="/legal/deslinde-ia/">Deslinde de Responsabilidad sobre IA</a>.</p>
 <hr />
 <h2>6. Cómo cancelar</h2>
 <p>6.1. La cancelación se realiza <strong>en cualquier momento</strong> desde el <strong>portal del Cliente</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a> → portal). La cancelación surte efecto para el siguiente ciclo de facturación.</p>
@@ -99,19 +86,257 @@ footer a{color:#cdd5d9;text-decoration:none}
 <hr />
 <h2>7. Cómo solicitar un reembolso</h2>
 <p>7.1. Para solicitar un reembolso conforme a esta Política, el Cliente debe escribir a <strong>soporte@tuialista.com</strong> (o al canal que TuIAlista habilite), indicando el correo de la cuenta, el Agente y el motivo.</p>
-<p>7.2. <strong>Ejecución vía Creem.</strong> Los reembolsos aprobados <strong>se procesan a través de Creem</strong> al <strong>mismo método de pago</strong> utilizado en la compra. El tiempo de acreditación depende de Creem y del emisor del método de pago del Cliente.
-7.3. <strong>Moneda y tipo de cambio.</strong> El reembolso se procesa en la <strong>moneda de la transacción original</strong>. Las diferencias por <strong>tipo de cambio</strong> o comisiones del emisor entre el cobro y el reembolso son ajenas a TuIAlista y no son reembolsables por este concepto.</p>
+<p>7.2. <strong>Ejecución vía Creem.</strong> Los reembolsos aprobados <strong>se procesan a través de Creem</strong> al <strong>mismo método de pago</strong> utilizado en la compra. El tiempo de acreditación depende de Creem y del emisor del método de pago del Cliente. 7.3. <strong>Moneda y tipo de cambio.</strong> El reembolso se procesa en la <strong>moneda de la transacción original</strong>. Las diferencias por <strong>tipo de cambio</strong> o comisiones del emisor entre el cobro y el reembolso son ajenas a TuIAlista y no son reembolsables por este concepto.</p>
 <p>7.4. <strong>Impuestos.</strong> Los impuestos cobrados en la operación se ajustan conforme a las reglas de Creem como Comerciante Registrado y a la jurisdicción del Cliente.</p>
 <hr />
 <h2>8. Derechos del consumidor</h2>
-<h2>Esta Política <strong>no limita</strong> los derechos irrenunciables que la legislación de protección al consumidor aplicable pueda reconocer al Cliente (por ejemplo, en México conforme a la LFPC/PROFECO, o el derecho de desistimiento en la Unión Europea, cuando resulte aplicable). En lo que dichos derechos sean más favorables, prevalecerán.</h2>
-<h2>9. Contacto</h2>
-<ul>
-<li>Reembolsos y cancelaciones: <strong>soporte@tuialista.com</strong></li>
-<li>Sitio: <a href="https://www.tuialista.com">www.tuialista.com</a></li>
-</ul>
+<p>Esta Política <strong>no limita</strong> los derechos irrenunciables que la legislación de protección al consumidor aplicable pueda reconocer al Cliente (por ejemplo, en México conforme a la LFPC/PROFECO, o el derecho de desistimiento en la Unión Europea, cuando resulte aplicable). En lo que dichos derechos sean más favorables, prevalecerán.</p>
 <hr />
-<p><em>Fin del documento.</em></p></div></main>
-<footer>&copy; <span id="y"></span> TuIAlista &middot; <a href="/soporte">Soporte</a> &middot; <a href="/">Inicio</a><script>document.getElementById("y").textContent=new Date().getFullYear()</script></footer>
+<h2>9. Contacto</h2>
+<ul><li>Reembolsos y cancelaciones: <strong>soporte@tuialista.com</strong></li><li>Sitio: <a href="https://www.tuialista.com">www.tuialista.com</a></li></ul>
+<hr />
+<p><em>Fin del documento.</em></p></article>
+<article class="doc" id="doc-en" data-lang="en" hidden><div class="trnote">This is a courtesy translation. The Spanish version is the governing version.</div><h1>TuIAlista Refund Policy</h1>
+<blockquote><p>The current version of this document is published at <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
+<p><strong>Version:</strong> 1.0 · <strong>Last updated:</strong> 21 July 2026 · <strong>Effective:</strong> 21 July 2026</p>
+<hr />
+<h2>1. General framework and relationship with Creem (Merchant of Record)</h2>
+<p>1.1. This Refund Policy forms part of the <a href="/legal/terminos/">Terms of Service</a> of <strong>TuIAlista</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a>), operated by **<strong> (trade name "TuIAlista", parent company </strong>ORDINAL-BiA**), Mexico City, Mexico.</p>
+<p>1.2. <strong>Creem as Merchant of Record.</strong> Purchase and charging of the Service are processed through <strong>Creem</strong>, acting as <strong>Merchant of Record</strong>. Consequently, <strong>refunds are processed and executed by Creem</strong> in accordance with this Policy and with <strong>Creem's own terms and refund policy</strong>, which may also apply to the transaction. In the event of a conflict regarding the mechanics of payment or refund, Creem's terms prevail as to such mechanics.</p>
+<p>1.3. This Policy aims to be <strong>compatible</strong> with Creem's operation and transparent for the Customer.</p>
+<hr />
+<h2>2. Nature of the product</h2>
+<p>2.1. TuIAlista sells <strong>subscriptions to a license to use</strong> software agents that run locally. This is not a sale of physical goods or a traditional "delivery" service. Access to the Agent and its download is enabled when the subscription is activated.</p>
+<p>2.2. Because this is software licensing with an available trial period, the specific refund rules described below apply.</p>
+<hr />
+<h2>3. 14-day refund guarantee (first subscription)</h2>
+<p>3.1. <strong>Full refund within the first 14 days.</strong> The Customer may request a <strong>full refund</strong> of the first payment of the <strong>first subscription to an Agent</strong> if requested <strong>within fourteen (14) calendar days</strong> following the date of that first charge.</p>
+<p>3.2. This guarantee applies <strong>once per Agent</strong> and refers to the <strong>first</strong> subscription of that Agent. It does not apply to re-contracted subscriptions of the same Agent after a prior cancellation.</p>
+<p>3.3. Upon refund, the <strong>license is cancelled</strong> and access to the Agent is deactivated.</p>
+<hr />
+<h2>4. Renewals: no refund, but free cancellation</h2>
+<p>4.1. <strong>Renewal payments are non-refundable.</strong> Once the subscription renews and the new period's charge is generated, that charge is <strong>not eligible for a refund</strong>.</p>
+<p>4.2. <strong>Cancel to avoid the next charge.</strong> The Customer may <strong>cancel at any time</strong> from the portal; cancellation <strong>stops the renewal and prevents the next charge</strong>. After cancelling, the license <strong>remains active until the end of the already-paid period</strong>, with no pro-rata refund for unused time (except as provided in Section 5 or by mandatory law to the contrary).</p>
+<hr />
+<h2>5. Exception: unresolved technical failure</h2>
+<p>5.1. The Customer may be entitled to a <strong>refund</strong> —even outside the 14-day window— where there is a <strong>technical failure attributable to the Service</strong> that <strong>substantially prevents</strong> use of the Agent and that TuIAlista <strong>fails to resolve</strong> within a reasonable time after being reported by the Customer.</p>
+<p>5.2. To invoke this exception, the Customer must <strong>report the failure</strong> to support, allow reasonable diagnosis, and give TuIAlista an opportunity to cure it.</p>
+<p>5.3. The following are not considered refundable technical failures: temporary unavailability of <strong>third-party AI models</strong> (Groq/Gemini) outside TuIAlista's control, the Customer's lack of connectivity, unmet hardware requirements, or <strong>dissatisfaction with the accuracy of AI results</strong>, which is subject to the <a href="/legal/deslinde-ia/">AI Disclaimer</a>.</p>
+<hr />
+<h2>6. How to cancel</h2>
+<p>6.1. Cancellation is done <strong>at any time</strong> from the <strong>Customer portal</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a> → portal). Cancellation takes effect for the next billing cycle.</p>
+<p>6.2. If the Customer cannot cancel from the portal, they may request help at <strong>soporte@tuialista.com</strong>.</p>
+<hr />
+<h2>7. How to request a refund</h2>
+<p>7.1. To request a refund under this Policy, the Customer must write to <strong>soporte@tuialista.com</strong> (or the channel TuIAlista enables), stating the account email, the Agent, and the reason.</p>
+<p>7.2. <strong>Execution via Creem.</strong> Approved refunds are <strong>processed through Creem</strong> to the <strong>same payment method</strong> used for the purchase. Crediting time depends on Creem and the issuer of the Customer's payment method.</p>
+<p>7.3. <strong>Currency and exchange rate.</strong> The refund is processed in the <strong>currency of the original transaction</strong>. Differences due to <strong>exchange rate</strong> or issuer fees between the charge and the refund are outside TuIAlista's control and are not refundable on that basis.</p>
+<p>7.4. <strong>Taxes.</strong> Taxes charged on the transaction are adjusted according to Creem's rules as Merchant of Record and the Customer's jurisdiction.</p>
+<hr />
+<h2>8. Consumer rights</h2>
+<p>This Policy <strong>does not limit</strong> the non-waivable rights that applicable consumer-protection law may grant the Customer (for example, in Mexico under the LFPC/PROFECO, or the right of withdrawal in the European Union, where applicable). To the extent such rights are more favorable, they will prevail.</p>
+<hr />
+<h2>9. Contact</h2>
+<ul><li>Refunds and cancellations: <strong>soporte@tuialista.com</strong></li><li>Website: <a href="https://www.tuialista.com">www.tuialista.com</a></li></ul>
+<hr />
+<hr />
+<p><em>End of document.</em></p></article>
+<article class="doc" id="doc-pt" data-lang="pt" hidden><div class="trnote">Esta é uma tradução de cortesia. A versão em espanhol é a versão vigente.</div><h1>Política de Reembolsos da TuIAlista</h1>
+<blockquote><p>A versão vigente deste documento é publicada em <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
+<p><strong>Versão:</strong> 1.0 · <strong>Última atualização:</strong> 21 de julho de 2026 · <strong>Em vigor a partir de:</strong> 21 de julho de 2026</p>
+<hr />
+<h2>1. Marco geral e relação com a Creem (Comerciante Registrado)</h2>
+<p>1.1. Esta Política de Reembolsos faz parte dos <a href="/legal/terminos/">Termos de Serviço</a> da <strong>TuIAlista</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a>), operada por **<strong> (nome comercial "TuIAlista", matriz </strong>ORDINAL-BiA**), Cidade do México, México.</p>
+<p>1.2. <strong>Creem como Merchant of Record.</strong> A compra e a cobrança do Serviço são processadas por meio da <strong>Creem</strong>, que atua como <strong>Comerciante Registrado (Merchant of Record)</strong>. Em consequência, <strong>o reembolso é processado e executado pela Creem</strong> conforme esta Política e os <strong>termos e a política de reembolsos próprios da Creem</strong>, que também podem ser aplicáveis à transação. Em caso de conflito sobre a mecânica do pagamento ou do reembolso, prevalecem os termos da Creem quanto a essa mecânica.</p>
+<p>1.3. Esta Política busca ser <strong>compatível</strong> com a operação da Creem e transparente para o Cliente.</p>
+<hr />
+<h2>2. Natureza do produto</h2>
+<p>2.1. A TuIAlista vende <strong>assinaturas a uma licença de uso</strong> de agentes de software executados localmente. Não se trata de uma venda de bens físicos nem de um serviço de "entrega" tradicional. O acesso ao Agente e ao seu download é habilitado ao ativar-se a assinatura.</p>
+<p>2.2. Por tratar-se de uma licença de software com período de teste disponível, aplicam-se as regras específicas de reembolso descritas a seguir.</p>
+<hr />
+<h2>3. Garantia de reembolso de 14 dias (primeira assinatura)</h2>
+<p>3.1. <strong>Reembolso completo dentro dos primeiros 14 dias.</strong> O Cliente pode solicitar o <strong>reembolso integral</strong> do primeiro pagamento da <strong>primeira assinatura de um Agente</strong> se o solicitar <strong>dentro dos catorze (14) dias corridos</strong> seguintes à data desse primeiro débito.</p>
+<p>3.2. Esta garantia aplica-se <strong>uma vez por Agente</strong> e refere-se à <strong>primeira</strong> assinatura desse Agente. Não se aplica a assinaturas recontratadas do mesmo Agente após um cancelamento prévio.</p>
+<p>3.3. Ao ser reembolsada, a <strong>licença é cancelada</strong> e o acesso ao Agente é desativado.</p>
+<hr />
+<h2>4. Renovações: sem reembolso, mas cancelamento livre</h2>
+<p>4.1. <strong>Os pagamentos de renovação não são reembolsáveis.</strong> Uma vez que a assinatura seja renovada e o débito do novo período seja gerado, esse débito <strong>não é objeto de reembolso</strong>.</p>
+<p>4.2. <strong>Cancele para evitar o próximo débito.</strong> O Cliente pode <strong>cancelar a qualquer momento</strong> a partir do portal; o cancelamento <strong>interrompe a renovação e evita o próximo débito</strong>. Após cancelar, a licença <strong>permanece ativa até o final do período já pago</strong>, sem reembolso proporcional pelo tempo não utilizado (salvo o previsto na Seção 5 ou disposição legal imperativa em contrário).</p>
+<hr />
+<h2>5. Exceção: falha técnica não resolvida</h2>
+<p>5.1. O Cliente poderá ter direito a um <strong>reembolso</strong> —mesmo fora da janela de 14 dias— quando exista uma <strong>falha técnica atribuível ao Serviço</strong> que <strong>impeça substancialmente</strong> o uso do Agente e que a TuIAlista <strong>não consiga resolver</strong> em um prazo razoável após ter sido reportada pelo Cliente.</p>
+<p>5.2. Para invocar esta exceção, o Cliente deve <strong>reportar a falha</strong> ao suporte, permitir o diagnóstico razoável e conceder à TuIAlista uma oportunidade de saná-la.</p>
+<p>5.3. Não se considera falha técnica reembolsável: a indisponibilidade temporária de <strong>modelos de IA de terceiros</strong> (Groq/Gemini) alheia à TuIAlista, a falta de conexão do Cliente, requisitos de hardware não cumpridos, nem a <strong>insatisfação com a exatidão dos resultados de IA</strong>, sujeita ao <a href="/legal/deslinde-ia/">Aviso de Isenção sobre IA</a>.</p>
+<hr />
+<h2>6. Como cancelar</h2>
+<p>6.1. O cancelamento é realizado <strong>a qualquer momento</strong> a partir do <strong>portal do Cliente</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a> → portal). O cancelamento produz efeito para o próximo ciclo de faturamento.</p>
+<p>6.2. Se o Cliente não conseguir cancelar pelo portal, pode solicitar apoio a <strong>soporte@tuialista.com</strong>.</p>
+<hr />
+<h2>7. Como solicitar um reembolso</h2>
+<p>7.1. Para solicitar um reembolso conforme esta Política, o Cliente deve escrever para <strong>soporte@tuialista.com</strong> (ou o canal que a TuIAlista disponibilizar), indicando o e-mail da conta, o Agente e o motivo.</p>
+<p>7.2. <strong>Execução via Creem.</strong> Os reembolsos aprovados <strong>são processados por meio da Creem</strong> para o <strong>mesmo método de pagamento</strong> utilizado na compra. O tempo de creditação depende da Creem e do emissor do método de pagamento do Cliente.</p>
+<p>7.3. <strong>Moeda e taxa de câmbio.</strong> O reembolso é processado na <strong>moeda da transação original</strong>. As diferenças por <strong>taxa de câmbio</strong> ou tarifas do emissor entre a cobrança e o reembolso são alheias à TuIAlista e não são reembolsáveis a esse título.</p>
+<p>7.4. <strong>Impostos.</strong> Os impostos cobrados na operação são ajustados conforme as regras da Creem como Comerciante Registrado e a jurisdição do Cliente.</p>
+<hr />
+<h2>8. Direitos do consumidor</h2>
+<p>Esta Política <strong>não limita</strong> os direitos irrenunciáveis que a legislação de proteção ao consumidor aplicável possa reconhecer ao Cliente (por exemplo, no México conforme a LFPC/PROFECO, ou o direito de arrependimento na União Europeia, quando aplicável). Na medida em que tais direitos sejam mais favoráveis, prevalecerão.</p>
+<hr />
+<h2>9. Contato</h2>
+<ul><li>Reembolsos e cancelamentos: <strong>soporte@tuialista.com</strong></li><li>Site: <a href="https://www.tuialista.com">www.tuialista.com</a></li></ul>
+<hr />
+<hr />
+<p><em>Fim do documento.</em></p></article>
+<article class="doc" id="doc-fr" data-lang="fr" hidden><div class="trnote">Ceci est une traduction de courtoisie. La version espagnole fait foi.</div><h1>Politique de Remboursement de TuIAlista</h1>
+<blockquote><p>La version en vigueur de ce document est publiée sur <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
+<p><strong>Version :</strong> 1.0 · <strong>Dernière mise à jour :</strong> 21 juillet 2026 · <strong>En vigueur à partir du :</strong> 21 juillet 2026</p>
+<hr />
+<h2>1. Cadre général et relation avec Creem (Vendeur Enregistré)</h2>
+<p>1.1. La présente Politique de Remboursement fait partie des <a href="/legal/terminos/">Conditions de Service</a> de <strong>TuIAlista</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a>), exploitée par **<strong> (nom commercial « TuIAlista », société mère </strong>ORDINAL-BiA**), Mexico, Mexique.</p>
+<p>1.2. <strong>Creem en tant que Merchant of Record.</strong> L'achat et le prélèvement du Service sont traités via <strong>Creem</strong>, agissant en tant que <strong>Vendeur Enregistré (Merchant of Record)</strong>. En conséquence, <strong>le remboursement est traité et exécuté par Creem</strong> conformément à la présente Politique et aux <strong>conditions et à la politique de remboursement propres à Creem</strong>, qui peuvent également s'appliquer à la transaction. En cas de conflit sur la mécanique du paiement ou du remboursement, les conditions de Creem prévalent quant à cette mécanique.</p>
+<p>1.3. La présente Politique se veut <strong>compatible</strong> avec le fonctionnement de Creem et transparente pour le Client.</p>
+<hr />
+<h2>2. Nature du produit</h2>
+<p>2.1. TuIAlista vend des <strong>abonnements à une licence d'utilisation</strong> d'agents logiciels exécutés localement. Il ne s'agit pas d'une vente de biens physiques ni d'un service de « livraison » traditionnel. L'accès à l'Agent et à son téléchargement est activé lors de l'activation de l'abonnement.</p>
+<p>2.2. S'agissant d'une licence de logiciel avec période d'essai disponible, les règles spécifiques de remboursement décrites ci-dessous s'appliquent.</p>
+<hr />
+<h2>3. Garantie de remboursement de 14 jours (premier abonnement)</h2>
+<p>3.1. <strong>Remboursement intégral dans les 14 premiers jours.</strong> Le Client peut demander le <strong>remboursement intégral</strong> du premier paiement du <strong>premier abonnement à un Agent</strong> s'il le demande <strong>dans les quatorze (14) jours calendaires</strong> suivant la date de ce premier prélèvement.</p>
+<p>3.2. Cette garantie s'applique <strong>une fois par Agent</strong> et concerne le <strong>premier</strong> abonnement de cet Agent. Elle ne s'applique pas aux abonnements re-souscrits du même Agent après une résiliation antérieure.</p>
+<p>3.3. Lors du remboursement, la <strong>licence est résiliée</strong> et l'accès à l'Agent est désactivé.</p>
+<hr />
+<h2>4. Renouvellements : pas de remboursement, mais résiliation libre</h2>
+<p>4.1. <strong>Les paiements de renouvellement ne sont pas remboursables.</strong> Une fois l'abonnement renouvelé et le prélèvement de la nouvelle période généré, ce prélèvement <strong>ne peut faire l'objet d'un remboursement</strong>.</p>
+<p>4.2. <strong>Résiliez pour éviter le prochain prélèvement.</strong> Le Client peut <strong>résilier à tout moment</strong> depuis le portail ; la résiliation <strong>arrête le renouvellement et évite le prochain prélèvement</strong>. Après résiliation, la licence <strong>reste active jusqu'à la fin de la période déjà payée</strong>, sans remboursement au prorata du temps non utilisé (sauf disposition de la Section 5 ou disposition légale impérative contraire).</p>
+<hr />
+<h2>5. Exception : panne technique non résolue</h2>
+<p>5.1. Le Client pourra avoir droit à un <strong>remboursement</strong> —même en dehors de la fenêtre de 14 jours— lorsqu'il existe une <strong>panne technique imputable au Service</strong> qui <strong>empêche substantiellement</strong> l'utilisation de l'Agent et que TuIAlista <strong>ne parvient pas à résoudre</strong> dans un délai raisonnable après avoir été signalée par le Client.</p>
+<p>5.2. Pour invoquer cette exception, le Client doit <strong>signaler la panne</strong> au support, permettre un diagnostic raisonnable et accorder à TuIAlista une possibilité d'y remédier.</p>
+<p>5.3. Ne sont pas considérés comme une panne technique remboursable : l'indisponibilité temporaire des <strong>modèles d'IA de tiers</strong> (Groq/Gemini) étrangère à TuIAlista, l'absence de connexion du Client, des exigences matérielles non satisfaites, ni l'<strong>insatisfaction quant à l'exactitude des résultats de l'IA</strong>, soumise à la <a href="/legal/deslinde-ia/">Clause de Non-Responsabilité relative à l'IA</a>.</p>
+<hr />
+<h2>6. Comment résilier</h2>
+<p>6.1. La résiliation s'effectue <strong>à tout moment</strong> depuis le <strong>portail du Client</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a> → portail). La résiliation prend effet pour le prochain cycle de facturation.</p>
+<p>6.2. Si le Client ne parvient pas à résilier depuis le portail, il peut demander de l'aide à <strong>soporte@tuialista.com</strong>.</p>
+<hr />
+<h2>7. Comment demander un remboursement</h2>
+<p>7.1. Pour demander un remboursement au titre de la présente Politique, le Client doit écrire à <strong>soporte@tuialista.com</strong> (ou au canal que TuIAlista met à disposition), en indiquant l'e-mail du compte, l'Agent et le motif.</p>
+<p>7.2. <strong>Exécution via Creem.</strong> Les remboursements approuvés sont <strong>traités via Creem</strong> sur le <strong>même moyen de paiement</strong> utilisé pour l'achat. Le délai de crédit dépend de Creem et de l'émetteur du moyen de paiement du Client.</p>
+<p>7.3. <strong>Devise et taux de change.</strong> Le remboursement est traité dans la <strong>devise de la transaction d'origine</strong>. Les différences dues au <strong>taux de change</strong> ou aux frais de l'émetteur entre le prélèvement et le remboursement sont étrangères à TuIAlista et non remboursables à ce titre.</p>
+<p>7.4. <strong>Taxes.</strong> Les taxes prélevées sur l'opération sont ajustées selon les règles de Creem en tant que Vendeur Enregistré et la juridiction du Client.</p>
+<hr />
+<h2>8. Droits du consommateur</h2>
+<p>La présente Politique <strong>ne limite pas</strong> les droits auxquels il ne peut être renoncé que la législation applicable de protection des consommateurs peut reconnaître au Client (par exemple, au Mexique selon la LFPC/PROFECO, ou le droit de rétractation dans l'Union Européenne, le cas échéant). Dans la mesure où ces droits sont plus favorables, ils prévaudront.</p>
+<hr />
+<h2>9. Contact</h2>
+<ul><li>Remboursements et résiliations : <strong>soporte@tuialista.com</strong></li><li>Site : <a href="https://www.tuialista.com">www.tuialista.com</a></li></ul>
+<hr />
+<hr />
+<p><em>Fin du document.</em></p></article>
+<article class="doc" id="doc-de" data-lang="de" hidden><div class="trnote">Dies ist eine Übersetzung als Serviceleistung. Maßgeblich ist die spanische Fassung.</div><h1>Rückerstattungsrichtlinie von TuIAlista</h1>
+<blockquote><p>Die aktuelle Fassung dieses Dokuments wird unter <a href="https://www.tuialista.com">www.tuialista.com</a> veröffentlicht.</p></blockquote>
+<p><strong>Version:</strong> 1.0 · <strong>Zuletzt aktualisiert:</strong> 21. Juli 2026 · <strong>Gültig ab:</strong> 21. Juli 2026</p>
+<hr />
+<h2>1. Allgemeiner Rahmen und Verhältnis zu Creem (eingetragener Verkäufer)</h2>
+<p>1.1. Diese Rückerstattungsrichtlinie ist Teil der <a href="/legal/terminos/">Nutzungsbedingungen</a> von <strong>TuIAlista</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a>), betrieben von **<strong> (Handelsname „TuIAlista", Muttergesellschaft </strong>ORDINAL-BiA**), Mexiko-Stadt, Mexiko.</p>
+<p>1.2. <strong>Creem als Merchant of Record.</strong> Kauf und Abbuchung des Dienstes werden über <strong>Creem</strong> abgewickelt, das als <strong>eingetragener Verkäufer (Merchant of Record)</strong> handelt. Folglich <strong>wird die Rückerstattung von Creem</strong> gemäß dieser Richtlinie und den <strong>eigenen Bedingungen und der Rückerstattungspolitik von Creem</strong> <strong>bearbeitet und ausgeführt</strong>, die ebenfalls auf die Transaktion anwendbar sein können. Bei Widerspruch bezüglich der Mechanik der Zahlung oder der Rückerstattung haben die Bedingungen von Creem hinsichtlich dieser Mechanik Vorrang.</p>
+<p>1.3. Diese Richtlinie soll mit dem Betrieb von Creem <strong>vereinbar</strong> und für den Kunden transparent sein.</p>
+<hr />
+<h2>2. Wesen des Produkts</h2>
+<p>2.1. TuIAlista verkauft <strong>Abonnements für eine Nutzungslizenz</strong> von lokal ausgeführten Software-Agenten. Es handelt sich weder um einen Verkauf physischer Güter noch um einen herkömmlichen „Lieferdienst". Der Zugang zum Agenten und dessen Download wird bei Aktivierung des Abonnements freigeschaltet.</p>
+<p>2.2. Da es sich um eine Softwarelizenz mit verfügbarem Testzeitraum handelt, gelten die nachfolgend beschriebenen spezifischen Rückerstattungsregeln.</p>
+<hr />
+<h2>3. 14-Tage-Rückerstattungsgarantie (erstes Abonnement)</h2>
+<p>3.1. <strong>Vollständige Rückerstattung innerhalb der ersten 14 Tage.</strong> Der Kunde kann die <strong>vollständige Rückerstattung</strong> der ersten Zahlung des <strong>ersten Abonnements eines Agenten</strong> verlangen, wenn er sie <strong>innerhalb von vierzehn (14) Kalendertagen</strong> nach dem Datum dieser ersten Abbuchung beantragt.</p>
+<p>3.2. Diese Garantie gilt <strong>einmal je Agent</strong> und bezieht sich auf das <strong>erste</strong> Abonnement dieses Agenten. Sie gilt nicht für erneut abgeschlossene Abonnements desselben Agenten nach einer vorherigen Kündigung.</p>
+<p>3.3. Bei Rückerstattung wird die <strong>Lizenz gekündigt</strong> und der Zugang zum Agenten deaktiviert.</p>
+<hr />
+<h2>4. Verlängerungen: keine Rückerstattung, aber freie Kündigung</h2>
+<p>4.1. <strong>Verlängerungszahlungen sind nicht erstattungsfähig.</strong> Sobald sich das Abonnement verlängert und die Abbuchung des neuen Zeitraums erfolgt ist, ist diese Abbuchung <strong>nicht Gegenstand einer Rückerstattung</strong>.</p>
+<p>4.2. <strong>Kündigen Sie, um die nächste Abbuchung zu vermeiden.</strong> Der Kunde kann <strong>jederzeit über das Portal kündigen</strong>; die Kündigung <strong>stoppt die Verlängerung und vermeidet die nächste Abbuchung</strong>. Nach der Kündigung <strong>bleibt die Lizenz bis zum Ende des bereits bezahlten Zeitraums aktiv</strong>, ohne anteilige Rückerstattung für die nicht genutzte Zeit (außer gemäß Abschnitt 5 oder entgegenstehender zwingender gesetzlicher Bestimmung).</p>
+<hr />
+<h2>5. Ausnahme: nicht behobene technische Störung</h2>
+<p>5.1. Der Kunde kann —auch außerhalb des 14-Tage-Fensters— Anspruch auf eine <strong>Rückerstattung</strong> haben, wenn eine <strong>dem Dienst zurechenbare technische Störung</strong> vorliegt, die die Nutzung des Agenten <strong>wesentlich verhindert</strong> und die TuIAlista nach Meldung durch den Kunden <strong>nicht innerhalb einer angemessenen Frist beheben</strong> kann.</p>
+<p>5.2. Um diese Ausnahme geltend zu machen, muss der Kunde die <strong>Störung</strong> dem Support <strong>melden</strong>, eine angemessene Diagnose ermöglichen und TuIAlista Gelegenheit zur Behebung geben.</p>
+<p>5.3. Nicht als erstattungsfähige technische Störung gelten: die vorübergehende Nichtverfügbarkeit von <strong>KI-Modellen Dritter</strong> (Groq/Gemini) außerhalb des Einflussbereichs von TuIAlista, die fehlende Verbindung des Kunden, nicht erfüllte Hardwareanforderungen sowie die <strong>Unzufriedenheit mit der Richtigkeit der KI-Ergebnisse</strong>, die dem <a href="/legal/deslinde-ia/">Haftungsausschluss zur KI</a> unterliegt.</p>
+<hr />
+<h2>6. Kündigung</h2>
+<p>6.1. Die Kündigung erfolgt <strong>jederzeit</strong> über das <strong>Kundenportal</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a> → Portal). Die Kündigung wird zum nächsten Abrechnungszyklus wirksam.</p>
+<p>6.2. Kann der Kunde nicht über das Portal kündigen, kann er Unterstützung unter <strong>soporte@tuialista.com</strong> anfordern.</p>
+<hr />
+<h2>7. Beantragung einer Rückerstattung</h2>
+<p>7.1. Zur Beantragung einer Rückerstattung nach dieser Richtlinie muss der Kunde an <strong>soporte@tuialista.com</strong> (oder den von TuIAlista bereitgestellten Kanal) schreiben und die E-Mail des Kontos, den Agenten und den Grund angeben.</p>
+<p>7.2. <strong>Ausführung über Creem.</strong> Genehmigte Rückerstattungen werden <strong>über Creem</strong> auf <strong>dieselbe Zahlungsmethode</strong> abgewickelt, die beim Kauf verwendet wurde. Die Gutschriftsdauer hängt von Creem und vom Herausgeber der Zahlungsmethode des Kunden ab.</p>
+<p>7.3. <strong>Währung und Wechselkurs.</strong> Die Rückerstattung erfolgt in der <strong>Währung der ursprünglichen Transaktion</strong>. Differenzen durch <strong>Wechselkurs</strong> oder Gebühren des Herausgebers zwischen Abbuchung und Rückerstattung liegen außerhalb des Einflussbereichs von TuIAlista und sind aus diesem Grund nicht erstattungsfähig.</p>
+<p>7.4. <strong>Steuern.</strong> Die auf die Transaktion erhobenen Steuern werden gemäß den Regeln von Creem als eingetragener Verkäufer und der Rechtsordnung des Kunden angepasst.</p>
+<hr />
+<h2>8. Verbraucherrechte</h2>
+<p>Diese Richtlinie <strong>beschränkt nicht</strong> die unabdingbaren Rechte, die das anwendbare Verbraucherschutzrecht dem Kunden zuerkennen kann (z. B. in Mexiko gemäß LFPC/PROFECO oder das Widerrufsrecht in der Europäischen Union, sofern anwendbar). Soweit solche Rechte günstiger sind, gehen sie vor.</p>
+<hr />
+<h2>9. Kontakt</h2>
+<ul><li>Rückerstattungen und Kündigungen: <strong>soporte@tuialista.com</strong></li><li>Website: <a href="https://www.tuialista.com">www.tuialista.com</a></li></ul>
+<hr />
+<hr />
+<p><em>Ende des Dokuments.</em></p></article>
+<article class="doc" id="doc-it" data-lang="it" hidden><div class="trnote">Questa è una traduzione di cortesia. La versione spagnola è quella vigente.</div><h1>Politica di Rimborso di TuIAlista</h1>
+<blockquote><p>La versione vigente di questo documento è pubblicata su <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
+<p><strong>Versione:</strong> 1.0 · <strong>Ultimo aggiornamento:</strong> 21 luglio 2026 · <strong>In vigore dal:</strong> 21 luglio 2026</p>
+<hr />
+<h2>1. Quadro generale e rapporto con Creem (Venditore Registrato)</h2>
+<p>1.1. La presente Politica di Rimborso fa parte dei <a href="/legal/terminos/">Termini di Servizio</a> di <strong>TuIAlista</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a>), gestita da **<strong> (nome commerciale «TuIAlista», casa madre </strong>ORDINAL-BiA**), Città del Messico, Messico.</p>
+<p>1.2. <strong>Creem come Merchant of Record.</strong> L'acquisto e l'addebito del Servizio sono elaborati tramite <strong>Creem</strong>, che agisce come <strong>Venditore Registrato (Merchant of Record)</strong>. Di conseguenza, <strong>il rimborso è elaborato ed eseguito da Creem</strong> conformemente alla presente Politica e ai <strong>termini e alla politica di rimborso propri di Creem</strong>, che possono altresì applicarsi alla transazione. In caso di conflitto sulla meccanica del pagamento o del rimborso, prevalgono i termini di Creem riguardo a tale meccanica.</p>
+<p>1.3. La presente Politica intende essere <strong>compatibile</strong> con l'operatività di Creem e trasparente per il Cliente.</p>
+<hr />
+<h2>2. Natura del prodotto</h2>
+<p>2.1. TuIAlista vende <strong>abbonamenti a una licenza d'uso</strong> di agenti software eseguiti localmente. Non si tratta di una vendita di beni fisici né di un servizio di «consegna» tradizionale. L'accesso all'Agente e al suo download è abilitato all'attivazione dell'abbonamento.</p>
+<p>2.2. Trattandosi di una licenza software con periodo di prova disponibile, si applicano le regole specifiche di rimborso descritte di seguito.</p>
+<hr />
+<h2>3. Garanzia di rimborso di 14 giorni (primo abbonamento)</h2>
+<p>3.1. <strong>Rimborso completo entro i primi 14 giorni.</strong> Il Cliente può richiedere il <strong>rimborso integrale</strong> del primo pagamento del <strong>primo abbonamento a un Agente</strong> se lo richiede <strong>entro quattordici (14) giorni di calendario</strong> successivi alla data di tale primo addebito.</p>
+<p>3.2. Questa garanzia si applica <strong>una volta per Agente</strong> e si riferisce al <strong>primo</strong> abbonamento di tale Agente. Non si applica ad abbonamenti ri-sottoscritti dello stesso Agente dopo una cancellazione precedente.</p>
+<p>3.3. Al rimborso, la <strong>licenza viene cancellata</strong> e l'accesso all'Agente viene disattivato.</p>
+<hr />
+<h2>4. Rinnovi: nessun rimborso, ma cancellazione libera</h2>
+<p>4.1. <strong>I pagamenti di rinnovo non sono rimborsabili.</strong> Una volta che l'abbonamento si rinnova e viene generato l'addebito del nuovo periodo, tale addebito <strong>non è oggetto di rimborso</strong>.</p>
+<p>4.2. <strong>Cancelli per evitare il prossimo addebito.</strong> Il Cliente può <strong>cancellare in qualsiasi momento</strong> dal portale; la cancellazione <strong>interrompe il rinnovo ed evita il prossimo addebito</strong>. Dopo la cancellazione, la licenza <strong>rimane attiva fino alla fine del periodo già pagato</strong>, senza rimborso proporzionale per il tempo non utilizzato (salvo quanto previsto dalla Sezione 5 o da disposizione legale imperativa contraria).</p>
+<hr />
+<h2>5. Eccezione: guasto tecnico non risolto</h2>
+<p>5.1. Il Cliente potrà avere diritto a un <strong>rimborso</strong> —anche al di fuori della finestra di 14 giorni— quando sussista un <strong>guasto tecnico attribuibile al Servizio</strong> che <strong>impedisca sostanzialmente</strong> l'uso dell'Agente e che TuIAlista <strong>non riesca a risolvere</strong> entro un termine ragionevole dopo essere stato segnalato dal Cliente.</p>
+<p>5.2. Per invocare questa eccezione, il Cliente deve <strong>segnalare il guasto</strong> al supporto, consentire la diagnosi ragionevole e concedere a TuIAlista l'opportunità di porvi rimedio.</p>
+<p>5.3. Non si considera guasto tecnico rimborsabile: l'indisponibilità temporanea dei <strong>modelli di IA di terzi</strong> (Groq/Gemini) estranea a TuIAlista, la mancanza di connessione del Cliente, requisiti hardware non soddisfatti, né l'<strong>insoddisfazione per l'esattezza dei risultati dell'IA</strong>, soggetta all'<a href="/legal/deslinde-ia/">Esclusione di Responsabilità sull'IA</a>.</p>
+<hr />
+<h2>6. Come cancellare</h2>
+<p>6.1. La cancellazione si effettua <strong>in qualsiasi momento</strong> dal <strong>portale del Cliente</strong> (<a href="https://www.tuialista.com">www.tuialista.com</a> → portale). La cancellazione ha effetto per il prossimo ciclo di fatturazione.</p>
+<p>6.2. Se il Cliente non riesce a cancellare dal portale, può richiedere assistenza a <strong>soporte@tuialista.com</strong>.</p>
+<hr />
+<h2>7. Come richiedere un rimborso</h2>
+<p>7.1. Per richiedere un rimborso ai sensi della presente Politica, il Cliente deve scrivere a <strong>soporte@tuialista.com</strong> (o al canale che TuIAlista mette a disposizione), indicando l'e-mail dell'account, l'Agente e il motivo.</p>
+<p>7.2. <strong>Esecuzione tramite Creem.</strong> I rimborsi approvati sono <strong>elaborati tramite Creem</strong> sullo <strong>stesso metodo di pagamento</strong> utilizzato per l'acquisto. Il tempo di accredito dipende da Creem e dall'emittente del metodo di pagamento del Cliente.</p>
+<p>7.3. <strong>Valuta e tasso di cambio.</strong> Il rimborso è elaborato nella <strong>valuta della transazione originale</strong>. Le differenze dovute al <strong>tasso di cambio</strong> o a commissioni dell'emittente tra l'addebito e il rimborso sono estranee a TuIAlista e non rimborsabili a tale titolo.</p>
+<p>7.4. <strong>Imposte.</strong> Le imposte addebitate sull'operazione sono rettificate secondo le regole di Creem come Venditore Registrato e la giurisdizione del Cliente.</p>
+<hr />
+<h2>8. Diritti del consumatore</h2>
+<p>La presente Politica <strong>non limita</strong> i diritti irrinunciabili che la legislazione applicabile a tutela del consumatore possa riconoscere al Cliente (ad esempio, in Messico secondo la LFPC/PROFECO, o il diritto di recesso nell'Unione Europea, ove applicabile). Nella misura in cui tali diritti siano più favorevoli, prevarranno.</p>
+<hr />
+<h2>9. Contatto</h2>
+<ul><li>Rimborsi e cancellazioni: <strong>soporte@tuialista.com</strong></li><li>Sito: <a href="https://www.tuialista.com">www.tuialista.com</a></li></ul>
+<hr />
+<hr />
+<p><em>Fine del documento.</em></p></article>
+</main>
+<footer>&copy; <span id="y"></span> TuIAlista &middot; <a href="/soporte">Soporte</a> &middot; <a href="/">Inicio</a></footer>
+<script>
+document.getElementById("y").textContent=new Date().getFullYear();
+(function(){
+  var LANGS=["es", "en", "pt", "fr", "de", "it"];
+  var BACK={"es": "← Volver al portal", "en": "← Back to portal", "pt": "← Voltar ao portal", "fr": "← Retour à l'espace", "de": "← Zurück zum Portal", "it": "← Torna al portale"};
+  function detect(){try{var l=(localStorage.getItem("tuialista_lang")||"es").slice(0,2).toLowerCase();return LANGS.indexOf(l)>=0?l:"es";}catch(e){return "es";}}
+  var sel=document.getElementById("lang-sel"), back=document.getElementById("back-link");
+  function show(l){
+    LANGS.forEach(function(x){var a=document.getElementById("doc-"+x);if(a)a.hidden=(x!==l);});
+    document.documentElement.lang=l; if(sel)sel.value=l; if(back&&BACK[l])back.textContent=BACK[l];
+  }
+  if(sel)sel.addEventListener("change",function(){try{localStorage.setItem("tuialista_lang",sel.value);}catch(e){}show(sel.value);});
+  show(detect());
+})();
+</script>
 </body>
 </html>

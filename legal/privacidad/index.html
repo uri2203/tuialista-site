@@ -11,12 +11,14 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Inter',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
 header{position:sticky;top:0;background:rgba(245,246,244,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
-.nav{max-width:820px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.nav{max-width:820px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
 .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
 .logo b{color:var(--signal)}
+.nav-right{display:flex;align-items:center;gap:14px}
 .nav a.back{color:var(--muted);text-decoration:none;font-size:14px}
 .nav a.back:hover{color:var(--ink)}
+#lang-sel{font-family:'Inter',sans-serif;font-size:13.5px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:7px;padding:5px 8px;cursor:pointer}
 main{max-width:820px;margin:0 auto;padding:40px 24px 80px}
 .doc h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,36px);line-height:1.15;margin-bottom:8px}
 .doc h2{font-family:'Space Grotesk';font-size:22px;margin:34px 0 12px}
@@ -26,142 +28,460 @@ main{max-width:820px;margin:0 auto;padding:40px 24px 80px}
 .doc li{margin:6px 0}
 .doc a{color:var(--signal-dim)}
 .doc strong{color:var(--ink)}
+.doc code{background:#eceee9;padding:1px 5px;border-radius:4px;font-size:.92em}
+.doc pre{background:#0f1922;color:#e6e9e7;padding:14px 16px;border-radius:8px;overflow:auto;margin:16px 0;font-size:13px}
+.doc pre code{background:none;color:inherit;padding:0}
 .doc blockquote{border-left:3px solid var(--signal);background:#eceee9;padding:12px 18px;margin:16px 0;border-radius:0 8px 8px 0;color:var(--muted);font-size:14.5px}
+.doc blockquote p{margin:6px 0;color:var(--muted)}
 .doc hr{border:none;border-top:1px solid var(--line);margin:28px 0}
-.doc table{border-collapse:collapse;margin:16px 0;font-size:14px;width:100%}
-.doc th,.doc td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+.trnote{background:#eef2f5;border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--muted);margin-bottom:24px}
 footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px}
 footer a{color:#cdd5d9;text-decoration:none}
 </style>
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Pol\u00edtica de Privacidad \u2014 TuIAlista",
-  "description": "",
-  "url": "https://tuialista.com/legal\\privacidad/",
-  "isPartOf": {
-    "@type": "WebSite",
-    "name": "Tuialista",
-    "url": "https://tuialista.com"
-  }
-}
+{"@context":"https://schema.org","@type":"WebPage","name":"Política de Privacidad — TuIAlista","url":"https://tuialista.com/legal/privacidad/","isPartOf":{"@type":"WebSite","name":"Tuialista","url":"https://tuialista.com"}}
 </script>
 <meta property="og:title" content="Política de Privacidad — TuIAlista">
-<meta property="og:description" content="">
-<meta property="og:url" content="https://tuialista.com/legal\privacidad/">
+<meta property="og:url" content="https://tuialista.com/legal/privacidad/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://tuialista.com/assets/img/icon-512.png">
 <meta property="og:site_name" content="Tuialista">
 <meta property="og:locale" content="es_MX">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Política de Privacidad — TuIAlista">
-<meta name="twitter:description" content="">
 <script defer data-domain="tuialista.com" src="https://plausible.io/js/script.js"></script>
 </head>
 <body>
-<header><div class="nav"><a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a><a class="back" href="/portal/">&larr; Volver al portal</a></div></header>
-<main><div class="doc"><h1>Política de Privacidad de TuIAlista</h1>
-<blockquote>
-<p>La versión vigente de este documento se publica en <a href="https://www.tuialista.com">www.tuialista.com</a>.</p>
-</blockquote>
+<header><div class="nav"><a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+<div class="nav-right"><select id="lang-sel" aria-label="Idioma / Language"><option value="es">Español</option><option value="en">English</option><option value="pt">Português</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="it">Italiano</option></select><a class="back" href="/portal/" id="back-link">← Volver al portal</a></div></div></header>
+<main>
+<article class="doc" id="doc-es" data-lang="es"><h1>Política de Privacidad de TuIAlista</h1>
+<blockquote><p>La versión vigente de este documento se publica en <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
 <p><strong>Versión:</strong> 1.0 · <strong>Última actualización:</strong> 21 de julio de 2026 · <strong>Vigente a partir de:</strong> 21 de julio de 2026</p>
 <hr />
 <h2>1. Identidad y domicilio del responsable</h2>
 <p>1.1. El responsable del tratamiento de los datos personales es <strong>Edgar Apolonio Aguilera</strong>, <strong>persona física con actividad empresarial</strong> que opera bajo el nombre comercial <strong>"TuIAlista"</strong>, con RFC <strong>AOAE781008V98</strong> y domicilio fiscal en <strong>Calle Malitzin, Manzana 10, Lote 23, Colonia Tepeaca, C.P. 01550, Alcaldía Álvaro Obregón</strong>, Ciudad de México, México (en adelante, <strong>"TuIAlista"</strong>). El responsable tributa en el <strong>Régimen de las Actividades Empresariales con ingresos a través de Plataformas Tecnológicas</strong>.</p>
-<blockquote>
-<p><strong>Nota sobre la estructura del negocio.</strong> TuIAlista opera actualmente como negocio de persona física con actividad empresarial. Se prevé la futura constitución de la persona moral <strong>ORDINAL-BiA</strong>, a la que se transferirá la titularidad y la marca; los documentos se actualizarán en ese momento.</p>
-</blockquote>
-<p>1.2. Esta Política de Privacidad (o Aviso de Privacidad, para efectos de la legislación mexicana) describe qué datos personales tratamos, con qué finalidades, con quién los compartimos y cómo puede ejercer sus derechos. Se complementa con el <a href="/legal/compromiso-local">Compromiso de Procesamiento Local y Privacidad</a> y con los <a href="/legal/terminos">Términos de Servicio</a>.</p>
-<p>1.3. Este documento es el <strong>Aviso de Privacidad Integral</strong>. En el punto de recolección (el formulario de registro del cliente) se muestra además un <a href="/legal/aviso-simplificado">Aviso de Privacidad Simplificado</a>, que resume este tratamiento y remite a este documento.</p>
+<blockquote><p><strong>Nota sobre la estructura del negocio.</strong> TuIAlista opera actualmente como negocio de persona física con actividad empresarial. Se prevé la futura constitución de la persona moral <strong>ORDINAL-BiA</strong>, a la que se transferirá la titularidad y la marca; los documentos se actualizarán en ese momento.</p></blockquote>
+<p>1.2. Esta Política de Privacidad (o Aviso de Privacidad, para efectos de la legislación mexicana) describe qué datos personales tratamos, con qué finalidades, con quién los compartimos y cómo puede ejercer sus derechos. Se complementa con el <a href="/legal/compromiso-local/">Compromiso de Procesamiento Local y Privacidad</a> y con los <a href="/legal/terminos/">Términos de Servicio</a>.</p>
+<p>1.3. Este documento es el <strong>Aviso de Privacidad Integral</strong>. En el punto de recolección (el formulario de registro del cliente) se muestra además un <a href="/legal/aviso-simplificado/">Aviso de Privacidad Simplificado</a>, que resume este tratamiento y remite a este documento.</p>
 <hr />
 <h2>2. Principio rector: el procesamiento es local</h2>
-<p>2.1. El mayor diferenciador de TuIAlista es que <strong>los agentes procesan la información del Cliente localmente, en su propio equipo</strong>. El contenido de los archivos, documentos y datos que el Cliente analiza con los agentes <strong>no se envía a TuIAlista, no lo recibimos y no lo almacenamos</strong> (ver <a href="/legal/compromiso-local">Compromiso de Procesamiento Local</a>).</p>
+<p>2.1. El mayor diferenciador de TuIAlista es que <strong>los agentes procesan la información del Cliente localmente, en su propio equipo</strong>. El contenido de los archivos, documentos y datos que el Cliente analiza con los agentes <strong>no se envía a TuIAlista, no lo recibimos y no lo almacenamos</strong> (ver <a href="/legal/compromiso-local/">Compromiso de Procesamiento Local</a>).</p>
 <p>2.2. Nuestra recolección de datos se limita a lo <strong>mínimo necesario</strong> para gestionar la cuenta, cobrar la suscripción y validar la licencia.</p>
 <hr />
 <h2>3. Datos que SÍ tratamos</h2>
 <p>Tratamos las siguientes categorías de datos personales:</p>
-<p><strong>a) Datos de cuenta y contacto.</strong>
-- Nombre o razón social, correo electrónico y, en su caso, datos de contacto que el Cliente proporcione al registrarse o solicitar soporte.</p>
-<p><strong>b) Datos de licencia y uso técnico (telemetría mínima de validación).</strong>
-- Clave de licencia (formato <code>TIA-XXXX-XXXX-XXXX-XXXX</code>) y estado de la suscripción (prueba, activa, suspendida, cancelada, vencida).
-- <strong>Identificador técnico del equipo</strong> (una huella derivada del hardware) para vincular la licencia al dispositivo y prevenir uso no autorizado.
-- Registros de validación de licencia (<code>license_checks</code>): fecha y hora de la comprobación, resultado (por ejemplo, válido, suspendido, no coincide el equipo) y la huella del equipo asociada. <strong>Estos registros no incluyen el contenido de lo que el Cliente procesa.</strong>
-- Identificador del agente contratado y datos técnicos básicos para operar la suscripción.</p>
-<p><strong>c) Datos de facturación (a través de Creem).</strong>
-- La compra, el cobro y la facturación se procesan a través de <strong>Creem</strong>, que actúa como <strong>Comerciante Registrado (Merchant of Record)</strong>. Los <strong>datos de pago (por ejemplo, tarjeta) son tratados por Creem y sus procesadores</strong>, no por TuIAlista. TuIAlista recibe de Creem información limitada de la transacción (por ejemplo, estado del pago, identificador de suscripción, país e importe) para activar o mantener la licencia y calcular comisiones de afiliados cuando corresponda.</p>
-<p><strong>d) Datos de soporte y comunicaciones.</strong>
-- El contenido de las comunicaciones que el Cliente nos dirige (correos, tickets) para atender sus solicitudes.</p>
-<p><strong>e) Datos del sitio web.</strong>
-- Datos técnicos de navegación en <a href="https://www.tuialista.com">www.tuialista.com</a> (por ejemplo, dirección IP y cookies estrictamente necesarias o de medición).</p>
+<p><strong>a) Datos de cuenta y contacto.</strong></p>
+<ul><li>Nombre o razón social, correo electrónico y, en su caso, datos de contacto que el Cliente proporcione al registrarse o solicitar soporte.</li></ul>
+<p><strong>b) Datos de licencia y uso técnico (telemetría mínima de validación).</strong></p>
+<ul><li>Clave de licencia (formato <code>TIA-XXXX-XXXX-XXXX-XXXX</code>) y estado de la suscripción (prueba, activa, suspendida, cancelada, vencida).</li><li><strong>Identificador técnico del equipo</strong> (una huella derivada del hardware) para vincular la licencia al dispositivo y prevenir uso no autorizado.</li><li>Registros de validación de licencia (<code>license_checks</code>): fecha y hora de la comprobación, resultado (por ejemplo, válido, suspendido, no coincide el equipo) y la huella del equipo asociada. <strong>Estos registros no incluyen el contenido de lo que el Cliente procesa.</strong></li><li>Identificador del agente contratado y datos técnicos básicos para operar la suscripción.</li></ul>
+<p><strong>c) Datos de facturación (a través de Creem).</strong></p>
+<ul><li>La compra, el cobro y la facturación se procesan a través de <strong>Creem</strong>, que actúa como <strong>Comerciante Registrado (Merchant of Record)</strong>. Los <strong>datos de pago (por ejemplo, tarjeta) son tratados por Creem y sus procesadores</strong>, no por TuIAlista. TuIAlista recibe de Creem información limitada de la transacción (por ejemplo, estado del pago, identificador de suscripción, país e importe) para activar o mantener la licencia y calcular comisiones de afiliados cuando corresponda.</li></ul>
+<p><strong>d) Datos de soporte y comunicaciones.</strong></p>
+<ul><li>El contenido de las comunicaciones que el Cliente nos dirige (correos, tickets) para atender sus solicitudes.</li></ul>
+<p><strong>e) Datos del sitio web.</strong></p>
+<ul><li>Datos técnicos de navegación en <a href="https://www.tuialista.com">www.tuialista.com</a> (por ejemplo, dirección IP y cookies estrictamente necesarias o de medición).</li></ul>
 <hr />
 <h2>4. Datos que NO tratamos</h2>
 <p><strong>Nunca</strong> recibimos, almacenamos ni tenemos acceso a:</p>
-<ul>
-<li>El <strong>contenido</strong> de los archivos, documentos, contratos, facturas, nóminas, correos o bases de datos que el Cliente procesa con los agentes.</li>
-<li>Los <strong>datos que el Cliente procesa</strong> con los agentes ni los <strong>resultados</strong> de ese procesamiento.</li>
-<li>Cualquier información personal o confidencial contenida en el material que el Cliente analiza localmente.</li>
-</ul>
+<ul><li>El <strong>contenido</strong> de los archivos, documentos, contratos, facturas, nóminas, correos o bases de datos que el Cliente procesa con los agentes.</li><li>Los <strong>datos que el Cliente procesa</strong> con los agentes ni los <strong>resultados</strong> de ese procesamiento.</li><li>Cualquier información personal o confidencial contenida en el material que el Cliente analiza localmente.</li></ul>
 <p>Dicho de otro modo: recibimos lo mínimo para saber que el Cliente tiene derecho a usar el software, y <strong>nada de lo que el software lee o produce</strong>.</p>
 <hr />
 <h2>4-bis. Compromiso de NO ENTRENAMIENTO de modelos con datos del Cliente</h2>
-<blockquote>
-<p><strong>Los datos del Cliente NO se usan —ni pueden usarse— para entrenar, ajustar o mejorar modelos de inteligencia artificial.</strong></p>
-</blockquote>
-<p>4-bis.1. Como los agentes procesan los documentos y datos del Cliente <strong>localmente en su equipo</strong> y ese contenido <strong>nunca se transmite a TuIAlista ni a terceros</strong>, dicho contenido <strong>no se usa —ni puede usarse— para entrenar, reentrenar, ajustar (<em>fine-tuning</em>) ni mejorar</strong> modelos de inteligencia artificial, ni propios ni de terceros. No existe posibilidad técnica de hacerlo porque esos datos no salen del equipo del Cliente.</p>
+<blockquote><p><strong>Los datos del Cliente NO se usan —ni pueden usarse— para entrenar, ajustar o mejorar modelos de inteligencia artificial.</strong></p></blockquote>
+<p>4-bis.1. Como los agentes procesan los documentos y datos del Cliente <strong>localmente en su equipo</strong> y ese contenido <strong>nunca se transmite a TuIAlista ni a terceros</strong>, dicho contenido **no se usa —ni puede usarse— para entrenar, reentrenar, ajustar (<em>fine-tuning</em>) ni mejorar** modelos de inteligencia artificial, ni propios ni de terceros. No existe posibilidad técnica de hacerlo porque esos datos no salen del equipo del Cliente.</p>
 <p>4-bis.2. Debe distinguirse con claridad:</p>
-<ul>
-<li><strong>Datos del Cliente</strong> (el contenido que los agentes leen y producen: archivos, documentos, facturas, nóminas, contratos, bases de datos y sus resultados): <strong>permanecen locales; TuIAlista no los recibe.</strong> → <strong>nunca</strong> alimentan ningún modelo.</li>
-<li><strong>Telemetría mínima de validación de licencia</strong> (clave de licencia, estado de la suscripción, huella técnica del equipo y registros <code>license_checks</code>): es <strong>lo único que viaja</strong> a la plataforma central; <strong>no incluye</strong> contenido del Cliente y <strong>no se usa para entrenar modelos</strong>.</li>
-<li><strong>Respuestas de IA:</strong> cuando el Cliente usa una función de redacción, el agente envía a un <strong>modelo de IA de terceros (Groq, con conmutación a Gemini)</strong> la <strong>consulta puntual necesaria</strong> para redactar la respuesta —<strong>no</strong> el repositorio de archivos del Cliente—.
-4-bis.3. Este compromiso es coherente con el <a href="/legal/compromiso-local">Compromiso de Procesamiento Local y Privacidad</a> y con la Sección 10.4 de los <a href="/legal/terminos">Términos de Servicio</a>.</li>
-</ul>
+<ul><li><strong>Datos del Cliente</strong> (el contenido que los agentes leen y producen: archivos, documentos, facturas, nóminas, contratos, bases de datos y sus resultados): <strong>permanecen locales; TuIAlista no los recibe.</strong> → <strong>nunca</strong> alimentan ningún modelo.</li><li><strong>Telemetría mínima de validación de licencia</strong> (clave de licencia, estado de la suscripción, huella técnica del equipo y registros <code>license_checks</code>): es <strong>lo único que viaja</strong> a la plataforma central; <strong>no incluye</strong> contenido del Cliente y <strong>no se usa para entrenar modelos</strong>.</li><li><strong>Respuestas de IA:</strong> cuando el Cliente usa una función de redacción, el agente envía a un <strong>modelo de IA de terceros (Groq, con conmutación a Gemini)</strong> la <strong>consulta puntual necesaria</strong> para redactar la respuesta —<strong>no</strong> el repositorio de archivos del Cliente—.</li></ul>
+<p>4-bis.3. Este compromiso es coherente con el <a href="/legal/compromiso-local/">Compromiso de Procesamiento Local y Privacidad</a> y con la Sección 10.4 de los <a href="/legal/terminos/">Términos de Servicio</a>.</p>
 <hr />
 <h2>5. Finalidades del tratamiento</h2>
-<p><strong>Finalidades primarias (necesarias para el Servicio):</strong>
-1. Crear y administrar la cuenta del Cliente.
-2. Emitir, validar, suspender o revocar la licencia y <strong>prevenir el uso no autorizado y la piratería</strong> (vinculación al equipo, verificación de firma).
-3. Procesar la suscripción, el cobro y la facturación a través de Creem.
-4. Brindar soporte técnico y comunicaciones operativas del Servicio.
-5. Cumplir obligaciones legales, fiscales y contables aplicables.</p>
-<p><strong>Finalidades secundarias (opcionales):</strong>
-6. Envío de comunicaciones comerciales, novedades del catálogo o encuestas. El Cliente puede <strong>oponerse</strong> a estas finalidades sin afectar el Servicio (ver Sección 9).</p>
+<p><strong>Finalidades primarias (necesarias para el Servicio):</strong> 1. Crear y administrar la cuenta del Cliente. 2. Emitir, validar, suspender o revocar la licencia y <strong>prevenir el uso no autorizado y la piratería</strong> (vinculación al equipo, verificación de firma). 3. Procesar la suscripción, el cobro y la facturación a través de Creem. 4. Brindar soporte técnico y comunicaciones operativas del Servicio. 5. Cumplir obligaciones legales, fiscales y contables aplicables.</p>
+<p><strong>Finalidades secundarias (opcionales):</strong> 6. Envío de comunicaciones comerciales, novedades del catálogo o encuestas. El Cliente puede <strong>oponerse</strong> a estas finalidades sin afectar el Servicio (ver Sección 9).</p>
 <hr />
 <h2>6. Fundamento del tratamiento</h2>
-<h2>Tratamos los datos con fundamento en: (i) la <strong>ejecución del contrato</strong> de suscripción y la prestación del Servicio; (ii) el <strong>cumplimiento de obligaciones legales</strong> (fiscales, contables); (iii) el <strong>interés legítimo</strong> de TuIAlista en prevenir el fraude y la piratería y en asegurar la operación del Servicio; y (iv) el <strong>consentimiento</strong>, para las finalidades secundarias.</h2>
+<p>Tratamos los datos con fundamento en: (i) la <strong>ejecución del contrato</strong> de suscripción y la prestación del Servicio; (ii) el <strong>cumplimiento de obligaciones legales</strong> (fiscales, contables); (iii) el <strong>interés legítimo</strong> de TuIAlista en prevenir el fraude y la piratería y en asegurar la operación del Servicio; y (iv) el <strong>consentimiento</strong>, para las finalidades secundarias.</p>
+<hr />
 <h2>7. Transferencias y encargados</h2>
 <p>7.1. TuIAlista se apoya en proveedores que actúan como <strong>encargados</strong> o, en su caso, responsables, para operar el Servicio:</p>
-<ul>
-<li><strong>Creem</strong> — Comerciante Registrado (Merchant of Record): procesamiento de pagos, impuestos y facturación.- <strong>Proveedores de modelos de IA de terceros</strong> — <strong>Groq</strong> (con conmutación a <strong>Gemini</strong>): reciben <strong>fragmentos de texto</strong> enviados por el agente <strong>únicamente para redactar respuestas</strong>. TuIAlista no les transfiere el repositorio de documentos del Cliente; el envío se limita a lo necesario para la función invocada.- <strong>Proveedores de infraestructura</strong> — alojamiento de la plataforma central y base de datos de cuentas/licencias (por ejemplo, servicios tipo Render y Supabase).
-7.2. Algunas transferencias pueden implicar el <strong>tratamiento de datos fuera de México</strong>. En tales casos se procurará contar con las <strong>salvaguardas</strong> exigidas por la ley aplicable. TuIAlista no vende los datos personales del Cliente.</li>
-</ul>
+<ul><li><strong>Creem</strong> — Comerciante Registrado (Merchant of Record): procesamiento de pagos, impuestos y facturación.- <strong>Proveedores de modelos de IA de terceros</strong> — <strong>Groq</strong> (con conmutación a <strong>Gemini</strong>): reciben <strong>fragmentos de texto</strong> enviados por el agente <strong>únicamente para redactar respuestas</strong>. TuIAlista no les transfiere el repositorio de documentos del Cliente; el envío se limita a lo necesario para la función invocada.- <strong>Proveedores de infraestructura</strong> — alojamiento de la plataforma central y base de datos de cuentas/licencias (por ejemplo, servicios tipo Render y Supabase).</li></ul>
+<p>7.2. Algunas transferencias pueden implicar el <strong>tratamiento de datos fuera de México</strong>. En tales casos se procurará contar con las <strong>salvaguardas</strong> exigidas por la ley aplicable. TuIAlista no vende los datos personales del Cliente.</p>
 <p>7.3. El <strong>contenido procesado por los agentes no se transfiere</strong> a ninguno de estos terceros por parte de TuIAlista, salvo el fragmento de texto que el propio agente envíe al modelo de IA para redactar una respuesta, cuando el Cliente use esa función.</p>
 <hr />
 <h2>8. Conservación y seguridad</h2>
-<p>8.1. <strong>Conservación.</strong> Conservamos los datos mientras exista la relación con el Cliente y, después, durante los plazos exigidos por obligaciones legales, fiscales y de defensa jurídica. Concluidos esos plazos, se eliminan o anonimizan.
-8.2. <strong>Seguridad.</strong> Aplicamos medidas técnicas y organizativas razonables para proteger los datos, incluyendo la <strong>firma criptográfica (Ed25519)</strong> de los veredictos de licencia y controles de acceso a la plataforma central. Ningún sistema es infalible; no podemos garantizar seguridad absoluta.</p>
+<p>8.1. <strong>Conservación.</strong> Conservamos los datos mientras exista la relación con el Cliente y, después, durante los plazos exigidos por obligaciones legales, fiscales y de defensa jurídica. Concluidos esos plazos, se eliminan o anonimizan. 8.2. <strong>Seguridad.</strong> Aplicamos medidas técnicas y organizativas razonables para proteger los datos, incluyendo la <strong>firma criptográfica (Ed25519)</strong> de los veredictos de licencia y controles de acceso a la plataforma central. Ningún sistema es infalible; no podemos garantizar seguridad absoluta.</p>
 <hr />
 <h2>9. Derechos ARCO (LFPDPPP 2025, México)</h2>
-<p>9.1. Conforme a la <strong>Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP)</strong> —nueva ley <strong>publicada en el Diario Oficial de la Federación el 20 de marzo de 2025 y vigente desde el 21 de marzo de 2025</strong>, que <strong>abrogó</strong> la ley de 2010—, el Cliente puede ejercer sus derechos de <strong>Acceso, Rectificación, Cancelación y Oposición (ARCO)</strong>, así como <strong>revocar su consentimiento</strong> y limitar el uso o divulgación de sus datos.
-9.2. <strong>Cómo ejercerlos.</strong> Enviando una solicitud a <strong>privacidad@tuialista.com</strong>, indicando: nombre del titular, medio para recibir respuesta, documento que acredite su identidad (o representación) y la descripción clara del derecho que desea ejercer.
-9.3. Si el Cliente considera que su derecho no fue debidamente atendido, puede acudir a la <strong>Secretaría Anticorrupción y Buen Gobierno (SABG)</strong>, autoridad que asumió las funciones de protección de datos personales en posesión de los particulares tras la <strong>extinción del Instituto Nacional de Transparencia, Acceso a la Información y Protección de Datos Personales (INAI) el 21 de marzo de 2025</strong>.</p>
+<p>9.1. Conforme a la <strong>Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP)</strong> —nueva ley <strong>publicada en el Diario Oficial de la Federación el 20 de marzo de 2025 y vigente desde el 21 de marzo de 2025</strong>, que <strong>abrogó</strong> la ley de 2010—, el Cliente puede ejercer sus derechos de <strong>Acceso, Rectificación, Cancelación y Oposición (ARCO)</strong>, así como <strong>revocar su consentimiento</strong> y limitar el uso o divulgación de sus datos. 9.2. <strong>Cómo ejercerlos.</strong> Enviando una solicitud a <strong>privacidad@tuialista.com</strong>, indicando: nombre del titular, medio para recibir respuesta, documento que acredite su identidad (o representación) y la descripción clara del derecho que desea ejercer. 9.3. Si el Cliente considera que su derecho no fue debidamente atendido, puede acudir a la <strong>Secretaría Anticorrupción y Buen Gobierno (SABG)</strong>, autoridad que asumió las funciones de protección de datos personales en posesión de los particulares tras la <strong>extinción del Instituto Nacional de Transparencia, Acceso a la Información y Protección de Datos Personales (INAI) el 21 de marzo de 2025</strong>.</p>
 <hr />
 <h2>10. Clientes de la Unión Europea (GDPR)</h2>
 <p>10.1. Para clientes ubicados en la <strong>Unión Europea</strong>, y en la medida en que el <strong>Reglamento General de Protección de Datos (GDPR)</strong> resulte aplicable, el Cliente tiene derecho a: acceso, rectificación, supresión ("derecho al olvido"), limitación del tratamiento, portabilidad de datos y oposición, así como a no ser objeto de decisiones exclusivamente automatizadas con efectos jurídicos, y a presentar una <strong>reclamación ante la autoridad de control</strong> competente.</p>
-<h2>10.2. El diseño de <strong>procesamiento local</strong> de TuIAlista reduce la superficie de tratamiento, ya que el contenido del Cliente no se transfiere a TuIAlista.</h2>
+<p>10.2. El diseño de <strong>procesamiento local</strong> de TuIAlista reduce la superficie de tratamiento, ya que el contenido del Cliente no se transfiere a TuIAlista.</p>
+<hr />
 <h2>11. Menores de edad</h2>
-<h2>El Servicio está dirigido a empresas y profesionales; <strong>no está dirigido a menores de edad</strong> y no recolectamos conscientemente sus datos.</h2>
+<p>El Servicio está dirigido a empresas y profesionales; <strong>no está dirigido a menores de edad</strong> y no recolectamos conscientemente sus datos.</p>
+<hr />
 <h2>12. Cambios a esta Política</h2>
 <p>Podemos actualizar esta Política. Publicaremos la versión vigente en <a href="https://www.tuialista.com">www.tuialista.com</a> con su fecha de actualización y, cuando los cambios sean sustanciales, procuraremos avisar por medios electrónicos.</p>
 <hr />
 <h2>13. Contacto</h2>
-<ul>
-<li>Privacidad y derechos ARCO: <strong>privacidad@tuialista.com</strong></li>
-<li>Responsable de datos personales: <strong>Edgar Apolonio Aguilera</strong> (privacidad@tuialista.com)</li>
-<li>Sitio: <a href="https://www.tuialista.com">www.tuialista.com</a></li>
-</ul>
+<ul><li>Privacidad y derechos ARCO: <strong>privacidad@tuialista.com</strong></li><li>Responsable de datos personales: <strong>Edgar Apolonio Aguilera</strong> (privacidad@tuialista.com)</li><li>Sitio: <a href="https://www.tuialista.com">www.tuialista.com</a></li></ul>
 <hr />
-<p><em>Fin del documento.</em></p></div></main>
-<footer>&copy; <span id="y"></span> TuIAlista &middot; <a href="/soporte">Soporte</a> &middot; <a href="/">Inicio</a><script>document.getElementById("y").textContent=new Date().getFullYear()</script></footer>
+<p><em>Fin del documento.</em></p></article>
+<article class="doc" id="doc-en" data-lang="en" hidden><div class="trnote">This is a courtesy translation. The Spanish version is the governing version.</div><h1>TuIAlista Privacy Policy</h1>
+<blockquote><p>The current version of this document is published at <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
+<p><strong>Version:</strong> 1.0 · <strong>Last updated:</strong> 21 July 2026 · <strong>Effective:</strong> 21 July 2026</p>
+<hr />
+<h2>1. Identity and address of the controller</h2>
+<p>1.1. The controller of personal data is **<strong> (trade name </strong>TuIAlista<strong>, parent company </strong>ORDINAL-BiA<strong>), RFC </strong><strong>, with address at </strong><strong>, Mexico City, Mexico (</strong>"TuIAlista"**).</p>
+<p>1.2. This Privacy Policy (or Privacy Notice, for purposes of Mexican law) describes what personal data we process, for what purposes, with whom we share it, and how you can exercise your rights. It complements the <a href="/legal/compromiso-local/">Local Processing and Privacy Commitment</a> and the <a href="/legal/terminos/">Terms of Service</a>.</p>
+<p>1.3. This document is the <strong>Full Privacy Notice</strong>. At the point of collection (the customer registration form), a <a href="/legal/aviso-simplificado/">Short-Form Privacy Notice</a> is also displayed, summarizing this processing and referring back to this document.</p>
+<hr />
+<h2>2. Guiding principle: processing is local</h2>
+<p>2.1. TuIAlista's biggest differentiator is that <strong>agents process the Customer's information locally, on their own device</strong>. The content of the files, documents, and data the Customer analyzes with the agents <strong>is not sent to TuIAlista, is not received by us, and is not stored by us</strong> (see the <a href="/legal/compromiso-local/">Local Processing Commitment</a>).</p>
+<p>2.2. Our data collection is limited to the <strong>minimum necessary</strong> to manage the account, charge the subscription, and validate the license.</p>
+<hr />
+<h2>3. Data we DO process</h2>
+<p>We process the following categories of personal data:</p>
+<p><strong>a) Account and contact data.</strong></p>
+<ul><li>Name or company name, email, and any contact data the Customer provides when registering or requesting support.</li></ul>
+<p><strong>b) License and technical usage data (minimal validation telemetry).</strong></p>
+<ul><li>License key (format <code>TIA-XXXX-XXXX-XXXX-XXXX</code>) and subscription status (trial, active, suspended, cancelled, expired).</li><li><strong>Technical device identifier</strong> (a fingerprint derived from the hardware) to bind the license to the device and prevent unauthorized use.</li><li>License validation records (<code>license_checks</code>): date and time of the check, result (for example, valid, suspended, device mismatch), and the associated device fingerprint. <strong>These records do not include the content of what the Customer processes.</strong></li><li>Contracted agent identifier and basic technical data to operate the subscription.</li></ul>
+<p><strong>c) Billing data (through Creem).</strong></p>
+<ul><li>Purchase, charging, and billing are processed through <strong>Creem</strong>, acting as <strong>Merchant of Record</strong>. <strong>Payment data (for example, card details) are processed by Creem and its processors</strong>, not by TuIAlista. TuIAlista receives limited transaction information from Creem (for example, payment status, subscription identifier, country, and amount) to activate or maintain the license and to calculate affiliate commissions where applicable.</li></ul>
+<p><strong>d) Support and communications data.</strong></p>
+<ul><li>The content of communications the Customer sends us (emails, tickets) to handle their requests.</li></ul>
+<p><strong>e) Website data.</strong></p>
+<ul><li>Technical browsing data on <a href="https://www.tuialista.com">www.tuialista.com</a> (for example, IP address and strictly necessary or measurement cookies).</li></ul>
+<hr />
+<h2>4. Data we do NOT process</h2>
+<p>We <strong>never</strong> receive, store, or have access to:</p>
+<ul><li>The <strong>content</strong> of the files, documents, contracts, invoices, payroll, emails, or databases the Customer processes with the agents.</li><li>The <strong>data the Customer processes</strong> with the agents, or the <strong>results</strong> of that processing.</li><li>Any personal or confidential information contained in the material the Customer analyzes locally.</li></ul>
+<p>In other words: we receive the minimum to know that the Customer is entitled to use the software, and <strong>nothing of what the software reads or produces</strong>.</p>
+<hr />
+<h2>5. Purposes of processing</h2>
+<p><strong>Primary purposes (necessary for the Service):</strong> 1. Create and manage the Customer's account. 2. Issue, validate, suspend, or revoke the license and <strong>prevent unauthorized use and piracy</strong> (device binding, signature verification). 3. Process the subscription, charging, and billing through Creem. 4. Provide technical support and operational Service communications. 5. Comply with applicable legal, tax, and accounting obligations.</p>
+<p><strong>Secondary purposes (optional):</strong> 6. Sending commercial communications, catalog updates, or surveys. The Customer may <strong>object</strong> to these purposes without affecting the Service (see Section 9).</p>
+<hr />
+<h2>6. Basis for processing</h2>
+<p>We process data based on: (i) <strong>performance of the contract</strong> and provision of the Service; (ii) <strong>compliance with legal obligations</strong> (tax, accounting); (iii) TuIAlista's <strong>legitimate interest</strong> in preventing fraud and piracy and ensuring Service operation; and (iv) <strong>consent</strong>, for secondary purposes.</p>
+<hr />
+<h2>7. Transfers and processors</h2>
+<p>7.1. TuIAlista relies on providers acting as <strong>processors</strong> or, where applicable, controllers, to operate the Service:</p>
+<ul><li><strong>Creem</strong> — Merchant of Record: payment, tax, and billing processing.</li><li><strong>Third-party AI model providers</strong> — <strong>Groq</strong> (with failover to <strong>Gemini</strong>): they receive <strong>fragments of text</strong> sent by the agent <strong>solely to draft responses</strong>. TuIAlista does not transfer the Customer's document repository to them; the transmission is limited to what is necessary for the invoked feature.</li><li><strong>Infrastructure providers</strong> — hosting of the central platform and the accounts/licenses database (for example, Render- and Supabase-type services).</li></ul>
+<p>7.2. Some transfers may involve <strong>processing outside Mexico</strong>. In such cases, TuIAlista will endeavor to have the <strong>safeguards</strong> required by applicable law in place. TuIAlista does not sell the Customer's personal data.</p>
+<p>7.3. The <strong>content processed by the agents is not transferred</strong> to any of these third parties by TuIAlista, except for the fragment of text the agent itself sends to the AI model to draft a response, when the Customer uses that feature.</p>
+<hr />
+<h2>8. Retention and security</h2>
+<p>8.1. <strong>Retention.</strong> We keep data while the relationship with the Customer exists and, thereafter, for the periods required by legal, tax, and legal-defense obligations. Once those periods end, data is deleted or anonymized.</p>
+<p>8.2. <strong>Security.</strong> We apply reasonable technical and organizational measures to protect data, including <strong>cryptographic signing (Ed25519)</strong> of license verdicts and access controls to the central platform. No system is infallible; we cannot guarantee absolute security.</p>
+<hr />
+<h2>9. ARCO rights (LFPDPPP, Mexico)</h2>
+<p>9.1. Under the <strong>Federal Law on the Protection of Personal Data Held by Private Parties (LFPDPPP)</strong>, the Customer may exercise their rights of <strong>Access, Rectification, Cancellation, and Objection (ARCO)</strong>, as well as <strong>revoke consent</strong> and limit the use or disclosure of their data.</p>
+<p>9.2. <strong>How to exercise them.</strong> By sending a request to <strong>privacidad@tuialista.com</strong>, stating: the data subject's name, a means to receive a response, a document evidencing their identity (or representation), and a clear description of the right they wish to exercise.</p>
+<p>9.3. The Customer may turn to the <strong>National Institute for Transparency, Access to Information and Personal Data Protection (INAI)</strong> or its successor authority if they believe their right was not duly addressed.</p>
+<hr />
+<h2>10. European Union customers (GDPR)</h2>
+<p>10.1. For customers located in the <strong>European Union</strong>, and to the extent the <strong>General Data Protection Regulation (GDPR)</strong> applies, the Customer has the rights of: access, rectification, erasure ("right to be forgotten"), restriction of processing, data portability, and objection, as well as the right not to be subject to solely automated decisions with legal effects, and to lodge a <strong>complaint with the competent supervisory authority</strong>.</p>
+<p>10.2. TuIAlista's <strong>local-processing</strong> design reduces the processing surface, since the Customer's content is not transferred to TuIAlista.</p>
+<hr />
+<h2>11. Minors</h2>
+<p>The Service is aimed at businesses and professionals; it is <strong>not directed at minors</strong>, and we do not knowingly collect their data.</p>
+<hr />
+<h2>12. Changes to this Policy</h2>
+<p>We may update this Policy. We will publish the current version at <a href="https://www.tuialista.com">www.tuialista.com</a> with its update date and, where changes are material, we will endeavor to notify by electronic means.</p>
+<hr />
+<h2>13. Contact</h2>
+<ul><li>Privacy and ARCO rights: <strong>privacidad@tuialista.com</strong></li><li>Personal-data officer/department: ****</li><li>Website: <a href="https://www.tuialista.com">www.tuialista.com</a></li></ul>
+<hr />
+<hr />
+<p><em>End of document.</em></p></article>
+<article class="doc" id="doc-pt" data-lang="pt" hidden><div class="trnote">Esta é uma tradução de cortesia. A versão em espanhol é a versão vigente.</div><h1>Política de Privacidade da TuIAlista</h1>
+<blockquote><p>A versão vigente deste documento é publicada em <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
+<p><strong>Versão:</strong> 1.0 · <strong>Última atualização:</strong> 21 de julho de 2026 · <strong>Em vigor a partir de:</strong> 21 de julho de 2026</p>
+<hr />
+<h2>1. Identidade e domicílio do responsável</h2>
+<p>1.1. O responsável pelo tratamento dos dados pessoais é **<strong> (nome comercial </strong>TuIAlista<strong>, matriz </strong>ORDINAL-BiA<strong>), com RFC </strong><strong> e domicílio em </strong><strong>, Cidade do México, México (doravante, </strong>"TuIAlista"**).</p>
+<p>1.2. Esta Política de Privacidade (ou Aviso de Privacidade, para efeitos da legislação mexicana) descreve quais dados pessoais tratamos, com quais finalidades, com quem os compartilhamos e como você pode exercer seus direitos. Complementa-se com o <a href="/legal/compromiso-local/">Compromisso de Processamento Local e Privacidade</a> e com os <a href="/legal/terminos/">Termos de Serviço</a>.</p>
+<p>1.3. Este documento é o <strong>Aviso de Privacidade Integral</strong>. No ponto de coleta (o formulário de registro do cliente) é exibido também um <a href="/legal/aviso-simplificado/">Aviso de Privacidade Simplificado</a>, que resume este tratamento e remete a este documento.</p>
+<hr />
+<h2>2. Princípio reitor: o processamento é local</h2>
+<p>2.1. O maior diferencial da TuIAlista é que <strong>os agentes processam a informação do Cliente localmente, em seu próprio equipamento</strong>. O conteúdo dos arquivos, documentos e dados que o Cliente analisa com os agentes <strong>não é enviado à TuIAlista, não o recebemos e não o armazenamos</strong> (ver <a href="/legal/compromiso-local/">Compromisso de Processamento Local</a>).</p>
+<p>2.2. Nossa coleta de dados limita-se ao <strong>mínimo necessário</strong> para gerenciar a conta, cobrar a assinatura e validar a licença.</p>
+<hr />
+<h2>3. Dados que TRATAMOS</h2>
+<p>Tratamos as seguintes categorias de dados pessoais:</p>
+<p><strong>a) Dados de conta e contato.</strong></p>
+<ul><li>Nome ou razão social, e-mail e, se for o caso, dados de contato que o Cliente forneça ao se registrar ou solicitar suporte.</li></ul>
+<p><strong>b) Dados de licença e uso técnico (telemetria mínima de validação).</strong></p>
+<ul><li>Chave de licença (formato <code>TIA-XXXX-XXXX-XXXX-XXXX</code>) e estado da assinatura (teste, ativa, suspensa, cancelada, vencida).</li><li><strong>Identificador técnico do equipamento</strong> (uma impressão derivada do hardware) para vincular a licença ao dispositivo e prevenir uso não autorizado.</li><li>Registros de validação de licença (<code>license_checks</code>): data e hora da verificação, resultado (por exemplo, válido, suspenso, equipamento não coincidente) e a impressão do equipamento associada. <strong>Esses registros não incluem o conteúdo do que o Cliente processa.</strong></li><li>Identificador do agente contratado e dados técnicos básicos para operar a assinatura.</li></ul>
+<p><strong>c) Dados de faturamento (por meio da Creem).</strong></p>
+<ul><li>A compra, a cobrança e o faturamento são processados por meio da <strong>Creem</strong>, que atua como <strong>Comerciante Registrado (Merchant of Record)</strong>. Os <strong>dados de pagamento (por exemplo, cartão) são tratados pela Creem e seus processadores</strong>, não pela TuIAlista. A TuIAlista recebe da Creem informações limitadas da transação (por exemplo, estado do pagamento, identificador de assinatura, país e valor) para ativar ou manter a licença e calcular comissões de afiliados quando cabível.</li></ul>
+<p><strong>d) Dados de suporte e comunicações.</strong></p>
+<ul><li>O conteúdo das comunicações que o Cliente nos dirige (e-mails, chamados) para atender suas solicitações.</li></ul>
+<p><strong>e) Dados do site.</strong></p>
+<ul><li>Dados técnicos de navegação em <a href="https://www.tuialista.com">www.tuialista.com</a> (por exemplo, endereço IP e cookies estritamente necessários ou de medição).</li></ul>
+<hr />
+<h2>4. Dados que NÃO tratamos</h2>
+<p><strong>Nunca</strong> recebemos, armazenamos nem temos acesso a:</p>
+<ul><li>O <strong>conteúdo</strong> dos arquivos, documentos, contratos, faturas, folhas de pagamento, e-mails ou bancos de dados que o Cliente processa com os agentes.</li><li>Os <strong>dados que o Cliente processa</strong> com os agentes nem os <strong>resultados</strong> desse processamento.</li><li>Qualquer informação pessoal ou confidencial contida no material que o Cliente analisa localmente.</li></ul>
+<p>Em outras palavras: recebemos o mínimo para saber que o Cliente tem direito a usar o software, e <strong>nada do que o software lê ou produz</strong>.</p>
+<hr />
+<h2>5. Finalidades do tratamento</h2>
+<p><strong>Finalidades primárias (necessárias para o Serviço):</strong> 1. Criar e administrar a conta do Cliente. 2. Emitir, validar, suspender ou revogar a licença e <strong>prevenir o uso não autorizado e a pirataria</strong> (vinculação ao equipamento, verificação de assinatura). 3. Processar a assinatura, a cobrança e o faturamento por meio da Creem. 4. Fornecer suporte técnico e comunicações operacionais do Serviço. 5. Cumprir obrigações legais, fiscais e contábeis aplicáveis.</p>
+<p><strong>Finalidades secundárias (opcionais):</strong> 6. Envio de comunicações comerciais, novidades do catálogo ou pesquisas. O Cliente pode <strong>opor-se</strong> a essas finalidades sem afetar o Serviço (ver Seção 9).</p>
+<hr />
+<h2>6. Fundamento do tratamento</h2>
+<p>Tratamos os dados com fundamento em: (i) a <strong>execução do contrato</strong> de assinatura e a prestação do Serviço; (ii) o <strong>cumprimento de obrigações legais</strong> (fiscais, contábeis); (iii) o <strong>interesse legítimo</strong> da TuIAlista em prevenir a fraude e a pirataria e em assegurar a operação do Serviço; e (iv) o <strong>consentimento</strong>, para as finalidades secundárias.</p>
+<hr />
+<h2>7. Transferências e operadores</h2>
+<p>7.1. A TuIAlista apoia-se em provedores que atuam como <strong>operadores</strong> ou, se for o caso, responsáveis, para operar o Serviço:</p>
+<ul><li><strong>Creem</strong> — Comerciante Registrado (Merchant of Record): processamento de pagamentos, impostos e faturamento.</li><li><strong>Provedores de modelos de IA de terceiros</strong> — <strong>Groq</strong> (com comutação para <strong>Gemini</strong>): recebem <strong>fragmentos de texto</strong> enviados pelo agente <strong>unicamente para redigir respostas</strong>. A TuIAlista não lhes transfere o repositório de documentos do Cliente; o envio limita-se ao necessário para a função invocada.</li><li><strong>Provedores de infraestrutura</strong> — hospedagem da plataforma central e banco de dados de contas/licenças (por exemplo, serviços tipo Render e Supabase).</li></ul>
+<p>7.2. Algumas transferências podem implicar o <strong>tratamento de dados fora do México</strong>. Em tais casos, procurar-se-á contar com as <strong>salvaguardas</strong> exigidas pela lei aplicável. A TuIAlista não vende os dados pessoais do Cliente.</p>
+<p>7.3. O <strong>conteúdo processado pelos agentes não é transferido</strong> a nenhum desses terceiros por parte da TuIAlista, salvo o fragmento de texto que o próprio agente envie ao modelo de IA para redigir uma resposta, quando o Cliente usar essa função.</p>
+<hr />
+<h2>8. Conservação e segurança</h2>
+<p>8.1. <strong>Conservação.</strong> Conservamos os dados enquanto existir a relação com o Cliente e, depois, durante os prazos exigidos por obrigações legais, fiscais e de defesa jurídica. Concluídos esses prazos, são eliminados ou anonimizados.</p>
+<p>8.2. <strong>Segurança.</strong> Aplicamos medidas técnicas e organizacionais razoáveis para proteger os dados, incluindo a <strong>assinatura criptográfica (Ed25519)</strong> dos veredictos de licença e controles de acesso à plataforma central. Nenhum sistema é infalível; não podemos garantir segurança absoluta.</p>
+<hr />
+<h2>9. Direitos ARCO (LFPDPPP, México)</h2>
+<p>9.1. Conforme a <strong>Lei Federal de Proteção de Dados Pessoais em Posse de Particulares (LFPDPPP)</strong>, o Cliente pode exercer seus direitos de <strong>Acesso, Retificação, Cancelamento e Oposição (ARCO)</strong>, bem como <strong>revogar seu consentimento</strong> e limitar o uso ou a divulgação de seus dados.</p>
+<p>9.2. <strong>Como exercê-los.</strong> Enviando uma solicitação para <strong>privacidad@tuialista.com</strong>, indicando: nome do titular, meio para receber resposta, documento que comprove sua identidade (ou representação) e a descrição clara do direito que deseja exercer.</p>
+<p>9.3. O Cliente pode recorrer ao <strong>Instituto Nacional de Transparência, Acesso à Informação e Proteção de Dados Pessoais (INAI)</strong> ou à autoridade que o substitua, se considerar que seu direito não foi devidamente atendido.</p>
+<hr />
+<h2>10. Clientes da União Europeia (GDPR)</h2>
+<p>10.1. Para clientes localizados na <strong>União Europeia</strong>, e na medida em que o <strong>Regulamento Geral sobre a Proteção de Dados (GDPR)</strong> seja aplicável, o Cliente tem direito a: acesso, retificação, apagamento ("direito ao esquecimento"), limitação do tratamento, portabilidade de dados e oposição, bem como a não ser objeto de decisões exclusivamente automatizadas com efeitos jurídicos, e a apresentar uma <strong>reclamação à autoridade de controle</strong> competente.</p>
+<p>10.2. O desenho de <strong>processamento local</strong> da TuIAlista reduz a superfície de tratamento, já que o conteúdo do Cliente não é transferido à TuIAlista.</p>
+<hr />
+<h2>11. Menores de idade</h2>
+<p>O Serviço é dirigido a empresas e profissionais; <strong>não é dirigido a menores de idade</strong> e não coletamos conscientemente seus dados.</p>
+<hr />
+<h2>12. Mudanças a esta Política</h2>
+<p>Podemos atualizar esta Política. Publicaremos a versão vigente em <a href="https://www.tuialista.com">www.tuialista.com</a> com sua data de atualização e, quando as mudanças forem substanciais, procuraremos avisar por meios eletrônicos.</p>
+<hr />
+<h2>13. Contato</h2>
+<ul><li>Privacidade e direitos ARCO: <strong>privacidad@tuialista.com</strong></li><li>Responsável/Departamento de dados pessoais: ****</li><li>Site: <a href="https://www.tuialista.com">www.tuialista.com</a></li></ul>
+<hr />
+<hr />
+<p><em>Fim do documento.</em></p></article>
+<article class="doc" id="doc-fr" data-lang="fr" hidden><div class="trnote">Ceci est une traduction de courtoisie. La version espagnole fait foi.</div><h1>Politique de Confidentialité de TuIAlista</h1>
+<blockquote><p>La version en vigueur de ce document est publiée sur <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
+<p><strong>Version :</strong> 1.0 · <strong>Dernière mise à jour :</strong> 21 juillet 2026 · <strong>En vigueur à partir du :</strong> 21 juillet 2026</p>
+<hr />
+<h2>1. Identité et domicile du responsable</h2>
+<p>1.1. Le responsable du traitement des données personnelles est **<strong> (nom commercial </strong>TuIAlista<strong>, société mère </strong>ORDINAL-BiA<strong>), RFC </strong><strong>, domicilié à </strong><strong>, Mexico, Mexique (ci-après, </strong>« TuIAlista »**).</p>
+<p>1.2. La présente Politique de Confidentialité (ou Avis de Confidentialité, aux fins de la législation mexicaine) décrit quelles données personnelles nous traitons, à quelles fins, avec qui nous les partageons et comment vous pouvez exercer vos droits. Elle est complétée par l'<a href="/legal/compromiso-local/">Engagement de Traitement Local et de Confidentialité</a> et par les <a href="/legal/terminos/">Conditions de Service</a>.</p>
+<p>1.3. Ce document est l'<strong>Avis de Confidentialité Intégral</strong>. Au point de collecte (le formulaire d'inscription du client) est également affiché un <a href="/legal/aviso-simplificado/">Avis de Confidentialité Simplifié</a>, qui résume ce traitement et renvoie au présent document.</p>
+<hr />
+<h2>2. Principe directeur : le traitement est local</h2>
+<p>2.1. Le plus grand facteur de différenciation de TuIAlista est que <strong>les agents traitent l'information du Client localement, sur son propre équipement</strong>. Le contenu des fichiers, documents et données que le Client analyse avec les agents <strong>n'est pas envoyé à TuIAlista, n'est pas reçu par nous et n'est pas stocké</strong> (voir l'<a href="/legal/compromiso-local/">Engagement de Traitement Local</a>).</p>
+<p>2.2. Notre collecte de données se limite au <strong>minimum nécessaire</strong> pour gérer le compte, facturer l'abonnement et valider la licence.</p>
+<hr />
+<h2>3. Données que nous traitons</h2>
+<p>Nous traitons les catégories suivantes de données personnelles :</p>
+<p><strong>a) Données de compte et de contact.</strong></p>
+<ul><li>Nom ou raison sociale, adresse e-mail et, le cas échéant, coordonnées que le Client fournit lors de l'inscription ou d'une demande de support.</li></ul>
+<p><strong>b) Données de licence et d'usage technique (télémétrie minimale de validation).</strong></p>
+<ul><li>Clé de licence (format <code>TIA-XXXX-XXXX-XXXX-XXXX</code>) et état de l'abonnement (essai, actif, suspendu, résilié, expiré).</li><li><strong>Identifiant technique de l'équipement</strong> (une empreinte dérivée du matériel) pour lier la licence à l'appareil et prévenir tout usage non autorisé.</li><li>Journaux de validation de licence (<code>license_checks</code>) : date et heure de la vérification, résultat (par exemple, valide, suspendu, équipement non concordant) et l'empreinte de l'équipement associée. <strong>Ces journaux n'incluent pas le contenu de ce que le Client traite.</strong></li><li>Identifiant de l'agent souscrit et données techniques de base pour opérer l'abonnement.</li></ul>
+<p><strong>c) Données de facturation (via Creem).</strong></p>
+<ul><li>L'achat, le prélèvement et la facturation sont traités via <strong>Creem</strong>, agissant en tant que <strong>Vendeur Enregistré (Merchant of Record)</strong>. Les <strong>données de paiement (par exemple, la carte) sont traitées par Creem et ses prestataires</strong>, non par TuIAlista. TuIAlista reçoit de Creem des informations limitées sur la transaction (par exemple, état du paiement, identifiant d'abonnement, pays et montant) pour activer ou maintenir la licence et calculer les commissions d'affiliation le cas échéant.</li></ul>
+<p><strong>d) Données de support et de communications.</strong></p>
+<ul><li>Le contenu des communications que le Client nous adresse (e-mails, tickets) pour traiter ses demandes.</li></ul>
+<p><strong>e) Données du site web.</strong></p>
+<ul><li>Données techniques de navigation sur <a href="https://www.tuialista.com">www.tuialista.com</a> (par exemple, adresse IP et cookies strictement nécessaires ou de mesure).</li></ul>
+<hr />
+<h2>4. Données que nous NE traitons PAS</h2>
+<p>Nous ne recevons, ne stockons ni n'avons <strong>jamais</strong> accès à :</p>
+<ul><li>Le <strong>contenu</strong> des fichiers, documents, contrats, factures, paies, e-mails ou bases de données que le Client traite avec les agents.</li><li>Les <strong>données que le Client traite</strong> avec les agents ni les <strong>résultats</strong> de ce traitement.</li><li>Toute information personnelle ou confidentielle contenue dans le matériel que le Client analyse localement.</li></ul>
+<p>Autrement dit : nous recevons le minimum pour savoir que le Client est en droit d'utiliser le logiciel, et <strong>rien de ce que le logiciel lit ou produit</strong>.</p>
+<hr />
+<h2>5. Finalités du traitement</h2>
+<p><strong>Finalités principales (nécessaires au Service) :</strong> 1. Créer et gérer le compte du Client. 2. Émettre, valider, suspendre ou révoquer la licence et <strong>prévenir l'usage non autorisé et le piratage</strong> (liaison à l'équipement, vérification de signature). 3. Traiter l'abonnement, le prélèvement et la facturation via Creem. 4. Fournir un support technique et des communications opérationnelles du Service. 5. Respecter les obligations légales, fiscales et comptables applicables.</p>
+<p><strong>Finalités secondaires (facultatives) :</strong> 6. Envoi de communications commerciales, actualités du catalogue ou enquêtes. Le Client peut <strong>s'y opposer</strong> sans affecter le Service (voir Section 9).</p>
+<hr />
+<h2>6. Fondement du traitement</h2>
+<p>Nous traitons les données sur le fondement de : (i) l'<strong>exécution du contrat</strong> d'abonnement et la prestation du Service ; (ii) le <strong>respect d'obligations légales</strong> (fiscales, comptables) ; (iii) l'<strong>intérêt légitime</strong> de TuIAlista à prévenir la fraude et le piratage et à assurer le fonctionnement du Service ; et (iv) le <strong>consentement</strong>, pour les finalités secondaires.</p>
+<hr />
+<h2>7. Transferts et sous-traitants</h2>
+<p>7.1. TuIAlista s'appuie sur des prestataires agissant en tant que <strong>sous-traitants</strong> ou, le cas échéant, responsables, pour opérer le Service :</p>
+<ul><li><strong>Creem</strong> — Vendeur Enregistré (Merchant of Record) : traitement des paiements, des taxes et de la facturation.</li><li><strong>Fournisseurs de modèles d'IA de tiers</strong> — <strong>Groq</strong> (avec bascule vers <strong>Gemini</strong>) : ils reçoivent des <strong>fragments de texte</strong> envoyés par l'agent <strong>uniquement pour rédiger des réponses</strong>. TuIAlista ne leur transfère pas le référentiel de documents du Client ; l'envoi se limite à ce qui est nécessaire à la fonction invoquée.</li><li><strong>Fournisseurs d'infrastructure</strong> — hébergement de la plateforme centrale et de la base de données des comptes/licences (par exemple, services de type Render et Supabase).</li></ul>
+<p>7.2. Certains transferts peuvent impliquer un <strong>traitement de données hors du Mexique</strong>. Dans ce cas, TuIAlista s'efforcera de disposer des <strong>garanties</strong> exigées par la loi applicable. TuIAlista ne vend pas les données personnelles du Client.</p>
+<p>7.3. Le <strong>contenu traité par les agents n'est transféré</strong> à aucun de ces tiers par TuIAlista, hormis le fragment de texte que l'agent lui-même envoie au modèle d'IA pour rédiger une réponse, lorsque le Client utilise cette fonction.</p>
+<hr />
+<h2>8. Conservation et sécurité</h2>
+<p>8.1. <strong>Conservation.</strong> Nous conservons les données tant que la relation avec le Client existe et, ensuite, pendant les durées exigées par les obligations légales, fiscales et de défense en justice. Ces durées écoulées, les données sont supprimées ou anonymisées.</p>
+<p>8.2. <strong>Sécurité.</strong> Nous appliquons des mesures techniques et organisationnelles raisonnables pour protéger les données, y compris la <strong>signature cryptographique (Ed25519)</strong> des verdicts de licence et des contrôles d'accès à la plateforme centrale. Aucun système n'est infaillible ; nous ne pouvons garantir une sécurité absolue.</p>
+<hr />
+<h2>9. Droits ARCO (LFPDPPP, Mexique)</h2>
+<p>9.1. Conformément à la <strong>Loi Fédérale sur la Protection des Données Personnelles détenues par des Particuliers (LFPDPPP)</strong>, le Client peut exercer ses droits d'<strong>Accès, Rectification, Annulation et Opposition (ARCO)</strong>, ainsi que <strong>révoquer son consentement</strong> et limiter l'usage ou la divulgation de ses données.</p>
+<p>9.2. <strong>Comment les exercer.</strong> En envoyant une demande à <strong>privacidad@tuialista.com</strong>, en indiquant : le nom du titulaire, un moyen de recevoir une réponse, un document attestant son identité (ou sa représentation) et la description claire du droit qu'il souhaite exercer.</p>
+<p>9.3. Le Client peut saisir l'<strong>Institut National de la Transparence, de l'Accès à l'Information et de la Protection des Données Personnelles (INAI)</strong> ou l'autorité qui lui succède s'il estime que son droit n'a pas été dûment traité.</p>
+<hr />
+<h2>10. Clients de l'Union Européenne (RGPD)</h2>
+<p>10.1. Pour les clients situés dans l'<strong>Union Européenne</strong>, et dans la mesure où le <strong>Règlement Général sur la Protection des Données (RGPD)</strong> s'applique, le Client dispose des droits d'accès, de rectification, d'effacement (« droit à l'oubli »), de limitation du traitement, de portabilité des données et d'opposition, ainsi que du droit de ne pas faire l'objet de décisions exclusivement automatisées produisant des effets juridiques, et de déposer une <strong>réclamation auprès de l'autorité de contrôle</strong> compétente.</p>
+<p>10.2. La conception de <strong>traitement local</strong> de TuIAlista réduit la surface de traitement, puisque le contenu du Client n'est pas transféré à TuIAlista.</p>
+<hr />
+<h2>11. Mineurs</h2>
+<p>Le Service s'adresse aux entreprises et aux professionnels ; il <strong>n'est pas destiné aux mineurs</strong>, et nous ne collectons pas sciemment leurs données.</p>
+<hr />
+<h2>12. Modifications de la présente Politique</h2>
+<p>Nous pouvons mettre à jour la présente Politique. Nous publierons la version en vigueur sur <a href="https://www.tuialista.com">www.tuialista.com</a> avec sa date de mise à jour et, lorsque les changements sont substantiels, nous nous efforcerons d'avertir par voie électronique.</p>
+<hr />
+<h2>13. Contact</h2>
+<ul><li>Confidentialité et droits ARCO : <strong>privacidad@tuialista.com</strong></li><li>Responsable/Service des données personnelles : ****</li><li>Site : <a href="https://www.tuialista.com">www.tuialista.com</a></li></ul>
+<hr />
+<hr />
+<p><em>Fin du document.</em></p></article>
+<article class="doc" id="doc-de" data-lang="de" hidden><div class="trnote">Dies ist eine Übersetzung als Serviceleistung. Maßgeblich ist die spanische Fassung.</div><h1>Datenschutzrichtlinie von TuIAlista</h1>
+<blockquote><p>Die aktuelle Fassung dieses Dokuments wird unter <a href="https://www.tuialista.com">www.tuialista.com</a> veröffentlicht.</p></blockquote>
+<p><strong>Version:</strong> 1.0 · <strong>Zuletzt aktualisiert:</strong> 21. Juli 2026 · <strong>Gültig ab:</strong> 21. Juli 2026</p>
+<hr />
+<h2>1. Identität und Anschrift des Verantwortlichen</h2>
+<p>1.1. Verantwortlicher für die Verarbeitung personenbezogener Daten ist **<strong> (Handelsname </strong>TuIAlista<strong>, Muttergesellschaft </strong>ORDINAL-BiA<strong>), RFC </strong><strong>, mit Sitz in </strong><strong>, Mexiko-Stadt, Mexiko (nachfolgend </strong>„TuIAlista"**).</p>
+<p>1.2. Diese Datenschutzrichtlinie (oder Datenschutzhinweis, für Zwecke des mexikanischen Rechts) beschreibt, welche personenbezogenen Daten wir verarbeiten, zu welchen Zwecken, mit wem wir sie teilen und wie Sie Ihre Rechte ausüben können. Sie wird ergänzt durch die <a href="/legal/compromiso-local/">Verpflichtung zur lokalen Verarbeitung und zum Datenschutz</a> und die <a href="/legal/terminos/">Nutzungsbedingungen</a>.</p>
+<p>1.3. Dieses Dokument ist der <strong>Vollständige Datenschutzhinweis</strong>. Am Erhebungspunkt (dem Registrierungsformular des Kunden) wird zusätzlich ein <a href="/legal/aviso-simplificado/">Vereinfachter Datenschutzhinweis</a> angezeigt, der diese Verarbeitung zusammenfasst und auf dieses Dokument verweist.</p>
+<hr />
+<h2>2. Leitprinzip: die Verarbeitung ist lokal</h2>
+<p>2.1. Das größte Unterscheidungsmerkmal von TuIAlista ist, dass <strong>die Agenten die Informationen des Kunden lokal auf seinem eigenen Gerät verarbeiten</strong>. Der Inhalt der Dateien, Dokumente und Daten, die der Kunde mit den Agenten analysiert, <strong>wird nicht an TuIAlista gesendet, nicht von uns empfangen und nicht gespeichert</strong> (siehe <a href="/legal/compromiso-local/">Verpflichtung zur lokalen Verarbeitung</a>).</p>
+<p>2.2. Unsere Datenerhebung beschränkt sich auf das <strong>notwendige Minimum</strong>, um das Konto zu verwalten, das Abonnement abzurechnen und die Lizenz zu validieren.</p>
+<hr />
+<h2>3. Daten, die wir verarbeiten</h2>
+<p>Wir verarbeiten folgende Kategorien personenbezogener Daten:</p>
+<p><strong>a) Konto- und Kontaktdaten.</strong></p>
+<ul><li>Name oder Firmenname, E-Mail und ggf. Kontaktdaten, die der Kunde bei der Registrierung oder bei einer Supportanfrage angibt.</li></ul>
+<p><strong>b) Lizenz- und technische Nutzungsdaten (minimale Validierungstelemetrie).</strong></p>
+<ul><li>Lizenzschlüssel (Format <code>TIA-XXXX-XXXX-XXXX-XXXX</code>) und Abonnementstatus (Test, aktiv, ausgesetzt, gekündigt, abgelaufen).</li><li><strong>Technische Gerätekennung</strong> (ein aus der Hardware abgeleiteter Fingerabdruck), um die Lizenz an das Gerät zu binden und unbefugte Nutzung zu verhindern.</li><li>Lizenzvalidierungsprotokolle (<code>license_checks</code>): Datum und Uhrzeit der Prüfung, Ergebnis (z. B. gültig, ausgesetzt, Gerät stimmt nicht überein) und der zugehörige Geräte-Fingerabdruck. <strong>Diese Protokolle enthalten nicht den Inhalt dessen, was der Kunde verarbeitet.</strong></li><li>Kennung des abonnierten Agenten und technische Basisdaten zum Betrieb des Abonnements.</li></ul>
+<p><strong>c) Abrechnungsdaten (über Creem).</strong></p>
+<ul><li>Kauf, Abbuchung und Rechnungsstellung werden über <strong>Creem</strong> abgewickelt, das als <strong>eingetragener Verkäufer (Merchant of Record)</strong> handelt. Die <strong>Zahlungsdaten (z. B. Karte) werden von Creem und seinen Zahlungsdienstleistern verarbeitet</strong>, nicht von TuIAlista. TuIAlista erhält von Creem begrenzte Transaktionsinformationen (z. B. Zahlungsstatus, Abonnementkennung, Land und Betrag), um die Lizenz zu aktivieren oder aufrechtzuerhalten und ggf. Partnerprovisionen zu berechnen.</li></ul>
+<p><strong>d) Support- und Kommunikationsdaten.</strong></p>
+<ul><li>Der Inhalt der Mitteilungen, die der Kunde an uns richtet (E-Mails, Tickets), um seine Anfragen zu bearbeiten.</li></ul>
+<p><strong>e) Website-Daten.</strong></p>
+<ul><li>Technische Navigationsdaten auf <a href="https://www.tuialista.com">www.tuialista.com</a> (z. B. IP-Adresse und unbedingt erforderliche oder Mess-Cookies).</li></ul>
+<hr />
+<h2>4. Daten, die wir NICHT verarbeiten</h2>
+<p>Wir empfangen, speichern und haben <strong>niemals</strong> Zugriff auf:</p>
+<ul><li>Den <strong>Inhalt</strong> der Dateien, Dokumente, Verträge, Rechnungen, Lohnabrechnungen, E-Mails oder Datenbanken, die der Kunde mit den Agenten verarbeitet.</li><li>Die <strong>Daten, die der Kunde verarbeitet</strong>, noch die <strong>Ergebnisse</strong> dieser Verarbeitung.</li><li>Jegliche personenbezogenen oder vertraulichen Informationen im Material, das der Kunde lokal analysiert.</li></ul>
+<p>Mit anderen Worten: Wir erhalten das Minimum, um zu wissen, dass der Kunde zur Nutzung der Software berechtigt ist, und <strong>nichts von dem, was die Software liest oder erzeugt</strong>.</p>
+<hr />
+<h2>5. Zwecke der Verarbeitung</h2>
+<p><strong>Primärzwecke (für den Dienst erforderlich):</strong> 1. Erstellung und Verwaltung des Kundenkontos. 2. Ausstellung, Validierung, Aussetzung oder Widerruf der Lizenz und <strong>Verhinderung unbefugter Nutzung und Piraterie</strong> (Gerätebindung, Signaturprüfung). 3. Abwicklung von Abonnement, Abbuchung und Rechnungsstellung über Creem. 4. Bereitstellung von technischem Support und betrieblichen Mitteilungen des Dienstes. 5. Erfüllung anwendbarer gesetzlicher, steuerlicher und buchhalterischer Pflichten.</p>
+<p><strong>Sekundärzwecke (optional):</strong> 6. Versand kommerzieller Mitteilungen, Katalogneuheiten oder Umfragen. Der Kunde kann diesen Zwecken <strong>widersprechen</strong>, ohne dass dies den Dienst beeinträchtigt (siehe Abschnitt 9).</p>
+<hr />
+<h2>6. Grundlage der Verarbeitung</h2>
+<p>Wir verarbeiten die Daten auf Grundlage von: (i) der <strong>Vertragserfüllung</strong> des Abonnements und der Erbringung des Dienstes; (ii) der <strong>Erfüllung gesetzlicher Pflichten</strong> (steuerlich, buchhalterisch); (iii) dem <strong>berechtigten Interesse</strong> von TuIAlista an der Verhinderung von Betrug und Piraterie und an der Sicherstellung des Dienstbetriebs; und (iv) der <strong>Einwilligung</strong>, für die Sekundärzwecke.</p>
+<hr />
+<h2>7. Übermittlungen und Auftragsverarbeiter</h2>
+<p>7.1. TuIAlista stützt sich auf Anbieter, die als <strong>Auftragsverarbeiter</strong> oder ggf. als Verantwortliche handeln, um den Dienst zu betreiben:</p>
+<ul><li><strong>Creem</strong> — eingetragener Verkäufer (Merchant of Record): Abwicklung von Zahlungen, Steuern und Rechnungsstellung.</li><li><strong>Anbieter von KI-Modellen Dritter</strong> — <strong>Groq</strong> (mit Ausweichung auf <strong>Gemini</strong>): Sie erhalten <strong>Textfragmente</strong>, die der Agent <strong>ausschließlich zum Formulieren von Antworten</strong> sendet. TuIAlista übermittelt ihnen nicht das Dokumentenrepository des Kunden; die Übermittlung beschränkt sich auf das für die aufgerufene Funktion Erforderliche.</li><li><strong>Infrastrukturanbieter</strong> — Hosting der zentralen Plattform und der Konten-/Lizenzdatenbank (z. B. Dienste vom Typ Render und Supabase).</li></ul>
+<p>7.2. Einige Übermittlungen können eine <strong>Verarbeitung von Daten außerhalb Mexikos</strong> bedeuten. In solchen Fällen wird TuIAlista bemüht sein, über die vom anwendbaren Recht geforderten <strong>Garantien</strong> zu verfügen. TuIAlista verkauft die personenbezogenen Daten des Kunden nicht.</p>
+<p>7.3. Der <strong>von den Agenten verarbeitete Inhalt wird</strong> von TuIAlista an keinen dieser Dritten <strong>übermittelt</strong>, mit Ausnahme des Textfragments, das der Agent selbst zum Formulieren einer Antwort an das KI-Modell sendet, wenn der Kunde diese Funktion nutzt.</p>
+<hr />
+<h2>8. Aufbewahrung und Sicherheit</h2>
+<p>8.1. <strong>Aufbewahrung.</strong> Wir bewahren die Daten auf, solange die Beziehung zum Kunden besteht, und danach für die durch gesetzliche, steuerliche und Rechtsverteidigungspflichten erforderlichen Zeiträume. Nach Ablauf dieser Zeiträume werden sie gelöscht oder anonymisiert.</p>
+<p>8.2. <strong>Sicherheit.</strong> Wir wenden angemessene technische und organisatorische Maßnahmen zum Schutz der Daten an, einschließlich der <strong>kryptografischen Signatur (Ed25519)</strong> der Lizenzurteile und von Zugriffskontrollen zur zentralen Plattform. Kein System ist unfehlbar; wir können keine absolute Sicherheit garantieren.</p>
+<hr />
+<h2>9. ARCO-Rechte (LFPDPPP, Mexiko)</h2>
+<p>9.1. Gemäß dem <strong>Bundesgesetz zum Schutz personenbezogener Daten im Besitz Privater (LFPDPPP)</strong> kann der Kunde seine Rechte auf <strong>Zugang, Berichtigung, Löschung und Widerspruch (ARCO)</strong> ausüben sowie seine <strong>Einwilligung widerrufen</strong> und die Nutzung oder Offenlegung seiner Daten einschränken.</p>
+<p>9.2. <strong>Ausübung.</strong> Durch Senden eines Antrags an <strong>privacidad@tuialista.com</strong> unter Angabe von: Name des Betroffenen, Weg zum Empfang der Antwort, Nachweis der Identität (oder Vertretung) und klarer Beschreibung des auszuübenden Rechts.</p>
+<p>9.3. Der Kunde kann sich an das <strong>Nationale Institut für Transparenz, Informationszugang und Schutz personenbezogener Daten (INAI)</strong> oder die Nachfolgebehörde wenden, wenn er der Ansicht ist, dass seinem Recht nicht ordnungsgemäß entsprochen wurde.</p>
+<hr />
+<h2>10. Kunden der Europäischen Union (DSGVO)</h2>
+<p>10.1. Für Kunden mit Sitz in der <strong>Europäischen Union</strong> und soweit die <strong>Datenschutz-Grundverordnung (DSGVO)</strong> anwendbar ist, hat der Kunde die Rechte auf: Zugang, Berichtigung, Löschung („Recht auf Vergessenwerden"), Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch sowie das Recht, nicht einer ausschließlich automatisierten Entscheidung mit rechtlicher Wirkung unterworfen zu werden, und das Recht, eine <strong>Beschwerde bei der zuständigen Aufsichtsbehörde</strong> einzureichen.</p>
+<p>10.2. Das <strong>lokale Verarbeitungsdesign</strong> von TuIAlista verringert die Verarbeitungsfläche, da der Inhalt des Kunden nicht an TuIAlista übermittelt wird.</p>
+<hr />
+<h2>11. Minderjährige</h2>
+<p>Der Dienst richtet sich an Unternehmen und Fachleute; er <strong>richtet sich nicht an Minderjährige</strong>, und wir erheben deren Daten nicht wissentlich.</p>
+<hr />
+<h2>12. Änderungen dieser Richtlinie</h2>
+<p>Wir können diese Richtlinie aktualisieren. Wir veröffentlichen die geltende Fassung auf <a href="https://www.tuialista.com">www.tuialista.com</a> mit ihrem Aktualisierungsdatum; bei wesentlichen Änderungen bemühen wir uns, auf elektronischem Weg zu informieren.</p>
+<hr />
+<h2>13. Kontakt</h2>
+<ul><li>Datenschutz und ARCO-Rechte: <strong>privacidad@tuialista.com</strong></li><li>Verantwortlicher/Datenschutzabteilung: ****</li><li>Website: <a href="https://www.tuialista.com">www.tuialista.com</a></li></ul>
+<hr />
+<hr />
+<p><em>Ende des Dokuments.</em></p></article>
+<article class="doc" id="doc-it" data-lang="it" hidden><div class="trnote">Questa è una traduzione di cortesia. La versione spagnola è quella vigente.</div><h1>Informativa sulla Privacy di TuIAlista</h1>
+<blockquote><p>La versione vigente di questo documento è pubblicata su <a href="https://www.tuialista.com">www.tuialista.com</a>.</p></blockquote>
+<p><strong>Versione:</strong> 1.0 · <strong>Ultimo aggiornamento:</strong> 21 luglio 2026 · <strong>In vigore dal:</strong> 21 luglio 2026</p>
+<hr />
+<h2>1. Identità e domicilio del titolare</h2>
+<p>1.1. Il titolare del trattamento dei dati personali è **<strong> (nome commerciale </strong>TuIAlista<strong>, casa madre </strong>ORDINAL-BiA<strong>), RFC </strong><strong> e domicilio in </strong><strong>, Città del Messico, Messico (di seguito, </strong>«TuIAlista»**).</p>
+<p>1.2. La presente Informativa sulla Privacy (o Avviso di Privacy, ai fini della legislazione messicana) descrive quali dati personali trattiamo, con quali finalità, con chi li condividiamo e come può esercitare i suoi diritti. Si integra con l'<a href="/legal/compromiso-local/">Impegno di Elaborazione Locale e Privacy</a> e con i <a href="/legal/terminos/">Termini di Servizio</a>.</p>
+<p>1.3. Questo documento è l'<strong>Avviso di Privacy Integrale</strong>. Nel punto di raccolta (il modulo di registrazione del cliente) viene mostrato inoltre un <a href="/legal/aviso-simplificado/">Avviso di Privacy Semplificato</a>, che riassume questo trattamento e rimanda al presente documento.</p>
+<hr />
+<h2>2. Principio guida: l'elaborazione è locale</h2>
+<p>2.1. Il maggiore elemento distintivo di TuIAlista è che <strong>gli agenti elaborano le informazioni del Cliente localmente, sul suo dispositivo</strong>. Il contenuto dei file, documenti e dati che il Cliente analizza con gli agenti <strong>non viene inviato a TuIAlista, non lo riceviamo e non lo conserviamo</strong> (vedere <a href="/legal/compromiso-local/">Impegno di Elaborazione Locale</a>).</p>
+<p>2.2. La nostra raccolta di dati si limita al <strong>minimo necessario</strong> per gestire l'account, addebitare l'abbonamento e convalidare la licenza.</p>
+<hr />
+<h2>3. Dati che trattiamo</h2>
+<p>Trattiamo le seguenti categorie di dati personali:</p>
+<p><strong>a) Dati di account e contatto.</strong></p>
+<ul><li>Nome o ragione sociale, e-mail e, se del caso, dati di contatto che il Cliente fornisce al momento della registrazione o della richiesta di supporto.</li></ul>
+<p><strong>b) Dati di licenza e uso tecnico (telemetria minima di convalida).</strong></p>
+<ul><li>Chiave di licenza (formato <code>TIA-XXXX-XXXX-XXXX-XXXX</code>) e stato dell'abbonamento (prova, attivo, sospeso, cancellato, scaduto).</li><li><strong>Identificatore tecnico del dispositivo</strong> (un'impronta derivata dall'hardware) per vincolare la licenza al dispositivo e prevenire l'uso non autorizzato.</li><li>Registri di convalida della licenza (<code>license_checks</code>): data e ora della verifica, esito (ad esempio, valido, sospeso, dispositivo non corrispondente) e l'impronta del dispositivo associata. <strong>Tali registri non includono il contenuto di ciò che il Cliente elabora.</strong></li><li>Identificatore dell'agente sottoscritto e dati tecnici di base per operare l'abbonamento.</li></ul>
+<p><strong>c) Dati di fatturazione (tramite Creem).</strong></p>
+<ul><li>L'acquisto, l'addebito e la fatturazione sono elaborati tramite <strong>Creem</strong>, che agisce come <strong>Venditore Registrato (Merchant of Record)</strong>. I <strong>dati di pagamento (ad esempio, la carta) sono trattati da Creem e dai suoi processori</strong>, non da TuIAlista. TuIAlista riceve da Creem informazioni limitate sulla transazione (ad esempio, stato del pagamento, identificatore dell'abbonamento, paese e importo) per attivare o mantenere la licenza e calcolare le commissioni di affiliazione ove applicabile.</li></ul>
+<p><strong>d) Dati di supporto e comunicazioni.</strong></p>
+<ul><li>Il contenuto delle comunicazioni che il Cliente ci indirizza (e-mail, ticket) per gestire le sue richieste.</li></ul>
+<p><strong>e) Dati del sito web.</strong></p>
+<ul><li>Dati tecnici di navigazione su <a href="https://www.tuialista.com">www.tuialista.com</a> (ad esempio, indirizzo IP e cookie strettamente necessari o di misurazione).</li></ul>
+<hr />
+<h2>4. Dati che NON trattiamo</h2>
+<p><strong>Non</strong> riceviamo, conserviamo né abbiamo <strong>mai</strong> accesso a:</p>
+<ul><li>Il <strong>contenuto</strong> dei file, documenti, contratti, fatture, buste paga, e-mail o database che il Cliente elabora con gli agenti.</li><li>I <strong>dati che il Cliente elabora</strong> con gli agenti né i <strong>risultati</strong> di tale elaborazione.</li><li>Qualsiasi informazione personale o riservata contenuta nel materiale che il Cliente analizza localmente.</li></ul>
+<p>In altre parole: riceviamo il minimo per sapere che il Cliente ha diritto a usare il software, e <strong>nulla di ciò che il software legge o produce</strong>.</p>
+<hr />
+<h2>5. Finalità del trattamento</h2>
+<p><strong>Finalità primarie (necessarie per il Servizio):</strong> 1. Creare e amministrare l'account del Cliente. 2. Emettere, convalidare, sospendere o revocare la licenza e <strong>prevenire l'uso non autorizzato e la pirateria</strong> (vincolo al dispositivo, verifica della firma). 3. Elaborare l'abbonamento, l'addebito e la fatturazione tramite Creem. 4. Fornire supporto tecnico e comunicazioni operative del Servizio. 5. Adempiere agli obblighi legali, fiscali e contabili applicabili.</p>
+<p><strong>Finalità secondarie (facoltative):</strong> 6. Invio di comunicazioni commerciali, novità del catalogo o sondaggi. Il Cliente può <strong>opporsi</strong> a tali finalità senza pregiudicare il Servizio (vedere Sezione 9).</p>
+<hr />
+<h2>6. Fondamento del trattamento</h2>
+<p>Trattiamo i dati sulla base di: (i) l'<strong>esecuzione del contratto</strong> di abbonamento e la prestazione del Servizio; (ii) l'<strong>adempimento di obblighi legali</strong> (fiscali, contabili); (iii) il <strong>legittimo interesse</strong> di TuIAlista a prevenire la frode e la pirateria e ad assicurare l'operatività del Servizio; e (iv) il <strong>consenso</strong>, per le finalità secondarie.</p>
+<hr />
+<h2>7. Trasferimenti e responsabili del trattamento</h2>
+<p>7.1. TuIAlista si avvale di fornitori che agiscono come <strong>responsabili del trattamento</strong> o, se del caso, titolari, per operare il Servizio:</p>
+<ul><li><strong>Creem</strong> — Venditore Registrato (Merchant of Record): elaborazione dei pagamenti, delle imposte e della fatturazione.</li><li><strong>Fornitori di modelli di IA di terzi</strong> — <strong>Groq</strong> (con commutazione su <strong>Gemini</strong>): ricevono <strong>frammenti di testo</strong> inviati dall'agente <strong>unicamente per redigere risposte</strong>. TuIAlista non trasferisce loro il repository di documenti del Cliente; l'invio si limita a quanto necessario per la funzione invocata.</li><li><strong>Fornitori di infrastruttura</strong> — hosting della piattaforma centrale e del database di account/licenze (ad esempio, servizi tipo Render e Supabase).</li></ul>
+<p>7.2. Alcuni trasferimenti possono comportare il <strong>trattamento di dati al di fuori del Messico</strong>. In tali casi si procurerà di disporre delle <strong>garanzie</strong> richieste dalla legge applicabile. TuIAlista non vende i dati personali del Cliente.</p>
+<p>7.3. Il <strong>contenuto elaborato dagli agenti non viene trasferito</strong> ad alcuno di tali terzi da parte di TuIAlista, salvo il frammento di testo che l'agente stesso invia al modello di IA per redigere una risposta, quando il Cliente utilizza tale funzione.</p>
+<hr />
+<h2>8. Conservazione e sicurezza</h2>
+<p>8.1. <strong>Conservazione.</strong> Conserviamo i dati finché esiste il rapporto con il Cliente e, successivamente, per i termini richiesti da obblighi legali, fiscali e di difesa giuridica. Trascorsi tali termini, sono eliminati o anonimizzati.</p>
+<p>8.2. <strong>Sicurezza.</strong> Applichiamo misure tecniche e organizzative ragionevoli per proteggere i dati, inclusa la <strong>firma crittografica (Ed25519)</strong> dei verdetti di licenza e controlli di accesso alla piattaforma centrale. Nessun sistema è infallibile; non possiamo garantire una sicurezza assoluta.</p>
+<hr />
+<h2>9. Diritti ARCO (LFPDPPP, Messico)</h2>
+<p>9.1. Conformemente alla <strong>Legge Federale sulla Protezione dei Dati Personali in Possesso dei Privati (LFPDPPP)</strong>, il Cliente può esercitare i suoi diritti di <strong>Accesso, Rettifica, Cancellazione e Opposizione (ARCO)</strong>, nonché <strong>revocare il proprio consenso</strong> e limitare l'uso o la divulgazione dei suoi dati.</p>
+<p>9.2. <strong>Come esercitarli.</strong> Inviando una richiesta a <strong>privacidad@tuialista.com</strong>, indicando: nome dell'interessato, mezzo per ricevere risposta, documento che comprovi la sua identità (o rappresentanza) e la descrizione chiara del diritto che desidera esercitare.</p>
+<p>9.3. Il Cliente può rivolgersi all'<strong>Istituto Nazionale per la Trasparenza, l'Accesso all'Informazione e la Protezione dei Dati Personali (INAI)</strong> o all'autorità che lo sostituisce, qualora ritenga che il suo diritto non sia stato debitamente soddisfatto.</p>
+<hr />
+<h2>10. Clienti dell'Unione Europea (GDPR)</h2>
+<p>10.1. Per i clienti situati nell'<strong>Unione Europea</strong>, e nella misura in cui il <strong>Regolamento Generale sulla Protezione dei Dati (GDPR)</strong> sia applicabile, il Cliente ha diritto a: accesso, rettifica, cancellazione («diritto all'oblio»), limitazione del trattamento, portabilità dei dati e opposizione, nonché a non essere oggetto di decisioni esclusivamente automatizzate con effetti giuridici, e a presentare un <strong>reclamo all'autorità di controllo</strong> competente.</p>
+<p>10.2. La progettazione di <strong>elaborazione locale</strong> di TuIAlista riduce la superficie di trattamento, poiché il contenuto del Cliente non viene trasferito a TuIAlista.</p>
+<hr />
+<h2>11. Minori</h2>
+<p>Il Servizio è rivolto a imprese e professionisti; <strong>non è rivolto ai minori</strong> e non raccogliamo consapevolmente i loro dati.</p>
+<hr />
+<h2>12. Modifiche alla presente Informativa</h2>
+<p>Possiamo aggiornare la presente Informativa. Pubblicheremo la versione in vigore su <a href="https://www.tuialista.com">www.tuialista.com</a> con la relativa data di aggiornamento e, quando le modifiche sono sostanziali, ci adopereremo per avvisare tramite mezzi elettronici.</p>
+<hr />
+<h2>13. Contatto</h2>
+<ul><li>Privacy e diritti ARCO: <strong>privacidad@tuialista.com</strong></li><li>Responsabile/Ufficio dei dati personali: ****</li><li>Sito: <a href="https://www.tuialista.com">www.tuialista.com</a></li></ul>
+<hr />
+<hr />
+<p><em>Fine del documento.</em></p></article>
+</main>
+<footer>&copy; <span id="y"></span> TuIAlista &middot; <a href="/soporte">Soporte</a> &middot; <a href="/">Inicio</a></footer>
+<script>
+document.getElementById("y").textContent=new Date().getFullYear();
+(function(){
+  var LANGS=["es", "en", "pt", "fr", "de", "it"];
+  var BACK={"es": "← Volver al portal", "en": "← Back to portal", "pt": "← Voltar ao portal", "fr": "← Retour à l'espace", "de": "← Zurück zum Portal", "it": "← Torna al portale"};
+  function detect(){try{var l=(localStorage.getItem("tuialista_lang")||"es").slice(0,2).toLowerCase();return LANGS.indexOf(l)>=0?l:"es";}catch(e){return "es";}}
+  var sel=document.getElementById("lang-sel"), back=document.getElementById("back-link");
+  function show(l){
+    LANGS.forEach(function(x){var a=document.getElementById("doc-"+x);if(a)a.hidden=(x!==l);});
+    document.documentElement.lang=l; if(sel)sel.value=l; if(back&&BACK[l])back.textContent=BACK[l];
+  }
+  if(sel)sel.addEventListener("change",function(){try{localStorage.setItem("tuialista_lang",sel.value);}catch(e){}show(sel.value);});
+  show(detect());
+})();
+</script>
 </body>
 </html>
