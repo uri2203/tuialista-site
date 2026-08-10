@@ -1899,6 +1899,24 @@ document.addEventListener("DOMContentLoaded", () => {
     $("go-resend").addEventListener("click",function(e){e.preventDefault();doResend();});
     // Los botones "Manual" (tienda/facturación) llevan a la guía de activación.
     document.querySelectorAll('a[data-i18n="portal.card.manual"]').forEach(function(a){a.setAttribute("href","/activar/");});
+    // Accesibilidad del overlay de acceso: diálogo modal, errores anunciados, labels
+    // asociadas y enlaces-acción usables con teclado.
+    (function enhanceA11y(){
+      var ov=$("portal-auth"); if(!ov)return;
+      ov.setAttribute("role","dialog"); ov.setAttribute("aria-modal","true");
+      ov.setAttribute("aria-label", EN?"Sign in to your account":"Acceso a tu cuenta");
+      ov.querySelectorAll(".auth-err").forEach(function(e){e.setAttribute("role","alert");});
+      ov.querySelectorAll("form label").forEach(function(l){
+        var n=l.nextElementSibling;
+        if(n && (n.tagName==="INPUT"||n.tagName==="SELECT") && n.id && !l.getAttribute("for")) l.setAttribute("for",n.id);
+      });
+      ov.querySelectorAll(".auth-switch a").forEach(function(a){
+        if(!a.getAttribute("href")){
+          a.setAttribute("role","button"); a.setAttribute("tabindex","0"); a.style.cursor="pointer";
+          a.addEventListener("keydown",function(ev){ if(ev.key==="Enter"||ev.key===" "){ ev.preventDefault(); a.click(); } });
+        }
+      });
+    })();
     showView("login");
     if(tok()){ api("/api/auth/me").then(function(){hideAuth();loadData();}).catch(function(){showAuth();}); }
     else { showAuth(); }
