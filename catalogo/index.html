@@ -99,30 +99,32 @@
 <script>
 (function(){
   var API=(window.CHECKOUT_API_BASE||"https://tuialista-xrtd.onrender.com").replace(/\/$/,"");
-  var EN=(function(){try{return (localStorage.getItem("tuialista_lang")||"es").indexOf("en")===0;}catch(e){return false;}})();
+  var LANG=(function(){try{var l=(localStorage.getItem("tuialista_lang")||"es").slice(0,2).toLowerCase();return ["es","en","pt","fr","de","it"].indexOf(l)>=0?l:"es";}catch(e){return "es";}})();
+  var EN=LANG==="en";
+  function L(o){return o[LANG]||o.es;}
   document.getElementById("y").textContent=new Date().getFullYear();
   var ICON={documents:"file-text",excel:"table",database:"database",fiscal:"report-money",
     contratos:"file-certificate","docs-tecnica":"file-code",tramites:"building-bank",
     "contratos-personales":"signature",garantias:"shield-check",facturas:"file-invoice",
     conocimiento:"books",nominas:"id-badge-2",inventario:"box-seam",actas:"clipboard-text",
     correo:"inbox",as400:"server-2"};
-  if(EN){
-    document.documentElement.lang="en";
-    document.getElementById("eyebrow").textContent="THE CATALOG";
-    document.getElementById("title").textContent="Choose your agents";
-    document.getElementById("sub").textContent="Monthly license, each agent runs locally on your machine. 7-day trial, cancel anytime.";
-    document.getElementById("t1").innerHTML='<i class="ti ti-lock"></i> 100% local data';
-    document.getElementById("t2").innerHTML='<i class="ti ti-calendar"></i> 7-day trial';
-    document.getElementById("t3").innerHTML='<i class="ti ti-ban"></i> Cancel anytime';
-    document.getElementById("l-support").textContent="Support";
-    document.getElementById("l-portal").textContent="Sign in";
+  if(LANG!=="es"){
+    document.documentElement.lang=LANG;
+    document.getElementById("eyebrow").textContent=L({es:"EL CATÁLOGO",en:"THE CATALOG",pt:"O CATÁLOGO",fr:"LE CATALOGUE",de:"DER KATALOG",it:"IL CATALOGO"});
+    document.getElementById("title").textContent=L({es:"Elige tus agentes",en:"Choose your agents",pt:"Escolha seus agentes",fr:"Choisissez vos agents",de:"Wähle deine Agenten",it:"Scegli i tuoi agenti"});
+    document.getElementById("sub").textContent=L({es:"Licencia mensual, cada agente corre localmente en tu equipo. 7 días de prueba y cancelas cuando quieras.",en:"Monthly license, each agent runs locally on your machine. 7-day trial, cancel anytime.",pt:"Licença mensal, cada agente roda localmente na sua máquina. 7 dias de teste, cancele quando quiser.",fr:"Licence mensuelle, chaque agent s'exécute localement sur votre machine. Essai de 7 jours, annulez quand vous voulez.",de:"Monatliche Lizenz, jeder Agent läuft lokal auf deinem Gerät. 7 Tage Testphase, jederzeit kündbar.",it:"Licenza mensile, ogni agente gira localmente sul tuo dispositivo. 7 giorni di prova, annulla quando vuoi."});
+    document.getElementById("t1").innerHTML='<i class="ti ti-lock"></i> '+L({es:"Datos 100% locales",en:"100% local data",pt:"Dados 100% locais",fr:"Données 100% locales",de:"100% lokale Daten",it:"Dati 100% locali"});
+    document.getElementById("t2").innerHTML='<i class="ti ti-calendar"></i> '+L({es:"7 días de prueba",en:"7-day trial",pt:"7 dias de teste",fr:"Essai de 7 jours",de:"7 Tage Testphase",it:"7 giorni di prova"});
+    document.getElementById("t3").innerHTML='<i class="ti ti-ban"></i> '+L({es:"Cancela cuando quieras",en:"Cancel anytime",pt:"Cancele quando quiser",fr:"Annulez quand vous voulez",de:"Jederzeit kündbar",it:"Annulla quando vuoi"});
+    document.getElementById("l-support").textContent=L({es:"Soporte",en:"Support",pt:"Suporte",fr:"Support",de:"Support",it:"Supporto"});
+    document.getElementById("l-portal").textContent=L({es:"Entrar",en:"Sign in",pt:"Entrar",fr:"Se connecter",de:"Anmelden",it:"Accedi"});
   }
-  var BUY=EN?"Subscribe":"Suscribirme", MO=EN?" / mo":" / mes";
+  var BUY=L({es:"Suscribirme",en:"Subscribe",pt:"Assinar",fr:"S'abonner",de:"Abonnieren",it:"Abbonati"}), MO=L({es:" / mes",en:" / mo",pt:" / mês",fr:" / mois",de:" / Mon.",it:" / mese"});
   function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
   var byId={};
   function render(list){
     var grid=document.getElementById("grid");
-    if(!list||!list.length){grid.innerHTML='<div class="state">'+(EN?"Catalog unavailable right now.":"El catálogo no está disponible ahora.")+'</div>';return;}
+    if(!list||!list.length){grid.innerHTML='<div class="state">'+L({es:"El catálogo no está disponible ahora.",en:"Catalog unavailable right now.",pt:"O catálogo não está disponível agora.",fr:"Le catalogue n'est pas disponible pour le moment.",de:"Der Katalog ist gerade nicht verfügbar.",it:"Il catalogo non è disponibile al momento."})+'</div>';return;}
     grid.innerHTML=list.map(function(a){
       byId[a.id]={name:a.name,price:a.price_usd};
       var icon=ICON[a.id]||"robot";
@@ -148,7 +150,7 @@
   }
   fetch(API+"/api/catalog").then(function(r){return r.json();})
     .then(function(d){render(d.agents||[]);})
-    .catch(function(){document.getElementById("grid").innerHTML='<div class="state">'+(EN?"Couldn't load the catalog. Please try again.":"No se pudo cargar el catálogo. Inténtalo de nuevo.")+'</div>';});
+    .catch(function(){document.getElementById("grid").innerHTML='<div class="state">'+L({es:"No se pudo cargar el catálogo. Inténtalo de nuevo.",en:"Couldn't load the catalog. Please try again.",pt:"Não foi possível carregar o catálogo. Tente novamente.",fr:"Impossible de charger le catalogue. Réessayez.",de:"Katalog konnte nicht geladen werden. Versuche es erneut.",it:"Impossibile caricare il catalogo. Riprova."})+'</div>';});
 })();
 </script>
 </body>

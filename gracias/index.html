@@ -102,25 +102,27 @@
 <script>
 (function(){
   var API=(window.CHECKOUT_API_BASE||"https://tuialista-xrtd.onrender.com").replace(/\/$/,"");
-  var EN=(function(){try{return (localStorage.getItem("tuialista_lang")||"es").indexOf("en")===0;}catch(e){return false;}})();
+  var LANG=(function(){try{var l=(localStorage.getItem("tuialista_lang")||"es").slice(0,2).toLowerCase();return ["es","en","pt","fr","de","it"].indexOf(l)>=0?l:"es";}catch(e){return "es";}})();
+  var EN=LANG==="en";
+  function L(o){return o[LANG]||o.es;}
   document.getElementById("y").textContent=new Date().getFullYear();
   var dt=null;
   try{dt=new URLSearchParams(location.search).get("dt");}catch(e){}
   var $=function(id){return document.getElementById(id);};
-  if(EN){
-    document.documentElement.lang="en";
-    $("title").textContent="Thank you for your purchase!";
-    $("lead").textContent="Your subscription is active. We've emailed your license key and the steps to get started.";
-    document.querySelector("#next-title span").textContent="Next steps";
-    $("step1").textContent="Check your email: your license key and download link are there.";
-    $("step2").textContent="Create your account in the portal with the same email to manage your agents and licenses.";
-    $("step3").textContent="Download the agent and enter your license key to activate it.";
-    $("btn-portal").innerHTML='<i class="ti ti-layout-dashboard"></i> Go to my portal';
-    $("btn-more").innerHTML='<i class="ti ti-plus"></i> Add more agents';
-    document.querySelector("#look-title span").textContent="Your license";
-    $("look-sub").textContent="Here's your key (it's also emailed to you).";
-    $("look-loading").textContent="Loading your license…";
-    $("key-activate").innerHTML="Activate it with the <b>TUIALISTA_LICENSE_KEY</b> variable or from your portal.";
+  if(LANG!=="es"){
+    document.documentElement.lang=LANG;
+    $("title").textContent=L({es:"¡Gracias por tu compra!",en:"Thank you for your purchase!",pt:"Obrigado pela sua compra!",fr:"Merci pour votre achat !",de:"Danke für deinen Kauf!",it:"Grazie per il tuo acquisto!"});
+    $("lead").textContent=L({es:"Tu suscripción quedó activa. Te enviamos por correo tu licencia y los pasos para empezar.",en:"Your subscription is active. We've emailed your license key and the steps to get started.",pt:"Sua assinatura está ativa. Enviamos por e-mail sua licença e os passos para começar.",fr:"Votre abonnement est actif. Nous vous avons envoyé par e-mail votre licence et les étapes pour démarrer.",de:"Dein Abo ist aktiv. Wir haben dir deinen Lizenzschlüssel und die ersten Schritte per E-Mail geschickt.",it:"Il tuo abbonamento è attivo. Ti abbiamo inviato via e-mail la licenza e i passaggi per iniziare."});
+    document.querySelector("#next-title span").textContent=L({es:"Próximos pasos",en:"Next steps",pt:"Próximos passos",fr:"Prochaines étapes",de:"Nächste Schritte",it:"Prossimi passi"});
+    $("step1").textContent=L({es:"Revisa tu correo: ahí está tu clave de licencia y el enlace de descarga.",en:"Check your email: your license key and download link are there.",pt:"Verifique seu e-mail: sua chave de licença e o link de download estão lá.",fr:"Vérifiez votre e-mail : votre clé de licence et le lien de téléchargement s'y trouvent.",de:"Prüfe deine E-Mail: dort findest du deinen Lizenzschlüssel und den Download-Link.",it:"Controlla la tua e-mail: lì trovi la chiave di licenza e il link per il download."});
+    $("step2").textContent=L({es:"Crea tu cuenta en el portal con el mismo correo para gestionar tus agentes y licencias.",en:"Create your account in the portal with the same email to manage your agents and licenses.",pt:"Crie sua conta no portal com o mesmo e-mail para gerenciar seus agentes e licenças.",fr:"Créez votre compte dans l'espace avec le même e-mail pour gérer vos agents et licences.",de:"Erstelle dein Konto im Portal mit derselben E-Mail, um deine Agenten und Lizenzen zu verwalten.",it:"Crea il tuo account nel portale con la stessa e-mail per gestire i tuoi agenti e le licenze."});
+    $("step3").textContent=L({es:"Descarga el agente e ingresa tu clave de licencia para activarlo.",en:"Download the agent and enter your license key to activate it.",pt:"Baixe o agente e insira sua chave de licença para ativá-lo.",fr:"Téléchargez l'agent et saisissez votre clé de licence pour l'activer.",de:"Lade den Agenten herunter und gib deinen Lizenzschlüssel ein, um ihn zu aktivieren.",it:"Scarica l'agente e inserisci la tua chiave di licenza per attivarlo."});
+    $("btn-portal").innerHTML='<i class="ti ti-layout-dashboard"></i> '+L({es:"Ir a mi portal",en:"Go to my portal",pt:"Ir para meu portal",fr:"Aller à mon espace",de:"Zu meinem Portal",it:"Vai al mio portale"});
+    $("btn-more").innerHTML='<i class="ti ti-plus"></i> '+L({es:"Agregar más agentes",en:"Add more agents",pt:"Adicionar mais agentes",fr:"Ajouter d'autres agents",de:"Weitere Agenten hinzufügen",it:"Aggiungi altri agenti"});
+    document.querySelector("#look-title span").textContent=L({es:"Tu licencia",en:"Your license",pt:"Sua licença",fr:"Votre licence",de:"Deine Lizenz",it:"La tua licenza"});
+    $("look-sub").textContent=L({es:"Aquí tienes tu clave (también te la enviamos por correo).",en:"Here's your key (it's also emailed to you).",pt:"Aqui está sua chave (também enviada por e-mail).",fr:"Voici votre clé (également envoyée par e-mail).",de:"Hier ist dein Schlüssel (auch per E-Mail gesendet).",it:"Ecco la tua chiave (te l'abbiamo inviata anche via e-mail)."});
+    $("look-loading").textContent=L({es:"Cargando tu licencia…",en:"Loading your license…",pt:"Carregando sua licença…",fr:"Chargement de votre licence…",de:"Lade deine Lizenz…",it:"Caricamento della licenza…"});
+    $("key-activate").innerHTML=L({es:"Actívala con la variable <b>TUIALISTA_LICENSE_KEY</b> o desde tu portal.",en:"Activate it with the <b>TUIALISTA_LICENSE_KEY</b> variable or from your portal.",pt:"Ative-a com a variável <b>TUIALISTA_LICENSE_KEY</b> ou pelo seu portal.",fr:"Activez-la avec la variable <b>TUIALISTA_LICENSE_KEY</b> ou depuis votre espace.",de:"Aktiviere sie mit der Variable <b>TUIALISTA_LICENSE_KEY</b> oder über dein Portal.",it:"Attivala con la variabile <b>TUIALISTA_LICENSE_KEY</b> o dal tuo portale."});
   }
   function setErr(m){var e=$("look-err");if(!m){e.style.display="none";return;}e.textContent=m;e.style.display="block";}
   function fail(m){$("look-loading").style.display="none";setErr(m);}
@@ -134,17 +136,17 @@
         if(res.s===200&&res.j.found){
           $("look-loading").style.display="none";
           $("key-val").textContent=res.j.license_key;
-          $("key-status").textContent=(EN?"Status: ":"Estado: ")+res.j.status;
+          $("key-status").textContent=L({es:"Estado: ",en:"Status: ",pt:"Status: ",fr:"Statut : ",de:"Status: ",it:"Stato: "})+res.j.status;
           $("keybox").style.display="block";
         } else if(res.s===404 && attempt<3){
           setTimeout(function(){tryLookup(attempt+1);},2500);   // el webhook puede tardar un momento
         } else if(res.s===400){
-          fail(EN?"This link has expired. Check your email or sign in to your portal.":"Este enlace caducó. Revisa tu correo o entra a tu portal.");
+          fail(L({es:"Este enlace caducó. Revisa tu correo o entra a tu portal.",en:"This link has expired. Check your email or sign in to your portal.",pt:"Este link expirou. Verifique seu e-mail ou entre no seu portal.",fr:"Ce lien a expiré. Vérifiez votre e-mail ou connectez-vous à votre espace.",de:"Dieser Link ist abgelaufen. Prüfe deine E-Mail oder melde dich in deinem Portal an.",it:"Questo link è scaduto. Controlla la tua e-mail o accedi al tuo portale."}));
         } else {
-          fail(EN?"We couldn't show your license here yet. Check your email or your portal.":"Aún no pudimos mostrar tu licencia aquí. Revísala en tu correo o en tu portal.");
+          fail(L({es:"Aún no pudimos mostrar tu licencia aquí. Revísala en tu correo o en tu portal.",en:"We couldn't show your license here yet. Check your email or your portal.",pt:"Ainda não conseguimos mostrar sua licença aqui. Verifique seu e-mail ou seu portal.",fr:"Nous n'avons pas encore pu afficher votre licence ici. Vérifiez votre e-mail ou votre espace.",de:"Wir konnten deine Lizenz hier noch nicht anzeigen. Prüfe deine E-Mail oder dein Portal.",it:"Non abbiamo ancora potuto mostrare la tua licenza qui. Controlla la tua e-mail o il tuo portale."}));
         }
       })
-      .catch(function(){ if(attempt<3){setTimeout(function(){tryLookup(attempt+1);},2500);} else {fail(EN?"Connection error.":"Error de conexión.");} });
+      .catch(function(){ if(attempt<3){setTimeout(function(){tryLookup(attempt+1);},2500);} else {fail(L({es:"Error de conexión.",en:"Connection error.",pt:"Erro de conexão.",fr:"Erreur de connexion.",de:"Verbindungsfehler.",it:"Errore di connessione."}));} });
   }
   tryLookup(0);
 })();

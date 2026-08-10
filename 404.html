@@ -50,15 +50,16 @@
 <script>
   document.getElementById("y").textContent=new Date().getFullYear();
   (function(){
-    var EN=false; try{EN=(localStorage.getItem("tuialista_lang")||"es").indexOf("en")===0;}catch(e){}
-    if(!EN)return;
-    document.documentElement.lang="en";
-    document.getElementById("title").textContent="This page doesn't exist";
-    document.getElementById("lead").textContent="The link may be broken or the page moved. Here are the useful places to go.";
-    document.getElementById("b-home").innerHTML='<i class="ti ti-home"></i> Home';
-    document.getElementById("b-cat").innerHTML='<i class="ti ti-apps"></i> Catalog';
+    var LANG="es"; try{var l=(localStorage.getItem("tuialista_lang")||"es").slice(0,2).toLowerCase();LANG=["es","en","pt","fr","de","it"].indexOf(l)>=0?l:"es";}catch(e){}
+    if(LANG==="es")return;
+    function L(o){return o[LANG]||o.es;}
+    document.documentElement.lang=LANG;
+    document.getElementById("title").textContent=L({es:"Esta página no existe",en:"This page doesn't exist",pt:"Esta página não existe",fr:"Cette page n'existe pas",de:"Diese Seite existiert nicht",it:"Questa pagina non esiste"});
+    document.getElementById("lead").textContent=L({es:"El enlace puede estar roto o la página se movió. Desde aquí puedes volver a lo importante.",en:"The link may be broken or the page moved. Here are the useful places to go.",pt:"O link pode estar quebrado ou a página foi movida. Aqui estão os lugares úteis para ir.",fr:"Le lien est peut-être rompu ou la page a été déplacée. Voici les endroits utiles où aller.",de:"Der Link ist möglicherweise defekt oder die Seite wurde verschoben. Hier sind die nützlichen Anlaufstellen.",it:"Il link potrebbe essere rotto o la pagina è stata spostata. Ecco i posti utili dove andare."});
+    document.getElementById("b-home").innerHTML='<i class="ti ti-home"></i> '+L({es:"Inicio",en:"Home",pt:"Início",fr:"Accueil",de:"Startseite",it:"Home"});
+    document.getElementById("b-cat").innerHTML='<i class="ti ti-apps"></i> '+L({es:"Catálogo",en:"Catalog",pt:"Catálogo",fr:"Catalogue",de:"Katalog",it:"Catalogo"});
     document.getElementById("b-portal").innerHTML='<i class="ti ti-layout-dashboard"></i> Portal';
-    document.getElementById("b-help").innerHTML='<i class="ti ti-lifebuoy"></i> Support';
+    document.getElementById("b-help").innerHTML='<i class="ti ti-lifebuoy"></i> '+L({es:"Soporte",en:"Support",pt:"Suporte",fr:"Support",de:"Support",it:"Supporto"});
   })();
 </script>
 </body>

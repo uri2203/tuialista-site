@@ -1567,54 +1567,55 @@ document.addEventListener("DOMContentLoaded", () => {
   var API=(window.PORTAL_API_BASE||"https://tuialista-xrtd.onrender.com").replace(/\/$/,"");
   var TKEY="tuialista_portal_token";
   var lang=(typeof detectLang==="function")?detectLang():"es", EN=lang==="en";
+  function L(es,en,pt,fr,de,it){return {es:es,en:en,pt:pt,fr:fr,de:de,it:it}[lang]||es;}
   var T={
-    title:EN?"Sign in to your account":"Entra a tu cuenta",
-    sub:EN?"Sign in with your email and password.":"Accede con tu correo y contraseña.",
-    email:EN?"Email":"Correo", pw:EN?"Password":"Contraseña",
-    enter:EN?"Sign in":"Entrar", wait:EN?"Signing in…":"Entrando…",
-    bad:EN?"Wrong email or password.":"Correo o contraseña incorrectos.",
-    neterr:EN?"Connection error. Try again.":"Error de conexión. Inténtalo de nuevo.",
-    logout:EN?"Sign out":"Salir", soon:EN?"Download coming soon":"Descarga disponible pronto",
-    lic:EN?"License":"Licencia", copy:EN?"Copy":"Copiar",
-    renews:EN?"Renews":"Renueva", trial:EN?"Trial ends":"Prueba termina", dl:EN?"Download agent":"Descargar agente",
-    noAcct:EN?"No account?":"¿No tienes cuenta?", createAcct:EN?"Create account":"Crear cuenta",
-    hasAcct:EN?"Already have an account?":"¿Ya tienes cuenta?",
-    regTitle:EN?"Create your account":"Crea tu cuenta",
-    regSub:EN?"Sign up to access your agents.":"Regístrate para acceder a tus agentes.",
-    bd:EN?"Date of birth":"Fecha de nacimiento",
-    legal:EN?'I accept the <a href="/legal/terminos" target="_blank">Terms</a>, the <a href="/legal/privacidad" target="_blank">Privacy Notice</a> and the <a href="/legal/deslinde-ia" target="_blank">AI Disclaimer</a>.':'Acepto los <a href="/legal/terminos" target="_blank">Términos</a>, el <a href="/legal/privacidad" target="_blank">Aviso de Privacidad</a> y el <a href="/legal/deslinde-ia" target="_blank">Deslinde de IA</a>.',
-    create:EN?"Create account":"Crear cuenta", creating:EN?"Creating…":"Creando…",
-    verTitle:EN?"Verify your email":"Verifica tu correo",
-    verSub:EN?"We sent a 6-digit code to":"Te enviamos un código de 6 dígitos a",
-    code:EN?"Code":"Código", verify:EN?"Verify":"Verificar", verifying:EN?"Verifying…":"Verificando…",
-    resend:EN?"Resend code":"Reenviar código", back:EN?"Back":"Volver", resent:EN?"Code sent again.":"Código reenviado.",
-    forgot:EN?"Forgot your password?":"¿Olvidaste tu contraseña?",
-    fgtTitle:EN?"Reset password":"Restablecer contraseña",
-    fgtSub:EN?"Enter your email and we'll send you a code.":"Escribe tu correo y te enviaremos un código.",
-    sendCode:EN?"Send code":"Enviar código", sending:EN?"Sending…":"Enviando…",
-    rstTitle:EN?"New password":"Nueva contraseña",
-    rstSub:EN?"Enter the code we sent to":"Escribe el código que enviamos a",
-    savePw:EN?"Change password":"Cambiar contraseña", saving:EN?"Saving…":"Guardando…",
-    pwChanged:EN?"Password changed. Sign in.":"Contraseña cambiada. Inicia sesión."
+    title:L("Entra a tu cuenta","Sign in to your account","Entre na sua conta","Connectez-vous à votre compte","Melde dich in deinem Konto an","Accedi al tuo account"),
+    sub:L("Accede con tu correo y contraseña.","Sign in with your email and password.","Acesse com seu e-mail e senha.","Connectez-vous avec votre e-mail et votre mot de passe.","Melde dich mit E-Mail und Passwort an.","Accedi con la tua e-mail e password."),
+    email:L("Correo","Email","E-mail","E-mail","E-Mail","E-mail"), pw:L("Contraseña","Password","Senha","Mot de passe","Passwort","Password"),
+    enter:L("Entrar","Sign in","Entrar","Se connecter","Anmelden","Accedi"), wait:L("Entrando…","Signing in…","Entrando…","Connexion…","Anmeldung…","Accesso…"),
+    bad:L("Correo o contraseña incorrectos.","Wrong email or password.","E-mail ou senha incorretos.","E-mail ou mot de passe incorrect.","E-Mail oder Passwort falsch.","E-mail o password errati."),
+    neterr:L("Error de conexión. Inténtalo de nuevo.","Connection error. Try again.","Erro de conexão. Tente novamente.","Erreur de connexion. Réessayez.","Verbindungsfehler. Versuche es erneut.","Errore di connessione. Riprova."),
+    logout:L("Salir","Sign out","Sair","Se déconnecter","Abmelden","Esci"), soon:L("Descarga disponible pronto","Download coming soon","Download em breve","Téléchargement bientôt disponible","Download bald verfügbar","Download disponibile a breve"),
+    lic:L("Licencia","License","Licença","Licence","Lizenz","Licenza"), copy:L("Copiar","Copy","Copiar","Copier","Kopieren","Copia"),
+    renews:L("Renueva","Renews","Renova","Renouvellement","Verlängerung","Rinnovo"), trial:L("Prueba termina","Trial ends","Teste termina","Fin de l'essai","Testphase endet","Prova termina"), dl:L("Descargar agente","Download agent","Baixar agente","Télécharger l'agent","Agent herunterladen","Scarica l'agente"),
+    noAcct:L("¿No tienes cuenta?","No account?","Não tem conta?","Pas de compte ?","Kein Konto?","Non hai un account?"), createAcct:L("Crear cuenta","Create account","Criar conta","Créer un compte","Konto erstellen","Crea un account"),
+    hasAcct:L("¿Ya tienes cuenta?","Already have an account?","Já tem conta?","Vous avez déjà un compte ?","Schon ein Konto?","Hai già un account?"),
+    regTitle:L("Crea tu cuenta","Create your account","Crie sua conta","Créez votre compte","Erstelle dein Konto","Crea il tuo account"),
+    regSub:L("Regístrate para acceder a tus agentes.","Sign up to access your agents.","Cadastre-se para acessar seus agentes.","Inscrivez-vous pour accéder à vos agents.","Registriere dich, um auf deine Agenten zuzugreifen.","Registrati per accedere ai tuoi agenti."),
+    bd:L("Fecha de nacimiento","Date of birth","Data de nascimento","Date de naissance","Geburtsdatum","Data di nascita"),
+    legal:L('Acepto los <a href="/legal/terminos" target="_blank">Términos</a>, el <a href="/legal/privacidad" target="_blank">Aviso de Privacidad</a> y el <a href="/legal/deslinde-ia" target="_blank">Deslinde de IA</a>.','I accept the <a href="/legal/terminos" target="_blank">Terms</a>, the <a href="/legal/privacidad" target="_blank">Privacy Notice</a> and the <a href="/legal/deslinde-ia" target="_blank">AI Disclaimer</a>.','Aceito os <a href="/legal/terminos" target="_blank">Termos</a>, o <a href="/legal/privacidad" target="_blank">Aviso de Privacidade</a> e o <a href="/legal/deslinde-ia" target="_blank">Aviso sobre IA</a>.','J\'accepte les <a href="/legal/terminos" target="_blank">Conditions</a>, l\'<a href="/legal/privacidad" target="_blank">Avis de confidentialité</a> et l\'<a href="/legal/deslinde-ia" target="_blank">Avertissement IA</a>.','Ich akzeptiere die <a href="/legal/terminos" target="_blank">AGB</a>, die <a href="/legal/privacidad" target="_blank">Datenschutzerklärung</a> und den <a href="/legal/deslinde-ia" target="_blank">KI-Haftungsausschluss</a>.','Accetto i <a href="/legal/terminos" target="_blank">Termini</a>, l\'<a href="/legal/privacidad" target="_blank">Informativa sulla privacy</a> e il <a href="/legal/deslinde-ia" target="_blank">Disclaimer IA</a>.'),
+    create:L("Crear cuenta","Create account","Criar conta","Créer un compte","Konto erstellen","Crea un account"), creating:L("Creando…","Creating…","Criando…","Création…","Wird erstellt…","Creazione…"),
+    verTitle:L("Verifica tu correo","Verify your email","Verifique seu e-mail","Vérifiez votre e-mail","Bestätige deine E-Mail","Verifica la tua e-mail"),
+    verSub:L("Te enviamos un código de 6 dígitos a","We sent a 6-digit code to","Enviamos um código de 6 dígitos para","Nous avons envoyé un code à 6 chiffres à","Wir haben einen 6-stelligen Code gesendet an","Abbiamo inviato un codice di 6 cifre a"),
+    code:L("Código","Code","Código","Code","Code","Codice"), verify:L("Verificar","Verify","Verificar","Vérifier","Bestätigen","Verifica"), verifying:L("Verificando…","Verifying…","Verificando…","Vérification…","Wird bestätigt…","Verifica…"),
+    resend:L("Reenviar código","Resend code","Reenviar código","Renvoyer le code","Code erneut senden","Invia di nuovo il codice"), back:L("Volver","Back","Voltar","Retour","Zurück","Indietro"), resent:L("Código reenviado.","Code sent again.","Código reenviado.","Code renvoyé.","Code erneut gesendet.","Codice inviato di nuovo."),
+    forgot:L("¿Olvidaste tu contraseña?","Forgot your password?","Esqueceu sua senha?","Mot de passe oublié ?","Passwort vergessen?","Password dimenticata?"),
+    fgtTitle:L("Restablecer contraseña","Reset password","Redefinir senha","Réinitialiser le mot de passe","Passwort zurücksetzen","Reimposta password"),
+    fgtSub:L("Escribe tu correo y te enviaremos un código.","Enter your email and we'll send you a code.","Digite seu e-mail e enviaremos um código.","Saisissez votre e-mail et nous vous enverrons un code.","Gib deine E-Mail ein und wir senden dir einen Code.","Inserisci la tua e-mail e ti invieremo un codice."),
+    sendCode:L("Enviar código","Send code","Enviar código","Envoyer le code","Code senden","Invia codice"), sending:L("Enviando…","Sending…","Enviando…","Envoi…","Wird gesendet…","Invio…"),
+    rstTitle:L("Nueva contraseña","New password","Nova senha","Nouveau mot de passe","Neues Passwort","Nuova password"),
+    rstSub:L("Escribe el código que enviamos a","Enter the code we sent to","Digite o código que enviamos para","Saisissez le code envoyé à","Gib den Code ein, gesendet an","Inserisci il codice inviato a"),
+    savePw:L("Cambiar contraseña","Change password","Alterar senha","Changer le mot de passe","Passwort ändern","Cambia password"), saving:L("Guardando…","Saving…","Salvando…","Enregistrement…","Wird gespeichert…","Salvataggio…"),
+    pwChanged:L("Contraseña cambiada. Inicia sesión.","Password changed. Sign in.","Senha alterada. Faça login.","Mot de passe modifié. Connectez-vous.","Passwort geändert. Melde dich an.","Password cambiata. Accedi.")
   };
   function errmsg(c){
     var M={
-      menor_de_edad:EN?"You must be of legal age.":"Debes ser mayor de edad.",
-      email_ya_registrado:EN?"That email is already registered. Sign in.":"Ese correo ya está registrado. Inicia sesión.",
-      password_corto:EN?"Password must be at least 8 characters.":"La contraseña debe tener al menos 8 caracteres.",
-      email_invalido:EN?"Invalid email.":"Correo no válido.",
-      fecha_invalida:EN?"Invalid date of birth.":"Fecha de nacimiento no válida.",
-      legal_not_accepted:EN?"You must accept the terms.":"Debes aceptar los términos.",
-      rate_limited:EN?"Too many attempts. Try later.":"Demasiados intentos. Intenta más tarde.",
-      codigo_incorrecto:EN?"Incorrect code.":"Código incorrecto.",
-      codigo_expirado:EN?"The code expired. Request a new one.":"El código expiró. Reenvía uno nuevo.",
-      demasiados_intentos:EN?"Too many attempts. Request a new code.":"Demasiados intentos. Reenvía un código nuevo.",
-      sin_codigo:EN?"Request a new code.":"Solicita un código nuevo.",
-      cuenta_no_encontrada:EN?"Account not found.":"Cuenta no encontrada.",
-      espera:EN?"Wait a moment before resending.":"Espera un momento antes de reenviar.",
-      ya_verificado:EN?"Already verified. Sign in.":"Ya verificado. Inicia sesión."
+      menor_de_edad:L("Debes ser mayor de edad.","You must be of legal age.","Você deve ser maior de idade.","Vous devez être majeur.","Du musst volljährig sein.","Devi essere maggiorenne."),
+      email_ya_registrado:L("Ese correo ya está registrado. Inicia sesión.","That email is already registered. Sign in.","Esse e-mail já está registrado. Faça login.","Cet e-mail est déjà enregistré. Connectez-vous.","Diese E-Mail ist bereits registriert. Melde dich an.","Questa e-mail è già registrata. Accedi."),
+      password_corto:L("La contraseña debe tener al menos 8 caracteres.","Password must be at least 8 characters.","A senha deve ter pelo menos 8 caracteres.","Le mot de passe doit contenir au moins 8 caractères.","Das Passwort muss mindestens 8 Zeichen haben.","La password deve contenere almeno 8 caratteri."),
+      email_invalido:L("Correo no válido.","Invalid email.","E-mail inválido.","E-mail non valide.","Ungültige E-Mail.","E-mail non valida."),
+      fecha_invalida:L("Fecha de nacimiento no válida.","Invalid date of birth.","Data de nascimento inválida.","Date de naissance non valide.","Ungültiges Geburtsdatum.","Data di nascita non valida."),
+      legal_not_accepted:L("Debes aceptar los términos.","You must accept the terms.","Você deve aceitar os termos.","Vous devez accepter les conditions.","Du musst die Bedingungen akzeptieren.","Devi accettare i termini."),
+      rate_limited:L("Demasiados intentos. Intenta más tarde.","Too many attempts. Try later.","Muitas tentativas. Tente mais tarde.","Trop de tentatives. Réessayez plus tard.","Zu viele Versuche. Versuche es später.","Troppi tentativi. Riprova più tardi."),
+      codigo_incorrecto:L("Código incorrecto.","Incorrect code.","Código incorreto.","Code incorrect.","Falscher Code.","Codice errato."),
+      codigo_expirado:L("El código expiró. Reenvía uno nuevo.","The code expired. Request a new one.","O código expirou. Solicite um novo.","Le code a expiré. Demandez-en un nouveau.","Der Code ist abgelaufen. Fordere einen neuen an.","Il codice è scaduto. Richiedine uno nuovo."),
+      demasiados_intentos:L("Demasiados intentos. Reenvía un código nuevo.","Too many attempts. Request a new code.","Muitas tentativas. Solicite um novo código.","Trop de tentatives. Demandez un nouveau code.","Zu viele Versuche. Fordere einen neuen Code an.","Troppi tentativi. Richiedi un nuovo codice."),
+      sin_codigo:L("Solicita un código nuevo.","Request a new code.","Solicite um novo código.","Demandez un nouveau code.","Fordere einen neuen Code an.","Richiedi un nuovo codice."),
+      cuenta_no_encontrada:L("Cuenta no encontrada.","Account not found.","Conta não encontrada.","Compte introuvable.","Konto nicht gefunden.","Account non trovato."),
+      espera:L("Espera un momento antes de reenviar.","Wait a moment before resending.","Aguarde um momento antes de reenviar.","Attendez un instant avant de renvoyer.","Warte einen Moment, bevor du erneut sendest.","Attendi un momento prima di inviare di nuovo."),
+      ya_verificado:L("Ya verificado. Inicia sesión.","Already verified. Sign in.","Já verificado. Faça login.","Déjà vérifié. Connectez-vous.","Bereits bestätigt. Melde dich an.","Già verificato. Accedi.")
     };
-    return M[c]||(EN?"Something went wrong.":"Algo salió mal.");
+    return M[c]||L("Algo salió mal.","Something went wrong.","Algo deu errado.","Une erreur s'est produite.","Etwas ist schiefgelaufen.","Qualcosa è andato storto.");
   }
   var $=function(id){return document.getElementById(id);};
   function tok(){return sessionStorage.getItem(TKEY);}
@@ -1649,13 +1650,13 @@ document.addEventListener("DOMContentLoaded", () => {
         (lbl?'<tr><td>'+lbl+'</td><td class="v">'+when+'</td></tr>':'')+
         '</table><div class="lic-acts">'+
         '<a class="btn btn-solid btn-flex btn-sm" href="https://github.com/uri2203/tuialista-site/releases/download/agents/agent-'+esc(l.agent_id)+'.exe" download><i class="ti ti-download"></i> '+T.dl+'</a>'+
-        '<a class="btn btn-ghost btn-flex btn-sm" href="/activar/"><i class="ti ti-book" style="font-size:13px"></i> '+(EN?"Guide":"Guía")+'</a>'+
+        '<a class="btn btn-ghost btn-flex btn-sm" href="/activar/"><i class="ti ti-book" style="font-size:13px"></i> '+L("Guía","Guide","Guia","Guide","Anleitung","Guida")+'</a>'+
         '</div></div>';
     }).join("");
     if(typeof initCopyButtons==="function")initCopyButtons();
   }
   function money(n){return "$"+Number(n||0).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});}
-  function fmtShort(v){if(!v)return"—";var d=new Date(v);return isNaN(d.getTime())?esc(v):d.toLocaleDateString(EN?"en-US":"es-ES",{day:"numeric",month:"short",timeZone:"UTC"});}
+  function fmtShort(v){if(!v)return"—";var d=new Date(v);return isNaN(d.getTime())?esc(v):d.toLocaleDateString(L("es-ES","en-US","pt-BR","fr-FR","de-DE","it-IT"),{day:"numeric",month:"short",timeZone:"UTC"});}
   function renderSummary(s){
     var a=s.agents||{active:0,trial:0,canceled:0,total:0};
     var vals=document.querySelectorAll("#sec-agents .metrics .val");
@@ -1669,9 +1670,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if(!wrap)return;
     if(!list||!list.length){
       wrap.innerHTML='<div style="grid-column:1/-1;color:var(--muted);font-size:14px;padding:8px 0">'+
-        (EN?"You don't have any agents yet. ":"Aún no tienes agentes. ")+
+        L("Aún no tienes agentes. ","You don't have any agents yet. ","Você ainda não tem agentes. ","Vous n'avez pas encore d'agents. ","Du hast noch keine Agenten. ","Non hai ancora agenti. ")+
         '<a class="sec-go-cat" style="color:var(--signal-dim);cursor:pointer">'+
-        (EN?"Browse the catalog →":"Ver el catálogo →")+'</a></div>';
+        L("Ver el catálogo →","Browse the catalog →","Ver o catálogo →","Voir le catalogue →","Katalog ansehen →","Vedi il catalogo →")+'</a></div>';
       var lk=wrap.querySelector(".sec-go-cat");
       if(lk)lk.addEventListener("click",function(e){e.preventDefault();
         if(typeof showSection==="function")showSection("catalog");
@@ -1680,8 +1681,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     wrap.innerHTML=list.map(function(l){
       var trial=l.status==="trial", active=l.status==="active";
-      var pill=active?'<span class="pill ok"><span style="width:6px;height:6px;border-radius:50%;background:#1d9e75;display:inline-block"></span> '+esc(EN?"Active":"Activo")+'</span>'
-             :(trial?'<span class="pill trial"><i class="ti ti-clock" style="font-size:12px"></i> '+esc(EN?"Trial":"Prueba")+'</span>'
+      var pill=active?'<span class="pill ok"><span style="width:6px;height:6px;border-radius:50%;background:#1d9e75;display:inline-block"></span> '+esc(L("Activo","Active","Ativo","Actif","Aktiv","Attivo"))+'</span>'
+             :(trial?'<span class="pill trial"><i class="ti ti-clock" style="font-size:12px"></i> '+esc(L("Prueba","Trial","Teste","Essai","Testphase","Prova"))+'</span>'
              :'<span class="pill">'+esc(l.status)+'</span>');
       var whenLbl=active?T.renews:(trial?T.trial:""), whenVal=fmt(l.current_period_end||l.trial_ends_at);
       var k=esc(l.license_key);
@@ -1693,7 +1694,7 @@ document.addEventListener("DOMContentLoaded", () => {
         (whenLbl?'<tr><td>'+whenLbl+'</td><td class="v">'+whenVal+'</td></tr>':'')+'</table>'+
         '<div class="acts">'+
         '<a class="btn btn-solid btn-flex" href="https://github.com/uri2203/tuialista-site/releases/download/agents/agent-'+esc(l.agent_id)+'.exe" download><i class="ti ti-download"></i> '+T.dl+'</a>'+
-        '<a class="btn btn-ghost btn-flex" href="/activar/"><i class="ti ti-book"></i> '+(EN?"Guide":"Guía")+'</a>'+
+        '<a class="btn btn-ghost btn-flex" href="/activar/"><i class="ti ti-book"></i> '+L("Guía","Guide","Guia","Guide","Anleitung","Guida")+'</a>'+
         '</div></div>';
     }).join("");
     if(typeof initCopyButtons==="function")initCopyButtons();
@@ -1791,30 +1792,30 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(function(res){
         if(res.s===200&&res.j.url){window.location.href=res.j.url;return;}
         if(res.s===401){logout();return;}
-        var m=res.s===409?(EN?"You don't have active subscriptions in Stripe yet.":"Aún no tienes suscripciones activas en Stripe.")
-             :res.s===503?(EN?"Billing management isn't enabled yet. Contact support.":"La gestión de facturación aún no está habilitada. Contacta a soporte.")
-             :(EN?"Couldn't open billing. Try again.":"No se pudo abrir la facturación. Inténtalo de nuevo.");
+        var m=res.s===409?L("Aún no tienes suscripciones activas en Stripe.","You don't have active subscriptions in Stripe yet.","Você ainda não tem assinaturas ativas no Stripe.","Vous n'avez pas encore d'abonnements actifs sur Stripe.","Du hast noch keine aktiven Abos bei Stripe.","Non hai ancora abbonamenti attivi su Stripe.")
+             :res.s===503?L("La gestión de facturación aún no está habilitada. Contacta a soporte.","Billing management isn't enabled yet. Contact support.","A gestão de faturamento ainda não está habilitada. Contate o suporte.","La gestion de facturation n'est pas encore activée. Contactez le support.","Die Rechnungsverwaltung ist noch nicht aktiviert. Kontaktiere den Support.","La gestione della fatturazione non è ancora abilitata. Contatta l'assistenza.")
+             :L("No se pudo abrir la facturación. Inténtalo de nuevo.","Couldn't open billing. Try again.","Não foi possível abrir o faturamento. Tente novamente.","Impossible d'ouvrir la facturation. Réessayez.","Abrechnung konnte nicht geöffnet werden. Versuche es erneut.","Impossibile aprire la fatturazione. Riprova.");
         notify(m); btn.disabled=false; btn.innerHTML=orig;
       })
-      .catch(function(){ notify(EN?"Connection error.":"Error de conexión."); btn.disabled=false; btn.innerHTML=orig; });
+      .catch(function(){ notify(L("Error de conexión.","Connection error.","Erro de conexão.","Erreur de connexion.","Verbindungsfehler.","Errore di connessione.")); btn.disabled=false; btn.innerHTML=orig; });
   }
   function pwdMsg(m,ok){var e=$("pwd-msg");if(!e)return;if(!m){e.style.display="none";return;}e.textContent=m;e.style.color=ok?"var(--ok,#1d9e75)":"#c0392b";e.style.display="block";}
   function doChangePassword(){
     var cur=$("pwd-current").value, nw=$("pwd-new").value, cf=$("pwd-confirm").value;
-    if(!cur||!nw){pwdMsg(EN?"Fill in all fields.":"Completa todos los campos.");return;}
-    if(nw.length<8){pwdMsg(EN?"New password must be at least 8 characters.":"La nueva contraseña debe tener al menos 8 caracteres.");return;}
-    if(nw!==cf){pwdMsg(EN?"Passwords don't match.":"Las contraseñas no coinciden.");return;}
+    if(!cur||!nw){pwdMsg(L("Completa todos los campos.","Fill in all fields.","Preencha todos os campos.","Remplissez tous les champs.","Fülle alle Felder aus.","Compila tutti i campi."));return;}
+    if(nw.length<8){pwdMsgL("La nueva contraseña debe tener al menos 8 caracteres.","New password must be at least 8 characters.","A nova senha deve ter pelo menos 8 caracteres.","Le nouveau mot de passe doit contenir au moins 8 caractères.","Das neue Passwort muss mindestens 8 Zeichen haben.","La nuova password deve contenere almeno 8 caratteri.");return;}
+    if(nw!==cf){pwdMsg(L("Las contraseñas no coinciden.","Passwords don't match.","As senhas não coincidem.","Les mots de passe ne correspondent pas.","Die Passwörter stimmen nicht überein.","Le password non coincidono."));return;}
     var b=$("pwd-save-btn"); b.disabled=true; pwdMsg("");
     fetch(API+"/api/me/change-password",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+tok()},body:JSON.stringify({current_password:cur,new_password:nw})})
       .then(function(r){return r.json().then(function(j){return {s:r.status,j:j};});})
       .then(function(res){
-        if(res.s===200){ pwdMsg(EN?"Password updated.":"Contraseña actualizada.",true); $("pwd-current").value=$("pwd-new").value=$("pwd-confirm").value=""; }
+        if(res.s===200){ pwdMsg(L("Contraseña actualizada.","Password updated.","Senha atualizada.","Mot de passe mis à jour.","Passwort aktualisiert.","Password aggiornata."),true); $("pwd-current").value=$("pwd-new").value=$("pwd-confirm").value=""; }
         else if(res.s===401){ logout(); }
-        else { pwdMsg(res.j.error==="current_password_wrong"?(EN?"Current password is incorrect.":"La contraseña actual es incorrecta.")
-             :res.j.error==="password_corto"?(EN?"New password must be at least 8 characters.":"La nueva contraseña debe tener al menos 8 caracteres.")
-             :(EN?"Couldn't update password.":"No se pudo actualizar la contraseña.")); }
+        else { pwdMsg(res.j.error==="current_password_wrong"?L("La contraseña actual es incorrecta.","Current password is incorrect.","A senha atual está incorreta.","Le mot de passe actuel est incorrect.","Das aktuelle Passwort ist falsch.","La password attuale non è corretta.")
+             :res.j.error==="password_corto"?L("La nueva contraseña debe tener al menos 8 caracteres.","New password must be at least 8 characters.","A nova senha deve ter pelo menos 8 caracteres.","Le nouveau mot de passe doit contenir au moins 8 caractères.","Das neue Passwort muss mindestens 8 Zeichen haben.","La nuova password deve contenere almeno 8 caratteri.")
+             :L("No se pudo actualizar la contraseña.","Couldn't update password.","Não foi possível atualizar a senha.","Impossible de mettre à jour le mot de passe.","Passwort konnte nicht aktualisiert werden.","Impossibile aggiornare la password.")); }
       })
-      .catch(function(){ pwdMsg(EN?"Connection error.":"Error de conexión."); })
+      .catch(function(){ pwdMsg(L("Error de conexión.","Connection error.","Erro de conexão.","Erreur de connexion.","Verbindungsfehler.","Errore di connessione.")); })
       .finally(function(){ b.disabled=false; });
   }
   function doExport(){
@@ -1827,39 +1828,41 @@ document.addEventListener("DOMContentLoaded", () => {
         a.href=url; a.download="tuialista-mis-datos.json"; document.body.appendChild(a); a.click();
         a.remove(); URL.revokeObjectURL(url);
       })
-      .catch(function(){ if(typeof showToast==="function")showToast(EN?"Couldn't export your data.":"No se pudieron exportar tus datos."); })
+      .catch(function(){ if(typeof showToast==="function")showToast(L("No se pudieron exportar tus datos.","Couldn't export your data.","Não foi possível exportar seus dados.","Impossible d'exporter vos données.","Deine Daten konnten nicht exportiert werden.","Impossibile esportare i tuoi dati.")); })
       .finally(function(){ btn.disabled=false; });
   }
   function doDelete(){
-    var msg=EN?"This cancels your subscriptions and deletes your personal data. This cannot be undone. Continue?"
-              :"Esto cancela tus suscripciones y borra tus datos personales. No se puede deshacer. ¿Continuar?";
+    var msg=L("Esto cancela tus suscripciones y borra tus datos personales. No se puede deshacer. ¿Continuar?","This cancels your subscriptions and deletes your personal data. This cannot be undone. Continue?","Isto cancela suas assinaturas e apaga seus dados pessoais. Não pode ser desfeito. Continuar?","Ceci annule vos abonnements et supprime vos données personnelles. Action irréversible. Continuer ?","Dies kündigt deine Abos und löscht deine persönlichen Daten. Nicht rückgängig machbar. Fortfahren?","Questo annulla i tuoi abbonamenti ed elimina i tuoi dati personali. Non è reversibile. Continuare?");
     if(!window.confirm(msg))return;
     var btn=$("btn-delete-account"); if(!btn)return; btn.disabled=true;
     fetch(API+"/api/me/delete",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+tok()},body:JSON.stringify({confirm:true})})
       .then(function(r){return r.json().then(function(j){return {s:r.status,j:j};});})
       .then(function(res){
-        if(res.s===200){ window.alert(EN?"Your account has been deleted.":"Tu cuenta ha sido eliminada."); setTok(null); window.location.href="/"; }
+        if(res.s===200){ window.alert(L("Tu cuenta ha sido eliminada.","Your account has been deleted.","Sua conta foi excluída.","Votre compte a été supprimé.","Dein Konto wurde gelöscht.","Il tuo account è stato eliminato.")); setTok(null); window.location.href="/"; }
         else if(res.s===401){ logout(); }
-        else { if(typeof showToast==="function")showToast(EN?"Couldn't delete your account.":"No se pudo eliminar tu cuenta."); btn.disabled=false; }
+        else { if(typeof showToast==="function")showToast(L("No se pudo eliminar tu cuenta.","Couldn't delete your account.","Não foi possível excluir sua conta.","Impossible de supprimer votre compte.","Konto konnte nicht gelöscht werden.","Impossibile eliminare il tuo account.")); btn.disabled=false; }
       })
-      .catch(function(){ if(typeof showToast==="function")showToast(EN?"Connection error.":"Error de conexión."); btn.disabled=false; });
+      .catch(function(){ if(typeof showToast==="function")showToast(L("Error de conexión.","Connection error.","Erro de conexão.","Erreur de connexion.","Verbindungsfehler.","Errore di connessione.")); btn.disabled=false; });
   }
   document.addEventListener("DOMContentLoaded",function(){
     // Textos de "Gestionar suscripción" (Facturación)
     if($("mng-title")){
-      $("mng-title").textContent=EN?"Manage subscription":"Gestionar suscripción";
-      $("mng-sub").textContent=EN?"Cancel, update your card or download invoices in Stripe's secure portal."
-        :"Cancela, cambia tu tarjeta o descarga tus facturas en el portal seguro de Stripe.";
-      $("mng-btn").textContent=EN?"Manage":"Gestionar";
+      $("mng-title").textContent=L("Gestionar suscripción","Manage subscription","Gerenciar assinatura","Gérer l'abonnement","Abo verwalten","Gestisci abbonamento");
+      $("mng-sub").textContent=L("Cancela, cambia tu tarjeta o descarga tus facturas en el portal seguro de Stripe.","Cancel, update your card or download invoices in Stripe's secure portal.","Cancele, atualize seu cartão ou baixe suas faturas no portal seguro da Stripe.","Annulez, changez de carte ou téléchargez vos factures dans le portail sécurisé de Stripe.","Kündige, aktualisiere deine Karte oder lade Rechnungen im sicheren Stripe-Portal herunter.","Annulla, aggiorna la carta o scarica le fatture nel portale sicuro di Stripe.");
+      $("mng-btn").textContent=L("Gestionar","Manage","Gerenciar","Gérer","Verwalten","Gestisci");
       $("btn-manage-billing").addEventListener("click",openBilling);
     }
     // Datos y baja de cuenta (ARCO/GDPR)
     if($("btn-export-data")){
-      $("lbl-export").textContent=EN?"Download my data":"Descargar mis datos";
-      $("lbl-delete").textContent=EN?"Delete my account":"Eliminar mi cuenta";
-      $("delete-hint").textContent=EN
-        ? "Deleting your account cancels your subscriptions and erases your personal data. Billing records are kept anonymized as required by law."
-        : "Eliminar tu cuenta cancela tus suscripciones y borra tus datos personales. Los registros de facturación se conservan anonimizados por obligación legal.";
+      $("lbl-export").textContent=L("Descargar mis datos","Download my data","Baixar meus dados","Télécharger mes données","Meine Daten herunterladen","Scarica i miei dati");
+      $("lbl-delete").textContent=L("Eliminar mi cuenta","Delete my account","Excluir minha conta","Supprimer mon compte","Mein Konto löschen","Elimina il mio account");
+      $("delete-hint").textContent=L(
+        "Eliminar tu cuenta cancela tus suscripciones y borra tus datos personales. Los registros de facturación se conservan anonimizados por obligación legal.",
+        "Deleting your account cancels your subscriptions and erases your personal data. Billing records are kept anonymized as required by law.",
+        "Excluir sua conta cancela suas assinaturas e apaga seus dados pessoais. Os registros de faturamento são mantidos anonimizados por obrigação legal.",
+        "La suppression de votre compte annule vos abonnements et efface vos données personnelles. Les enregistrements de facturation sont conservés anonymisés conformément à la loi.",
+        "Das Löschen deines Kontos kündigt deine Abos und löscht deine persönlichen Daten. Rechnungsdaten werden aus gesetzlichen Gründen anonymisiert aufbewahrt.",
+        "L'eliminazione del tuo account annulla i tuoi abbonamenti ed elimina i tuoi dati personali. I dati di fatturazione vengono conservati in forma anonima come richiesto dalla legge.");
       $("btn-export-data").addEventListener("click",doExport);
       $("btn-delete-account").addEventListener("click",doDelete);
     }
@@ -1870,7 +1873,7 @@ document.addEventListener("DOMContentLoaded", () => {
     $("sw-no-acct").textContent=T.noAcct; $("go-register").textContent=T.createAcct;
     $("reg-title").textContent=T.regTitle; $("reg-sub").textContent=T.regSub;
     $("reg-l-email").textContent=T.email;
-    $("reg-l-pw").innerHTML=T.pw+' <span style="color:#94a3b8">('+(EN?"min. 8":"mín. 8")+')</span>';
+    $("reg-l-pw").innerHTML=T.pw+' <span style="color:#94a3b8">('+L("mín. 8","min. 8","mín. 8","min. 8","Min. 8","min. 8")+')</span>';
     $("reg-l-bd").textContent=T.bd; $("reg-legal").innerHTML=T.legal; $("reg-btn").textContent=T.create;
     $("sw-has-acct").textContent=T.hasAcct; $("go-login").textContent=T.enter;
     $("ver-title").textContent=T.verTitle; $("ver-sub").textContent=T.verSub;
@@ -1881,7 +1884,7 @@ document.addEventListener("DOMContentLoaded", () => {
     $("fgt-l-email").textContent=T.email; $("fgt-btn").textContent=T.sendCode; $("go-login3").textContent=T.back;
     $("rst-title").textContent=T.rstTitle; $("rst-sub").textContent=T.rstSub;
     $("rst-l-code").textContent=T.code;
-    $("rst-l-pw").innerHTML=T.pw+' <span style="color:#94a3b8">('+(EN?"min. 8":"mín. 8")+')</span>';
+    $("rst-l-pw").innerHTML=T.pw+' <span style="color:#94a3b8">('+L("mín. 8","min. 8","mín. 8","min. 8","Min. 8","min. 8")+')</span>';
     $("rst-btn").textContent=T.savePw; $("go-forgot2").textContent=T.resend; $("go-login4").textContent=T.back;
     $("auth-form").addEventListener("submit",doLogin);
     $("reg-form").addEventListener("submit",doRegister);
@@ -1904,7 +1907,7 @@ document.addEventListener("DOMContentLoaded", () => {
     (function enhanceA11y(){
       var ov=$("portal-auth"); if(!ov)return;
       ov.setAttribute("role","dialog"); ov.setAttribute("aria-modal","true");
-      ov.setAttribute("aria-label", EN?"Sign in to your account":"Acceso a tu cuenta");
+      ov.setAttribute("aria-label", L("Acceso a tu cuenta","Sign in to your account","Acesso à sua conta","Accès à votre compte","Zugang zu deinem Konto","Accesso al tuo account"));
       ov.querySelectorAll(".auth-err").forEach(function(e){e.setAttribute("role","alert");});
       ov.querySelectorAll("form label").forEach(function(l){
         var n=l.nextElementSibling;

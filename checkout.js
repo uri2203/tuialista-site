@@ -36,33 +36,39 @@
     } catch (e) { return ""; }
   }
 
-  function isEN() {
-    try { return (localStorage.getItem("tuialista_lang") || "es").indexOf("en") === 0; }
-    catch (e) { return false; }
+  // Idioma actual normalizado a las 6 lenguas soportadas (fallback a es).
+  function curLang() {
+    try {
+      var l = (localStorage.getItem("tuialista_lang") || "es").slice(0, 2).toLowerCase();
+      return ["es", "en", "pt", "fr", "de", "it"].indexOf(l) >= 0 ? l : "es";
+    } catch (e) { return "es"; }
   }
+  function pick(o) { return o[curLang()] || o.es; }
 
   function T() {
-    var en = isEN();
     return {
-      title: en ? "Start your subscription" : "Empieza tu suscripción",
-      sub: en ? "7-day free trial. Cancel anytime from your portal."
-              : "7 días de prueba gratis. Cancela cuando quieras desde tu panel.",
-      emailLbl: en ? "Your email" : "Tu correo",
-      emailPh: en ? "you@company.com" : "tu@empresa.com",
-      legal: en
-        ? 'I accept the <a href="/legal/terminos" target="_blank" rel="noopener">Terms</a>, the <a href="/legal/privacidad" target="_blank" rel="noopener">Privacy Notice</a> and the <a href="/legal/deslinde-ia" target="_blank" rel="noopener">AI Disclaimer</a>.'
-        : 'Acepto los <a href="/legal/terminos" target="_blank" rel="noopener">Términos</a>, el <a href="/legal/privacidad" target="_blank" rel="noopener">Aviso de Privacidad</a> y el <a href="/legal/deslinde-ia" target="_blank" rel="noopener">Deslinde de IA</a>.',
-      pay: en ? "Continue to payment" : "Continuar al pago",
-      wait: en ? "Redirecting…" : "Redirigiendo…",
-      cancel: en ? "Cancel" : "Cancelar",
-      refNote: en ? "Referred by" : "Referido por",
-      errEmail: en ? "Enter a valid email." : "Escribe un correo válido.",
-      errLegal: en ? "You must accept the terms." : "Debes aceptar los términos.",
-      errAgent: en ? "That agent is not available." : "Ese agente no está disponible.",
-      errProvider: en ? "Payments are not enabled yet. Try again shortly."
-                      : "Los pagos aún no están habilitados. Inténtalo en un momento.",
-      errNet: en ? "Connection error. Try again." : "Error de conexión. Inténtalo de nuevo.",
-      errGeneric: en ? "Something went wrong. Try again." : "Algo salió mal. Inténtalo de nuevo."
+      title: pick({ es: "Empieza tu suscripción", en: "Start your subscription", pt: "Comece sua assinatura", fr: "Commencez votre abonnement", de: "Starte dein Abo", it: "Inizia il tuo abbonamento" }),
+      sub: pick({ es: "7 días de prueba gratis. Cancela cuando quieras desde tu panel.", en: "7-day free trial. Cancel anytime from your portal.", pt: "7 dias de teste grátis. Cancele quando quiser no seu painel.", fr: "7 jours d'essai gratuit. Annulez quand vous voulez depuis votre espace.", de: "7 Tage kostenlos testen. Jederzeit in deinem Portal kündbar.", it: "7 giorni di prova gratis. Annulla quando vuoi dal tuo pannello." }),
+      emailLbl: pick({ es: "Tu correo", en: "Your email", pt: "Seu e-mail", fr: "Votre e-mail", de: "Deine E-Mail", it: "La tua e-mail" }),
+      emailPh: pick({ es: "tu@empresa.com", en: "you@company.com", pt: "voce@empresa.com", fr: "vous@entreprise.com", de: "du@firma.com", it: "tu@azienda.com" }),
+      legal: pick({
+        es: 'Acepto los <a href="/legal/terminos" target="_blank" rel="noopener">Términos</a>, el <a href="/legal/privacidad" target="_blank" rel="noopener">Aviso de Privacidad</a> y el <a href="/legal/deslinde-ia" target="_blank" rel="noopener">Deslinde de IA</a>.',
+        en: 'I accept the <a href="/legal/terminos" target="_blank" rel="noopener">Terms</a>, the <a href="/legal/privacidad" target="_blank" rel="noopener">Privacy Notice</a> and the <a href="/legal/deslinde-ia" target="_blank" rel="noopener">AI Disclaimer</a>.',
+        pt: 'Aceito os <a href="/legal/terminos" target="_blank" rel="noopener">Termos</a>, o <a href="/legal/privacidad" target="_blank" rel="noopener">Aviso de Privacidade</a> e o <a href="/legal/deslinde-ia" target="_blank" rel="noopener">Aviso sobre IA</a>.',
+        fr: 'J\'accepte les <a href="/legal/terminos" target="_blank" rel="noopener">Conditions</a>, l\'<a href="/legal/privacidad" target="_blank" rel="noopener">Avis de confidentialité</a> et l\'<a href="/legal/deslinde-ia" target="_blank" rel="noopener">Avertissement IA</a>.',
+        de: 'Ich akzeptiere die <a href="/legal/terminos" target="_blank" rel="noopener">AGB</a>, die <a href="/legal/privacidad" target="_blank" rel="noopener">Datenschutzerklärung</a> und den <a href="/legal/deslinde-ia" target="_blank" rel="noopener">KI-Haftungsausschluss</a>.',
+        it: 'Accetto i <a href="/legal/terminos" target="_blank" rel="noopener">Termini</a>, l\'<a href="/legal/privacidad" target="_blank" rel="noopener">Informativa sulla privacy</a> e il <a href="/legal/deslinde-ia" target="_blank" rel="noopener">Disclaimer IA</a>.'
+      }),
+      pay: pick({ es: "Continuar al pago", en: "Continue to payment", pt: "Continuar para o pagamento", fr: "Continuer vers le paiement", de: "Weiter zur Zahlung", it: "Continua al pagamento" }),
+      wait: pick({ es: "Redirigiendo…", en: "Redirecting…", pt: "Redirecionando…", fr: "Redirection…", de: "Weiterleitung…", it: "Reindirizzamento…" }),
+      cancel: pick({ es: "Cancelar", en: "Cancel", pt: "Cancelar", fr: "Annuler", de: "Abbrechen", it: "Annulla" }),
+      refNote: pick({ es: "Referido por", en: "Referred by", pt: "Indicado por", fr: "Parrainé par", de: "Empfohlen von", it: "Segnalato da" }),
+      errEmail: pick({ es: "Escribe un correo válido.", en: "Enter a valid email.", pt: "Digite um e-mail válido.", fr: "Saisissez un e-mail valide.", de: "Gib eine gültige E-Mail ein.", it: "Inserisci un'e-mail valida." }),
+      errLegal: pick({ es: "Debes aceptar los términos.", en: "You must accept the terms.", pt: "Você deve aceitar os termos.", fr: "Vous devez accepter les conditions.", de: "Du musst die Bedingungen akzeptieren.", it: "Devi accettare i termini." }),
+      errAgent: pick({ es: "Ese agente no está disponible.", en: "That agent is not available.", pt: "Esse agente não está disponível.", fr: "Cet agent n'est pas disponible.", de: "Dieser Agent ist nicht verfügbar.", it: "Questo agente non è disponibile." }),
+      errProvider: pick({ es: "Los pagos aún no están habilitados. Inténtalo en un momento.", en: "Payments are not enabled yet. Try again shortly.", pt: "Os pagamentos ainda não estão habilitados. Tente em instantes.", fr: "Les paiements ne sont pas encore activés. Réessayez bientôt.", de: "Zahlungen sind noch nicht aktiviert. Versuche es gleich erneut.", it: "I pagamenti non sono ancora abilitati. Riprova tra poco." }),
+      errNet: pick({ es: "Error de conexión. Inténtalo de nuevo.", en: "Connection error. Try again.", pt: "Erro de conexão. Tente novamente.", fr: "Erreur de connexion. Réessayez.", de: "Verbindungsfehler. Versuche es erneut.", it: "Errore di connessione. Riprova." }),
+      errGeneric: pick({ es: "Algo salió mal. Inténtalo de nuevo.", en: "Something went wrong. Try again.", pt: "Algo deu errado. Tente novamente.", fr: "Une erreur s'est produite. Réessayez.", de: "Etwas ist schiefgelaufen. Versuche es erneut.", it: "Qualcosa è andato storto. Riprova." })
     };
   }
 
@@ -154,7 +160,7 @@
     document.getElementById("tuia-co-sub").textContent = t.sub;
     document.getElementById("tuia-co-agent").textContent = agentName || agentId;
     document.getElementById("tuia-co-price").textContent =
-      (priceUsd || priceUsd === 0) ? ("$" + Number(priceUsd).toFixed(0) + (isEN() ? " /mo" : " /mes")) : "";
+      (priceUsd || priceUsd === 0) ? ("$" + Number(priceUsd).toFixed(0) + pick({ es: " /mes", en: " /mo", pt: " /mês", fr: " /mois", de: " /Mon.", it: " /mese" })) : "";
     document.getElementById("tuia-co-email-lbl").textContent = t.emailLbl;
     var emailInput = document.getElementById("tuia-co-email");
     emailInput.placeholder = t.emailPh;
@@ -184,7 +190,7 @@
     var body = {
       email: email, agent_id: current.id, provider: "stripe", accepted: true,
       documents: ["terminos", "privacidad", "deslinde-ia"],
-      lang: isEN() ? "en" : "es"
+      lang: curLang()
     };
     var ref = storedRef();
     if (ref) body.ref_code = ref;
