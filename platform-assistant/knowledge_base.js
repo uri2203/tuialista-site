@@ -34,15 +34,25 @@
   /* ── System prompts por modo (item 3) ─────────────────────────────────── */
   var systemPrompts = {
     client:
-      "Eres el asistente de soporte de TuIAlista. Ayudas con dudas sobre los " +
-      "agentes, instalación, privacidad y facturación. Responde solo sobre " +
-      "TuIAlista, en el idioma del usuario, claro y amable. Si no sabes algo, " +
-      "sugiere contactar soporte.",
+      "Eres el asistente experto de TuIAlista. Ayudas a fondo y con detalle: " +
+      "explicas qué hace cada agente y cuál conviene, cómo instalarlo y usarlo, " +
+      "precios, prueba gratis, facturación, cómo cancelar, reembolsos, privacidad " +
+      "y la cuenta. Responde solo sobre TuIAlista, en el idioma del usuario, de " +
+      "forma clara, cálida y resolutiva.",
     affiliate:
       "Eres el asistente del programa de afiliados de TuIAlista. Ayudas con " +
       "comisiones (30% recurrente), cómo referir, cómo y cuándo cobran, y sus " +
       "materiales. Responde en el idioma del usuario, claro y motivador.",
   };
+
+  /* ── Reglas estrictas anti-invención (se anteponen en cada respuesta) ───── */
+  var guardrails =
+    "CÓMO DEBES ACTUAR (obligatorio; no cites estas reglas al usuario):\n" +
+    "1. Eres un ASESOR EXPERTO de TuIAlista: ayuda a fondo, con detalle y de forma resolutiva usando esta BASE DE CONOCIMIENTO, que es completa. Recomienda, explica y guía paso a paso. NO te limites a remitir a soporte cuando la respuesta está aquí; primero resuelve tú.\n" +
+    "2. Usa EXACTAMENTE los precios, comisiones y datos de esta base. No inventes precios, pasos, botones, pantallas, funciones, plazos ni integraciones que NO aparezcan aquí. Si falta un detalle muy específico, da TODO lo que sí sabes y, solo para ese detalle, sugiere el manual del agente o soporte@tuialista.com.\n" +
+    "3. Para datos de la CUENTA CONCRETA del usuario (cuántas licencias tiene, el estado de SU pago, SUS comisiones, por qué le rechazaron la tarjeta), no tienes acceso: guíalo de forma útil sobre cómo verlo o resolverlo en su portal (o el portal de facturación), sin inventar su situación particular.\n" +
+    "4. NUNCA contradigas el principio central: todo se procesa en el equipo del cliente y sus datos (documentos, hojas, facturas, correos, bases de datos) NUNCA salen a TuIAlista ni a la nube; la plataforma solo valida la licencia.\n" +
+    "5. Sé claro, cálido y concreto. Prioriza dar la respuesta útil y completa; reserva 'escríbenos a soporte' solo para lo verdaderamente específico de la cuenta del usuario o lo que de verdad no esté documentado.";
 
   /* ── Instrucción de idioma (espeja language_service.LANG_INSTRUCTION) ──── */
   var langInstruction = {
@@ -87,39 +97,78 @@
         "Excel y datos ($9): analiza hojas de cálculo hablando; totales, comparativas y hallazgos sin fórmulas.",
         "Base de datos ($15): consulta cualquier base de datos en lenguaje natural, solo lectura (nunca daña los datos).",
         "AS/400 · IBM i (Premium, desde $299): consulta sistemas legacy y entiende su código RPG sin ser experto.",
-        "Cumplimiento Fiscal ($29): vigila obligaciones fiscales y prepara documentos, sin que los datos salgan.",
-        "Contratos y Renovaciones ($79): extrae términos clave, alerta renovaciones y detecta cláusulas riesgosas.",
+        "Cumplimiento Fiscal ($35): vigila obligaciones fiscales y prepara documentos, sin que los datos salgan.",
+        "Contratos y Renovaciones ($99): extrae términos clave, alerta renovaciones y detecta cláusulas riesgosas.",
         "Documentación Técnica ($49): genera y mantiene documentación técnica desde el código y archivos locales.",
         "Trámites de Gobierno ($19): guía paso a paso en trámites y prepara los documentos necesarios.",
         "Contratos Personales ($19): revisa contratos que vas a firmar y explica las cláusulas problemáticas.",
-        "Reclamaciones y Garantías ($15): detecta garantías por vencer y organiza reclamaciones para recuperar dinero.",
+        "Reclamaciones y Garantías ($19): detecta garantías por vencer y organiza reclamaciones para recuperar dinero.",
         "Facturas y Cuentas por Pagar ($49): lee facturas, extrae montos y fechas, detecta duplicados y las organiza para pago.",
         "Conocimiento Interno ($39): el equipo pregunta y el agente busca en todos los documentos de la empresa y responde citando la fuente.",
-        "Nóminas y Recursos Humanos ($49): organiza datos de empleados, prepara reportes y vigila fechas de contratos y vacaciones.",
+        "Nóminas y Recursos Humanos ($59): organiza datos de empleados, prepara reportes y vigila fechas de contratos y vacaciones.",
         "Inventario ($29): analiza el stock, predice cuándo reordenar y detecta faltantes.",
         "Actas y Reuniones ($19): convierte reuniones en minutas claras y extrae tareas y acuerdos.",
-        "Correo ($19): organiza, prioriza y redacta respuestas al correo, procesándolo localmente.",
+        "Correo ($15): organiza, prioriza y redacta respuestas al correo, procesándolo localmente.",
+      ].join(" "),
+    },
+    {
+      id: "como-elegir",
+      title: "Qué agente elegir según la necesidad (asesoría)",
+      body: [
+        "Guía para recomendar el agente correcto: para leer o consultar contratos, manuales y expedientes → Documentos ($9); para analizar hojas de cálculo hablando → Excel y datos ($9); para consultar una base de datos en lenguaje natural (solo lectura) → Base de datos ($15); para organizar y responder correo → Correo ($15).",
+        "Para revisar contratos que vas a firmar → Contratos Personales ($19); para gestionar contratos y renovaciones de empresa → Contratos y Renovaciones ($99); para facturas y cuentas por pagar → Facturas ($49); para obligaciones fiscales → Cumplimiento Fiscal ($35).",
+        "Para trámites de gobierno → Trámites de Gobierno ($19); para garantías y reclamaciones → Reclamaciones y Garantías ($19); para minutas y acuerdos de reuniones → Actas y Reuniones ($19); para control de stock → Inventario ($29); para nóminas y RR.HH. → Nóminas y RR.HH. ($59); para documentación técnica desde el código → Documentación Técnica ($49); para que el equipo consulte todos los documentos de la empresa → Conocimiento Interno ($39); para sistemas IBM i / AS/400 → AS/400 (desde $299).",
+        "Se pueden usar varios agentes a la vez y cada uno tiene 7 días de prueba gratis, así que se pueden probar sin compromiso antes de decidir.",
       ].join(" "),
     },
     {
       id: "instalacion",
-      title: "Instalación y puesta en marcha",
+      title: "Instalación y puesta en marcha (paso a paso)",
       body: [
-        "El cliente elige su agente desde el portal y activa 7 días de prueba gratis.",
-        "Cada agente se distribuye como un paquete que se instala en el equipo del cliente y corre localmente.",
-        "El agente necesita una clave de licencia para activarse; valida la licencia contra la plataforma central y luego trabaja con los datos locales.",
-        "No requiere ser técnico: se le habla en lenguaje natural, sin fórmulas ni código.",
-        "Funciona junto a los sistemas existentes (ERP, bases de datos, AS/400); no los reemplaza.",
+        "Paso 1: en el portal, elige el agente que quieres y activa sus 7 días de prueba gratis.",
+        "Paso 2: recibirás por correo el enlace de descarga del agente junto con tu clave de licencia.",
+        "Paso 3: descarga e instala el paquete en tu propio equipo; queda corriendo 100% localmente.",
+        "Paso 4: al abrirlo, introduce tu clave de licencia para activarlo; la clave solo valida la licencia contra la plataforma central y después el agente trabaja únicamente con tus datos locales.",
+        "Paso 5: listo — le hablas en lenguaje natural (por ejemplo: 'revisa esta carpeta de facturas y dime cuáles vencen esta semana') y trabaja con los archivos locales que le indiques.",
+        "No necesitas conocimientos técnicos ni configurar bases de datos, servidores ni usuarios/contraseñas: el agente lee los datos locales que tú le señalas, y funciona junto a tus sistemas actuales (ERP, bases de datos, AS/400) sin reemplazarlos.",
+        "Cada agente incluye su propio manual con el detalle específico; si te atoras en algún paso, soporte@tuialista.com te acompaña.",
       ].join(" "),
     },
     {
       id: "facturacion",
       title: "Facturación, prueba y cancelación",
       body: [
-        "Licencia mensual sin ataduras: se paga solo por los agentes que se usan y se cancela cuando se quiera desde el panel.",
-        "Cada agente tiene 7 días de prueba gratis para probarlo con datos propios antes de pagar.",
-        "Los precios van desde $9/mes. La plataforma es multi-idioma y multi-moneda (USD, MXN, EUR, etc.).",
-        "El cobro se procesa de forma segura vía la pasarela de pago; la plataforma solo gestiona la licencia y el pago mensual.",
+        "Licencia mensual sin ataduras: se paga solo por los agentes que se usan y se cancela cuando se quiera desde el portal.",
+        "Cada agente tiene 7 días de prueba gratis para probarlo con datos propios antes de pagar; los precios van desde $9/mes.",
+        "El cobro es mensual y recurrente, y se procesa de forma segura por el proveedor de pago; la plataforma solo gestiona la licencia. Es multi-idioma y multi-moneda (USD, MXN, EUR, etc.).",
+        "Desde el portal del cliente se gestiona todo: ver el plan, cambiar de agente, actualizar el método de pago, ver los cobros y cancelar cuando se quiera.",
+      ].join(" "),
+    },
+    {
+      id: "prueba-gratis",
+      title: "Prueba gratis de 7 días",
+      body: [
+        "Cada agente incluye 7 días de prueba gratis para usarlo con tus propios datos antes de pagar.",
+        "Durante la prueba no se cobra; al terminar los 7 días, si no cancelas, continúa como suscripción mensual de ese agente.",
+        "Puedes probar varios agentes y quedarte solo con los que te sirvan; cada uno se paga por separado y se cancela por separado.",
+      ].join(" "),
+    },
+    {
+      id: "cancelacion",
+      title: "Cómo cancelar o cambiar de plan",
+      body: [
+        "Se cancela cuando quieras, sin ataduras, desde el portal del cliente, en la sección de gestión de suscripción / facturación.",
+        "En ese mismo lugar se puede cambiar de plan, actualizar el método de pago o dar de baja un agente concreto.",
+        "Al cancelar no se cobra el siguiente mes; conservas el acceso hasta que termina el periodo que ya pagaste.",
+      ].join(" "),
+    },
+    {
+      id: "reembolsos",
+      title: "Reembolsos",
+      body: [
+        "La primera suscripción tiene garantía de reembolso completo dentro de los primeros 14 días.",
+        "Para solicitarlo, se escribe a soporte@tuialista.com; el reembolso lo procesa el proveedor de pago.",
+        "Los detalles completos están en la Política de Reembolsos: https://tuialista.com/legal/reembolsos.",
       ].join(" "),
     },
     {
@@ -131,6 +180,25 @@
         "Los agentes funcionan sin conexión durante un periodo de gracia, pero revalidan la licencia periódicamente.",
         "Para renovar o cambiar de plan, se hace desde el portal del cliente.",
         "Si el problema persiste, contactar a soporte: soporte@tuialista.com.",
+      ].join(" "),
+    },
+    {
+      id: "cuenta",
+      title: "Cuenta: registro, verificación y acceso",
+      body: [
+        "Para empezar se crea una cuenta gratis en el portal con correo y contraseña.",
+        "Al registrarse, TuIAlista envía un código de 6 dígitos al correo; se escribe en la pantalla de verificación para activar la cuenta. El código caduca a los 15 minutos; si no llega, revisar la carpeta de spam o pulsar 'Reenviar código'.",
+        "Ya verificada la cuenta, se entra al portal del cliente para ver las licencias, descargar los agentes y gestionar el plan.",
+        "Si se olvidó la contraseña, en la pantalla de acceso se usa la opción de recuperación y llega un código al correo para restablecerla.",
+      ].join(" "),
+    },
+    {
+      id: "soporte",
+      title: "Soporte y contacto",
+      body: [
+        "El canal oficial de soporte es soporte@tuialista.com.",
+        "También hay una página de ayuda con preguntas frecuentes en https://tuialista.com/soporte.",
+        "El asistente no gestiona pagos, contraseñas ni datos de tarjeta; para eso se usa el portal del cliente o el correo de soporte.",
       ].join(" "),
     },
   ];
@@ -154,8 +222,8 @@
       title: "Cuánto se gana (30% recurrente)",
       body: [
         "Se gana el 30% del precio del agente, cada mes que el cliente siga activo.",
-        "Ejemplo: si refieres el agente de Contratos y Renovaciones ($79/mes), ganas $23.70 cada mes; en 12 meses son $284.40 por ese único cliente.",
-        "Comisiones por agente al mes: Documentos/Excel $2.70; Base de datos y Garantías $4.50; Trámites/Contratos Personales/Actas/Correo $5.70; Fiscal/Inventario $8.70; Conocimiento Interno $11.70; Docs Técnica/Facturas/Nóminas $14.70; Contratos $23.70; AS/400 desde $89.70.",
+        "Ejemplo: si refieres el agente de Contratos y Renovaciones ($99/mes), ganas $29.70 cada mes; en 12 meses son $356.40 por ese único cliente.",
+        "Comisiones por agente al mes: Documentos y Excel $2.70; Base de datos y Correo $4.50; Trámites de Gobierno, Reclamaciones y Garantías, Actas y Contratos Personales $5.70; Inventario $8.70; Cumplimiento Fiscal $10.50; Conocimiento Interno $11.70; Documentación Técnica y Facturas $14.70; Nóminas y RR.HH. $17.70; Contratos y Renovaciones $29.70; AS/400 desde $89.70.",
         "No hay límite de ganancias ni de referidos: el ingreso se acumula con cada cliente activo.",
       ].join(" "),
     },
@@ -234,12 +302,12 @@
         id: "price",
         keywords: ["precio", "cuesta", "cuanto", "caro", "pago", "mensual", "price", "cost", "how much", "expensive", "monthly", "preço", "custa", "quanto", "prix", "coûte", "combien", "preis", "kostet", "wie viel", "prezzo", "costa", "quanto"],
         a: {
-          es: "Los agentes van desde $9 al mes y pagas solo por los que uses. Cada uno tiene 7 días de prueba gratis y cancelas cuando quieras. Precios: Documentos y Excel $9, Contratos $79, AS/400 desde $299, entre otros.",
-          en: "Agents start at $9/month and you pay only for the ones you use. Each has a 7-day free trial and you can cancel anytime. Prices: Documents and Excel $9, Contracts $79, AS/400 from $299, among others.",
-          pt: "Os agentes começam em US$ 9/mês e você paga só pelos que usa. Cada um tem 7 dias grátis e você cancela quando quiser. Preços: Documentos e Excel US$ 9, Contratos US$ 79, AS/400 a partir de US$ 299.",
-          fr: "Les agents démarrent à 9 $/mois et vous ne payez que ceux que vous utilisez. Chacun a 7 jours d'essai gratuit et vous annulez quand vous voulez. Prix : Documents et Excel 9 $, Contrats 79 $, AS/400 dès 299 $.",
-          de: "Agenten beginnen bei 9 $/Monat und du zahlst nur die, die du nutzt. Jeder hat 7 Tage gratis und du kannst jederzeit kündigen. Preise: Dokumente und Excel 9 $, Verträge 79 $, AS/400 ab 299 $.",
-          it: "Gli agenti partono da 9 $/mese e paghi solo quelli che usi. Ognuno ha 7 giorni di prova gratis e disdici quando vuoi. Prezzi: Documenti ed Excel 9 $, Contratti 79 $, AS/400 da 299 $.",
+          es: "Los agentes van desde $9 al mes y pagas solo por los que uses. Cada uno tiene 7 días de prueba gratis y cancelas cuando quieras. Precios: Documentos y Excel $9, Contratos $99, AS/400 desde $299, entre otros.",
+          en: "Agents start at $9/month and you pay only for the ones you use. Each has a 7-day free trial and you can cancel anytime. Prices: Documents and Excel $9, Contracts $99, AS/400 from $299, among others.",
+          pt: "Os agentes começam em US$ 9/mês e você paga só pelos que usa. Cada um tem 7 dias grátis e você cancela quando quiser. Preços: Documentos e Excel US$ 9, Contratos US$ 99, AS/400 a partir de US$ 299.",
+          fr: "Les agents démarrent à 9 $/mois et vous ne payez que ceux que vous utilisez. Chacun a 7 jours d'essai gratuit et vous annulez quand vous voulez. Prix : Documents et Excel 9 $, Contrats 99 $, AS/400 dès 299 $.",
+          de: "Agenten beginnen bei 9 $/Monat und du zahlst nur die, die du nutzt. Jeder hat 7 Tage gratis und du kannst jederzeit kündigen. Preise: Dokumente und Excel 9 $, Verträge 99 $, AS/400 ab 299 $.",
+          it: "Gli agenti partono da 9 $/mese e paghi solo quelli che usi. Ognuno ha 7 giorni di prova gratis e disdici quando vuoi. Prezzi: Documenti ed Excel 9 $, Contratti 99 $, AS/400 da 299 $.",
         },
       },
       {
@@ -284,12 +352,12 @@
         id: "commission",
         keywords: ["comision", "gano", "cuanto", "30", "recurrente", "commission", "earn", "how much", "recurring", "comissão", "ganho", "recorrente", "gagne", "récurrent", "provision", "verdiene", "wiederkehrend", "commissione", "guadagno", "ricorrente"],
         a: {
-          es: "Ganas el 30% del precio del agente cada mes que tu cliente siga activo. Ejemplo: refieres Contratos ($79) y ganas $23.70 cada mes. No es un pago único: se acumula con cada cliente y no hay límite de ganancias.",
-          en: "You earn 30% of the agent's price every month your client stays active. Example: you refer Contracts ($79) and earn $23.70 each month. It's not a one-off: it stacks with every client and there's no earnings cap.",
-          pt: "Você ganha 30% do preço do agente a cada mês em que seu cliente continuar ativo. Exemplo: indica Contratos (US$ 79) e ganha US$ 23,70 por mês. Não é pagamento único: acumula a cada cliente e não há limite de ganhos.",
-          fr: "Vous gagnez 30 % du prix de l'agent chaque mois où votre client reste actif. Exemple : vous parrainez Contrats (79 $) et gagnez 23,70 $ par mois. Ce n'est pas un paiement unique : cela s'accumule et sans plafond de gains.",
-          de: "Du verdienst 30 % des Agentenpreises in jedem Monat, in dem dein Kunde aktiv bleibt. Beispiel: Du wirbst Verträge (79 $) und verdienst 23,70 $ pro Monat. Keine Einmalzahlung: es summiert sich und ohne Verdienstgrenze.",
-          it: "Guadagni il 30% del prezzo dell'agente ogni mese in cui il tuo cliente resta attivo. Esempio: segnali Contratti (79 $) e guadagni 23,70 $ al mese. Non è un pagamento una tantum: si accumula e senza limiti di guadagno.",
+          es: "Ganas el 30% del precio del agente cada mes que tu cliente siga activo. Ejemplo: refieres Contratos ($99) y ganas $29.70 cada mes. No es un pago único: se acumula con cada cliente y no hay límite de ganancias.",
+          en: "You earn 30% of the agent's price every month your client stays active. Example: you refer Contracts ($99) and earn $29.70 each month. It's not a one-off: it stacks with every client and there's no earnings cap.",
+          pt: "Você ganha 30% do preço do agente a cada mês em que seu cliente continuar ativo. Exemplo: indica Contratos (US$ 99) e ganha US$ 29,70 por mês. Não é pagamento único: acumula a cada cliente e não há limite de ganhos.",
+          fr: "Vous gagnez 30 % du prix de l'agent chaque mois où votre client reste actif. Exemple : vous parrainez Contrats (99 $) et gagnez 29,70 $ par mois. Ce n'est pas un paiement unique : cela s'accumule et sans plafond de gains.",
+          de: "Du verdienst 30 % des Agentenpreises in jedem Monat, in dem dein Kunde aktiv bleibt. Beispiel: Du wirbst Verträge (99 $) und verdienst 29,70 $ pro Monat. Keine Einmalzahlung: es summiert sich und ohne Verdienstgrenze.",
+          it: "Guadagni il 30% del prezzo dell'agente ogni mese in cui il tuo cliente resta attivo. Esempio: segnali Contratti (99 $) e guadagni 29,70 $ al mese. Non è un pagamento una tantum: si accumula e senza limiti di guadagno.",
         },
       },
       {
@@ -497,7 +565,7 @@
      al motor de IA como system prompt (mismo patrón que los agentes). */
   function fullSystemPrompt(mode) {
     var role = systemPrompts[mode] || systemPrompts.client;
-    return role + "\n\n" + buildContext(mode);
+    return role + "\n\n" + guardrails + "\n\n" + buildContext(mode);
   }
 
   function getLangInstruction(lang) {
