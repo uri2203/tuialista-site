@@ -35,9 +35,9 @@ Ganas el **30% del precio del agente, cada mes que el cliente siga activo**. No 
 
 ### Ejemplo base
 
-Refieres a un despacho que contrata el agente de **Contratos y Renovaciones** a **$79 USD/mes**:
+Refieres a un despacho que contrata el agente de **Contratos y Renovaciones** a **$99 USD/mes**:
 
-- Ganas **$79 × 30% = $23.70 USD** el primer mes.
+- Ganas **$99 × 30% = $29.70 USD** el primer mes.
 - El mes 2 sigue activo → ganas **otros $23.70**.
 - El mes 12 sigue activo → **$23.70** otra vez.
 - **En un año, ese único cliente te deja $284.40 USD.**
@@ -49,18 +49,18 @@ Refieres a un despacho que contrata el agente de **Contratos y Renovaciones** a 
 | Documentos | $9 | **$2.70** | $32.40 |
 | Excel y datos | $9 | **$2.70** | $32.40 |
 | Base de datos | $15 | **$4.50** | $54.00 |
-| Reclamaciones y Garantías | $15 | **$4.50** | $54.00 |
+| Reclamaciones y Garantías | $19 | **$5.70** | $68.40 |
 | Trámites de Gobierno | $19 | **$5.70** | $68.40 |
 | Contratos Personales | $19 | **$5.70** | $68.40 |
 | Actas y Reuniones | $19 | **$5.70** | $68.40 |
-| Correo | $19 | **$5.70** | $68.40 |
-| Cumplimiento Fiscal | $29 | **$8.70** | $104.40 |
+| Correo | $15 | **$4.50** | $54.00 |
+| Cumplimiento Fiscal | $35 | **$10.50** | $126.00 |
 | Inventario | $29 | **$8.70** | $104.40 |
 | Conocimiento Interno | $39 | **$11.70** | $140.40 |
 | Documentación Técnica | $49 | **$14.70** | $176.40 |
 | Facturas y Cuentas por Pagar | $49 | **$14.70** | $176.40 |
-| Nóminas y RR.HH. | $49 | **$14.70** | $176.40 |
-| Contratos y Renovaciones | $79 | **$23.70** | $284.40 |
+| Nóminas y RR.HH. | $59 | **$17.70** | $212.40 |
+| Contratos y Renovaciones | $99 | **$29.70** | $356.40 |
 | AS/400 · IBM i (Premium) | desde $299 | **desde $89.70** | desde $1,076.40 |
 
 ### Por qué el modelo recurrente lo cambia todo

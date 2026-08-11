@@ -35,9 +35,9 @@ You earn **30% of the agent's price, every month the customer stays active**. It
 
 ### Base example
 
-You refer a firm that subscribes to the **Contracts & Renewals** agent at **$79 USD/month**:
+You refer a firm that subscribes to the **Contracts & Renewals** agent at **$99 USD/month**:
 
-- You earn **$79 × 30% = $23.70 USD** the first month.
+- You earn **$99 × 30% = $29.70 USD** the first month.
 - Month 2, still active → you earn **another $23.70**.
 - Month 12, still active → **$23.70** again.
 - **Over one year, that single customer earns you $284.40 USD.**
@@ -49,18 +49,18 @@ You refer a firm that subscribes to the **Contracts & Renewals** agent at **$79 
 | Documents | $9 | **$2.70** | $32.40 |
 | Excel & Data | $9 | **$2.70** | $32.40 |
 | Database | $15 | **$4.50** | $54.00 |
-| Claims & Warranties | $15 | **$4.50** | $54.00 |
+| Claims & Warranties | $19 | **$5.70** | $68.40 |
 | Government Procedures | $19 | **$5.70** | $68.40 |
 | Personal Contracts | $19 | **$5.70** | $68.40 |
 | Minutes & Meetings | $19 | **$5.70** | $68.40 |
-| Email | $19 | **$5.70** | $68.40 |
+| Email | $15 | **$4.50** | $54.00 |
 | Tax Compliance | $29 | **$8.70** | $104.40 |
 | Inventory | $29 | **$8.70** | $104.40 |
 | Internal Knowledge | $39 | **$11.70** | $140.40 |
 | Technical Documentation | $49 | **$14.70** | $176.40 |
 | Invoices & Accounts Payable | $49 | **$14.70** | $176.40 |
-| Payroll & HR | $49 | **$14.70** | $176.40 |
-| Contracts & Renewals | $79 | **$23.70** | $284.40 |
+| Payroll & HR | $59 | **$17.70** | $212.40 |
+| Contracts & Renewals | $99 | **$29.70** | $356.40 |
 | AS/400 · IBM i (Premium) | from $299 | **from $89.70** | from $1,076.40 |
 
 ### Why the recurring model changes everything

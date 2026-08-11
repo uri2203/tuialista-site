@@ -9,7 +9,7 @@ Dos bloques: primero las dudas **tuyas como afiliado**, después las preguntas q
 ### Sobre el dinero
 
 **¿Cuánto gano por cada cliente?**
-El **30% del precio del agente, cada mes** que tu cliente siga pagando. Ejemplo: si refieres el agente de Contratos ($79/mes), ganas **$23.70 cada mes** mientras siga activo.
+El **30% del precio del agente, cada mes** que tu cliente siga pagando. Ejemplo: si refieres el agente de Contratos ($99/mes), ganas **$29.70 cada mes** mientras siga activo.
 
 **¿La comisión es una sola vez o se repite?**
 Se **repite cada mes**. No es un bono de bienvenida: mientras tu cliente pague, tú cobras. Un cliente de 12 meses te paga 12 veces.

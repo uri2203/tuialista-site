@@ -58,7 +58,7 @@ Analyze spreadsheets by talking: totals, comparisons, and findings without writi
 Query any database in natural language. Read-only: it never damages your data.
 *For:* businesses with a system/ERP where the info exists but nobody can pull it without a technician.
 
-**Email — $19/mo**
+**Email — $15/mo**
 Organizes, prioritizes, and drafts replies to your email, processing it locally. Emails never leave the computer.
 *For:* executives and teams drowning in email who wouldn't trust their inbox to a cloud service.
 
@@ -80,7 +80,7 @@ Reads your invoices, extracts amounts and dates, detects duplicates, and organiz
 Analyzes your stock, predicts when to reorder, and detects shortages over your business data.
 *For:* retailers, distributors, manufacturing, restaurants.
 
-**Contracts & Renewals — $79/mo**
+**Contracts & Renewals — $99/mo**
 Extracts key terms, flags renewals, and detects risky clauses in your contracts.
 *For:* legal firms, real estate, companies with many suppliers/leases. **The highest standard commission: $23.70/month per customer.**
 
@@ -88,7 +88,7 @@ Extracts key terms, flags renewals, and detects risky clauses in your contracts.
 Reviews contracts you're about to sign and explains the problematic clauses.
 *For:* independent professionals, freelancers, anyone who signs contracts and isn't a lawyer.
 
-**Claims & Warranties — $15/mo**
+**Claims & Warranties — $19/mo**
 Detects expiring warranties and organizes claims to recover money.
 *For:* companies with equipment/machinery and organized consumers.
 
@@ -98,7 +98,7 @@ Detects expiring warranties and organizes claims to recover money.
 Your team asks and the agent searches every company document and answers citing the source.
 *For:* mid-sized companies where "the person who knows" is a bottleneck; it turns files into answers.
 
-**Payroll & HR — $49/mo**
+**Payroll & HR — $59/mo**
 Organizes employee data, prepares reports, and monitors contract and vacation dates, without data leaving.
 *For:* HR teams handling sensitive staff data who can't upload it to the cloud.
 

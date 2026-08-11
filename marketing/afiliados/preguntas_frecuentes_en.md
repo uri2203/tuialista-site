@@ -9,7 +9,7 @@ Two blocks: first, **your questions as an affiliate**, then the questions **your
 ### About the money
 
 **How much do I earn per customer?**
-**30% of the agent's price, every month** your customer keeps paying. Example: if you refer the Contracts agent ($79/mo), you earn **$23.70 every month** while they stay active.
+**30% of the agent's price, every month** your customer keeps paying. Example: if you refer the Contracts agent ($99/mo), you earn **$29.70 every month** while they stay active.
 
 **Is the commission one-time or recurring?**
 It **repeats every month**. It's not a welcome bonus: as long as your customer pays, you get paid. A 12-month customer pays you 12 times.

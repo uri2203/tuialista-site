@@ -58,7 +58,7 @@ Analiza hojas de cálculo hablando: totales, comparativas y hallazgos sin escrib
 Consulta cualquier base de datos en lenguaje natural. Solo lectura: nunca daña los datos.
 *Le sirve a:* negocios con un sistema/ERP donde la información está pero nadie sabe sacarla sin un técnico.
 
-**Correo — $19/mes**
+**Correo — $15/mes**
 Organiza, prioriza y redacta respuestas al correo, procesándolo localmente. Los emails nunca salen del equipo.
 *Le sirve a:* ejecutivos y equipos saturados de correo que no confiarían su bandeja a un servicio en la nube.
 
@@ -68,7 +68,7 @@ Convierte reuniones en minutas claras y extrae tareas y acuerdos automáticament
 
 ### Finanzas, cumplimiento y contratos
 
-**Cumplimiento Fiscal — $29/mes**
+**Cumplimiento Fiscal — $35/mes**
 Vigila obligaciones fiscales y prepara documentos, sin que los datos salgan del equipo.
 *Le sirve a:* contadores, despachos fiscales y empresas que no quieren multas por olvidos.
 
@@ -80,7 +80,7 @@ Lee facturas, extrae montos y fechas, detecta duplicados y las organiza para pag
 Analiza el stock, predice cuándo reordenar y detecta faltantes sobre los datos del negocio.
 *Le sirve a:* comercios, distribuidoras, manufactura, restaurantes.
 
-**Contratos y Renovaciones — $79/mes**
+**Contratos y Renovaciones — $99/mes**
 Extrae términos clave, alerta renovaciones y detecta cláusulas riesgosas en los contratos.
 *Le sirve a:* despachos legales, inmobiliarias, empresas con muchos proveedores/arrendamientos. **El de mayor comisión estándar: $23.70/mes por cliente.**
 
@@ -88,7 +88,7 @@ Extrae términos clave, alerta renovaciones y detecta cláusulas riesgosas en lo
 Revisa contratos que la persona va a firmar y le explica las cláusulas problemáticas.
 *Le sirve a:* profesionales independientes, freelancers, cualquier persona que firme contratos y no sea abogado.
 
-**Reclamaciones y Garantías — $15/mes**
+**Reclamaciones y Garantías — $19/mes**
 Detecta garantías por vencer y organiza reclamaciones para recuperar dinero.
 *Le sirve a:* empresas con equipo/maquinaria y consumidores organizados.
 
@@ -98,7 +98,7 @@ Detecta garantías por vencer y organiza reclamaciones para recuperar dinero.
 El equipo pregunta y el agente busca en todos los documentos de la empresa y responde citando la fuente.
 *Le sirve a:* empresas medianas donde "el que sabe" es un cuello de botella; convierte los archivos en respuestas.
 
-**Nóminas y Recursos Humanos — $49/mes**
+**Nóminas y Recursos Humanos — $59/mes**
 Organiza datos de empleados, prepara reportes y vigila fechas de contratos y vacaciones, sin que los datos salgan.
 *Le sirve a:* áreas de RR.HH. que manejan datos sensibles de personal y no pueden subirlos a la nube.
 
