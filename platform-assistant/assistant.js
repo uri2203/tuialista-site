@@ -320,8 +320,8 @@
       message: text,
       lang: this.lang,
       history: this.history.slice(-10),
-      // Mismo patrón que los agentes: rol + contexto fijo como system prompt.
-      system_prompt: KB.fullSystemPrompt(this.mode),
+      // Rol + contexto fijo + (retrieval) la ficha del agente que menciona el mensaje.
+      system_prompt: KB.fullSystemPrompt(this.mode, text),
     };
 
     var done = function (reply, offline) {

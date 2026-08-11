@@ -123,15 +123,16 @@
     },
     {
       id: "instalacion",
-      title: "Instalación y puesta en marcha (paso a paso)",
+      title: "Instalación y puesta en marcha (proceso general)",
       body: [
-        "Paso 1: en el portal, elige el agente que quieres y activa sus 7 días de prueba gratis.",
-        "Paso 2: recibirás por correo el enlace de descarga del agente junto con tu clave de licencia.",
-        "Paso 3: descarga e instala el paquete en tu propio equipo; queda corriendo 100% localmente.",
-        "Paso 4: al abrirlo, introduce tu clave de licencia para activarlo; la clave solo valida la licencia contra la plataforma central y después el agente trabaja únicamente con tus datos locales.",
-        "Paso 5: listo — le hablas en lenguaje natural (por ejemplo: 'revisa esta carpeta de facturas y dime cuáles vencen esta semana') y trabaja con los archivos locales que le indiques.",
-        "No necesitas conocimientos técnicos ni configurar bases de datos, servidores ni usuarios/contraseñas: el agente lee los datos locales que tú le señalas, y funciona junto a tus sistemas actuales (ERP, bases de datos, AS/400) sin reemplazarlos.",
-        "Cada agente incluye su propio manual con el detalle específico; si te atoras en algún paso, soporte@tuialista.com te acompaña.",
+        "Cada agente es un pequeño programa que corre en tu propio equipo. La instalación es un poco técnica, pero se hace una sola vez y aquí te la guío.",
+        "Paso 1: en el portal eliges el agente y activas sus 7 días de prueba gratis; recibes el agente (descarga) y tu clave de licencia (formato TIA-XXXX-...).",
+        "Paso 2: necesitas Python 3.9 o más reciente instalado (gratis desde python.org; marca 'Add Python to PATH' al instalarlo).",
+        "Paso 3: copias a tu equipo las carpetas del agente, agent-sdk y core-license.",
+        "Paso 4: abres una terminal e instalas sus dependencias con 'pip install ...' (cambian según el agente).",
+        "Paso 5: defines dos variables de entorno: TUIALISTA_LICENSE_KEY con tu clave, y la carpeta o conexión de tus datos (por ejemplo EXCEL_FOLDER).",
+        "Paso 6: arrancas el agente con 'python <archivo>_agent.py' y a partir de ahí le hablas en lenguaje natural; trabaja solo con tus datos locales.",
+        "Cada agente tiene comandos y variables propias: si me dices CUÁL agente quieres instalar, te doy los pasos EXACTOS de ese agente (dependencias, variables y comando de arranque). También vienen en su manual, y soporte@tuialista.com te acompaña si te atoras.",
       ].join(" "),
     },
     {
@@ -278,6 +279,127 @@
   ];
 
   var knowledge = { client: knowledgeClient, affiliate: knowledgeAffiliate };
+
+  /* ══════════════════════════════════════════════════════════════════════
+     FICHAS DETALLADAS POR AGENTE (retrieval) — datos REALES de los manuales.
+     Se incluye SOLO la ficha del/los agente(s) que menciona el usuario, para
+     no inflar el prompt (16 manuales completos no caben). Precios = catálogo real.
+     buildAgentDetail() arma el texto; matchAgents() elige por palabra clave.
+     ══════════════════════════════════════════════════════════════════════ */
+  var agentDetails = [
+    { id:"documents", name:"Documentos", price:"$9", kw:["documento","documentos","expediente","expedientes"],
+      does:"busca dentro de tus documentos y te responde en lenguaje natural, citando de qué archivo salió la respuesta",
+      reads:"PDF, Word, texto y Markdown", deps:"requests pynacl pypdf python-docx",
+      env:"DOCS_FOLDER", envDesc:"la ruta de la carpeta con tus documentos", run:"python documents_agent.py",
+      ex:"¿en qué contrato está la cláusula de exclusividad?" },
+    { id:"excel", name:"Excel y datos", price:"$9", kw:["excel","hoja de calculo","hojas de calculo","xlsx","csv","spreadsheet"],
+      does:"analiza tus hojas de cálculo hablándole en lenguaje natural, sin fórmulas: totales, comparativas y hallazgos",
+      reads:"Excel (.xlsx) y CSV", deps:"requests pynacl openpyxl",
+      env:"EXCEL_FOLDER", envDesc:"la ruta de la carpeta con tus hojas de cálculo", run:"python excel_agent.py",
+      ex:"¿cuánto vendí en total en marzo?" },
+    { id:"database", name:"Base de datos", price:"$15", kw:["base de datos","sql","postgres","mysql","consultar la base"],
+      does:"convierte tus preguntas en consultas de SOLO LECTURA a tu propia base de datos, sin que sepas SQL; la conexión no sale de tu red",
+      reads:"tu base de datos (consultas SELECT, solo lectura)", deps:"requests pynacl",
+      env:"TARGET_DB_URL", envDesc:"la conexión a TU base de datos (y TARGET_DB_TYPE con el tipo: postgres, mysql, etc.)", run:"python database_agent.py",
+      ex:"¿cuántos clientes nuevos hubo este mes?" },
+    { id:"correo", name:"Correo", price:"$15", kw:["correo","correos","email","emails","bandeja","mail"],
+      does:"ordena tu bandeja de correo, te dice qué urge y te redacta respuestas, procesando todo en tu equipo",
+      reads:"correos exportados (.eml, .mbox, .txt, .csv)", deps:"requests pynacl",
+      env:"CORREO_FOLDER", envDesc:"la carpeta con tus correos exportados", run:"python correo_agent.py",
+      ex:"¿qué correos urgen hoy y qué debo responder?" },
+    { id:"tramites", name:"Trámites de Gobierno", price:"$19", kw:["tramite","tramites","gobierno","pasaporte","curp"],
+      does:"te guía paso a paso en trámites de gobierno mexicanos y te dice qué documentos tienes y cuáles te faltan",
+      reads:"tus documentos (INE, CURP, RFC, comprobantes, actas…)", deps:"requests pynacl pypdf python-docx",
+      env:"TRAMITES_DOCS_FOLDER", envDesc:"la carpeta con tus documentos personales", run:"python tramites_agent.py",
+      ex:"¿qué necesito para renovar mi pasaporte y qué me falta?" },
+    { id:"garantias", name:"Reclamaciones y Garantías", price:"$19", kw:["garantia","garantias","reclamacion","reclamaciones","reclamar"],
+      does:"rastrea tus garantías y te ayuda a reclamar a tiempo para que no pierdas dinero",
+      reads:"tickets, facturas y comprobantes (texto, PDF, Word, Excel, CSV)", deps:"requests pynacl pypdf python-docx openpyxl",
+      env:"GARANTIAS_FOLDER", envDesc:"la carpeta con tus comprobantes", run:"python garantias_agent.py",
+      ex:"¿qué garantías vencen este mes?" },
+    { id:"actas", name:"Actas y Reuniones", price:"$19", kw:["acta","actas","minuta","minutas","reunion","reuniones","junta"],
+      does:"convierte tus notas de reuniones en minutas claras y saca automáticamente los acuerdos y las tareas",
+      reads:"notas y transcripciones (texto, Markdown, Word, PDF)", deps:"requests pynacl pypdf python-docx",
+      env:"MEETINGS_FOLDER", envDesc:"la carpeta con tus notas de reuniones", run:"python actas_agent.py",
+      ex:"saca la minuta y las tareas de la junta de ayer" },
+    { id:"contratos-personales", name:"Contratos Personales", price:"$19", kw:["contrato personal","contratos personales","voy a firmar","arrendamiento"],
+      does:"te explica en palabras simples cualquier contrato que estés a punto de firmar y te avisa de las cláusulas que te pueden perjudicar",
+      reads:"tus contratos (PDF, Word y texto)", deps:"requests pynacl pypdf python-docx",
+      env:"PERSONAL_CONTRACTS_FOLDER", envDesc:"la carpeta (o archivo) con el contrato", run:"python contratos_personales_agent.py",
+      ex:"¿a qué me compromete este contrato de arrendamiento?" },
+    { id:"inventario", name:"Inventario", price:"$29", kw:["inventario","stock","almacen","reorden"],
+      does:"analiza tu inventario para que no te quedes sin stock ni tengas capital parado de más",
+      reads:"archivos de inventario (Excel .xlsx y CSV)", deps:"requests pynacl openpyxl",
+      env:"INV_FOLDER", envDesc:"la carpeta con tus archivos de inventario", run:"python inventario_agent.py",
+      ex:"¿qué productos debo reordenar pronto?" },
+    { id:"fiscal", name:"Cumplimiento Fiscal", price:"$35", kw:["fiscal","sat","impuesto","impuestos","declaracion","cfdi"],
+      does:"organiza tus documentos fiscales, te arma un calendario de obligaciones y te avisa de las fechas límite del SAT",
+      reads:"documentos fiscales (PDF, Word, Excel, CSV, XML de CFDI)", deps:"requests pynacl pypdf python-docx openpyxl",
+      env:"FISCAL_FOLDER", envDesc:"la carpeta con tus documentos fiscales", run:"python fiscal_agent.py",
+      ex:"¿qué obligaciones fiscales vencen este mes?" },
+    { id:"conocimiento", name:"Conocimiento Interno", price:"$39", kw:["conocimiento interno","base de conocimiento","documentos de la empresa"],
+      does:"convierte todos los documentos de tu empresa en una base de conocimiento que responde preguntas citando la fuente",
+      reads:"documentos internos (PDF, Word, Excel, CSV, PowerPoint, txt, Markdown)", deps:"requests pynacl pypdf python-docx openpyxl python-pptx",
+      env:"KB_FOLDER", envDesc:"la carpeta con los documentos internos", run:"python conocimiento_agent.py",
+      ex:"¿cuántos días de vacaciones me tocan según nuestras políticas?" },
+    { id:"docs-tecnica", name:"Documentación Técnica", price:"$49", kw:["documentacion tecnica","documentar codigo","readme","codigo fuente"],
+      does:"genera y mantiene la documentación técnica de tu software a partir de tu propio código, sin que el código salga de tu equipo",
+      reads:"tu proyecto de código", deps:"requests pynacl",
+      env:"CODE_FOLDER", envDesc:"la carpeta del proyecto de código", run:"python docs_tecnica_agent.py",
+      ex:"documenta la estructura de este proyecto" },
+    { id:"facturas", name:"Facturas y Cuentas por Pagar", price:"$49", kw:["factura","facturas","cuentas por pagar","duplicad","por pagar"],
+      does:"organiza tus facturas por pagar, te avisa de los vencimientos y detecta duplicados y anomalías antes de que te cuesten dinero",
+      reads:"facturas (PDF, Word, Excel, CSV, XML, txt)", deps:"requests pynacl pypdf python-docx openpyxl",
+      env:"INVOICES_FOLDER", envDesc:"la carpeta con tus facturas", run:"python facturas_agent.py",
+      ex:"¿qué facturas vencen esta semana? ¿hay duplicados?" },
+    { id:"nominas", name:"Nóminas y RR.HH.", price:"$59", kw:["nomina","nominas","empleados","recursos humanos","rrhh"],
+      does:"organiza los datos de tus empleados, prepara reportes de RH y vigila las fechas críticas (fin de contratos, aniversarios, vacaciones), 100% en tu equipo",
+      reads:"tu plantilla de empleados (Excel o CSV)", deps:"requests pynacl openpyxl",
+      env:"HR_FOLDER", envDesc:"la carpeta con los datos de empleados", run:"python nominas_agent.py",
+      ex:"¿a quién se le vence el contrato este mes?" },
+    { id:"contratos", name:"Contratos y Renovaciones", price:"$99", kw:["contratos y renovaciones","renovacion","renovaciones","contrato de empresa","clausula"],
+      does:"lee tus contratos de empresa, te avisa de renovaciones automáticas y detecta cláusulas riesgosas antes de que sea tarde",
+      reads:"tus contratos (PDF, Word y texto)", deps:"requests pynacl pypdf python-docx",
+      env:"CONTRACTS_FOLDER", envDesc:"la carpeta con tus contratos", run:"python contratos_agent.py",
+      ex:"¿qué contratos se renuevan solos en los próximos 60 días?" },
+    { id:"as400", name:"AS/400 · IBM i", price:"$299", kw:["as400","as/400","ibm i","rpg","cobol","db2","iseries"],
+      does:"es el puente entre tu IBM i (AS/400) y el lenguaje natural: consulta DB2 for i en lenguaje normal (solo lectura) y explica código RPG/COBOL; todo ocurre dentro de tu red",
+      reads:"tu IBM i / DB2 for i y fuentes RPG/COBOL",
+      install:"Instalación (empresarial; conviene apoyo de tu área de TI): requiere Python 3.9+, 'pip install requests pynacl pyodbc' y configurar la conexión ODBC a tu IBM i (DB2 for i), además de tu clave de licencia. El manual del agente detalla la conexión exacta y soporte@tuialista.com acompaña la puesta en marcha.",
+      ex:"consulta las ventas del último trimestre en DB2" },
+  ];
+
+  function buildAgentDetail(a) {
+    var t = "FICHA — " + a.name + " (" + a.price + "/mes). Qué hace: " + a.does + ". Lee/consulta: " + (a.reads || "") + ".";
+    if (a.install) {
+      t += " " + a.install;
+    } else {
+      t += " Instalación (es un poco técnica; guíala en lenguaje simple, paso a paso): " +
+        "1) Ten Python 3.9+ instalado y a la mano tu clave de licencia (formato TIA-XXXX-...). " +
+        "2) Copia a tu equipo las carpetas del agente, agent-sdk y core-license (las recibes al contratarlo). " +
+        "3) Abre una terminal y ejecuta: pip install " + a.deps + " . " +
+        "4) Define dos variables de entorno: TUIALISTA_LICENSE_KEY con tu clave, y " + a.env + " con " + a.envDesc + ". " +
+        "5) Arráncalo con: " + a.run + " .";
+    }
+    t += " Uso: le escribes preguntas en lenguaje natural, por ejemplo: \"" + a.ex + "\". Solo LEE tus datos (no los modifica) y todo se procesa en tu equipo; internet solo se usa para validar la licencia y redactar la respuesta con IA. El manual completo del agente trae el detalle exacto.";
+    return t;
+  }
+
+  function matchAgents(message) {
+    var q = normalize(message || "");
+    if (!q) return [];
+    var scored = [];
+    for (var i = 0; i < agentDetails.length; i++) {
+      var a = agentDetails[i], s = 0;
+      for (var k = 0; k < a.kw.length; k++) {
+        var w = normalize(a.kw[k]);
+        if (w && q.indexOf(w) >= 0) s += w.indexOf(" ") >= 0 ? 2 : 1;
+      }
+      if (s > 0) scored.push({ a: a, s: s });
+    }
+    scored.sort(function (x, y) { return y.s - x.s; });
+    return scored.slice(0, 2).map(function (o) { return o.a; });
+  }
 
   /* ══════════════════════════════════════════════════════════════════════
      FALLBACK FAQ (offline) — respuestas locales localizadas en 6 idiomas.
@@ -563,9 +685,18 @@
 
   /* fullSystemPrompt(mode): rol + contexto fijo. Es lo que el widget envía
      al motor de IA como system prompt (mismo patrón que los agentes). */
-  function fullSystemPrompt(mode) {
+  function fullSystemPrompt(mode, userMessage) {
     var role = systemPrompts[mode] || systemPrompts.client;
-    return role + "\n\n" + guardrails + "\n\n" + buildContext(mode);
+    var out = role + "\n\n" + guardrails + "\n\n" + buildContext(mode);
+    // Retrieval: si el usuario menciona un agente, adjunta SU ficha detallada
+    // (datos reales del manual). Solo en modo cliente; máximo 2 fichas.
+    if (mode !== "affiliate" && userMessage) {
+      var hits = matchAgents(userMessage);
+      for (var i = 0; i < hits.length; i++) {
+        out += "\n\n## " + buildAgentDetail(hits[i]);
+      }
+    }
+    return out;
   }
 
   function getLangInstruction(lang) {
@@ -612,6 +743,9 @@
     systemPrompts: systemPrompts,
     langInstruction: langInstruction,
     knowledge: knowledge,
+    agentDetails: agentDetails,
+    matchAgents: matchAgents,
+    buildAgentDetail: buildAgentDetail,
     fallbackFaq: fallbackFaq,
     ui: ui,
     normalize: normalize,
