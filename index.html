@@ -4,20 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>
-/* Enlaces de afiliado: /?ref=CODE y /?ref=CODE&agent=ID llegan a la RAÍZ. Los
-   mandamos al catálogo, que es donde se INICIA la suscripción y se aplica el ref
-   (con agent abre ese agente; sin agent muestra el catálogo para elegir). Se hace
-   antes de pintar la página para que no haya parpadeo. */
+/* Enlaces de afiliado (llegan a la RAÍZ). Guardamos el ref y redirigimos antes de
+   pintar (sin parpadeo):
+   - con agent  -> /catalogo/ y abre ese agente directo.
+   - solo ref   -> /portal/ a CREAR CUENTA (el ref queda guardado y se aplica al comprar). */
 (function () {
   try {
     var q = new URLSearchParams(location.search);
     var ref = (q.get("ref") || "").trim();
     var agent = (q.get("agent") || "").trim();
-    if (ref || agent) {
-      var p = new URLSearchParams();
-      if (ref) p.set("ref", ref);
-      if (agent) p.set("agent", agent);
+    if (ref) { try { localStorage.setItem("tuialista_ref", ref); localStorage.setItem("tuialista_ref_ts", String(Date.now())); } catch (e) {} }
+    if (agent) {
+      var p = new URLSearchParams(); p.set("agent", agent); if (ref) p.set("ref", ref);
       location.replace("/catalogo/?" + p.toString());
+    } else if (ref) {
+      location.replace("/portal/?ref=" + encodeURIComponent(ref) + "#register");
     }
   } catch (e) { /* si algo falla, se queda en la landing */ }
 })();

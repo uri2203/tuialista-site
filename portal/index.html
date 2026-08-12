@@ -1920,7 +1920,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     })();
-    showView("login");
+    // Si llega desde un enlace de afiliado (?ref=) o con #register, abre directo la
+    // vista de CREAR CUENTA; el ref queda en localStorage (checkout.js) y se aplica al comprar.
+    var _wantReg=false,_refCode="";
+    try{ var _q=new URLSearchParams(location.search); _refCode=(_q.get("ref")||"").trim();
+         _wantReg=!!_refCode||location.hash==="#register"||_q.get("register")==="1"; }catch(e){}
+    showView(_wantReg?"register":"login");
+    if(_wantReg&&_refCode){ var _rs=$("reg-sub"); if(_rs)_rs.textContent=_rs.textContent+" · "+L("Referido por","Referred by","Indicado por","Parrainé par","Empfohlen von","Segnalato da")+" "+_refCode; }
+    if(_wantReg){ var _re=$("reg-email"); if(_re)setTimeout(function(){try{_re.focus();}catch(e){}},60); }
     if(tok()){ api("/api/auth/me").then(function(){hideAuth();loadData();}).catch(function(){showAuth();}); }
     else { showAuth(); }
   });
