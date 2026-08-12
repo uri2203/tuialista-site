@@ -72,6 +72,7 @@
   var knowledgeClient = [
     {
       id: "que-es",
+      kw: ["que es","what is","qué es","como funciona","how does it work","o que e","qu'est-ce","was ist","cos'e","agentes","agents"],
       title: "Qué es TuIAlista",
       body: [
         "TuIAlista es una plataforma de agentes de inteligencia artificial especializados que corren LOCALMENTE en el equipo del cliente.",
@@ -81,6 +82,7 @@
     },
     {
       id: "privacidad",
+      kw: ["privacidad","privacy","privacidade","confidentialite","datenschutz","privacy","seguro","safe","seguridad","security","datos","data","dados","donnees","daten","dati","local","nube","cloud","salen","leave","sicher","sûr","sicuro"],
       title: "Privacidad — procesamiento 100% local",
       body: [
         "El diferenciador principal: los datos del cliente NUNCA salen de su equipo.",
@@ -91,6 +93,7 @@
     },
     {
       id: "agentes",
+      kw: ["precio","precios","price","prices","cuesta","cost","cuanto","how much","preço","prix","preis","prezzo","lista de agentes","agents list","que agentes","catalogo","catalog","coûte","kostet","costa","quanto"],
       title: "Los 16 agentes y sus precios (USD/mes)",
       body: [
         "Documentos ($9): pregunta en lenguaje natural sobre contratos, manuales y expedientes; responde citando la fuente.",
@@ -113,6 +116,7 @@
     },
     {
       id: "como-elegir",
+      kw: ["que agente","which agent","cual agente","recomien","recommend","necesito","need","para que sirve","qual agente","quel agent","welcher agent","quale agente","que me sirve"],
       title: "Qué agente elegir según la necesidad (asesoría)",
       body: [
         "Guía para recomendar el agente correcto: para leer o consultar contratos, manuales y expedientes → Documentos ($9); para analizar hojas de cálculo hablando → Excel y datos ($9); para consultar una base de datos en lenguaje natural (solo lectura) → Base de datos ($15); para organizar y responder correo → Correo ($15).",
@@ -123,6 +127,7 @@
     },
     {
       id: "instalacion",
+      kw: ["instalar","install","instalacion","installation","setup","configurar","configure","python","descargar","download","empezar","start","installer","installieren","installare","instalar","como instalo","how do i install","pasos"],
       title: "Instalación y puesta en marcha (proceso general)",
       body: [
         "Cada agente es un pequeño programa que corre en tu propio equipo. La instalación es un poco técnica, pero se hace una sola vez y aquí te la guío.",
@@ -137,6 +142,7 @@
     },
     {
       id: "facturacion",
+      kw: ["facturacion","billing","cobro","charge","pago","payment","suscripcion","subscription","factura","moneda","currency","faturamento","facturation","abrechnung","fatturazione","tarjeta","card"],
       title: "Facturación, prueba y cancelación",
       body: [
         "Licencia mensual sin ataduras: se paga solo por los agentes que se usan y se cancela cuando se quiera desde el portal.",
@@ -147,6 +153,7 @@
     },
     {
       id: "prueba-gratis",
+      kw: ["prueba","trial","gratis","free","gratuit","gratis","kostenlos","gratuito","7 dias","7 days","probar","try","essai","prova","teste"],
       title: "Prueba gratis de 7 días",
       body: [
         "Cada agente incluye 7 días de prueba gratis para usarlo con tus propios datos antes de pagar.",
@@ -156,6 +163,7 @@
     },
     {
       id: "cancelacion",
+      kw: ["cancelar","cancel","cancelacion","baja","cambiar plan","change plan","annuler","kündigen","disdire","cancelar","dar de baja"],
       title: "Cómo cancelar o cambiar de plan",
       body: [
         "Se cancela cuando quieras, sin ataduras, desde el portal del cliente, en la sección de gestión de suscripción / facturación.",
@@ -165,6 +173,7 @@
     },
     {
       id: "reembolsos",
+      kw: ["reembolso","refund","devolucion","money back","remboursement","erstattung","rimborso","reembolso","devolver","devolver dinero"],
       title: "Reembolsos",
       body: [
         "La primera suscripción tiene garantía de reembolso completo dentro de los primeros 14 días.",
@@ -174,6 +183,7 @@
     },
     {
       id: "problemas",
+      kw: ["problema","problem","error","no funciona","not working","no se activa","suspendida","suspended","issue","falla","probleme","fehler","problème","licencia no"],
       title: "Problemas comunes",
       body: [
         "Si un agente no se activa: revisar que la clave de licencia sea correcta y que el pago esté al día.",
@@ -185,6 +195,7 @@
     },
     {
       id: "cuenta",
+      kw: ["cuenta","account","registro","register","registrar","sign up","verificar","verify","codigo","code","contraseña","password","login","acceso","conta","compte","konto","recuperar"],
       title: "Cuenta: registro, verificación y acceso",
       body: [
         "Para empezar se crea una cuenta gratis en el portal con correo y contraseña.",
@@ -195,6 +206,7 @@
     },
     {
       id: "soporte",
+      kw: ["soporte","support","contacto","contact","ayuda","help","assistance","hilfe","aiuto","escribir","email de soporte"],
       title: "Soporte y contacto",
       body: [
         "El canal oficial de soporte es soporte@tuialista.com.",
@@ -210,6 +222,7 @@
   var knowledgeAffiliate = [
     {
       id: "programa",
+      kw: ["programa","program","afiliado","affiliate","como funciona el programa","que es afiliado"],
       title: "El programa de afiliados",
       body: [
         "TuIAlista no vende de forma directa: su canal principal son los afiliados, que recomiendan la plataforma y cobran comisión.",
@@ -220,6 +233,7 @@
     },
     {
       id: "cuanto-gano",
+      kw: ["cuanto gano","how much earn","comision","commission","ganancia","earnings","gagne","verdiene","guadagno","30%","recurrente","recurring"],
       title: "Cuánto se gana (30% recurrente)",
       body: [
         "Se gana el 30% del precio del agente, cada mes que el cliente siga activo.",
@@ -230,6 +244,7 @@
     },
     {
       id: "como-refiero",
+      kw: ["como refiero","how to refer","referir","refer","enlace","link","codigo de referido","referral","share","compartir","parrainer"],
       title: "Cómo referir (código y enlace)",
       body: [
         "Al registrarse, el sistema genera un código único (ej. MRES9A4C21) y un enlace personal: https://tuialista.com/?ref=TUCODIGO.",
@@ -240,6 +255,7 @@
     },
     {
       id: "cuando-cobro",
+      kw: ["cuando cobro","when paid","cuando pagan","payout","cobro","se acredita","pagan","quando recebo","wann bezahlt"],
       title: "Cómo y cuándo se cobra",
       body: [
         "Las comisiones se acreditan solas: cada vez que un cliente referido paga su mes, se registra la comisión como PENDIENTE.",
@@ -250,6 +266,7 @@
     },
     {
       id: "retiros",
+      kw: ["retiro","withdraw","withdrawal","retiros","paypal","transferencia","bank","saldo","balance","minimo","prelievo","auszahlung","retrait"],
       title: "Retiros y método de cobro",
       body: [
         "El afiliado ve su saldo disponible en la sección Retiros y solicita un retiro cuando supera el mínimo de $50 USD.",
@@ -260,6 +277,7 @@
     },
     {
       id: "reglas",
+      kw: ["reglas","rules","atribucion","attribution","cancela","churn","empresas grandes","limite","cap"],
       title: "Reglas del programa",
       body: [
         "La comisión dura lo que dure el cliente: si el cliente cancela, se deja de cobrar por él, pero se conserva todo lo ya ganado.",
@@ -270,6 +288,7 @@
     },
     {
       id: "materiales",
+      kw: ["materiales","materials","kit","recursos","resources","mensajes listos","argumentos","guia"],
       title: "Materiales del kit de afiliados",
       body: [
         "El kit incluye: la guía del afiliado, los argumentos de venta (diferenciador local, los 16 agentes y respuestas a objeciones), mensajes listos (WhatsApp, redes, correo y seguimiento) y las preguntas frecuentes.",
@@ -674,11 +693,37 @@
 
   /* buildContext(mode): arma el contexto fijo con TODAS las secciones.
      ← Este es el punto exacto a reemplazar por recuperación top-k (RAG). */
-  function buildContext(mode) {
+  /* buildContext(mode, userMessage): RETRIEVAL de secciones — incluye un núcleo
+     pequeño + las secciones que coinciden con la pregunta. Contexto chico =>
+     el modelo obedece la instrucción de idioma (responde en el idioma del usuario). */
+  function buildContext(mode, userMessage) {
     var sections = knowledge[mode] || [];
+    var core = mode === "affiliate" ? ["programa"] : ["que-es"];
+    var q = normalize(userMessage || "");
+    var score = {};
+    for (var i = 0; i < sections.length; i++) {
+      if (core.indexOf(sections[i].id) >= 0) score[sections[i].id] = 100;
+    }
+    if (q) {
+      for (var i = 0; i < sections.length; i++) {
+        var s = sections[i], sc = 0, kw = s.kw || [];
+        for (var k = 0; k < kw.length; k++) {
+          var w = normalize(kw[k]);
+          if (w && q.indexOf(w) >= 0) sc += w.indexOf(" ") >= 0 ? 2 : 1;
+        }
+        if (sc > 0) score[s.id] = (score[s.id] || 0) + sc;
+      }
+    }
+    if (Object.keys(score).length <= core.length) {
+      var def = mode === "affiliate" ? ["cuanto-gano", "como-refiero"] : ["como-elegir", "agentes"];
+      for (var d = 0; d < def.length; d++) score[def[d]] = 1;
+    }
+    var top = sections.filter(function (s) { return score[s.id]; })
+      .sort(function (a, b) { return score[b.id] - score[a.id]; }).slice(0, 5)
+      .map(function (s) { return s.id; });
     var out = ["[BASE DE CONOCIMIENTO — TuIAlista]"];
     for (var i = 0; i < sections.length; i++) {
-      out.push("\n## " + sections[i].title + "\n" + sections[i].body);
+      if (top.indexOf(sections[i].id) >= 0) out.push("\n## " + sections[i].title + "\n" + sections[i].body);
     }
     return out.join("\n");
   }
@@ -687,7 +732,7 @@
      al motor de IA como system prompt (mismo patrón que los agentes). */
   function fullSystemPrompt(mode, userMessage) {
     var role = systemPrompts[mode] || systemPrompts.client;
-    var out = role + "\n\n" + guardrails + "\n\n" + buildContext(mode);
+    var out = role + "\n\n" + guardrails + "\n\n" + buildContext(mode, userMessage);
     // Retrieval: si el usuario menciona un agente, adjunta SU ficha detallada
     // (datos reales del manual). Solo en modo cliente; máximo 2 fichas.
     if (mode !== "affiliate" && userMessage) {

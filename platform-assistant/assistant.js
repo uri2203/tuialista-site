@@ -321,7 +321,7 @@
       lang: this.lang,
       history: this.history.slice(-10),
       // Rol + contexto fijo + (retrieval) la ficha del agente que menciona el mensaje.
-      system_prompt: KB.fullSystemPrompt(this.mode, text),
+      system_prompt: KB.fullSystemPrompt(this.mode, text, this.lang),
     };
 
     var done = function (reply, offline) {
