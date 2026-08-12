@@ -3,6 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+/* Enlaces de afiliado: /?ref=CODE y /?ref=CODE&agent=ID llegan a la RAÍZ. Los
+   mandamos al catálogo, que es donde se INICIA la suscripción y se aplica el ref
+   (con agent abre ese agente; sin agent muestra el catálogo para elegir). Se hace
+   antes de pintar la página para que no haya parpadeo. */
+(function () {
+  try {
+    var q = new URLSearchParams(location.search);
+    var ref = (q.get("ref") || "").trim();
+    var agent = (q.get("agent") || "").trim();
+    if (ref || agent) {
+      var p = new URLSearchParams();
+      if (ref) p.set("ref", ref);
+      if (agent) p.set("agent", agent);
+      location.replace("/catalogo/?" + p.toString());
+    }
+  } catch (e) { /* si algo falla, se queda en la landing */ }
+})();
+</script>
 <title>TuIAlista — Agentes de IA que trabajan dentro de tu negocio</title>
 <meta name="description" content="Agentes de inteligencia artificial que corren localmente en tu equipo, con tus datos y tus sistemas. Tus datos nunca salen. Licencia mensual, sin complicaciones.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
