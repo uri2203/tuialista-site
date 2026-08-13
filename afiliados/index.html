@@ -2084,7 +2084,7 @@ document.addEventListener("DOMContentLoaded", () => {
     var code=$("aff-ver-code").value.trim();
     if(!code||!pendingEmail)return;
     var btn=$("aff-ver-btn"); $("aff-ver-err").style.display="none"; btn.disabled=true; btn.textContent=T.verifying;
-    fetch(API+"/api/auth/verify-email",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:pendingEmail,code:code,role:"affiliate"})})
+    fetch(API+"/api/auth/verify-email",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:pendingEmail,code:code,role:"affiliate",lang:lang})})
       .then(function(r){return r.json().then(function(j){return {s:r.status,j:j};});})
       .then(function(res){ if(res.s===200&&res.j.token){setTok(res.j.token);hideAuth();loadData();} else {setErr("aff-ver-err",errmsg(res.j.error));} })
       .catch(function(){setErr("aff-ver-err",T.neterr);})
