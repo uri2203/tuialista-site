@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Descargar agentes — TuIAlista</title>
+<meta name="description" content="Descarga tu agente de TuIAlista. Ábrelo con doble clic, pega tu clave de licencia y listo. Sin instalar nada, sin Python ni terminal.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{--steel-900:#0f1922;--paper:#f5f6f4;--paper-2:#eceee9;--ink:#0f1922;--muted:#5a6b73;--signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2;--ok:#1d9e75}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper-2);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  header{position:sticky;top:0;background:rgba(245,246,244,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+  .nav{max-width:1080px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+  .logo b{color:var(--signal)}
+  .nav .r{display:flex;align-items:center;gap:18px}
+  .nav .r a{font-size:14px;color:var(--muted);text-decoration:none}
+  .nav .r a:hover{color:var(--ink)}
+  main{max-width:1080px;margin:0 auto;padding:38px 24px 80px}
+  .head{margin-bottom:26px}
+  .eyebrow{font-family:'JetBrains Mono';font-size:11.5px;letter-spacing:.1em;color:var(--signal-dim);margin-bottom:8px}
+  h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,34px);line-height:1.12;margin-bottom:8px}
+  .sub{color:var(--muted);font-size:15px;max-width:660px}
+  .win{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:12.5px;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 12px}
+  /* Guía de instalación */
+  .guide{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:26px}
+  .guide h2{font-family:'Space Grotesk';font-size:16px;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+  .guide h2 .ti{color:var(--signal-dim)}
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+  .step{display:flex;gap:12px}
+  .num{flex:none;width:28px;height:28px;border-radius:8px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center}
+  .step b{font-family:'Space Grotesk';font-weight:600;font-size:14.5px;display:block;margin-bottom:2px}
+  .step p{font-size:13px;color:var(--muted);line-height:1.5}
+  .nokey{margin-top:14px;font-size:13px;color:var(--muted)}
+  .nokey a{color:var(--signal-dim);text-decoration:none;font-weight:500}
+  /* Grid de agentes */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:30px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;transition:.15s}
+  .card.hl{border-color:var(--signal);box-shadow:0 0 0 3px rgba(232,130,30,.15)}
+  .ico{width:40px;height:40px;border-radius:10px;background:var(--paper-2);display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--signal-dim);margin-bottom:12px}
+  .card h3{font-family:'Space Grotesk';font-size:16px;font-weight:600;margin-bottom:12px;flex:1}
+  .dl{width:100%;padding:10px;border:none;border-radius:9px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;text-decoration:none;transition:.15s}
+  .dl:hover{background:var(--signal);color:#1a1206}
+  .state{grid-column:1/-1;text-align:center;color:var(--muted);padding:50px 0;font-size:15px}
+  footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px;margin-top:10px}
+  footer a{color:#cdd5d9;text-decoration:none}
+  @media(max-width:520px){.nav .r a.hide-sm{display:none}}
+</style>
+<meta property="og:title" content="Descargar agentes — TuIAlista">
+<meta property="og:description" content="Descarga tu agente, ábrelo con doble clic, pega tu licencia y listo.">
+<meta property="og:url" content="https://tuialista.com/descargar/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tuialista">
+<script defer data-domain="tuialista.com" src="https://plausible.io/js/script.js"></script>
+</head>
+<body>
+<header><div class="nav">
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+  <div class="r">
+    <a class="hide-sm" href="/catalogo/" id="l-cat">Catálogo</a>
+    <a class="hide-sm" href="/soporte/" id="l-support">Soporte</a>
+    <a href="/portal/" id="l-portal">Entrar</a>
+  </div>
+</div></header>
+
+<main>
+  <div class="head">
+    <div class="eyebrow" id="eyebrow">DESCARGAS</div>
+    <h1 id="title">Descarga tus agentes</h1>
+    <p class="sub" id="sub">Sin instalar nada, sin Python ni terminal. Ábrelo con doble clic, pega tu clave de licencia y a trabajar.</p>
+    <span class="win"><i class="ti ti-brand-windows"></i> <span id="winnote">Para Windows</span></span>
+  </div>
+
+  <div class="guide">
+    <h2><i class="ti ti-rocket"></i> <span id="g-title">Cómo instalarlo (2 minutos)</span></h2>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><div><b id="s1t">Descárgalo</b><p id="s1p">Baja el .exe del agente que compraste (botones de abajo).</p></div></div>
+      <div class="step"><div class="num">2</div><div><b id="s2t">Ábrelo con doble clic</b><p id="s2p">Se abre una ventana. Pega tu clave de licencia (te llegó por correo) y pulsa Activar.</p></div></div>
+      <div class="step"><div class="num">3</div><div><b id="s3t">Elige tu carpeta</b><p id="s3p">Selecciona la carpeta con tus archivos. ¡Listo! Tus datos nunca salen de tu equipo.</p></div></div>
+    </div>
+    <p class="nokey" id="nokey">¿Aún no tienes licencia? <a href="/catalogo/">Elige tu agente en el catálogo →</a></p>
+  </div>
+
+  <div class="grid" id="grid">
+    <div class="state" id="loading">Cargando agentes…</div>
+  </div>
+</main>
+
+<footer>&copy; <span id="y"></span> TuIAlista &middot; <a href="/soporte/">Soporte</a> &middot; <a href="/catalogo/">Catálogo</a> &middot; <a href="/">Inicio</a></footer>
+
+<script>
+(function(){
+  var API=(window.CHECKOUT_API_BASE||"https://tuialista-xrtd.onrender.com").replace(/\/$/,"");
+  var REL="https://github.com/uri2203/tuialista-site/releases/download/agents/";
+  var LANG=(function(){try{var l=(localStorage.getItem("tuialista_lang")||"es").slice(0,2).toLowerCase();return ["es","en","pt","fr","de","it"].indexOf(l)>=0?l:"es";}catch(e){return "es";}})();
+  function L(o){return o[LANG]||o.es;}
+  document.getElementById("y").textContent=new Date().getFullYear();
+  var ICON={documents:"file-text",excel:"table",database:"database",fiscal:"report-money",
+    contratos:"file-certificate","docs-tecnica":"file-code",tramites:"building-bank",
+    "contratos-personales":"signature",garantias:"shield-check",facturas:"file-invoice",
+    conocimiento:"books",nominas:"id-badge-2",inventario:"box-seam",actas:"clipboard-text",
+    correo:"inbox",as400:"server-2"};
+  // Orden de aparición (los 16 del release)
+  var ORDER=["excel","documents","contratos","contratos-personales","facturas","fiscal",
+    "nominas","garantias","inventario","conocimiento","actas","tramites","correo",
+    "docs-tecnica","database","as400"];
+  // Nombre de respaldo por si el catálogo no responde
+  var FB={excel:"Excel y datos",documents:"Documentos",contratos:"Contratos",
+    "contratos-personales":"Contratos Personales",facturas:"Facturas",fiscal:"Fiscal",
+    nominas:"Nóminas",garantias:"Garantías",inventario:"Inventario",conocimiento:"Conocimiento",
+    actas:"Actas",tramites:"Trámites",correo:"Correo","docs-tecnica":"Documentación Técnica",
+    database:"Base de datos",as400:"AS/400"};
+
+  if(LANG!=="es"){
+    document.documentElement.lang=LANG;
+    document.getElementById("eyebrow").textContent=L({es:"DESCARGAS",en:"DOWNLOADS",pt:"DOWNLOADS",fr:"TÉLÉCHARGEMENTS",de:"DOWNLOADS",it:"DOWNLOAD"});
+    document.getElementById("title").textContent=L({es:"Descarga tus agentes",en:"Download your agents",pt:"Baixe seus agentes",fr:"Téléchargez vos agents",de:"Lade deine Agenten herunter",it:"Scarica i tuoi agenti"});
+    document.getElementById("sub").textContent=L({es:"Sin instalar nada, sin Python ni terminal. Ábrelo con doble clic, pega tu clave de licencia y a trabajar.",en:"No install, no Python, no terminal. Double-click to open, paste your license key and go.",pt:"Sem instalar nada, sem Python nem terminal. Abra com dois cliques, cole sua chave de licença e pronto.",fr:"Rien à installer, ni Python ni terminal. Double-cliquez pour ouvrir, collez votre clé de licence et c'est parti.",de:"Nichts installieren, kein Python, kein Terminal. Mit Doppelklick öffnen, Lizenzschlüssel einfügen und loslegen.",it:"Niente da installare, niente Python né terminale. Aprilo con doppio clic, incolla la tua chiave di licenza e via."});
+    document.getElementById("winnote").textContent=L({es:"Para Windows",en:"For Windows",pt:"Para Windows",fr:"Pour Windows",de:"Für Windows",it:"Per Windows"});
+    document.getElementById("g-title").textContent=L({es:"Cómo instalarlo (2 minutos)",en:"How to install it (2 minutes)",pt:"Como instalar (2 minutos)",fr:"Comment l'installer (2 minutes)",de:"So installierst du es (2 Minuten)",it:"Come installarlo (2 minuti)"});
+    document.getElementById("s1t").textContent=L({es:"Descárgalo",en:"Download it",pt:"Baixe",fr:"Téléchargez",de:"Herunterladen",it:"Scaricalo"});
+    document.getElementById("s1p").textContent=L({es:"Baja el .exe del agente que compraste (botones de abajo).",en:"Get the .exe of the agent you bought (buttons below).",pt:"Baixe o .exe do agente que você comprou (botões abaixo).",fr:"Récupérez le .exe de l'agent acheté (boutons ci-dessous).",de:"Lade die .exe des gekauften Agenten herunter (Buttons unten).",it:"Scarica il .exe dell'agente acquistato (pulsanti sotto)."});
+    document.getElementById("s2t").textContent=L({es:"Ábrelo con doble clic",en:"Open it (double-click)",pt:"Abra com dois cliques",fr:"Ouvrez-le (double-clic)",de:"Doppelklick zum Öffnen",it:"Aprilo con doppio clic"});
+    document.getElementById("s2p").textContent=L({es:"Se abre una ventana. Pega tu clave de licencia (te llegó por correo) y pulsa Activar.",en:"A window opens. Paste your license key (from your email) and click Activate.",pt:"Abre uma janela. Cole sua chave de licença (veio no e-mail) e clique em Ativar.",fr:"Une fenêtre s'ouvre. Collez votre clé de licence (reçue par e-mail) et cliquez sur Activer.",de:"Ein Fenster öffnet sich. Füge deinen Lizenzschlüssel ein (aus deiner E-Mail) und klicke auf Aktivieren.",it:"Si apre una finestra. Incolla la tua chiave di licenza (ricevuta via e-mail) e premi Attiva."});
+    document.getElementById("s3t").textContent=L({es:"Elige tu carpeta",en:"Choose your folder",pt:"Escolha sua pasta",fr:"Choisissez votre dossier",de:"Wähle deinen Ordner",it:"Scegli la tua cartella"});
+    document.getElementById("s3p").textContent=L({es:"Selecciona la carpeta con tus archivos. ¡Listo! Tus datos nunca salen de tu equipo.",en:"Pick the folder with your files. Done! Your data never leaves your machine.",pt:"Selecione a pasta com seus arquivos. Pronto! Seus dados nunca saem do seu computador.",fr:"Sélectionnez le dossier de vos fichiers. Terminé ! Vos données ne quittent jamais votre machine.",de:"Wähle den Ordner mit deinen Dateien. Fertig! Deine Daten verlassen nie dein Gerät.",it:"Seleziona la cartella con i tuoi file. Fatto! I tuoi dati non lasciano mai il tuo computer."});
+    document.getElementById("nokey").innerHTML=L({es:'¿Aún no tienes licencia? <a href="/catalogo/">Elige tu agente en el catálogo →</a>',en:'No license yet? <a href="/catalogo/">Pick your agent in the catalog →</a>',pt:'Ainda sem licença? <a href="/catalogo/">Escolha seu agente no catálogo →</a>',fr:'Pas encore de licence ? <a href="/catalogo/">Choisissez votre agent dans le catalogue →</a>',de:'Noch keine Lizenz? <a href="/catalogo/">Wähle deinen Agenten im Katalog →</a>',it:'Non hai ancora una licenza? <a href="/catalogo/">Scegli il tuo agente nel catalogo →</a>'});
+    document.getElementById("l-cat").textContent=L({es:"Catálogo",en:"Catalog",pt:"Catálogo",fr:"Catalogue",de:"Katalog",it:"Catalogo"});
+    document.getElementById("l-support").textContent=L({es:"Soporte",en:"Support",pt:"Suporte",fr:"Support",de:"Support",it:"Supporto"});
+    document.getElementById("l-portal").textContent=L({es:"Entrar",en:"Sign in",pt:"Entrar",fr:"Se connecter",de:"Anmelden",it:"Accedi"});
+  }
+  var DL=L({es:"Descargar",en:"Download",pt:"Baixar",fr:"Télécharger",de:"Herunterladen",it:"Scarica"});
+  function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+
+  function render(names){
+    var grid=document.getElementById("grid");
+    grid.innerHTML=ORDER.map(function(id){
+      var name=names[id]||FB[id]||id, icon=ICON[id]||"robot";
+      return '<div class="card" id="c-'+esc(id)+'">'+
+        '<div class="ico"><i class="ti ti-'+icon+'"></i></div>'+
+        '<h3>'+esc(name)+'</h3>'+
+        '<a class="dl" href="'+REL+'agent-'+esc(id)+'.exe" download><i class="ti ti-download"></i> '+DL+'</a>'+
+        '</div>';
+    }).join("");
+    // Deep-link ?agent=<id> -> resalta y hace scroll a esa tarjeta
+    try{
+      var want=new URLSearchParams(location.search).get("agent");
+      if(want){var el=document.getElementById("c-"+want);if(el){el.classList.add("hl");el.scrollIntoView({behavior:"smooth",block:"center"});}}
+    }catch(e){}
+  }
+  // Toma los nombres del catálogo (se mantiene en sync); si falla, usa los de respaldo.
+  fetch(API+"/api/catalog").then(function(r){return r.json();})
+    .then(function(d){var m={};(d.agents||[]).forEach(function(a){m[a.id]=a.name;});render(m);})
+    .catch(function(){render({});});
+})();
+</script>
+</body>
+</html>
