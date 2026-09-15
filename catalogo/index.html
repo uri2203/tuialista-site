@@ -36,6 +36,8 @@
   .card p{font-size:13.5px;color:var(--muted);line-height:1.55;flex:1;margin-bottom:14px}
   .price{font-family:'Space Grotesk';font-size:22px;font-weight:500;margin-bottom:14px}
   .price small{font-size:13px;color:var(--muted);font-weight:400}
+  .card.is-soon{opacity:.78}
+  .soon-badge{display:inline-flex;align-items:center;gap:6px;font-family:'Space Grotesk';font-size:13.5px;font-weight:500;color:#c46a12;background:#fbf1e3;border:1px solid #ecd8bd;border-radius:999px;padding:7px 14px;align-self:flex-start}
   .buy{width:100%;padding:11px;border:none;border-radius:9px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:.15s}
   .buy:hover{background:var(--signal);color:#1a1206}
   .state{grid-column:1/-1;text-align:center;color:var(--muted);padding:50px 0;font-size:15px}
@@ -122,34 +124,39 @@
   var BUY=L({es:"Suscribirme",en:"Subscribe",pt:"Assinar",fr:"S'abonner",de:"Abonnieren",it:"Abbonati"}), MO=L({es:" / mes",en:" / mo",pt:" / mês",fr:" / mois",de:" / Mon.",it:" / mese"});
   function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
   var byId={};
-  function render(list){
+  var SOON=L({es:"Próximamente",en:"Coming soon",pt:"Em breve",fr:"Bientôt",de:"Demnächst",it:"Prossimamente"});
+  function cardHTML(a,soon){
+    byId[a.id]={name:a.name,price:a.price_usd};
+    var icon=ICON[a.id]||"robot";
+    var foot = soon
+      ? '<div class="soon-badge"><i class="ti ti-clock"></i> '+SOON+'</div>'
+      : '<div class="price">$'+Number(a.price_usd).toFixed(0)+'<small>'+MO+'</small></div>'+
+        '<button class="buy" data-agent="'+esc(a.id)+'"><i class="ti ti-arrow-right"></i> '+BUY+'</button>';
+    return '<div class="card'+(soon?' is-soon':'')+'">'+
+      '<div class="ico"><i class="ti ti-'+icon+'"></i></div>'+
+      '<h3>'+esc(a.name)+'</h3>'+
+      '<p>'+esc(a.description||"")+'</p>'+foot+'</div>';
+  }
+  function render(list,coming){
     var grid=document.getElementById("grid");
-    if(!list||!list.length){grid.innerHTML='<div class="state">'+L({es:"El catálogo no está disponible ahora.",en:"Catalog unavailable right now.",pt:"O catálogo não está disponível agora.",fr:"Le catalogue n'est pas disponible pour le moment.",de:"Der Katalog ist gerade nicht verfügbar.",it:"Il catalogo non è disponibile al momento."})+'</div>';return;}
-    grid.innerHTML=list.map(function(a){
-      byId[a.id]={name:a.name,price:a.price_usd};
-      var icon=ICON[a.id]||"robot";
-      return '<div class="card">'+
-        '<div class="ico"><i class="ti ti-'+icon+'"></i></div>'+
-        '<h3>'+esc(a.name)+'</h3>'+
-        '<p>'+esc(a.description||"")+'</p>'+
-        '<div class="price">$'+Number(a.price_usd).toFixed(0)+'<small>'+MO+'</small></div>'+
-        '<button class="buy" data-agent="'+esc(a.id)+'"><i class="ti ti-arrow-right"></i> '+BUY+'</button>'+
-        '</div>';
-    }).join("");
+    list=list||[]; coming=coming||[];
+    if(!list.length && !coming.length){grid.innerHTML='<div class="state">'+L({es:"El catálogo no está disponible ahora.",en:"Catalog unavailable right now.",pt:"O catálogo não está disponível agora.",fr:"Le catalogue n'est pas disponible pour le moment.",de:"Der Katalog ist gerade nicht verfügbar.",it:"Il catalogo non è disponibile al momento."})+'</div>';return;}
+    grid.innerHTML=list.map(function(a){return cardHTML(a,false);}).join("")
+                 + coming.map(function(a){return cardHTML(a,true);}).join("");
     [].forEach.call(grid.querySelectorAll(".buy"),function(b){
       b.addEventListener("click",function(){
         var id=b.getAttribute("data-agent"), a=byId[id]||{};
         if(window.TuiaCheckout)TuiaCheckout.open(id,a.name,a.price);
       });
     });
-    // Deep-link ?agent=<id> -> abre el modal directo
+    // Deep-link ?agent=<id> -> abre el modal directo (solo agentes a la venta)
     try{
       var want=new URLSearchParams(location.search).get("agent");
       if(want&&byId[want]&&window.TuiaCheckout)TuiaCheckout.open(want,byId[want].name,byId[want].price);
     }catch(e){}
   }
   fetch(API+"/api/catalog").then(function(r){return r.json();})
-    .then(function(d){render(d.agents||[]);})
+    .then(function(d){render(d.agents||[], d.coming_soon||[]);})
     .catch(function(){document.getElementById("grid").innerHTML='<div class="state">'+L({es:"No se pudo cargar el catálogo. Inténtalo de nuevo.",en:"Couldn't load the catalog. Please try again.",pt:"Não foi possível carregar o catálogo. Tente novamente.",fr:"Impossible de charger le catalogue. Réessayez.",de:"Katalog konnte nicht geladen werden. Versuche es erneut.",it:"Impossibile caricare il catalogo. Riprova."})+'</div>';});
 })();
 </script>
