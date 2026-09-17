@@ -271,8 +271,8 @@
       body: [
         "El afiliado ve su saldo disponible en la sección Retiros y solicita un retiro cuando supera el mínimo de $50 USD.",
         "El método de cobro puede ser PayPal o transferencia bancaria; se configura y edita desde el panel.",
-        "La ejecución del pago se procesa a través del Merchant of Record, que gestiona impuestos y la dispersión de fondos según el país del afiliado.",
-        "Un retiro solicitado aparece como 'En proceso' hasta que el Merchant of Record confirma el depósito (2 a 5 días hábiles).",
+        "TuIAlista calcula, aprueba y paga la comisión y realiza el depósito al método de cobro; el afiliado es responsable de sus impuestos según su país.",
+        "Un retiro solicitado aparece como 'En proceso' hasta que TuIAlista confirma el depósito (2 a 5 días hábiles).",
       ].join(" "),
     },
     {
@@ -510,12 +510,12 @@
         id: "when-paid",
         keywords: ["cuando", "cobro", "pago", "pagan", "retiro", "when", "paid", "payout", "withdraw", "quando", "recebo", "saque", "quand", "payé", "retrait", "wann", "auszahlung", "quando", "pagato", "prelievo"],
         a: {
-          es: "Las comisiones se agrupan por mes. Cuando tu saldo disponible supera los $50 USD, solicitas un retiro desde la sección Retiros. El pago lo ejecuta el Merchant of Record y llega a tu método de cobro en 2 a 5 días hábiles.",
-          en: "Commissions are grouped by month. When your available balance passes $50 USD, you request a withdrawal in the Payouts section. The Merchant of Record executes the payment to your payout method in 2–5 business days.",
-          pt: "As comissões são agrupadas por mês. Quando seu saldo disponível passa de US$ 50, você solicita um saque na seção Saques. O Merchant of Record executa o pagamento no seu método de recebimento em 2 a 5 dias úteis.",
-          fr: "Les commissions sont regroupées par mois. Quand votre solde disponible dépasse 50 $ USD, vous demandez un retrait dans la section Retraits. Le Merchant of Record verse le paiement sur votre moyen de paiement sous 2 à 5 jours ouvrés.",
-          de: "Provisionen werden pro Monat gebündelt. Übersteigt dein verfügbarer Saldo 50 $ USD, forderst du im Bereich Auszahlungen eine Auszahlung an. Der Merchant of Record zahlt in 2–5 Werktagen an deine Zahlungsmethode.",
-          it: "Le commissioni sono raggruppate per mese. Quando il saldo disponibile supera i 50 $ USD, richiedi un prelievo nella sezione Prelievi. Il Merchant of Record esegue il pagamento sul tuo metodo in 2–5 giorni lavorativi.",
+          es: "Las comisiones se agrupan por mes. Cuando tu saldo disponible supera los $50 USD, solicitas un retiro desde la sección Retiros. El pago lo ejecuta TuIAlista y llega a tu método de cobro en 2 a 5 días hábiles.",
+          en: "Commissions are grouped by month. When your available balance passes $50 USD, you request a withdrawal in the Payouts section. TuIAlista executes the payment to your payout method in 2–5 business days.",
+          pt: "As comissões são agrupadas por mês. Quando seu saldo disponível passa de US$ 50, você solicita um saque na seção Saques. A TuIAlista executa o pagamento no seu método de recebimento em 2 a 5 dias úteis.",
+          fr: "Les commissions sont regroupées par mois. Quand votre solde disponible dépasse 50 $ USD, vous demandez un retrait dans la section Retraits. TuIAlista verse le paiement sur votre moyen de paiement sous 2 à 5 jours ouvrés.",
+          de: "Provisionen werden pro Monat gebündelt. Übersteigt dein verfügbarer Saldo 50 $ USD, forderst du im Bereich Auszahlungen eine Auszahlung an. TuIAlista zahlt in 2–5 Werktagen an deine Zahlungsmethode.",
+          it: "Le commissioni sono raggruppate per mese. Quando il saldo disponibile supera i 50 $ USD, richiedi un prelievo nella sezione Prelievi. TuIAlista esegue il pagamento sul tuo metodo in 2–5 giorni lavorativi.",
         },
       },
       {

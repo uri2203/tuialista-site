@@ -75,10 +75,10 @@ footer a{color:#cdd5d9;text-decoration:none}
 <hr />
 <h2>4. Comisión: 30% recurrente</h2>
 <p>4.1. <strong>Tasa de comisión.</strong> El Afiliado tiene derecho a una comisión del <strong>treinta por ciento (30%)</strong> sobre los <strong>pagos netos válidos</strong> efectivamente cobrados de los <strong>clientes referidos</strong> a través de su enlace o código de afiliado, mientras dichos clientes mantengan una suscripción de pago activa (<strong>comisión recurrente</strong>).</p>
-<p>4.2. <strong>Base de cálculo.</strong> La comisión se calcula sobre el importe <strong>neto efectivamente cobrado y no reembolsado</strong>, es decir, <strong>después</strong> de impuestos, comisiones de la pasarela/Comerciante Registrado, descuentos, reembolsos y contracargos. 4.3. <strong>Atribución.</strong> La atribución de un cliente referido se determina mediante el mecanismo de seguimiento del programa (enlace/código y ventana de atribución). 4.4. <strong>Duración de la recurrencia.</strong> La comisión recurrente se paga mientras el cliente referido siga pagando y no se actualice una causal de reversión (Sección 6). TuIAlista podrá establecer un límite temporal a la recurrencia, que se comunicará previamente.</p>
+<p>4.2. <strong>Base de cálculo.</strong> La comisión se calcula sobre el importe <strong>neto efectivamente cobrado y no reembolsado</strong>, es decir, <strong>después</strong> de impuestos, comisiones del procesador de pagos (Stripe), descuentos, reembolsos y contracargos. 4.3. <strong>Atribución.</strong> La atribución de un cliente referido se determina mediante el mecanismo de seguimiento del programa (enlace/código y ventana de atribución). 4.4. <strong>Duración de la recurrencia.</strong> La comisión recurrente se paga mientras el cliente referido siga pagando y no se actualice una causal de reversión (Sección 6). TuIAlista podrá establecer un límite temporal a la recurrencia, que se comunicará previamente.</p>
 <hr />
 <h2>5. Pago de comisiones</h2>
-<p>5.1. <strong>Umbral y calendario.</strong> Las comisiones se acumulan y se pagan cuando el saldo del Afiliado alcanza el <strong>umbral mínimo</strong> y transcurre el <strong>periodo de maduración</strong> (para cubrir posibles reembolsos/contracargos). 5.2. <strong>Medio de pago y relación con Creem.</strong> Los cobros de los clientes se procesan a través de <strong>Creem</strong> como <strong>Comerciante Registrado (Merchant of Record)</strong>. El pago de las comisiones al Afiliado podrá gestionarse a través de Creem o del medio que TuIAlista habilite. 5.3. <strong>Datos correctos.</strong> El Afiliado es responsable de proporcionar datos de pago y fiscales correctos. TuIAlista no responde por pagos fallidos derivados de datos erróneos.</p>
+<p>5.1. <strong>Umbral y calendario.</strong> Las comisiones se acumulan y se pagan cuando el saldo del Afiliado alcanza el <strong>umbral mínimo</strong> y transcurre el <strong>periodo de maduración</strong> (para cubrir posibles reembolsos/contracargos). 5.2. <strong>Medio de pago y procesamiento.</strong> Los cobros de los clientes se procesan a través de <strong>Stripe</strong> (procesador de pagos); <strong>TuIAlista</strong> es el vendedor. El pago de las comisiones al Afiliado se gestionará por el medio que TuIAlista habilite. 5.3. <strong>Datos correctos.</strong> El Afiliado es responsable de proporcionar datos de pago y fiscales correctos. TuIAlista no responde por pagos fallidos derivados de datos erróneos.</p>
 <p>5.4. <strong>Moneda.</strong> Las comisiones podrán pagarse en la moneda que TuIAlista determine; las diferencias por tipo de cambio o comisiones del medio de pago corren por cuenta del Afiliado.</p>
 <hr />
 <h2>6. Retención y reversión de comisiones</h2>
@@ -154,7 +154,7 @@ footer a{color:#cdd5d9;text-decoration:none}
 <hr />
 <h2>5. Commission payment</h2>
 <p>5.1. <strong>Threshold and schedule.</strong> Commissions accrue and are paid when the Affiliate's balance reaches the <strong>minimum threshold</strong> and the <strong>maturation period</strong> has elapsed (to cover possible refunds/chargebacks).</p>
-<p>5.2. <strong>Payment method and relationship with Creem.</strong> Customer payments are processed through <strong>Creem</strong> as <strong>Merchant of Record</strong>. Payment of commissions to the Affiliate may be handled through Creem or through the means TuIAlista makes available.</p>
+<p>5.2. <strong>Payment method and processing.</strong> Customer charges are processed through <strong>Stripe</strong> (payment processor); <strong>TuIAlista</strong> is the seller. Payment of commissions to the Affiliate will be handled through the means TuIAlista makes available.</p>
 <p>5.3. <strong>Correct details.</strong> The Affiliate is responsible for providing correct payment and tax details. TuIAlista is not liable for failed payments arising from incorrect details.</p>
 <p>5.4. <strong>Currency.</strong> Commissions may be paid in the currency TuIAlista determines; exchange-rate differences or payment-method fees are borne by the Affiliate.</p>
 <hr />
@@ -226,13 +226,13 @@ footer a{color:#cdd5d9;text-decoration:none}
 <hr />
 <h2>4. Comissão: 30% recorrente</h2>
 <p>4.1. <strong>Taxa de comissão.</strong> O Afiliado tem direito a uma comissão de <strong>trinta por cento (30%)</strong> sobre os <strong>pagamentos líquidos válidos</strong> efetivamente recebidos dos <strong>clientes indicados</strong> por meio de seu link ou código de afiliado, enquanto tais clientes mantiverem uma assinatura paga ativa (<strong>comissão recorrente</strong>).</p>
-<p>4.2. <strong>Base de cálculo.</strong> A comissão é calculada sobre o valor <strong>efetivamente recebido líquido e não reembolsado</strong>, ou seja, <strong>após</strong> impostos, taxas da plataforma de pagamento/Comerciante Registrado, descontos, reembolsos e estornos.</p>
+<p>4.2. <strong>Base de cálculo.</strong> A comissão é calculada sobre o valor <strong>efetivamente recebido líquido e não reembolsado</strong>, ou seja, <strong>após</strong> impostos, taxas do processador de pagamentos (Stripe), descontos, reembolsos e estornos.</p>
 <p>4.3. <strong>Atribuição.</strong> A atribuição de um cliente indicado é determinada pelo mecanismo de rastreamento do programa (link/código e janela de atribuição).</p>
 <p>4.4. <strong>Duração da recorrência.</strong> A comissão recorrente é paga enquanto o cliente indicado continuar pagando e não se verificar uma causa de reversão (Seção 6). A TuIAlista poderá estabelecer um limite temporal à recorrência, que será comunicado previamente.</p>
 <hr />
 <h2>5. Pagamento de comissões</h2>
 <p>5.1. <strong>Limite mínimo e calendário.</strong> As comissões acumulam-se e são pagas quando o saldo do Afiliado atinge o <strong>limite mínimo</strong> e transcorre o <strong>período de maturação</strong> (para cobrir possíveis reembolsos/estornos).</p>
-<p>5.2. <strong>Meio de pagamento e relação com a Creem.</strong> Os pagamentos dos clientes são processados através da <strong>Creem</strong> como <strong>Comerciante Registrado (Merchant of Record)</strong>. O pagamento das comissões ao Afiliado poderá ser gerido através da Creem ou do meio que a TuIAlista disponibilizar.</p>
+<p>5.2. <strong>Meio de pagamento e processamento.</strong> Os pagamentos dos clientes são processados através da <strong>Stripe</strong> (processador de pagamentos); a <strong>TuIAlista</strong> é a vendedora. O pagamento das comissões ao Afiliado será gerido pelo meio que a TuIAlista disponibilizar.</p>
 <p>5.3. <strong>Dados corretos.</strong> O Afiliado é responsável por fornecer dados de pagamento e fiscais corretos. A TuIAlista não responde por pagamentos falhados decorrentes de dados incorretos.</p>
 <p>5.4. <strong>Moeda.</strong> As comissões poderão ser pagas na moeda que a TuIAlista determinar; as diferenças por taxa de câmbio ou taxas do meio de pagamento correm por conta do Afiliado.</p>
 <hr />
@@ -310,7 +310,7 @@ footer a{color:#cdd5d9;text-decoration:none}
 <hr />
 <h2>5. Paiement des commissions</h2>
 <p>5.1. <strong>Seuil et calendrier.</strong> Les commissions s'accumulent et sont versées lorsque le solde de l'Affilié atteint le <strong>seuil minimum</strong> et que la <strong>période de maturation</strong> s'est écoulée (pour couvrir d'éventuels remboursements/rétrofacturations).</p>
-<p>5.2. <strong>Moyen de paiement et relation avec Creem.</strong> Les paiements des clients sont traités via <strong>Creem</strong> en tant que <strong>Commerçant Enregistré (Merchant of Record)</strong>. Le paiement des commissions à l'Affilié peut être géré via Creem ou par le moyen que TuIAlista met à disposition.</p>
+<p>5.2. <strong>Moyen de paiement et traitement.</strong> Les paiements des clients sont traités via <strong>Stripe</strong> (processeur de paiement) ; <strong>TuIAlista</strong> est le vendeur. Le paiement des commissions à l'Affilié sera géré par le moyen que TuIAlista met à disposition.</p>
 <p>5.3. <strong>Données correctes.</strong> L'Affilié est responsable de fournir des données de paiement et fiscales correctes. TuIAlista n'est pas responsable des paiements échoués découlant de données erronées.</p>
 <p>5.4. <strong>Devise.</strong> Les commissions peuvent être payées dans la devise que TuIAlista détermine ; les différences de taux de change ou les frais du moyen de paiement sont à la charge de l'Affilié.</p>
 <hr />
@@ -388,7 +388,7 @@ footer a{color:#cdd5d9;text-decoration:none}
 <hr />
 <h2>5. Zahlung der Provisionen</h2>
 <p>5.1. <strong>Schwelle und Zeitplan.</strong> Provisionen werden angesammelt und ausgezahlt, wenn das Guthaben des Partners die <strong>Mindestschwelle</strong> erreicht und die <strong>Reifezeit</strong> verstrichen ist (zur Deckung möglicher Erstattungen/Rückbuchungen).</p>
-<p>5.2. <strong>Zahlungsmittel und Verhältnis zu Creem.</strong> Die Kundenzahlungen werden über <strong>Creem</strong> als <strong>Registrierter Händler (Merchant of Record)</strong> abgewickelt. Die Auszahlung der Provisionen an den Partner kann über Creem oder über das von TuIAlista bereitgestellte Mittel erfolgen.</p>
+<p>5.2. <strong>Zahlungsmittel und Abwicklung.</strong> Die Kundenzahlungen werden über <strong>Stripe</strong> (Zahlungsabwickler) abgewickelt; <strong>TuIAlista</strong> ist der Verkäufer. Die Auszahlung der Provisionen an den Partner erfolgt über das von TuIAlista bereitgestellte Mittel.</p>
 <p>5.3. <strong>Korrekte Daten.</strong> Der Partner ist für die Angabe korrekter Zahlungs- und Steuerdaten verantwortlich. TuIAlista haftet nicht für fehlgeschlagene Zahlungen aufgrund fehlerhafter Daten.</p>
 <p>5.4. <strong>Währung.</strong> Provisionen können in der von TuIAlista bestimmten Währung gezahlt werden; Wechselkursdifferenzen oder Gebühren des Zahlungsmittels trägt der Partner.</p>
 <hr />
@@ -466,7 +466,7 @@ footer a{color:#cdd5d9;text-decoration:none}
 <hr />
 <h2>5. Pagamento delle commissioni</h2>
 <p>5.1. <strong>Soglia e calendario.</strong> Le commissioni si accumulano e vengono pagate quando il saldo dell'Affiliato raggiunge la <strong>soglia minima</strong> ed è trascorso il <strong>periodo di maturazione</strong> (per coprire eventuali rimborsi/storni).</p>
-<p>5.2. <strong>Mezzo di pagamento e relazione con Creem.</strong> I pagamenti dei clienti sono elaborati tramite <strong>Creem</strong> in qualità di <strong>Commerciante Registrato (Merchant of Record)</strong>. Il pagamento delle commissioni all'Affiliato può essere gestito tramite Creem o con il mezzo che TuIAlista renderà disponibile.</p>
+<p>5.2. <strong>Mezzo di pagamento ed elaborazione.</strong> I pagamenti dei clienti sono elaborati tramite <strong>Stripe</strong> (processore dei pagamenti); <strong>TuIAlista</strong> è il venditore. Il pagamento delle commissioni all'Affiliato sarà gestito con il mezzo che TuIAlista renderà disponibile.</p>
 <p>5.3. <strong>Dati corretti.</strong> L'Affiliato è responsabile di fornire dati di pagamento e fiscali corretti. TuIAlista non risponde per pagamenti falliti derivanti da dati errati.</p>
 <p>5.4. <strong>Valuta.</strong> Le commissioni possono essere pagate nella valuta che TuIAlista determina; le differenze di cambio o le commissioni del mezzo di pagamento sono a carico dell'Affiliato.</p>
 <hr />
