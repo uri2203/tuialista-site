@@ -75,6 +75,16 @@
   .response .led{width:9px;height:9px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 3px rgba(29,158,117,.18)}
   @media(max-width:720px){.cards{grid-template-columns:1fr}}
 
+  /* ---------- SUPPORT FORM ---------- */
+  .support-form{display:flex;flex-direction:column;gap:14px;max-width:520px}
+  .support-form input,.support-form textarea{font-family:'Inter',sans-serif;font-size:15px;color:var(--ink);
+    background:#fff;border:1px solid var(--line);border-radius:10px;padding:13px 15px;outline:none;resize:vertical;transition:.15s}
+  .support-form input:focus,.support-form textarea:focus{border-color:var(--signal);box-shadow:0 0 0 3px rgba(232,130,30,.14)}
+  .support-form button{align-self:flex-start}
+  .form-status{font-size:14px;padding:10px 14px;border-radius:8px}
+  .form-status.ok{background:rgba(29,158,117,.1);color:#136e51}
+  .form-status.err{background:rgba(192,57,43,.1);color:#c0392b}
+
   /* ---------- FAQ ---------- */
   .faq{display:grid;gap:14px}
   .qa{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 24px}
@@ -174,6 +184,20 @@
 
 <section class="section">
   <div class="wrap">
+    <div class="sec-eyebrow" data-i18n="sup.form_kicker">O ENVÍANOS TU SOLICITUD</div>
+    <h2 class="sec-title" data-i18n="sup.form_h">Cuéntanos qué necesitas</h2>
+    <form id="support-form" class="support-form">
+      <input type="text" id="sf-name" data-i18n-ph="sup.form_name">
+      <input type="email" id="sf-email" required data-i18n-ph="sup.form_email">
+      <textarea id="sf-message" required rows="4" data-i18n-ph="sup.form_message"></textarea>
+      <button type="submit" class="btn btn-signal" id="sf-submit"><i class="ti ti-send"></i> <span data-i18n="sup.form_submit">Enviar solicitud</span></button>
+      <div id="sf-status" class="form-status" style="display:none"></div>
+    </form>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
     <div class="sec-eyebrow" data-i18n="sup.faq_kicker">FAQ</div>
     <h2 class="sec-title" data-i18n="sup.faq_h">Preguntas frecuentes</h2>
     <div class="faq">
@@ -235,7 +259,12 @@ const SUP_I18N = {
     "sup.q2":"¿Dónde encuentro mi clave de licencia?","sup.a2":"Te llega por correo tras la compra y también aparece en la página de éxito del pago.",
     "sup.q3":"¿Mis datos salen de mi equipo?","sup.a3":"No. Los agentes se ejecutan 100% en tu propio equipo; tus datos nunca salen.",
     "sup.q4":"¿Cómo gestiono o cancelo mi suscripción?","sup.a4":"Escríbenos a soporte@tuialista.com y lo resolvemos contigo.",
-    "sup.legal_h":"Nuestro compromiso","sup.legal_desc":"Lee nuestro compromiso de ejecución local y privacidad.","sup.legal_link":"Ver compromiso local"
+    "sup.legal_h":"Nuestro compromiso","sup.legal_desc":"Lee nuestro compromiso de ejecución local y privacidad.","sup.legal_link":"Ver compromiso local",
+    "sup.form_kicker":"O ENVÍANOS TU SOLICITUD","sup.form_h":"Cuéntanos qué necesitas",
+    "sup.form_name":"Tu nombre","sup.form_email":"Tu correo","sup.form_message":"¿En qué te ayudamos?",
+    "sup.form_submit":"Enviar solicitud","sup.form_sending":"Enviando…",
+    "sup.form_ok":"¡Listo! Te contactaremos por correo en menos de 24 horas.",
+    "sup.form_err":"No se pudo enviar. Escríbenos a soporte@tuialista.com."
   },
   en:{
     "sup.title":"Support — TuIAlista","nav.home":"Home","nav.portal":"Portal","nav.enter":"Enter",
@@ -248,7 +277,12 @@ const SUP_I18N = {
     "sup.q2":"Where do I find my license key?","sup.a2":"It's emailed to you after purchase and also shown on the payment success page.",
     "sup.q3":"Does my data leave my computer?","sup.a3":"No. The agents run 100% on your own machine; your data never leaves.",
     "sup.q4":"How do I manage or cancel my subscription?","sup.a4":"Write to soporte@tuialista.com and we'll sort it out with you.",
-    "sup.legal_h":"Our commitment","sup.legal_desc":"Read our local-execution and privacy commitment.","sup.legal_link":"View local commitment"
+    "sup.legal_h":"Our commitment","sup.legal_desc":"Read our local-execution and privacy commitment.","sup.legal_link":"View local commitment",
+    "sup.form_kicker":"OR SEND US YOUR REQUEST","sup.form_h":"Tell us what you need",
+    "sup.form_name":"Your name","sup.form_email":"Your email","sup.form_message":"How can we help?",
+    "sup.form_submit":"Send request","sup.form_sending":"Sending…",
+    "sup.form_ok":"Done! We'll reach out by email within 24 hours.",
+    "sup.form_err":"Couldn't send it. Write to us at soporte@tuialista.com."
   },
   pt:{
     "sup.title":"Suporte — TuIAlista","nav.home":"Início","nav.portal":"Portal","nav.enter":"Entrar",
@@ -261,7 +295,12 @@ const SUP_I18N = {
     "sup.q2":"Onde encontro a minha chave de licença?","sup.a2":"Ela chega por e-mail após a compra e também aparece na página de sucesso do pagamento.",
     "sup.q3":"Os meus dados saem do meu computador?","sup.a3":"Não. Os agentes são executados 100% no seu próprio computador; os seus dados nunca saem.",
     "sup.q4":"Como faço para gerir ou cancelar a minha assinatura?","sup.a4":"Escreva para soporte@tuialista.com e resolvemos com você.",
-    "sup.legal_h":"Nosso compromisso","sup.legal_desc":"Leia o nosso compromisso de execução local e privacidade.","sup.legal_link":"Ver compromisso local"
+    "sup.legal_h":"Nosso compromisso","sup.legal_desc":"Leia o nosso compromisso de execução local e privacidade.","sup.legal_link":"Ver compromisso local",
+    "sup.form_kicker":"OU ENVIE SUA SOLICITAÇÃO","sup.form_h":"Conte-nos o que você precisa",
+    "sup.form_name":"Seu nome","sup.form_email":"Seu e-mail","sup.form_message":"Como podemos ajudar?",
+    "sup.form_submit":"Enviar solicitação","sup.form_sending":"Enviando…",
+    "sup.form_ok":"Pronto! Entraremos em contato por e-mail em até 24 horas.",
+    "sup.form_err":"Não foi possível enviar. Escreva para soporte@tuialista.com."
   },
   fr:{
     "sup.title":"Assistance — TuIAlista","nav.home":"Accueil","nav.portal":"Portail","nav.enter":"Entrer",
@@ -274,7 +313,12 @@ const SUP_I18N = {
     "sup.q2":"Où trouver ma clé de licence ?","sup.a2":"Elle vous est envoyée par e-mail après l'achat et apparaît aussi sur la page de confirmation du paiement.",
     "sup.q3":"Mes données quittent-elles mon ordinateur ?","sup.a3":"Non. Les agents s'exécutent à 100 % sur votre propre machine ; vos données ne sortent jamais.",
     "sup.q4":"Comment gérer ou annuler mon abonnement ?","sup.a4":"Écrivez à soporte@tuialista.com et nous réglons cela avec vous.",
-    "sup.legal_h":"Notre engagement","sup.legal_desc":"Lisez notre engagement d'exécution locale et de confidentialité.","sup.legal_link":"Voir l'engagement local"
+    "sup.legal_h":"Notre engagement","sup.legal_desc":"Lisez notre engagement d'exécution locale et de confidentialité.","sup.legal_link":"Voir l'engagement local",
+    "sup.form_kicker":"OU ENVOYEZ-NOUS VOTRE DEMANDE","sup.form_h":"Dites-nous ce dont vous avez besoin",
+    "sup.form_name":"Votre nom","sup.form_email":"Votre e-mail","sup.form_message":"Comment pouvons-nous aider ?",
+    "sup.form_submit":"Envoyer la demande","sup.form_sending":"Envoi…",
+    "sup.form_ok":"C'est fait ! Nous vous recontacterons par e-mail sous 24 heures.",
+    "sup.form_err":"Échec de l'envoi. Écrivez-nous à soporte@tuialista.com."
   },
   de:{
     "sup.title":"Support — TuIAlista","nav.home":"Start","nav.portal":"Portal","nav.enter":"Anmelden",
@@ -287,7 +331,12 @@ const SUP_I18N = {
     "sup.q2":"Wo finde ich meinen Lizenzschlüssel?","sup.a2":"Er wird dir nach dem Kauf per E-Mail zugeschickt und erscheint auch auf der Zahlungsbestätigungsseite.",
     "sup.q3":"Verlassen meine Daten meinen Computer?","sup.a3":"Nein. Die Agenten laufen zu 100 % auf deinem eigenen Gerät; deine Daten verlassen es nie.",
     "sup.q4":"Wie verwalte oder kündige ich mein Abo?","sup.a4":"Schreib an soporte@tuialista.com und wir klären das mit dir.",
-    "sup.legal_h":"Unser Versprechen","sup.legal_desc":"Lies unser Versprechen zur lokalen Ausführung und zum Datenschutz.","sup.legal_link":"Lokales Versprechen ansehen"
+    "sup.legal_h":"Unser Versprechen","sup.legal_desc":"Lies unser Versprechen zur lokalen Ausführung und zum Datenschutz.","sup.legal_link":"Lokales Versprechen ansehen",
+    "sup.form_kicker":"ODER SCHICK UNS DEINE ANFRAGE","sup.form_h":"Sag uns, was du brauchst",
+    "sup.form_name":"Dein Name","sup.form_email":"Deine E-Mail","sup.form_message":"Wie können wir helfen?",
+    "sup.form_submit":"Anfrage senden","sup.form_sending":"Wird gesendet…",
+    "sup.form_ok":"Fertig! Wir melden uns innerhalb von 24 Stunden per E-Mail.",
+    "sup.form_err":"Senden fehlgeschlagen. Schreib an soporte@tuialista.com."
   },
   it:{
     "sup.title":"Assistenza — TuIAlista","nav.home":"Home","nav.portal":"Portale","nav.enter":"Entra",
@@ -300,7 +349,12 @@ const SUP_I18N = {
     "sup.q2":"Dove trovo la mia chiave di licenza?","sup.a2":"Ti arriva via e-mail dopo l'acquisto e appare anche nella pagina di conferma del pagamento.",
     "sup.q3":"I miei dati escono dal mio computer?","sup.a3":"No. Gli agenti vengono eseguiti al 100% sul tuo dispositivo; i tuoi dati non escono mai.",
     "sup.q4":"Come gestisco o annullo il mio abbonamento?","sup.a4":"Scrivi a soporte@tuialista.com e lo risolviamo insieme.",
-    "sup.legal_h":"Il nostro impegno","sup.legal_desc":"Leggi il nostro impegno all'esecuzione locale e alla privacy.","sup.legal_link":"Vedi l'impegno locale"
+    "sup.legal_h":"Il nostro impegno","sup.legal_desc":"Leggi il nostro impegno all'esecuzione locale e alla privacy.","sup.legal_link":"Vedi l'impegno locale",
+    "sup.form_kicker":"O INVIACI LA TUA RICHIESTA","sup.form_h":"Dicci di cosa hai bisogno",
+    "sup.form_name":"Il tuo nome","sup.form_email":"La tua e-mail","sup.form_message":"Come possiamo aiutarti?",
+    "sup.form_submit":"Invia richiesta","sup.form_sending":"Invio…",
+    "sup.form_ok":"Fatto! Ti contatteremo via e-mail entro 24 ore.",
+    "sup.form_err":"Invio non riuscito. Scrivici a soporte@tuialista.com."
   }
 };
 
@@ -319,6 +373,10 @@ function applyLang(l){
     const k = el.getAttribute("data-i18n");
     if(d[k] !== undefined) el.textContent = d[k];
   });
+  document.querySelectorAll("[data-i18n-ph]").forEach(el => {
+    const k = el.getAttribute("data-i18n-ph");
+    if(d[k] !== undefined) el.setAttribute("placeholder", d[k]);
+  });
   const cl = document.getElementById("commit-link");
   if(cl) cl.setAttribute("href","../legal/compromiso-local/compromiso_" + l + ".md");
   localStorage.setItem("tuialista_lang", l);
@@ -330,6 +388,41 @@ document.addEventListener("DOMContentLoaded", function(){
   applyLang(detectLang());
   const sw = document.getElementById("lang-switcher");
   if(sw) sw.addEventListener("change", function(){ applyLang(this.value); });
+
+  // Formulario de soporte -> crea un ticket real (cola con rotación en el
+  // núcleo), en vez de depender solo del mailto:.
+  const form = document.getElementById("support-form");
+  if(form) form.addEventListener("submit", function(e){
+    e.preventDefault();
+    const d = SUP_I18N[detectLang()] || SUP_I18N[FALLBACK];
+    const btn = document.getElementById("sf-submit");
+    const status = document.getElementById("sf-status");
+    const email = document.getElementById("sf-email").value.trim();
+    const message = document.getElementById("sf-message").value.trim();
+    const name = document.getElementById("sf-name").value.trim();
+    if(!email || !message) return;
+    btn.disabled = true;
+    status.style.display = "none";
+    fetch("https://tuialista-xrtd.onrender.com/api/support/tickets", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({email, name, message}),
+    }).then(function(res){ return res.ok ? res.json() : Promise.reject(); })
+      .then(function(data){
+        if(!data || !data.ok) throw new Error("bad response");
+        status.textContent = d["sup.form_ok"];
+        status.className = "form-status ok";
+        status.style.display = "block";
+        form.reset();
+        btn.disabled = false;
+      })
+      .catch(function(){
+        status.textContent = d["sup.form_err"];
+        status.className = "form-status err";
+        status.style.display = "block";
+        btn.disabled = false;
+      });
+  });
 });
 </script>
 <script src="../platform-assistant/knowledge_base.js"></script>

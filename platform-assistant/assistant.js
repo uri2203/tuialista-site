@@ -24,6 +24,7 @@
   var KB = global.TUIA_KB;
   var STORE_KEY = "tuialista_lang"; // misma clave que el resto del sistema
   var API_PATH = "/api/assistant";
+  var ESCALATE_PATH = "/api/support/escalate";
   var REQUEST_TIMEOUT = 15000;
 
   /* ── Detección de idioma ligera (para cambiar según lo que escribe) ─────── */
@@ -115,6 +116,19 @@
     "#tuia-asst-send .ti{font-size:19px}",
     "#tuia-asst-powered{text-align:center;font-size:10.5px;color:var(--muted);margin-top:8px;letter-spacing:.02em}",
     "#tuia-asst-powered b{color:var(--signaldim);font-weight:600}",
+    /* Hablar con un humano */
+    "#tuia-asst-human-link{display:block;text-align:center;font-size:11.5px;color:var(--muted);margin-top:6px;background:none;border:none;cursor:pointer;text-decoration:underline;font-family:'Inter',sans-serif;width:100%}",
+    "#tuia-asst-human-link:hover{color:var(--signaldim)}",
+    "#tuia-asst-human-form{padding:14px;border-top:1px solid var(--line);background:var(--paper);display:flex;flex-direction:column;gap:8px}",
+    "#tuia-asst-human-form input,#tuia-asst-human-form textarea{border:1px solid var(--line);border-radius:9px;padding:9px 11px;font-family:'Inter',sans-serif;font-size:13px;color:var(--ink);background:var(--paper);outline:none;resize:none}",
+    "#tuia-asst-human-form input:focus,#tuia-asst-human-form textarea:focus{border-color:var(--signal);box-shadow:0 0 0 3px rgba(232,130,30,.14)}",
+    "#tuia-asst-human-form .row{display:flex;gap:8px}",
+    "#tuia-asst-human-form .row button{flex:1;border:none;border-radius:9px;padding:9px 12px;font-size:13px;cursor:pointer;font-family:'Inter',sans-serif}",
+    "#tuia-asst-human-submit{background:var(--signal);color:#1a1206}",
+    "#tuia-asst-human-submit:hover{background:var(--signaldim)}",
+    "#tuia-asst-human-cancel{background:var(--paper2);color:var(--muted)}",
+    "#tuia-asst-human-msg{font-size:12px;color:var(--ok);text-align:center}",
+    "#tuia-asst-human-msg.err{color:#c0392b}",
     /* Responsive */
     "@media(max-width:480px){",
     "  #tuia-asst-panel{right:12px;left:12px;bottom:84px;width:auto;height:calc(100vh - 104px)}",
@@ -182,6 +196,17 @@
           '<button id="tuia-asst-send" aria-label="Send"><i class="ti ti-send"></i></button>' +
         '</div>' +
         '<div id="tuia-asst-powered"></div>' +
+        '<button id="tuia-asst-human-link" type="button"></button>' +
+        '<div id="tuia-asst-human-form" style="display:none">' +
+          '<input id="tuia-asst-human-name" type="text" autocomplete="off">' +
+          '<input id="tuia-asst-human-email" type="email" autocomplete="off">' +
+          '<textarea id="tuia-asst-human-message" rows="2"></textarea>' +
+          '<div id="tuia-asst-human-msg" style="display:none"></div>' +
+          '<div class="row">' +
+            '<button id="tuia-asst-human-cancel" type="button"></button>' +
+            '<button id="tuia-asst-human-submit" type="button"></button>' +
+          '</div>' +
+        '</div>' +
       '</div>';
 
     root.appendChild(bubble);
@@ -192,6 +217,14 @@
     this.el.body = panel.querySelector("#tuia-asst-body");
     this.el.input = panel.querySelector("#tuia-asst-input");
     this.el.send = panel.querySelector("#tuia-asst-send");
+    this.el.humanLink = panel.querySelector("#tuia-asst-human-link");
+    this.el.humanForm = panel.querySelector("#tuia-asst-human-form");
+    this.el.humanName = panel.querySelector("#tuia-asst-human-name");
+    this.el.humanEmail = panel.querySelector("#tuia-asst-human-email");
+    this.el.humanMessage = panel.querySelector("#tuia-asst-human-message");
+    this.el.humanMsg = panel.querySelector("#tuia-asst-human-msg");
+    this.el.humanSubmit = panel.querySelector("#tuia-asst-human-submit");
+    this.el.humanCancel = panel.querySelector("#tuia-asst-human-cancel");
 
     panel.querySelector("#tuia-asst-close").addEventListener("click", function () { self.toggle(false); });
     this.el.send.addEventListener("click", function () { self._onSend(); });
@@ -202,6 +235,9 @@
       this.style.height = "auto";
       this.style.height = Math.min(this.scrollHeight, 96) + "px";
     });
+    this.el.humanLink.addEventListener("click", function () { self._toggleHumanForm(true); });
+    this.el.humanCancel.addEventListener("click", function () { self._toggleHumanForm(false); });
+    this.el.humanSubmit.addEventListener("click", function () { self._submitHuman(); });
 
     this._applyLangStatic();
   };
@@ -213,6 +249,67 @@
     this.el.input.setAttribute("placeholder", t.placeholder);
     this.el.panel.querySelector("#tuia-asst-powered").innerHTML =
       '<i class="ti ti-shield-lock" style="font-size:11px"></i> <b>' + t.poweredBy + "</b>";
+    this.el.humanLink.textContent = t.humanLink;
+    this.el.humanName.setAttribute("placeholder", t.humanName);
+    this.el.humanEmail.setAttribute("placeholder", t.humanEmail);
+    this.el.humanMessage.setAttribute("placeholder", t.humanMessage);
+    this.el.humanSubmit.textContent = t.humanSubmit;
+    this.el.humanCancel.textContent = t.humanCancel;
+  };
+
+  /* ── Hablar con un humano: escala a la cola de soporte (ver support_service
+     en core-license). Manda el transcript reciente para que el operador no
+     empiece de cero. No toca el flujo normal de la IA. ─────────────────────── */
+  Assistant.prototype._toggleHumanForm = function (show) {
+    this.el.humanForm.style.display = show ? "flex" : "none";
+    this.el.humanMsg.style.display = "none";
+    if (show) {
+      if (!this.el.humanMessage.value && this.history.length) {
+        var last = this.history[this.history.length - 2]; // último mensaje del usuario
+        if (last && last.role === "user") this.el.humanMessage.value = last.content;
+      }
+      this.el.humanName.focus();
+    }
+  };
+
+  Assistant.prototype._submitHuman = function () {
+    var self = this, t = this._t();
+    var email = (this.el.humanEmail.value || "").trim();
+    var message = (this.el.humanMessage.value || "").trim();
+    if (!email || !message) {
+      this.el.humanMsg.textContent = t.humanError;
+      this.el.humanMsg.className = "err";
+      this.el.humanMsg.style.display = "block";
+      return;
+    }
+    this.el.humanSubmit.disabled = true;
+    fetch(this.apiBase + ESCALATE_PATH, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: email,
+        name: (this.el.humanName.value || "").trim(),
+        message: message,
+        transcript: this.history.slice(-10),
+      }),
+    })
+      .then(function (res) { return res.ok ? res.json() : Promise.reject(); })
+      .then(function (data) {
+        if (!data || !data.ok) throw new Error("bad response");
+        self.el.humanMsg.textContent = t.humanSuccess;
+        self.el.humanMsg.className = "";
+        self.el.humanMsg.style.display = "block";
+        self.el.humanName.value = "";
+        self.el.humanEmail.value = "";
+        self.el.humanMessage.value = "";
+        self.el.humanSubmit.disabled = false;
+      })
+      .catch(function () {
+        self.el.humanMsg.textContent = t.humanError;
+        self.el.humanMsg.className = "err";
+        self.el.humanMsg.style.display = "block";
+        self.el.humanSubmit.disabled = false;
+      });
   };
 
   Assistant.prototype.toggle = function (force) {
