@@ -2073,7 +2073,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   function renderPayout(s){
     var av=document.getElementById("pay-available");
-    if(av) av.innerHTML=money(s.available_usd)+" <small>USD</small>";
+    if(av) av.innerHTML=money(s.available_usd);
     var wb=document.getElementById("withdraw-btn");
     var openBox=document.getElementById("pay-open-request");
     if(s.open_request){
