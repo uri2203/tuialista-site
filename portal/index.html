@@ -635,15 +635,15 @@
       <div class="metrics metrics-3">
         <div class="metric">
           <div class="lbl"><i class="ti ti-calendar" style="font-size:15px"></i> <span data-i18n="portal.metric.billing">Próximo cobro</span></div>
-          <div class="val">15 jul</div>
+          <div class="val" id="bill-next">—</div>
         </div>
         <div class="metric">
           <div class="lbl"><i class="ti ti-receipt" style="font-size:15px"></i> <span data-i18n="portal.metric.monthly">Mensual</span></div>
-          <div class="val">$27<small> USD</small></div>
+          <div class="val" id="bill-monthly">$0.00<small> USD</small></div>
         </div>
         <div class="metric">
           <div class="lbl"><i class="ti ti-credit-card" style="font-size:15px"></i> <span data-i18n="portal.billing.method">Método de pago</span></div>
-          <div class="val" style="font-size:18px;margin-top:4px">•••• 1234</div>
+          <div class="val" id="bill-method-short" style="font-size:18px;margin-top:4px">—</div>
         </div>
       </div>
 
@@ -659,46 +659,9 @@
                   <th data-i18n="portal.billing.concept">Concepto</th>
                   <th class="right" data-i18n="portal.billing.amount">Monto</th>
                   <th class="right" data-i18n="portal.billing.status">Estado</th>
-                  <th></th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td class="mono">15 jun 2026</td>
-                  <td>Documentos + Excel y datos</td>
-                  <td class="mono right">$18.00 USD</td>
-                  <td class="right"><span class="pill ok" style="margin-left:auto" data-i18n="portal.billing.paid">Pagado</span></td>
-                  <td class="right"><a class="btn btn-ghost btn-sm" style="flex:0"><i class="ti ti-download" style="font-size:13px"></i></a></td>
-                </tr>
-                <tr>
-                  <td class="mono">15 may 2026</td>
-                  <td>Documentos + Excel y datos</td>
-                  <td class="mono right">$18.00 USD</td>
-                  <td class="right"><span class="pill ok" data-i18n="portal.billing.paid">Pagado</span></td>
-                  <td class="right"><a class="btn btn-ghost btn-sm" style="flex:0"><i class="ti ti-download" style="font-size:13px"></i></a></td>
-                </tr>
-                <tr>
-                  <td class="mono">15 abr 2026</td>
-                  <td>Documentos</td>
-                  <td class="mono right">$9.00 USD</td>
-                  <td class="right"><span class="pill ok" data-i18n="portal.billing.paid">Pagado</span></td>
-                  <td class="right"><a class="btn btn-ghost btn-sm" style="flex:0"><i class="ti ti-download" style="font-size:13px"></i></a></td>
-                </tr>
-                <tr>
-                  <td class="mono">15 mar 2026</td>
-                  <td>Documentos</td>
-                  <td class="mono right">$9.00 USD</td>
-                  <td class="right"><span class="pill ok" data-i18n="portal.billing.paid">Pagado</span></td>
-                  <td class="right"><a class="btn btn-ghost btn-sm" style="flex:0"><i class="ti ti-download" style="font-size:13px"></i></a></td>
-                </tr>
-                <tr>
-                  <td class="mono">15 feb 2026</td>
-                  <td>Documentos</td>
-                  <td class="mono right">$9.00 USD</td>
-                  <td class="right"><span class="pill ok" data-i18n="portal.billing.paid">Pagado</span></td>
-                  <td class="right"><a class="btn btn-ghost btn-sm" style="flex:0"><i class="ti ti-download" style="font-size:13px"></i></a></td>
-                </tr>
-              </tbody>
+              <tbody id="bill-history-body"></tbody>
             </table>
           </div>
         </div>
@@ -707,37 +670,13 @@
         <div>
           <div class="card-box">
             <h3><i class="ti ti-credit-card"></i> <span data-i18n="portal.billing.method">Método de pago</span></h3>
-            <div class="payment-method">
-              <div class="card-brand"><i class="ti ti-credit-card"></i></div>
-              <div class="card-info">
-                <div class="num">•••• •••• •••• 1234</div>
-                <div class="exp" data-i18n="portal.billing.expires">Vence</div>
-              </div>
-              <span style="font-family:'JetBrains Mono';font-size:12px;color:var(--muted)">12/27</span>
-            </div>
-            <a class="btn btn-ghost" style="width:100%;font-size:13px"><i class="ti ti-edit"></i> <span data-i18n="portal.billing.update_card">Actualizar tarjeta</span></a>
+            <div id="bill-method-body"></div>
+            <a class="btn btn-ghost" id="btn-update-card" style="width:100%;font-size:13px"><i class="ti ti-edit"></i> <span data-i18n="portal.billing.update_card">Actualizar tarjeta</span></a>
           </div>
 
           <div class="card-box">
             <h3><i class="ti ti-calendar"></i> <span data-i18n="portal.billing.next">Próximo cobro</span></h3>
-            <div class="next-charge">
-              <div class="row">
-                <span data-i18n="agent.documents.name">Documentos</span>
-                <span>$9.00 USD</span>
-              </div>
-              <div class="row">
-                <span data-i18n="agent.excel.name">Excel y datos</span>
-                <span>$9.00 USD</span>
-              </div>
-              <div class="row">
-                <span data-i18n="agent.database.name">Base de datos</span>
-                <span>$9.00 USD</span>
-              </div>
-              <div class="row" style="padding-top:10px;border-top:1px solid var(--line);margin-top:6px">
-                <span data-i18n="portal.billing.total">Total · 15 jul 2026</span>
-                <span>$27.00 USD</span>
-              </div>
-            </div>
+            <div class="next-charge" id="bill-next-charge"></div>
           </div>
         </div>
       </div>
@@ -1699,9 +1638,72 @@ document.addEventListener("DOMContentLoaded", () => {
     }).join("");
     if(typeof initCopyButtons==="function")initCopyButtons();
   }
+  function renderBilling(b, licenses){
+    b = b || {payment_method:null, history:[]};
+    var pm = b.payment_method;
+    var noneLbl = L("Sin método","No method","Sem método","Aucune méthode","Keine Methode","Nessun metodo");
+    var elShort = $("bill-method-short"); if(elShort) elShort.textContent = pm ? "•••• "+esc(pm.last4) : noneLbl;
+    var body = $("bill-method-body");
+    if(body){
+      if(pm){
+        body.innerHTML = '<div class="payment-method"><div class="card-brand"><i class="ti ti-credit-card"></i></div>'+
+          '<div class="card-info"><div class="num">•••• •••• •••• '+esc(pm.last4)+'</div>'+
+          '<div class="exp">'+L("Vence","Expires","Vence","Expire","Läuft ab","Scade")+'</div></div>'+
+          '<span style="font-family:\'JetBrains Mono\';font-size:12px;color:var(--muted)">'+
+          String(pm.exp_month).padStart(2,"0")+'/'+String(pm.exp_year).slice(-2)+'</span></div>';
+      } else {
+        body.innerHTML = '<div style="color:var(--muted);font-size:14px;padding:8px 0">'+
+          L("Sin método de pago registrado todavía.","No payment method on file yet.","Nenhum método de pagamento cadastrado ainda.","Aucun moyen de paiement enregistré pour le moment.","Noch keine Zahlungsmethode hinterlegt.","Nessun metodo di pagamento registrato ancora.")+'</div>';
+      }
+    }
+    var tbody = $("bill-history-body");
+    if(tbody){
+      var hist = b.history || [];
+      if(!hist.length){
+        tbody.innerHTML = '<tr><td colspan="4" style="color:var(--muted);text-align:center;padding:18px 0">'+
+          L("Sin pagos todavía.","No payments yet.","Sem pagamentos ainda.","Aucun paiement pour l'instant.","Noch keine Zahlungen.","Nessun pagamento ancora.")+'</td></tr>';
+      } else {
+        tbody.innerHTML = hist.map(function(h){
+          var estadoLbl = h.estado==="pagado" ? L("Pagado","Paid","Pago","Payé","Bezahlt","Pagato")
+            : h.estado==="pendiente" ? L("Pendiente","Pending","Pendente","En attente","Ausstehend","In attesa")
+            : h.estado==="reembolsado" ? L("Reembolsado","Refunded","Reembolsado","Remboursé","Erstattet","Rimborsato")
+            : h.estado==="fallido" ? L("Fallido","Failed","Falhou","Échoué","Fehlgeschlagen","Fallito")
+            : esc(h.estado||"—");
+          var pillCls = h.estado==="pagado" ? "ok" : (h.estado==="fallido"?"bad":"");
+          var amt = h.importe_bruto!=null ? money(h.importe_bruto)+" "+esc(h.moneda||"") : "—";
+          return '<tr><td class="mono">'+fmtShort(h.created_at)+'</td><td>'+esc(h.concepto||"—")+'</td>'+
+            '<td class="mono right">'+amt+'</td>'+
+            '<td class="right"><span class="pill '+pillCls+'" style="margin-left:auto">'+estadoLbl+'</span></td></tr>';
+        }).join("");
+      }
+    }
+    var nc = $("bill-next-charge");
+    if(nc){
+      var active = (licenses||[]).filter(function(l){return l.status==="active";});
+      if(!active.length){
+        nc.innerHTML = '<div style="color:var(--muted);font-size:14px">'+
+          L("Sin cargos programados.","No charges scheduled.","Sem cobranças programadas.","Aucun prélèvement prévu.","Keine geplanten Abbuchungen.","Nessun addebito programmato.")+'</div>';
+      } else {
+        var total=0, next=null;
+        var rows = active.map(function(l){
+          total += Number(l.price_usd||0);
+          if(l.current_period_end && (!next || l.current_period_end<next)) next=l.current_period_end;
+          return '<div class="row"><span>'+esc(l.agent_name||l.agent_id)+'</span><span>'+money(l.price_usd)+' USD</span></div>';
+        }).join("");
+        var totalLbl = L("Total","Total","Total","Total","Gesamt","Totale") + (next?" · "+fmtShort(next):"");
+        nc.innerHTML = rows + '<div class="row" style="padding-top:10px;border-top:1px solid var(--line);margin-top:6px">'+
+          '<span>'+totalLbl+'</span><span>'+money(total)+' USD</span></div>';
+        var elNext=$("bill-next"); if(elNext) elNext.textContent = next?fmtShort(next):"—";
+        var elMonthly=$("bill-monthly"); if(elMonthly) elMonthly.innerHTML = money(total)+'<small> USD</small>';
+      }
+    }
+  }
   function loadData(){
     api("/api/me/summary").then(renderSummary).catch(function(){});
-    api("/api/me/licenses").then(function(d){var l=d.licenses||[];renderLicenses(l);renderAgents(l);}).catch(function(){});
+    api("/api/me/licenses").then(function(d){
+      var l=d.licenses||[];renderLicenses(l);renderAgents(l);
+      api("/api/me/billing").then(function(b){renderBilling(b,l);}).catch(function(){renderBilling(null,l);});
+    }).catch(function(){});
   }
   var pendingEmail="";
   function showView(name){
@@ -1851,6 +1853,7 @@ document.addEventListener("DOMContentLoaded", () => {
       $("mng-sub").textContent=L("Cancela, cambia tu tarjeta o descarga tus facturas en el portal seguro de Stripe.","Cancel, update your card or download invoices in Stripe's secure portal.","Cancele, atualize seu cartão ou baixe suas faturas no portal seguro da Stripe.","Annulez, changez de carte ou téléchargez vos factures dans le portail sécurisé de Stripe.","Kündige, aktualisiere deine Karte oder lade Rechnungen im sicheren Stripe-Portal herunter.","Annulla, aggiorna la carta o scarica le fatture nel portale sicuro di Stripe.");
       $("mng-btn").textContent=L("Gestionar","Manage","Gerenciar","Gérer","Verwalten","Gestisci");
       $("btn-manage-billing").addEventListener("click",openBilling);
+      if($("btn-update-card"))$("btn-update-card").addEventListener("click",openBilling);
     }
     // Datos y baja de cuenta (ARCO/GDPR)
     if($("btn-export-data")){
