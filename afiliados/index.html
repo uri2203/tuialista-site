@@ -621,9 +621,10 @@
         <div>
           <div class="balance-card">
             <div class="lbl" data-i18n="aff.pay.available">Saldo disponible para retirar</div>
-            <div class="amt">$131.10 <small>USD</small></div>
+            <div class="amt" id="pay-available">$0.00 <small>USD</small></div>
             <div class="sub" data-i18n="aff.pay.available_sub">Comisiones liquidadas · mínimo de retiro $50 USD</div>
             <button class="btn btn-signal btn-lg" style="width:100%;justify-content:center" id="withdraw-btn"><i class="ti ti-cash"></i> <span data-i18n="aff.pay.request">Solicitar retiro</span></button>
+            <div class="sub" id="pay-open-request" style="display:none"></div>
           </div>
           <div class="mor-note">
             <i class="ti ti-shield-check"></i>
@@ -647,23 +648,23 @@
           <div id="fields-paypal">
             <div class="form-group">
               <label data-i18n="aff.pay.paypal_email">Correo de PayPal</label>
-              <input type="email" value="m.resendiz@mktmx.com">
+              <input type="email" id="pay-paypal-email" placeholder="tu@correo.com">
             </div>
           </div>
 
           <div id="fields-bank" style="display:none">
             <div class="form-group">
               <label data-i18n="aff.pay.holder">Titular de la cuenta</label>
-              <input type="text" placeholder="Mariana Reséndiz García">
+              <input type="text" id="pay-bank-holder" placeholder="Nombre completo">
             </div>
             <div class="form-row">
               <div class="form-group">
                 <label data-i18n="aff.pay.bank_name">Banco</label>
-                <input type="text" placeholder="BBVA">
+                <input type="text" id="pay-bank-name" placeholder="BBVA">
               </div>
               <div class="form-group">
                 <label data-i18n="aff.pay.account">CLABE / IBAN</label>
-                <input type="text" placeholder="0123 4567 8901 2345 67">
+                <input type="text" id="pay-bank-account" placeholder="0123 4567 8901 2345 67">
               </div>
             </div>
           </div>
@@ -685,29 +686,7 @@
             <th style="text-align:right" data-i18n="aff.col.amount">Monto</th>
             <th style="text-align:right" data-i18n="aff.col.status">Estado</th>
           </tr></thead>
-          <tbody>
-            <tr>
-              <td class="mono-sm" style="color:var(--ink)">05 jun 2026</td>
-              <td style="font-size:13px">PayPal</td>
-              <td class="mono-sm">WD-2026-06-0042</td>
-              <td class="rev">$114.30</td>
-              <td class="right"><span class="pill ok" data-i18n="aff.status.paid_m">Pagado</span></td>
-            </tr>
-            <tr>
-              <td class="mono-sm" style="color:var(--ink)">04 abr 2026</td>
-              <td style="font-size:13px">PayPal</td>
-              <td class="mono-sm">WD-2026-04-0031</td>
-              <td class="rev">$64.50</td>
-              <td class="right"><span class="pill ok" data-i18n="aff.status.paid_m">Pagado</span></td>
-            </tr>
-            <tr>
-              <td class="mono-sm" style="color:var(--ink)">03 feb 2026</td>
-              <td style="font-size:13px">PayPal</td>
-              <td class="mono-sm">WD-2026-02-0019</td>
-              <td class="rev">$32.10</td>
-              <td class="right"><span class="pill ok" data-i18n="aff.status.paid_m">Pagado</span></td>
-            </tr>
-          </tbody>
+          <tbody id="payout-history-tbody"></tbody>
         </table>
         <div style="font-size:12.5px;color:var(--muted);margin-top:12px" data-i18n="aff.pay.history_note">Los retiros solicitados aparecen como “En proceso” hasta que TuIAlista confirma el depósito (2–5 días hábiles).</div>
       </div>
@@ -1771,11 +1750,36 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Withdraw button (visual)
+  // Solicitar retiro (real: crea la solicitud en el backend)
   const wb = document.getElementById("withdraw-btn");
-  if(wb) wb.addEventListener("click", () => showToast(t("aff.toast.withdraw")));
+  if(wb) wb.addEventListener("click", () => {
+    if(wb.disabled) return;
+    wb.disabled = true;
+    apiPost("/api/affiliate/payout/request", {}).then(() => {
+      showToast(t("aff.toast.withdraw"));
+      loadPayoutData();
+    }).catch((e) => { showToast(e.message || t("aff.toast.withdraw")); wb.disabled = false; });
+  });
+  // Guardar datos de cobro (real: se guardan en el afiliado, se usan al pedir retiro)
   const sp = document.getElementById("save-payout");
-  if(sp) sp.addEventListener("click", () => showToast(t("aff.toast.payout_saved")));
+  if(sp) sp.addEventListener("click", () => {
+    const selMethod = document.querySelector(".radio-card.sel");
+    const m = selMethod ? selMethod.getAttribute("data-method") : "paypal";
+    let method, detail;
+    if(m === "paypal"){
+      method = "paypal";
+      detail = (document.getElementById("pay-paypal-email") || {}).value || "";
+    } else {
+      method = "transfer";
+      const holder = (document.getElementById("pay-bank-holder") || {}).value || "";
+      const bank = (document.getElementById("pay-bank-name") || {}).value || "";
+      const account = (document.getElementById("pay-bank-account") || {}).value || "";
+      detail = [holder, bank, account].filter(Boolean).join(" · ");
+    }
+    apiPost("/api/affiliate/payout/method", {method: method, detail: detail}).then(() => {
+      showToast(t("aff.toast.payout_saved"));
+    }).catch((e) => showToast(e.message || t("aff.toast.payout_saved")));
+  });
 
   // Generic save toasts
   document.querySelectorAll("[data-save-toast]").forEach(b => {
@@ -1973,6 +1977,12 @@ document.addEventListener("DOMContentLoaded", () => {
       return r.json();
     });
   }
+  function apiPost(path,body){
+    return fetch(API+path,{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+tok()},body:JSON.stringify(body||{})}).then(function(r){
+      if(r.status===401){logout();throw new Error("unauth");}
+      return r.json().then(function(d){ if(!r.ok) throw new Error(d.error||("HTTP "+r.status)); return d; });
+    });
+  }
   function moneyMes(n){return "$"+Number(n||0).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2})+"/"+L("mes","mo","mês","mois","Mon.","mese");}
   function renderSummary(s){
     var total=Number(s.paid_usd||0)+Number(s.pending_usd||0);
@@ -2034,9 +2044,71 @@ document.addEventListener("DOMContentLoaded", () => {
         '<td class="right"><span class="pill '+cls+'">'+esc(c.status)+'</span></td></tr>';
     }).join("");
   }
+  function payoutStatusLabel(status){
+    return {requested:L("Solicitado","Requested","Solicitado","Demandé","Angefragt","Richiesto"),
+      processing:t("aff.status.processing"),
+      paid:t("aff.status.paid_m"),
+      rejected:L("Rechazado","Rejected","Rejeitado","Rejeté","Abgelehnt","Rifiutato")}[status]||status;
+  }
+  function payoutStatusClass(status){
+    return status==="paid"?"ok":(status==="rejected"?"off":"trial");
+  }
+  function fmtDate(iso){
+    var d=new Date(iso);
+    return isNaN(d.getTime())?"—":d.toLocaleDateString(L("es-ES","en-US","pt-BR","fr-FR","de-DE","it-IT"),
+      {day:"2-digit",month:"short",year:"numeric",timeZone:"UTC"});
+  }
+  function renderPayoutHistory(list){
+    var tb=document.getElementById("payout-history-tbody");
+    if(!tb)return;
+    if(!list||!list.length){ tb.innerHTML='<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:24px">'+
+      L("Aún no hay retiros.","No withdrawals yet.","Ainda não há saques.","Pas encore de retraits.","Noch keine Auszahlungen.","Ancora nessun prelievo.")+'</td></tr>'; return; }
+    tb.innerHTML=list.map(function(p){
+      return '<tr><td class="mono-sm" style="color:var(--ink)">'+fmtDate(p.requested_at)+'</td>'+
+        '<td style="font-size:13px">'+esc(p.method==="paypal"?"PayPal":L("Transferencia","Transfer","Transferência","Virement","Überweisung","Bonifico"))+'</td>'+
+        '<td class="mono-sm">'+esc(p.reference||"—")+'</td>'+
+        '<td class="rev">'+money(p.amount_usd)+'</td>'+
+        '<td class="right"><span class="pill '+payoutStatusClass(p.status)+'">'+esc(payoutStatusLabel(p.status))+'</span></td></tr>';
+    }).join("");
+  }
+  function renderPayout(s){
+    var av=document.getElementById("pay-available");
+    if(av) av.innerHTML=money(s.available_usd)+" <small>USD</small>";
+    var wb=document.getElementById("withdraw-btn");
+    var openBox=document.getElementById("pay-open-request");
+    if(s.open_request){
+      if(wb){ wb.disabled=true; wb.style.opacity=.55; wb.style.cursor="not-allowed"; }
+      if(openBox){ openBox.style.display=""; openBox.textContent=L(
+        "Ya tienes una solicitud de retiro "+payoutStatusLabel(s.open_request.status).toLowerCase()+".",
+        "You already have a withdrawal request "+payoutStatusLabel(s.open_request.status).toLowerCase()+".",
+        "Você já tem uma solicitação de saque "+payoutStatusLabel(s.open_request.status).toLowerCase()+".",
+        "Vous avez déjà une demande de retrait "+payoutStatusLabel(s.open_request.status).toLowerCase()+".",
+        "Du hast bereits einen Auszahlungsantrag ("+payoutStatusLabel(s.open_request.status).toLowerCase()+").",
+        "Hai già una richiesta di prelievo "+payoutStatusLabel(s.open_request.status).toLowerCase()+"."); }
+    } else if(wb){
+      var ok=Number(s.available_usd||0)>=Number(s.minimum_usd||50);
+      wb.disabled=!ok; wb.style.opacity=ok?"":".55"; wb.style.cursor=ok?"":"not-allowed";
+      if(openBox) openBox.style.display="none";
+    }
+    // Precarga el método de cobro guardado
+    if(s.payout_method){
+      try{
+        var m=JSON.parse(s.payout_method);
+        var card=document.querySelector('.radio-card[data-method="'+(m.type==="paypal"?"paypal":"bank")+'"]');
+        if(card) card.click();
+        if(m.type==="paypal"){ var e=$("pay-paypal-email"); if(e) e.value=m.detail||""; }
+        else { var h=$("pay-bank-holder"); if(h) h.value=m.detail||""; }
+      }catch(e){}
+    }
+  }
+  function loadPayoutData(){
+    api("/api/affiliate/payout/summary").then(renderPayout).catch(function(){});
+    api("/api/affiliate/payout/history?limit=50").then(function(d){renderPayoutHistory(d.payouts||[]);}).catch(function(){});
+  }
   function loadData(){
     api("/api/affiliate/summary").then(renderSummary).catch(function(){});
     api("/api/affiliate/commissions?limit=50").then(function(d){renderCommissions(d.commissions||[]);}).catch(function(){});
+    loadPayoutData();
   }
   var pendingEmail="";
   function showView(name){
