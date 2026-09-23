@@ -2009,6 +2009,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // Ocultar tarjetas de DEMO con datos por cliente (no reales / privacidad)
     hide("#sec-dashboard .grid2");
     hide("#sec-commissions .grid2");
+    // Los textos "desde dic 2025 / 7 periodos liquidados / julio 2026" eran
+    // de muestra y no correspondían a los montos reales de arriba (ej. $0.00
+    // con "7 periodos liquidados"). Se ocultan hasta tener un cálculo real.
+    hide("#sec-commissions .metric:nth-child(1) .delta");
+    hide("#sec-commissions .metric:nth-child(2) .delta");
+    hide("#sec-commissions .metric:nth-child(3) .delta");
     // Tabla de clientes DEMO: por privacidad no listamos cada referido; mostramos los
     // totales (arriba en chips/métricas) y ocultamos la tabla + filtros + nota demo.
     var ctb=$("clients-tbody");
