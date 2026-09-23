@@ -990,9 +990,9 @@ Te escribo porque creo que TuIAlista encaja contigo: agentes de IA especializado
           <div class="card card-0">
             <h3><i class="ti ti-id-badge"></i> <span data-i18n="aff.set.affiliate_data">Datos de afiliado</span></h3>
             <div style="font-size:13px;color:var(--muted);line-height:1.9">
-              <div style="display:flex;justify-content:space-between"><span data-i18n="aff.set.your_code">Tu código</span><span class="mono" style="color:var(--signal-dim)">MRES9A4C21</span></div>
-              <div style="display:flex;justify-content:space-between"><span data-i18n="aff.set.commission_rate">Comisión</span><span class="mono">30% recurrente</span></div>
-              <div style="display:flex;justify-content:space-between"><span data-i18n="aff.set.member_since">Afiliado desde</span><span class="mono">dic 2025</span></div>
+              <div style="display:flex;justify-content:space-between"><span data-i18n="aff.set.your_code">Tu código</span><span class="mono" id="set-code" style="color:var(--signal-dim)">—</span></div>
+              <div style="display:flex;justify-content:space-between"><span data-i18n="aff.set.commission_rate">Comisión</span><span class="mono" id="set-commission">—</span></div>
+              <div style="display:flex;justify-content:space-between"><span data-i18n="aff.set.member_since">Afiliado desde</span><span class="mono" id="set-since">—</span></div>
             </div>
             <div class="danger-zone">
               <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
@@ -1684,7 +1684,11 @@ function renderChart(){
 }
 
 /* ── AGENT LINK GENERATOR ── */
-const REF = "MRES9A4C21";
+// ANTES: "const REF" era un código de ejemplo QUEMADO — todo afiliado que usara
+// esta herramienta generaba enlaces con el código de OTRO afiliado (o de nadie),
+// perdiendo el crédito de sus propias referencias. Ahora se llena con el ref_code
+// REAL de la sesión (ver renderSummary) y se vuelve a pintar en cuanto llega.
+var REF = "";
 function updateGenLink(){
   const sel = document.getElementById("agent-select");
   if(!sel) return;
@@ -1990,6 +1994,18 @@ document.addEventListener("DOMContentLoaded", () => {
     var dl=$("dash-link"); if(dl) dl.textContent=link;
     var cb=document.querySelector('#sec-dashboard .link-field .copy-btn'); if(cb) cb.setAttribute("data-copy",link);
     var sl=document.querySelector('#sec-link .url'); if(sl) sl.textContent=link;
+    var slbtn=document.querySelector('#sec-link .link-field .copy-btn'); if(slbtn) slbtn.setAttribute("data-copy",link);
+    // "Tu código" (chip, Mi enlace + Configuración) y generador por agente: antes
+    // se quedaban en el valor de muestra del HTML porque nadie los actualizaba.
+    var chip=document.querySelector('#sec-link .code-chip'); if(chip) chip.textContent=s.ref_code||"";
+    var scode=$("set-code"); if(scode) scode.textContent=s.ref_code||"—";
+    var scomm=$("set-commission"); if(scomm) scomm.textContent=(Number(s.commission_pct||0))+"% "+L("recurrente","recurring","recorrente","récurrent","wiederkehrend","ricorrente");
+    var ssince=$("set-since"); if(ssince && s.member_since){
+      var d=new Date(s.member_since);
+      ssince.textContent=isNaN(d.getTime())?"—":d.toLocaleDateString(L("es-ES","en-US","pt-BR","fr-FR","de-DE","it-IT"),{month:"short",year:"numeric",timeZone:"UTC"});
+    }
+    REF = s.ref_code||"";
+    if(typeof updateGenLink==="function") updateGenLink();
     // Ocultar tarjetas de DEMO con datos por cliente (no reales / privacidad)
     hide("#sec-dashboard .grid2");
     hide("#sec-commissions .grid2");
