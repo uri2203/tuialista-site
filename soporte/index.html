@@ -382,6 +382,9 @@ function applyLang(l){
   localStorage.setItem("tuialista_lang", l);
   const sw = document.getElementById("lang-switcher");
   if(sw) sw.value = l;
+  // El widget del chat fija su idioma al construirse; si ya está abierto,
+  // sincronizarlo con el idioma que el usuario acaba de elegir en el sitio.
+  if(window.TuiaAssistant && window.TuiaAssistant.setLang) window.TuiaAssistant.setLang(l);
 }
 document.addEventListener("DOMContentLoaded", function(){
   document.getElementById("y").textContent = new Date().getFullYear();

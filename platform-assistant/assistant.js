@@ -257,6 +257,13 @@
     this.el.humanCancel.textContent = t.humanCancel;
   };
 
+  Assistant.prototype.setLang = function (lang) {
+    if (KB.SUPPORTED.indexOf(lang) < 0 || lang === this.lang) return;
+    this.lang = lang;
+    this.forcedLang = true; // ya no lo pise la auto-detección por texto escrito
+    this._applyLangStatic();
+  };
+
   /* ── Hablar con un humano: escala a la cola de soporte (ver support_service
      en core-license). Manda el transcript reciente para que el operador no
      empiece de cero. No toca el flujo normal de la IA. ─────────────────────── */
@@ -480,5 +487,13 @@
     },
     open: function () { if (_instance) _instance.toggle(true); },
     close: function () { if (_instance) _instance.toggle(false); },
+    // El widget fija su idioma UNA vez al construirse (localStorage/navegador);
+    // si el sitio anfitrión tiene su PROPIO selector de idioma (p. ej. la página
+    // de soporte), cambiarlo ahí no se propagaba al widget ya abierto — quedaba
+    // en el idioma viejo aunque el resto de la página cambiara. El host llama
+    // esto desde su propio applyLang().
+    setLang: function (lang) {
+      if (_instance) _instance.setLang(lang);
+    },
   };
 })(typeof window !== "undefined" ? window : this);
