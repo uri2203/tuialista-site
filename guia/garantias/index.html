@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gu&iacute;a &middot; Agente de Reclamaciones y Garantías — TuIAlista</title>
+<meta name="description" content="C&oacute;mo usar el Agente de Reclamaciones y Garantías de TuIAlista: instalaci&oacute;n, comandos, ejemplos y preguntas frecuentes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{--steel-900:#0f1922;--paper:#f5f6f4;--paper-2:#eceee9;--ink:#0f1922;--muted:#5a6b73;--signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2;--ok:#1d9e75;--amber-tint:#fdf1e4;--steel-tint:#eef2f4}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper-2);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--signal-dim)}
+  header{position:sticky;top:0;background:rgba(245,246,244,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+  .nav{max-width:860px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+  .logo b{color:var(--signal)}
+  .nav .r{display:flex;align-items:center;gap:18px}
+  .nav .r a{font-size:14px;color:var(--muted);text-decoration:none}
+  .nav .r a:hover{color:var(--ink)}
+  main{max-width:860px;margin:0 auto;padding:38px 24px 80px}
+  .eyebrow{font-family:'JetBrains Mono';font-size:11.5px;letter-spacing:.1em;color:var(--signal-dim);margin-bottom:8px}
+  h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,34px);line-height:1.12;margin-bottom:10px}
+  .sub{color:var(--muted);font-size:15.5px;max-width:640px;margin-bottom:18px}
+  .hero-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+  .price{font-family:'Space Grotesk';font-weight:600;font-size:14px;color:var(--signal-dim);background:var(--amber-tint);border:1px solid var(--signal);border-radius:999px;padding:7px 16px}
+  .cta{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:9px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;text-decoration:none;transition:.15s}
+  .cta:hover{background:var(--signal);color:#1a1206}
+  h2.sec{font-family:'Space Grotesk';font-size:18px;font-weight:600;margin:38px 0 14px;padding:10px 16px;background:var(--steel-900);color:#fff;border-radius:10px;display:flex;align-items:center;gap:10px}
+  h2.sec .n{color:var(--signal)}
+  h4{font-family:'Space Grotesk';font-size:14.5px;font-weight:600;margin:16px 0 4px;color:var(--signal-dim)}
+  p{margin:0 0 12px;font-size:14.5px}
+  ul{margin:0 0 12px 20px;font-size:14.5px}
+  li{margin-bottom:6px}
+  code{font-family:'JetBrains Mono',monospace;font-size:.92em;background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  .callout{border-radius:10px;padding:14px 16px;margin:10px 0 16px;font-size:14px;border-left:3px solid}
+  .cal-amber{background:var(--amber-tint);border-color:var(--signal)}
+  .cal-steel{background:var(--steel-tint);border-color:#2c4a5c}
+  .quick{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:22px}
+  .quick h3{font-family:'Space Grotesk';font-size:16px;margin-bottom:8px}
+  .stepline{display:flex;gap:12px;margin-bottom:16px}
+  .stepline .num{flex:none;width:28px;height:28px;border-radius:8px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center}
+  .stepline .steptitle{font-family:'Space Grotesk';font-weight:600;font-size:14.5px;display:block;margin-bottom:2px}
+  .stepline p{font-size:13.5px;color:var(--muted);margin:0}
+  .cmdcard{background:var(--paper-2);border-left:3px solid #2c4a5c;border-radius:8px;padding:12px 16px;margin-bottom:10px}
+  .cmdcard code{background:transparent;border:none;padding:0;font-weight:600;display:block;margin-bottom:4px}
+  .cmdcard p{margin:0;font-size:13.5px;color:var(--muted)}
+  .shot{margin:14px 0 20px;text-align:center}
+  .shot img{max-width:100%;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(15,25,34,.06)}
+  .shot figcaption{font-size:12.5px;color:var(--muted);font-style:italic;margin-top:8px}
+  details.acc{background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;overflow:hidden}
+  details.acc summary{cursor:pointer;list-style:none;padding:13px 16px;font-weight:600;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+  details.acc summary::-webkit-details-marker{display:none}
+  details.acc summary::after{content:"+";color:var(--signal-dim);font-size:18px;font-weight:400}
+  details.acc[open] summary::after{content:"\2212"}
+  details.acc[open] summary{border-bottom:1px solid var(--line)}
+  .acc-body{padding:12px 16px;font-size:13.8px;color:var(--muted)}
+  .acc-body code{color:var(--ink)}
+  footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px;margin-top:10px}
+  footer a{color:#cdd5d9;text-decoration:none}
+  @media(max-width:520px){.nav .r a.hide-sm{display:none}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+  <div class="r">
+    <a class="hide-sm" href="/catalogo/">Cat&aacute;logo</a>
+    <a class="hide-sm" href="/soporte/">Soporte</a>
+    <a href="/portal/">Entrar</a>
+  </div>
+</div></header>
+
+<main>
+  <div class="eyebrow">GU&Iacute;A DEL AGENTE</div>
+  <h1>Agente de Reclamaciones y Garantías</h1>
+  <p class="sub">Rastrea tus garantías, te alerta antes de que venzan y te genera la carta de reclamación lista para enviar.</p>
+  <div class="hero-row">
+    <span class="price">$19 USD / mes</span>
+    <a class="cta" href="/descargar/?agent=garantias"><i class="ti ti-download"></i> Descargar este agente</a>
+  </div>
+
+  <div class="quick">
+    <h3>&iquest;Qué resuelve y qué necesitas?</h3>
+    <p>Las personas y los negocios pierden dinero por garantías que vencen sin que nadie las revise: un electrodoméstico, una laptop, una herramienta que se descompuso y que aún estaba protegida. Este agente convierte tus tickets, facturas y comprobantes dispersos en un sistema de recuperación activa.</p>
+    <ul><li><b>Necesitas:</b> tu clave de licencia (<font face='Courier'>TIA-XXXX-XXXX-XXXX-XXXX</font>) y la carpeta con tus comprobantes. Nada de Python ni conocimientos técnicos.</li><li><b>Primer resultado en menos de 5 minutos:</b> instalas, activas, eliges tu carpeta y corres <font face='Courier-Bold'>estado</font> para ver el estatus de todas tus garantías.</li><li><b>Tus comprobantes nunca salen de tu computadora</b> — el análisis corre localmente.</li></ul>
+    <div class="callout cal-amber"><b>Aviso:</b> los términos de garantía dependen de cada fabricante y comercio. Este agente organiza y alerta; <b>no sustituye asesoría legal</b>. Para reclamaciones no resueltas en México, puedes acudir a <b>PROFECO</b>.</div>
+    <div class="callout cal-amber"><b>&iquest;Tienes dudas?</b> Escr&iacute;benos a <code>soporte@tuialista.com</code> o entra a <a href="/soporte/"><code>tuialista.com/soporte</code></a> — normalmente respondemos el mismo d&iacute;a h&aacute;bil.</div>
+  </div>
+
+  <h2 class="sec"><span class="n">1</span> Qué hace este agente</h2>
+<p>Tú le señalas la carpeta con tus tickets, facturas y comprobantes y él:</p>
+<ul><li>Los <b>lee</b> (texto, PDF, Word, Excel y CSV), sin que tengas que abrirlos uno por uno.</li><li>Extrae los datos de compra: <b>producto, fecha, monto, tienda, número de serie y periodo de garantía.</b></li><li>Calcula el <b>estatus</b> de cada garantía: vigente, por vencer o vencida.</li><li>Te <b>alerta de garantías próximas a vencer</b> antes de que sea tarde.</li><li>Genera una <b>carta de reclamación formal</b> lista para enviar (con referencia a la LFPC y PROFECO).</li><li>Calcula el <b>valor total</b> de tus productos aún protegidos.</li><li>Responde tus <b>preguntas</b>: <i>&ldquo;&iquest;mi laptop sigue con garantía?&rdquo;</i></li></ul>
+<p>El resultado: dejas de perder garantías por olvido y recuperas dinero que te corresponde.</p>
+<h2 class="sec"><span class="n">2</span> Instalación (2 minutos)</h2>
+<p>Para Windows. No hace falta internet permanente ni subir nada a la nube.</p>
+<div class="stepline"><div class="num">1</div><div><b class="steptitle">Descárgalo e instálalo</b><p>Baja el instalador desde <font face='Courier'>tuialista.com/descargar</font> (agente Garantías) y ábrelo. Crea un acceso directo en tu escritorio con el logo — no requiere Python ni terminal.</p></div></div>
+<div class="stepline"><div class="num">2</div><div><b class="steptitle">Ábrelo desde el escritorio</b><p>Doble clic al ícono nuevo. Pega tu <b>clave de licencia</b> (te llegó por correo al comprar) y pulsa <b>Activar</b>. Verás una palomita verde cuando sea válida.</p></div></div>
+<div class="stepline"><div class="num">3</div><div><b class="steptitle">Elige tu carpeta</b><p>Selecciona la carpeta con tus tickets y comprobantes y pulsa <b>Comenzar a usar el agente</b>. La próxima vez arranca directo — recuerda tu clave y tu carpeta.</p></div></div>
+<figure class="shot"><img src="../assets/mockups/garantias/activacion.png" alt="Así se ve la ventana de activación (con datos de ejemplo). Aparece la primera vez que abres el agente." loading="lazy"><figcaption>Así se ve la ventana de activación (con datos de ejemplo). Aparece la primera vez que abres el agente.</figcaption></figure>
+<h2 class="sec"><span class="n">3</span> Cómo usarlo</h2>
+<p>El agente abre una <b>ventana de chat</b>, como una app de mensajería — no es una pantalla negra de programador. Escribes tu comando o tu pregunta en el cuadro de texto de abajo, pulsas <b>Enviar</b> (o Enter), y la respuesta aparece como un mensaje, igual que en esta imagen real:</p>
+<figure class="shot"><img src="../assets/mockups/garantias/chat.png" alt="La conversación real: escribes &amp;ldquo;estado&amp;rdquo; y el agente responde con el estatus de tus garantías (datos de ejemplo)." loading="lazy"><figcaption>La conversación real: escribes &ldquo;estado&rdquo; y el agente responde con el estatus de tus garantías (datos de ejemplo).</figcaption></figure>
+<p>Los comandos siguientes son las palabras que puedes escribir en ese mismo cuadro de texto:</p>
+<div class="cmdcard"><code>&gt; estado</code><p>Todas tus garantías: VIGENTE, POR_VENCER, VENCIDA o SIN_FECHA, con los días restantes.</p></div>
+<div class="cmdcard"><code>&gt; porvencer [días]</code><p>Garantías que vencen en los próximos N días (30 por defecto), para reclamar a tiempo. Ej.: <font face='Courier'>porvencer 60</font>.</p></div>
+<div class="cmdcard"><code>&gt; reclamables</code><p>Productos con garantía vigente, indicando si tienes todos los datos para reclamar o qué te falta.</p></div>
+<div class="cmdcard"><code>&gt; reclamar &lt;producto&gt;</code><p>La carta de reclamación formal lista, con referencia a la LFPC y PROFECO, y un espacio para describir el problema. Ej.: <font face='Courier'>reclamar laptop</font>.</p></div>
+<div class="cmdcard"><code>&gt; faltantes</code><p>Comprobantes a los que les falta algún dato clave (fecha, monto, tienda, número de serie) para poder reclamar.</p></div>
+<div class="cmdcard"><code>&gt; protegido</code><p>Suma el valor de tus productos con garantía vigente y por vencer.</p></div>
+<div class="cmdcard"><code>&gt; ¿pregunta libre?</code><p>Escribe cualquier duda en lenguaje natural, ej.: <i>&iquest;cuánto me queda de garantía en el refrigerador?</i></p></div>
+<div class="cmdcard"><code>&gt; salir</code><p>Termina la sesión (también funciona <font face='Courier'>exit</font>).</p></div>
+<div class="callout cal-steel">Si un comprobante no indica el periodo de garantía, el agente asume <b>1 año (365 días)</b> por defecto para calcular la vigencia.</div>
+<h2 class="sec"><span class="n">4</span> Ejemplos de uso común</h2>
+<h4>Revisar qué está por vencer</h4>
+<p><font face='Courier'>porvencer 45</font> — ves qué garantías vencen pronto y decides si conviene reclamar ahora.</p>
+<h4>Reclamar un producto descompuesto</h4>
+<p><font face='Courier'>reclamables</font> &nbsp;→&nbsp; <font face='Courier'>reclamar licuadora</font> — confirmas que sigue en garantía y obtienes la carta lista.</p>
+<h4>Saber cuánto tienes protegido</h4>
+<p><font face='Courier'>protegido</font></p>
+<h4>Completar lo que falta</h4>
+<p><font face='Courier'>faltantes</font> — detectas qué comprobantes necesitan más datos antes de poder reclamar.</p>
+<h2 class="sec"><span class="n">5</span> Preguntas frecuentes</h2>
+<details class="acc"><summary>&iquest;Mis comprobantes se suben a internet?</summary><div class="acc-body">No. Todo se procesa en tu computadora (ver Privacidad, sección 7).</div></details>
+<details class="acc"><summary>&iquest;Qué formatos acepta?</summary><div class="acc-body">Texto (.txt), Markdown (.md), PDF (.pdf), Word (.docx), Excel (.xlsx) y CSV (.csv). En hojas de cálculo, cada fila se trata como un comprobante.</div></details>
+<details class="acc"><summary>&iquest;Cómo sabe la fecha, el monto y la garantía?</summary><div class="acc-body">Los extrae automáticamente del texto del comprobante (busca &ldquo;fecha de compra&rdquo;, &ldquo;total&rdquo;, &ldquo;garantía de X años/meses&rdquo;, número de serie, tienda...). Es muy útil, pero puede confundirse con comprobantes de formato inusual.</div></details>
+<details class="acc"><summary>&iquest;Qué pasa si el comprobante no dice el periodo de garantía?</summary><div class="acc-body">El agente asume <b>1 año</b> por defecto. Si tu producto tiene otra garantía, verifícalo y considéralo al reclamar.</div></details>
+<details class="acc"><summary>&iquest;La carta de reclamación es válida legalmente?</summary><div class="acc-body">Es un <b>borrador de apoyo</b> con formato formal y referencia a la LFPC. Revísalo, complétalo y adáptalo a tu caso. Los términos dependen del fabricante/comercio.</div></details>
+<details class="acc"><summary>&iquest;En qué idioma me responde?</summary><div class="acc-body">En el idioma en que le escribas. La extracción de datos está optimizada para español.</div></details>
+<details class="acc"><summary>&iquest;Lee un PDF escaneado?</summary><div class="acc-body">No de forma confiable: si es una imagen sin texto seleccionable, no podrá leerlo.</div></details>
+<details class="acc"><summary>&iquest;Modifica mis archivos?</summary><div class="acc-body">No. El agente solo <b>lee</b> tus comprobantes.</div></details>
+<details class="acc"><summary>&iquest;Puedo cambiar la carpeta?</summary><div class="acc-body">Sí. Vuelve a abrir el agente y pulsa &ldquo;Elegir&hellip;&rdquo; para cambiarla (si no te la pide, borra <font face='Courier'>config.json</font> dentro de <font face='Courier'>%USERPROFILE%\.tuialista</font> para que te la vuelva a pedir).</div></details>
+<details class="acc"><summary>&iquest;Sustituye asesoría legal o de consumo?</summary><div class="acc-body">No. Es una herramienta de organización y apoyo. Para reclamaciones no resueltas, acude a PROFECO o a un asesor.</div></details>
+<h2 class="sec"><span class="n">6</span> Solución de problemas</h2>
+<details class="acc"><summary>No lee un .pdf, .docx o .xlsx</summary><div class="acc-body">Confirma que el PDF tenga texto real (no escaneado). Si el problema persiste, contacta a soporte.</div></details>
+<details class="acc"><summary>Muestra &ldquo;0 comprobantes&rdquo;</summary><div class="acc-body">La carpeta está vacía o la ruta es incorrecta. Revisa que hayas elegido la carpeta correcta al activar el agente.</div></details>
+<details class="acc"><summary>Dice &ldquo;Licencia no válida&rdquo; o pide reconectar</summary><div class="acc-body">Revisa que la clave pegada sea correcta (sin espacios de más), confirma que tienes internet la primera vez que activas, y si estuviste más de 3 días sin conexión, reconéctate una vez para revalidar.</div></details>
+<details class="acc"><summary>&ldquo;No hay proveedores de IA configurados&rdquo;</summary><div class="acc-body"><font face='Courier'>reclamar</font> y las preguntas libres usan IA — si falta configurar el motor, contacta a soporte. <font face='Courier'>estado</font>, <font face='Courier'>porvencer</font>, <font face='Courier'>reclamables</font>, <font face='Courier'>faltantes</font> y <font face='Courier'>protegido</font> siguen funcionando de forma local, sin IA.</div></details>
+<p><b>&iquest;Ninguna de estas soluciones resolvió tu problema?</b> Escríbenos directamente — con gusto lo revisamos contigo.</p>
+<div class="callout cal-amber"><b>&iquest;Tienes dudas?</b> Escr&iacute;benos a <code>soporte@tuialista.com</code> o entra a <a href="/soporte/"><code>tuialista.com/soporte</code></a> — normalmente respondemos el mismo d&iacute;a h&aacute;bil.</div>
+<h2 class="sec"><span class="n">7</span> Privacidad y confidencialidad</h2>
+<p><b>Tus comprobantes nunca salen de tu computadora.</b></p>
+<ul><li>El agente lee y analiza los archivos <b>localmente</b>, en tu propio equipo. No los sube a ningún servidor.</li><li>La extracción de datos de compra y el cálculo de vigencias ocurren <b>en tu máquina</b>.</li><li>Lo único que viaja por internet es: (1) una comprobación de que tu licencia está activa — que no incluye tus comprobantes —, y (2) al generar una carta de reclamación o hacer una pregunta libre, se envía un fragmento de la información relevante al motor de IA para redactar esa respuesta.</li></ul>
+<div class="callout cal-steel">La confidencialidad de tus compras está garantizada por diseño: el procesamiento base (lectura, estatus, cálculo de valor protegido) es 100% local. Solo <font face='Courier'>reclamar</font> y las preguntas libres comparten un fragmento de datos con el proveedor de IA para poder responder.</div>
+<div class="callout cal-amber"><b>Recordatorio importante:</b> este agente te ayuda a no perder garantías, pero no es un abogado ni PROFECO. Extrae fechas, montos y periodos de forma automática, y puede omitir o confundir algún dato en comprobantes con formato inusual. Verifica las fechas de vencimiento críticas y los términos de tu garantía con el comprobante y el fabricante antes de actuar. Para reclamaciones no resueltas, acude a PROFECO.</div>
+
+</main>
+
+<footer>&copy; 2026 TuIAlista &middot; <a href="/soporte/">Soporte</a> &middot; <a href="/catalogo/">Cat&aacute;logo</a> &middot; <a href="/">Inicio</a></footer>
+</body>
+</html>

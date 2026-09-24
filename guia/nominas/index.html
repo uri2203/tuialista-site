@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gu&iacute;a &middot; Agente de Nóminas y Recursos Humanos — TuIAlista</title>
+<meta name="description" content="C&oacute;mo usar el Agente de Nóminas y Recursos Humanos de TuIAlista: instalaci&oacute;n, comandos, ejemplos y preguntas frecuentes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{--steel-900:#0f1922;--paper:#f5f6f4;--paper-2:#eceee9;--ink:#0f1922;--muted:#5a6b73;--signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2;--ok:#1d9e75;--amber-tint:#fdf1e4;--steel-tint:#eef2f4}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper-2);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--signal-dim)}
+  header{position:sticky;top:0;background:rgba(245,246,244,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+  .nav{max-width:860px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+  .logo b{color:var(--signal)}
+  .nav .r{display:flex;align-items:center;gap:18px}
+  .nav .r a{font-size:14px;color:var(--muted);text-decoration:none}
+  .nav .r a:hover{color:var(--ink)}
+  main{max-width:860px;margin:0 auto;padding:38px 24px 80px}
+  .eyebrow{font-family:'JetBrains Mono';font-size:11.5px;letter-spacing:.1em;color:var(--signal-dim);margin-bottom:8px}
+  h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,34px);line-height:1.12;margin-bottom:10px}
+  .sub{color:var(--muted);font-size:15.5px;max-width:640px;margin-bottom:18px}
+  .hero-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+  .price{font-family:'Space Grotesk';font-weight:600;font-size:14px;color:var(--signal-dim);background:var(--amber-tint);border:1px solid var(--signal);border-radius:999px;padding:7px 16px}
+  .cta{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:9px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;text-decoration:none;transition:.15s}
+  .cta:hover{background:var(--signal);color:#1a1206}
+  h2.sec{font-family:'Space Grotesk';font-size:18px;font-weight:600;margin:38px 0 14px;padding:10px 16px;background:var(--steel-900);color:#fff;border-radius:10px;display:flex;align-items:center;gap:10px}
+  h2.sec .n{color:var(--signal)}
+  h4{font-family:'Space Grotesk';font-size:14.5px;font-weight:600;margin:16px 0 4px;color:var(--signal-dim)}
+  p{margin:0 0 12px;font-size:14.5px}
+  ul{margin:0 0 12px 20px;font-size:14.5px}
+  li{margin-bottom:6px}
+  code{font-family:'JetBrains Mono',monospace;font-size:.92em;background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  .callout{border-radius:10px;padding:14px 16px;margin:10px 0 16px;font-size:14px;border-left:3px solid}
+  .cal-amber{background:var(--amber-tint);border-color:var(--signal)}
+  .cal-steel{background:var(--steel-tint);border-color:#2c4a5c}
+  .quick{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:22px}
+  .quick h3{font-family:'Space Grotesk';font-size:16px;margin-bottom:8px}
+  .stepline{display:flex;gap:12px;margin-bottom:16px}
+  .stepline .num{flex:none;width:28px;height:28px;border-radius:8px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center}
+  .stepline .steptitle{font-family:'Space Grotesk';font-weight:600;font-size:14.5px;display:block;margin-bottom:2px}
+  .stepline p{font-size:13.5px;color:var(--muted);margin:0}
+  .cmdcard{background:var(--paper-2);border-left:3px solid #2c4a5c;border-radius:8px;padding:12px 16px;margin-bottom:10px}
+  .cmdcard code{background:transparent;border:none;padding:0;font-weight:600;display:block;margin-bottom:4px}
+  .cmdcard p{margin:0;font-size:13.5px;color:var(--muted)}
+  .shot{margin:14px 0 20px;text-align:center}
+  .shot img{max-width:100%;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(15,25,34,.06)}
+  .shot figcaption{font-size:12.5px;color:var(--muted);font-style:italic;margin-top:8px}
+  details.acc{background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;overflow:hidden}
+  details.acc summary{cursor:pointer;list-style:none;padding:13px 16px;font-weight:600;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+  details.acc summary::-webkit-details-marker{display:none}
+  details.acc summary::after{content:"+";color:var(--signal-dim);font-size:18px;font-weight:400}
+  details.acc[open] summary::after{content:"\2212"}
+  details.acc[open] summary{border-bottom:1px solid var(--line)}
+  .acc-body{padding:12px 16px;font-size:13.8px;color:var(--muted)}
+  .acc-body code{color:var(--ink)}
+  footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px;margin-top:10px}
+  footer a{color:#cdd5d9;text-decoration:none}
+  @media(max-width:520px){.nav .r a.hide-sm{display:none}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+  <div class="r">
+    <a class="hide-sm" href="/catalogo/">Cat&aacute;logo</a>
+    <a class="hide-sm" href="/soporte/">Soporte</a>
+    <a href="/portal/">Entrar</a>
+  </div>
+</div></header>
+
+<main>
+  <div class="eyebrow">GU&Iacute;A DEL AGENTE</div>
+  <h1>Agente de Nóminas y Recursos Humanos</h1>
+  <p class="sub">Organiza a tu plantilla, calcula vacaciones según la LFT y vigila las fechas críticas de RH — sin que los datos salgan de tu equipo.</p>
+  <div class="hero-row">
+    <span class="price">$59 USD / mes</span>
+    <a class="cta" href="/descargar/?agent=nominas"><i class="ti ti-download"></i> Descargar este agente</a>
+  </div>
+
+  <div class="quick">
+    <h3>&iquest;Qué resuelve y qué necesitas?</h3>
+    <p>Los datos de empleados son ultra-sensibles y no pueden andar en la nube. Este agente los procesa 100% en tu máquina: carga tu plantilla, calcula el balance de vacaciones según la Ley Federal del Trabajo y te avisa de fechas críticas (fin de contratos, aniversarios) antes de que se te pasen.</p>
+    <ul><li><b>Necesitas:</b> tu clave de licencia (<font face='Courier'>TIA-XXXX-XXXX-XXXX-XXXX</font>) y tu plantilla en Excel o CSV. Nada de Python ni conocimientos técnicos.</li><li><b>Primer resultado en menos de 5 minutos:</b> instalas, activas, eliges tu carpeta y corres <font face='Courier-Bold'>vacaciones</font> para ver el balance de cada empleado.</li><li><b>Los datos de tus empleados nunca salen de tu computadora</b> — el cálculo corre localmente.</li></ul>
+    <div class="callout cal-amber"><b>Aviso:</b> los cálculos de vacaciones, prestaciones e impuestos son <b>estimaciones</b> que deben validarse con el área legal/contable. Las leyes laborales cambian.</div>
+    <div class="callout cal-amber"><b>&iquest;Tienes dudas?</b> Escr&iacute;benos a <code>soporte@tuialista.com</code> o entra a <a href="/soporte/"><code>tuialista.com/soporte</code></a> — normalmente respondemos el mismo d&iacute;a h&aacute;bil.</div>
+  </div>
+
+  <h2 class="sec"><span class="n">1</span> Qué hace este agente</h2>
+<p>Tú le señalas la carpeta con tu plantilla (en Excel o CSV) y él:</p>
+<ul><li><b>Carga los datos</b> de empleados detectando las columnas automáticamente (nombre, puesto, salario, fecha de ingreso, tipo de contrato...), aunque estén con nombres distintos.</li><li>Calcula el <b>balance de vacaciones</b> según la <b>Ley Federal del Trabajo de México</b> (reforma &ldquo;Vacaciones Dignas&rdquo; 2023).</li><li>Te avisa de <b>fechas críticas</b>: fin de contratos y aniversarios laborales próximos.</li><li>Genera un <b>resumen de nómina</b> (total, promedio, por departamento y tipo de contrato).</li><li>Lista <b>aniversarios</b> próximos para reconocimientos.</li><li>Alerta de <b>contratos por vencer</b>.</li><li>Genera un <b>reporte de plantilla</b> (altas, bajas, headcount por área).</li><li>Responde <b>preguntas de RH</b> con contexto anonimizado.</li></ul>
+<p>El resultado: un área de RH organizada, con las fechas bajo control y los datos siempre en casa.</p>
+<h2 class="sec"><span class="n">2</span> Instalación (2 minutos)</h2>
+<p>Para Windows. No hace falta internet permanente ni subir nada a la nube.</p>
+<div class="stepline"><div class="num">1</div><div><b class="steptitle">Descárgalo e instálalo</b><p>Baja el instalador desde <font face='Courier'>tuialista.com/descargar</font> (agente Nóminas) y ábrelo. Crea un acceso directo en tu escritorio con el logo — no requiere Python ni terminal.</p></div></div>
+<div class="stepline"><div class="num">2</div><div><b class="steptitle">Ábrelo desde el escritorio</b><p>Doble clic al ícono nuevo. Pega tu <b>clave de licencia</b> (te llegó por correo al comprar) y pulsa <b>Activar</b>. Verás una palomita verde cuando sea válida.</p></div></div>
+<div class="stepline"><div class="num">3</div><div><b class="steptitle">Elige tu carpeta</b><p>Selecciona la carpeta con tu plantilla y pulsa <b>Comenzar a usar el agente</b>. La próxima vez arranca directo — recuerda tu clave y tu carpeta.</p></div></div>
+<figure class="shot"><img src="../assets/mockups/nominas/activacion.png" alt="Así se ve la ventana de activación (con datos de ejemplo). Aparece la primera vez que abres el agente." loading="lazy"><figcaption>Así se ve la ventana de activación (con datos de ejemplo). Aparece la primera vez que abres el agente.</figcaption></figure>
+<h2 class="sec"><span class="n">3</span> Cómo usarlo</h2>
+<p>El agente abre una <b>ventana de chat</b>, como una app de mensajería — no es una pantalla negra de programador. Escribes tu comando o tu pregunta en el cuadro de texto de abajo, pulsas <b>Enviar</b> (o Enter), y la respuesta aparece como un mensaje, igual que en esta imagen real:</p>
+<figure class="shot"><img src="../assets/mockups/nominas/chat.png" alt="La conversación real: escribes &amp;ldquo;vacaciones&amp;rdquo; y el agente responde con el balance de cada empleado (datos de ejemplo)." loading="lazy"><figcaption>La conversación real: escribes &ldquo;vacaciones&rdquo; y el agente responde con el balance de cada empleado (datos de ejemplo).</figcaption></figure>
+<p>Los comandos siguientes son las palabras que puedes escribir en ese mismo cuadro de texto:</p>
+<div class="cmdcard"><code>&gt; vacaciones</code><p>Por empleado: su antigüedad, los días de vacaciones que le corresponden (tabla de la LFT con la reforma 2023), los tomados y los pendientes.</p></div>
+<div class="cmdcard"><code>&gt; fechas [días]</code><p>Eventos de RH de los próximos N días (30 por defecto): fin de contratos y aniversarios laborales, ordenados por urgencia. Ej.: <font face='Courier'>fechas 45</font>.</p></div>
+<div class="cmdcard"><code>&gt; nomina</code><p>Total de nómina, salario promedio, máximo y mínimo, y desglose por departamento y por tipo de contrato — sin exponer datos individuales sensibles innecesariamente.</p></div>
+<div class="cmdcard"><code>&gt; aniversarios [días]</code><p>Empleados que cumplen aniversario laboral en los próximos N días (60 por defecto).</p></div>
+<div class="cmdcard"><code>&gt; contratos [días]</code><p>Contratos temporales por vencer en los próximos N días (45 por defecto), incluidos los recién vencidos.</p></div>
+<div class="cmdcard"><code>&gt; plantilla</code><p>Total de plantilla, activos, bajas, altas del año, y desglose por departamento y tipo de contrato.</p></div>
+<div class="cmdcard"><code>&gt; ¿pregunta libre?</code><p>Escribe cualquier duda en lenguaje natural, ej.: <i>&iquest;cuántos empleados cumplen 5 años este trimestre?</i></p></div>
+<div class="cmdcard"><code>&gt; salir</code><p>Termina la sesión (también funciona <font face='Courier'>exit</font>).</p></div>
+<h2 class="sec"><span class="n">4</span> Ejemplos de uso común</h2>
+<h4>Revisión mensual de RH</h4>
+<p><font face='Courier'>fechas 30</font> &nbsp;→&nbsp; <font face='Courier'>contratos 45</font></p>
+<h4>Preparar vacaciones del año</h4>
+<p><font face='Courier'>vacaciones</font></p>
+<h4>Reporte para dirección</h4>
+<p><font face='Courier'>nomina</font> &nbsp;→&nbsp; <font face='Courier'>plantilla</font></p>
+<h4>Una consulta puntual</h4>
+<p><i>&iquest;quién cumple aniversario el próximo mes?</i></p>
+<h2 class="sec"><span class="n">5</span> Preguntas frecuentes</h2>
+<details class="acc"><summary>&iquest;Los datos de mis empleados se suben a internet?</summary><div class="acc-body">No. Se cargan y procesan en tu computadora (ver Privacidad, sección 7).</div></details>
+<details class="acc"><summary>&iquest;Qué formatos acepta?</summary><div class="acc-body">Excel (.xlsx, .xls) y CSV (.csv). El agente lee la plantilla desde hojas de cálculo, no desde PDF ni Word.</div></details>
+<details class="acc"><summary>&iquest;Necesito nombrar las columnas de una forma exacta?</summary><div class="acc-body">No. El agente detecta automáticamente columnas con nombres variados en español e inglés (nombre/empleado/name, salario/sueldo/salary, fecha ingreso/hire date...). Necesita al menos la columna de <b>nombre</b> o <b>salario</b> para reconocer el archivo.</div></details>
+<details class="acc"><summary>&iquest;Cómo calcula las vacaciones?</summary><div class="acc-body">Con la tabla de la Ley Federal del Trabajo de México y la reforma &ldquo;Vacaciones Dignas&rdquo; (2023): 12 días al primer año, subiendo hasta 20 al quinto; a partir del sexto, 22 días y +2 por cada 5 años adicionales.</div></details>
+<details class="acc"><summary>&iquest;El cálculo de vacaciones es legalmente vinculante?</summary><div class="acc-body">No. Es una <b>estimación</b> del mínimo legal según la antigüedad. Verifícalo con tu área legal antes de autorizar; tu empresa puede otorgar más días.</div></details>
+<details class="acc"><summary>&iquest;Expone los salarios individuales?</summary><div class="acc-body">El resumen y las preguntas están diseñados para respetar la privacidad y no exponer datos individuales sensibles salvo que sea necesario.</div></details>
+<details class="acc"><summary>&iquest;En qué idioma responde?</summary><div class="acc-body">En el idioma en que le escribas. El cálculo de vacaciones está basado en la legislación mexicana.</div></details>
+<details class="acc"><summary>&iquest;Modifica mi archivo de empleados?</summary><div class="acc-body">No. El agente solo lo <b>lee</b>.</div></details>
+<details class="acc"><summary>Actualicé la plantilla, &iquest;la toma?</summary><div class="acc-body">Vuelve a arrancar el agente; recarga los datos desde la carpeta.</div></details>
+<details class="acc"><summary>&iquest;Puedo tener varios archivos?</summary><div class="acc-body">Sí. Carga todos los .xlsx/.xls/.csv de la carpeta y sus subcarpetas.</div></details>
+<h2 class="sec"><span class="n">6</span> Solución de problemas</h2>
+<details class="acc"><summary>No carga a los empleados / dice &ldquo;0 empleados&rdquo;</summary><div class="acc-body">Confirma que elegiste la carpeta correcta al activar el agente y que el archivo tiene una columna reconocible de <b>nombre</b> o <b>salario</b> en la primera fila.</div></details>
+<details class="acc"><summary>Detecta mal una columna</summary><div class="acc-body">Renombra el encabezado a una variante más común (por ejemplo, &ldquo;Nombre&rdquo;, &ldquo;Salario&rdquo;, &ldquo;Fecha de ingreso&rdquo;) y vuelve a arrancar.</div></details>
+<details class="acc"><summary>Los cálculos de vacaciones no cuadran con lo esperado</summary><div class="acc-body">El agente calcula el <b>mínimo legal</b> por antigüedad; tu empresa puede otorgar más. Verifica con el área legal.</div></details>
+<details class="acc"><summary>Dice &ldquo;Licencia no válida&rdquo; o pide reconectar</summary><div class="acc-body">Revisa que la clave pegada sea correcta (sin espacios de más), confirma que tienes internet la primera vez que activas, y si estuviste más de 3 días sin conexión, reconéctate una vez para revalidar.</div></details>
+<details class="acc"><summary>&ldquo;No hay proveedores de IA configurados&rdquo;</summary><div class="acc-body">Solo las preguntas libres usan IA — si falta configurar el motor, contacta a soporte. <font face='Courier'>fechas</font>, <font face='Courier'>vacaciones</font>, <font face='Courier'>nomina</font>, <font face='Courier'>aniversarios</font>, <font face='Courier'>contratos</font> y <font face='Courier'>plantilla</font> siguen funcionando de forma local, sin IA.</div></details>
+<p><b>&iquest;Ninguna de estas soluciones resolvió tu problema?</b> Escríbenos directamente — con gusto lo revisamos contigo.</p>
+<div class="callout cal-amber"><b>&iquest;Tienes dudas?</b> Escr&iacute;benos a <code>soporte@tuialista.com</code> o entra a <a href="/soporte/"><code>tuialista.com/soporte</code></a> — normalmente respondemos el mismo d&iacute;a h&aacute;bil.</div>
+<h2 class="sec"><span class="n">7</span> Privacidad y confidencialidad</h2>
+<p><b>Los datos de tus empleados nunca salen de tu computadora.</b></p>
+<ul><li>El agente carga y procesa la plantilla <b>localmente</b>, en tu propio equipo. No sube datos de empleados a ningún servidor.</li><li>El cálculo de vacaciones, los reportes de nómina, las fechas críticas y el headcount se calculan <b>en tu máquina</b>.</li><li>Lo único que viaja por internet es: (1) una comprobación de que tu licencia está activa — que no incluye datos de empleados —, y (2) al hacer una pregunta libre, se envía un <b>contexto anonimizado</b> (resúmenes agregados, sin exponer salarios individuales por defecto) al motor de IA para redactar la respuesta.</li></ul>
+<div class="callout cal-steel">La confidencialidad de los datos de tu personal está garantizada por diseño: vacaciones, nómina, fechas críticas y headcount son 100% locales. Solo las preguntas libres comparten un contexto anonimizado con el proveedor de IA.</div>
+<div class="callout cal-amber"><b>Recordatorio importante:</b> los cálculos de vacaciones, prestaciones e impuestos son estimaciones; valídalos con el área legal/contable. El agente calcula el mínimo legal de vacaciones según la LFT (reforma 2023) a partir de la antigüedad, pero cada empresa puede tener prestaciones superiores y las leyes cambian. Antes de autorizar vacaciones, finiquitos o renovaciones de contrato, confirma con tu área legal o contable.</div>
+
+</main>
+
+<footer>&copy; 2026 TuIAlista &middot; <a href="/soporte/">Soporte</a> &middot; <a href="/catalogo/">Cat&aacute;logo</a> &middot; <a href="/">Inicio</a></footer>
+</body>
+</html>

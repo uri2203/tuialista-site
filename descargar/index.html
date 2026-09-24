@@ -46,6 +46,8 @@
   .card h3{font-family:'Space Grotesk';font-size:16px;font-weight:600;margin-bottom:12px;flex:1}
   .dl{width:100%;padding:10px;border:none;border-radius:9px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;text-decoration:none;transition:.15s}
   .dl:hover{background:var(--signal);color:#1a1206}
+  .guide-link{display:flex;align-items:center;justify-content:center;gap:5px;margin-top:8px;font-size:12.5px;color:var(--signal-dim);text-decoration:none}
+  .guide-link:hover{text-decoration:underline}
   .state{grid-column:1/-1;text-align:center;color:var(--muted);padding:50px 0;font-size:15px}
   footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px;margin-top:10px}
   footer a{color:#cdd5d9;text-decoration:none}
@@ -137,14 +139,19 @@
   var DL=L({es:"Descargar",en:"Download",pt:"Baixar",fr:"Télécharger",de:"Herunterladen",it:"Scarica"});
   function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
 
+  // Agentes con guía web interactiva (site-public/guia/<id>/) — el resto solo descarga.
+  var GUIDES={fiscal:1,garantias:1,inventario:1,nominas:1,facturas:1};
+  var VERUSO=L({es:"Ver cómo se usa",en:"See how it works",pt:"Ver como funciona",fr:"Voir comment ça marche",de:"So funktioniert's",it:"Vedi come funziona"});
   function render(names){
     var grid=document.getElementById("grid");
     grid.innerHTML=ORDER.map(function(id){
       var name=names[id]||FB[id]||id, icon=ICON[id]||"robot";
+      var guide=GUIDES[id]?'<a class="guide-link" href="/guia/'+esc(id)+'/"><i class="ti ti-book-2"></i> '+VERUSO+'</a>':'';
       return '<div class="card" id="c-'+esc(id)+'">'+
         '<div class="ico"><i class="ti ti-'+icon+'"></i></div>'+
         '<h3>'+esc(name)+'</h3>'+
         '<a class="dl" href="'+REL+'TuIAlista-'+esc(id)+'-instalador.exe" download><i class="ti ti-download"></i> '+DL+'</a>'+
+        guide+
         '</div>';
     }).join("");
     // Deep-link ?agent=<id> -> resalta y hace scroll a esa tarjeta
