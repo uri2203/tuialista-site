@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guide &middot; Inventory Agent — TuIAlista</title>
+<meta name="description" content="How to use the Inventory Agent from TuIAlista: setup, commands, examples and FAQs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{--steel-900:#0f1922;--paper:#f5f6f4;--paper-2:#eceee9;--ink:#0f1922;--muted:#5a6b73;--signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2;--ok:#1d9e75;--amber-tint:#fdf1e4;--steel-tint:#eef2f4}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper-2);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--signal-dim)}
+  header{position:sticky;top:0;background:rgba(245,246,244,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+  .nav{max-width:860px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+  .logo b{color:var(--signal)}
+  .nav .r{display:flex;align-items:center;gap:18px}
+  .nav .r a{font-size:14px;color:var(--muted);text-decoration:none}
+  .nav .r a:hover{color:var(--ink)}
+  main{max-width:860px;margin:0 auto;padding:38px 24px 80px}
+  .eyebrow{font-family:'JetBrains Mono';font-size:11.5px;letter-spacing:.1em;color:var(--signal-dim);margin-bottom:8px}
+  h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,34px);line-height:1.12;margin-bottom:10px}
+  .sub{color:var(--muted);font-size:15.5px;max-width:640px;margin-bottom:18px}
+  .hero-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+  .price{font-family:'Space Grotesk';font-weight:600;font-size:14px;color:var(--signal-dim);background:var(--amber-tint);border:1px solid var(--signal);border-radius:999px;padding:7px 16px}
+  .cta{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:9px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;text-decoration:none;transition:.15s}
+  .cta:hover{background:var(--signal);color:#1a1206}
+  h2.sec{font-family:'Space Grotesk';font-size:18px;font-weight:600;margin:38px 0 14px;padding:10px 16px;background:var(--steel-900);color:#fff;border-radius:10px;display:flex;align-items:center;gap:10px}
+  h2.sec .n{color:var(--signal)}
+  h4{font-family:'Space Grotesk';font-size:14.5px;font-weight:600;margin:16px 0 4px;color:var(--signal-dim)}
+  p{margin:0 0 12px;font-size:14.5px}
+  ul{margin:0 0 12px 20px;font-size:14.5px}
+  li{margin-bottom:6px}
+  code{font-family:'JetBrains Mono',monospace;font-size:.92em;background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  .callout{border-radius:10px;padding:14px 16px;margin:10px 0 16px;font-size:14px;border-left:3px solid}
+  .cal-amber{background:var(--amber-tint);border-color:var(--signal)}
+  .cal-steel{background:var(--steel-tint);border-color:#2c4a5c}
+  .quick{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:22px}
+  .quick h3{font-family:'Space Grotesk';font-size:16px;margin-bottom:8px}
+  .stepline{display:flex;gap:12px;margin-bottom:16px}
+  .stepline .num{flex:none;width:28px;height:28px;border-radius:8px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center}
+  .stepline .steptitle{font-family:'Space Grotesk';font-weight:600;font-size:14.5px;display:block;margin-bottom:2px}
+  .stepline p{font-size:13.5px;color:var(--muted);margin:0}
+  .cmdcard{background:var(--paper-2);border-left:3px solid #2c4a5c;border-radius:8px;padding:12px 16px;margin-bottom:10px}
+  .cmdcard code{background:transparent;border:none;padding:0;font-weight:600;display:block;margin-bottom:4px}
+  .cmdcard p{margin:0;font-size:13.5px;color:var(--muted)}
+  .shot{margin:14px 0 20px;text-align:center}
+  .shot img{max-width:100%;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(15,25,34,.06)}
+  .shot figcaption{font-size:12.5px;color:var(--muted);font-style:italic;margin-top:8px}
+  details.acc{background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;overflow:hidden}
+  details.acc summary{cursor:pointer;list-style:none;padding:13px 16px;font-weight:600;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+  details.acc summary::-webkit-details-marker{display:none}
+  details.acc summary::after{content:"+";color:var(--signal-dim);font-size:18px;font-weight:400}
+  details.acc[open] summary::after{content:"\2212"}
+  details.acc[open] summary{border-bottom:1px solid var(--line)}
+  .acc-body{padding:12px 16px;font-size:13.8px;color:var(--muted)}
+  .acc-body code{color:var(--ink)}
+  footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px;margin-top:10px}
+  footer a{color:#cdd5d9;text-decoration:none}
+  @media(max-width:520px){.nav .r a.hide-sm{display:none}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+  <div class="r">
+    <a class="hide-sm" href="/catalogo/">Catalog</a>
+    <a class="hide-sm" href="/soporte/">Support</a>
+    <a href="/portal/">Sign in</a>
+  </div>
+</div></header>
+
+<main>
+  <div class="eyebrow">AGENT GUIDE</div>
+  <h1>Inventory Agent</h1>
+  <p class="sub">Find out what to reorder, how much your inventory is worth, and where your capital is tied up — in seconds.</p>
+  <div class="hero-row">
+    <span class="price">$29 USD / month</span>
+    <a class="cta" href="/descargar/?agent=inventario"><i class="ti ti-download"></i> Download this agent</a>
+  </div>
+
+  <div class="quick">
+    <h3>What does it solve and what do you need?</h3>
+    <p>Inventory is a balancing act: run short and you lose sales; overstock and you tie up cash. Checking this by hand in spreadsheets is tedious and almost nobody does it on time. This agent turns your inventory files into a purchasing and capital control panel.</p>
+    <ul><li><b>You need:</b> your license key (<font face='Courier'>TIA-XXXX-XXXX-XXXX-XXXX</font>) and the folder with your inventory files (Excel or CSV). No Python, no technical knowledge.</li><li><b>First result in under 5 minutes:</b> install, activate, pick your folder, and run <font face='Courier-Bold'>low</font> to see which product is about to run out.</li><li><b>Your business data never leaves your computer</b> — the analysis runs locally.</li></ul>
+    <div class="callout cal-amber"><b>Notice:</b> this agent is a decision-support tool, <b>not an automatic purchasing system</b>. Its suggestions are based on simple rules over the data you give it; verify critical figures before buying or writing off inventory.</div>
+    <div class="callout cal-amber"><b>Questions?</b> Email us at <code>soporte@tuialista.com</code> or visit <a href="/soporte/"><code>tuialista.com/soporte</code></a> — we usually reply the same business day.</div>
+  </div>
+
+  <h2 class="sec"><span class="n">1</span> What this agent does</h2>
+<p>You point it at the folder with your inventory files and it:</p>
+<ul><li><b>Reads</b> them (Excel .xlsx and CSV), automatically recognizing the columns (in Spanish or English).</li><li>Detects <b>products below minimum</b> stock and their urgency.</li><li>Suggests <b>how much to reorder</b> for each product (based on its turnover, or a default value).</li><li>Calculates the <b>total value</b> of inventory, at cost and at selling price, by category and vendor.</li><li>Identifies <b>dead stock</b> (no movement) that ties up capital.</li><li>Classifies products with <b>ABC analysis</b> (where the value is concentrated).</li><li>Detects <b>excess inventory</b>.</li><li>Answers your <b>questions</b>: <i>&ldquo;what should I reorder first?&rdquo;</i></li></ul>
+<p>The result: you know what to buy, what to free up, and where your money is, in seconds.</p>
+<h2 class="sec"><span class="n">2</span> Installation (2 minutes)</h2>
+<p>For Windows. No constant internet connection needed, and nothing gets uploaded to the cloud.</p>
+<div class="stepline"><div class="num">1</div><div><b class="steptitle">Download and install it</b><p>Download the installer from <font face='Courier'>tuialista.com/descargar</font> (Inventory agent) and open it. It creates a desktop shortcut with the logo — no Python or terminal needed.</p></div></div>
+<div class="stepline"><div class="num">2</div><div><b class="steptitle">Open it from your desktop</b><p>Double-click the new icon. Paste your <b>license key</b> (you received it by email when you bought it) and click <b>Activate</b>. You'll see a green checkmark once it's valid.</p></div></div>
+<div class="stepline"><div class="num">3</div><div><b class="steptitle">Choose your folder</b><p>Select the folder with your inventory files and click <b>Start using the agent</b>. Next time it starts right up — it remembers your key and your folder.</p></div></div>
+<figure class="shot"><img src="../../assets/mockups/inventario/activacion_en.png" alt="This is what the activation window looks like (with sample data). It appears the first time you open the agent." loading="lazy"><figcaption>This is what the activation window looks like (with sample data). It appears the first time you open the agent.</figcaption></figure>
+<h2 class="sec"><span class="n">3</span> How to use it</h2>
+<p>The agent opens a <b>chat window</b>, like a messaging app — not a programmer's black screen. You type your command or question in the text box below, hit <b>Send</b> (or Enter), and the reply appears as a message, just like in this real image:</p>
+<figure class="shot"><img src="../../assets/mockups/inventario/chat_en.png" alt="The real conversation: you type &ldquo;low&rdquo; and the agent replies with the products below minimum (sample data)." loading="lazy"><figcaption>The real conversation: you type &ldquo;low&rdquo; and the agent replies with the products below minimum (sample data).</figcaption></figure>
+<p>The commands below are the words you can type in that same text box:</p>
+<div class="cmdcard"><code>&gt; low [threshold]</code><p>Products with stock at or below their minimum (or the threshold you give), sorted by urgency (CRITICAL / URGENT / LOW) with estimated days left if there's turnover data. E.g.: <font face='Courier'>low 5</font>.</p></div>
+<div class="cmdcard"><code>&gt; reorder</code><p>For each low product, suggests how much to order (based on ~30-day turnover, or a default value) and estimates the cost.</p></div>
+<div class="cmdcard"><code>&gt; value</code><p>Total value at cost and at selling price, potential margin, and breakdown by category and vendor.</p></div>
+<div class="cmdcard"><code>&gt; dead [days]</code><p>Products with stock but no movement in the last N days (90 by default), sorted by locked-up value. E.g.: <font face='Courier'>dead 120</font>.</p></div>
+<div class="cmdcard"><code>&gt; abc</code><p>A/B/C (Pareto) classification by inventory value: the &ldquo;A&rdquo; group concentrates most of the value and deserves the most attention.</p></div>
+<div class="cmdcard"><code>&gt; excess</code><p>Products with stock well above their minimum and the capital tied up in that excess.</p></div>
+<div class="cmdcard"><code>&gt; free-form question?</code><p>Type any question in natural language, e.g.: <i>which beverage-category products are about to run out?</i></p></div>
+<div class="cmdcard"><code>&gt; exit</code><p>Ends the session (<font face='Courier'>exit</font> also works).</p></div>
+<p>Want to see all <b>20 full recipes</b> with a real example of each? Check the <b>Recipe catalog</b> — a separate document because it's long: <font face='Courier'>catalogo_recetas.pdf</font> next to this manual, or the interactive version at <font color="#c46a12"><a href="https://tuialista.com/guia/inventario/recetas/">tuialista.com/guia/inventario/recetas</a></font>.</p>
+<h2 class="sec"><span class="n">4</span> Common use examples</h2>
+<h4>This week's purchase</h4>
+<p><font face='Courier'>low</font> &nbsp;→&nbsp; <font face='Courier'>reorder</font> — you see what's missing and how much to order, with the estimated cost.</p>
+<h4>Free up trapped cash</h4>
+<p><font face='Courier'>dead 90</font> &nbsp;→&nbsp; <font face='Courier'>excess</font> — you find the capital locked up in products with no movement or in excess.</p>
+<h4>Focus your attention</h4>
+<p><font face='Courier'>abc</font> — you know which &ldquo;A&rdquo; products to watch more closely because they concentrate the value.</p>
+<h4>A quick question</h4>
+<p><i>what's the total value of my inventory at cost?</i></p>
+<h2 class="sec"><span class="n">5</span> Frequently asked questions</h2>
+<details class="acc"><summary>Does my data get uploaded to the internet?</summary><div class="acc-body">No. Everything is processed on your computer (see Privacy, section 7).</div></details>
+<details class="acc"><summary>What formats does it accept?</summary><div class="acc-body">Excel (.xlsx) and CSV (.csv). Old .xls files are best saved as .xlsx.</div></details>
+<details class="acc"><summary>Do I need to name my columns exactly?</summary><div class="acc-body">No. The agent recognizes many names (for example, &ldquo;stock&rdquo;, &ldquo;quantity&rdquo;, &ldquo;qty&rdquo; for inventory count; &ldquo;sale price&rdquo;, &ldquo;retail price&rdquo;; &ldquo;unit cost&rdquo;...), in Spanish and English. Still, clear column names improve results.</div></details>
+<details class="acc"><summary>Does it really &ldquo;predict&rdquo; when to reorder?</summary><div class="acc-body">It makes a <b>rule-based estimate</b>: it uses your daily turnover (if it's in the data) to calculate how long the stock will last and how much to order for ~30 days; if there's no turnover data, it uses a default value. It's not a machine-learning prediction model.</div></details>
+<details class="acc"><summary>Do I need the turnover or last-sale-date column?</summary><div class="acc-body">They're not required, but they improve results: without turnover, days left and some suggestions are more generic; without &ldquo;last sale date&rdquo;, dead stock is marked as &ldquo;no date&rdquo;.</div></details>
+<details class="acc"><summary>What language does it reply in?</summary><div class="acc-body">Whatever language you write to it in.</div></details>
+<details class="acc"><summary>Does it modify my files?</summary><div class="acc-body">No. The agent only <b>reads</b> your data.</div></details>
+<details class="acc"><summary>Can I change the data folder?</summary><div class="acc-body">Yes. Reopen the agent and click &ldquo;Choose&hellip;&rdquo; to change it (if it doesn't ask, delete <font face='Courier'>config.json</font> inside <font face='Courier'>%USERPROFILE%\.tuialista</font> so it asks again).</div></details>
+<details class="acc"><summary>Are the calculations exact?</summary><div class="acc-body">They're done locally on your data. Still, verify critical figures and make sure your cost/price/stock columns are captured correctly.</div></details>
+<details class="acc"><summary>Can it read several files?</summary><div class="acc-body">Yes. It loads every .xlsx and .csv in the folder.</div></details>
+<h2 class="sec"><span class="n">6</span> Troubleshooting</h2>
+<details class="acc"><summary>It says &ldquo;CSV/XLSX with no recognized columns&rdquo;</summary><div class="acc-body">Your file doesn't have a clear product/SKU or stock column. Check the headers.</div></details>
+<details class="acc"><summary>It won't load a .xlsx</summary><div class="acc-body">Make sure the file is a valid .xlsx. If the problem persists, contact support.</div></details>
+<details class="acc"><summary>It says &ldquo;Invalid license&rdquo; or asks to reconnect</summary><div class="acc-body">Check that the key you pasted is correct (no extra spaces), make sure you have internet the first time you activate, and if you've been offline for more than 3 days, reconnect once to revalidate.</div></details>
+<details class="acc"><summary>&ldquo;No AI providers configured&rdquo;</summary><div class="acc-body">Free-form questions use AI — if the engine isn't configured, contact support. <font face='Courier'>low</font>, <font face='Courier'>reorder</font>, <font face='Courier'>value</font>, <font face='Courier'>dead</font>, <font face='Courier'>abc</font> and <font face='Courier'>excess</font> still work locally, without AI.</div></details>
+<p><b>None of these fixed your problem?</b> Write to us directly — we'll gladly look into it with you.</p>
+<div class="callout cal-amber"><b>Questions?</b> Email us at <code>soporte@tuialista.com</code> or visit <a href="/soporte/"><code>tuialista.com/soporte</code></a> — we usually reply the same business day.</div>
+<h2 class="sec"><span class="n">7</span> Privacy and confidentiality</h2>
+<p><b>Your business data never leaves your computer.</b></p>
+<ul><li>The agent reads and analyzes your files <b>locally</b>, on your own machine. It doesn't upload them to any server.</li><li>All calculations (low stock, value, ABC, excess, dead stock) happen <b>on your machine</b>.</li><li>The only thing that travels over the internet is: (1) a check that your license is active — which doesn't include your data —, and (2) when you ask a free-form question, a relevant inventory summary is sent to the AI engine to draft the reply.</li></ul>
+<div class="callout cal-steel">The confidentiality of your costs, prices and stock levels is guaranteed by design: all calculations (low stock, reorder, value, ABC, excess, dead stock) are 100% local. Only free-form questions share a summary with the AI provider so it can reply.</div>
+<div class="callout cal-amber"><b>Important reminder:</b> this agent is a decision-support tool, not an automatic purchasing system. Its reorder suggestions and analysis are based on the data you give it and simple rules. Verify critical figures (costs, prices, stock) and apply your business judgment before buying or writing off inventory.</div>
+
+</main>
+
+<footer>&copy; 2026 TuIAlista &middot; <a href="/soporte/">Support</a> &middot; <a href="/catalogo/">Catalog</a> &middot; <a href="/">Home</a></footer>
+</body>
+</html>
