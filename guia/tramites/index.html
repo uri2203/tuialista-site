@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gu&iacute;a &middot; Agente de Trámites de Gobierno — TuIAlista</title>
+<meta name="description" content="C&oacute;mo usar el Agente de Trámites de Gobierno de TuIAlista: instalaci&oacute;n, comandos, ejemplos y preguntas frecuentes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{--steel-900:#0f1922;--paper:#f5f6f4;--paper-2:#eceee9;--ink:#0f1922;--muted:#5a6b73;--signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2;--ok:#1d9e75;--amber-tint:#fdf1e4;--steel-tint:#eef2f4}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper-2);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--signal-dim)}
+  header{position:sticky;top:0;background:rgba(245,246,244,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+  .nav{max-width:860px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+  .logo b{color:var(--signal)}
+  .nav .r{display:flex;align-items:center;gap:18px}
+  .nav .r a{font-size:14px;color:var(--muted);text-decoration:none}
+  .nav .r a:hover{color:var(--ink)}
+  main{max-width:860px;margin:0 auto;padding:38px 24px 80px}
+  .eyebrow{font-family:'JetBrains Mono';font-size:11.5px;letter-spacing:.1em;color:var(--signal-dim);margin-bottom:8px}
+  h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,34px);line-height:1.12;margin-bottom:10px}
+  .sub{color:var(--muted);font-size:15.5px;max-width:640px;margin-bottom:18px}
+  .hero-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+  .price{font-family:'Space Grotesk';font-weight:600;font-size:14px;color:var(--signal-dim);background:var(--amber-tint);border:1px solid var(--signal);border-radius:999px;padding:7px 16px}
+  .cta{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:9px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;text-decoration:none;transition:.15s}
+  .cta:hover{background:var(--signal);color:#1a1206}
+  h2.sec{font-family:'Space Grotesk';font-size:18px;font-weight:600;margin:38px 0 14px;padding:10px 16px;background:var(--steel-900);color:#fff;border-radius:10px;display:flex;align-items:center;gap:10px}
+  h2.sec .n{color:var(--signal)}
+  h4{font-family:'Space Grotesk';font-size:14.5px;font-weight:600;margin:16px 0 4px;color:var(--signal-dim)}
+  p{margin:0 0 12px;font-size:14.5px}
+  ul{margin:0 0 12px 20px;font-size:14.5px}
+  li{margin-bottom:6px}
+  code{font-family:'JetBrains Mono',monospace;font-size:.92em;background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  .callout{border-radius:10px;padding:14px 16px;margin:10px 0 16px;font-size:14px;border-left:3px solid}
+  .cal-amber{background:var(--amber-tint);border-color:var(--signal)}
+  .cal-steel{background:var(--steel-tint);border-color:#2c4a5c}
+  .quick{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:22px}
+  .quick h3{font-family:'Space Grotesk';font-size:16px;margin-bottom:8px}
+  .stepline{display:flex;gap:12px;margin-bottom:16px}
+  .stepline .num{flex:none;width:28px;height:28px;border-radius:8px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center}
+  .stepline .steptitle{font-family:'Space Grotesk';font-weight:600;font-size:14.5px;display:block;margin-bottom:2px}
+  .stepline p{font-size:13.5px;color:var(--muted);margin:0}
+  .cmdcard{background:var(--paper-2);border-left:3px solid #2c4a5c;border-radius:8px;padding:12px 16px;margin-bottom:10px}
+  .cmdcard code{background:transparent;border:none;padding:0;font-weight:600;display:block;margin-bottom:4px}
+  .cmdcard p{margin:0;font-size:13.5px;color:var(--muted)}
+  .shot{margin:14px 0 20px;text-align:center}
+  .shot img{max-width:100%;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(15,25,34,.06)}
+  .shot figcaption{font-size:12.5px;color:var(--muted);font-style:italic;margin-top:8px}
+  details.acc{background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;overflow:hidden}
+  details.acc summary{cursor:pointer;list-style:none;padding:13px 16px;font-weight:600;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+  details.acc summary::-webkit-details-marker{display:none}
+  details.acc summary::after{content:"+";color:var(--signal-dim);font-size:18px;font-weight:400}
+  details.acc[open] summary::after{content:"\2212"}
+  details.acc[open] summary{border-bottom:1px solid var(--line)}
+  .acc-body{padding:12px 16px;font-size:13.8px;color:var(--muted)}
+  .acc-body code{color:var(--ink)}
+  footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px;margin-top:10px}
+  footer a{color:#cdd5d9;text-decoration:none}
+  @media(max-width:520px){.nav .r a.hide-sm{display:none}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+  <div class="r">
+    <a class="hide-sm" href="/catalogo/">Cat&aacute;logo</a>
+    <a class="hide-sm" href="/soporte/">Soporte</a>
+    <a href="/portal/">Entrar</a>
+  </div>
+</div></header>
+
+<main>
+  <div class="eyebrow">GU&Iacute;A DEL AGENTE</div>
+  <h1>Agente de Trámites de Gobierno</h1>
+  <p class="sub">Te guía paso a paso en trámites mexicanos y te dice qué documentos tienes y cuáles te faltan.</p>
+  <div class="hero-row">
+    <span class="price">$19 USD / mes</span>
+    <a class="cta" href="/descargar/?agent=tramites"><i class="ti ti-download"></i> Descargar este agente</a>
+  </div>
+
+  <div class="quick">
+    <h3>&iquest;Qué resuelve y qué necesitas?</h3>
+    <p>Un trámite mal preparado significa tiempo perdido, filas, rechazos y a veces multas. Este agente organiza tus documentos personales, arma el checklist de lo que ya tienes y lo que falta, y te prepara antes de acudir a la dependencia.</p>
+    <ul><li><b>Necesitas:</b> tu clave de licencia (<font face='Courier'>TIA-XXXX-XXXX-XXXX-XXXX</font>) y la carpeta con tus documentos personales. Nada de Python ni conocimientos técnicos.</li><li><b>Primer resultado en menos de 5 minutos:</b> instalas, activas, eliges tu carpeta y corres <font face='Courier-Bold'>documentos</font> para ver qué tienes clasificado.</li><li><b>Tus documentos nunca salen de tu computadora</b> — la clasificación corre localmente.</li></ul>
+    <div class="callout cal-amber"><b>Aviso:</b> los requisitos y procesos gubernamentales cambian con frecuencia. <b>Verifica siempre en el sitio oficial de la dependencia</b> antes de acudir. No es un canal oficial del gobierno.</div>
+    <div class="callout cal-amber"><b>&iquest;Tienes dudas?</b> Escr&iacute;benos a <code>soporte@tuialista.com</code> o entra a <a href="/soporte/"><code>tuialista.com/soporte</code></a> — normalmente respondemos el mismo d&iacute;a h&aacute;bil.</div>
+  </div>
+
+  <h2 class="sec"><span class="n">1</span> Qué hace este agente</h2>
+<p>Tú le señalas la carpeta con tus documentos (identificaciones, comprobantes, actas, constancias) y él:</p>
+<ul><li>Los lee y <b>clasifica</b> por tipo (INE, CURP, RFC, comprobante de domicilio, acta de nacimiento, etc.).</li><li>Genera un <b>checklist</b> del trámite: qué requisitos ya tienes y cuáles te faltan.</li><li>Detecta <b>documentos próximos a vencer</b> o vencidos (por ejemplo, un comprobante de domicilio de más de 3 meses).</li><li>Produce una <b>guía paso a paso</b> del trámite (dependencia, requisitos, si se hace en línea, costos y tiempos aproximados).</li><li>Responde tus <b>preguntas</b>: <i>&ldquo;&iquest;qué necesito para renovar mi pasaporte?&rdquo;</i></li></ul>
+<p>El resultado: llegas al trámite con todo en orden y sin sorpresas.</p>
+<h2 class="sec"><span class="n">2</span> Instalación (2 minutos)</h2>
+<p>Para Windows. No hace falta internet permanente ni subir nada a la nube.</p>
+<div class="stepline"><div class="num">1</div><div><b class="steptitle">Descárgalo e instálalo</b><p>Baja el instalador desde <font face='Courier'>tuialista.com/descargar</font> (agente Trámites) y ábrelo. Crea un acceso directo en tu escritorio con el logo — no requiere Python ni terminal.</p></div></div>
+<div class="stepline"><div class="num">2</div><div><b class="steptitle">Ábrelo desde el escritorio</b><p>Doble clic al ícono nuevo. Pega tu <b>clave de licencia</b> (te llegó por correo al comprar) y pulsa <b>Activar</b>. Verás una palomita verde cuando sea válida.</p></div></div>
+<div class="stepline"><div class="num">3</div><div><b class="steptitle">Elige tu carpeta</b><p>Selecciona la carpeta con tus documentos personales y pulsa <b>Comenzar a usar el agente</b>. La próxima vez arranca directo — recuerda tu clave y tu carpeta.</p></div></div>
+<figure class="shot"><img src="../assets/mockups/tramites/activacion.png" alt="Así se ve la ventana de activación (con datos de ejemplo). Aparece la primera vez que abres el agente." loading="lazy"><figcaption>Así se ve la ventana de activación (con datos de ejemplo). Aparece la primera vez que abres el agente.</figcaption></figure>
+<h2 class="sec"><span class="n">3</span> Cómo usarlo</h2>
+<p>El agente abre una <b>ventana de chat</b>, como una app de mensajería — no es una pantalla negra de programador. Escribes tu comando o tu pregunta en el cuadro de texto de abajo, pulsas <b>Enviar</b> (o Enter), y la respuesta aparece como un mensaje, igual que en esta imagen real:</p>
+<figure class="shot"><img src="../assets/mockups/tramites/chat.png" alt="La conversación real: escribes &ldquo;checklist pasaporte&rdquo; y el agente responde con lo que ya tienes y lo que falta (datos de ejemplo)." loading="lazy"><figcaption>La conversación real: escribes &ldquo;checklist pasaporte&rdquo; y el agente responde con lo que ya tienes y lo que falta (datos de ejemplo).</figcaption></figure>
+<p>Los comandos siguientes son las palabras que puedes escribir en ese mismo cuadro de texto:</p>
+<div class="cmdcard"><code>&gt; documentos</code><p>Resumen de tus documentos, su tipo detectado y su estado (vigente / por vencer / vencido).</p></div>
+<div class="cmdcard"><code>&gt; checklist &lt;trámite&gt;</code><p>Para un trámite (ej. <font face='Courier'>pasaporte</font>, <font face='Courier'>ine</font>, <font face='Courier'>rfc</font>), qué requisitos ya tienes (y si alguno está vencido) y cuáles te faltan.</p></div>
+<div class="cmdcard"><code>&gt; guia &lt;trámite&gt;</code><p>Guía completa: dependencia, documentos, si se puede hacer en línea, pasos, consejos para evitar rechazos, costos y tiempos aproximados.</p></div>
+<div class="cmdcard"><code>&gt; falta &lt;trámite&gt;</code><p>Solo lo que te falta para ese trámite, y si tienes alguno vencido.</p></div>
+<div class="cmdcard"><code>&gt; vencimientos</code><p>Documentos próximos a vencer o vencidos.</p></div>
+<div class="cmdcard"><code>&gt; tramites</code><p>Catálogo de trámites que el agente conoce (pasaporte, INE, RFC, CURP, licencia, IMSS, acta de nacimiento, constancia fiscal, e.firma...).</p></div>
+<div class="cmdcard"><code>&gt; ¿pregunta libre?</code><p>Escribe cualquier duda en lenguaje natural, ej.: <i>&iquest;puedo sacar mi CURP en línea?</i></p></div>
+<div class="cmdcard"><code>&gt; salir</code><p>Termina la sesión (también funciona <font face='Courier'>exit</font>).</p></div>
+<h2 class="sec"><span class="n">4</span> Ejemplos de uso común</h2>
+<h4>Prepararte para el pasaporte</h4>
+<p><font face='Courier'>checklist pasaporte</font> &nbsp;→&nbsp; <font face='Courier'>falta pasaporte</font> — ves qué requisitos tienes y qué te falta antes de sacar cita.</p>
+<h4>Guía completa de un trámite</h4>
+<p><font face='Courier'>guia acta</font></p>
+<h4>Revisar documentos por vencer</h4>
+<p><font face='Courier'>vencimientos</font> — detectas si tu comprobante de domicilio ya no sirve por antigüedad.</p>
+<h4>Una duda puntual</h4>
+<p><i>&iquest;qué necesito para inscribirme en el RFC?</i></p>
+<h2 class="sec"><span class="n">5</span> Preguntas frecuentes</h2>
+<details class="acc"><summary>&iquest;Mis documentos se suben a internet?</summary><div class="acc-body">No. Todo se procesa en tu computadora (ver Privacidad, sección 7).</div></details>
+<details class="acc"><summary>&iquest;Qué formatos acepta?</summary><div class="acc-body">Texto (.txt), Markdown (.md), PDF (.pdf) y Word (.docx), incluso en subcarpetas.</div></details>
+<details class="acc"><summary>&iquest;Realiza el trámite por mí o lo agenda?</summary><div class="acc-body">No. El agente <b>te prepara y te guía</b>: clasifica tus documentos, arma el checklist y te da la guía paso a paso. El trámite lo haces tú en la dependencia o portal correspondiente.</div></details>
+<details class="acc"><summary>&iquest;Genera documentos oficiales?</summary><div class="acc-body">No. Prepara la guía y el checklist de los documentos que necesitas y detecta cuáles ya tienes; no genera documentos oficiales.</div></details>
+<details class="acc"><summary>&iquest;Cómo clasifica mis documentos?</summary><div class="acc-body">Por palabras clave y patrones (ej. &ldquo;INE&rdquo;, &ldquo;CURP&rdquo;, &ldquo;CFE / recibo de luz&rdquo;, &ldquo;RFC&rdquo;...). Puede clasificar mal un documento atípico.</div></details>
+<details class="acc"><summary>&iquest;La información de trámites está siempre actualizada?</summary><div class="acc-body">El agente trae un catálogo de referencia, pero los requisitos cambian. Por eso siempre te recuerda verificar en el sitio oficial de la dependencia.</div></details>
+<details class="acc"><summary>&iquest;En qué idioma me responde?</summary><div class="acc-body">En el idioma en que le escribas. El catálogo está enfocado en trámites de México.</div></details>
+<details class="acc"><summary>&iquest;Lee un PDF escaneado?</summary><div class="acc-body">Solo si tiene texto seleccionable. Un escaneo que es imagen pura no se lee de forma confiable.</div></details>
+<details class="acc"><summary>&iquest;Puedo cambiar la carpeta?</summary><div class="acc-body">Sí. Vuelve a abrir el agente y pulsa &ldquo;Elegir&hellip;&rdquo; para cambiarla (si no te la pide, borra <font face='Courier'>config.json</font> dentro de <font face='Courier'>%USERPROFILE%\.tuialista</font>).</div></details>
+<details class="acc"><summary>&iquest;Es información oficial del gobierno?</summary><div class="acc-body">No. Es una herramienta de apoyo de TuIAlista, no un canal oficial. Confirma todo en el sitio de la dependencia.</div></details>
+<h2 class="sec"><span class="n">6</span> Solución de problemas</h2>
+<details class="acc"><summary>No lee un .pdf o .docx</summary><div class="acc-body">Confirma que el PDF tenga texto real (no escaneado). Si el problema persiste, contacta a soporte.</div></details>
+<details class="acc"><summary>Un trámite no aparece</summary><div class="acc-body">Usa <font face='Courier'>tramites</font> para ver el catálogo disponible. Si el nombre no coincide, prueba una variante (ej. &ldquo;ine&rdquo;, &ldquo;credencial&rdquo;, &ldquo;curp&rdquo;).</div></details>
+<details class="acc"><summary>Muestra &ldquo;0 documentos indexados&rdquo;</summary><div class="acc-body">La carpeta está vacía o la ruta es incorrecta. Revisa que hayas elegido la carpeta correcta al activar el agente.</div></details>
+<details class="acc"><summary>Dice &ldquo;Licencia no válida&rdquo; o pide reconectar</summary><div class="acc-body">Revisa que la clave pegada sea correcta (sin espacios de más), confirma que tienes internet la primera vez que activas, y si estuviste más de 3 días sin conexión, reconéctate una vez para revalidar.</div></details>
+<details class="acc"><summary>&ldquo;No hay proveedores de IA configurados&rdquo;</summary><div class="acc-body"><font face='Courier'>guia</font> y las preguntas libres usan IA — si falta configurar el motor, contacta a soporte. <font face='Courier'>documentos</font>, <font face='Courier'>checklist</font>, <font face='Courier'>falta</font>, <font face='Courier'>vencimientos</font> y <font face='Courier'>tramites</font> siguen funcionando de forma local, sin IA.</div></details>
+<p><b>&iquest;Ninguna de estas soluciones resolvió tu problema?</b> Escríbenos directamente — con gusto lo revisamos contigo.</p>
+<div class="callout cal-amber"><b>&iquest;Tienes dudas?</b> Escr&iacute;benos a <code>soporte@tuialista.com</code> o entra a <a href="/soporte/"><code>tuialista.com/soporte</code></a> — normalmente respondemos el mismo d&iacute;a h&aacute;bil.</div>
+<h2 class="sec"><span class="n">7</span> Privacidad y confidencialidad</h2>
+<p><b>Tus documentos personales nunca salen de tu computadora.</b></p>
+<ul><li>El agente lee y clasifica los archivos <b>localmente</b>, en tu propio equipo. No los sube a ningún servidor ni los comparte con dependencia alguna.</li><li>La clasificación, el checklist y la detección de vencimientos ocurren <b>en tu máquina</b>.</li><li>Lo único que viaja por internet es: (1) una comprobación de que tu licencia está activa — que no incluye tus documentos —, y (2) al generar una guía o hacer una pregunta, se envía un fragmento (tipo de documento y tu consulta) al motor de IA para redactar la respuesta.</li></ul>
+<div class="callout cal-steel">La confidencialidad de tus documentos de identidad está garantizada por diseño: clasificación, checklist y vencimientos son 100% locales. Solo &ldquo;guia&rdquo; y las preguntas libres comparten un fragmento con el proveedor de IA.</div>
+<div class="callout cal-amber"><b>Recordatorio importante:</b> los requisitos y procesos de gobierno cambian; verifica siempre en el sitio oficial. Este agente te ayuda a organizarte y prepararte, pero no es un canal oficial del gobierno y su información puede quedar desactualizada. Antes de acudir a cualquier dependencia, confirma requisitos, costos y citas en el sitio oficial correspondiente.</div>
+
+</main>
+
+<footer>&copy; 2026 TuIAlista &middot; <a href="/soporte/">Soporte</a> &middot; <a href="/catalogo/">Cat&aacute;logo</a> &middot; <a href="/">Inicio</a></footer>
+</body>
+</html>

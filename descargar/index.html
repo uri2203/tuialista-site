@@ -139,8 +139,10 @@
   var DL=L({es:"Descargar",en:"Download",pt:"Baixar",fr:"Télécharger",de:"Herunterladen",it:"Scarica"});
   function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
 
-  // Agentes con guía web interactiva (site-public/guia/<id>/) — el resto solo descarga.
-  var GUIDES={fiscal:1,garantias:1,inventario:1,nominas:1,facturas:1};
+  // Agentes con guía web interactiva (site-public/guia/<id>/) — los 16 ya la tienen.
+  var GUIDES={excel:1,documents:1,contratos:1,"contratos-personales":1,facturas:1,fiscal:1,
+    nominas:1,garantias:1,inventario:1,conocimiento:1,actas:1,tramites:1,correo:1,
+    "docs-tecnica":1,database:1,as400:1};
   var VERUSO=L({es:"Ver cómo se usa",en:"See how it works",pt:"Ver como funciona",fr:"Voir comment ça marche",de:"So funktioniert's",it:"Vedi come funziona"});
   function render(names){
     var grid=document.getElementById("grid");

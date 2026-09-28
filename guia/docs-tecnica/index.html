@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gu&iacute;a &middot; Agente de Documentación Técnica — TuIAlista</title>
+<meta name="description" content="C&oacute;mo usar el Agente de Documentación Técnica de TuIAlista: instalaci&oacute;n, comandos, ejemplos y preguntas frecuentes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{--steel-900:#0f1922;--paper:#f5f6f4;--paper-2:#eceee9;--ink:#0f1922;--muted:#5a6b73;--signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2;--ok:#1d9e75;--amber-tint:#fdf1e4;--steel-tint:#eef2f4}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper-2);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--signal-dim)}
+  header{position:sticky;top:0;background:rgba(245,246,244,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+  .nav{max-width:860px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+  .logo b{color:var(--signal)}
+  .nav .r{display:flex;align-items:center;gap:18px}
+  .nav .r a{font-size:14px;color:var(--muted);text-decoration:none}
+  .nav .r a:hover{color:var(--ink)}
+  main{max-width:860px;margin:0 auto;padding:38px 24px 80px}
+  .eyebrow{font-family:'JetBrains Mono';font-size:11.5px;letter-spacing:.1em;color:var(--signal-dim);margin-bottom:8px}
+  h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,34px);line-height:1.12;margin-bottom:10px}
+  .sub{color:var(--muted);font-size:15.5px;max-width:640px;margin-bottom:18px}
+  .hero-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+  .price{font-family:'Space Grotesk';font-weight:600;font-size:14px;color:var(--signal-dim);background:var(--amber-tint);border:1px solid var(--signal);border-radius:999px;padding:7px 16px}
+  .cta{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:9px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;text-decoration:none;transition:.15s}
+  .cta:hover{background:var(--signal);color:#1a1206}
+  h2.sec{font-family:'Space Grotesk';font-size:18px;font-weight:600;margin:38px 0 14px;padding:10px 16px;background:var(--steel-900);color:#fff;border-radius:10px;display:flex;align-items:center;gap:10px}
+  h2.sec .n{color:var(--signal)}
+  h4{font-family:'Space Grotesk';font-size:14.5px;font-weight:600;margin:16px 0 4px;color:var(--signal-dim)}
+  p{margin:0 0 12px;font-size:14.5px}
+  ul{margin:0 0 12px 20px;font-size:14.5px}
+  li{margin-bottom:6px}
+  code{font-family:'JetBrains Mono',monospace;font-size:.92em;background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  .callout{border-radius:10px;padding:14px 16px;margin:10px 0 16px;font-size:14px;border-left:3px solid}
+  .cal-amber{background:var(--amber-tint);border-color:var(--signal)}
+  .cal-steel{background:var(--steel-tint);border-color:#2c4a5c}
+  .quick{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:22px}
+  .quick h3{font-family:'Space Grotesk';font-size:16px;margin-bottom:8px}
+  .stepline{display:flex;gap:12px;margin-bottom:16px}
+  .stepline .num{flex:none;width:28px;height:28px;border-radius:8px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center}
+  .stepline .steptitle{font-family:'Space Grotesk';font-weight:600;font-size:14.5px;display:block;margin-bottom:2px}
+  .stepline p{font-size:13.5px;color:var(--muted);margin:0}
+  .cmdcard{background:var(--paper-2);border-left:3px solid #2c4a5c;border-radius:8px;padding:12px 16px;margin-bottom:10px}
+  .cmdcard code{background:transparent;border:none;padding:0;font-weight:600;display:block;margin-bottom:4px}
+  .cmdcard p{margin:0;font-size:13.5px;color:var(--muted)}
+  .shot{margin:14px 0 20px;text-align:center}
+  .shot img{max-width:100%;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(15,25,34,.06)}
+  .shot figcaption{font-size:12.5px;color:var(--muted);font-style:italic;margin-top:8px}
+  details.acc{background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;overflow:hidden}
+  details.acc summary{cursor:pointer;list-style:none;padding:13px 16px;font-weight:600;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+  details.acc summary::-webkit-details-marker{display:none}
+  details.acc summary::after{content:"+";color:var(--signal-dim);font-size:18px;font-weight:400}
+  details.acc[open] summary::after{content:"\2212"}
+  details.acc[open] summary{border-bottom:1px solid var(--line)}
+  .acc-body{padding:12px 16px;font-size:13.8px;color:var(--muted)}
+  .acc-body code{color:var(--ink)}
+  footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px;margin-top:10px}
+  footer a{color:#cdd5d9;text-decoration:none}
+  @media(max-width:520px){.nav .r a.hide-sm{display:none}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+  <div class="r">
+    <a class="hide-sm" href="/catalogo/">Cat&aacute;logo</a>
+    <a class="hide-sm" href="/soporte/">Soporte</a>
+    <a href="/portal/">Entrar</a>
+  </div>
+</div></header>
+
+<main>
+  <div class="eyebrow">GU&Iacute;A DEL AGENTE</div>
+  <h1>Agente de Documentación Técnica</h1>
+  <p class="sub">Genera y mantiene la documentación técnica de tu software a partir de tu propio código, sin que el código salga de tu equipo.</p>
+  <div class="hero-row">
+    <span class="price">$49 USD / mes</span>
+    <a class="cta" href="/descargar/?agent=docs-tecnica"><i class="ti ti-download"></i> Descargar este agente</a>
+  </div>
+
+  <div class="quick">
+    <h3>&iquest;Qué resuelve y qué necesitas?</h3>
+    <p>La documentación siempre queda atrás: nadie tiene tiempo de escribir el README, explicar qué hace cada archivo o mantener un FAQ. Este agente escanea tu proyecto y lo hace por ti — soporta Python, JS/TS, Java, C/C++, Go, PHP, Ruby, SQL, y también RPG (AS/400/IBM i) y COBOL.</p>
+    <ul><li><b>Necesitas:</b> tu clave de licencia (<font face='Courier'>TIA-XXXX-XXXX-XXXX-XXXX</font>) y la carpeta del proyecto. Nada de Python ni conocimientos técnicos para instalarlo (aunque está pensado para equipos de desarrollo).</li><li><b>Primer resultado en menos de 5 minutos:</b> instalas, activas, eliges tu carpeta y corres <font face='Courier-Bold'>readme</font> para tu primer README generado.</li><li><b>Tu código fuente nunca sale de tu computadora</b> — el escaneo corre localmente.</li></ul>
+    <div class="callout cal-amber"><b>Aviso:</b> la documentación generada es un punto de partida excelente, no un documento final infalible. <b>Revísala antes de publicarla</b>, especialmente en proyectos críticos.</div>
+    <div class="callout cal-amber"><b>&iquest;Tienes dudas?</b> Escr&iacute;benos a <code>soporte@tuialista.com</code> o entra a <a href="/soporte/"><code>tuialista.com/soporte</code></a> — normalmente respondemos el mismo d&iacute;a h&aacute;bil.</div>
+  </div>
+
+  <h2 class="sec"><span class="n">1</span> Qué hace este agente</h2>
+<p>Tú le señalas la carpeta del proyecto y él:</p>
+<ul><li><b>Escanea el código</b> y extrae su estructura (funciones, clases, comentarios, imports).</li><li>Genera un <b>README</b> profesional del proyecto (estructura, componentes, dependencias, uso).</li><li>Documenta un <b>archivo específico</b> en detalle (propósito, funciones, parámetros, notas).</li><li>Genera un <b>FAQ técnico</b> con preguntas y respuestas basadas en el código.</li><li>Detecta <b>funciones y clases sin documentar</b>.</li><li>Arma un <b>mapa de dependencias</b> entre archivos (internas y externas).</li><li>Responde <b>preguntas libres</b> sobre el código.</li></ul>
+<p>Soporta muchos lenguajes: Python, JavaScript/TypeScript, Java, Kotlin, C/C++, Go, PHP, Ruby, SQL, y también <b>RPG (AS/400/IBM i) y COBOL</b>, entre otros.</p>
+<h2 class="sec"><span class="n">2</span> Instalación (2 minutos)</h2>
+<p>Para Windows. No hace falta internet permanente ni subir nada a la nube.</p>
+<div class="stepline"><div class="num">1</div><div><b class="steptitle">Descárgalo e instálalo</b><p>Baja el instalador desde <font face='Courier'>tuialista.com/descargar</font> (agente Documentación Técnica) y ábrelo. Crea un acceso directo en tu escritorio con el logo — no requiere Python ni terminal.</p></div></div>
+<div class="stepline"><div class="num">2</div><div><b class="steptitle">Ábrelo desde el escritorio</b><p>Doble clic al ícono nuevo. Pega tu <b>clave de licencia</b> (te llegó por correo al comprar) y pulsa <b>Activar</b>. Verás una palomita verde cuando sea válida.</p></div></div>
+<div class="stepline"><div class="num">3</div><div><b class="steptitle">Elige tu carpeta</b><p>Selecciona la carpeta del proyecto y pulsa <b>Comenzar a usar el agente</b>. La próxima vez arranca directo — recuerda tu clave y tu carpeta.</p></div></div>
+<figure class="shot"><img src="../assets/mockups/docs-tecnica/activacion.png" alt="Así se ve la ventana de activación (con datos de ejemplo). Aparece la primera vez que abres el agente." loading="lazy"><figcaption>Así se ve la ventana de activación (con datos de ejemplo). Aparece la primera vez que abres el agente.</figcaption></figure>
+<h2 class="sec"><span class="n">3</span> Cómo usarlo</h2>
+<p>El agente abre una <b>ventana de chat</b>, como una app de mensajería — no es una pantalla negra de programador. Escribes tu comando o tu pregunta en el cuadro de texto de abajo, pulsas <b>Enviar</b> (o Enter), y la respuesta aparece como un mensaje, igual que en esta imagen real:</p>
+<figure class="shot"><img src="../assets/mockups/docs-tecnica/chat.png" alt="La conversación real: escribes &ldquo;sin-documentar&rdquo; y el agente responde con la deuda de documentación del proyecto (datos de ejemplo)." loading="lazy"><figcaption>La conversación real: escribes &ldquo;sin-documentar&rdquo; y el agente responde con la deuda de documentación del proyecto (datos de ejemplo).</figcaption></figure>
+<p>Los comandos siguientes son las palabras que puedes escribir en ese mismo cuadro de texto:</p>
+<div class="cmdcard"><code>&gt; readme</code><p>README.md profesional con nombre, estructura, componentes principales, cómo se relacionan, dependencias e instrucciones de uso.</p></div>
+<div class="cmdcard"><code>&gt; faq</code><p>De 8 a 12 preguntas frecuentes técnicas (arquitectura, cómo funciona algo, cómo cambiar funcionalidad...) con respuestas basadas en tu código.</p></div>
+<div class="cmdcard"><code>&gt; documentar &lt;archivo&gt;</code><p>Documentación en detalle de un archivo: propósito, cada función/procedimiento (qué hace, parámetros, retorno), dependencias y notas.</p></div>
+<div class="cmdcard"><code>&gt; sin-documentar</code><p>Funciones y clases sin comentarios ni docstring, con archivo y línea.</p></div>
+<div class="cmdcard"><code>&gt; dependencias</code><p>Mapa de dependencias: por archivo, qué módulos internos del proyecto y qué librerías externas usa.</p></div>
+<div class="cmdcard"><code>&gt; analizar &lt;archivo&gt;</code><p>Estructura detectada de un archivo (clases, funciones con su línea, imports) <b>sin llamar a la IA</b>.</p></div>
+<div class="cmdcard"><code>&gt; ¿pregunta libre?</code><p>Escribe cualquier duda en lenguaje natural, ej.: <i>&iquest;dónde se valida el token de sesión?</i></p></div>
+<div class="cmdcard"><code>&gt; salir</code><p>Termina la sesión (también funciona <font face='Courier'>exit</font>).</p></div>
+<h2 class="sec"><span class="n">4</span> Ejemplos de uso común</h2>
+<h4>Documentar un proyecto nuevo</h4>
+<p><font face='Courier'>readme</font> &nbsp;→&nbsp; <font face='Courier'>faq</font></p>
+<h4>Entender un archivo heredado</h4>
+<p><font face='Courier'>analizar legacy/proceso.cbl</font> &nbsp;→&nbsp; <font face='Courier'>documentar legacy/proceso.cbl</font> — funciona incluso con COBOL o RPG de sistemas AS/400.</p>
+<h4>Revisar la deuda de documentación</h4>
+<p><font face='Courier'>sin-documentar</font></p>
+<h4>Orientarte en el código</h4>
+<p><i>&iquest;cómo se conecta la aplicación a la base de datos?</i></p>
+<h2 class="sec"><span class="n">5</span> Preguntas frecuentes</h2>
+<details class="acc"><summary>&iquest;Mi código se sube a internet?</summary><div class="acc-body">No. El escaneo y el análisis de estructura son locales (ver Privacidad, sección 7).</div></details>
+<details class="acc"><summary>&iquest;Qué lenguajes soporta?</summary><div class="acc-body">Python, JavaScript/TypeScript, Java, Kotlin, Scala, C/C++, Go, PHP, Ruby, Rust, Swift, C#, VB, SQL, RPG (AS/400), COBOL, shell, PowerShell y más, además de archivos de texto/config (Markdown, JSON, YAML, XML, HTML/CSS...).</div></details>
+<details class="acc"><summary>&iquest;Necesito instalar librerías extra?</summary><div class="acc-body">No. A diferencia de otros agentes, este lee los archivos como texto; solo necesita las dependencias base del SDK.</div></details>
+<details class="acc"><summary>&iquest;Omite carpetas como node_modules?</summary><div class="acc-body">Sí. Ignora node_modules, .git, __pycache__, venv, .venv, dist, build, target, .idea, .vscode, cachés, etc.</div></details>
+<details class="acc"><summary>&iquest;Modifica mi código o escribe archivos?</summary><div class="acc-body">No. Genera la documentación como texto en pantalla; tú decides dónde guardarla. El agente no toca tus archivos.</div></details>
+<details class="acc"><summary>&iquest;Qué tan grande puede ser el proyecto?</summary><div class="acc-body">Escanea todo el árbol, pero para generar README/FAQ/documentar usa un extracto del código (los archivos y fragmentos más relevantes) para caber en el contexto de la IA.</div></details>
+<details class="acc"><summary>&iquest;Sirve para código AS/400 (RPG/COBOL)?</summary><div class="acc-body">Sí. Extrae subrutinas, procedimientos y párrafos, y la documentación usa terminología de IBM i cuando corresponde.</div></details>
+<details class="acc"><summary>&iquest;En qué idioma responde?</summary><div class="acc-body">En el idioma en que le escribas.</div></details>
+<details class="acc"><summary>&iquest;La documentación es 100% correcta?</summary><div class="acc-body">Es un excelente punto de partida generado por IA a partir de tu código; revísala antes de publicarla, sobre todo en detalles críticos.</div></details>
+<details class="acc"><summary>&iquest;Puedo documentar un solo archivo sin escanear todo?</summary><div class="acc-body">Al arrancar escanea el proyecto una vez; luego puedes trabajar sobre archivos concretos con <font face='Courier'>documentar</font> y <font face='Courier'>analizar</font>.</div></details>
+<h2 class="sec"><span class="n">6</span> Solución de problemas</h2>
+<details class="acc"><summary>Muestra &ldquo;0 archivos indexados&rdquo;</summary><div class="acc-body">La carpeta está vacía, la ruta es incorrecta o solo contiene tipos no soportados. Revisa que hayas elegido la carpeta correcta al activar el agente.</div></details>
+<details class="acc"><summary>No encuentra un archivo con documentar/analizar</summary><div class="acc-body">Usa la ruta relativa tal como aparece en el escaneo, o solo el nombre del archivo (la búsqueda es flexible).</div></details>
+<details class="acc"><summary>El README ignora algunos archivos</summary><div class="acc-body">Para caber en el contexto de la IA, el README resume los componentes principales; usa <font face='Courier'>documentar &lt;archivo&gt;</font> para el detalle de uno específico.</div></details>
+<details class="acc"><summary>Dice &ldquo;Licencia no válida&rdquo; o pide reconectar</summary><div class="acc-body">Revisa que la clave pegada sea correcta (sin espacios de más), confirma que tienes internet la primera vez que activas, y si estuviste más de 3 días sin conexión, reconéctate una vez para revalidar.</div></details>
+<details class="acc"><summary>&ldquo;No hay proveedores de IA configurados&rdquo;</summary><div class="acc-body"><font face='Courier'>readme</font>, <font face='Courier'>faq</font>, <font face='Courier'>documentar</font> y las preguntas libres usan IA — si falta configurar el motor, contacta a soporte. <font face='Courier'>sin-documentar</font>, <font face='Courier'>dependencias</font> y <font face='Courier'>analizar</font> siguen funcionando de forma local, sin IA.</div></details>
+<p><b>&iquest;Ninguna de estas soluciones resolvió tu problema?</b> Escríbenos directamente — con gusto lo revisamos contigo.</p>
+<div class="callout cal-amber"><b>&iquest;Tienes dudas?</b> Escr&iacute;benos a <code>soporte@tuialista.com</code> o entra a <a href="/soporte/"><code>tuialista.com/soporte</code></a> — normalmente respondemos el mismo d&iacute;a h&aacute;bil.</div>
+<h2 class="sec"><span class="n">7</span> Privacidad y confidencialidad</h2>
+<p><b>Tu código fuente nunca sale de tu computadora.</b></p>
+<ul><li>El agente escanea el proyecto y extrae su estructura <b>localmente</b>, en tu propio equipo. No sube tu código a ningún servidor.</li><li>La detección de estructura, la deuda de documentación (<font face='Courier'>sin-documentar</font>) y el mapa de dependencias se calculan <b>en tu máquina</b>.</li><li>Lo único que viaja por internet es: (1) una comprobación de que tu licencia está activa — que no incluye tu código —, y (2) al generar README, FAQ, documentar un archivo o responder una pregunta, se envían <b>fragmentos del código</b> (los más relevantes) al motor de IA para redactar el texto.</li></ul>
+<div class="callout cal-steel">La confidencialidad de tu propiedad intelectual está garantizada por diseño: sin-documentar, dependencias y analizar son 100% locales. Solo readme, faq, documentar y las preguntas libres comparten fragmentos del código con el proveedor de IA.</div>
+<div class="callout cal-amber"><b>Recordatorio importante:</b> la documentación generada es un punto de partida excelente, no un documento final infalible. El agente describe lo que encuentra en el código; puede malinterpretar lógica muy compleja o inferir un propósito equivocado. Revisa la documentación antes de publicarla, especialmente en proyectos críticos.</div>
+
+</main>
+
+<footer>&copy; 2026 TuIAlista &middot; <a href="/soporte/">Soporte</a> &middot; <a href="/catalogo/">Cat&aacute;logo</a> &middot; <a href="/">Inicio</a></footer>
+</body>
+</html>
