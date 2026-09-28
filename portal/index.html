@@ -1535,7 +1535,12 @@ document.addEventListener("DOMContentLoaded", () => {
     rstTitle:L("Nueva contraseña","New password","Nova senha","Nouveau mot de passe","Neues Passwort","Nuova password"),
     rstSub:L("Escribe el código que enviamos a","Enter the code we sent to","Digite o código que enviamos para","Saisissez le code envoyé à","Gib den Code ein, gesendet an","Inserisci il codice inviato a"),
     savePw:L("Cambiar contraseña","Change password","Alterar senha","Changer le mot de passe","Passwort ändern","Cambia password"), saving:L("Guardando…","Saving…","Salvando…","Enregistrement…","Wird gespeichert…","Salvataggio…"),
-    pwChanged:L("Contraseña cambiada. Inicia sesión.","Password changed. Sign in.","Senha alterada. Faça login.","Mot de passe modifié. Connectez-vous.","Passwort geändert. Melde dich an.","Password cambiata. Accedi.")
+    pwChanged:L("Contraseña cambiada. Inicia sesión.","Password changed. Sign in.","Senha alterada. Faça login.","Mot de passe modifié. Connectez-vous.","Passwort geändert. Melde dich an.","Password cambiata. Accedi."),
+    changeMachine:L("Cambié de equipo","I got a new device","Troquei de aparelho","J'ai changé d'appareil","Ich habe ein neues Gerät","Ho cambiato dispositivo"),
+    changeMachineConfirm:L("Esto libera tu licencia de la computadora anterior para poder activarla en la nueva. ¿Continuar?","This frees your license from the previous computer so you can activate it on the new one. Continue?","Isto libera sua licença do computador anterior para ativá-la no novo. Continuar?","Ceci libère votre licence de l'ancien ordinateur pour l'activer sur le nouveau. Continuer ?","Dies gibt deine Lizenz vom alten Computer frei, damit du sie auf dem neuen aktivieren kannst. Fortfahren?","Questo libera la tua licenza dal computer precedente per attivarla su quello nuovo. Continuare?"),
+    changeMachineOk:L("Listo. Ya puedes activar la licencia en tu equipo nuevo.","Done. You can now activate the license on your new device.","Pronto. Já pode ativar a licença no seu novo aparelho.","Terminé. Vous pouvez maintenant activer la licence sur votre nouvel appareil.","Fertig. Du kannst die Lizenz jetzt auf deinem neuen Gerät aktivieren.","Fatto. Ora puoi attivare la licenza sul tuo nuovo dispositivo."),
+    changeMachineLimited:L("Alcanzaste el máximo de cambios de equipo por ahora. Escríbenos a soporte si necesitas otro.","You've reached the device-change limit for now. Contact support if you need another.","Você atingiu o limite de trocas de aparelho por enquanto. Fale com o suporte se precisar de outra.","Vous avez atteint la limite de changements d'appareil pour l'instant. Contactez le support si besoin.","Du hast das Limit für Gerätewechsel vorerst erreicht. Kontaktiere den Support, falls du einen weiteren brauchst.","Hai raggiunto il limite di cambi dispositivo per ora. Contatta l'assistenza se te ne serve un altro."),
+    changeMachineErr:L("No se pudo liberar el equipo. Inténtalo de nuevo.","Couldn't free the device. Try again.","Não foi possível liberar o aparelho. Tente novamente.","Impossible de libérer l'appareil. Réessayez.","Gerät konnte nicht freigegeben werden. Versuche es erneut.","Impossibile liberare il dispositivo. Riprova.")
   };
   function errmsg(c){
     var M={
@@ -1590,9 +1595,32 @@ document.addEventListener("DOMContentLoaded", () => {
         '</table><div class="lic-acts">'+
         '<a class="btn btn-solid btn-flex btn-sm" href="https://github.com/uri2203/tuialista-site/releases/download/agents/agent-'+esc(l.agent_id)+'.exe" download><i class="ti ti-download"></i> '+T.dl+'</a>'+
         '<a class="btn btn-ghost btn-flex btn-sm" href="/activar/"><i class="ti ti-book" style="font-size:13px"></i> '+L("Guía","Guide","Guia","Guide","Anleitung","Guida")+'</a>'+
+        (l.machine_bound?'<button type="button" class="btn btn-ghost btn-flex btn-sm reset-machine-btn" data-agent="'+esc(l.agent_id)+'"><i class="ti ti-device-laptop" style="font-size:13px"></i> '+T.changeMachine+'</button>':'')+
         '</div></div>';
     }).join("");
     if(typeof initCopyButtons==="function")initCopyButtons();
+    initResetMachineButtons();
+  }
+  function initResetMachineButtons(){
+    document.querySelectorAll(".reset-machine-btn").forEach(function(btn){
+      if(btn._wired)return; btn._wired=true;
+      btn.addEventListener("click",function(){ doResetMachine(btn.dataset.agent,btn); });
+    });
+  }
+  function doResetMachine(agentId,btn){
+    if(!window.confirm(T.changeMachineConfirm))return;
+    var orig=btn.innerHTML; btn.disabled=true;
+    function notify(m){ if(typeof showToast==="function")showToast(m); else alert(m); }
+    fetch(API+"/api/me/licenses/"+encodeURIComponent(agentId)+"/reset-machine",
+          {method:"POST",headers:{Authorization:"Bearer "+tok()}})
+      .then(function(r){return r.json().then(function(j){return {s:r.status,j:j};});})
+      .then(function(res){
+        if(res.s===200){ notify(T.changeMachineOk); btn.disabled=false; btn.innerHTML=orig; return; }
+        if(res.s===401){ logout(); return; }
+        notify(res.s===429?T.changeMachineLimited:T.changeMachineErr);
+        btn.disabled=false; btn.innerHTML=orig;
+      })
+      .catch(function(){ notify(T.changeMachineErr); btn.disabled=false; btn.innerHTML=orig; });
   }
   function money(n){return "$"+Number(n||0).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});}
   function fmtShort(v){if(!v)return"—";var d=new Date(v);return isNaN(d.getTime())?esc(v):d.toLocaleDateString(L("es-ES","en-US","pt-BR","fr-FR","de-DE","it-IT"),{day:"numeric",month:"short",timeZone:"UTC"});}
