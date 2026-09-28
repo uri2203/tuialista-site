@@ -85,9 +85,9 @@
 
   <div class="quick">
     <h3>&iquest;Qué resuelve y qué necesitas?</h3>
-    <p>No es un chat que solo comenta tus datos: es un analista que <b>ejecuta</b> la operación de verdad (código pandas/openpyxl, en un sandbox local seguro) y te entrega el resultado — tabla en pantalla y el archivo Excel o la gráfica lista para abrir.</p>
+    <p>No es un chat que solo comenta tus datos: es un analista que <b>ejecuta</b> la operación de verdad (en un sandbox local seguro, aislado de tu sistema) y te entrega el resultado — tabla en pantalla y el archivo Excel o la gráfica lista para abrir.</p>
     <ul><li><b>Necesitas:</b> tu clave de licencia (<font face='Courier'>TIA-XXXX-XXXX-XXXX-XXXX</font>) y la carpeta con tus hojas de Excel (.xlsx) o CSV. Nada de Python ni fórmulas.</li><li><b>Primer resultado en menos de 5 minutos:</b> instalas, activas, eliges tu carpeta y le pides <i>&ldquo;total de ventas por mes y hazme la gráfica&rdquo;</i>.</li><li><b>Tus datos nunca salen de tu computadora</b> — a la IA solo va la estructura (columnas), nunca los datos, y las recetas más comunes ni siquiera usan IA.</li></ul>
-    <div class="callout cal-amber"><b>Aviso:</b> es una herramienta de apoyo al análisis. Trabaja sobre tus datos reales (no una muestra) para las recetas y operaciones deterministas; en tareas nuevas con IA, <b>verifica las cifras críticas</b> antes de decidir con ellas.</div>
+    <div class="callout cal-amber"><b>Aviso:</b> es una herramienta de apoyo al análisis. Trabaja sobre tus datos reales (no una muestra) para las recetas y operaciones automáticas; en tareas nuevas con IA, <b>verifica las cifras críticas</b> antes de decidir con ellas.</div>
     <div class="callout cal-amber"><b>&iquest;Tienes dudas?</b> Escr&iacute;benos a <code>soporte@tuialista.com</code> o entra a <a href="/soporte/"><code>tuialista.com/soporte</code></a> — normalmente respondemos el mismo d&iacute;a h&aacute;bil.</div>
   </div>
 
@@ -95,7 +95,7 @@
 <p>Le apuntas a tus hojas y le pides <b>cualquier cosa en tu idioma</b>:</p>
 <ul><li><i>&ldquo;saca el total por región y hazme la gráfica&rdquo;</i></li><li><i>&ldquo;crea una hoja con estas columnas y relaciónala con el otro archivo&rdquo;</i></li><li><i>&ldquo;reporte ejecutivo con formato, tabla dinámica y gráfica embebida&rdquo;</i></li></ul>
 <p>El agente entiende, arma la operación y la <b>ejecuta de verdad</b> en un sandbox local seguro — no solo te describe qué haría. Además:</p>
-<ul><li>Tiene <b>recetas deterministas</b> (sin IA, nunca fallan) para lo más común: conciliar 2 archivos, consolidar, cuentas por cobrar con antigüedad, inventario bajo mínimo, BUSCARV, tablas dinámicas, flujo de caja, IVA, y más.</li><li><b>Recuerda</b> entre preguntas: puedes decirle &ldquo;agrégale esto al archivo anterior&rdquo; o &ldquo;guárdalo en mis documentos&rdquo;.</li><li>Puede <b>grabar rutinas</b> tuyas de varios pasos y repetirlas cuando se lo pidas.</li><li>Tiene un <b>modo en vivo</b>: si ya tienes el Excel abierto, puede leer y escribir celdas directamente ahí (con tu confirmación antes de escribir nada).</li></ul>
+<ul><li>Tiene <b>recetas automáticas</b> (reglas fijas ya probadas, sin IA, nunca fallan) para lo más común: conciliar 2 archivos, consolidar, cuentas por cobrar con antigüedad, inventario bajo mínimo, traer datos de otra tabla (como un BUSCARV/VLOOKUP pero sin fórmulas), tablas dinámicas, flujo de caja, IVA, y más.</li><li><b>Recuerda</b> entre preguntas: puedes decirle &ldquo;agrégale esto al archivo anterior&rdquo; o &ldquo;guárdalo en mis documentos&rdquo;.</li><li>Puede <b>grabar rutinas</b> tuyas de varios pasos y repetirlas cuando se lo pidas.</li><li>Tiene un <b>modo en vivo</b>: si ya tienes el Excel abierto, puede leer y escribir celdas directamente ahí (con tu confirmación antes de escribir nada).</li></ul>
 <h2 class="sec"><span class="n">2</span> Instalación (2 minutos)</h2>
 <p>Para Windows. No hace falta internet permanente ni subir nada a la nube.</p>
 <div class="stepline"><div class="num">1</div><div><b class="steptitle">Descárgalo e instálalo</b><p>Baja el instalador desde <font face='Courier'>tuialista.com/descargar</font> (agente Excel) y ábrelo. Crea un acceso directo en tu escritorio con el logo — no requiere Python ni terminal.</p></div></div>
@@ -119,13 +119,13 @@
 <h4>Comparar periodos o categorías</h4>
 <p><i>&ldquo;compara las ventas de enero contra febrero por región&rdquo;</i> — responde con una tabla comparativa.</p>
 <h4>Conciliar dos archivos</h4>
-<p><i>&ldquo;concilia el archivo de banco contra el de contabilidad y dime qué falta&rdquo;</i> — receta determinista, sin IA.</p>
+<p><i>&ldquo;concilia el archivo de banco contra el de contabilidad y dime qué falta&rdquo;</i> — receta automática, sin IA.</p>
 <h4>Un reporte completo</h4>
 <p><i>&ldquo;reporte ejecutivo con formato, tabla dinámica y gráfica embebida&rdquo;</i> — te entrega el archivo Excel listo.</p>
 <h2 class="sec"><span class="n">5</span> Preguntas frecuentes</h2>
 <details class="acc"><summary>&iquest;Mis datos se suben a internet?</summary><div class="acc-body">No. Todo se procesa en tu computadora (ver Privacidad, sección 7).</div></details>
 <details class="acc"><summary>&iquest;Qué formatos acepta?</summary><div class="acc-body">Excel (.xlsx) y CSV (.csv), incluso en subcarpetas. Los .xls antiguos conviene guardarlos como .xlsx.</div></details>
-<details class="acc"><summary>&iquest;De verdad ejecuta la operación o solo la describe?</summary><div class="acc-body">La ejecuta. El agente arma el código (pandas/openpyxl), lo corre en un sandbox local seguro, y te entrega la tabla en pantalla y el archivo listo — no es una simulación.</div></details>
+<details class="acc"><summary>&iquest;De verdad ejecuta la operación o solo la describe?</summary><div class="acc-body">La ejecuta. El agente arma la operación, la corre en un sandbox local seguro (aislado, sin acceso al resto de tu sistema), y te entrega la tabla en pantalla y el archivo listo — no es una simulación.</div></details>
 <details class="acc"><summary>&iquest;Qué pasa si le pido algo fuera de las recetas probadas?</summary><div class="acc-body">En modo seguro (el que trae por defecto) te dice qué sí puede hacer. Si activas &ldquo;modo experto&rdquo;, intenta resolverlo con IA de forma aislada — nunca puede dañar tus archivos originales.</div></details>
 <details class="acc"><summary>&iquest;El modo en vivo puede dañar mi Excel abierto?</summary><div class="acc-body">Las lecturas son inmediatas y seguras. Las escrituras siempre te muestran una vista previa primero y solo se aplican si confirmas con &ldquo;sí&rdquo;.</div></details>
 <details class="acc"><summary>&iquest;En qué idioma me responde?</summary><div class="acc-body">En el idioma en que le escribas.</div></details>
@@ -143,7 +143,7 @@
 <div class="callout cal-amber"><b>&iquest;Tienes dudas?</b> Escr&iacute;benos a <code>soporte@tuialista.com</code> o entra a <a href="/soporte/"><code>tuialista.com/soporte</code></a> — normalmente respondemos el mismo d&iacute;a h&aacute;bil.</div>
 <h2 class="sec"><span class="n">7</span> Privacidad y confidencialidad</h2>
 <p><b>Tus datos nunca salen de tu computadora.</b></p>
-<ul><li>Las <b>recetas deterministas</b> (conciliar, consolidar, cuentas por cobrar, inventario, BUSCARV, tablas dinámicas, flujo de caja...) corren <b>100% local, sin IA</b>.</li><li>Para tareas nuevas con IA (modo experto), a la IA solo se le envía la <b>estructura</b> (nombres de columnas), nunca tus datos.</li><li>Lo único que viaja por internet es: (1) una comprobación de que tu licencia está activa, y (2) la estructura de tus hojas cuando se necesita IA para una tarea nueva.</li></ul>
+<ul><li>Las <b>recetas automáticas</b> (conciliar, consolidar, cuentas por cobrar, inventario, traer datos de otra tabla, tablas dinámicas, flujo de caja...) corren <b>100% local, sin IA</b>.</li><li>Para tareas nuevas con IA (modo experto), a la IA solo se le envía la <b>estructura</b> (nombres de columnas), nunca tus datos.</li><li>Lo único que viaja por internet es: (1) una comprobación de que tu licencia está activa, y (2) la estructura de tus hojas cuando se necesita IA para una tarea nueva.</li></ul>
 <div class="callout cal-steel">El sandbox donde se ejecuta el código generado corre <b>localmente</b> — nunca en un servidor externo. Tus cifras, montos y datos de clientes no salen de tu equipo en ningún punto del proceso.</div>
 <div class="callout cal-amber"><b>Recordatorio importante:</b> este agente es una herramienta de apoyo al análisis, no un sustituto de tu criterio. Las recetas probadas son confiables; en tareas nuevas resueltas con IA, verifica las cifras críticas en tu archivo original antes de tomar decisiones importantes con ellas.</div>
 
