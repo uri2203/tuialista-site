@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guia &middot; Agente de Conhecimento Interno — TuIAlista</title>
+<meta name="description" content="Como usar o Agente de Conhecimento Interno da TuIAlista: instala&ccedil;&atilde;o, comandos, exemplos e perguntas frequentes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{--steel-900:#0f1922;--paper:#f5f6f4;--paper-2:#eceee9;--ink:#0f1922;--muted:#5a6b73;--signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2;--ok:#1d9e75;--amber-tint:#fdf1e4;--steel-tint:#eef2f4}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper-2);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--signal-dim)}
+  header{position:sticky;top:0;background:rgba(245,246,244,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+  .nav{max-width:860px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+  .logo b{color:var(--signal)}
+  .nav .r{display:flex;align-items:center;gap:18px}
+  .nav .r a{font-size:14px;color:var(--muted);text-decoration:none}
+  .nav .r a:hover{color:var(--ink)}
+  main{max-width:860px;margin:0 auto;padding:38px 24px 80px}
+  .eyebrow{font-family:'JetBrains Mono';font-size:11.5px;letter-spacing:.1em;color:var(--signal-dim);margin-bottom:8px}
+  h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,34px);line-height:1.12;margin-bottom:10px}
+  .sub{color:var(--muted);font-size:15.5px;max-width:640px;margin-bottom:18px}
+  .hero-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+  .price{font-family:'Space Grotesk';font-weight:600;font-size:14px;color:var(--signal-dim);background:var(--amber-tint);border:1px solid var(--signal);border-radius:999px;padding:7px 16px}
+  .cta{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:9px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;text-decoration:none;transition:.15s}
+  .cta:hover{background:var(--signal);color:#1a1206}
+  h2.sec{font-family:'Space Grotesk';font-size:18px;font-weight:600;margin:38px 0 14px;padding:10px 16px;background:var(--steel-900);color:#fff;border-radius:10px;display:flex;align-items:center;gap:10px}
+  h2.sec .n{color:var(--signal)}
+  h4{font-family:'Space Grotesk';font-size:14.5px;font-weight:600;margin:16px 0 4px;color:var(--signal-dim)}
+  p{margin:0 0 12px;font-size:14.5px}
+  ul{margin:0 0 12px 20px;font-size:14.5px}
+  li{margin-bottom:6px}
+  code{font-family:'JetBrains Mono',monospace;font-size:.92em;background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  .callout{border-radius:10px;padding:14px 16px;margin:10px 0 16px;font-size:14px;border-left:3px solid}
+  .cal-amber{background:var(--amber-tint);border-color:var(--signal)}
+  .cal-steel{background:var(--steel-tint);border-color:#2c4a5c}
+  .quick{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:22px}
+  .quick h3{font-family:'Space Grotesk';font-size:16px;margin-bottom:8px}
+  .stepline{display:flex;gap:12px;margin-bottom:16px}
+  .stepline .num{flex:none;width:28px;height:28px;border-radius:8px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center}
+  .stepline .steptitle{font-family:'Space Grotesk';font-weight:600;font-size:14.5px;display:block;margin-bottom:2px}
+  .stepline p{font-size:13.5px;color:var(--muted);margin:0}
+  .cmdcard{background:var(--paper-2);border-left:3px solid #2c4a5c;border-radius:8px;padding:12px 16px;margin-bottom:10px}
+  .cmdcard code{background:transparent;border:none;padding:0;font-weight:600;display:block;margin-bottom:4px}
+  .cmdcard p{margin:0;font-size:13.5px;color:var(--muted)}
+  .shot{margin:14px 0 20px;text-align:center}
+  .shot img{max-width:100%;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(15,25,34,.06)}
+  .shot figcaption{font-size:12.5px;color:var(--muted);font-style:italic;margin-top:8px}
+  details.acc{background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;overflow:hidden}
+  details.acc summary{cursor:pointer;list-style:none;padding:13px 16px;font-weight:600;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+  details.acc summary::-webkit-details-marker{display:none}
+  details.acc summary::after{content:"+";color:var(--signal-dim);font-size:18px;font-weight:400}
+  details.acc[open] summary::after{content:"\2212"}
+  details.acc[open] summary{border-bottom:1px solid var(--line)}
+  .acc-body{padding:12px 16px;font-size:13.8px;color:var(--muted)}
+  .acc-body code{color:var(--ink)}
+  footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px;margin-top:10px}
+  footer a{color:#cdd5d9;text-decoration:none}
+  @media(max-width:520px){.nav .r a.hide-sm{display:none}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+  <div class="r">
+    <a class="hide-sm" href="/catalogo/">Cat&aacute;logo</a>
+    <a class="hide-sm" href="/soporte/">Suporte</a>
+    <a href="/portal/">Entrar</a>
+  </div>
+</div></header>
+
+<main>
+  <div class="eyebrow">GUIA DO AGENTE</div>
+  <h1>Agente de Conhecimento Interno</h1>
+  <p class="sub">Transforma todos os documentos da sua empresa em uma base de conhecimento que responde perguntas citando a fonte.</p>
+  <div class="hero-row">
+    <span class="price">US$ 39 / mês</span>
+    <a class="cta" href="/descargar/?agent=conocimiento"><i class="ti ti-download"></i> Baixar este agente</a>
+  </div>
+
+  <div class="quick">
+    <h3>O que resolve e o que você precisa?</h3>
+    <p>Em toda empresa o conhecimento está espalhado: políticas em um PDF, processos em um Word, preços em um Excel, a integração em um PowerPoint. A resposta para &ldquo;quantos dias de férias tenho direito&rdquo; existe, mas ninguém sabe em qual arquivo. Este agente indexa tudo e responde citando exatamente de onde veio cada dado.</p>
+    <ul><li><b>Você precisa:</b> sua chave de licença (<font face='Courier'>TIA-XXXX-XXXX-XXXX-XXXX</font>) e a pasta com os documentos internos. Nada de Python nem conhecimento técnico.</li><li><b>Primeiro resultado em menos de 5 minutos:</b> instala, ativa, escolhe sua pasta e pergunta diretamente o que precisar saber.</li><li><b>O conhecimento da sua empresa nunca sai do seu computador</b> — o índice é construído e consultado localmente.</li></ul>
+    <div class="callout cal-amber"><b>Aviso:</b> o agente responde com base no que está nos seus documentos; sua utilidade depende da documentação estar atualizada. <b>Não é fonte de verdade jurídica ou normativa</b> — use como buscador e organizador do conhecimento existente.</div>
+    <div class="callout cal-amber"><b>D&uacute;vidas?</b> Escreva para <code>soporte@tuialista.com</code> ou acesse <a href="/soporte/"><code>tuialista.com/soporte</code></a> — normalmente respondemos no mesmo dia &uacute;til.</div>
+  </div>
+
+  <h2 class="sec"><span class="n">1</span> O que este agente faz</h2>
+<p>Você aponta para a pasta com os documentos internos e o agente:</p>
+<ul><li><b>Indexa</b> todos eles (PDF, Word, Excel, CSV, PowerPoint, texto, Markdown) em uma base local.</li><li>Divide cada documento em <b>fragmentos</b> para encontrar a parte exata que responde.</li><li><b>Responde perguntas</b> da sua equipe usando só esses documentos, e <b>sempre cita</b> de onde veio cada dado (<font face='Courier'>[Fonte: arquivo, seção]</font>).</li><li><b>Resume um tema</b> consolidando o que dizem vários documentos.</li><li>Detecta <b>lacunas de conhecimento</b>: temas muito mencionados mas sem um documento dedicado.</li><li>Monta um <b>diretório de responsáveis</b>: quem aparece como encarregado de quê.</li></ul>
+<p>O essencial: se a resposta não está nos documentos, o agente <b>diz isso</b> em vez de inventar.</p>
+<h2 class="sec"><span class="n">2</span> Instalação (2 minutos)</h2>
+<p>Para Windows. Não precisa de internet o tempo todo nem enviar nada para a nuvem.</p>
+<div class="stepline"><div class="num">1</div><div><b class="steptitle">Baixe e instale</b><p>Baixe o instalador em <font face='Courier'>tuialista.com/descargar</font> (agente Conhecimento) e abra-o. Ele cria um atalho na sua área de trabalho com o logo — não precisa de Python nem terminal.</p></div></div>
+<div class="stepline"><div class="num">2</div><div><b class="steptitle">Abra pela área de trabalho</b><p>Dê duplo clique no novo ícone. Cole sua <b>chave de licença</b> (você a recebeu por e-mail na compra) e clique em <b>Ativar</b>. Você verá um check verde quando for válida.</p></div></div>
+<div class="stepline"><div class="num">3</div><div><b class="steptitle">Escolha sua pasta</b><p>Selecione a pasta com seus documentos internos e clique em <b>Começar a usar o agente</b>. Na próxima vez ele abre direto — lembra sua chave e sua pasta.</p></div></div>
+<figure class="shot"><img src="../../assets/mockups/conocimiento/activacion_pt.png" alt="É assim que a janela de ativação aparece (com dados de exemplo). Ela aparece na primeira vez que você abre o agente." loading="lazy"><figcaption>É assim que a janela de ativação aparece (com dados de exemplo). Ela aparece na primeira vez que você abre o agente.</figcaption></figure>
+<h2 class="sec"><span class="n">3</span> Como usar</h2>
+<p>O agente abre uma <b>janela de chat</b>, como um app de mensagens — não é uma tela preta de programador. Seu uso principal é perguntar diretamente na caixa de texto, e também tem alguns comandos de exploração:</p>
+<figure class="shot"><img src="../../assets/mockups/conocimiento/chat_pt.png" alt="A conversa real: você pergunta algo e o agente responde citando o documento e a seção exatos (dados de exemplo)." loading="lazy"><figcaption>A conversa real: você pergunta algo e o agente responde citando o documento e a seção exatos (dados de exemplo).</figcaption></figure>
+<div class="cmdcard"><code>&gt; pergunta livre?</code><p>O uso principal. Escreva sua pergunta como ela vem, ex.: <i>quantos dias de férias tenho no segundo ano?</i> — o agente busca nos documentos e responde <b>citando a fonte</b>. Se a informação não estiver lá, ele diz isso em vez de inventar.</p></div>
+<div class="cmdcard"><code>&gt; temas</code><p>Lista as categorias/áreas cobertas pelos seus documentos (políticas, processos, segurança, RH, finanças...) e em quantos arquivos cada uma aparece.</p></div>
+<div class="cmdcard"><code>&gt; resumen &lt;tema&gt;</code><p>Junta o que dizem vários documentos sobre um tema e monta um resumo executivo, apontando contradições se houver. Ex.: <font face='Courier'>resumen vacaciones</font>.</p></div>
+<div class="cmdcard"><code>&gt; huecos</code><p>Temas bastante mencionados mas sem documento próprio — útil para saber quais políticas vale a pena escrever.</p></div>
+<div class="cmdcard"><code>&gt; directorio</code><p>Nomes de pessoas que aparecem como responsáveis/encarregados/contatos e em quais documentos.</p></div>
+<div class="cmdcard"><code>&gt; analizar &lt;arquivo&gt;</code><p>Linhas, número de fragmentos e uma prévia de um documento indexado.</p></div>
+<div class="cmdcard"><code>&gt; sair</code><p>Encerra a sessão (<font face='Courier'>exit</font> também funciona).</p></div>
+<h2 class="sec"><span class="n">4</span> Exemplos de uso comum</h2>
+<h4>Resolver uma dúvida da equipe</h4>
+<p><i>qual é o procedimento para solicitar uma compra acima de R$10.000?</i> — resposta com a citação do documento e da seção exatos.</p>
+<h4>Preparar um resumo para integração</h4>
+<p><font face='Courier'>resumen seguridad</font></p>
+<h4>Auditar a documentação</h4>
+<p><font face='Courier'>temas</font> &nbsp;→&nbsp; <font face='Courier'>huecos</font> — você vê quais áreas estão bem cobertas e quais quase não têm documentação.</p>
+<h4>Encontrar o responsável</h4>
+<p><font face='Courier'>directorio</font></p>
+<h2 class="sec"><span class="n">5</span> Perguntas frequentes</h2>
+<details class="acc"><summary>Os documentos da minha empresa são enviados para a internet?</summary><div class="acc-body">Não. São indexados e consultados no seu computador (veja Privacidade, seção 7).</div></details>
+<details class="acc"><summary>Quais formatos ele aceita?</summary><div class="acc-body">PDF, Word (.docx), Excel (.xlsx/.xls), CSV, PowerPoint (.pptx), texto (.txt), Markdown (.md) e reStructuredText (.rst), inclusive em subpastas.</div></details>
+<details class="acc"><summary>Ele realmente cita a fonte?</summary><div class="acc-body">Sim. Cada dado relevante da resposta vem com <font face='Courier'>[Fonte: nome_arquivo, seção]</font> para você poder verificar.</div></details>
+<details class="acc"><summary>O que acontece se a resposta não estiver nos documentos?</summary><div class="acc-body">O agente responde claramente &ldquo;Não encontrei essa informação na base de conhecimento atual&rdquo;. Não inventa.</div></details>
+<details class="acc"><summary>O que ele faz se dois documentos se contradizem?</summary><div class="acc-body">Aponta isso explicitamente e indica qual documento diz o quê.</div></details>
+<details class="acc"><summary>Adicionei documentos novos, ele reconhece?</summary><div class="acc-body">Reinicie o agente; o índice é reconstruído a partir da pasta.</div></details>
+<details class="acc"><summary>Como ele escolhe quais fragmentos usar?</summary><div class="acc-body">Com uma busca por relevância local (conta coincidências das palavras da sua pergunta, com bônus se aparecem no nome do arquivo ou no título da seção).</div></details>
+<details class="acc"><summary>Ele lê um PDF escaneado?</summary><div class="acc-body">Só se tiver texto selecionável. Uma digitalização que é imagem pura não é indexada de forma confiável.</div></details>
+<details class="acc"><summary>Em que idioma ele responde?</summary><div class="acc-body">No idioma em que você escrever.</div></details>
+<details class="acc"><summary>Ele modifica meus documentos?</summary><div class="acc-body">Não. O agente só os <b>lê</b> para construir o índice.</div></details>
+<h2 class="sec"><span class="n">6</span> Solução de problemas</h2>
+<details class="acc"><summary>Não indexa um .pdf, .docx, .xlsx ou .pptx</summary><div class="acc-body">Confirme que o PDF tenha texto real (não escaneado). Se o problema persistir, contate o suporte.</div></details>
+<details class="acc"><summary>Diz &ldquo;0 documentos indexados&rdquo;</summary><div class="acc-body">A pasta está vazia, o caminho está incorreto ou os arquivos não são de um formato suportado. Verifique se escolheu a pasta correta ao ativar o agente.</div></details>
+<details class="acc"><summary>Uma resposta cita o documento errado</summary><div class="acc-body">A busca é por coincidência de palavras; reformule a pergunta com termos mais específicos ou use <font face='Courier'>resumen &lt;tema&gt;</font>.</div></details>
+<details class="acc"><summary>Diz &ldquo;Licença inválida&rdquo; ou pede para reconectar</summary><div class="acc-body">Verifique se a chave colada está correta (sem espaços extras), confirme que você tem internet na primeira ativação, e se ficou mais de 3 dias sem conexão, reconecte-se uma vez para revalidar.</div></details>
+<details class="acc"><summary>&ldquo;Nenhum provedor de IA configurado&rdquo;</summary><div class="acc-body">As respostas e os resumos usam IA — se faltar configurar o motor, contate o suporte. <font face='Courier'>temas</font>, <font face='Courier'>huecos</font>, <font face='Courier'>directorio</font> e <font face='Courier'>analizar</font> continuam funcionando localmente, sem IA.</div></details>
+<p><b>Nenhuma dessas soluções resolveu seu problema?</b> Escreva para nós diretamente — teremos prazer em revisar com você.</p>
+<div class="callout cal-amber"><b>D&uacute;vidas?</b> Escreva para <code>soporte@tuialista.com</code> ou acesse <a href="/soporte/"><code>tuialista.com/soporte</code></a> — normalmente respondemos no mesmo dia &uacute;til.</div>
+<h2 class="sec"><span class="n">7</span> Privacidade e confidencialidade</h2>
+<p><b>O conhecimento da sua empresa nunca sai do seu computador.</b></p>
+<ul><li>O agente lê, divide em fragmentos e indexa os documentos <b>localmente</b>, no seu próprio computador. Não os envia para nenhum servidor.</li><li>As buscas, os temas, as lacunas e o diretório são calculados <b>no seu computador</b>.</li><li>A única coisa que trafega pela internet é: (1) uma verificação de que sua licença está ativa — que não inclui seus documentos —, e (2) ao responder uma pergunta ou gerar um resumo, os <b>fragmentos mais relevantes</b> são enviados ao motor de IA para redigir a resposta. O resto do conhecimento permanece local.</li></ul>
+<div class="callout cal-steel">A confidencialidade das informações internas é garantida por design: indexação, temas, lacunas e diretório são 100% locais. Só as perguntas e resumos compartilham os fragmentos relevantes com o provedor de IA.</div>
+<div class="callout cal-amber"><b>Lembrete importante:</b> o agente responde com base no que está nos seus documentos; sua utilidade depende da documentação estar atualizada. Se um documento estiver desatualizado, o agente citará esse dado desatualizado (indicando a fonte, para você perceber). Use como buscador e organizador do conhecimento existente, não como fonte de verdade jurídica ou normativa.</div>
+
+</main>
+
+<footer>&copy; 2026 TuIAlista &middot; <a href="/soporte/">Suporte</a> &middot; <a href="/catalogo/">Cat&aacute;logo</a> &middot; <a href="/">In&iacute;cio</a></footer>
+</body>
+</html>
