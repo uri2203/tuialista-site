@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guide &middot; Invoices & Accounts Payable Agent — TuIAlista</title>
+<meta name="description" content="How to use the Invoices & Accounts Payable Agent from TuIAlista: setup, commands, examples and FAQs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{--steel-900:#0f1922;--paper:#f5f6f4;--paper-2:#eceee9;--ink:#0f1922;--muted:#5a6b73;--signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2;--ok:#1d9e75;--amber-tint:#fdf1e4;--steel-tint:#eef2f4}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper-2);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--signal-dim)}
+  header{position:sticky;top:0;background:rgba(245,246,244,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+  .nav{max-width:860px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+  .logo b{color:var(--signal)}
+  .nav .r{display:flex;align-items:center;gap:18px}
+  .nav .r a{font-size:14px;color:var(--muted);text-decoration:none}
+  .nav .r a:hover{color:var(--ink)}
+  main{max-width:860px;margin:0 auto;padding:38px 24px 80px}
+  .eyebrow{font-family:'JetBrains Mono';font-size:11.5px;letter-spacing:.1em;color:var(--signal-dim);margin-bottom:8px}
+  h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,34px);line-height:1.12;margin-bottom:10px}
+  .sub{color:var(--muted);font-size:15.5px;max-width:640px;margin-bottom:18px}
+  .hero-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+  .price{font-family:'Space Grotesk';font-weight:600;font-size:14px;color:var(--signal-dim);background:var(--amber-tint);border:1px solid var(--signal);border-radius:999px;padding:7px 16px}
+  .cta{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:9px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;text-decoration:none;transition:.15s}
+  .cta:hover{background:var(--signal);color:#1a1206}
+  h2.sec{font-family:'Space Grotesk';font-size:18px;font-weight:600;margin:38px 0 14px;padding:10px 16px;background:var(--steel-900);color:#fff;border-radius:10px;display:flex;align-items:center;gap:10px}
+  h2.sec .n{color:var(--signal)}
+  h4{font-family:'Space Grotesk';font-size:14.5px;font-weight:600;margin:16px 0 4px;color:var(--signal-dim)}
+  p{margin:0 0 12px;font-size:14.5px}
+  ul{margin:0 0 12px 20px;font-size:14.5px}
+  li{margin-bottom:6px}
+  code{font-family:'JetBrains Mono',monospace;font-size:.92em;background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  .callout{border-radius:10px;padding:14px 16px;margin:10px 0 16px;font-size:14px;border-left:3px solid}
+  .cal-amber{background:var(--amber-tint);border-color:var(--signal)}
+  .cal-steel{background:var(--steel-tint);border-color:#2c4a5c}
+  .quick{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:22px}
+  .quick h3{font-family:'Space Grotesk';font-size:16px;margin-bottom:8px}
+  .stepline{display:flex;gap:12px;margin-bottom:16px}
+  .stepline .num{flex:none;width:28px;height:28px;border-radius:8px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center}
+  .stepline .steptitle{font-family:'Space Grotesk';font-weight:600;font-size:14.5px;display:block;margin-bottom:2px}
+  .stepline p{font-size:13.5px;color:var(--muted);margin:0}
+  .cmdcard{background:var(--paper-2);border-left:3px solid #2c4a5c;border-radius:8px;padding:12px 16px;margin-bottom:10px}
+  .cmdcard code{background:transparent;border:none;padding:0;font-weight:600;display:block;margin-bottom:4px}
+  .cmdcard p{margin:0;font-size:13.5px;color:var(--muted)}
+  .shot{margin:14px 0 20px;text-align:center}
+  .shot img{max-width:100%;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(15,25,34,.06)}
+  .shot figcaption{font-size:12.5px;color:var(--muted);font-style:italic;margin-top:8px}
+  details.acc{background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;overflow:hidden}
+  details.acc summary{cursor:pointer;list-style:none;padding:13px 16px;font-weight:600;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+  details.acc summary::-webkit-details-marker{display:none}
+  details.acc summary::after{content:"+";color:var(--signal-dim);font-size:18px;font-weight:400}
+  details.acc[open] summary::after{content:"\2212"}
+  details.acc[open] summary{border-bottom:1px solid var(--line)}
+  .acc-body{padding:12px 16px;font-size:13.8px;color:var(--muted)}
+  .acc-body code{color:var(--ink)}
+  footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px;margin-top:10px}
+  footer a{color:#cdd5d9;text-decoration:none}
+  @media(max-width:520px){.nav .r a.hide-sm{display:none}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+  <div class="r">
+    <a class="hide-sm" href="/catalogo/">Catalog</a>
+    <a class="hide-sm" href="/soporte/">Support</a>
+    <a href="/portal/">Sign in</a>
+  </div>
+</div></header>
+
+<main>
+  <div class="eyebrow">AGENT GUIDE</div>
+  <h1>Invoices & Accounts Payable Agent</h1>
+  <p class="sub">Tell it what you need in your own words and it builds your invoice Excel, tax summary and accounts payable — without you typing anything in by hand.</p>
+  <div class="hero-row">
+    <span class="price">$49 USD / month</span>
+    <a class="cta" href="/descargar/?agent=facturas"><i class="ti ti-download"></i> Download this agent</a>
+  </div>
+
+  <div class="quick">
+    <h3>What does it solve and what do you need?</h3>
+    <p>Entering invoices into Excel by hand takes hours, and it's easy to pay the same one twice or miss a due date. This agent reads your CFDI XML and PDF invoices, and builds your capture Excel, tax summary and accounts payable — you write what you need the way you'd write it to a person, not exact commands.</p>
+    <ul><li><b>You need:</b> your license key (<font face='Courier'>TIA-XXXX-XXXX-XXXX-XXXX</font>) and the folder with your invoices (CFDI XML and/or PDF). No Python, no technical knowledge.</li><li><b>First result in under 5 minutes:</b> install, activate, pick your folder, and type <font face='Courier-Bold'>export</font> to get the full Excel built.</li><li><b>Your invoices never leave your computer</b> — the analysis runs locally.</li></ul>
+    <div class="callout cal-amber"><b>Notice:</b> this agent is a support tool. Data is extracted from the XML/PDF automatically and may contain errors in unusual cases. <b>Always verify the data before making a real payment.</b></div>
+    <div class="callout cal-amber"><b>Questions?</b> Email us at <code>soporte@tuialista.com</code> or visit <a href="/soporte/"><code>tuialista.com/soporte</code></a> — we usually reply the same business day.</div>
+  </div>
+
+  <h2 class="sec"><span class="n">1</span> What this agent does</h2>
+<p>You point it at the folder with your invoices (SAT CFDI XML and/or PDF) and it:</p>
+<ul><li><b>Captures each invoice into an organized Excel</b> — what's normally done by hand in hours: invoice number, vendor, tax ID, dates, subtotal, VAT, withholding, total and currency.</li><li><b>Summarizes the period's taxes</b>, adding up what each invoice declares by currency (base, tax, withholding, total).</li><li>Builds your <b>accounts payable</b> with alerts for what's overdue and what's due soon.</li><li><b>Detects duplicate invoices.</b></li><li>Answers <b>any question or request</b> about your invoice portfolio in your own words — no commands to memorize.</li></ul>
+<p>The capture and calculation work follows <b>fixed, already-tested rules, on your computer</b> (no AI, no making things up): it reads CFDI XML exactly and any PDF invoice by reading its text. The result: you pay on time, without duplicating, with your invoice Excel ready without typing it in yourself.</p>
+<h2 class="sec"><span class="n">2</span> Installation (2 minutes)</h2>
+<p>For Windows. No constant internet connection needed, and nothing gets uploaded to the cloud.</p>
+<div class="stepline"><div class="num">1</div><div><b class="steptitle">Download and install it</b><p>Download the installer from <font face='Courier'>tuialista.com/descargar</font> (Invoices agent) and open it. It creates a desktop shortcut with the logo — no Python or terminal needed.</p></div></div>
+<div class="stepline"><div class="num">2</div><div><b class="steptitle">Open it from your desktop</b><p>Double-click the new icon. Paste your <b>license key</b> (you received it by email when you bought it) and click <b>Activate</b>. You'll see a green checkmark once it's valid.</p></div></div>
+<div class="stepline"><div class="num">3</div><div><b class="steptitle">Choose your folder</b><p>Select the folder with your invoices and click <b>Start using the agent</b>. Next time it starts right up — it remembers your key and your folder.</p></div></div>
+<figure class="shot"><img src="../../assets/mockups/facturas/activacion_en.png" alt="This is what the activation window looks like (with sample data). It appears the first time you open the agent." loading="lazy"><figcaption>This is what the activation window looks like (with sample data). It appears the first time you open the agent.</figcaption></figure>
+<h2 class="sec"><span class="n">3</span> How to use it</h2>
+<p>The agent opens a <b>chat window</b>, like a messaging app — not a programmer's black screen. <b>You don't memorize exact commands:</b> you write what you need almost like you'd ask a person, hit <b>Send</b> (or Enter), and it does the work. These are the 4 main things it knows how to do, with examples of how to ask:</p>
+<figure class="shot"><img src="../../assets/mockups/facturas/chat_en.png" alt="The real conversation: you ask &ldquo;what's due&rdquo; and the agent replies with your accounts payable sorted by urgency (sample data)." loading="lazy"><figcaption>The real conversation: you ask &ldquo;what's due&rdquo; and the agent replies with your accounts payable sorted by urgency (sample data).</figcaption></figure>
+<div class="cmdcard"><code>&gt; export &nbsp;/&nbsp; generate the Excel &nbsp;/&nbsp; capture them</code><p>Builds you an Excel with <b>everything</b>: capture of each invoice, tax summary and accounts payable, ready to open.</p></div>
+<div class="cmdcard"><code>&gt; taxes &nbsp;/&nbsp; how much VAT</code><p>Tax summary for the period: base, tax, withholding and total, added up by currency.</p></div>
+<div class="cmdcard"><code>&gt; what's due &nbsp;/&nbsp; what's expiring &nbsp;/&nbsp; how much do I owe</code><p>Your accounts payable, most urgent first: overdue, due soon, and current, with vendor and amount.</p></div>
+<div class="cmdcard"><code>&gt; duplicates &nbsp;/&nbsp; repeated invoices</code><p>Detects invoices that appear to be loaded twice (same invoice number/UUID, or same vendor and total).</p></div>
+<div class="cmdcard"><code>&gt; any other question</code><p>E.g.: <i>&ldquo;how much do I owe ACME&rdquo;</i>, <i>&ldquo;total by vendor&rdquo;</i>, <i>&ldquo;compare this month against last month&rdquo;</i> — the agent understands the request and builds the answer or report.</p></div>
+<div class="callout cal-steel">You don't need to hit an exact word: &ldquo;invoice due&rdquo;, &ldquo;what's due this week&rdquo; or &ldquo;accounts payable&rdquo; all trigger the same thing. If your phrase doesn't match any of the 4 main actions, the agent interprets it with AI and still tries to help you.</div>
+<p>Want to see all <b>20 full recipes</b> with a real example of each? Check the <b>Recipe catalog</b> — a separate document because it's long: <font face='Courier'>catalogo_recetas.pdf</font> next to this manual, or the interactive version at <font color="#c46a12"><a href="https://tuialista.com/guia/facturas/recetas/">tuialista.com/guia/facturas/recetas</a></font>.</p>
+<h2 class="sec"><span class="n">4</span> Common use examples</h2>
+<h4>Build the full month's Excel</h4>
+<p><i>&ldquo;export&rdquo;</i> — you get an Excel with capture, taxes and accounts payable, ready to review or send to your accountant.</p>
+<h4>Weekly payment review</h4>
+<p><i>&ldquo;what's due&rdquo;</i> &nbsp;→&nbsp; <i>&ldquo;duplicates&rdquo;</i></p>
+<h4>Month-end tax close</h4>
+<p><i>&ldquo;taxes for the period&rdquo;</i></p>
+<h4>A quick question</h4>
+<p><i>&ldquo;how much do I owe ACME this month?&rdquo;</i></p>
+<h2 class="sec"><span class="n">5</span> Frequently asked questions</h2>
+<details class="acc"><summary>Do my invoices get uploaded to the internet?</summary><div class="acc-body">No. They're read and processed on your computer (see Privacy, section 7).</div></details>
+<details class="acc"><summary>What formats does it accept?</summary><div class="acc-body">CFDI XML (SAT, Mexico) and invoice PDF, plus .txt. The XML is read exactly (not a text guess); the PDF is read by its content. It doesn't read Word, Excel or CSV as input — the output is an Excel file, though.</div></details>
+<details class="acc"><summary>Do I need to type the exact command?</summary><div class="acc-body">No. The agent recognizes intent by keywords (for example &ldquo;export&rdquo;, &ldquo;excel&rdquo;, &ldquo;capture&rdquo; and &ldquo;generate&rdquo; all trigger the same thing). You can phrase it however comes naturally.</div></details>
+<details class="acc"><summary>Does it detect duplicates reliably?</summary><div class="acc-body">It flags <b>possible</b> duplicates (same UUID/invoice number, or same vendor and total). Confirm them manually before rejecting or canceling a payment.</div></details>
+<details class="acc"><summary>Does it execute payments?</summary><div class="acc-body">No. The agent <b>organizes, captures and alerts</b>; it doesn't make or schedule payments. You execute them in your bank or system.</div></details>
+<details class="acc"><summary>What language does it reply in?</summary><div class="acc-body">Whatever language you write to it in.</div></details>
+<details class="acc"><summary>Does it read a scanned PDF?</summary><div class="acc-body">Only if it has selectable text. A scan that's a pure image isn't read reliably — for those cases, the CFDI XML is the safest source.</div></details>
+<details class="acc"><summary>Does it modify my original invoices?</summary><div class="acc-body">No. The agent only <b>reads</b> them; the Excel it generates is a new file, separate from your invoices.</div></details>
+<details class="acc"><summary>Can I change the folder?</summary><div class="acc-body">Yes. Reopen the agent and click &ldquo;Choose&hellip;&rdquo; to change it (if it doesn't ask, delete <font face='Courier'>config.json</font> inside <font face='Courier'>%USERPROFILE%\.tuialista</font> so it asks again).</div></details>
+<details class="acc"><summary>What is &ldquo;safe mode&rdquo;?</summary><div class="acc-body">By default the agent only uses already-tested tasks (export, taxes, payables, duplicates, and some automatic reports) — never AI writing code over your data. If you type &ldquo;expert mode&rdquo;, it also tries new requests with AI (isolated, it can't touch your files). Go back with &ldquo;safe mode&rdquo;.</div></details>
+<h2 class="sec"><span class="n">6</span> Troubleshooting</h2>
+<details class="acc"><summary>It won't read a file</summary><div class="acc-body">Make sure it's .xml (CFDI), .pdf or .txt — other formats aren't read as input. If it's a PDF, confirm it has real text (not scanned).</div></details>
+<details class="acc"><summary>It says it didn't find any invoices</summary><div class="acc-body">The folder is empty or the path is wrong for this file type. Check that you chose the right folder when activating the agent, or use &ldquo;Folders&hellip;&rdquo; to point to where they are.</div></details>
+<details class="acc"><summary>It doesn't detect a piece of invoice data correctly</summary><div class="acc-body">The PDF may have an uncommon format. CFDI XML is more reliable than the PDF because it's read exactly, not by text.</div></details>
+<details class="acc"><summary>It says &ldquo;Invalid license&rdquo; or asks to reconnect</summary><div class="acc-body">Check that the key you pasted is correct (no extra spaces), make sure you have internet the first time you activate, and if you've been offline for more than 3 days, reconnect once to revalidate.</div></details>
+<details class="acc"><summary>The AI isn't responding to a free-form question</summary><div class="acc-body">&ldquo;export&rdquo;, &ldquo;taxes&rdquo;, &ldquo;what's due&rdquo; and &ldquo;duplicates&rdquo; always work, with no connection to an AI engine. Only questions outside those 4 actions depend on AI — if it fails, retry in a moment or contact support.</div></details>
+<p><b>None of these fixed your problem?</b> Write to us directly — we'll gladly look into it with you.</p>
+<div class="callout cal-amber"><b>Questions?</b> Email us at <code>soporte@tuialista.com</code> or visit <a href="/soporte/"><code>tuialista.com/soporte</code></a> — we usually reply the same business day.</div>
+<h2 class="sec"><span class="n">7</span> Privacy and confidentiality</h2>
+<p><b>Your invoices never leave your computer.</b></p>
+<ul><li>The agent reads and processes invoices <b>locally</b>, on your own machine. It doesn't upload them to any server.</li><li>The Excel capture, tax summary, accounts payable and duplicates are calculated <b>on your machine</b>, with fixed, already-tested rules (no AI).</li><li>The only thing that travels over the internet is: (1) a check that your license is active — which doesn't include your invoices —, and (2) if you ask for something outside the 4 main actions (a free-form question), a relevant fragment of the information is sent to the AI engine so it can reply.</li></ul>
+<div class="callout cal-steel">The confidentiality of your financial information is guaranteed by design: export, taxes, accounts payable and duplicates are 100% local, with fixed, already-tested rules — no AI. Only free-form questions outside those 4 actions share a fragment of data with the AI provider so it can reply.</div>
+<div class="callout cal-amber"><b>Important reminder:</b> verify the extracted data before making a real payment. CFDI XML is read exactly, but PDFs are read by text and in unusually formatted invoices a piece of data can get confused. Duplicate detection is an alert, not a certainty. Before paying, canceling or rejecting an invoice, confirm the data against the original document. The agent organizes and alerts; the payment decision is yours.</div>
+
+</main>
+
+<footer>&copy; 2026 TuIAlista &middot; <a href="/soporte/">Support</a> &middot; <a href="/catalogo/">Catalog</a> &middot; <a href="/">Home</a></footer>
+</body>
+</html>
