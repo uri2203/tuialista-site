@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guia &middot; Agente de Conformidade Fiscal — TuIAlista</title>
+<meta name="description" content="Como usar o Agente de Conformidade Fiscal da TuIAlista: instala&ccedil;&atilde;o, comandos, exemplos e perguntas frequentes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{--steel-900:#0f1922;--paper:#f5f6f4;--paper-2:#eceee9;--ink:#0f1922;--muted:#5a6b73;--signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2;--ok:#1d9e75;--amber-tint:#fdf1e4;--steel-tint:#eef2f4}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper-2);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--signal-dim)}
+  header{position:sticky;top:0;background:rgba(245,246,244,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+  .nav{max-width:860px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+  .logo b{color:var(--signal)}
+  .nav .r{display:flex;align-items:center;gap:18px}
+  .nav .r a{font-size:14px;color:var(--muted);text-decoration:none}
+  .nav .r a:hover{color:var(--ink)}
+  main{max-width:860px;margin:0 auto;padding:38px 24px 80px}
+  .eyebrow{font-family:'JetBrains Mono';font-size:11.5px;letter-spacing:.1em;color:var(--signal-dim);margin-bottom:8px}
+  h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,34px);line-height:1.12;margin-bottom:10px}
+  .sub{color:var(--muted);font-size:15.5px;max-width:640px;margin-bottom:18px}
+  .hero-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+  .price{font-family:'Space Grotesk';font-weight:600;font-size:14px;color:var(--signal-dim);background:var(--amber-tint);border:1px solid var(--signal);border-radius:999px;padding:7px 16px}
+  .cta{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:9px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;text-decoration:none;transition:.15s}
+  .cta:hover{background:var(--signal);color:#1a1206}
+  h2.sec{font-family:'Space Grotesk';font-size:18px;font-weight:600;margin:38px 0 14px;padding:10px 16px;background:var(--steel-900);color:#fff;border-radius:10px;display:flex;align-items:center;gap:10px}
+  h2.sec .n{color:var(--signal)}
+  h4{font-family:'Space Grotesk';font-size:14.5px;font-weight:600;margin:16px 0 4px;color:var(--signal-dim)}
+  p{margin:0 0 12px;font-size:14.5px}
+  ul{margin:0 0 12px 20px;font-size:14.5px}
+  li{margin-bottom:6px}
+  code{font-family:'JetBrains Mono',monospace;font-size:.92em;background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  .callout{border-radius:10px;padding:14px 16px;margin:10px 0 16px;font-size:14px;border-left:3px solid}
+  .cal-amber{background:var(--amber-tint);border-color:var(--signal)}
+  .cal-steel{background:var(--steel-tint);border-color:#2c4a5c}
+  .quick{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:22px}
+  .quick h3{font-family:'Space Grotesk';font-size:16px;margin-bottom:8px}
+  .stepline{display:flex;gap:12px;margin-bottom:16px}
+  .stepline .num{flex:none;width:28px;height:28px;border-radius:8px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center}
+  .stepline .steptitle{font-family:'Space Grotesk';font-weight:600;font-size:14.5px;display:block;margin-bottom:2px}
+  .stepline p{font-size:13.5px;color:var(--muted);margin:0}
+  .cmdcard{background:var(--paper-2);border-left:3px solid #2c4a5c;border-radius:8px;padding:12px 16px;margin-bottom:10px}
+  .cmdcard code{background:transparent;border:none;padding:0;font-weight:600;display:block;margin-bottom:4px}
+  .cmdcard p{margin:0;font-size:13.5px;color:var(--muted)}
+  .shot{margin:14px 0 20px;text-align:center}
+  .shot img{max-width:100%;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(15,25,34,.06)}
+  .shot figcaption{font-size:12.5px;color:var(--muted);font-style:italic;margin-top:8px}
+  details.acc{background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;overflow:hidden}
+  details.acc summary{cursor:pointer;list-style:none;padding:13px 16px;font-weight:600;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+  details.acc summary::-webkit-details-marker{display:none}
+  details.acc summary::after{content:"+";color:var(--signal-dim);font-size:18px;font-weight:400}
+  details.acc[open] summary::after{content:"\2212"}
+  details.acc[open] summary{border-bottom:1px solid var(--line)}
+  .acc-body{padding:12px 16px;font-size:13.8px;color:var(--muted)}
+  .acc-body code{color:var(--ink)}
+  footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px;margin-top:10px}
+  footer a{color:#cdd5d9;text-decoration:none}
+  @media(max-width:520px){.nav .r a.hide-sm{display:none}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+  <div class="r">
+    <a class="hide-sm" href="/catalogo/">Cat&aacute;logo</a>
+    <a class="hide-sm" href="/soporte/">Suporte</a>
+    <a href="/portal/">Entrar</a>
+  </div>
+</div></header>
+
+<main>
+  <div class="eyebrow">GUIA DO AGENTE</div>
+  <h1>Agente de Conformidade Fiscal</h1>
+  <p class="sub">Organiza seus documentos fiscais, monta seu calendário de obrigações e avisa antes de cada prazo do SAT (fisco mexicano).</p>
+  <div class="hero-row">
+    <span class="price">US$ 35 / mês</span>
+    <a class="cta" href="/descargar/?agent=fiscal"><i class="ti ti-download"></i> Baixar este agente</a>
+  </div>
+
+  <div class="quick">
+    <h3>O que resolve e o que você precisa?</h3>
+    <p>Perder um prazo do SAT custa multas e encargos. Este agente transforma a pasta onde você guarda seus documentos fiscais (notas, declarações, comprovantes, XML de CFDI) em um painel de conformidade: diz o que vence em breve, o que pode estar faltando e quais gastos podem ser dedutíveis — tudo calculado no seu próprio computador.</p>
+    <ul><li><b>Você precisa:</b> sua chave de licença (<font face='Courier'>TIA-XXXX-XXXX-XXXX-XXXX</font>) e a pasta com seus documentos. Nada de Python nem conhecimento técnico.</li><li><b>Primeiro resultado em menos de 5 minutos:</b> instala, ativa, escolhe sua pasta e roda <font face='Courier-Bold'>calendario</font> para ver suas obrigações do ano.</li><li><b>Seus documentos fiscais nunca saem do seu computador</b> — a análise roda localmente.</li></ul>
+    <div class="callout cal-amber"><b>Aviso legal:</b> este agente é uma ferramenta de <b>organização e alerta</b>. <b>NÃO substitui um contador certificado nem o SAT.</b> As leis fiscais mudam com frequência; sempre confirme com um profissional antes de apresentar declarações ou tomar decisões fiscais.</div>
+    <div class="callout cal-amber"><b>D&uacute;vidas?</b> Escreva para <code>soporte@tuialista.com</code> ou acesse <a href="/soporte/"><code>tuialista.com/soporte</code></a> — normalmente respondemos no mesmo dia &uacute;til.</div>
+  </div>
+
+  <h2 class="sec"><span class="n">1</span> O que este agente faz</h2>
+<p>Você aponta para a pasta com seus documentos fiscais e ele:</p>
+<ul><li><b>Indexa</b> (PDF, Word, Excel, CSV, TXT, XML de CFDI, inclusive em subpastas) e extrai os dados-chave: <b>RFC, regime, períodos, tipo de documento, IVA, ISR, retenções, total e datas.</b></li><li>Monta um <b>calendário de obrigações</b> do exercício com os prazos típicos conforme seu regime detectado.</li><li>Avisa sobre as <b>obrigações prestes a vencer</b> (e as recém-vencidas).</li><li>Detecta <b>possíveis deduções</b> mencionadas nos seus documentos.</li><li>Detecta <b>documentos ou meses que podem estar faltando</b> no seu arquivo.</li><li>Gera um <b>resumo fiscal executivo</b> do período, com recomendações.</li><li>Responde <b>perguntas livres</b> sobre sua situação fiscal, no seu próprio idioma.</li></ul>
+<p>O resultado: você chega a cada prazo do SAT organizado e sem surpresas — sem precisar abrir cada arquivo um por um para saber onde está.</p>
+<h2 class="sec"><span class="n">2</span> Instalação (2 minutos)</h2>
+<p>Para Windows. Não precisa de internet o tempo todo nem enviar nada para a nuvem.</p>
+<div class="stepline"><div class="num">1</div><div><b class="steptitle">Baixe e instale</b><p>Baixe o instalador em <font face='Courier'>tuialista.com/descargar</font> (agente Fiscal) e abra-o. Ele cria um atalho na sua área de trabalho com o logo — não precisa de Python nem terminal.</p></div></div>
+<div class="stepline"><div class="num">2</div><div><b class="steptitle">Abra pela área de trabalho</b><p>Dê duplo clique no novo ícone. Cole sua <b>chave de licença</b> (você a recebeu por e-mail na compra) e clique em <b>Ativar</b>. Você verá um check verde quando for válida.</p></div></div>
+<div class="stepline"><div class="num">3</div><div><b class="steptitle">Escolha sua pasta</b><p>Selecione a pasta com seus documentos fiscais e clique em <b>Começar a usar o agente</b>. Na próxima vez que abrir, ele inicia direto — lembra sua chave e sua pasta.</p></div></div>
+<figure class="shot"><img src="../../assets/mockups/fiscal/activacion_pt.png" alt="É assim que a janela de ativação aparece (com dados de exemplo). Ela aparece na primeira vez que você abre o agente." loading="lazy"><figcaption>É assim que a janela de ativação aparece (com dados de exemplo). Ela aparece na primeira vez que você abre o agente.</figcaption></figure>
+<h2 class="sec"><span class="n">3</span> Como usar</h2>
+<p>O agente abre uma <b>janela de chat</b>, como um app de mensagens — não é uma tela preta de programador. Você escreve seu comando ou pergunta na caixa de texto abaixo, clica em <b>Enviar</b> (ou Enter), e a resposta aparece como uma mensagem, igual nesta imagem real:</p>
+<figure class="shot"><img src="../../assets/mockups/fiscal/chat_pt.png" alt="A conversa real: você escreve &ldquo;calendario&rdquo; e o agente responde com suas obrigações do ano (dados de exemplo)." loading="lazy"><figcaption>A conversa real: você escreve &ldquo;calendario&rdquo; e o agente responde com suas obrigações do ano (dados de exemplo).</figcaption></figure>
+<p>Os comandos a seguir são as palavras que você pode escrever nessa mesma caixa de texto:</p>
+<div class="cmdcard"><code>&gt; calendario</code><p>Suas obrigações do ano: pagamentos provisórios de ISR, IVA mensal, DIOT e declaração anual, com prazos típicos conforme seu regime.</p></div>
+<div class="cmdcard"><code>&gt; obligaciones [dias]</code><p>O que vence em breve — por padrão os próximos 30 dias, incluindo as recém-vencidas, ordenadas por urgência. Ex.: <font face='Courier'>obligaciones 15</font>.</p></div>
+<div class="cmdcard"><code>&gt; deducciones</code><p>Detecta menções de gastos potencialmente dedutíveis (aluguel, honorários, combustível, software, previdência...) e em quais arquivos aparecem.</p></div>
+<div class="cmdcard"><code>&gt; faltantes</code><p>Meses do exercício sem comprovantes e tipos de documento esperados que não foram encontrados.</p></div>
+<div class="cmdcard"><code>&gt; resumen</code><p>Resumo fiscal executivo: situação geral, documentação disponível, obrigações críticas, possíveis deduções e recomendações.</p></div>
+<div class="cmdcard"><code>&gt; analizar &lt;arquivo&gt;</code><p>RFC, tipo, regime, períodos, IVA, ISR, retenções, total e datas extraídos de um documento específico. Ex.: <font face='Courier'>analizar declaracion_mayo.pdf</font>.</p></div>
+<div class="cmdcard"><code>&gt; pergunta livre?</code><p>Você pode escrever qualquer dúvida em linguagem natural, ex.: <i>quais obrigações eu tenho se sou RESICO?</i></p></div>
+<div class="cmdcard"><code>&gt; sair</code><p>Encerra a sessão (<font face='Courier'>exit</font> também funciona).</p></div>
+<p>Quer ver as <b>20 receitas completas</b> com um exemplo real de cada uma? Consulte o <b>Catálogo de receitas</b> — um documento separado por ser extenso: <font face='Courier'>catalogo_recetas.pdf</font> junto com este manual, ou a versão interativa em <font color="#c46a12"><a href="https://tuialista.com/guia/fiscal/recetas/">tuialista.com/guia/fiscal/recetas</a></font>.</p>
+<h2 class="sec"><span class="n">4</span> Exemplos de uso comum</h2>
+<h4>Preparar o mês</h4>
+<p><font face='Courier'>obligaciones 30</font> &nbsp;→&nbsp; <font face='Courier'>faltantes</font></p>
+<h4>Revisar deduções antes da declaração anual</h4>
+<p><font face='Courier'>deducciones</font> &nbsp;→&nbsp; <font face='Courier'>resumen</font></p>
+<h4>Ver o calendário completo do ano</h4>
+<p><font face='Courier'>calendario</font></p>
+<h4>Uma dúvida pontual</h4>
+<p><i>quando vence minha declaração anual como pessoa física?</i></p>
+<h2 class="sec"><span class="n">5</span> Perguntas frequentes</h2>
+<details class="acc"><summary>Meus documentos fiscais são enviados para a internet?</summary><div class="acc-body">Não. São indexados e analisados no seu computador (veja Privacidade, seção 7).</div></details>
+<details class="acc"><summary>Quais formatos ele aceita?</summary><div class="acc-body">PDF, Word (.docx), Excel (.xlsx), CSV, XML de CFDI, texto (.txt) e Markdown (.md), inclusive dentro de subpastas.</div></details>
+<details class="acc"><summary>As datas do calendário são oficiais?</summary><div class="acc-body">São prazos <b>típicos</b> de referência (por exemplo, dia 17 do mês seguinte para pagamentos mensais). Podem variar conforme sua situação, dígito do RFC, dias úteis ou prorrogações. <b>Sempre confirme no SAT.</b></div></details>
+<details class="acc"><summary>Isso substitui meu contador?</summary><div class="acc-body">De jeito nenhum. É uma ferramenta de organização e alerta. A entrega de declarações e as decisões fiscais devem ser validadas com um contador certificado.</div></details>
+<details class="acc"><summary>Como ele sabe meu regime?</summary><div class="acc-body">Ele detecta pelo texto dos seus documentos (RESICO, honorários, aluguel, atividade empresarial, pessoa jurídica, assalariado). Se não detectar, usa um valor padrão — verifique se é o seu.</div></details>
+<details class="acc"><summary>As deduções que ele detecta são realmente dedutíveis?</summary><div class="acc-body">Não. Detecta <b>menções</b> de gastos que costumam ser dedutíveis; quais realmente se aplicam depende do seu regime e exercício. Confirme com seu contador.</div></details>
+<details class="acc"><summary>Os valores de IVA/ISR extraídos são exatos?</summary><div class="acc-body">São uma leitura automática do texto e podem conter erros. São orientativos; verifique contra seus documentos originais.</div></details>
+<details class="acc"><summary>Ele lê um PDF escaneado?</summary><div class="acc-body">Só se tiver texto selecionável. Uma digitalização que é imagem pura não é lida de forma confiável.</div></details>
+<details class="acc"><summary>Em que idioma ele responde?</summary><div class="acc-body">No idioma em que você escrever. O domínio é focado no sistema fiscal do <b>México</b> (SAT, CFDI, RFC).</div></details>
+<details class="acc"><summary>Ele modifica meus documentos?</summary><div class="acc-body">Não. O agente só os <b>lê</b>.</div></details>
+<h2 class="sec"><span class="n">6</span> Solução de problemas</h2>
+<details class="acc"><summary>Não lê um .pdf, .docx ou .xlsx</summary><div class="acc-body">Confirme que o PDF tenha texto real (não escaneado). Se o problema persistir, contate o suporte.</div></details>
+<details class="acc"><summary>Mostra &ldquo;0 documentos indexados&rdquo;</summary><div class="acc-body">A pasta está vazia ou o caminho está incorreto. Verifique se escolheu a pasta correta ao ativar o agente e se ela tem arquivos em formato compatível.</div></details>
+<details class="acc"><summary>Não detecta meu RFC ou regime</summary><div class="acc-body">Pode ser que os documentos não tenham em texto legível. Use <font face='Courier'>analizar</font> para ver o que foi extraído de um documento específico.</div></details>
+<details class="acc"><summary>Diz &ldquo;Licença inválida&rdquo; ou pede para reconectar</summary><div class="acc-body">Verifique se a chave colada está correta (sem espaços extras), confirme que você tem internet na primeira ativação, e se ficou mais de 3 dias sem conexão, reconecte-se uma vez para revalidar.</div></details>
+<details class="acc"><summary>&ldquo;Nenhum provedor de IA configurado&rdquo;</summary><div class="acc-body"><font face='Courier'>resumen</font> e as perguntas livres usam IA — se faltar configurar o motor, contate o suporte. <font face='Courier'>calendario</font>, <font face='Courier'>obligaciones</font>, <font face='Courier'>deducciones</font>, <font face='Courier'>faltantes</font> e <font face='Courier'>analizar</font> continuam funcionando localmente, sem IA.</div></details>
+<p><b>Nenhuma dessas soluções resolveu seu problema?</b> Escreva para nós diretamente — teremos prazer em revisar com você.</p>
+<div class="callout cal-amber"><b>D&uacute;vidas?</b> Escreva para <code>soporte@tuialista.com</code> ou acesse <a href="/soporte/"><code>tuialista.com/soporte</code></a> — normalmente respondemos no mesmo dia &uacute;til.</div>
+<h2 class="sec"><span class="n">7</span> Privacidade e confidencialidade</h2>
+<p><b>Seus documentos fiscais nunca saem do seu computador.</b></p>
+<ul><li>O agente lê, indexa e extrai dados <b>localmente</b>, no seu próprio computador. Não envia seus documentos para nenhum servidor nem para o SAT.</li><li>O calendário, as obrigações, as deduções, os faltantes e a análise de documentos são calculados <b>no seu computador</b>.</li><li>A única coisa que trafega pela internet é: (1) uma verificação de que sua licença está ativa — que não inclui seus documentos —, e (2) ao usar <font face='Courier'>resumen</font> ou fazer uma pergunta livre, um fragmento da informação relevante é enviado ao motor de IA para redigir essa resposta.</li></ul>
+<div class="callout cal-steel">A confidencialidade das suas informações fiscais é garantida por design: o processamento base de documentos, calendário e alertas é 100% local. As funções que usam IA (resumo e perguntas livres) são as únicas que compartilham um fragmento de dados com o provedor de IA para responder.</div>
+<div class="callout cal-amber"><b>Lembrete importante:</b> o calendário usa prazos típicos que podem não coincidir com o seu caso; os valores e regimes são extraídos automaticamente e podem conter erros; as deduções detectadas são apenas possíveis. Antes de apresentar qualquer declaração ou tomar uma decisão fiscal, confirme com seu contador e com o SAT. As leis fiscais mudam com frequência e a responsabilidade final é do contribuinte.</div>
+
+</main>
+
+<footer>&copy; 2026 TuIAlista &middot; <a href="/soporte/">Suporte</a> &middot; <a href="/catalogo/">Cat&aacute;logo</a> &middot; <a href="/">In&iacute;cio</a></footer>
+</body>
+</html>
