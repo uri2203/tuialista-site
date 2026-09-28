@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guide &middot; Government Paperwork Agent — TuIAlista</title>
+<meta name="description" content="How to use the Government Paperwork Agent from TuIAlista: setup, commands, examples and FAQs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{--steel-900:#0f1922;--paper:#f5f6f4;--paper-2:#eceee9;--ink:#0f1922;--muted:#5a6b73;--signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2;--ok:#1d9e75;--amber-tint:#fdf1e4;--steel-tint:#eef2f4}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper-2);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--signal-dim)}
+  header{position:sticky;top:0;background:rgba(245,246,244,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+  .nav{max-width:860px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+  .logo b{color:var(--signal)}
+  .nav .r{display:flex;align-items:center;gap:18px}
+  .nav .r a{font-size:14px;color:var(--muted);text-decoration:none}
+  .nav .r a:hover{color:var(--ink)}
+  main{max-width:860px;margin:0 auto;padding:38px 24px 80px}
+  .eyebrow{font-family:'JetBrains Mono';font-size:11.5px;letter-spacing:.1em;color:var(--signal-dim);margin-bottom:8px}
+  h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,34px);line-height:1.12;margin-bottom:10px}
+  .sub{color:var(--muted);font-size:15.5px;max-width:640px;margin-bottom:18px}
+  .hero-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+  .price{font-family:'Space Grotesk';font-weight:600;font-size:14px;color:var(--signal-dim);background:var(--amber-tint);border:1px solid var(--signal);border-radius:999px;padding:7px 16px}
+  .cta{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:9px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;text-decoration:none;transition:.15s}
+  .cta:hover{background:var(--signal);color:#1a1206}
+  h2.sec{font-family:'Space Grotesk';font-size:18px;font-weight:600;margin:38px 0 14px;padding:10px 16px;background:var(--steel-900);color:#fff;border-radius:10px;display:flex;align-items:center;gap:10px}
+  h2.sec .n{color:var(--signal)}
+  h4{font-family:'Space Grotesk';font-size:14.5px;font-weight:600;margin:16px 0 4px;color:var(--signal-dim)}
+  p{margin:0 0 12px;font-size:14.5px}
+  ul{margin:0 0 12px 20px;font-size:14.5px}
+  li{margin-bottom:6px}
+  code{font-family:'JetBrains Mono',monospace;font-size:.92em;background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  .callout{border-radius:10px;padding:14px 16px;margin:10px 0 16px;font-size:14px;border-left:3px solid}
+  .cal-amber{background:var(--amber-tint);border-color:var(--signal)}
+  .cal-steel{background:var(--steel-tint);border-color:#2c4a5c}
+  .quick{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:22px}
+  .quick h3{font-family:'Space Grotesk';font-size:16px;margin-bottom:8px}
+  .stepline{display:flex;gap:12px;margin-bottom:16px}
+  .stepline .num{flex:none;width:28px;height:28px;border-radius:8px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center}
+  .stepline .steptitle{font-family:'Space Grotesk';font-weight:600;font-size:14.5px;display:block;margin-bottom:2px}
+  .stepline p{font-size:13.5px;color:var(--muted);margin:0}
+  .cmdcard{background:var(--paper-2);border-left:3px solid #2c4a5c;border-radius:8px;padding:12px 16px;margin-bottom:10px}
+  .cmdcard code{background:transparent;border:none;padding:0;font-weight:600;display:block;margin-bottom:4px}
+  .cmdcard p{margin:0;font-size:13.5px;color:var(--muted)}
+  .shot{margin:14px 0 20px;text-align:center}
+  .shot img{max-width:100%;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(15,25,34,.06)}
+  .shot figcaption{font-size:12.5px;color:var(--muted);font-style:italic;margin-top:8px}
+  details.acc{background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;overflow:hidden}
+  details.acc summary{cursor:pointer;list-style:none;padding:13px 16px;font-weight:600;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+  details.acc summary::-webkit-details-marker{display:none}
+  details.acc summary::after{content:"+";color:var(--signal-dim);font-size:18px;font-weight:400}
+  details.acc[open] summary::after{content:"\2212"}
+  details.acc[open] summary{border-bottom:1px solid var(--line)}
+  .acc-body{padding:12px 16px;font-size:13.8px;color:var(--muted)}
+  .acc-body code{color:var(--ink)}
+  footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px;margin-top:10px}
+  footer a{color:#cdd5d9;text-decoration:none}
+  @media(max-width:520px){.nav .r a.hide-sm{display:none}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+  <div class="r">
+    <a class="hide-sm" href="/catalogo/">Catalog</a>
+    <a class="hide-sm" href="/soporte/">Support</a>
+    <a href="/portal/">Sign in</a>
+  </div>
+</div></header>
+
+<main>
+  <div class="eyebrow">AGENT GUIDE</div>
+  <h1>Government Paperwork Agent</h1>
+  <p class="sub">Guides you step by step through Mexican government paperwork and tells you which documents you have and which ones you're missing.</p>
+  <div class="hero-row">
+    <span class="price">$19 USD / month</span>
+    <a class="cta" href="/descargar/?agent=tramites"><i class="ti ti-download"></i> Download this agent</a>
+  </div>
+
+  <div class="quick">
+    <h3>What does it solve and what do you need?</h3>
+    <p>A poorly prepared errand means wasted time, lines, rejections, and sometimes fines. This agent organizes your personal documents, builds a checklist of what you already have and what's missing, and gets you ready before you go to the office.</p>
+    <ul><li><b>You need:</b> your license key (<font face='Courier'>TIA-XXXX-XXXX-XXXX-XXXX</font>) and the folder with your personal documents. No Python, no technical knowledge.</li><li><b>First result in under 5 minutes:</b> install, activate, pick your folder, and run <font face='Courier-Bold'>documents</font> to see what it classified.</li><li><b>Your documents never leave your computer</b> — the classification runs locally.</li></ul>
+    <div class="callout cal-amber"><b>Notice:</b> government requirements and processes change frequently. <b>Always verify on the official government website</b> before going. This is not an official government channel.</div>
+    <div class="callout cal-amber"><b>Questions?</b> Email us at <code>soporte@tuialista.com</code> or visit <a href="/soporte/"><code>tuialista.com/soporte</code></a> — we usually reply the same business day.</div>
+  </div>
+
+  <h2 class="sec"><span class="n">1</span> What this agent does</h2>
+<p>You point it at the folder with your documents (IDs, proofs, certificates, official records) and it:</p>
+<ul><li>Reads and <b>classifies</b> them by type (voter ID, national ID number, tax ID, proof of address, birth certificate, etc.).</li><li>Generates a <b>checklist</b> for the procedure: which requirements you already have and which are missing.</li><li>Detects <b>documents about to expire</b> or already expired (for example, a proof of address older than 3 months).</li><li>Produces a <b>step-by-step guide</b> for the procedure (government office, requirements, whether it can be done online, costs and approximate times).</li><li>Answers your <b>questions</b>: <i>&ldquo;what do I need to renew my passport?&rdquo;</i></li></ul>
+<p>The result: you show up to do the paperwork with everything in order and no surprises.</p>
+<h2 class="sec"><span class="n">2</span> Installation (2 minutes)</h2>
+<p>For Windows. No constant internet connection needed, and nothing gets uploaded to the cloud.</p>
+<div class="stepline"><div class="num">1</div><div><b class="steptitle">Download and install it</b><p>Download the installer from <font face='Courier'>tuialista.com/descargar</font> (Paperwork agent) and open it. It creates a desktop shortcut with the logo — no Python or terminal needed.</p></div></div>
+<div class="stepline"><div class="num">2</div><div><b class="steptitle">Open it from your desktop</b><p>Double-click the new icon. Paste your <b>license key</b> (you received it by email when you bought it) and click <b>Activate</b>. You'll see a green checkmark once it's valid.</p></div></div>
+<div class="stepline"><div class="num">3</div><div><b class="steptitle">Choose your folder</b><p>Select the folder with your personal documents and click <b>Start using the agent</b>. Next time it starts right up — it remembers your key and your folder.</p></div></div>
+<figure class="shot"><img src="../../assets/mockups/tramites/activacion_en.png" alt="This is what the activation window looks like (with sample data). It appears the first time you open the agent." loading="lazy"><figcaption>This is what the activation window looks like (with sample data). It appears the first time you open the agent.</figcaption></figure>
+<h2 class="sec"><span class="n">3</span> How to use it</h2>
+<p>The agent opens a <b>chat window</b>, like a messaging app — not a programmer's black screen. You type your command or question in the text box below, hit <b>Send</b> (or Enter), and the reply appears as a message, just like in this real image:</p>
+<figure class="shot"><img src="../../assets/mockups/tramites/chat_en.png" alt="The real conversation: you type &ldquo;checklist passport&rdquo; and the agent replies with what you already have and what's missing (sample data)." loading="lazy"><figcaption>The real conversation: you type &ldquo;checklist passport&rdquo; and the agent replies with what you already have and what's missing (sample data).</figcaption></figure>
+<p>The commands below are the words you can type in that same text box:</p>
+<div class="cmdcard"><code>&gt; documents</code><p>A summary of your documents, their detected type, and their status (valid / expiring soon / expired).</p></div>
+<div class="cmdcard"><code>&gt; checklist &lt;procedure&gt;</code><p>For a procedure (e.g. <font face='Courier'>passport</font>, <font face='Courier'>voter id</font>, <font face='Courier'>tax id</font>), which requirements you already have (and if any is expired) and which ones you're missing.</p></div>
+<div class="cmdcard"><code>&gt; guide &lt;procedure&gt;</code><p>Full guide: government office, documents, whether it can be done online, steps, tips to avoid rejection, costs and approximate times.</p></div>
+<div class="cmdcard"><code>&gt; missing &lt;procedure&gt;</code><p>Just what you're missing for that procedure, and whether any document is expired.</p></div>
+<div class="cmdcard"><code>&gt; expirations</code><p>Documents about to expire or already expired.</p></div>
+<div class="cmdcard"><code>&gt; procedures</code><p>Catalog of procedures the agent knows (passport, voter ID, tax ID, national ID number, driver's license, social security, birth certificate, tax certificate, e.signature...).</p></div>
+<div class="cmdcard"><code>&gt; free-form question?</code><p>Type any question in natural language, e.g.: <i>can I get my national ID number online?</i></p></div>
+<div class="cmdcard"><code>&gt; exit</code><p>Ends the session (<font face='Courier'>exit</font> also works).</p></div>
+<h2 class="sec"><span class="n">4</span> Common use examples</h2>
+<h4>Prepping for your passport</h4>
+<p><font face='Courier'>checklist passport</font> &nbsp;→&nbsp; <font face='Courier'>missing passport</font> — you see what requirements you have and what's missing before booking an appointment.</p>
+<h4>Full guide for a procedure</h4>
+<p><font face='Courier'>guide certificate</font></p>
+<h4>Check documents about to expire</h4>
+<p><font face='Courier'>expirations</font> — you find out if your proof of address is too old to use anymore.</p>
+<h4>A quick question</h4>
+<p><i>what do I need to register for a tax ID?</i></p>
+<h2 class="sec"><span class="n">5</span> Frequently asked questions</h2>
+<details class="acc"><summary>Do my documents get uploaded to the internet?</summary><div class="acc-body">No. Everything is processed on your computer (see Privacy, section 7).</div></details>
+<details class="acc"><summary>What formats does it accept?</summary><div class="acc-body">Text (.txt), Markdown (.md), PDF (.pdf) and Word (.docx), even in subfolders.</div></details>
+<details class="acc"><summary>Does it do the paperwork for me or book it?</summary><div class="acc-body">No. The agent <b>prepares and guides you</b>: classifies your documents, builds the checklist and gives you the step-by-step guide. You do the actual procedure at the government office or portal.</div></details>
+<details class="acc"><summary>Does it generate official documents?</summary><div class="acc-body">No. It prepares the guide and checklist of documents you need and detects which ones you already have; it doesn't generate official documents.</div></details>
+<details class="acc"><summary>How does it classify my documents?</summary><div class="acc-body">By keywords and patterns (e.g. &ldquo;voter ID&rdquo;, &ldquo;national ID number&rdquo;, &ldquo;utility bill&rdquo;, &ldquo;tax ID&rdquo;...). It can misclassify an unusual document.</div></details>
+<details class="acc"><summary>Is the paperwork information always up to date?</summary><div class="acc-body">The agent ships with a reference catalog, but requirements change. That's why it always reminds you to verify on the official government website.</div></details>
+<details class="acc"><summary>What language does it reply in?</summary><div class="acc-body">Whatever language you write to it in. The catalog is focused on Mexican paperwork.</div></details>
+<details class="acc"><summary>Does it read a scanned PDF?</summary><div class="acc-body">Only if it has selectable text. A scan that's a pure image isn't read reliably.</div></details>
+<details class="acc"><summary>Can I change the folder?</summary><div class="acc-body">Yes. Reopen the agent and click &ldquo;Choose&hellip;&rdquo; to change it (if it doesn't ask, delete <font face='Courier'>config.json</font> inside <font face='Courier'>%USERPROFILE%\.tuialista</font>).</div></details>
+<details class="acc"><summary>Is this official government information?</summary><div class="acc-body">No. It's a TuIAlista support tool, not an official channel. Confirm everything on the government office's website.</div></details>
+<h2 class="sec"><span class="n">6</span> Troubleshooting</h2>
+<details class="acc"><summary>It won't read a .pdf or .docx</summary><div class="acc-body">Make sure the PDF has real text (not scanned). If the problem persists, contact support.</div></details>
+<details class="acc"><summary>A procedure doesn't show up</summary><div class="acc-body">Use <font face='Courier'>procedures</font> to see the available catalog. If the name doesn't match, try a variant (e.g. &ldquo;voter id&rdquo;, &ldquo;national id&rdquo;).</div></details>
+<details class="acc"><summary>It shows &ldquo;0 documents indexed&rdquo;</summary><div class="acc-body">The folder is empty or the path is wrong. Check that you chose the right folder when activating the agent.</div></details>
+<details class="acc"><summary>It says &ldquo;Invalid license&rdquo; or asks to reconnect</summary><div class="acc-body">Check that the key you pasted is correct (no extra spaces), make sure you have internet the first time you activate, and if you've been offline for more than 3 days, reconnect once to revalidate.</div></details>
+<details class="acc"><summary>&ldquo;No AI providers configured&rdquo;</summary><div class="acc-body"><font face='Courier'>guide</font> and free-form questions use AI — if the engine isn't configured, contact support. <font face='Courier'>documents</font>, <font face='Courier'>checklist</font>, <font face='Courier'>missing</font>, <font face='Courier'>expirations</font> and <font face='Courier'>procedures</font> still work locally, without AI.</div></details>
+<p><b>None of these fixed your problem?</b> Write to us directly — we'll gladly look into it with you.</p>
+<div class="callout cal-amber"><b>Questions?</b> Email us at <code>soporte@tuialista.com</code> or visit <a href="/soporte/"><code>tuialista.com/soporte</code></a> — we usually reply the same business day.</div>
+<h2 class="sec"><span class="n">7</span> Privacy and confidentiality</h2>
+<p><b>Your personal documents never leave your computer.</b></p>
+<ul><li>The agent reads and classifies the files <b>locally</b>, on your own machine. It doesn't upload them to any server or share them with any government office.</li><li>Classification, the checklist, and expiration detection all happen <b>on your machine</b>.</li><li>The only thing that travels over the internet is: (1) a check that your license is active — which doesn't include your documents —, and (2) when generating a guide or asking a question, a fragment (document type and your query) is sent to the AI engine to draft the reply.</li></ul>
+<div class="callout cal-steel">The confidentiality of your ID documents is guaranteed by design: classification, the checklist and expirations are 100% local. Only &ldquo;guide&rdquo; and free-form questions share a fragment with the AI provider.</div>
+<div class="callout cal-amber"><b>Important reminder:</b> government requirements and processes change; always verify on the official website. This agent helps you get organized and prepared, but it's not an official government channel and its information can become outdated. Before visiting any government office, confirm requirements, costs and appointments on the corresponding official website.</div>
+
+</main>
+
+<footer>&copy; 2026 TuIAlista &middot; <a href="/soporte/">Support</a> &middot; <a href="/catalogo/">Catalog</a> &middot; <a href="/">Home</a></footer>
+</body>
+</html>
