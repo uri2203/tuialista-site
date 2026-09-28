@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guia &middot; Agente de Notas Fiscais e Contas a Pagar — TuIAlista</title>
+<meta name="description" content="Como usar o Agente de Notas Fiscais e Contas a Pagar da TuIAlista: instala&ccedil;&atilde;o, comandos, exemplos e perguntas frequentes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{--steel-900:#0f1922;--paper:#f5f6f4;--paper-2:#eceee9;--ink:#0f1922;--muted:#5a6b73;--signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2;--ok:#1d9e75;--amber-tint:#fdf1e4;--steel-tint:#eef2f4}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper-2);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--signal-dim)}
+  header{position:sticky;top:0;background:rgba(245,246,244,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+  .nav{max-width:860px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+  .logo b{color:var(--signal)}
+  .nav .r{display:flex;align-items:center;gap:18px}
+  .nav .r a{font-size:14px;color:var(--muted);text-decoration:none}
+  .nav .r a:hover{color:var(--ink)}
+  main{max-width:860px;margin:0 auto;padding:38px 24px 80px}
+  .eyebrow{font-family:'JetBrains Mono';font-size:11.5px;letter-spacing:.1em;color:var(--signal-dim);margin-bottom:8px}
+  h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,34px);line-height:1.12;margin-bottom:10px}
+  .sub{color:var(--muted);font-size:15.5px;max-width:640px;margin-bottom:18px}
+  .hero-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+  .price{font-family:'Space Grotesk';font-weight:600;font-size:14px;color:var(--signal-dim);background:var(--amber-tint);border:1px solid var(--signal);border-radius:999px;padding:7px 16px}
+  .cta{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:9px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;text-decoration:none;transition:.15s}
+  .cta:hover{background:var(--signal);color:#1a1206}
+  h2.sec{font-family:'Space Grotesk';font-size:18px;font-weight:600;margin:38px 0 14px;padding:10px 16px;background:var(--steel-900);color:#fff;border-radius:10px;display:flex;align-items:center;gap:10px}
+  h2.sec .n{color:var(--signal)}
+  h4{font-family:'Space Grotesk';font-size:14.5px;font-weight:600;margin:16px 0 4px;color:var(--signal-dim)}
+  p{margin:0 0 12px;font-size:14.5px}
+  ul{margin:0 0 12px 20px;font-size:14.5px}
+  li{margin-bottom:6px}
+  code{font-family:'JetBrains Mono',monospace;font-size:.92em;background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  .callout{border-radius:10px;padding:14px 16px;margin:10px 0 16px;font-size:14px;border-left:3px solid}
+  .cal-amber{background:var(--amber-tint);border-color:var(--signal)}
+  .cal-steel{background:var(--steel-tint);border-color:#2c4a5c}
+  .quick{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:22px}
+  .quick h3{font-family:'Space Grotesk';font-size:16px;margin-bottom:8px}
+  .stepline{display:flex;gap:12px;margin-bottom:16px}
+  .stepline .num{flex:none;width:28px;height:28px;border-radius:8px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center}
+  .stepline .steptitle{font-family:'Space Grotesk';font-weight:600;font-size:14.5px;display:block;margin-bottom:2px}
+  .stepline p{font-size:13.5px;color:var(--muted);margin:0}
+  .cmdcard{background:var(--paper-2);border-left:3px solid #2c4a5c;border-radius:8px;padding:12px 16px;margin-bottom:10px}
+  .cmdcard code{background:transparent;border:none;padding:0;font-weight:600;display:block;margin-bottom:4px}
+  .cmdcard p{margin:0;font-size:13.5px;color:var(--muted)}
+  .shot{margin:14px 0 20px;text-align:center}
+  .shot img{max-width:100%;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(15,25,34,.06)}
+  .shot figcaption{font-size:12.5px;color:var(--muted);font-style:italic;margin-top:8px}
+  details.acc{background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;overflow:hidden}
+  details.acc summary{cursor:pointer;list-style:none;padding:13px 16px;font-weight:600;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+  details.acc summary::-webkit-details-marker{display:none}
+  details.acc summary::after{content:"+";color:var(--signal-dim);font-size:18px;font-weight:400}
+  details.acc[open] summary::after{content:"\2212"}
+  details.acc[open] summary{border-bottom:1px solid var(--line)}
+  .acc-body{padding:12px 16px;font-size:13.8px;color:var(--muted)}
+  .acc-body code{color:var(--ink)}
+  footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px;margin-top:10px}
+  footer a{color:#cdd5d9;text-decoration:none}
+  @media(max-width:520px){.nav .r a.hide-sm{display:none}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+  <div class="r">
+    <a class="hide-sm" href="/catalogo/">Cat&aacute;logo</a>
+    <a class="hide-sm" href="/soporte/">Suporte</a>
+    <a href="/portal/">Entrar</a>
+  </div>
+</div></header>
+
+<main>
+  <div class="eyebrow">GUIA DO AGENTE</div>
+  <h1>Agente de Notas Fiscais e Contas a Pagar</h1>
+  <p class="sub">Diga o que você precisa com suas palavras e ele monta o Excel de notas fiscais, o resumo de impostos e as contas a pagar — sem digitar nada à mão.</p>
+  <div class="hero-row">
+    <span class="price">US$ 49 / mês</span>
+    <a class="cta" href="/descargar/?agent=facturas"><i class="ti ti-download"></i> Baixar este agente</a>
+  </div>
+
+  <div class="quick">
+    <h3>O que resolve e o que você precisa?</h3>
+    <p>Digitar notas fiscais à mão no Excel leva horas e é fácil pagar a mesma duas vezes ou perder um vencimento. Este agente lê seus XMLs fiscais e PDFs de notas, e monta o Excel de captura, o resumo de impostos e as contas a pagar — você escreve o que precisa como escreveria para uma pessoa, não comandos exatos.</p>
+    <ul><li><b>Você precisa:</b> sua chave de licença (<font face='Courier'>TIA-XXXX-XXXX-XXXX-XXXX</font>) e a pasta com suas notas fiscais (XML e/ou PDF). Nada de Python nem conhecimento técnico.</li><li><b>Primeiro resultado em menos de 5 minutos:</b> instala, ativa, escolhe sua pasta e escreve <font face='Courier-Bold'>exportar</font> para montar o Excel completo.</li><li><b>Suas notas fiscais nunca saem do seu computador</b> — a análise roda localmente.</li></ul>
+    <div class="callout cal-amber"><b>Aviso:</b> este agente é uma ferramenta de apoio. Os dados são extraídos do XML/PDF automaticamente e podem conter erros em casos atípicos. <b>Sempre verifique os dados antes de fazer um pagamento real.</b></div>
+    <div class="callout cal-amber"><b>D&uacute;vidas?</b> Escreva para <code>soporte@tuialista.com</code> ou acesse <a href="/soporte/"><code>tuialista.com/soporte</code></a> — normalmente respondemos no mesmo dia &uacute;til.</div>
+  </div>
+
+  <h2 class="sec"><span class="n">1</span> O que este agente faz</h2>
+<p>Você aponta para a pasta com suas notas fiscais (XML e/ou PDF) e ele:</p>
+<ul><li><b>Captura cada nota fiscal em um Excel organizado</b> — o que normalmente se faz à mão em horas: número, fornecedor, CNPJ, datas, subtotal, impostos, retenção, total e moeda.</li><li><b>Resume os impostos do período</b>, somando o que cada nota declara por moeda (base, imposto, retenção, total).</li><li>Monta suas <b>contas a pagar</b> com alertas do que está vencido e do que vence em breve.</li><li><b>Detecta notas fiscais duplicadas.</b></li><li>Responde <b>qualquer pergunta ou pedido</b> sobre sua carteira de notas fiscais com suas próprias palavras — você não memoriza comandos.</li></ul>
+<p>O trabalho de captura e cálculo segue <b>regras fixas já testadas, no seu computador</b> (não usa IA, não erra por invenção): lê o XML de forma exata e qualquer nota em PDF por leitura de texto. O resultado: você paga em dia, sem duplicar, com seu Excel de notas pronto sem digitar nada.</p>
+<h2 class="sec"><span class="n">2</span> Instalação (2 minutos)</h2>
+<p>Para Windows. Não precisa de internet o tempo todo nem enviar nada para a nuvem.</p>
+<div class="stepline"><div class="num">1</div><div><b class="steptitle">Baixe e instale</b><p>Baixe o instalador em <font face='Courier'>tuialista.com/descargar</font> (agente Notas Fiscais) e abra-o. Ele cria um atalho na sua área de trabalho com o logo — não precisa de Python nem terminal.</p></div></div>
+<div class="stepline"><div class="num">2</div><div><b class="steptitle">Abra pela área de trabalho</b><p>Dê duplo clique no novo ícone. Cole sua <b>chave de licença</b> (você a recebeu por e-mail na compra) e clique em <b>Ativar</b>. Você verá um check verde quando for válida.</p></div></div>
+<div class="stepline"><div class="num">3</div><div><b class="steptitle">Escolha sua pasta</b><p>Selecione a pasta com suas notas fiscais e clique em <b>Começar a usar o agente</b>. Na próxima vez ele abre direto — lembra sua chave e sua pasta.</p></div></div>
+<figure class="shot"><img src="../../assets/mockups/facturas/activacion_pt.png" alt="É assim que a janela de ativação aparece (com dados de exemplo). Ela aparece na primeira vez que você abre o agente." loading="lazy"><figcaption>É assim que a janela de ativação aparece (com dados de exemplo). Ela aparece na primeira vez que você abre o agente.</figcaption></figure>
+<h2 class="sec"><span class="n">3</span> Como usar</h2>
+<p>O agente abre uma <b>janela de chat</b>, como um app de mensagens — não é uma tela preta de programador. <b>Você não memoriza comandos exatos:</b> escreve o que precisa quase como pediria para uma pessoa, clica em <b>Enviar</b> (ou Enter), e ele faz o trabalho. Estas são as 4 coisas principais que ele sabe fazer, com exemplos de como pedir:</p>
+<figure class="shot"><img src="../../assets/mockups/facturas/chat_pt.png" alt="A conversa real: você pede &ldquo;a pagar&rdquo; e o agente responde com suas contas a pagar ordenadas por urgência (dados de exemplo)." loading="lazy"><figcaption>A conversa real: você pede &ldquo;a pagar&rdquo; e o agente responde com suas contas a pagar ordenadas por urgência (dados de exemplo).</figcaption></figure>
+<div class="cmdcard"><code>&gt; exportar &nbsp;/&nbsp; gerar o Excel &nbsp;/&nbsp; capturar</code><p>Monta um Excel com <b>tudo</b>: captura de cada nota, resumo de impostos e contas a pagar, pronto para abrir.</p></div>
+<div class="cmdcard"><code>&gt; impostos &nbsp;/&nbsp; quanto de imposto</code><p>Resumo de impostos do período: base, imposto, retenção e total, somado por moeda.</p></div>
+<div class="cmdcard"><code>&gt; a pagar &nbsp;/&nbsp; o que vence &nbsp;/&nbsp; quanto devo</code><p>Suas contas a pagar, mais urgente primeiro: vencidas, a vencer em breve e em dia, com fornecedor e valor.</p></div>
+<div class="cmdcard"><code>&gt; duplicadas &nbsp;/&nbsp; notas repetidas</code><p>Detecta notas que parecem estar carregadas duas vezes (mesmo número/chave, ou mesmo fornecedor e total).</p></div>
+<div class="cmdcard"><code>&gt; qualquer outra pergunta</code><p>Ex.: <i>&ldquo;quanto devo à ACME&rdquo;</i>, <i>&ldquo;total por fornecedor&rdquo;</i>, <i>&ldquo;compare este mês com o anterior&rdquo;</i> — o agente entende o pedido e monta a resposta ou o relatório.</p></div>
+<div class="callout cal-steel">Não precisa acertar uma palavra exata: &ldquo;nota a pagar&rdquo;, &ldquo;o que vence esta semana&rdquo; ou &ldquo;contas a pagar&rdquo; disparam o mesmo. Se sua frase não bater com nenhuma das 4 ações principais, o agente interpreta com IA e mesmo assim tenta ajudar.</div>
+<p>Quer ver as <b>20 receitas completas</b> com um exemplo real de cada uma? Consulte o <b>Catálogo de receitas</b> — um documento separado por ser extenso: <font face='Courier'>catalogo_recetas.pdf</font> junto com este manual, ou a versão interativa em <font color="#c46a12"><a href="https://tuialista.com/guia/facturas/recetas/">tuialista.com/guia/facturas/recetas</a></font>.</p>
+<h2 class="sec"><span class="n">4</span> Exemplos de uso comum</h2>
+<h4>Montar o Excel completo do mês</h4>
+<p><i>&ldquo;exportar&rdquo;</i> — você recebe um Excel com captura, impostos e contas a pagar, pronto para revisar ou enviar ao contador.</p>
+<h4>Revisão semanal de pagamentos</h4>
+<p><i>&ldquo;a pagar&rdquo;</i> &nbsp;→&nbsp; <i>&ldquo;duplicadas&rdquo;</i></p>
+<h4>Fechamento mensal de impostos</h4>
+<p><i>&ldquo;impostos do período&rdquo;</i></p>
+<h4>Uma consulta pontual</h4>
+<p><i>&ldquo;quanto devo à ACME este mês?&rdquo;</i></p>
+<h2 class="sec"><span class="n">5</span> Perguntas frequentes</h2>
+<details class="acc"><summary>Minhas notas fiscais são enviadas para a internet?</summary><div class="acc-body">Não. São lidas e processadas no seu computador (veja Privacidade, seção 7).</div></details>
+<details class="acc"><summary>Quais formatos ele aceita?</summary><div class="acc-body">XML fiscal e PDF de nota, além de .txt. O XML é lido de forma exata (não é uma suposição de texto); o PDF é lido pelo conteúdo. Não lê Word, Excel nem CSV como arquivo de entrada — a saída sim é um Excel.</div></details>
+<details class="acc"><summary>Preciso escrever o comando exato?</summary><div class="acc-body">Não. O agente reconhece a intenção por palavras-chave (por exemplo &ldquo;exportar&rdquo;, &ldquo;excel&rdquo;, &ldquo;capturar&rdquo; e &ldquo;gerar&rdquo; disparam o mesmo). Você pode escrever como quiser.</div></details>
+<details class="acc"><summary>Ele detecta duplicadas com segurança?</summary><div class="acc-body">Marca <b>possíveis</b> duplicadas (mesma chave/número, ou mesmo fornecedor e total). Confirme manualmente antes de rejeitar ou cancelar um pagamento.</div></details>
+<details class="acc"><summary>Ele executa pagamentos?</summary><div class="acc-body">Não. O agente <b>organiza, captura e alerta</b>; não faz nem agenda pagamentos. Você os executa no seu banco ou sistema.</div></details>
+<details class="acc"><summary>Em que idioma ele responde?</summary><div class="acc-body">No idioma em que você escrever.</div></details>
+<details class="acc"><summary>Ele lê um PDF escaneado?</summary><div class="acc-body">Só se tiver texto selecionável. Uma digitalização que é imagem pura não é lida de forma confiável — para esses casos, o XML é a fonte mais segura.</div></details>
+<details class="acc"><summary>Ele modifica minhas notas originais?</summary><div class="acc-body">Não. O agente só as <b>lê</b>; o Excel que gera é um arquivo novo, separado das suas notas.</div></details>
+<details class="acc"><summary>Posso mudar a pasta?</summary><div class="acc-body">Sim. Abra o agente novamente e clique em &ldquo;Escolher&hellip;&rdquo; para mudá-la (se ele não pedir, apague <font face='Courier'>config.json</font> dentro de <font face='Courier'>%USERPROFILE%\.tuialista</font> para que ele peça de novo).</div></details>
+<details class="acc"><summary>O que é o &ldquo;modo seguro&rdquo;?</summary><div class="acc-body">Por padrão o agente só usa tarefas já testadas (exportar, impostos, a pagar, duplicadas, e alguns relatórios automáticos) — nunca IA escrevendo código sobre seus dados. Se você escrever &ldquo;modo especialista&rdquo;, ele também tenta pedidos novos com IA (isolada, não pode tocar seus arquivos). Você volta com &ldquo;modo seguro&rdquo;.</div></details>
+<h2 class="sec"><span class="n">6</span> Solução de problemas</h2>
+<details class="acc"><summary>Não lê um arquivo</summary><div class="acc-body">Confirme que seja .xml, .pdf ou .txt — outros formatos não são lidos como entrada. Se for PDF, confirme que tenha texto real (não escaneado).</div></details>
+<details class="acc"><summary>Diz que não encontrou notas fiscais</summary><div class="acc-body">A pasta está vazia ou o caminho está incorreto para este tipo de arquivo. Verifique se escolheu a pasta correta ao ativar o agente, ou use &ldquo;Pastas&hellip;&rdquo; para indicar onde estão.</div></details>
+<details class="acc"><summary>Não detecta bem um dado de uma nota fiscal</summary><div class="acc-body">O PDF pode ter um formato incomum. O XML é mais confiável que o PDF porque é lido de forma exata, não por texto.</div></details>
+<details class="acc"><summary>Diz &ldquo;Licença inválida&rdquo; ou pede para reconectar</summary><div class="acc-body">Verifique se a chave colada está correta (sem espaços extras), confirme que você tem internet na primeira ativação, e se ficou mais de 3 dias sem conexão, reconecte-se uma vez para revalidar.</div></details>
+<details class="acc"><summary>A IA não responde a uma pergunta livre</summary><div class="acc-body">&ldquo;exportar&rdquo;, &ldquo;impostos&rdquo;, &ldquo;a pagar&rdquo; e &ldquo;duplicadas&rdquo; funcionam sempre, sem conexão com um motor de IA. Só as perguntas fora dessas 4 ações dependem da IA — se falhar, tente de novo em instantes ou contate o suporte.</div></details>
+<p><b>Nenhuma dessas soluções resolveu seu problema?</b> Escreva para nós diretamente — teremos prazer em revisar com você.</p>
+<div class="callout cal-amber"><b>D&uacute;vidas?</b> Escreva para <code>soporte@tuialista.com</code> ou acesse <a href="/soporte/"><code>tuialista.com/soporte</code></a> — normalmente respondemos no mesmo dia &uacute;til.</div>
+<h2 class="sec"><span class="n">7</span> Privacidade e confidencialidade</h2>
+<p><b>Suas notas fiscais nunca saem do seu computador.</b></p>
+<ul><li>O agente lê e processa as notas <b>localmente</b>, no seu próprio computador. Não as envia para nenhum servidor.</li><li>A captura no Excel, o resumo de impostos, as contas a pagar e as duplicadas são calculados <b>no seu computador</b>, com regras fixas já testadas (sem IA).</li><li>A única coisa que trafega pela internet é: (1) uma verificação de que sua licença está ativa — que não inclui suas notas —, e (2) se você pedir algo que não é uma das 4 ações principais (uma pergunta livre), um fragmento da informação relevante é enviado ao motor de IA para responder.</li></ul>
+<div class="callout cal-steel">A confidencialidade das suas informações financeiras é garantida por design: exportar, impostos, contas a pagar e duplicadas são 100% locais, com regras fixas já testadas — não usam IA. Só as perguntas livres fora dessas 4 ações compartilham um fragmento de dados com o provedor de IA para responder.</div>
+<div class="callout cal-amber"><b>Lembrete importante:</b> verifique os dados extraídos antes de fazer um pagamento real. O XML é lido de forma exata, mas o PDF é lido por texto e em notas com formato incomum pode confundir um dado. A detecção de duplicadas é um alerta, não uma certeza. Antes de pagar, cancelar ou rejeitar uma nota, confirme os dados contra o documento original. O agente organiza e avisa; a decisão de pagamento é sua.</div>
+
+</main>
+
+<footer>&copy; 2026 TuIAlista &middot; <a href="/soporte/">Suporte</a> &middot; <a href="/catalogo/">Cat&aacute;logo</a> &middot; <a href="/">In&iacute;cio</a></footer>
+</body>
+</html>
