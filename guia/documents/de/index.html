@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leitfaden &middot; Dokumenten-Agent — TuIAlista</title>
+<meta name="description" content="So nutzt du den Dokumenten-Agent von TuIAlista: Einrichtung, Befehle, Beispiele und FAQ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{--steel-900:#0f1922;--paper:#f5f6f4;--paper-2:#eceee9;--ink:#0f1922;--muted:#5a6b73;--signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2;--ok:#1d9e75;--amber-tint:#fdf1e4;--steel-tint:#eef2f4}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper-2);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--signal-dim)}
+  header{position:sticky;top:0;background:rgba(245,246,244,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+  .nav{max-width:860px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+  .logo b{color:var(--signal)}
+  .nav .r{display:flex;align-items:center;gap:18px}
+  .nav .r a{font-size:14px;color:var(--muted);text-decoration:none}
+  .nav .r a:hover{color:var(--ink)}
+  main{max-width:860px;margin:0 auto;padding:38px 24px 80px}
+  .eyebrow{font-family:'JetBrains Mono';font-size:11.5px;letter-spacing:.1em;color:var(--signal-dim);margin-bottom:8px}
+  h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,34px);line-height:1.12;margin-bottom:10px}
+  .sub{color:var(--muted);font-size:15.5px;max-width:640px;margin-bottom:18px}
+  .hero-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+  .price{font-family:'Space Grotesk';font-weight:600;font-size:14px;color:var(--signal-dim);background:var(--amber-tint);border:1px solid var(--signal);border-radius:999px;padding:7px 16px}
+  .cta{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:9px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;text-decoration:none;transition:.15s}
+  .cta:hover{background:var(--signal);color:#1a1206}
+  h2.sec{font-family:'Space Grotesk';font-size:18px;font-weight:600;margin:38px 0 14px;padding:10px 16px;background:var(--steel-900);color:#fff;border-radius:10px;display:flex;align-items:center;gap:10px}
+  h2.sec .n{color:var(--signal)}
+  h4{font-family:'Space Grotesk';font-size:14.5px;font-weight:600;margin:16px 0 4px;color:var(--signal-dim)}
+  p{margin:0 0 12px;font-size:14.5px}
+  ul{margin:0 0 12px 20px;font-size:14.5px}
+  li{margin-bottom:6px}
+  code{font-family:'JetBrains Mono',monospace;font-size:.92em;background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  .callout{border-radius:10px;padding:14px 16px;margin:10px 0 16px;font-size:14px;border-left:3px solid}
+  .cal-amber{background:var(--amber-tint);border-color:var(--signal)}
+  .cal-steel{background:var(--steel-tint);border-color:#2c4a5c}
+  .quick{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:22px}
+  .quick h3{font-family:'Space Grotesk';font-size:16px;margin-bottom:8px}
+  .stepline{display:flex;gap:12px;margin-bottom:16px}
+  .stepline .num{flex:none;width:28px;height:28px;border-radius:8px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center}
+  .stepline .steptitle{font-family:'Space Grotesk';font-weight:600;font-size:14.5px;display:block;margin-bottom:2px}
+  .stepline p{font-size:13.5px;color:var(--muted);margin:0}
+  .cmdcard{background:var(--paper-2);border-left:3px solid #2c4a5c;border-radius:8px;padding:12px 16px;margin-bottom:10px}
+  .cmdcard code{background:transparent;border:none;padding:0;font-weight:600;display:block;margin-bottom:4px}
+  .cmdcard p{margin:0;font-size:13.5px;color:var(--muted)}
+  .shot{margin:14px 0 20px;text-align:center}
+  .shot img{max-width:100%;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(15,25,34,.06)}
+  .shot figcaption{font-size:12.5px;color:var(--muted);font-style:italic;margin-top:8px}
+  details.acc{background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;overflow:hidden}
+  details.acc summary{cursor:pointer;list-style:none;padding:13px 16px;font-weight:600;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+  details.acc summary::-webkit-details-marker{display:none}
+  details.acc summary::after{content:"+";color:var(--signal-dim);font-size:18px;font-weight:400}
+  details.acc[open] summary::after{content:"\2212"}
+  details.acc[open] summary{border-bottom:1px solid var(--line)}
+  .acc-body{padding:12px 16px;font-size:13.8px;color:var(--muted)}
+  .acc-body code{color:var(--ink)}
+  footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px;margin-top:10px}
+  footer a{color:#cdd5d9;text-decoration:none}
+  @media(max-width:520px){.nav .r a.hide-sm{display:none}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+  <div class="r">
+    <a class="hide-sm" href="/catalogo/">Katalog</a>
+    <a class="hide-sm" href="/soporte/">Support</a>
+    <a href="/portal/">Anmelden</a>
+  </div>
+</div></header>
+
+<main>
+  <div class="eyebrow">AGENTEN-LEITFADEN</div>
+  <h1>Dokumenten-Agent</h1>
+  <p class="sub">Durchsucht Ihre Dokumente für Sie und antwortet in normaler Sprache, unter Angabe, aus welcher Datei die Antwort stammt.</p>
+  <div class="hero-row">
+    <span class="price">9 USD / Monat</span>
+    <a class="cta" href="/descargar/?agent=documents"><i class="ti ti-download"></i> Diesen Agenten herunterladen</a>
+  </div>
+
+  <div class="quick">
+    <h3>Was löst er und was brauchen Sie?</h3>
+    <p>Jedes Unternehmen hat Ordner voller Verträge, Handbücher, Akten, Richtlinien und Berichte... und wenn jemand eine Information braucht, muss er Datei für Datei öffnen, bis er sie findet. Dieser Agent liest alles und beantwortet Ihre Frage direkt, unter genauer Angabe der Datei, aus der die Information stammt.</p>
+    <ul><li><b>Sie brauchen:</b> Ihren Lizenzschlüssel (<font face='Courier'>TIA-XXXX-XXXX-XXXX-XXXX</font>) und den Ordner mit Ihren Dokumenten. Kein Python, keine technischen Kenntnisse.</li><li><b>Erstes Ergebnis in weniger als 5 Minuten:</b> Sie installieren, aktivieren, wählen Ihren Ordner und fragen direkt, was Sie wissen müssen — <b>keine Befehle zu lernen</b>.</li><li><b>Ihre Dokumente verlassen nie Ihren Computer</b> — das Lesen und Indizieren läuft lokal.</li></ul>
+    <div class="callout cal-amber"><b>Hinweis:</b> Dieser Agent ist ein Hilfsmittel, um Informationen schneller zu finden. Seine Antworten können Ungenauigkeiten enthalten — <b>überprüfen Sie immer kritische Daten im Originaldokument</b>, das er Ihnen zitiert.</div>
+    <div class="callout cal-amber"><b>Fragen?</b> Schreib uns an <code>soporte@tuialista.com</code> oder besuche <a href="/soporte/"><code>tuialista.com/soporte</code></a> — wir antworten normalerweise am selben Werktag.</div>
+  </div>
+
+  <h2 class="sec"><span class="n">1</span> Was dieser Agent tut</h2>
+<p>Es ist der einfachste Agent im Katalog. Sie zeigen ihm den Ordner, in dem Sie Ihre Dokumente aufbewahren, und er:</p>
+<ul><li>Liest sie alle (PDF, Word, Text und Markdown), ohne dass Sie sie einzeln öffnen müssen.</li><li>Beantwortet Ihre <b>Fragen in normaler Sprache</b>: <i>&ldquo;was sagt das Handbuch über Urlaub?&rdquo;</i></li><li><b>Zitiert die Datei</b>, aus der er jede Information genommen hat, damit Sie sie überprüfen können.</li><li>Wenn die Antwort nicht in Ihren Dokumenten steht, <b>sagt er es Ihnen</b>, anstatt sie zu erfinden.</li></ul>
+<p>Ergebnis: Sie finden jede Information in Sekunden, ohne sich zu erinnern, in welcher Datei sie war.</p>
+<h2 class="sec"><span class="n">2</span> Installation (2 Minuten)</h2>
+<p>Für Windows. Keine dauerhafte Internetverbindung nötig, nichts wird in die Cloud hochgeladen.</p>
+<div class="stepline"><div class="num">1</div><div><b class="steptitle">Herunterladen und installieren</b><p>Laden Sie das Installationsprogramm von <font face='Courier'>tuialista.com/descargar</font> herunter (Dokumenten-Agent) und öffnen Sie es. Es erstellt eine Verknüpfung mit dem Logo auf Ihrem Desktop — kein Python oder Terminal erforderlich.</p></div></div>
+<div class="stepline"><div class="num">2</div><div><b class="steptitle">Öffnen Sie es vom Desktop aus</b><p>Doppelklicken Sie auf das neue Symbol. Fügen Sie Ihren <b>Lizenzschlüssel</b> ein (er wurde Ihnen beim Kauf per E-Mail zugesandt) und klicken Sie auf <b>Aktivieren</b>. Sie sehen ein grünes Häkchen, wenn er gültig ist.</p></div></div>
+<div class="stepline"><div class="num">3</div><div><b class="steptitle">Wählen Sie Ihren Ordner</b><p>Wählen Sie den Ordner mit Ihren Dokumenten aus und klicken Sie auf <b>Agent jetzt verwenden</b>. Beim nächsten Mal startet er direkt — er merkt sich Ihren Schlüssel und Ihren Ordner.</p></div></div>
+<figure class="shot"><img src="../../assets/mockups/documents/activacion_de.png" alt="So sieht das Aktivierungsfenster aus (mit Beispieldaten). Es erscheint beim ersten Öffnen des Agenten." loading="lazy"><figcaption>So sieht das Aktivierungsfenster aus (mit Beispieldaten). Es erscheint beim ersten Öffnen des Agenten.</figcaption></figure>
+<h2 class="sec"><span class="n">3</span> So verwenden Sie ihn</h2>
+<p>Der Agent öffnet ein <b>Chat-Fenster</b>, wie eine Messaging-App — kein schwarzer Programmierer-Bildschirm. Dies ist der direkteste Agent im Katalog: <b>keine Befehle zum Auswendiglernen</b>. Sie schreiben Ihre Frage mit eigenen Worten in das Textfeld unten, klicken auf <b>Senden</b> (oder Enter), und der Agent sucht die Antwort in Ihren Dokumenten:</p>
+<figure class="shot"><img src="../../assets/mockups/documents/chat_de.png" alt="Das echte Gespräch: Sie stellen eine Frage und der Agent antwortet unter genauer Angabe der Datei, aus der die Information stammt (Beispieldaten)." loading="lazy"><figcaption>Das echte Gespräch: Sie stellen eine Frage und der Agent antwortet unter genauer Angabe der Datei, aus der die Information stammt (Beispieldaten).</figcaption></figure>
+<p>Wenn kein Dokument die Information enthält, sagt Ihnen der Agent dies klar, statt eine Antwort zu erfinden — das erspart Ihnen vergebliches Weitersuchen. Schreiben Sie <font face='Courier'>beenden</font> (oder <font face='Courier'>exit</font>), um zu beenden.</p>
+<div class="callout cal-steel">Der Agent indiziert den Ordner beim Start. Wenn Sie neue Dokumente hinzufügen, schließen Sie ihn und starten Sie ihn neu, damit er sie liest.</div>
+<h2 class="sec"><span class="n">4</span> Beispiele für häufige Anwendungen</h2>
+<h4>Eine Information finden, ohne jede Datei zu öffnen</h4>
+<p><i>wie ist das Verfahren, um einen neuen Lieferanten anzumelden?</i> — der Agent sucht in allen Dokumenten und antwortet unter Angabe der richtigen Datei.</p>
+<h4>Eine Unternehmensrichtlinie abfragen</h4>
+<p><i>wie viele Urlaubstage entsprechen dem ersten Jahr?</i></p>
+<h4>Eine Akte prüfen</h4>
+<p><i>welches Lieferdatum wurde in der Akte des Projekts Alpha vereinbart?</i></p>
+<h4>Herausfinden, in welchem Dokument sich etwas befindet</h4>
+<p><i>in welcher Datei wird die Garantie der Klimaanlage erwähnt?</i> — der Agent sagt Ihnen, in welchem Dokument sie erscheint, damit Sie direkt dorthin gehen können.</p>
+<h2 class="sec"><span class="n">5</span> Häufig gestellte Fragen</h2>
+<details class="acc"><summary>Werden meine Dokumente ins Internet hochgeladen?</summary><div class="acc-body">Nein. Alles wird auf Ihrem Computer verarbeitet (siehe Datenschutz, Abschnitt 7).</div></details>
+<details class="acc"><summary>Brauche ich Internet, um ihn zu verwenden?</summary><div class="acc-body">Nur für zwei Dinge: Ihre Lizenz zu validieren (bis zu 3 Tage offline) und die Antworten mit KI zu generieren. Das Lesen und Indizieren Ihrer Dokumente erfolgt auf Ihrem Gerät.</div></details>
+<details class="acc"><summary>Welche Dateiformate akzeptiert er?</summary><div class="acc-body">PDF, Word (.docx), Text (.txt) und Markdown (.md). Er sucht sie auch in Unterordnern.</div></details>
+<details class="acc"><summary>Kann er ein gescanntes PDF lesen?</summary><div class="acc-body">Nicht zuverlässig. Funktioniert besser mit PDF, das echten auswählbaren Text enthält.</div></details>
+<details class="acc"><summary>In welcher Sprache antwortet er mir?</summary><div class="acc-body">In der Sprache, in der Sie ihm schreiben.</div></details>
+<details class="acc"><summary>Wie viele Dokumente kann er handhaben?</summary><div class="acc-body">Es gibt kein festes Limit; er handhabt bequem Ordner mit Dutzenden von Dokumenten.</div></details>
+<details class="acc"><summary>Sind die Antworten 100 % exakt?</summary><div class="acc-body">Er ist sehr nützlich, kann aber bei langen oder ungewöhnlich formatierten Dokumenten eine Nuance auslassen. Verwenden Sie ihn als Leitfaden und überprüfen Sie das Kritische im Originaldokument, das er Ihnen zitiert.</div></details>
+<details class="acc"><summary>Kann ich den Dokumentenordner ändern?</summary><div class="acc-body">Ja. Öffnen Sie den Agenten erneut und klicken Sie auf &ldquo;Auswählen&hellip;&rdquo;, um ihn zu ändern (falls er nicht danach fragt, löschen Sie <font face='Courier'>config.json</font> in <font face='Courier'>%USERPROFILE%\.tuialista</font>).</div></details>
+<details class="acc"><summary>Speichert er einen Verlauf meiner Fragen?</summary><div class="acc-body">Er behält den Gesprächskontext, solange er geöffnet ist, um Folgefragen zu verstehen. Beim Schließen geht dieser Speicher verloren.</div></details>
+<details class="acc"><summary>Ersetzt er eine Suchmaschine oder ein Dokumentenmanagementsystem?</summary><div class="acc-body">Es ist eine Ergänzung: er versteht Fragen in natürlicher Sprache und gibt Ihnen die Antwort, nicht nur eine Liste von Dateien.</div></details>
+<h2 class="sec"><span class="n">6</span> Problemlösung</h2>
+<details class="acc"><summary>Ein PDF wird nicht gelesen / zeigt &ldquo;PDF nicht gelesen&rdquo;</summary><div class="acc-body">Das PDF ist wahrscheinlich ein gescanntes Bild ohne echten Text. Versuchen Sie eine Version mit auswählbarem Text.</div></details>
+<details class="acc"><summary>Zeigt &ldquo;Lizenz ungültig&rdquo; oder fordert erneute Verbindung</summary><div class="acc-body">Überprüfen Sie, ob der eingefügte Schlüssel korrekt ist (ohne zusätzliche Leerzeichen), stellen Sie sicher, dass Sie beim ersten Aktivieren Internet haben, und wenn Sie mehr als 3 Tage offline waren, verbinden Sie sich einmal erneut zur Neuvalidierung.</div></details>
+<details class="acc"><summary>&ldquo;Keine KI-Anbieter konfiguriert&rdquo; beim Fragen</summary><div class="acc-body">Die Antworten verwenden KI. Sehen Sie diese Meldung, fehlt die Konfiguration der KI-Engine; kontaktieren Sie den Support.</div></details>
+<details class="acc"><summary>Zeigt &ldquo;0 indizierte Dokumente&rdquo;</summary><div class="acc-body">Der Ordner ist leer oder der Pfad ist falsch. Überprüfen Sie, ob Sie beim Aktivieren des Agenten den richtigen Ordner ausgewählt haben.</div></details>
+<p><b>Keine dieser Lösungen hat Ihr Problem behoben?</b> Schreiben Sie uns direkt — wir schauen es uns gerne gemeinsam mit Ihnen an.</p>
+<div class="callout cal-amber"><b>Fragen?</b> Schreib uns an <code>soporte@tuialista.com</code> oder besuche <a href="/soporte/"><code>tuialista.com/soporte</code></a> — wir antworten normalerweise am selben Werktag.</div>
+<h2 class="sec"><span class="n">7</span> Datenschutz und Vertraulichkeit</h2>
+<p><b>Ihre Dokumente verlassen nie Ihren Computer.</b></p>
+<ul><li>Der Agent liest und indiziert die Dateien <b>lokal</b>, auf Ihrem eigenen Gerät. Er lädt sie auf keinen Server hoch und teilt sie mit niemandem.</li><li>Die Suche und Auswahl der relevanten Fragmente erfolgt <b>auf Ihrem Gerät</b>.</li><li>Das Einzige, was über das Internet läuft, ist: (1) eine Überprüfung, dass Ihre Lizenz aktiv ist — die den Inhalt Ihrer Dokumente nicht enthält —, und (2) bei einer Frage wird ein Ausschnitt der relevanten Dokumente an die KI-Engine gesendet, um die Antwort zu verfassen.</li></ul>
+<div class="callout cal-steel">Die Vertraulichkeit Ihrer Information ist durch Design garantiert: das Produkt entstand genau dafür, dass Sie Ihre Dokumente abfragen können, ohne sie offenzulegen. Jede Frage teilt nur das relevante Fragment mit dem KI-Anbieter — nie den vollständigen Ordner.</div>
+<div class="callout cal-amber"><b>Wichtiger Hinweis:</b> Dieser Agent ist ein Hilfsmittel, um Informationen schneller zu finden. Wie jedes KI-Tool können seine Antworten Ungenauigkeiten enthalten: überprüfen Sie immer kritische Daten im Originaldokument, das der Agent Ihnen zitiert, bevor Sie darauf basierende Entscheidungen treffen.</div>
+
+</main>
+
+<footer>&copy; 2026 TuIAlista &middot; <a href="/soporte/">Support</a> &middot; <a href="/catalogo/">Katalog</a> &middot; <a href="/">Startseite</a></footer>
+</body>
+</html>
