@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guide &middot; Agent AS/400 (IBM i) · Premium — TuIAlista</title>
+<meta name="description" content="Comment utiliser l' Agent AS/400 (IBM i) · Premium de TuIAlista&nbsp;: installation, commandes, exemples et questions fr&eacute;quentes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{--steel-900:#0f1922;--paper:#f5f6f4;--paper-2:#eceee9;--ink:#0f1922;--muted:#5a6b73;--signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2;--ok:#1d9e75;--amber-tint:#fdf1e4;--steel-tint:#eef2f4}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper-2);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--signal-dim)}
+  header{position:sticky;top:0;background:rgba(245,246,244,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+  .nav{max-width:860px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+  .logo b{color:var(--signal)}
+  .nav .r{display:flex;align-items:center;gap:18px}
+  .nav .r a{font-size:14px;color:var(--muted);text-decoration:none}
+  .nav .r a:hover{color:var(--ink)}
+  main{max-width:860px;margin:0 auto;padding:38px 24px 80px}
+  .eyebrow{font-family:'JetBrains Mono';font-size:11.5px;letter-spacing:.1em;color:var(--signal-dim);margin-bottom:8px}
+  h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,34px);line-height:1.12;margin-bottom:10px}
+  .sub{color:var(--muted);font-size:15.5px;max-width:640px;margin-bottom:18px}
+  .hero-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+  .price{font-family:'Space Grotesk';font-weight:600;font-size:14px;color:var(--signal-dim);background:var(--amber-tint);border:1px solid var(--signal);border-radius:999px;padding:7px 16px}
+  .cta{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:9px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;text-decoration:none;transition:.15s}
+  .cta:hover{background:var(--signal);color:#1a1206}
+  h2.sec{font-family:'Space Grotesk';font-size:18px;font-weight:600;margin:38px 0 14px;padding:10px 16px;background:var(--steel-900);color:#fff;border-radius:10px;display:flex;align-items:center;gap:10px}
+  h2.sec .n{color:var(--signal)}
+  h4{font-family:'Space Grotesk';font-size:14.5px;font-weight:600;margin:16px 0 4px;color:var(--signal-dim)}
+  p{margin:0 0 12px;font-size:14.5px}
+  ul{margin:0 0 12px 20px;font-size:14.5px}
+  li{margin-bottom:6px}
+  code{font-family:'JetBrains Mono',monospace;font-size:.92em;background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  .callout{border-radius:10px;padding:14px 16px;margin:10px 0 16px;font-size:14px;border-left:3px solid}
+  .cal-amber{background:var(--amber-tint);border-color:var(--signal)}
+  .cal-steel{background:var(--steel-tint);border-color:#2c4a5c}
+  .quick{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:22px}
+  .quick h3{font-family:'Space Grotesk';font-size:16px;margin-bottom:8px}
+  .stepline{display:flex;gap:12px;margin-bottom:16px}
+  .stepline .num{flex:none;width:28px;height:28px;border-radius:8px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center}
+  .stepline .steptitle{font-family:'Space Grotesk';font-weight:600;font-size:14.5px;display:block;margin-bottom:2px}
+  .stepline p{font-size:13.5px;color:var(--muted);margin:0}
+  .cmdcard{background:var(--paper-2);border-left:3px solid #2c4a5c;border-radius:8px;padding:12px 16px;margin-bottom:10px}
+  .cmdcard code{background:transparent;border:none;padding:0;font-weight:600;display:block;margin-bottom:4px}
+  .cmdcard p{margin:0;font-size:13.5px;color:var(--muted)}
+  .shot{margin:14px 0 20px;text-align:center}
+  .shot img{max-width:100%;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(15,25,34,.06)}
+  .shot figcaption{font-size:12.5px;color:var(--muted);font-style:italic;margin-top:8px}
+  details.acc{background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;overflow:hidden}
+  details.acc summary{cursor:pointer;list-style:none;padding:13px 16px;font-weight:600;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+  details.acc summary::-webkit-details-marker{display:none}
+  details.acc summary::after{content:"+";color:var(--signal-dim);font-size:18px;font-weight:400}
+  details.acc[open] summary::after{content:"\2212"}
+  details.acc[open] summary{border-bottom:1px solid var(--line)}
+  .acc-body{padding:12px 16px;font-size:13.8px;color:var(--muted)}
+  .acc-body code{color:var(--ink)}
+  footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px;margin-top:10px}
+  footer a{color:#cdd5d9;text-decoration:none}
+  @media(max-width:520px){.nav .r a.hide-sm{display:none}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+  <div class="r">
+    <a class="hide-sm" href="/catalogo/">Catalogue</a>
+    <a class="hide-sm" href="/soporte/">Support</a>
+    <a href="/portal/">Se connecter</a>
+  </div>
+</div></header>
+
+<main>
+  <div class="eyebrow">GUIDE DE L'AGENT</div>
+  <h1>Agent AS/400 (IBM i) · Premium</h1>
+  <p class="sub">Interrogez votre DB2 for i en langage naturel et comprenez le code RPG/COBOL hérité — sans connaître le SQL ni le système.</p>
+  <div class="hero-row">
+    <span class="price">À partir de 299 $ US / mois</span>
+    <a class="cta" href="/descargar/?agent=as400"><i class="ti ti-download"></i> T&eacute;l&eacute;charger cet agent</a>
+  </div>
+
+  <div class="quick">
+    <h3>Que résout-il et de quoi avez-vous besoin ?</h3>
+    <p>Les compétences IBM i sont rares dans le monde entier. Cet agent est le pont entre votre système AS/400 hérité et le langage naturel : vous posez des questions dans votre langue et il vous renvoie de vraies données de DB2 for i, ou vous lui donnez un fichier source RPG/COBOL et il vous l'explique sans jargon.</p>
+    <ul><li><b>Vous avez besoin de :</b> votre clé de licence (<font face='Courier'>TIA-XXXX-XXXX-XXXX-XXXX</font>) et d'un accès à l'IBM i (hôte, utilisateur et mot de passe avec le <b>IBM i Access ODBC Driver</b> installé). Conçu pour un profil technique (IT / administration IBM i).</li><li><b>Premier résultat :</b> vous installez, activez votre licence et, après avoir configuré la connexion, lancez <font face='Courier-Bold'>données &lt;votre question&gt;</font>.</li><li><b>Votre IBM i, ses données et votre code ne quittent jamais votre réseau</b> — la connexion et les requêtes se produisent localement.</li></ul>
+    <div class="callout cal-amber"><b>Lecture seule stricte :</b> un validateur bloque toute opération qui modifie des données (INSERT, UPDATE, DELETE, DROP, ALTER et commandes IBM i comme CHGPF/DLTF/CLRPFM). Malgré cela, connectez-le avec un profil en lecture seule comme couche de sécurité supplémentaire.</div>
+    <div class="callout cal-amber"><b>Des questions&nbsp;?</b> &Eacute;crivez-nous &agrave; <code>soporte@tuialista.com</code> ou visitez <a href="/soporte/"><code>tuialista.com/soporte</code></a> — nous r&eacute;pondons g&eacute;n&eacute;ralement le jour m&ecirc;me.</div>
+  </div>
+
+  <h2 class="sec"><span class="n">1</span> Ce que fait cet agent</h2>
+<p>Il résout deux problèmes coûteux et difficiles à couvrir en raison de la pénurie mondiale de compétences IBM i :</p>
+<ul><li><b>Interroger des données dans DB2 for i sans connaître le SQL ni le système.</b> Vous posez des questions en langage normal et l'agent génère une requête <font face='Courier'>SELECT</font> DB2 for i (lecture seule), l'exécute et vous montre le résultat.</li><li><b>Comprendre du code RPG et COBOL hérité.</b> Vous lui donnez un fichier source RPG/COBOL et il vous l'explique en langage clair : ce qu'il fait, quelles données il traite et ce qu'il produit, sans supposer que vous connaissez le langage.</li></ul>
+<p>Tout se produit <b>localement, dans votre réseau</b> : la connexion à l'IBM i et les données ne quittent jamais votre infrastructure.</p>
+<div class="callout cal-steel"><b>Note de statut :</b> la structure de l'agent est complète. Le test de connexion de bout en bout nécessite un IBM i réel avec le pilote ODBC d'IBM installé — cette validation dépend de votre environnement (accès au système et identifiants).</div>
+<h2 class="sec"><span class="n">2</span> Installation</h2>
+<p>Pour Windows. Cet agent a une étape supplémentaire par rapport aux autres : la connexion à l'IBM i se configure à part, pas depuis la fenêtre d'activation.</p>
+<div class="stepline"><div class="num">1</div><div><b class="steptitle">Téléchargez-le et installez-le</b><p>Téléchargez l'installateur depuis <font face='Courier'>tuialista.com/descargar</font> (agent AS/400) et ouvrez-le. Il crée un raccourci sur votre bureau avec le logo — pas besoin de Python ni de terminal.</p></div></div>
+<div class="stepline"><div class="num">2</div><div><b class="steptitle">Ouvrez-le depuis le bureau et activez votre licence</b><p>Double-cliquez sur la nouvelle icône. Collez votre <b>clé de licence</b> (reçue par e-mail à l'achat) et cliquez sur <b>Activer</b>. Contrairement aux autres agents, <b>il ne vous demande pas de choisir un dossier</b> — cet agent se connecte à une base de données, pas à des fichiers locaux.</p></div></div>
+<div class="stepline"><div class="num">3</div><div><b class="steptitle">Configurez la connexion à l'IBM i (étape technique)</b><p>Installez le <b>IBM i Access ODBC Driver</b> (de IBM i Access Client Solutions) sur l'ordinateur où l'agent fonctionne, et définissez les variables d'environnement <font face='Courier'>AS400_HOST</font>, <font face='Courier'>AS400_USER</font> et <font face='Courier'>AS400_PASSWORD</font> avec les données de votre système. Cette étape est normalement réalisée par le service informatique.</p></div></div>
+<figure class="shot"><img src="../../assets/mockups/as400/activacion_fr.png" alt="Voici à quoi ressemble la fenêtre d'activation (avec des données d'exemple) — notez qu'elle ne demande que la licence, sans étape de dossier." loading="lazy"><figcaption>Voici à quoi ressemble la fenêtre d'activation (avec des données d'exemple) — notez qu'elle ne demande que la licence, sans étape de dossier.</figcaption></figure>
+<h2 class="sec"><span class="n">3</span> Comment l'utiliser</h2>
+<p>L'agent ouvre une <b>fenêtre de discussion</b>, comme une app de messagerie — pas un écran noir de programmeur. Il a <b>deux commandes</b> plus <font face='Courier'>quitter</font> :</p>
+<figure class="shot"><img src="../../assets/mockups/as400/chat_fr.png" alt="La vraie conversation : vous écrivez &ldquo;données&rdquo; avec votre question et l'agent répond avec le SQL généré et le résultat (données d'exemple)." loading="lazy"><figcaption>La vraie conversation : vous écrivez &ldquo;données&rdquo; avec votre question et l'agent répond avec le SQL généré et le résultat (données d'exemple).</figcaption></figure>
+<div class="cmdcard"><code>&gt; données &lt;question&gt;</code><p>Vous écrivez votre question en langage naturel. L'agent génère une requête <font face='Courier'>SELECT</font> DB2 for i (syntaxe <font face='Courier'>BIBLIOTHÈQUE.TABLE</font>), la valide comme lecture seule et l'exécute. Ex. : <i>données combien de commandes ouvertes y a-t-il dans la bibliothèque VENTES ?</i> Les résultats sont limités à <b>100 lignes</b> par requête.</p></div>
+<div class="cmdcard"><code>&gt; explique &lt;fichier&gt;</code><p>Vous lui donnez le chemin d'un fichier avec du code source RPG ou COBOL et il vous explique son but, les données qu'il traite et ce qu'il produit, sans jargon inutile.</p></div>
+<div class="cmdcard"><code>&gt; quitter</code><p>Termine la session (fonctionne aussi avec <font face='Courier'>exit</font>).</p></div>
+<div class="callout cal-steel">Pour qu'il génère du bon SQL, il convient de charger d'abord le <b>schéma</b> de la bibliothèque à interroger (cela donne à l'IA les noms des tables et colonnes) — cela se configure par votre équipe technique lors de la mise en route de l'agent.</div>
+<h2 class="sec"><span class="n">4</span> Exemples d'usage courant</h2>
+<h4>Un décompte opérationnel</h4>
+<p><font face='Courier'>données combien de factures ont été émises hier ?</font></p>
+<h4>Un total depuis une table physique</h4>
+<p><font face='Courier'>données additionne le montant des commandes de la bibliothèque VENTES ce mois-ci</font></p>
+<h4>Expliquer un programme que &ldquo;personne ne comprend&rdquo;</h4>
+<p><font face='Courier'>explique /home/sources/CALCNOM.cbl</font> — idéal quand vous héritez de milliers de lignes de RPG/COBOL sans documentation.</p>
+<h4>Construire un pont vers le moderne</h4>
+<p>Utilisez <font face='Courier'>données</font> pour extraire des chiffres de l'IBM i et les amener dans un rapport ou tableau de bord, sans exposer le système hérité à des outils externes.</p>
+<h2 class="sec"><span class="n">5</span> Questions fréquentes</h2>
+<details class="acc"><summary>Peut-il modifier ou endommager les données de production de l'IBM i ?</summary><div class="acc-body">Non. Il opère en <b>lecture seule stricte</b>. Le validateur bloque toute requête qui n'est pas un SELECT, y compris les commandes propres à IBM i (CHGPF, DLTF, CLRPFM). Malgré cela, connectez-le avec un profil en lecture seule comme couche supplémentaire.</div></details>
+<details class="acc"><summary>Ai-je absolument besoin du pilote d'IBM ?</summary><div class="acc-body">Oui. La connexion à DB2 for i nécessite le <b>IBM i Access ODBC Driver</b> (de IBM i Access Client Solutions). C'est une exigence externe à TuIAlista.</div></details>
+<details class="acc"><summary>Les données de l'IBM i sortent-elles de mon réseau ?</summary><div class="acc-body">Non. La connexion et l'exécution des requêtes se produisent dans votre réseau. Seul le <b>schéma</b> (noms des tables/colonnes) et votre question sont envoyés à l'IA pour générer le SQL, ou le fichier source que vous demandez d'expliquer. Les données renvoyées par une requête ne sont pas envoyées au moteur d'IA.</div></details>
+<details class="acc"><summary>Quels langages de code peut-il expliquer ?</summary><div class="acc-body">RPG (y compris ILE-RPG) et COBOL, les langages typiques de l'IBM i.</div></details>
+<details class="acc"><summary>Génère-t-il du SQL standard ou du DB2 for i ?</summary><div class="acc-body">Du <b>DB2 for i</b>, avec sa syntaxe (schémas/bibliothèques avec point, fonctions propres).</div></details>
+<details class="acc"><summary>Combien de lignes une requête renvoie-t-elle ?</summary><div class="acc-body">Jusqu'à <b>100 lignes</b> par requête, comme limite de sécurité.</div></details>
+<details class="acc"><summary>Dans quelle langue répond-il ?</summary><div class="acc-body">Dans la langue dans laquelle vous lui écrivez.</div></details>
+<details class="acc"><summary>Pourquoi est-il &ldquo;Premium&rdquo; ?</summary><div class="acc-body">Parce que les compétences IBM i sont rares dans le monde entier et cet agent permet d'interroger et de comprendre un système critique sans cette connaissance spécialisée.</div></details>
+<details class="acc"><summary>Puis-je cibler plusieurs bibliothèques ?</summary><div class="acc-body">Oui ; vous chargez le schéma de la bibliothèque dont vous avez besoin avant de poser une question.</div></details>
+<details class="acc"><summary>Le SQL généré est-il toujours correct ?</summary><div class="acc-body">Non garanti : dans des schémas complexes, l'IA peut se tromper. Vérifiez le SQL affiché et les chiffres critiques avant de décider sur cette base.</div></details>
+<h2 class="sec"><span class="n">6</span> Résolution de problèmes</h2>
+<details class="acc"><summary>&ldquo;pyodbc et le pilote 'IBM i Access ODBC Driver' manquants&rdquo;</summary><div class="acc-body">Installez le pilote ODBC d'IBM i (IBM i Access Client Solutions) sur l'ordinateur où l'agent fonctionne. Vérifiez qu'il est enregistré dans le système.</div></details>
+<details class="acc"><summary>Ne se connecte pas à l'IBM i</summary><div class="acc-body">Vérifiez <font face='Courier'>AS400_HOST</font> et la connectivité réseau (pare-feu/VPN). Confirmez <font face='Courier'>AS400_USER</font>/<font face='Courier'>AS400_PASSWORD</font> et que le profil a des droits de lecture. Vérifiez que le service ODBC/DB2 for i est disponible sur l'IBM i.</div></details>
+<details class="acc"><summary>&ldquo;Seules les requêtes en lecture (SELECT) sont autorisées&rdquo;</summary><div class="acc-body">C'est le comportement attendu : vous avez demandé quelque chose qui modifierait des données. L'agent ne fait qu'interroger.</div></details>
+<details class="acc"><summary>Affiche &ldquo;Licence invalide&rdquo; ou demande de se reconnecter</summary><div class="acc-body">Vérifiez que la clé collée est correcte (sans espaces en trop), assurez-vous d'avoir internet la première fois que vous activez, et si vous êtes resté plus de 3 jours sans connexion, reconnectez-vous une fois pour revalider.</div></details>
+<details class="acc"><summary>&ldquo;Aucun fournisseur d'IA configuré&rdquo;</summary><div class="acc-body">Aussi bien <font face='Courier'>données</font> que <font face='Courier'>explique</font> utilisent l'IA. Si vous voyez ce message, il manque la configuration du moteur d'IA ; contactez le support.</div></details>
+<p><b>Aucune de ces solutions n'a résolu votre problème ?</b> Écrivez-nous directement — nous serons ravis de l'examiner avec vous.</p>
+<div class="callout cal-amber"><b>Des questions&nbsp;?</b> &Eacute;crivez-nous &agrave; <code>soporte@tuialista.com</code> ou visitez <a href="/soporte/"><code>tuialista.com/soporte</code></a> — nous r&eacute;pondons g&eacute;n&eacute;ralement le jour m&ecirc;me.</div>
+<h2 class="sec"><span class="n">7</span> Confidentialité</h2>
+<p><b>Votre IBM i, ses données et votre code ne quittent jamais votre réseau.</b></p>
+<ul><li>L'agent se connecte à l'IBM i <b>localement</b> (dans votre réseau) et y exécute les requêtes. Les résultats ne sont envoyés à aucun serveur.</li><li>Seul le <b>schéma</b> (noms des tables/colonnes) et votre question sont envoyés à l'IA pour rédiger la requête SELECT, ou le <b>fichier source RPG/COBOL</b> que vous lui demandez d'expliquer. Les données renvoyées par une requête ne sont pas transmises au moteur d'IA.</li><li>La seule chose qui transite par internet est : (1) une vérification que votre licence est active, et (2) le contexte nécessaire (schéma + question, ou le code à expliquer) pour générer la réponse.</li></ul>
+<div class="callout cal-steel">La confidentialité de votre système hérité est garantie par conception, renforcée par le mode lecture seule : aucune donnée réelle d'une requête n'atteint le fournisseur d'IA, seulement le schéma et votre question.</div>
+<div class="callout cal-amber"><b>Rappel important :</b> vous opérez sur un système critique. Agissez avec précaution. L'agent est en lecture seule et valide chaque requête, mais la génération de SQL par IA peut se tromper dans des schémas complexes et les explications de code sont indicatives. Vérifiez le SQL affiché, utilisez un profil IBM i en lecture seule et vérifiez le critique avant de prendre des décisions.</div>
+
+</main>
+
+<footer>&copy; 2026 TuIAlista &middot; <a href="/soporte/">Support</a> &middot; <a href="/catalogo/">Catalogue</a> &middot; <a href="/">Accueil</a></footer>
+</body>
+</html>
