@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leitfaden &middot; Agent für Protokolle und Besprechungen — TuIAlista</title>
+<meta name="description" content="So nutzt du den Agent für Protokolle und Besprechungen von TuIAlista: Einrichtung, Befehle, Beispiele und FAQ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{--steel-900:#0f1922;--paper:#f5f6f4;--paper-2:#eceee9;--ink:#0f1922;--muted:#5a6b73;--signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2;--ok:#1d9e75;--amber-tint:#fdf1e4;--steel-tint:#eef2f4}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper-2);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--signal-dim)}
+  header{position:sticky;top:0;background:rgba(245,246,244,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+  .nav{max-width:860px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+  .logo b{color:var(--signal)}
+  .nav .r{display:flex;align-items:center;gap:18px}
+  .nav .r a{font-size:14px;color:var(--muted);text-decoration:none}
+  .nav .r a:hover{color:var(--ink)}
+  main{max-width:860px;margin:0 auto;padding:38px 24px 80px}
+  .eyebrow{font-family:'JetBrains Mono';font-size:11.5px;letter-spacing:.1em;color:var(--signal-dim);margin-bottom:8px}
+  h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,34px);line-height:1.12;margin-bottom:10px}
+  .sub{color:var(--muted);font-size:15.5px;max-width:640px;margin-bottom:18px}
+  .hero-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+  .price{font-family:'Space Grotesk';font-weight:600;font-size:14px;color:var(--signal-dim);background:var(--amber-tint);border:1px solid var(--signal);border-radius:999px;padding:7px 16px}
+  .cta{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:9px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;text-decoration:none;transition:.15s}
+  .cta:hover{background:var(--signal);color:#1a1206}
+  h2.sec{font-family:'Space Grotesk';font-size:18px;font-weight:600;margin:38px 0 14px;padding:10px 16px;background:var(--steel-900);color:#fff;border-radius:10px;display:flex;align-items:center;gap:10px}
+  h2.sec .n{color:var(--signal)}
+  h4{font-family:'Space Grotesk';font-size:14.5px;font-weight:600;margin:16px 0 4px;color:var(--signal-dim)}
+  p{margin:0 0 12px;font-size:14.5px}
+  ul{margin:0 0 12px 20px;font-size:14.5px}
+  li{margin-bottom:6px}
+  code{font-family:'JetBrains Mono',monospace;font-size:.92em;background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  .callout{border-radius:10px;padding:14px 16px;margin:10px 0 16px;font-size:14px;border-left:3px solid}
+  .cal-amber{background:var(--amber-tint);border-color:var(--signal)}
+  .cal-steel{background:var(--steel-tint);border-color:#2c4a5c}
+  .quick{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:22px}
+  .quick h3{font-family:'Space Grotesk';font-size:16px;margin-bottom:8px}
+  .stepline{display:flex;gap:12px;margin-bottom:16px}
+  .stepline .num{flex:none;width:28px;height:28px;border-radius:8px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center}
+  .stepline .steptitle{font-family:'Space Grotesk';font-weight:600;font-size:14.5px;display:block;margin-bottom:2px}
+  .stepline p{font-size:13.5px;color:var(--muted);margin:0}
+  .cmdcard{background:var(--paper-2);border-left:3px solid #2c4a5c;border-radius:8px;padding:12px 16px;margin-bottom:10px}
+  .cmdcard code{background:transparent;border:none;padding:0;font-weight:600;display:block;margin-bottom:4px}
+  .cmdcard p{margin:0;font-size:13.5px;color:var(--muted)}
+  .shot{margin:14px 0 20px;text-align:center}
+  .shot img{max-width:100%;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(15,25,34,.06)}
+  .shot figcaption{font-size:12.5px;color:var(--muted);font-style:italic;margin-top:8px}
+  details.acc{background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;overflow:hidden}
+  details.acc summary{cursor:pointer;list-style:none;padding:13px 16px;font-weight:600;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+  details.acc summary::-webkit-details-marker{display:none}
+  details.acc summary::after{content:"+";color:var(--signal-dim);font-size:18px;font-weight:400}
+  details.acc[open] summary::after{content:"\2212"}
+  details.acc[open] summary{border-bottom:1px solid var(--line)}
+  .acc-body{padding:12px 16px;font-size:13.8px;color:var(--muted)}
+  .acc-body code{color:var(--ink)}
+  footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px;margin-top:10px}
+  footer a{color:#cdd5d9;text-decoration:none}
+  @media(max-width:520px){.nav .r a.hide-sm{display:none}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+  <div class="r">
+    <a class="hide-sm" href="/catalogo/">Katalog</a>
+    <a class="hide-sm" href="/soporte/">Support</a>
+    <a href="/portal/">Anmelden</a>
+  </div>
+</div></header>
+
+<main>
+  <div class="eyebrow">AGENTEN-LEITFADEN</div>
+  <h1>Agent für Protokolle und Besprechungen</h1>
+  <p class="sub">Verwandelt Ihre Besprechungsnotizen in klare Protokolle und extrahiert automatisch Beschlüsse und Aufgaben.</p>
+  <div class="hero-row">
+    <span class="price">19 USD / Monat</span>
+    <a class="cta" href="/descargar/?agent=actas"><i class="ti ti-download"></i> Diesen Agenten herunterladen</a>
+  </div>
+
+  <div class="quick">
+    <h3>Was löst er und was brauchen Sie?</h3>
+    <p>In fast jeder Besprechung werden Dinge entschieden und Aufgaben verteilt, aber danach schreibt niemand ein geordnetes Protokoll, und die Beschlüsse gehen verloren. Dieser Agent liest Ihre Notizen oder Transkriptionen, erstellt das Protokoll, extrahiert Aufgaben mit Verantwortlichem und Termin und erkennt, welche Aufgaben aus vergangenen Besprechungen möglicherweise vergessen wurden.</p>
+    <ul><li><b>Sie brauchen:</b> Ihren Lizenzschlüssel (<font face='Courier'>TIA-XXXX-XXXX-XXXX-XXXX</font>) und den Ordner mit Ihren Besprechungsnotizen. Kein Python, keine technischen Kenntnisse.</li><li><b>Erstes Ergebnis in weniger als 5 Minuten:</b> Sie installieren, aktivieren, wählen Ihren Ordner und führen <font face='Courier-Bold'>Protokoll &lt;Datei&gt;</font> aus, um Ihr erstes fertiges Protokoll zu erhalten.</li><li><b>Ihre Notizen verlassen nie Ihren Computer</b> — das Lesen läuft lokal.</li></ul>
+    <div class="callout cal-amber"><b>Hinweis:</b> Dieser Agent ist ein Hilfsmittel, <b>kein offizielles Protokoll</b>. Seine Protokolle werden mit KI erstellt und können Ungenauigkeiten enthalten — überprüfen Sie Beschlüsse, Verantwortliche und kritische Termine, bevor Sie sie als formelles Protokoll weitergeben.</div>
+    <div class="callout cal-amber"><b>Fragen?</b> Schreib uns an <code>soporte@tuialista.com</code> oder besuche <a href="/soporte/"><code>tuialista.com/soporte</code></a> — wir antworten normalerweise am selben Werktag.</div>
+  </div>
+
+  <h2 class="sec"><span class="n">1</span> Was dieser Agent tut</h2>
+<p>Sie zeigen ihm den Ordner mit Ihren Besprechungsnotizen oder Transkriptionen und er:</p>
+<ul><li><b>Liest sie alle</b> (Text, Markdown, Word und PDF), ohne dass Sie sie öffnen müssen.</li><li>Erstellt ein <b>strukturiertes Protokoll</b>: Titel, Datum, Teilnehmer, Themen, Entscheidungen und Aufgaben.</li><li>Extrahiert die <b>Aufgaben und Verpflichtungen</b> mit ihrem <b>Verantwortlichen</b> und ihrer <b>Frist</b>, wenn sie erscheinen.</li><li>Trennt klar <b>bereits getroffene Entscheidungen</b> von <b>zukünftigen Aufgaben</b>.</li><li>Konsolidiert die <b>ausstehenden Aufgaben aller Besprechungen</b> und erkennt die <b>Nachverfolgung</b>: vergangene Aufgaben, die noch offen sein könnten.</li><li>Beantwortet Ihre <b>Fragen</b> zum Besprochenen: <i>&ldquo;was wurde zum Budget beschlossen?&rdquo;</i></li></ul>
+<p>Ergebnis: Sie verlassen jede Besprechung mit einem fertigen Protokoll und einer klaren Aufgabenliste, ohne Zeit für das Schreiben aufzuwenden.</p>
+<h2 class="sec"><span class="n">2</span> Installation (2 Minuten)</h2>
+<p>Für Windows. Keine dauerhafte Internetverbindung nötig, nichts wird in die Cloud hochgeladen.</p>
+<div class="stepline"><div class="num">1</div><div><b class="steptitle">Herunterladen und installieren</b><p>Laden Sie das Installationsprogramm von <font face='Courier'>tuialista.com/descargar</font> herunter (Protokoll-Agent) und öffnen Sie es. Es erstellt eine Verknüpfung mit dem Logo auf Ihrem Desktop — kein Python oder Terminal erforderlich.</p></div></div>
+<div class="stepline"><div class="num">2</div><div><b class="steptitle">Öffnen Sie es vom Desktop aus</b><p>Doppelklicken Sie auf das neue Symbol. Fügen Sie Ihren <b>Lizenzschlüssel</b> ein (er wurde Ihnen beim Kauf per E-Mail zugesandt) und klicken Sie auf <b>Aktivieren</b>. Sie sehen ein grünes Häkchen, wenn er gültig ist.</p></div></div>
+<div class="stepline"><div class="num">3</div><div><b class="steptitle">Wählen Sie Ihren Ordner</b><p>Wählen Sie den Ordner mit Ihren Besprechungsnotizen aus und klicken Sie auf <b>Agent jetzt verwenden</b>. Beim nächsten Mal startet er direkt — er merkt sich Ihren Schlüssel und Ihren Ordner.</p></div></div>
+<figure class="shot"><img src="../../assets/mockups/actas/activacion_de.png" alt="So sieht das Aktivierungsfenster aus (mit Beispieldaten). Es erscheint beim ersten Öffnen des Agenten." loading="lazy"><figcaption>So sieht das Aktivierungsfenster aus (mit Beispieldaten). Es erscheint beim ersten Öffnen des Agenten.</figcaption></figure>
+<h2 class="sec"><span class="n">3</span> So verwenden Sie ihn</h2>
+<p>Der Agent öffnet ein <b>Chat-Fenster</b>, wie eine Messaging-App — kein schwarzer Programmierer-Bildschirm. Sie schreiben Ihren Befehl oder Ihre Frage in das Textfeld unten, klicken auf <b>Senden</b> (oder Enter), und die Antwort erscheint als Nachricht, genau wie auf diesem echten Bild:</p>
+<figure class="shot"><img src="../../assets/mockups/actas/chat_de.png" alt="Das echte Gespräch: Sie schreiben &ldquo;Aufgaben&rdquo; und der Agent antwortet mit den ausstehenden Aufgaben aller Ihrer Besprechungen (Beispieldaten)." loading="lazy"><figcaption>Das echte Gespräch: Sie schreiben &ldquo;Aufgaben&rdquo; und der Agent antwortet mit den ausstehenden Aufgaben aller Ihrer Besprechungen (Beispieldaten).</figcaption></figure>
+<p>Die folgenden Befehle sind die Wörter, die Sie in dasselbe Textfeld eingeben können:</p>
+<div class="cmdcard"><code>&gt; Protokoll &lt;Datei&gt;</code><p>Strukturiertes Protokoll dieser Besprechung: Titel, Datum, Teilnehmer, behandelte Themen, Entscheidungen, Aufgaben (mit Verantwortlichem und Frist) und nächste Schritte.</p></div>
+<div class="cmdcard"><code>&gt; Aufgaben</code><p>Konsolidiert die Aufgaben <b>aller</b> indizierten Besprechungen, sortiert nach Frist.</p></div>
+<div class="cmdcard"><code>&gt; Entscheidungen &lt;Datei&gt;</code><p>Nur die konkreten Entscheidungen/Beschlüsse einer Besprechung, ohne die zukünftigen Aufgaben.</p></div>
+<div class="cmdcard"><code>&gt; Nachverfolgung</code><p>Aufgaben aus <b>vergangenen</b> Besprechungen, die noch offen sein könnten (ohne Datum oder mit abgelaufenem Datum), damit nichts verloren geht.</p></div>
+<div class="cmdcard"><code>&gt; Zusammenfassung &lt;Datei&gt;</code><p>Kurze Management-Zusammenfassung (max. ~150 Wörter) für Abwesende: was besprochen wurde, was entschieden wurde und die nächsten Maßnahmen.</p></div>
+<div class="cmdcard"><code>&gt; freie Frage?</code><p>Schreiben Sie Ihre Frage und der Agent durchsucht die Besprechungshistorie, z. B.: <i>was wurde zum Launch im Juli beschlossen?</i></p></div>
+<div class="cmdcard"><code>&gt; beenden</code><p>Beendet die Sitzung (funktioniert auch mit <font face='Courier'>exit</font>).</p></div>
+<div class="callout cal-steel">Der Agent indiziert den Ordner beim Start. Wenn Sie neue Notizen hinzufügen, schließen Sie ihn und starten Sie ihn neu, damit er sie liest.</div>
+<h2 class="sec"><span class="n">4</span> Beispiele für häufige Anwendungen</h2>
+<h4>Protokoll fertig am Ende der Besprechung</h4>
+<p>Sie speichern Ihre Rohnotizen und <font face='Courier'>Protokoll besprechung-heute.txt</font> — Sie erhalten das strukturierte Protokoll zum Teilen mit dem Team.</p>
+<h4>Aufgaben vor dem nächsten Meeting durchgehen</h4>
+<p><font face='Courier'>Aufgaben</font> — Sie kommen mit der konsolidierten Liste von Verpflichtungen und Verantwortlichen.</p>
+<h4>Verloren gehende Aufgaben retten</h4>
+<p><font face='Courier'>Nachverfolgung</font> — erkennt, was aus früheren Besprechungen übrig geblieben und noch offen ist.</p>
+<h4>Jemanden auf den neuesten Stand bringen, der fehlte</h4>
+<p><font face='Courier'>Zusammenfassung besprechung-strategie.docx</font></p>
+<h2 class="sec"><span class="n">5</span> Häufig gestellte Fragen</h2>
+<details class="acc"><summary>Werden meine Notizen ins Internet hochgeladen?</summary><div class="acc-body">Nein. Alles wird auf Ihrem Computer verarbeitet (siehe Datenschutz, Abschnitt 7).</div></details>
+<details class="acc"><summary>Brauche ich Internet, um ihn zu verwenden?</summary><div class="acc-body">Nur um Ihre Lizenz zu validieren (bis zu 3 Tage offline) und Protokolle/Zusammenfassungen mit KI zu erstellen. Das Lesen Ihrer Notizen erfolgt auf Ihrem Gerät.</div></details>
+<details class="acc"><summary>Welche Formate akzeptiert er?</summary><div class="acc-body">Text (.txt), Markdown (.md), Word (.docx) und PDF (.pdf), auch in Unterordnern.</div></details>
+<details class="acc"><summary>Wie erkennt er die Aufgaben und Verantwortlichen?</summary><div class="acc-body">Er kombiniert eine lokale Erkennung durch typische Phrasen (&ldquo;wird erledigt von&rdquo;, &ldquo;verpflichtet sich zu&rdquo;, &ldquo;ausstehend&rdquo;, &ldquo;@Name&rdquo;, &ldquo;verantwortlich:&rdquo;) mit einer KI-Verfeinerung.</div></details>
+<details class="acc"><summary>Woher kennt er das Datum der Besprechung?</summary><div class="acc-body">Er sucht es in den ersten Zeilen des Dokuments. Findet er es nicht, zeigt das Protokoll &ldquo;Nicht angegeben&rdquo;.</div></details>
+<details class="acc"><summary>In welcher Sprache antwortet er mir?</summary><div class="acc-body">In der Sprache, in der Sie ihm schreiben. Die lokale Aufgabenerkennung ist für Deutsch und Spanisch optimiert.</div></details>
+<details class="acc"><summary>Liest er ein gescanntes PDF?</summary><div class="acc-body">Nicht zuverlässig: Wenn es ein Bild ohne auswählbaren Text ist, kann er es nicht lesen.</div></details>
+<details class="acc"><summary>Kann ich den Besprechungsordner ändern?</summary><div class="acc-body">Ja. Öffnen Sie den Agenten erneut und klicken Sie auf &ldquo;Auswählen&hellip;&rdquo;, um ihn zu ändern (falls er nicht danach fragt, löschen Sie <font face='Courier'>config.json</font> in <font face='Courier'>%USERPROFILE%\.tuialista</font>).</div></details>
+<details class="acc"><summary>Sind die Protokolle 100 % genau?</summary><div class="acc-body">Es sind ausgezeichnete Entwürfe, aber überprüfen Sie Beschlüsse und kritische Termine gegen Ihre Originalnotizen, bevor Sie sie als endgültig ansehen.</div></details>
+<details class="acc"><summary>Speichert er einen Verlauf zwischen Sitzungen?</summary><div class="acc-body">Er behält den Kontext, solange der Agent geöffnet ist; beim Schließen geht dieser Speicher verloren (die Dateien werden beim Neustart neu indiziert).</div></details>
+<h2 class="sec"><span class="n">6</span> Problemlösung</h2>
+<details class="acc"><summary>Ein .docx oder .pdf wird nicht gelesen</summary><div class="acc-body">Stellen Sie sicher, dass das PDF echten Text enthält (nicht gescannt). Bei anhaltendem Problem kontaktieren Sie den Support.</div></details>
+<details class="acc"><summary>Zeigt &ldquo;0 indizierte Besprechungen&rdquo;</summary><div class="acc-body">Der Ordner ist leer oder der Pfad ist falsch. Überprüfen Sie, ob Sie beim Aktivieren des Agenten den richtigen Ordner ausgewählt haben.</div></details>
+<details class="acc"><summary>Zeigt &ldquo;Lizenz ungültig&rdquo; oder fordert erneute Verbindung</summary><div class="acc-body">Überprüfen Sie, ob der eingefügte Schlüssel korrekt ist (ohne zusätzliche Leerzeichen), stellen Sie sicher, dass Sie beim ersten Aktivieren Internet haben, und wenn Sie mehr als 3 Tage offline waren, verbinden Sie sich einmal erneut zur Neuvalidierung.</div></details>
+<details class="acc"><summary>&ldquo;Keine KI-Anbieter konfiguriert&rdquo;</summary><div class="acc-body">Protokolle, Zusammenfassungen und Fragen verwenden KI — fehlt die Engine-Konfiguration, kontaktieren Sie den Support. <font face='Courier'>Aufgaben</font> kann weiterhin lokal funktionieren (Mustererkennung).</div></details>
+<p><b>Keine dieser Lösungen hat Ihr Problem behoben?</b> Schreiben Sie uns direkt — wir schauen es uns gerne gemeinsam mit Ihnen an.</p>
+<div class="callout cal-amber"><b>Fragen?</b> Schreib uns an <code>soporte@tuialista.com</code> oder besuche <a href="/soporte/"><code>tuialista.com/soporte</code></a> — wir antworten normalerweise am selben Werktag.</div>
+<h2 class="sec"><span class="n">7</span> Datenschutz und Vertraulichkeit</h2>
+<p><b>Ihre Besprechungsnotizen verlassen nie Ihren Computer.</b></p>
+<ul><li>Der Agent liest und indiziert die Dateien <b>lokal</b>, auf Ihrem eigenen Gerät. Er lädt sie auf keinen Server hoch.</li><li>Die lokale Erkennung von Aufgaben, Terminen und Teilnehmern erfolgt <b>auf Ihrem Gerät</b>.</li><li>Das Einzige, was über das Internet läuft, ist: (1) eine Überprüfung, dass Ihre Lizenz aktiv ist — die den Inhalt Ihrer Notizen nicht enthält —, und (2) beim Erstellen eines Protokolls, einer Zusammenfassung oder einer Frage wird ein Textausschnitt an die KI-Engine gesendet, um die Antwort zu verfassen.</li></ul>
+<div class="callout cal-steel">Die Vertraulichkeit Ihrer Besprechungen ist durch Design garantiert: die lokale Aufgabenerkennung durch Muster hängt nicht von KI ab. Protokolle, Zusammenfassungen und Fragen teilen tatsächlich einen Ausschnitt mit dem KI-Anbieter, um die Antwort verfassen zu können.</div>
+<div class="callout cal-amber"><b>Wichtiger Hinweis:</b> Dieser Agent ist ein Hilfsmittel, kein offizielles Protokoll. Er erspart Ihnen die Arbeit des Schreibens und verhindert das Vergessen von Aufgaben, aber seine Protokolle werden mit KI erstellt und können Ungenauigkeiten enthalten. Überprüfen Sie Beschlüsse, Verantwortliche und kritische Termine gegen Ihre Originalnotizen, bevor Sie sie als endgültig ansehen.</div>
+
+</main>
+
+<footer>&copy; 2026 TuIAlista &middot; <a href="/soporte/">Support</a> &middot; <a href="/catalogo/">Katalog</a> &middot; <a href="/">Startseite</a></footer>
+</body>
+</html>
