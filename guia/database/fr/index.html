@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guide &middot; Agent Base de données — TuIAlista</title>
+<meta name="description" content="Comment utiliser l' Agent Base de données de TuIAlista&nbsp;: installation, commandes, exemples et questions fr&eacute;quentes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{--steel-900:#0f1922;--paper:#f5f6f4;--paper-2:#eceee9;--ink:#0f1922;--muted:#5a6b73;--signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2;--ok:#1d9e75;--amber-tint:#fdf1e4;--steel-tint:#eef2f4}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper-2);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--signal-dim)}
+  header{position:sticky;top:0;background:rgba(245,246,244,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+  .nav{max-width:860px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+  .logo b{color:var(--signal)}
+  .nav .r{display:flex;align-items:center;gap:18px}
+  .nav .r a{font-size:14px;color:var(--muted);text-decoration:none}
+  .nav .r a:hover{color:var(--ink)}
+  main{max-width:860px;margin:0 auto;padding:38px 24px 80px}
+  .eyebrow{font-family:'JetBrains Mono';font-size:11.5px;letter-spacing:.1em;color:var(--signal-dim);margin-bottom:8px}
+  h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,34px);line-height:1.12;margin-bottom:10px}
+  .sub{color:var(--muted);font-size:15.5px;max-width:640px;margin-bottom:18px}
+  .hero-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+  .price{font-family:'Space Grotesk';font-weight:600;font-size:14px;color:var(--signal-dim);background:var(--amber-tint);border:1px solid var(--signal);border-radius:999px;padding:7px 16px}
+  .cta{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:9px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;text-decoration:none;transition:.15s}
+  .cta:hover{background:var(--signal);color:#1a1206}
+  h2.sec{font-family:'Space Grotesk';font-size:18px;font-weight:600;margin:38px 0 14px;padding:10px 16px;background:var(--steel-900);color:#fff;border-radius:10px;display:flex;align-items:center;gap:10px}
+  h2.sec .n{color:var(--signal)}
+  h4{font-family:'Space Grotesk';font-size:14.5px;font-weight:600;margin:16px 0 4px;color:var(--signal-dim)}
+  p{margin:0 0 12px;font-size:14.5px}
+  ul{margin:0 0 12px 20px;font-size:14.5px}
+  li{margin-bottom:6px}
+  code{font-family:'JetBrains Mono',monospace;font-size:.92em;background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  .callout{border-radius:10px;padding:14px 16px;margin:10px 0 16px;font-size:14px;border-left:3px solid}
+  .cal-amber{background:var(--amber-tint);border-color:var(--signal)}
+  .cal-steel{background:var(--steel-tint);border-color:#2c4a5c}
+  .quick{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:22px}
+  .quick h3{font-family:'Space Grotesk';font-size:16px;margin-bottom:8px}
+  .stepline{display:flex;gap:12px;margin-bottom:16px}
+  .stepline .num{flex:none;width:28px;height:28px;border-radius:8px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center}
+  .stepline .steptitle{font-family:'Space Grotesk';font-weight:600;font-size:14.5px;display:block;margin-bottom:2px}
+  .stepline p{font-size:13.5px;color:var(--muted);margin:0}
+  .cmdcard{background:var(--paper-2);border-left:3px solid #2c4a5c;border-radius:8px;padding:12px 16px;margin-bottom:10px}
+  .cmdcard code{background:transparent;border:none;padding:0;font-weight:600;display:block;margin-bottom:4px}
+  .cmdcard p{margin:0;font-size:13.5px;color:var(--muted)}
+  .shot{margin:14px 0 20px;text-align:center}
+  .shot img{max-width:100%;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(15,25,34,.06)}
+  .shot figcaption{font-size:12.5px;color:var(--muted);font-style:italic;margin-top:8px}
+  details.acc{background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;overflow:hidden}
+  details.acc summary{cursor:pointer;list-style:none;padding:13px 16px;font-weight:600;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+  details.acc summary::-webkit-details-marker{display:none}
+  details.acc summary::after{content:"+";color:var(--signal-dim);font-size:18px;font-weight:400}
+  details.acc[open] summary::after{content:"\2212"}
+  details.acc[open] summary{border-bottom:1px solid var(--line)}
+  .acc-body{padding:12px 16px;font-size:13.8px;color:var(--muted)}
+  .acc-body code{color:var(--ink)}
+  footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px;margin-top:10px}
+  footer a{color:#cdd5d9;text-decoration:none}
+  @media(max-width:520px){.nav .r a.hide-sm{display:none}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+  <div class="r">
+    <a class="hide-sm" href="/catalogo/">Catalogue</a>
+    <a class="hide-sm" href="/soporte/">Support</a>
+    <a href="/portal/">Se connecter</a>
+  </div>
+</div></header>
+
+<main>
+  <div class="eyebrow">GUIDE DE L'AGENT</div>
+  <h1>Agent Base de données</h1>
+  <p class="sub">Transforme vos questions en requêtes vers votre base de données, sans que vous ayez besoin de connaître le SQL. Lecture seule : il ne modifie ni n'endommage jamais vos données.</p>
+  <div class="hero-row">
+    <span class="price">15 $ US / mois</span>
+    <a class="cta" href="/descargar/?agent=database"><i class="ti ti-download"></i> T&eacute;l&eacute;charger cet agent</a>
+  </div>
+
+  <div class="quick">
+    <h3>Que résout-il et de quoi avez-vous besoin ?</h3>
+    <p>Dans beaucoup d'entreprises, les données importantes vivent dans une base de données, mais seule l'équipe technique sait les interroger. Chaque fois que quelqu'un a besoin d'un chiffre, il doit demander à l'IT d'écrire une requête et attendre. Cet agent traduit votre question dans votre langue en une requête SELECT et vous montre le résultat — sans risque d'endommager quoi que ce soit.</p>
+    <ul><li><b>Vous avez besoin de :</b> votre clé de licence (<font face='Courier'>TIA-XXXX-XXXX-XXXX-XXXX</font>) et des données de connexion à votre base (SQLite, PostgreSQL ou MySQL). Configuration technique — normalement réalisée par votre service informatique.</li><li><b>Premier résultat :</b> vous installez, activez votre licence, configurez la connexion et posez directement des questions en langage normal — <b>pas de commandes à apprendre</b>.</li><li><b>Votre base de données ne quitte jamais votre infrastructure</b> — la connexion et les requêtes s'exécutent localement.</li></ul>
+    <div class="callout cal-amber"><b>Sécurité par conception :</b> l'agent fonctionne en <b>mode lecture seule</b>. Même si vous lui demandez &ldquo;supprime la table&rdquo;, il refuse l'opération. Il ne génère et n'exécute que des requêtes SELECT.</div>
+    <div class="callout cal-amber"><b>Des questions&nbsp;?</b> &Eacute;crivez-nous &agrave; <code>soporte@tuialista.com</code> ou visitez <a href="/soporte/"><code>tuialista.com/soporte</code></a> — nous r&eacute;pondons g&eacute;n&eacute;ralement le jour m&ecirc;me.</div>
+  </div>
+
+  <h2 class="sec"><span class="n">1</span> Ce que fait cet agent</h2>
+<p>Vous lui dites à quelle base de données se connecter puis vous lui posez des questions en langage normal :</p>
+<ul><li>Traduit votre question en une requête <b>SELECT</b> (lecture seule) et l'exécute.</li><li>Vous montre la <b>requête SQL qu'il a générée</b> et le résultat.</li><li><b>N'exécute jamais</b> d'opérations qui modifient des données (INSERT, UPDATE, DELETE, DROP...) : un validateur de sécurité bloque toute requête qui n'est pas en lecture.</li><li>Fonctionne avec <b>SQLite, PostgreSQL et MySQL</b> (SQLite est prêt à l'emploi ; MySQL et PostgreSQL nécessitent d'installer leur extension).</li></ul>
+<p>Résultat : toute personne autorisée peut interroger les données sans dépendre de l'IT pour écrire la requête, et sans risque d'endommager quoi que ce soit.</p>
+<h2 class="sec"><span class="n">2</span> Installation</h2>
+<p>Pour Windows. Cet agent a une étape supplémentaire par rapport aux agents qui lisent des dossiers : la connexion à votre base de données se configure à part.</p>
+<div class="stepline"><div class="num">1</div><div><b class="steptitle">Téléchargez-le et installez-le</b><p>Téléchargez l'installateur depuis <font face='Courier'>tuialista.com/descargar</font> (agent Base de données) et ouvrez-le. Il crée un raccourci sur votre bureau avec le logo — pas besoin de Python ni de terminal.</p></div></div>
+<div class="stepline"><div class="num">2</div><div><b class="steptitle">Ouvrez-le depuis le bureau et activez votre licence</b><p>Double-cliquez sur la nouvelle icône. Collez votre <b>clé de licence</b> (reçue par e-mail à l'achat) et cliquez sur <b>Activer</b>. Contrairement aux autres agents, <b>il ne vous demande pas de choisir un dossier</b> — cet agent se connecte à une base de données, pas à des fichiers locaux.</p></div></div>
+<div class="stepline"><div class="num">3</div><div><b class="steptitle">Configurez la connexion (étape technique)</b><p>Définissez les variables d'environnement <font face='Courier'>TARGET_DB_TYPE</font> (<font face='Courier'>sqlite</font>, <font face='Courier'>postgres</font> ou <font face='Courier'>mysql</font>) et <font face='Courier'>TARGET_DB_URL</font> avec les données de votre base. Pour SQLite, vous n'avez besoin que du chemin vers le fichier <font face='Courier'>.db</font>. Cette étape est normalement réalisée par le service informatique.</p></div></div>
+<figure class="shot"><img src="../../assets/mockups/database/activacion_fr.png" alt="Voici à quoi ressemble la fenêtre d'activation (avec des données d'exemple) — notez qu'elle ne demande que la licence, sans étape de dossier." loading="lazy"><figcaption>Voici à quoi ressemble la fenêtre d'activation (avec des données d'exemple) — notez qu'elle ne demande que la licence, sans étape de dossier.</figcaption></figure>
+<h2 class="sec"><span class="n">3</span> Comment l'utiliser</h2>
+<p>L'agent ouvre une <b>fenêtre de discussion</b>, comme une app de messagerie — pas un écran noir de programmeur. Pas de commandes à mémoriser : vous écrivez votre question en langage normal dans le champ de texte en bas, cliquez sur <b>Envoyer</b> (ou Entrée), et l'agent génère la requête, l'exécute et vous montre le SQL, les colonnes et les résultats :</p>
+<figure class="shot"><img src="../../assets/mockups/database/chat_fr.png" alt="La vraie conversation : vous posez une question et l'agent répond avec le SQL généré et le résultat (données d'exemple)." loading="lazy"><figcaption>La vraie conversation : vous posez une question et l'agent répond avec le SQL généré et le résultat (données d'exemple).</figcaption></figure>
+<div class="callout cal-steel">Si votre question se traduit en quelque chose qui modifierait des données, l'agent le refuse : <font face='Courier'>[Seules les requêtes en lecture (SELECT) sont autorisées.]</font></div>
+<p>L'agent transmet à l'IA le <b>schéma</b> de vos tables (noms des tables et colonnes) pour construire la bonne requête. Les données ne sont lues que lorsque la requête SELECT s'exécute, et sont limitées à un maximum de <b>100 lignes</b> par réponse. Écrivez <font face='Courier'>quitter</font> (ou <font face='Courier'>exit</font>) pour terminer.</p>
+<h2 class="sec"><span class="n">4</span> Exemples d'usage courant</h2>
+<h4>Un décompte rapide</h4>
+<p><i>combien de commandes ont été passées le mois dernier ?</i></p>
+<h4>Un total avec filtre</h4>
+<p><i>combien ont totalisé les ventes de la région nord cette année ?</i></p>
+<h4>Un top</h4>
+<p><i>donne-moi les 5 produits les plus vendus en quantité</i></p>
+<h4>Un croisement entre tables</h4>
+<p><i>quels clients n'ont passé aucune commande dans les 90 derniers jours ?</i> — l'agent construit le SELECT avec les JOIN nécessaires selon votre schéma et vous montre le résultat (jusqu'à 100 lignes).</p>
+<h2 class="sec"><span class="n">5</span> Questions fréquentes</h2>
+<details class="acc"><summary>Peut-il endommager ou supprimer mes données ?</summary><div class="acc-body">Non. Il fonctionne en <b>mode lecture seule</b>. Un validateur bloque toute requête qui ne commence pas par SELECT ou qui contient des opérations d'écriture (INSERT, UPDATE, DELETE, DROP, ALTER, TRUNCATE, etc.) ou plusieurs instructions.</div></details>
+<details class="acc"><summary>Quelles bases de données prend-il en charge ?</summary><div class="acc-body">SQLite (inclus, sans extension), MySQL/MariaDB et PostgreSQL (nécessitent d'installer leur extension). Pour SQLite, vous n'avez besoin que du chemin vers le fichier .db.</div></details>
+<details class="acc"><summary>Mes données sont-elles envoyées sur internet ?</summary><div class="acc-body">Non. La connexion et l'exécution des requêtes se produisent sur votre appareil ou votre réseau. Seul le <b>schéma</b> (structure des tables) et votre question sont envoyés à l'IA ; les données renvoyées par la requête ne sont pas envoyées au moteur d'IA.</div></details>
+<details class="acc"><summary>Ai-je besoin d'internet pour l'utiliser ?</summary><div class="acc-body">Seulement pour valider votre licence (jusqu'à 3 jours sans connexion) et pour que l'IA traduise votre question en SQL. La connexion à votre base de données est locale.</div></details>
+<details class="acc"><summary>Pourquoi me montre-t-il le SQL généré ?</summary><div class="acc-body">Pour la transparence : vous pouvez vérifier la requête avant de faire confiance au résultat, et apprendre comment votre question est traduite.</div></details>
+<details class="acc"><summary>Combien de résultats renvoie-t-il ?</summary><div class="acc-body">Jusqu'à <b>100 lignes</b> par requête, comme limite de sécurité.</div></details>
+<details class="acc"><summary>Dans quelle langue répond-il ?</summary><div class="acc-body">Dans la langue dans laquelle vous lui écrivez.</div></details>
+<details class="acc"><summary>Que se passe-t-il si l'agent génère un SQL incorrect ?</summary><div class="acc-body">Cela peut arriver avec des schémas complexes ou des noms ambigus. Vérifiez le SQL affiché ; s'il n'est pas correct, reformulez votre question en étant plus précis.</div></details>
+<details class="acc"><summary>Puis-je changer de base de données ?</summary><div class="acc-body">Oui. Changez <font face='Courier'>TARGET_DB_TYPE</font> et <font face='Courier'>TARGET_DB_URL</font> et relancez l'agent.</div></details>
+<details class="acc"><summary>A-t-il besoin d'un utilisateur spécial de base de données ?</summary><div class="acc-body">Il est recommandé de le connecter avec un <b>utilisateur en lecture seule</b> de votre base de données, comme couche de sécurité supplémentaire en plus du validateur de l'agent.</div></details>
+<h2 class="sec"><span class="n">6</span> Résolution de problèmes</h2>
+<details class="acc"><summary>&ldquo;Type de BD non supporté&rdquo;</summary><div class="acc-body">Vérifiez <font face='Courier'>TARGET_DB_TYPE</font>. Valeurs valides : <font face='Courier'>sqlite</font>, <font face='Courier'>postgres</font> (ou postgresql), <font face='Courier'>mysql</font>.</div></details>
+<details class="acc"><summary>Erreur de connexion à MySQL ou PostgreSQL</summary><div class="acc-body">Vérifiez le <font face='Courier'>TARGET_DB_URL</font> (hôte, port, utilisateur, mot de passe, base) et que la base accepte les connexions depuis votre appareil. Si vous venez de changer de moteur, contactez le support — il se peut que l'extension de ce moteur manque.</div></details>
+<details class="acc"><summary>SQLite : &ldquo;unable to open database file&rdquo;</summary><div class="acc-body">Le chemin dans <font face='Courier'>TARGET_DB_URL</font> est incorrect ou le dossier n'existe pas. Utilisez le chemin complet vers le fichier .db.</div></details>
+<details class="acc"><summary>&ldquo;Seules les requêtes en lecture (SELECT) sont autorisées&rdquo;</summary><div class="acc-body">C'est le comportement attendu : vous avez demandé quelque chose qui modifierait des données. L'agent ne fait que des requêtes en lecture.</div></details>
+<details class="acc"><summary>Affiche &ldquo;Licence invalide&rdquo; ou demande de se reconnecter</summary><div class="acc-body">Vérifiez que la clé collée est correcte (sans espaces en trop), assurez-vous d'avoir internet la première fois que vous activez, et si vous êtes resté plus de 3 jours sans connexion, reconnectez-vous une fois pour revalider.</div></details>
+<details class="acc"><summary>&ldquo;Aucun fournisseur d'IA configuré&rdquo;</summary><div class="acc-body">La traduction de la question en SQL utilise l'IA. Si vous voyez ce message, il manque la configuration du moteur d'IA ; contactez le support.</div></details>
+<p><b>Aucune de ces solutions n'a résolu votre problème ?</b> Écrivez-nous directement — nous serons ravis de l'examiner avec vous.</p>
+<div class="callout cal-amber"><b>Des questions&nbsp;?</b> &Eacute;crivez-nous &agrave; <code>soporte@tuialista.com</code> ou visitez <a href="/soporte/"><code>tuialista.com/soporte</code></a> — nous r&eacute;pondons g&eacute;n&eacute;ralement le jour m&ecirc;me.</div>
+<h2 class="sec"><span class="n">7</span> Confidentialité</h2>
+<p><b>Votre base de données et ses données ne quittent jamais votre infrastructure.</b></p>
+<ul><li>L'agent se connecte à votre base de données <b>localement</b> (sur votre appareil ou votre réseau) et y exécute les requêtes. Les résultats ne sont envoyés à aucun serveur.</li><li>Seul le <b>schéma</b> (noms des tables et colonnes) et votre question sont envoyés à l'IA, pour rédiger la requête SELECT. Les données renvoyées par la requête ne sont <b>pas</b> transmises au moteur d'IA.</li><li>La seule chose qui transite par internet est : (1) une vérification que votre licence est active, et (2) le schéma + votre question pour générer le SQL.</li></ul>
+<div class="callout cal-steel">La confidentialité de vos données est garantie par conception, renforcée par le mode lecture seule : aucune donnée réelle d'une requête n'atteint le fournisseur d'IA, seulement le schéma et votre question.</div>
+<div class="callout cal-amber"><b>Rappel important :</b> cet agent interroge, il ne décide pas pour vous. C'est un outil en lecture seule qui traduit vos questions en requêtes SELECT. La génération de SQL par IA est très utile, mais peut se tromper avec des schémas complexes : vérifiez la requête affichée et les chiffres critiques avant de prendre des décisions sur cette base. Pour une sécurité maximale, connectez-le avec un utilisateur de base de données en lecture seule.</div>
+
+</main>
+
+<footer>&copy; 2026 TuIAlista &middot; <a href="/soporte/">Support</a> &middot; <a href="/catalogo/">Catalogue</a> &middot; <a href="/">Accueil</a></footer>
+</body>
+</html>
