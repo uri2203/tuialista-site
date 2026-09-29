@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guida &middot; Agente Contratti e Rinnovi — TuIAlista</title>
+<meta name="description" content="Come usare l' Agente Contratti e Rinnovi di TuIAlista: installazione, comandi, esempi e domande frequenti.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{--steel-900:#0f1922;--paper:#f5f6f4;--paper-2:#eceee9;--ink:#0f1922;--muted:#5a6b73;--signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2;--ok:#1d9e75;--amber-tint:#fdf1e4;--steel-tint:#eef2f4}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper-2);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--signal-dim)}
+  header{position:sticky;top:0;background:rgba(245,246,244,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+  .nav{max-width:860px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+  .logo b{color:var(--signal)}
+  .nav .r{display:flex;align-items:center;gap:18px}
+  .nav .r a{font-size:14px;color:var(--muted);text-decoration:none}
+  .nav .r a:hover{color:var(--ink)}
+  main{max-width:860px;margin:0 auto;padding:38px 24px 80px}
+  .eyebrow{font-family:'JetBrains Mono';font-size:11.5px;letter-spacing:.1em;color:var(--signal-dim);margin-bottom:8px}
+  h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,34px);line-height:1.12;margin-bottom:10px}
+  .sub{color:var(--muted);font-size:15.5px;max-width:640px;margin-bottom:18px}
+  .hero-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+  .price{font-family:'Space Grotesk';font-weight:600;font-size:14px;color:var(--signal-dim);background:var(--amber-tint);border:1px solid var(--signal);border-radius:999px;padding:7px 16px}
+  .cta{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:9px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;text-decoration:none;transition:.15s}
+  .cta:hover{background:var(--signal);color:#1a1206}
+  h2.sec{font-family:'Space Grotesk';font-size:18px;font-weight:600;margin:38px 0 14px;padding:10px 16px;background:var(--steel-900);color:#fff;border-radius:10px;display:flex;align-items:center;gap:10px}
+  h2.sec .n{color:var(--signal)}
+  h4{font-family:'Space Grotesk';font-size:14.5px;font-weight:600;margin:16px 0 4px;color:var(--signal-dim)}
+  p{margin:0 0 12px;font-size:14.5px}
+  ul{margin:0 0 12px 20px;font-size:14.5px}
+  li{margin-bottom:6px}
+  code{font-family:'JetBrains Mono',monospace;font-size:.92em;background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  .callout{border-radius:10px;padding:14px 16px;margin:10px 0 16px;font-size:14px;border-left:3px solid}
+  .cal-amber{background:var(--amber-tint);border-color:var(--signal)}
+  .cal-steel{background:var(--steel-tint);border-color:#2c4a5c}
+  .quick{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:22px}
+  .quick h3{font-family:'Space Grotesk';font-size:16px;margin-bottom:8px}
+  .stepline{display:flex;gap:12px;margin-bottom:16px}
+  .stepline .num{flex:none;width:28px;height:28px;border-radius:8px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center}
+  .stepline .steptitle{font-family:'Space Grotesk';font-weight:600;font-size:14.5px;display:block;margin-bottom:2px}
+  .stepline p{font-size:13.5px;color:var(--muted);margin:0}
+  .cmdcard{background:var(--paper-2);border-left:3px solid #2c4a5c;border-radius:8px;padding:12px 16px;margin-bottom:10px}
+  .cmdcard code{background:transparent;border:none;padding:0;font-weight:600;display:block;margin-bottom:4px}
+  .cmdcard p{margin:0;font-size:13.5px;color:var(--muted)}
+  .shot{margin:14px 0 20px;text-align:center}
+  .shot img{max-width:100%;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(15,25,34,.06)}
+  .shot figcaption{font-size:12.5px;color:var(--muted);font-style:italic;margin-top:8px}
+  details.acc{background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;overflow:hidden}
+  details.acc summary{cursor:pointer;list-style:none;padding:13px 16px;font-weight:600;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+  details.acc summary::-webkit-details-marker{display:none}
+  details.acc summary::after{content:"+";color:var(--signal-dim);font-size:18px;font-weight:400}
+  details.acc[open] summary::after{content:"\2212"}
+  details.acc[open] summary{border-bottom:1px solid var(--line)}
+  .acc-body{padding:12px 16px;font-size:13.8px;color:var(--muted)}
+  .acc-body code{color:var(--ink)}
+  footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px;margin-top:10px}
+  footer a{color:#cdd5d9;text-decoration:none}
+  @media(max-width:520px){.nav .r a.hide-sm{display:none}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+  <div class="r">
+    <a class="hide-sm" href="/catalogo/">Catalogo</a>
+    <a class="hide-sm" href="/soporte/">Assistenza</a>
+    <a href="/portal/">Accedi</a>
+  </div>
+</div></header>
+
+<main>
+  <div class="eyebrow">GUIDA DELL'AGENTE</div>
+  <h1>Agente Contratti e Rinnovi</h1>
+  <p class="sub">Legge i tuoi contratti per te, ti avvisa cosa si rinnova automaticamente e rileva clausole rischiose prima che ti costino denaro.</p>
+  <div class="hero-row">
+    <span class="price">99 USD / mese</span>
+    <a class="cta" href="/descargar/?agent=contratos"><i class="ti ti-download"></i> Scarica questo agente</a>
+  </div>
+
+  <div class="quick">
+    <h3>Cosa risolve e cosa ti serve?</h3>
+    <p>Molte aziende perdono denaro per cose che erano scritte in un contratto ma che nessuno ha più riletto: un servizio che si rinnova automaticamente, una penale per la cancellazione, un aumento di prezzo automatico. Questo agente legge i tuoi contratti e ti avvisa dell'importante prima che sia tardi.</p>
+    <ul><li><b>Ti serve:</b> la tua chiave di licenza (<font face='Courier'>TIA-XXXX-XXXX-XXXX-XXXX</font>) e la cartella con i tuoi contratti (PDF, Word o testo). Niente Python né conoscenze tecniche.</li><li><b>Primo risultato in meno di 5 minuti:</b> installi, attivi, scegli la tua cartella ed esegui <font face='Courier-Bold'>rinnovi</font> per vedere cosa sta per scadere.</li><li><b>I tuoi contratti non lasciano mai il tuo computer</b> — l'analisi gira in locale.</li></ul>
+    <div class="callout cal-amber"><b>Avviso:</b> questo agente è uno strumento di supporto, <b>non un avvocato</b>. Prima di firmare, rinnovare o annullare un contratto importante, consulta un professionista legale.</div>
+    <div class="callout cal-amber"><b>Domande?</b> Scrivici a <code>soporte@tuialista.com</code> o visita <a href="/soporte/"><code>tuialista.com/soporte</code></a> — di solito rispondiamo lo stesso giorno lavorativo.</div>
+  </div>
+
+  <h2 class="sec"><span class="n">1</span> Cosa fa questo agente</h2>
+<p>Gli indichi la cartella dove conservi i tuoi contratti e lui:</p>
+<ul><li>Li <b>legge tutti</b> (PDF, Word e testo), senza che tu debba aprirli uno per uno.</li><li>Ti <b>avvisa quali contratti stanno per scadere o rinnovarsi</b> nei prossimi giorni.</li><li>Rileva <b>10 tipi di clausole rischiose</b> e ti dice quali sono delicate.</li><li>Ti dà un <b>riepilogo chiaro</b> di qualsiasi contratto in pochi secondi.</li><li>Risponde alle tue <b>domande in linguaggio normale</b>: <i>&ldquo;quale dei miei contratti si rinnova automaticamente?&rdquo;</i></li></ul>
+<p>Risultato: smetti di avere sorprese e hai tempo per negoziare o annullare prima della scadenza.</p>
+<h2 class="sec"><span class="n">2</span> Installazione (2 minuti)</h2>
+<p>Per Windows. Non serve internet permanente né caricare nulla sul cloud.</p>
+<div class="stepline"><div class="num">1</div><div><b class="steptitle">Scaricalo e installalo</b><p>Scarica l'installer da <font face='Courier'>tuialista.com/descargar</font> (agente Contratti) e aprilo. Crea un collegamento sul desktop con il logo — non richiede Python né terminale.</p></div></div>
+<div class="stepline"><div class="num">2</div><div><b class="steptitle">Aprilo dal desktop</b><p>Doppio clic sulla nuova icona. Incolla la tua <b>chiave di licenza</b> (ricevuta via email all'acquisto) e premi <b>Attiva</b>. Vedrai un segno di spunta verde quando è valida.</p></div></div>
+<div class="stepline"><div class="num">3</div><div><b class="steptitle">Scegli la tua cartella</b><p>Seleziona la cartella con i tuoi contratti e premi <b>Inizia a usare l'agente</b>. La prossima volta si avvia direttamente — ricorda la tua chiave e la tua cartella.</p></div></div>
+<figure class="shot"><img src="../../assets/mockups/contratos/activacion_it.png" alt="Ecco come appare la finestra di attivazione (con dati di esempio). Compare la prima volta che apri l'agente." loading="lazy"><figcaption>Ecco come appare la finestra di attivazione (con dati di esempio). Compare la prima volta che apri l'agente.</figcaption></figure>
+<h2 class="sec"><span class="n">3</span> Come usarlo</h2>
+<p>L'agente apre una <b>finestra di chat</b>, come un'app di messaggistica — non è uno schermo nero da programmatore. Scrivi il tuo comando o la tua domanda nella casella di testo in basso, premi <b>Invia</b> (o Invio), e la risposta appare come un messaggio, proprio come in questa immagine reale:</p>
+<figure class="shot"><img src="../../assets/mockups/contratos/chat_it.png" alt="La conversazione reale: scrivi &ldquo;rinnovi&rdquo; e l'agente risponde con i contratti in scadenza, evidenziando quelli con auto-rinnovo (dati di esempio)." loading="lazy"><figcaption>La conversazione reale: scrivi &ldquo;rinnovi&rdquo; e l'agente risponde con i contratti in scadenza, evidenziando quelli con auto-rinnovo (dati di esempio).</figcaption></figure>
+<p>I comandi seguenti sono le parole che puoi scrivere nella stessa casella di testo:</p>
+<div class="cmdcard"><code>&gt; rinnovi [giorni]</code><p>Contratti con date di rinnovo o scadenza imminenti — 60 giorni di default. Evidenzia &ldquo;AUTO-RINNOVO&rdquo; quelli che si rinnovano automaticamente se non li annulli in tempo. Es.: <font face='Courier'>rinnovi 90</font>.</p></div>
+<div class="cmdcard"><code>&gt; riepilogo &lt;file&gt;</code><p>Riepilogo esecutivo del contratto in linguaggio chiaro: di cosa tratta, le parti, il denaro, le date e gli avvisi.</p></div>
+<div class="cmdcard"><code>&gt; rischi &lt;file&gt;</code><p>Solo le clausole rischiose rilevate, con il loro livello di allerta (<font color='#a32d2d'><b>ALTO</b></font>, <font color='#c46a12'><b>MEDIO</b></font>, <font color='#2c4a5c'><b>BASSO</b></font>).</p></div>
+<div class="cmdcard"><code>&gt; analizzare &lt;file&gt;</code><p>Estrazione completa: parti, date, importi, se ha auto-rinnovo e tutte le sue clausole di rischio.</p></div>
+<div class="cmdcard"><code>&gt; domanda libera?</code><p>Scrivi qualsiasi domanda in linguaggio naturale, es.: <i>quali dei miei contratti hanno una penale se li annullo in anticipo?</i></p></div>
+<div class="cmdcard"><code>&gt; esci</code><p>Termina la sessione (funziona anche <font face='Courier'>exit</font>).</p></div>
+<h2 class="sec"><span class="n">4</span> Esempi di uso comune</h2>
+<h4>Rilevare contratti che si rinnovano automaticamente</h4>
+<p>Il caso più costoso: un servizio che si rinnova per un altro anno perché nessuno ha avvisato in tempo. <font face='Courier'>rinnovi 120</font> — controlla quelli con &ldquo;AUTO-RINNOVO&rdquo;.</p>
+<h4>Rivedere i rischi prima di firmare</h4>
+<p>Ti hanno mandato un nuovo contratto: salvalo nella tua cartella e <font face='Courier'>rischi nuovo-contratto.pdf</font> — in pochi secondi vedi se contiene esclusiva, penali o giurisdizione all'estero.</p>
+<h4>Preparare una riunione di rinnovi</h4>
+<p><font face='Courier'>rinnovi 60</font> &nbsp;→&nbsp; <font face='Courier'>riepilogo contratto-chiave.pdf</font></p>
+<h4>Trovare un dato senza aprire ogni file</h4>
+<p><i>quanto pago mensilmente nel contratto cloud e quando aumenta?</i></p>
+<h2 class="sec"><span class="n">5</span> Domande frequenti</h2>
+<details class="acc"><summary>I miei contratti vengono caricati su internet?</summary><div class="acc-body">No. Tutto viene elaborato sul tuo computer (vedi Privacy, sezione 7).</div></details>
+<details class="acc"><summary>Ho bisogno di internet per usarlo?</summary><div class="acc-body">Solo per due cose: convalidare la tua licenza (funziona fino a 3 giorni offline) e generare riepiloghi con IA. <font face='Courier'>rinnovi</font>, <font face='Courier'>rischi</font> e <font face='Courier'>analizzare</font> funzionano offline.</div></details>
+<details class="acc"><summary>Quali formati accetta?</summary><div class="acc-body">PDF, Word (.docx), testo (.txt) e Markdown (.md), anche in sottocartelle.</div></details>
+<details class="acc"><summary>Può leggere un PDF scansionato?</summary><div class="acc-body">Non in modo affidabile. Funziona meglio con PDF che hanno testo reale selezionabile.</div></details>
+<details class="acc"><summary>Sostituisce il mio avvocato?</summary><div class="acc-body">No. È uno strumento di supporto. Le decisioni legali importanti devono sempre essere convalidate con un avvocato.</div></details>
+<details class="acc"><summary>Quanti contratti può gestire?</summary><div class="acc-body">Non c'è un limite fisso; gestisce comodamente cartelle con decine di contratti.</div></details>
+<details class="acc"><summary>I dati mostrati sono 100% esatti?</summary><div class="acc-body">Sono un'estrazione automatica e possono contenere errori in contratti dal formato insolito. Usali come guida e verifica il critico nel documento originale.</div></details>
+<details class="acc"><summary>In quale lingua mi risponde?</summary><div class="acc-body">Nella lingua in cui gli scrivi. Rileva contratti in italiano, spagnolo e inglese.</div></details>
+<details class="acc"><summary>Posso cambiare la cartella?</summary><div class="acc-body">Sì. Riapri l'agente e premi &ldquo;Scegli&hellip;&rdquo; per cambiarla (se non te lo chiede, elimina <font face='Courier'>config.json</font> dentro <font face='Courier'>%USERPROFILE%\.tuialista</font>).</div></details>
+<details class="acc"><summary>Cosa significano ALTO, MEDIO e BASSO nei rischi?</summary><div class="acc-body">Quanta attenzione merita la clausola: ALTO (rivedila prima di firmare), MEDIO (tienila presente), BASSO (informativa). Non significa che il contratto sia cattivo, solo che lì c'è qualcosa da esaminare.</div></details>
+<h2 class="sec"><span class="n">6</span> Risoluzione dei problemi</h2>
+<details class="acc"><summary>Non legge un PDF / mostra &ldquo;PDF non letto&rdquo;</summary><div class="acc-body">Probabilmente è un'immagine scansionata senza testo reale. Prova con una versione con testo selezionabile.</div></details>
+<details class="acc"><summary>Mostra &ldquo;0 contratti indicizzati&rdquo;</summary><div class="acc-body">La cartella è vuota o il percorso è errato. Verifica di aver scelto la cartella corretta durante l'attivazione dell'agente.</div></details>
+<details class="acc"><summary>Mostra &ldquo;Licenza non valida&rdquo; o chiede di riconnettersi</summary><div class="acc-body">Verifica che la chiave incollata sia corretta (senza spazi in più), conferma di avere internet la prima volta che attivi, e se sei stato più di 3 giorni senza connessione, riconnettiti una volta per rivalidare.</div></details>
+<details class="acc"><summary>&ldquo;Nessun fornitore IA configurato&rdquo;</summary><div class="acc-body"><font face='Courier'>riepilogo</font> e le domande libere usano IA — se manca la configurazione del motore, contatta l'assistenza. <font face='Courier'>rinnovi</font>, <font face='Courier'>rischi</font> e <font face='Courier'>analizzare</font> continuano a funzionare in locale, senza IA.</div></details>
+<p><b>Nessuna di queste soluzioni ha risolto il tuo problema?</b> Scrivici direttamente — saremo felici di rivederlo con te.</p>
+<div class="callout cal-amber"><b>Domande?</b> Scrivici a <code>soporte@tuialista.com</code> o visita <a href="/soporte/"><code>tuialista.com/soporte</code></a> — di solito rispondiamo lo stesso giorno lavorativo.</div>
+<h2 class="sec"><span class="n">7</span> Privacy e riservatezza</h2>
+<p><b>I tuoi contratti non lasciano mai il tuo computer.</b></p>
+<ul><li>L'agente legge e analizza i file <b>in locale</b>, sul tuo stesso dispositivo. Non li carica su nessun server né li condivide con nessuno.</li><li>Il rilevamento di rinnovi, importi e clausole di rischio avviene <b>al 100% sul tuo dispositivo</b>, offline.</li><li>L'unica cosa che viaggia su internet è: (1) una verifica che la tua licenza sia attiva — che non include il contenuto dei tuoi contratti —, e (2) quando chiedi un <font face='Courier'>riepilogo</font> o fai una domanda libera, viene inviato un frammento del contratto al motore IA per redigere la risposta.</li></ul>
+<div class="callout cal-steel">Se un contratto è particolarmente sensibile, puoi limitarti a <font face='Courier'>rinnovi</font>, <font face='Courier'>rischi</font> e <font face='Courier'>analizzare</font> — questi tre non inviano nulla da nessuna parte.</div>
+<div class="callout cal-amber"><b>Promemoria importante:</b> questo agente è uno strumento di supporto, non un avvocato. Ti aiuta a leggere più velocemente, a non perdere scadenze e a rilevare punti da rivedere, ma non sostituisce la consulenza di un avvocato qualificato. Prima di firmare, rinnovare o annullare un contratto importante, consulta un professionista legale.</div>
+
+</main>
+
+<footer>&copy; 2026 TuIAlista &middot; <a href="/soporte/">Assistenza</a> &middot; <a href="/catalogo/">Catalogo</a> &middot; <a href="/">Home</a></footer>
+</body>
+</html>
