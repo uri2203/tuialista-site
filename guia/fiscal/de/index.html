@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leitfaden &middot; Agent für Steuer-Compliance — TuIAlista</title>
+<meta name="description" content="So nutzt du den Agent für Steuer-Compliance von TuIAlista: Einrichtung, Befehle, Beispiele und FAQ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{--steel-900:#0f1922;--paper:#f5f6f4;--paper-2:#eceee9;--ink:#0f1922;--muted:#5a6b73;--signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2;--ok:#1d9e75;--amber-tint:#fdf1e4;--steel-tint:#eef2f4}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper-2);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--signal-dim)}
+  header{position:sticky;top:0;background:rgba(245,246,244,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+  .nav{max-width:860px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+  .logo b{color:var(--signal)}
+  .nav .r{display:flex;align-items:center;gap:18px}
+  .nav .r a{font-size:14px;color:var(--muted);text-decoration:none}
+  .nav .r a:hover{color:var(--ink)}
+  main{max-width:860px;margin:0 auto;padding:38px 24px 80px}
+  .eyebrow{font-family:'JetBrains Mono';font-size:11.5px;letter-spacing:.1em;color:var(--signal-dim);margin-bottom:8px}
+  h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,34px);line-height:1.12;margin-bottom:10px}
+  .sub{color:var(--muted);font-size:15.5px;max-width:640px;margin-bottom:18px}
+  .hero-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+  .price{font-family:'Space Grotesk';font-weight:600;font-size:14px;color:var(--signal-dim);background:var(--amber-tint);border:1px solid var(--signal);border-radius:999px;padding:7px 16px}
+  .cta{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:9px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;text-decoration:none;transition:.15s}
+  .cta:hover{background:var(--signal);color:#1a1206}
+  h2.sec{font-family:'Space Grotesk';font-size:18px;font-weight:600;margin:38px 0 14px;padding:10px 16px;background:var(--steel-900);color:#fff;border-radius:10px;display:flex;align-items:center;gap:10px}
+  h2.sec .n{color:var(--signal)}
+  h4{font-family:'Space Grotesk';font-size:14.5px;font-weight:600;margin:16px 0 4px;color:var(--signal-dim)}
+  p{margin:0 0 12px;font-size:14.5px}
+  ul{margin:0 0 12px 20px;font-size:14.5px}
+  li{margin-bottom:6px}
+  code{font-family:'JetBrains Mono',monospace;font-size:.92em;background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  .callout{border-radius:10px;padding:14px 16px;margin:10px 0 16px;font-size:14px;border-left:3px solid}
+  .cal-amber{background:var(--amber-tint);border-color:var(--signal)}
+  .cal-steel{background:var(--steel-tint);border-color:#2c4a5c}
+  .quick{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:22px}
+  .quick h3{font-family:'Space Grotesk';font-size:16px;margin-bottom:8px}
+  .stepline{display:flex;gap:12px;margin-bottom:16px}
+  .stepline .num{flex:none;width:28px;height:28px;border-radius:8px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center}
+  .stepline .steptitle{font-family:'Space Grotesk';font-weight:600;font-size:14.5px;display:block;margin-bottom:2px}
+  .stepline p{font-size:13.5px;color:var(--muted);margin:0}
+  .cmdcard{background:var(--paper-2);border-left:3px solid #2c4a5c;border-radius:8px;padding:12px 16px;margin-bottom:10px}
+  .cmdcard code{background:transparent;border:none;padding:0;font-weight:600;display:block;margin-bottom:4px}
+  .cmdcard p{margin:0;font-size:13.5px;color:var(--muted)}
+  .shot{margin:14px 0 20px;text-align:center}
+  .shot img{max-width:100%;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(15,25,34,.06)}
+  .shot figcaption{font-size:12.5px;color:var(--muted);font-style:italic;margin-top:8px}
+  details.acc{background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;overflow:hidden}
+  details.acc summary{cursor:pointer;list-style:none;padding:13px 16px;font-weight:600;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+  details.acc summary::-webkit-details-marker{display:none}
+  details.acc summary::after{content:"+";color:var(--signal-dim);font-size:18px;font-weight:400}
+  details.acc[open] summary::after{content:"\2212"}
+  details.acc[open] summary{border-bottom:1px solid var(--line)}
+  .acc-body{padding:12px 16px;font-size:13.8px;color:var(--muted)}
+  .acc-body code{color:var(--ink)}
+  footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px;margin-top:10px}
+  footer a{color:#cdd5d9;text-decoration:none}
+  @media(max-width:520px){.nav .r a.hide-sm{display:none}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+  <div class="r">
+    <a class="hide-sm" href="/catalogo/">Katalog</a>
+    <a class="hide-sm" href="/soporte/">Support</a>
+    <a href="/portal/">Anmelden</a>
+  </div>
+</div></header>
+
+<main>
+  <div class="eyebrow">AGENTEN-LEITFADEN</div>
+  <h1>Agent für Steuer-Compliance</h1>
+  <p class="sub">Organisiert Ihre Steuerdokumente, erstellt Ihren Pflichtenkalender und warnt Sie vor jeder Steuerfrist.</p>
+  <div class="hero-row">
+    <span class="price">35 USD / Monat</span>
+    <a class="cta" href="/descargar/?agent=fiscal"><i class="ti ti-download"></i> Diesen Agenten herunterladen</a>
+  </div>
+
+  <div class="quick">
+    <h3>Was löst er und was brauchen Sie?</h3>
+    <p>Eine Steuerfrist zu verpassen kostet Bußgelder und Zuschläge. Dieser Agent verwandelt den Ordner, in dem Sie Ihre Steuerdokumente aufbewahren (Rechnungen, Erklärungen, Bescheinigungen, CFDI-XML), in ein Compliance-Panel: Er sagt Ihnen, was bald fällig ist, was fehlen könnte und welche Ausgaben abzugsfähig sein könnten — alles auf Ihrem eigenen Gerät berechnet.</p>
+    <ul><li><b>Sie brauchen:</b> Ihren Lizenzschlüssel (<font face='Courier'>TIA-XXXX-XXXX-XXXX-XXXX</font>) und den Ordner mit Ihren Dokumenten. Kein Python, keine technischen Kenntnisse.</li><li><b>Erstes Ergebnis in weniger als 5 Minuten:</b> Sie installieren, aktivieren, wählen Ihren Ordner und führen <font face='Courier-Bold'>Kalender</font> aus, um Ihre Pflichten des Jahres zu sehen.</li><li><b>Ihre Steuerdokumente verlassen nie Ihren Computer</b> — die Analyse läuft lokal.</li></ul>
+    <div class="callout cal-amber"><b>Rechtlicher Hinweis:</b> Dieser Agent ist ein Werkzeug zur <b>Organisation und Alarmierung</b>. <b>Er ersetzt KEINEN zertifizierten Steuerberater und keine Steuerbehörde.</b> Steuergesetze ändern sich häufig; prüfen Sie immer mit einem Fachmann, bevor Sie Erklärungen einreichen oder steuerliche Entscheidungen treffen.</div>
+    <div class="callout cal-amber"><b>Fragen?</b> Schreib uns an <code>soporte@tuialista.com</code> oder besuche <a href="/soporte/"><code>tuialista.com/soporte</code></a> — wir antworten normalerweise am selben Werktag.</div>
+  </div>
+
+  <h2 class="sec"><span class="n">1</span> Was dieser Agent tut</h2>
+<p>Sie zeigen ihm den Ordner mit Ihren Steuerdokumenten und er:</p>
+<ul><li><b>Indiziert sie</b> (PDF, Word, Excel, CSV, TXT, CFDI-XML, auch in Unterordnern) und extrahiert die Schlüsseldaten: <b>Steuernummer, Regime, Zeiträume, Dokumenttyp, Umsatzsteuer, Einkommensteuer, Einbehalte, Summe und Daten.</b></li><li>Erstellt einen <b>Pflichtenkalender</b> des Geschäftsjahres mit den typischen Fristen gemäß dem erkannten Regime.</li><li>Warnt Sie vor <b>bald fälligen Pflichten</b> (und kürzlich abgelaufenen).</li><li>Erkennt <b>mögliche Abzüge</b>, die in Ihren Dokumenten erwähnt werden.</li><li>Erkennt <b>Dokumente oder Monate, die in Ihrer Akte fehlen könnten</b>.</li><li>Erstellt eine <b>steuerliche Management-Zusammenfassung</b> des Zeitraums, mit Empfehlungen.</li><li>Beantwortet <b>freie Fragen</b> zu Ihrer steuerlichen Situation, in Ihrer eigenen Sprache.</li></ul>
+<p>Ergebnis: Sie erreichen jede Steuerfrist organisiert und ohne Überraschungen — ohne jede Datei einzeln öffnen zu müssen, um zu wissen, wo Sie stehen.</p>
+<h2 class="sec"><span class="n">2</span> Installation (2 Minuten)</h2>
+<p>Für Windows. Keine dauerhafte Internetverbindung nötig, nichts wird in die Cloud hochgeladen.</p>
+<div class="stepline"><div class="num">1</div><div><b class="steptitle">Herunterladen und installieren</b><p>Laden Sie das Installationsprogramm von <font face='Courier'>tuialista.com/descargar</font> herunter (Steuer-Agent) und öffnen Sie es. Es erstellt eine Verknüpfung mit dem Logo auf Ihrem Desktop — kein Python oder Terminal erforderlich.</p></div></div>
+<div class="stepline"><div class="num">2</div><div><b class="steptitle">Öffnen Sie es vom Desktop aus</b><p>Doppelklicken Sie auf das neue Symbol. Fügen Sie Ihren <b>Lizenzschlüssel</b> ein (er wurde Ihnen beim Kauf per E-Mail zugesandt) und klicken Sie auf <b>Aktivieren</b>. Sie sehen ein grünes Häkchen, wenn er gültig ist.</p></div></div>
+<div class="stepline"><div class="num">3</div><div><b class="steptitle">Wählen Sie Ihren Ordner</b><p>Wählen Sie den Ordner mit Ihren Steuerdokumenten aus und klicken Sie auf <b>Agent jetzt verwenden</b>. Beim nächsten Öffnen startet er direkt — er merkt sich Ihren Schlüssel und Ihren Ordner.</p></div></div>
+<figure class="shot"><img src="../../assets/mockups/fiscal/activacion_de.png" alt="So sieht das Aktivierungsfenster aus (mit Beispieldaten). Es erscheint beim ersten Öffnen des Agenten." loading="lazy"><figcaption>So sieht das Aktivierungsfenster aus (mit Beispieldaten). Es erscheint beim ersten Öffnen des Agenten.</figcaption></figure>
+<h2 class="sec"><span class="n">3</span> So verwenden Sie ihn</h2>
+<p>Der Agent öffnet ein <b>Chat-Fenster</b>, wie eine Messaging-App — kein schwarzer Programmierer-Bildschirm. Sie schreiben Ihren Befehl oder Ihre Frage in das Textfeld unten, klicken auf <b>Senden</b> (oder Enter), und die Antwort erscheint als Nachricht, genau wie auf diesem echten Bild:</p>
+<figure class="shot"><img src="../../assets/mockups/fiscal/chat_de.png" alt="Das echte Gespräch: Sie schreiben &ldquo;Kalender&rdquo; und der Agent antwortet mit Ihren Pflichten des Jahres (Beispieldaten)." loading="lazy"><figcaption>Das echte Gespräch: Sie schreiben &ldquo;Kalender&rdquo; und der Agent antwortet mit Ihren Pflichten des Jahres (Beispieldaten).</figcaption></figure>
+<p>Die folgenden Befehle sind die Wörter, die Sie in dasselbe Textfeld eingeben können:</p>
+<div class="cmdcard"><code>&gt; Kalender</code><p>Ihre Pflichten des Jahres: vorläufige Einkommensteuerzahlungen, monatliche Umsatzsteuer, Drittinformationserklärung und Jahreserklärung, mit typischen Fristen gemäß Ihrem Regime.</p></div>
+<div class="cmdcard"><code>&gt; Pflichten [Tage]</code><p>Was bald fällig wird — standardmäßig die nächsten 30 Tage, einschließlich kürzlich abgelaufener, sortiert nach Dringlichkeit. Z. B.: <font face='Courier'>Pflichten 15</font>.</p></div>
+<div class="cmdcard"><code>&gt; Abzüge</code><p>Erkennt Erwähnungen potenziell abzugsfähiger Ausgaben (Miete, Honorare, Kraftstoff, Software, Sozialversicherung...) und in welchen Dateien sie erscheinen.</p></div>
+<div class="cmdcard"><code>&gt; Fehlendes</code><p>Monate des Geschäftsjahres ohne Belege und erwartete Dokumenttypen, die nicht gefunden wurden.</p></div>
+<div class="cmdcard"><code>&gt; Zusammenfassung</code><p>Steuerliche Management-Zusammenfassung: allgemeine Lage, verfügbare Dokumentation, kritische Pflichten, mögliche Abzüge und Empfehlungen.</p></div>
+<div class="cmdcard"><code>&gt; analysieren &lt;Datei&gt;</code><p>Steuernummer, Typ, Regime, Zeiträume, Umsatzsteuer, Einkommensteuer, Einbehalte, Summe und Daten, extrahiert aus einem konkreten Dokument. Z. B.: <font face='Courier'>analysieren erklaerung_mai.pdf</font>.</p></div>
+<div class="cmdcard"><code>&gt; freie Frage?</code><p>Sie können jede Frage in natürlicher Sprache schreiben, z. B.: <i>welche Pflichten habe ich unter dem vereinfachten Steuerregime?</i></p></div>
+<div class="cmdcard"><code>&gt; beenden</code><p>Beendet die Sitzung (funktioniert auch mit <font face='Courier'>exit</font>).</p></div>
+<p>Möchten Sie die <b>20 vollständigen Rezepte</b> mit einem echten Beispiel für jedes sehen? Sehen Sie sich den <b>Rezeptkatalog</b> an — ein eigenes Dokument wegen seiner Länge: <font face='Courier'>catalogo_recetas.pdf</font> neben diesem Handbuch, oder die interaktive Version unter <font color="#c46a12"><a href="https://tuialista.com/guia/fiscal/recetas/">tuialista.com/guia/fiscal/recetas</a></font>.</p>
+<h2 class="sec"><span class="n">4</span> Beispiele für häufige Anwendungen</h2>
+<h4>Den Monat vorbereiten</h4>
+<p><font face='Courier'>Pflichten 30</font> &nbsp;→&nbsp; <font face='Courier'>Fehlendes</font></p>
+<h4>Abzüge vor der Jahreserklärung prüfen</h4>
+<p><font face='Courier'>Abzüge</font> &nbsp;→&nbsp; <font face='Courier'>Zusammenfassung</font></p>
+<h4>Den vollständigen Jahreskalender ansehen</h4>
+<p><font face='Courier'>Kalender</font></p>
+<h4>Eine punktuelle Frage</h4>
+<p><i>wann ist meine Jahreserklärung als Einzelperson fällig?</i></p>
+<h2 class="sec"><span class="n">5</span> Häufig gestellte Fragen</h2>
+<details class="acc"><summary>Werden meine Steuerdokumente ins Internet hochgeladen?</summary><div class="acc-body">Nein. Sie werden auf Ihrem Computer indiziert und analysiert (siehe Datenschutz, Abschnitt 7).</div></details>
+<details class="acc"><summary>Welche Formate akzeptiert er?</summary><div class="acc-body">PDF, Word (.docx), Excel (.xlsx), CSV, CFDI-XML, Text (.txt) und Markdown (.md), auch in Unterordnern.</div></details>
+<details class="acc"><summary>Sind die Kalenderdaten offiziell?</summary><div class="acc-body">Es sind <b>typische</b> Referenzfristen (z. B. der 17. des Folgemonats für monatliche Zahlungen). Sie können je nach Situation, Steuernummer, Arbeitstagen oder Verlängerungen variieren. <b>Bestätigen Sie diese immer bei der Steuerbehörde.</b></div></details>
+<details class="acc"><summary>Ersetzt das meinen Steuerberater?</summary><div class="acc-body">Nein, absolut nicht. Es ist ein Werkzeug zur Organisation und Alarmierung. Die Einreichung von Erklärungen und steuerliche Entscheidungen müssen mit einem zertifizierten Steuerberater bestätigt werden.</div></details>
+<details class="acc"><summary>Woher kennt er mein Regime?</summary><div class="acc-body">Er erkennt es aus dem Text Ihrer Dokumente (vereinfachtes Regime, Honorare, Vermietung, Geschäftstätigkeit, juristische Person, Angestellter). Wenn er es nicht erkennt, verwendet er einen Standardwert — überprüfen Sie, ob es Ihrer ist.</div></details>
+<details class="acc"><summary>Sind die erkannten Abzüge sicher abzugsfähig?</summary><div class="acc-body">Nein. Er erkennt <b>Erwähnungen</b> von Ausgaben, die üblicherweise abzugsfähig sind; welche wirklich zutreffen, hängt von Ihrem Regime und Geschäftsjahr ab. Bestätigen Sie dies mit Ihrem Steuerberater.</div></details>
+<details class="acc"><summary>Sind die extrahierten Umsatzsteuer-/Einkommensteuerbeträge genau?</summary><div class="acc-body">Es handelt sich um eine automatische Textlesung, die Fehler enthalten kann. Sie sind indikativ; überprüfen Sie sie gegen Ihre Originaldokumente.</div></details>
+<details class="acc"><summary>Liest er ein gescanntes PDF?</summary><div class="acc-body">Nur wenn es auswählbaren Text enthält. Ein Scan, der reines Bild ist, wird nicht zuverlässig gelesen.</div></details>
+<details class="acc"><summary>In welcher Sprache antwortet er?</summary><div class="acc-body">In der Sprache, in der Sie ihm schreiben. Der Fokus liegt auf dem Steuersystem von <b>Mexiko</b> (SAT, CFDI, RFC).</div></details>
+<details class="acc"><summary>Verändert er meine Dokumente?</summary><div class="acc-body">Nein. Der Agent <b>liest</b> sie nur.</div></details>
+<h2 class="sec"><span class="n">6</span> Problemlösung</h2>
+<details class="acc"><summary>Ein .pdf, .docx oder .xlsx wird nicht gelesen</summary><div class="acc-body">Stellen Sie sicher, dass das PDF echten Text enthält (nicht gescannt). Bei anhaltendem Problem kontaktieren Sie den Support.</div></details>
+<details class="acc"><summary>Zeigt &ldquo;0 indizierte Dokumente&rdquo;</summary><div class="acc-body">Der Ordner ist leer oder der Pfad ist falsch. Überprüfen Sie, ob Sie beim Aktivieren des Agenten den richtigen Ordner ausgewählt haben und dass er Dateien in einem kompatiblen Format enthält.</div></details>
+<details class="acc"><summary>Meine Steuernummer oder mein Regime wird nicht erkannt</summary><div class="acc-body">Möglicherweise enthalten die Dokumente sie nicht als lesbaren Text. Verwenden Sie <font face='Courier'>analysieren</font>, um zu sehen, was aus einem konkreten Dokument extrahiert wurde.</div></details>
+<details class="acc"><summary>Zeigt &ldquo;Lizenz ungültig&rdquo; oder fordert erneute Verbindung</summary><div class="acc-body">Überprüfen Sie, ob der eingefügte Schlüssel korrekt ist (ohne zusätzliche Leerzeichen), stellen Sie sicher, dass Sie beim ersten Aktivieren Internet haben, und wenn Sie mehr als 3 Tage offline waren, verbinden Sie sich einmal erneut zur Neuvalidierung.</div></details>
+<details class="acc"><summary>&ldquo;Keine KI-Anbieter konfiguriert&rdquo;</summary><div class="acc-body"><font face='Courier'>Zusammenfassung</font> und freie Fragen verwenden KI — fehlt die Engine-Konfiguration, kontaktieren Sie den Support. <font face='Courier'>Kalender</font>, <font face='Courier'>Pflichten</font>, <font face='Courier'>Abzüge</font>, <font face='Courier'>Fehlendes</font> und <font face='Courier'>analysieren</font> funktionieren weiterhin lokal, ohne KI.</div></details>
+<p><b>Keine dieser Lösungen hat Ihr Problem behoben?</b> Schreiben Sie uns direkt — wir schauen es uns gerne gemeinsam mit Ihnen an.</p>
+<div class="callout cal-amber"><b>Fragen?</b> Schreib uns an <code>soporte@tuialista.com</code> oder besuche <a href="/soporte/"><code>tuialista.com/soporte</code></a> — wir antworten normalerweise am selben Werktag.</div>
+<h2 class="sec"><span class="n">7</span> Datenschutz und Vertraulichkeit</h2>
+<p><b>Ihre Steuerdokumente verlassen nie Ihren Computer.</b></p>
+<ul><li>Der Agent liest, indiziert und extrahiert Daten <b>lokal</b>, auf Ihrem eigenen Gerät. Er lädt Ihre Dokumente auf keinen Server oder an die Steuerbehörde hoch.</li><li>Der Kalender, die Pflichten, die Abzüge, das Fehlende und die Dokumentanalyse werden <b>auf Ihrem Gerät</b> berechnet.</li><li>Das Einzige, was über das Internet läuft, ist: (1) eine Überprüfung, dass Ihre Lizenz aktiv ist — die Ihre Dokumente nicht enthält —, und (2) bei Verwendung von <font face='Courier'>Zusammenfassung</font> oder einer freien Frage wird ein Ausschnitt der relevanten Information an die KI-Engine gesendet, um diese Antwort zu verfassen.</li></ul>
+<div class="callout cal-steel">Die Vertraulichkeit Ihrer Steuerinformationen ist durch Design garantiert: die grundlegende Verarbeitung von Dokumenten, Kalender und Warnungen ist 100 % lokal. Die KI-Funktionen (Zusammenfassung und freie Fragen) sind die einzigen, die einen Datenausschnitt mit dem KI-Anbieter teilen, um antworten zu können.</div>
+<div class="callout cal-amber"><b>Wichtiger Hinweis:</b> Der Kalender verwendet typische Fristen, die möglicherweise nicht auf Ihren Fall zutreffen; Beträge und Regime werden automatisch extrahiert und können Fehler enthalten; erkannte Abzüge sind nur möglich. Bevor Sie eine Erklärung einreichen oder eine steuerliche Entscheidung treffen, bestätigen Sie mit Ihrem Steuerberater und der Steuerbehörde. Steuergesetze ändern sich häufig, und die endgültige Verantwortung liegt beim Steuerpflichtigen.</div>
+
+</main>
+
+<footer>&copy; 2026 TuIAlista &middot; <a href="/soporte/">Support</a> &middot; <a href="/catalogo/">Katalog</a> &middot; <a href="/">Startseite</a></footer>
+</body>
+</html>

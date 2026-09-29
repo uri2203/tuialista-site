@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leitfaden &middot; Bestandsagent — TuIAlista</title>
+<meta name="description" content="So nutzt du den Bestandsagent von TuIAlista: Einrichtung, Befehle, Beispiele und FAQ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{--steel-900:#0f1922;--paper:#f5f6f4;--paper-2:#eceee9;--ink:#0f1922;--muted:#5a6b73;--signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2;--ok:#1d9e75;--amber-tint:#fdf1e4;--steel-tint:#eef2f4}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper-2);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--signal-dim)}
+  header{position:sticky;top:0;background:rgba(245,246,244,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+  .nav{max-width:860px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+  .logo b{color:var(--signal)}
+  .nav .r{display:flex;align-items:center;gap:18px}
+  .nav .r a{font-size:14px;color:var(--muted);text-decoration:none}
+  .nav .r a:hover{color:var(--ink)}
+  main{max-width:860px;margin:0 auto;padding:38px 24px 80px}
+  .eyebrow{font-family:'JetBrains Mono';font-size:11.5px;letter-spacing:.1em;color:var(--signal-dim);margin-bottom:8px}
+  h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,34px);line-height:1.12;margin-bottom:10px}
+  .sub{color:var(--muted);font-size:15.5px;max-width:640px;margin-bottom:18px}
+  .hero-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+  .price{font-family:'Space Grotesk';font-weight:600;font-size:14px;color:var(--signal-dim);background:var(--amber-tint);border:1px solid var(--signal);border-radius:999px;padding:7px 16px}
+  .cta{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:9px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;text-decoration:none;transition:.15s}
+  .cta:hover{background:var(--signal);color:#1a1206}
+  h2.sec{font-family:'Space Grotesk';font-size:18px;font-weight:600;margin:38px 0 14px;padding:10px 16px;background:var(--steel-900);color:#fff;border-radius:10px;display:flex;align-items:center;gap:10px}
+  h2.sec .n{color:var(--signal)}
+  h4{font-family:'Space Grotesk';font-size:14.5px;font-weight:600;margin:16px 0 4px;color:var(--signal-dim)}
+  p{margin:0 0 12px;font-size:14.5px}
+  ul{margin:0 0 12px 20px;font-size:14.5px}
+  li{margin-bottom:6px}
+  code{font-family:'JetBrains Mono',monospace;font-size:.92em;background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  .callout{border-radius:10px;padding:14px 16px;margin:10px 0 16px;font-size:14px;border-left:3px solid}
+  .cal-amber{background:var(--amber-tint);border-color:var(--signal)}
+  .cal-steel{background:var(--steel-tint);border-color:#2c4a5c}
+  .quick{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:22px}
+  .quick h3{font-family:'Space Grotesk';font-size:16px;margin-bottom:8px}
+  .stepline{display:flex;gap:12px;margin-bottom:16px}
+  .stepline .num{flex:none;width:28px;height:28px;border-radius:8px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center}
+  .stepline .steptitle{font-family:'Space Grotesk';font-weight:600;font-size:14.5px;display:block;margin-bottom:2px}
+  .stepline p{font-size:13.5px;color:var(--muted);margin:0}
+  .cmdcard{background:var(--paper-2);border-left:3px solid #2c4a5c;border-radius:8px;padding:12px 16px;margin-bottom:10px}
+  .cmdcard code{background:transparent;border:none;padding:0;font-weight:600;display:block;margin-bottom:4px}
+  .cmdcard p{margin:0;font-size:13.5px;color:var(--muted)}
+  .shot{margin:14px 0 20px;text-align:center}
+  .shot img{max-width:100%;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(15,25,34,.06)}
+  .shot figcaption{font-size:12.5px;color:var(--muted);font-style:italic;margin-top:8px}
+  details.acc{background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;overflow:hidden}
+  details.acc summary{cursor:pointer;list-style:none;padding:13px 16px;font-weight:600;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+  details.acc summary::-webkit-details-marker{display:none}
+  details.acc summary::after{content:"+";color:var(--signal-dim);font-size:18px;font-weight:400}
+  details.acc[open] summary::after{content:"\2212"}
+  details.acc[open] summary{border-bottom:1px solid var(--line)}
+  .acc-body{padding:12px 16px;font-size:13.8px;color:var(--muted)}
+  .acc-body code{color:var(--ink)}
+  footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px;margin-top:10px}
+  footer a{color:#cdd5d9;text-decoration:none}
+  @media(max-width:520px){.nav .r a.hide-sm{display:none}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+  <div class="r">
+    <a class="hide-sm" href="/catalogo/">Katalog</a>
+    <a class="hide-sm" href="/soporte/">Support</a>
+    <a href="/portal/">Anmelden</a>
+  </div>
+</div></header>
+
+<main>
+  <div class="eyebrow">AGENTEN-LEITFADEN</div>
+  <h1>Bestandsagent</h1>
+  <p class="sub">Erkennt, was nachbestellt werden muss, wie viel Ihr Bestand wert ist und wo Sie gebundenes Kapital haben — in Sekunden.</p>
+  <div class="hero-row">
+    <span class="price">29 USD / Monat</span>
+    <a class="cta" href="/descargar/?agent=inventario"><i class="ti ti-download"></i> Diesen Agenten herunterladen</a>
+  </div>
+
+  <div class="quick">
+    <h3>Was löst er und was brauchen Sie?</h3>
+    <p>Bestand zu halten ist ein Gleichgewicht: Fehlt er, verlieren Sie Umsatz; ist er zu hoch, haben Sie gebundenes Geld. Dies von Hand in Excel-Tabellen zu prüfen ist mühsam, und fast niemand tut es rechtzeitig. Dieser Agent verwandelt Ihre Bestandsdateien in ein Steuerungspanel für Einkauf und Kapital.</p>
+    <ul><li><b>Sie brauchen:</b> Ihren Lizenzschlüssel (<font face='Courier'>TIA-XXXX-XXXX-XXXX-XXXX</font>) und den Ordner mit Ihren Bestandsdateien (Excel oder CSV). Kein Python, keine technischen Kenntnisse.</li><li><b>Erstes Ergebnis in weniger als 5 Minuten:</b> Sie installieren, aktivieren, wählen Ihren Ordner und führen <font face='Courier-Bold'>niedrig</font> aus, um zu sehen, welches Produkt bald ausgeht.</li><li><b>Die Daten Ihres Unternehmens verlassen nie Ihren Computer</b> — die Analyse läuft lokal.</li></ul>
+    <div class="callout cal-amber"><b>Hinweis:</b> Dieser Agent ist ein Hilfsmittel zur Entscheidungsfindung, <b>kein automatisches Einkaufssystem</b>. Seine Vorschläge basieren auf einfachen Regeln über die von Ihnen bereitgestellten Daten; überprüfen Sie kritische Zahlen, bevor Sie Bestand kaufen oder ausbuchen.</div>
+    <div class="callout cal-amber"><b>Fragen?</b> Schreib uns an <code>soporte@tuialista.com</code> oder besuche <a href="/soporte/"><code>tuialista.com/soporte</code></a> — wir antworten normalerweise am selben Werktag.</div>
+  </div>
+
+  <h2 class="sec"><span class="n">1</span> Was dieser Agent tut</h2>
+<p>Sie zeigen ihm den Ordner mit Ihren Bestandsdateien und er:</p>
+<ul><li><b>Liest sie</b> (Excel .xlsx und CSV) und erkennt automatisch die Spalten (auf Deutsch, Spanisch oder Englisch).</li><li>Erkennt <b>Produkte unter dem Mindestbestand</b> und ihre Dringlichkeit.</li><li>Schlägt vor, <b>wie viel nachbestellt</b> werden soll (basierend auf Umschlag oder einem Standardwert).</li><li>Berechnet den <b>Gesamtwert</b> des Bestands, zu Kosten und Verkaufspreis, nach Kategorie und Lieferant.</li><li>Identifiziert <b>toten Bestand</b> (ohne Bewegung), der Kapital bindet.</li><li>Klassifiziert Produkte nach <b>ABC-Analyse</b> (wo sich der Wert konzentriert).</li><li>Erkennt <b>überschüssigen Bestand</b>.</li><li>Beantwortet Ihre <b>Fragen</b>: <i>&ldquo;was sollte ich zuerst nachbestellen?&rdquo;</i></li></ul>
+<p>Ergebnis: Sie wissen in Sekunden, was Sie kaufen, was Sie freisetzen sollen und wo sich Ihr Geld befindet.</p>
+<h2 class="sec"><span class="n">2</span> Installation (2 Minuten)</h2>
+<p>Für Windows. Keine dauerhafte Internetverbindung nötig, nichts wird in die Cloud hochgeladen.</p>
+<div class="stepline"><div class="num">1</div><div><b class="steptitle">Herunterladen und installieren</b><p>Laden Sie das Installationsprogramm von <font face='Courier'>tuialista.com/descargar</font> herunter (Bestandsagent) und öffnen Sie es. Es erstellt eine Verknüpfung mit dem Logo auf Ihrem Desktop — kein Python oder Terminal erforderlich.</p></div></div>
+<div class="stepline"><div class="num">2</div><div><b class="steptitle">Öffnen Sie es vom Desktop aus</b><p>Doppelklicken Sie auf das neue Symbol. Fügen Sie Ihren <b>Lizenzschlüssel</b> ein (er wurde Ihnen beim Kauf per E-Mail zugesandt) und klicken Sie auf <b>Aktivieren</b>. Sie sehen ein grünes Häkchen, wenn er gültig ist.</p></div></div>
+<div class="stepline"><div class="num">3</div><div><b class="steptitle">Wählen Sie Ihren Ordner</b><p>Wählen Sie den Ordner mit Ihren Bestandsdateien aus und klicken Sie auf <b>Agent jetzt verwenden</b>. Beim nächsten Mal startet er direkt — er merkt sich Ihren Schlüssel und Ihren Ordner.</p></div></div>
+<figure class="shot"><img src="../../assets/mockups/inventario/activacion_de.png" alt="So sieht das Aktivierungsfenster aus (mit Beispieldaten). Es erscheint beim ersten Öffnen des Agenten." loading="lazy"><figcaption>So sieht das Aktivierungsfenster aus (mit Beispieldaten). Es erscheint beim ersten Öffnen des Agenten.</figcaption></figure>
+<h2 class="sec"><span class="n">3</span> So verwenden Sie ihn</h2>
+<p>Der Agent öffnet ein <b>Chat-Fenster</b>, wie eine Messaging-App — kein schwarzer Programmierer-Bildschirm. Sie schreiben Ihren Befehl oder Ihre Frage in das Textfeld unten, klicken auf <b>Senden</b> (oder Enter), und die Antwort erscheint als Nachricht, genau wie auf diesem echten Bild:</p>
+<figure class="shot"><img src="../../assets/mockups/inventario/chat_de.png" alt="Das echte Gespräch: Sie schreiben &ldquo;niedrig&rdquo; und der Agent antwortet mit den Produkten unter dem Mindestbestand (Beispieldaten)." loading="lazy"><figcaption>Das echte Gespräch: Sie schreiben &ldquo;niedrig&rdquo; und der Agent antwortet mit den Produkten unter dem Mindestbestand (Beispieldaten).</figcaption></figure>
+<p>Die folgenden Befehle sind die Wörter, die Sie in dasselbe Textfeld eingeben können:</p>
+<div class="cmdcard"><code>&gt; niedrig [Schwelle]</code><p>Produkte mit Bestand gleich oder unter ihrem Minimum (oder der von Ihnen angegebenen Schwelle), sortiert nach Dringlichkeit (KRITISCH / DRINGEND / NIEDRIG) mit geschätzten Resttagen bei Umschlag. Z. B.: <font face='Courier'>niedrig 5</font>.</p></div>
+<div class="cmdcard"><code>&gt; nachbestellen</code><p>Schlägt für jedes niedrige Produkt vor, wie viel bestellt werden soll (basierend auf Umschlag für ~30 Tage oder einem Standardwert) und schätzt die Kosten.</p></div>
+<div class="cmdcard"><code>&gt; Wert</code><p>Gesamtwert zu Kosten und Verkaufspreis, potenzielle Marge und Aufschlüsselung nach Kategorie und Lieferant.</p></div>
+<div class="cmdcard"><code>&gt; tot [Tage]</code><p>Produkte mit Bestand, aber ohne Bewegung in den letzten N Tagen (90 Standard), sortiert nach gebundenem Wert. Z. B.: <font face='Courier'>tot 120</font>.</p></div>
+<div class="cmdcard"><code>&gt; abc</code><p>A/B/C-Klassifizierung (Pareto) nach Bestandswert: die &ldquo;A&rdquo; konzentrieren den größten Teil des Werts und verdienen mehr Aufmerksamkeit.</p></div>
+<div class="cmdcard"><code>&gt; Überschuss</code><p>Produkte mit Bestand weit über ihrem Minimum und das in diesem Überschuss gebundene Kapital.</p></div>
+<div class="cmdcard"><code>&gt; freie Frage?</code><p>Schreiben Sie jede Frage in natürlicher Sprache, z. B.: <i>welche Produkte der Kategorie Getränke gehen bald aus?</i></p></div>
+<div class="cmdcard"><code>&gt; beenden</code><p>Beendet die Sitzung (funktioniert auch mit <font face='Courier'>exit</font>).</p></div>
+<p>Möchten Sie die <b>20 vollständigen Rezepte</b> mit einem echten Beispiel für jedes sehen? Sehen Sie sich den <b>Rezeptkatalog</b> an — ein eigenes Dokument wegen seiner Länge: <font face='Courier'>catalogo_recetas.pdf</font> neben diesem Handbuch, oder die interaktive Version unter <font color="#c46a12"><a href="https://tuialista.com/guia/inventario/recetas/">tuialista.com/guia/inventario/recetas</a></font>.</p>
+<h2 class="sec"><span class="n">4</span> Beispiele für häufige Anwendungen</h2>
+<h4>Der Einkauf der Woche</h4>
+<p><font face='Courier'>niedrig</font> &nbsp;→&nbsp; <font face='Courier'>nachbestellen</font> — Sie sehen, was fehlt und wie viel bestellt werden soll, mit geschätzten Kosten.</p>
+<h4>Gebundenes Geld freisetzen</h4>
+<p><font face='Courier'>tot 90</font> &nbsp;→&nbsp; <font face='Courier'>Überschuss</font> — Sie erkennen das gebundene Kapital in Produkten ohne Bewegung oder mit Überschuss.</p>
+<h4>Ihre Aufmerksamkeit fokussieren</h4>
+<p><font face='Courier'>abc</font> — Sie wissen, welche &ldquo;A&rdquo;-Produkte mehr Aufmerksamkeit brauchen, weil sie den Wert konzentrieren.</p>
+<h4>Eine punktuelle Abfrage</h4>
+<p><i>wie hoch ist der Gesamtwert meines Bestands zu Kosten?</i></p>
+<h2 class="sec"><span class="n">5</span> Häufig gestellte Fragen</h2>
+<details class="acc"><summary>Werden meine Daten ins Internet hochgeladen?</summary><div class="acc-body">Nein. Alles wird auf Ihrem Computer verarbeitet (siehe Datenschutz, Abschnitt 7).</div></details>
+<details class="acc"><summary>Welche Formate akzeptiert er?</summary><div class="acc-body">Excel (.xlsx) und CSV (.csv). Alte .xls-Dateien sollten Sie als .xlsx speichern.</div></details>
+<details class="acc"><summary>Muss ich meine Spalten exakt benennen?</summary><div class="acc-body">Nein. Der Agent erkennt viele Namen (z. B. &ldquo;Bestand&rdquo;, &ldquo;Menge&rdquo;, &ldquo;qty&rdquo; für Lagerbestand; &ldquo;Verkaufspreis&rdquo;, &ldquo;VK&rdquo;; &ldquo;Stückkosten&rdquo;...), auf Deutsch, Spanisch und Englisch. Trotzdem verbessern klare Spalten die Ergebnisse.</div></details>
+<details class="acc"><summary>Sagt er wirklich voraus, wann nachbestellt werden soll?</summary><div class="acc-body">Er macht eine <b>regelbasierte Schätzung</b>: Er nutzt Ihren täglichen Umschlag (falls in den Daten vorhanden), um zu berechnen, wie lange der Bestand reicht und wie viel für ~30 Tage bestellt werden soll; ohne Umschlag verwendet er einen Standardwert. Es ist kein Vorhersagemodell mit maschinellem Lernen.</div></details>
+<details class="acc"><summary>Brauche ich die Spalte für Umschlag oder letzten Ausgang?</summary><div class="acc-body">Sie sind nicht obligatorisch, verbessern die Ergebnisse aber: ohne Umschlag sind die Resttage und einige Vorschläge allgemeiner; ohne &ldquo;letzter Ausgang&rdquo; wird toter Bestand als &ldquo;ohne Datum&rdquo; markiert.</div></details>
+<details class="acc"><summary>In welcher Sprache antwortet er mir?</summary><div class="acc-body">In der Sprache, in der Sie ihm schreiben.</div></details>
+<details class="acc"><summary>Verändert er meine Dateien?</summary><div class="acc-body">Nein. Der Agent <b>liest</b> Ihre Daten nur.</div></details>
+<details class="acc"><summary>Kann ich den Datenordner ändern?</summary><div class="acc-body">Ja. Öffnen Sie den Agenten erneut und klicken Sie auf &ldquo;Auswählen&hellip;&rdquo;, um ihn zu ändern (falls er nicht danach fragt, löschen Sie <font face='Courier'>config.json</font> in <font face='Courier'>%USERPROFILE%\.tuialista</font>, damit er erneut danach fragt).</div></details>
+<details class="acc"><summary>Sind die Berechnungen genau?</summary><div class="acc-body">Sie werden lokal auf Ihren Daten durchgeführt. Überprüfen Sie trotzdem kritische Zahlen und dass Ihre Kosten-/Preis-/Bestandsspalten korrekt erfasst sind.</div></details>
+<details class="acc"><summary>Kann er mehrere Dateien lesen?</summary><div class="acc-body">Ja. Er lädt alle .xlsx- und .csv-Dateien des Ordners.</div></details>
+<h2 class="sec"><span class="n">6</span> Problemlösung</h2>
+<details class="acc"><summary>Zeigt &ldquo;CSV/XLSX ohne erkannte Spalten&rdquo;</summary><div class="acc-body">Ihre Datei hat keine klare Produkt-/SKU- oder Bestandsspalte. Überprüfen Sie die Kopfzeilen.</div></details>
+<details class="acc"><summary>Eine .xlsx wird nicht geladen</summary><div class="acc-body">Stellen Sie sicher, dass die Datei ein gültiges .xlsx ist. Bei anhaltendem Problem kontaktieren Sie den Support.</div></details>
+<details class="acc"><summary>Zeigt &ldquo;Lizenz ungültig&rdquo; oder fordert erneute Verbindung</summary><div class="acc-body">Überprüfen Sie, ob der eingefügte Schlüssel korrekt ist (ohne zusätzliche Leerzeichen), stellen Sie sicher, dass Sie beim ersten Aktivieren Internet haben, und wenn Sie mehr als 3 Tage offline waren, verbinden Sie sich einmal erneut zur Neuvalidierung.</div></details>
+<details class="acc"><summary>&ldquo;Keine KI-Anbieter konfiguriert&rdquo;</summary><div class="acc-body">Freie Fragen verwenden KI — fehlt die Engine-Konfiguration, kontaktieren Sie den Support. <font face='Courier'>niedrig</font>, <font face='Courier'>nachbestellen</font>, <font face='Courier'>Wert</font>, <font face='Courier'>tot</font>, <font face='Courier'>abc</font> und <font face='Courier'>Überschuss</font> funktionieren weiterhin lokal, ohne KI.</div></details>
+<p><b>Keine dieser Lösungen hat Ihr Problem behoben?</b> Schreiben Sie uns direkt — wir schauen es uns gerne gemeinsam mit Ihnen an.</p>
+<div class="callout cal-amber"><b>Fragen?</b> Schreib uns an <code>soporte@tuialista.com</code> oder besuche <a href="/soporte/"><code>tuialista.com/soporte</code></a> — wir antworten normalerweise am selben Werktag.</div>
+<h2 class="sec"><span class="n">7</span> Datenschutz und Vertraulichkeit</h2>
+<p><b>Die Daten Ihres Unternehmens verlassen nie Ihren Computer.</b></p>
+<ul><li>Der Agent liest und analysiert Ihre Dateien <b>lokal</b>, auf Ihrem eigenen Gerät. Er lädt sie auf keinen Server hoch.</li><li>Alle Berechnungen (niedriger Bestand, Wert, ABC, Überschuss, toter Bestand) finden <b>auf Ihrem Gerät</b> statt.</li><li>Das Einzige, was über das Internet läuft, ist: (1) eine Überprüfung, dass Ihre Lizenz aktiv ist — die Ihre Daten nicht enthält —, und (2) bei einer freien Frage wird eine relevante Bestandszusammenfassung an die KI-Engine gesendet, um die Antwort zu verfassen.</li></ul>
+<div class="callout cal-steel">Die Vertraulichkeit Ihrer Kosten, Preise und Bestandsniveaus ist durch Design garantiert: alle Berechnungen (niedriger Bestand, Nachbestellung, Wert, ABC, Überschuss, toter Bestand) sind 100 % lokal. Nur freie Fragen teilen eine Zusammenfassung mit dem KI-Anbieter, um antworten zu können.</div>
+<div class="callout cal-amber"><b>Wichtiger Hinweis:</b> Dieser Agent ist ein Hilfsmittel zur Entscheidungsfindung, kein automatisches Einkaufssystem. Seine Nachbestellvorschläge und Analysen basieren auf den von Ihnen bereitgestellten Daten und einfachen Regeln. Überprüfen Sie kritische Zahlen (Kosten, Preise, Bestand) und wenden Sie Ihr geschäftliches Urteilsvermögen an, bevor Sie Bestand kaufen oder ausbuchen.</div>
+
+</main>
+
+<footer>&copy; 2026 TuIAlista &middot; <a href="/soporte/">Support</a> &middot; <a href="/catalogo/">Katalog</a> &middot; <a href="/">Startseite</a></footer>
+</body>
+</html>
