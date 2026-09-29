@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guide &middot; Agent d'inventaire — TuIAlista</title>
+<meta name="description" content="Comment utiliser l' Agent d'inventaire de TuIAlista&nbsp;: installation, commandes, exemples et questions fr&eacute;quentes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{--steel-900:#0f1922;--paper:#f5f6f4;--paper-2:#eceee9;--ink:#0f1922;--muted:#5a6b73;--signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2;--ok:#1d9e75;--amber-tint:#fdf1e4;--steel-tint:#eef2f4}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper-2);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--signal-dim)}
+  header{position:sticky;top:0;background:rgba(245,246,244,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+  .nav{max-width:860px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+  .logo b{color:var(--signal)}
+  .nav .r{display:flex;align-items:center;gap:18px}
+  .nav .r a{font-size:14px;color:var(--muted);text-decoration:none}
+  .nav .r a:hover{color:var(--ink)}
+  main{max-width:860px;margin:0 auto;padding:38px 24px 80px}
+  .eyebrow{font-family:'JetBrains Mono';font-size:11.5px;letter-spacing:.1em;color:var(--signal-dim);margin-bottom:8px}
+  h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,34px);line-height:1.12;margin-bottom:10px}
+  .sub{color:var(--muted);font-size:15.5px;max-width:640px;margin-bottom:18px}
+  .hero-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+  .price{font-family:'Space Grotesk';font-weight:600;font-size:14px;color:var(--signal-dim);background:var(--amber-tint);border:1px solid var(--signal);border-radius:999px;padding:7px 16px}
+  .cta{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:9px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;text-decoration:none;transition:.15s}
+  .cta:hover{background:var(--signal);color:#1a1206}
+  h2.sec{font-family:'Space Grotesk';font-size:18px;font-weight:600;margin:38px 0 14px;padding:10px 16px;background:var(--steel-900);color:#fff;border-radius:10px;display:flex;align-items:center;gap:10px}
+  h2.sec .n{color:var(--signal)}
+  h4{font-family:'Space Grotesk';font-size:14.5px;font-weight:600;margin:16px 0 4px;color:var(--signal-dim)}
+  p{margin:0 0 12px;font-size:14.5px}
+  ul{margin:0 0 12px 20px;font-size:14.5px}
+  li{margin-bottom:6px}
+  code{font-family:'JetBrains Mono',monospace;font-size:.92em;background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  .callout{border-radius:10px;padding:14px 16px;margin:10px 0 16px;font-size:14px;border-left:3px solid}
+  .cal-amber{background:var(--amber-tint);border-color:var(--signal)}
+  .cal-steel{background:var(--steel-tint);border-color:#2c4a5c}
+  .quick{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:22px}
+  .quick h3{font-family:'Space Grotesk';font-size:16px;margin-bottom:8px}
+  .stepline{display:flex;gap:12px;margin-bottom:16px}
+  .stepline .num{flex:none;width:28px;height:28px;border-radius:8px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center}
+  .stepline .steptitle{font-family:'Space Grotesk';font-weight:600;font-size:14.5px;display:block;margin-bottom:2px}
+  .stepline p{font-size:13.5px;color:var(--muted);margin:0}
+  .cmdcard{background:var(--paper-2);border-left:3px solid #2c4a5c;border-radius:8px;padding:12px 16px;margin-bottom:10px}
+  .cmdcard code{background:transparent;border:none;padding:0;font-weight:600;display:block;margin-bottom:4px}
+  .cmdcard p{margin:0;font-size:13.5px;color:var(--muted)}
+  .shot{margin:14px 0 20px;text-align:center}
+  .shot img{max-width:100%;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(15,25,34,.06)}
+  .shot figcaption{font-size:12.5px;color:var(--muted);font-style:italic;margin-top:8px}
+  details.acc{background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;overflow:hidden}
+  details.acc summary{cursor:pointer;list-style:none;padding:13px 16px;font-weight:600;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+  details.acc summary::-webkit-details-marker{display:none}
+  details.acc summary::after{content:"+";color:var(--signal-dim);font-size:18px;font-weight:400}
+  details.acc[open] summary::after{content:"\2212"}
+  details.acc[open] summary{border-bottom:1px solid var(--line)}
+  .acc-body{padding:12px 16px;font-size:13.8px;color:var(--muted)}
+  .acc-body code{color:var(--ink)}
+  footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px;margin-top:10px}
+  footer a{color:#cdd5d9;text-decoration:none}
+  @media(max-width:520px){.nav .r a.hide-sm{display:none}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+  <div class="r">
+    <a class="hide-sm" href="/catalogo/">Catalogue</a>
+    <a class="hide-sm" href="/soporte/">Support</a>
+    <a href="/portal/">Se connecter</a>
+  </div>
+</div></header>
+
+<main>
+  <div class="eyebrow">GUIDE DE L'AGENT</div>
+  <h1>Agent d'inventaire</h1>
+  <p class="sub">Détecte quoi réapprovisionner, combien vaut votre stock et où se trouve votre capital immobilisé — en quelques secondes.</p>
+  <div class="hero-row">
+    <span class="price">29 $ US / mois</span>
+    <a class="cta" href="/descargar/?agent=inventario"><i class="ti ti-download"></i> T&eacute;l&eacute;charger cet agent</a>
+  </div>
+
+  <div class="quick">
+    <h3>Que résout-il et de quoi avez-vous besoin ?</h3>
+    <p>Gérer un stock est un équilibre : s'il en manque, vous perdez des ventes ; s'il y en a trop, vous avez de l'argent immobilisé. Vérifier cela à la main dans des feuilles Excel est fastidieux et presque personne ne le fait à temps. Cet agent transforme vos fichiers d'inventaire en tableau de bord des achats et du capital.</p>
+    <ul><li><b>Vous avez besoin de :</b> votre clé de licence (<font face='Courier'>TIA-XXXX-XXXX-XXXX-XXXX</font>) et du dossier contenant vos fichiers d'inventaire (Excel ou CSV). Ni Python ni connaissances techniques.</li><li><b>Premier résultat en moins de 5 minutes :</b> vous installez, activez, choisissez votre dossier et lancez <font face='Courier-Bold'>bas</font> pour voir quel produit est bientôt épuisé.</li><li><b>Les données de votre entreprise ne quittent jamais votre ordinateur</b> — l'analyse s'exécute localement.</li></ul>
+    <div class="callout cal-amber"><b>Avertissement :</b> cet agent est un outil d'aide à la décision, <b>pas un système d'achat automatique</b>. Ses suggestions reposent sur des règles simples appliquées aux données que vous lui fournissez ; vérifiez les chiffres critiques avant d'acheter ou de sortir du stock.</div>
+    <div class="callout cal-amber"><b>Des questions&nbsp;?</b> &Eacute;crivez-nous &agrave; <code>soporte@tuialista.com</code> ou visitez <a href="/soporte/"><code>tuialista.com/soporte</code></a> — nous r&eacute;pondons g&eacute;n&eacute;ralement le jour m&ecirc;me.</div>
+  </div>
+
+  <h2 class="sec"><span class="n">1</span> Ce que fait cet agent</h2>
+<p>Vous lui indiquez le dossier contenant vos fichiers d'inventaire et il :</p>
+<ul><li>Les <b>lit</b> (Excel .xlsx et CSV), en reconnaissant automatiquement les colonnes (en français, espagnol ou anglais).</li><li>Détecte les <b>produits sous le minimum</b> et leur urgence.</li><li>Suggère <b>combien réapprovisionner</b> pour chaque produit (selon sa rotation ou une valeur par défaut).</li><li>Calcule la <b>valeur totale</b> du stock, au coût et au prix de vente, par catégorie et fournisseur.</li><li>Identifie le <b>stock dormant</b> (sans mouvement) qui immobilise du capital.</li><li>Classe les produits par <b>analyse ABC</b> (où la valeur est concentrée).</li><li>Détecte les <b>excès de stock</b>.</li><li>Répond à vos <b>questions</b> : <i>&ldquo;qu'est-ce qu'il vaut mieux réapprovisionner en premier ?&rdquo;</i></li></ul>
+<p>Résultat : vous savez quoi acheter, quoi libérer et où se trouve votre argent, en quelques secondes.</p>
+<h2 class="sec"><span class="n">2</span> Installation (2 minutes)</h2>
+<p>Pour Windows. Pas besoin d'internet permanent ni de rien envoyer sur le cloud.</p>
+<div class="stepline"><div class="num">1</div><div><b class="steptitle">Téléchargez-le et installez-le</b><p>Téléchargez l'installateur depuis <font face='Courier'>tuialista.com/descargar</font> (agent Inventaire) et ouvrez-le. Il crée un raccourci sur votre bureau avec le logo — pas besoin de Python ni de terminal.</p></div></div>
+<div class="stepline"><div class="num">2</div><div><b class="steptitle">Ouvrez-le depuis le bureau</b><p>Double-cliquez sur la nouvelle icône. Collez votre <b>clé de licence</b> (reçue par e-mail à l'achat) et cliquez sur <b>Activer</b>. Une coche verte apparaît quand elle est valide.</p></div></div>
+<div class="stepline"><div class="num">3</div><div><b class="steptitle">Choisissez votre dossier</b><p>Sélectionnez le dossier contenant vos fichiers d'inventaire et cliquez sur <b>Commencer à utiliser l'agent</b>. La prochaine fois, il démarre directement — il se souvient de votre clé et de votre dossier.</p></div></div>
+<figure class="shot"><img src="../../assets/mockups/inventario/activacion_fr.png" alt="Voici à quoi ressemble la fenêtre d'activation (avec des données d'exemple). Elle apparaît la première fois que vous ouvrez l'agent." loading="lazy"><figcaption>Voici à quoi ressemble la fenêtre d'activation (avec des données d'exemple). Elle apparaît la première fois que vous ouvrez l'agent.</figcaption></figure>
+<h2 class="sec"><span class="n">3</span> Comment l'utiliser</h2>
+<p>L'agent ouvre une <b>fenêtre de discussion</b>, comme une app de messagerie — pas un écran noir de programmeur. Vous écrivez votre commande ou votre question dans le champ de texte en bas, cliquez sur <b>Envoyer</b> (ou Entrée), et la réponse apparaît comme un message, exactement comme sur cette image réelle :</p>
+<figure class="shot"><img src="../../assets/mockups/inventario/chat_fr.png" alt="La vraie conversation : vous écrivez &ldquo;bas&rdquo; et l'agent répond avec les produits sous le minimum (données d'exemple)." loading="lazy"><figcaption>La vraie conversation : vous écrivez &ldquo;bas&rdquo; et l'agent répond avec les produits sous le minimum (données d'exemple).</figcaption></figure>
+<p>Les commandes suivantes sont les mots que vous pouvez écrire dans ce même champ de texte :</p>
+<div class="cmdcard"><code>&gt; bas [seuil]</code><p>Produits avec un stock égal ou inférieur à leur minimum (ou au seuil indiqué), classés par urgence (CRITIQUE / URGENT / BAS) et avec les jours restants estimés s'il y a rotation. Ex. : <font face='Courier'>bas 5</font>.</p></div>
+<div class="cmdcard"><code>&gt; réapprovisionner</code><p>Pour chaque produit bas, suggère combien commander (selon la rotation sur ~30 jours, ou une valeur par défaut) et estime le coût.</p></div>
+<div class="cmdcard"><code>&gt; valeur</code><p>Valeur totale au coût et au prix de vente, marge potentielle et répartition par catégorie et fournisseur.</p></div>
+<div class="cmdcard"><code>&gt; dormant [jours]</code><p>Produits avec du stock mais sans mouvement depuis N jours (90 par défaut), classés par valeur immobilisée. Ex. : <font face='Courier'>dormant 120</font>.</p></div>
+<div class="cmdcard"><code>&gt; abc</code><p>Classification A/B/C (Pareto) par valeur de stock : les &ldquo;A&rdquo; concentrent la majeure partie de la valeur et méritent plus d'attention.</p></div>
+<div class="cmdcard"><code>&gt; excès</code><p>Produits avec un stock très supérieur à leur minimum et le capital immobilisé dans cet excès.</p></div>
+<div class="cmdcard"><code>&gt; question libre ?</code><p>Écrivez toute question en langage naturel, ex. : <i>quels produits de la catégorie boissons sont bientôt épuisés ?</i></p></div>
+<div class="cmdcard"><code>&gt; quitter</code><p>Termine la session (fonctionne aussi avec <font face='Courier'>exit</font>).</p></div>
+<p>Vous voulez voir les <b>20 recettes complètes</b> avec un exemple réel de chacune ? Consultez le <b>Catalogue de recettes</b> — un document à part vu sa longueur : <font face='Courier'>catalogo_recetas.pdf</font> à côté de ce manuel, ou la version interactive sur <font color="#c46a12"><a href="https://tuialista.com/guia/inventario/recetas/">tuialista.com/guia/inventario/recetas</a></font>.</p>
+<h2 class="sec"><span class="n">4</span> Exemples d'usage courant</h2>
+<h4>Les achats de la semaine</h4>
+<p><font face='Courier'>bas</font> &nbsp;→&nbsp; <font face='Courier'>réapprovisionner</font> — vous voyez ce qui manque et combien commander, avec le coût estimé.</p>
+<h4>Libérer de l'argent immobilisé</h4>
+<p><font face='Courier'>dormant 90</font> &nbsp;→&nbsp; <font face='Courier'>excès</font> — vous détectez le capital immobilisé dans des produits sans mouvement ou en excès.</p>
+<h4>Concentrer votre attention</h4>
+<p><font face='Courier'>abc</font> — vous savez quels produits &ldquo;A&rdquo; surveiller davantage car ils concentrent la valeur.</p>
+<h4>Une requête ponctuelle</h4>
+<p><i>quelle est la valeur totale de mon stock au coût ?</i></p>
+<h2 class="sec"><span class="n">5</span> Questions fréquentes</h2>
+<details class="acc"><summary>Mes données sont-elles envoyées sur internet ?</summary><div class="acc-body">Non. Tout est traité sur votre ordinateur (voir Confidentialité, section 7).</div></details>
+<details class="acc"><summary>Quels formats accepte-t-il ?</summary><div class="acc-body">Excel (.xlsx) et CSV (.csv). Il est préférable de réenregistrer les anciens .xls au format .xlsx.</div></details>
+<details class="acc"><summary>Dois-je nommer mes colonnes d'une façon exacte ?</summary><div class="acc-body">Non. L'agent reconnaît de nombreux noms (par exemple &ldquo;stock&rdquo;, &ldquo;quantité&rdquo;, &ldquo;qty&rdquo; pour le stock ; &ldquo;prix de vente&rdquo;, &ldquo;pv&rdquo; ; &ldquo;coût unitaire&rdquo;...), en français, espagnol et anglais. Des colonnes claires améliorent quand même les résultats.</div></details>
+<details class="acc"><summary>Est-ce qu'il &ldquo;prédit&rdquo; vraiment quand réapprovisionner ?</summary><div class="acc-body">Il fait une <b>estimation basée sur des règles</b> : il utilise votre rotation quotidienne (si elle figure dans les données) pour calculer combien de temps durera le stock et combien commander pour ~30 jours ; sans rotation, il utilise une valeur par défaut. Ce n'est pas un modèle de prédiction par apprentissage automatique.</div></details>
+<details class="acc"><summary>Ai-je besoin de la colonne de rotation ou de dernière sortie ?</summary><div class="acc-body">Elles ne sont pas obligatoires, mais elles améliorent les résultats : sans rotation, les jours restants et certaines suggestions sont plus génériques ; sans &ldquo;dernière sortie&rdquo;, le stock dormant est marqué &ldquo;sans date&rdquo;.</div></details>
+<details class="acc"><summary>Dans quelle langue répond-il ?</summary><div class="acc-body">Dans la langue dans laquelle vous lui écrivez.</div></details>
+<details class="acc"><summary>Modifie-t-il mes fichiers ?</summary><div class="acc-body">Non. L'agent se contente de <b>lire</b> vos données.</div></details>
+<details class="acc"><summary>Puis-je changer le dossier de données ?</summary><div class="acc-body">Oui. Rouvrez l'agent et cliquez sur &ldquo;Choisir&hellip;&rdquo; pour le changer (s'il ne vous le demande pas, supprimez <font face='Courier'>config.json</font> dans <font face='Courier'>%USERPROFILE%\.tuialista</font> pour qu'il vous le redemande).</div></details>
+<details class="acc"><summary>Les calculs sont-ils exacts ?</summary><div class="acc-body">Ils sont effectués localement sur vos données. Vérifiez quand même les chiffres critiques et que vos colonnes de coût/prix/stock soient bien saisies.</div></details>
+<details class="acc"><summary>Peut-il lire plusieurs fichiers ?</summary><div class="acc-body">Oui. Il charge tous les .xlsx et .csv du dossier.</div></details>
+<h2 class="sec"><span class="n">6</span> Résolution de problèmes</h2>
+<details class="acc"><summary>Affiche &ldquo;CSV/XLSX sans colonnes reconnues&rdquo;</summary><div class="acc-body">Votre fichier n'a pas de colonne claire de produit/référence ni de stock. Vérifiez les en-têtes.</div></details>
+<details class="acc"><summary>Un .xlsx ne se charge pas</summary><div class="acc-body">Vérifiez que le fichier est un .xlsx valide. Si le problème persiste, contactez le support.</div></details>
+<details class="acc"><summary>Affiche &ldquo;Licence invalide&rdquo; ou demande de se reconnecter</summary><div class="acc-body">Vérifiez que la clé collée est correcte (sans espaces en trop), assurez-vous d'avoir internet la première fois que vous activez, et si vous êtes resté plus de 3 jours sans connexion, reconnectez-vous une fois pour revalider.</div></details>
+<details class="acc"><summary>&ldquo;Aucun fournisseur d'IA configuré&rdquo;</summary><div class="acc-body">Les questions libres utilisent l'IA — s'il manque la configuration du moteur, contactez le support. <font face='Courier'>bas</font>, <font face='Courier'>réapprovisionner</font>, <font face='Courier'>valeur</font>, <font face='Courier'>dormant</font>, <font face='Courier'>abc</font> et <font face='Courier'>excès</font> continuent de fonctionner localement, sans IA.</div></details>
+<p><b>Aucune de ces solutions n'a résolu votre problème ?</b> Écrivez-nous directement — nous serons ravis de l'examiner avec vous.</p>
+<div class="callout cal-amber"><b>Des questions&nbsp;?</b> &Eacute;crivez-nous &agrave; <code>soporte@tuialista.com</code> ou visitez <a href="/soporte/"><code>tuialista.com/soporte</code></a> — nous r&eacute;pondons g&eacute;n&eacute;ralement le jour m&ecirc;me.</div>
+<h2 class="sec"><span class="n">7</span> Confidentialité</h2>
+<p><b>Les données de votre entreprise ne quittent jamais votre ordinateur.</b></p>
+<ul><li>L'agent lit et analyse vos fichiers <b>localement</b>, sur votre propre appareil. Il ne les envoie à aucun serveur.</li><li>Tous les calculs (stock bas, valeur, ABC, excès, stock dormant) se produisent <b>sur votre machine</b>.</li><li>La seule chose qui transite par internet est : (1) une vérification que votre licence est active — qui n'inclut pas vos données —, et (2) lorsque vous posez une question libre, un résumé de l'inventaire pertinent est envoyé au moteur d'IA pour rédiger la réponse.</li></ul>
+<div class="callout cal-steel">La confidentialité de vos coûts, prix et niveaux de stock est garantie par conception : tous les calculs (stock bas, réapprovisionnement, valeur, ABC, excès, stock dormant) sont 100 % locaux. Seules les questions libres partagent un résumé avec le fournisseur d'IA pour pouvoir répondre.</div>
+<div class="callout cal-amber"><b>Rappel important :</b> cet agent est un outil d'aide à la décision, pas un système d'achat automatique. Ses suggestions de réapprovisionnement et ses analyses reposent sur les données que vous lui fournissez et sur des règles simples. Vérifiez les chiffres critiques (coûts, prix, stock) et appliquez votre jugement commercial avant d'acheter ou de sortir du stock.</div>
+
+</main>
+
+<footer>&copy; 2026 TuIAlista &middot; <a href="/soporte/">Support</a> &middot; <a href="/catalogo/">Catalogue</a> &middot; <a href="/">Accueil</a></footer>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guide &middot; Agent de conformité fiscale — TuIAlista</title>
+<meta name="description" content="Comment utiliser l' Agent de conformité fiscale de TuIAlista&nbsp;: installation, commandes, exemples et questions fr&eacute;quentes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{--steel-900:#0f1922;--paper:#f5f6f4;--paper-2:#eceee9;--ink:#0f1922;--muted:#5a6b73;--signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2;--ok:#1d9e75;--amber-tint:#fdf1e4;--steel-tint:#eef2f4}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper-2);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--signal-dim)}
+  header{position:sticky;top:0;background:rgba(245,246,244,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+  .nav{max-width:860px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+  .logo b{color:var(--signal)}
+  .nav .r{display:flex;align-items:center;gap:18px}
+  .nav .r a{font-size:14px;color:var(--muted);text-decoration:none}
+  .nav .r a:hover{color:var(--ink)}
+  main{max-width:860px;margin:0 auto;padding:38px 24px 80px}
+  .eyebrow{font-family:'JetBrains Mono';font-size:11.5px;letter-spacing:.1em;color:var(--signal-dim);margin-bottom:8px}
+  h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,34px);line-height:1.12;margin-bottom:10px}
+  .sub{color:var(--muted);font-size:15.5px;max-width:640px;margin-bottom:18px}
+  .hero-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+  .price{font-family:'Space Grotesk';font-weight:600;font-size:14px;color:var(--signal-dim);background:var(--amber-tint);border:1px solid var(--signal);border-radius:999px;padding:7px 16px}
+  .cta{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:9px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;text-decoration:none;transition:.15s}
+  .cta:hover{background:var(--signal);color:#1a1206}
+  h2.sec{font-family:'Space Grotesk';font-size:18px;font-weight:600;margin:38px 0 14px;padding:10px 16px;background:var(--steel-900);color:#fff;border-radius:10px;display:flex;align-items:center;gap:10px}
+  h2.sec .n{color:var(--signal)}
+  h4{font-family:'Space Grotesk';font-size:14.5px;font-weight:600;margin:16px 0 4px;color:var(--signal-dim)}
+  p{margin:0 0 12px;font-size:14.5px}
+  ul{margin:0 0 12px 20px;font-size:14.5px}
+  li{margin-bottom:6px}
+  code{font-family:'JetBrains Mono',monospace;font-size:.92em;background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  .callout{border-radius:10px;padding:14px 16px;margin:10px 0 16px;font-size:14px;border-left:3px solid}
+  .cal-amber{background:var(--amber-tint);border-color:var(--signal)}
+  .cal-steel{background:var(--steel-tint);border-color:#2c4a5c}
+  .quick{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:22px}
+  .quick h3{font-family:'Space Grotesk';font-size:16px;margin-bottom:8px}
+  .stepline{display:flex;gap:12px;margin-bottom:16px}
+  .stepline .num{flex:none;width:28px;height:28px;border-radius:8px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center}
+  .stepline .steptitle{font-family:'Space Grotesk';font-weight:600;font-size:14.5px;display:block;margin-bottom:2px}
+  .stepline p{font-size:13.5px;color:var(--muted);margin:0}
+  .cmdcard{background:var(--paper-2);border-left:3px solid #2c4a5c;border-radius:8px;padding:12px 16px;margin-bottom:10px}
+  .cmdcard code{background:transparent;border:none;padding:0;font-weight:600;display:block;margin-bottom:4px}
+  .cmdcard p{margin:0;font-size:13.5px;color:var(--muted)}
+  .shot{margin:14px 0 20px;text-align:center}
+  .shot img{max-width:100%;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(15,25,34,.06)}
+  .shot figcaption{font-size:12.5px;color:var(--muted);font-style:italic;margin-top:8px}
+  details.acc{background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;overflow:hidden}
+  details.acc summary{cursor:pointer;list-style:none;padding:13px 16px;font-weight:600;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+  details.acc summary::-webkit-details-marker{display:none}
+  details.acc summary::after{content:"+";color:var(--signal-dim);font-size:18px;font-weight:400}
+  details.acc[open] summary::after{content:"\2212"}
+  details.acc[open] summary{border-bottom:1px solid var(--line)}
+  .acc-body{padding:12px 16px;font-size:13.8px;color:var(--muted)}
+  .acc-body code{color:var(--ink)}
+  footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px;margin-top:10px}
+  footer a{color:#cdd5d9;text-decoration:none}
+  @media(max-width:520px){.nav .r a.hide-sm{display:none}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+  <div class="r">
+    <a class="hide-sm" href="/catalogo/">Catalogue</a>
+    <a class="hide-sm" href="/soporte/">Support</a>
+    <a href="/portal/">Se connecter</a>
+  </div>
+</div></header>
+
+<main>
+  <div class="eyebrow">GUIDE DE L'AGENT</div>
+  <h1>Agent de conformité fiscale</h1>
+  <p class="sub">Organise vos documents fiscaux, prépare votre calendrier d'obligations et vous avertit avant chaque échéance de l'administration fiscale.</p>
+  <div class="hero-row">
+    <span class="price">35 $ US / mois</span>
+    <a class="cta" href="/descargar/?agent=fiscal"><i class="ti ti-download"></i> T&eacute;l&eacute;charger cet agent</a>
+  </div>
+
+  <div class="quick">
+    <h3>Que résout-il et de quoi avez-vous besoin ?</h3>
+    <p>Manquer une échéance fiscale coûte des amendes et des majorations. Cet agent transforme le dossier où vous gardez vos documents fiscaux (factures, déclarations, attestations, XML de CFDI) en tableau de bord de conformité : il vous dit ce qui arrive bientôt à échéance, ce qui pourrait manquer et quelles dépenses pourraient être déductibles — tout calculé sur votre propre appareil.</p>
+    <ul><li><b>Vous avez besoin de :</b> votre clé de licence (<font face='Courier'>TIA-XXXX-XXXX-XXXX-XXXX</font>) et du dossier contenant vos documents. Ni Python ni connaissances techniques.</li><li><b>Premier résultat en moins de 5 minutes :</b> vous installez, activez, choisissez votre dossier et lancez <font face='Courier-Bold'>calendrier</font> pour voir vos obligations de l'année.</li><li><b>Vos documents fiscaux ne quittent jamais votre ordinateur</b> — l'analyse s'exécute localement.</li></ul>
+    <div class="callout cal-amber"><b>Avertissement légal :</b> cet agent est un outil d'<b>organisation et d'alerte</b>. <b>Il ne remplace PAS un comptable certifié ni l'administration fiscale.</b> Les lois fiscales changent fréquemment ; vérifiez toujours avec un professionnel avant de déposer des déclarations ou de prendre des décisions fiscales.</div>
+    <div class="callout cal-amber"><b>Des questions&nbsp;?</b> &Eacute;crivez-nous &agrave; <code>soporte@tuialista.com</code> ou visitez <a href="/soporte/"><code>tuialista.com/soporte</code></a> — nous r&eacute;pondons g&eacute;n&eacute;ralement le jour m&ecirc;me.</div>
+  </div>
+
+  <h2 class="sec"><span class="n">1</span> Ce que fait cet agent</h2>
+<p>Vous lui indiquez le dossier contenant vos documents fiscaux et il :</p>
+<ul><li>Les <b>indexe</b> (PDF, Word, Excel, CSV, TXT, XML de CFDI, même dans des sous-dossiers) et extrait les données clés : <b>identifiant fiscal, régime, périodes, type de document, TVA, impôt sur le revenu, retenues, total et dates.</b></li><li>Prépare un <b>calendrier d'obligations</b> de l'exercice avec les échéances typiques selon le régime détecté.</li><li>Vous avertit des <b>obligations bientôt échues</b> (et de celles récemment échues).</li><li>Détecte les <b>déductions possibles</b> mentionnées dans vos documents.</li><li>Détecte les <b>documents ou mois qui pourraient manquer</b> dans votre dossier.</li><li>Génère un <b>résumé fiscal exécutif</b> de la période, avec des recommandations.</li><li>Répond à des <b>questions libres</b> sur votre situation fiscale, dans votre propre langue.</li></ul>
+<p>Résultat : vous arrivez à chaque échéance fiscale organisé et sans surprises — sans avoir à ouvrir chaque fichier un par un pour savoir où vous en êtes.</p>
+<h2 class="sec"><span class="n">2</span> Installation (2 minutes)</h2>
+<p>Pour Windows. Pas besoin d'internet permanent ni de rien envoyer sur le cloud.</p>
+<div class="stepline"><div class="num">1</div><div><b class="steptitle">Téléchargez-le et installez-le</b><p>Téléchargez l'installateur depuis <font face='Courier'>tuialista.com/descargar</font> (agent Fiscal) et ouvrez-le. Il crée un raccourci sur votre bureau avec le logo — pas besoin de Python ni de terminal.</p></div></div>
+<div class="stepline"><div class="num">2</div><div><b class="steptitle">Ouvrez-le depuis le bureau</b><p>Double-cliquez sur la nouvelle icône. Collez votre <b>clé de licence</b> (reçue par e-mail à l'achat) et cliquez sur <b>Activer</b>. Une coche verte apparaît quand elle est valide.</p></div></div>
+<div class="stepline"><div class="num">3</div><div><b class="steptitle">Choisissez votre dossier</b><p>Sélectionnez le dossier contenant vos documents fiscaux et cliquez sur <b>Commencer à utiliser l'agent</b>. La prochaine fois que vous l'ouvrirez, il démarre directement — il se souvient de votre clé et de votre dossier.</p></div></div>
+<figure class="shot"><img src="../../assets/mockups/fiscal/activacion_fr.png" alt="Voici à quoi ressemble la fenêtre d'activation (avec des données d'exemple). Elle apparaît la première fois que vous ouvrez l'agent." loading="lazy"><figcaption>Voici à quoi ressemble la fenêtre d'activation (avec des données d'exemple). Elle apparaît la première fois que vous ouvrez l'agent.</figcaption></figure>
+<h2 class="sec"><span class="n">3</span> Comment l'utiliser</h2>
+<p>L'agent ouvre une <b>fenêtre de discussion</b>, comme une app de messagerie — pas un écran noir de programmeur. Vous écrivez votre commande ou votre question dans le champ de texte en bas, cliquez sur <b>Envoyer</b> (ou Entrée), et la réponse apparaît comme un message, exactement comme sur cette image réelle :</p>
+<figure class="shot"><img src="../../assets/mockups/fiscal/chat_fr.png" alt="La vraie conversation : vous écrivez &ldquo;calendrier&rdquo; et l'agent répond avec vos obligations de l'année (données d'exemple)." loading="lazy"><figcaption>La vraie conversation : vous écrivez &ldquo;calendrier&rdquo; et l'agent répond avec vos obligations de l'année (données d'exemple).</figcaption></figure>
+<p>Les commandes suivantes sont les mots que vous pouvez écrire dans ce même champ de texte :</p>
+<div class="cmdcard"><code>&gt; calendrier</code><p>Vos obligations de l'année : acomptes provisionnels d'impôt sur le revenu, TVA mensuelle, déclaration d'opérations avec des tiers et déclaration annuelle, avec les échéances typiques selon votre régime.</p></div>
+<div class="cmdcard"><code>&gt; obligations [jours]</code><p>Ce qui arrive bientôt à échéance — par défaut les 30 prochains jours, y compris les récemment échues, classées par urgence. Ex. : <font face='Courier'>obligations 15</font>.</p></div>
+<div class="cmdcard"><code>&gt; déductions</code><p>Détecte les mentions de dépenses potentiellement déductibles (loyer, honoraires, carburant, logiciels, sécurité sociale...) et dans quels fichiers elles apparaissent.</p></div>
+<div class="cmdcard"><code>&gt; manquants</code><p>Mois de l'exercice sans justificatifs et types de documents attendus qui n'ont pas été trouvés.</p></div>
+<div class="cmdcard"><code>&gt; résumé</code><p>Résumé fiscal exécutif : situation générale, documentation disponible, obligations critiques, déductions possibles et recommandations.</p></div>
+<div class="cmdcard"><code>&gt; analyser &lt;fichier&gt;</code><p>Identifiant fiscal, type, régime, périodes, TVA, impôt sur le revenu, retenues, total et dates extraits d'un document précis. Ex. : <font face='Courier'>analyser declaration_mai.pdf</font>.</p></div>
+<div class="cmdcard"><code>&gt; question libre ?</code><p>Vous pouvez écrire toute question en langage naturel, ex. : <i>quelles obligations ai-je sous ce régime simplifié ?</i></p></div>
+<div class="cmdcard"><code>&gt; quitter</code><p>Termine la session (fonctionne aussi avec <font face='Courier'>exit</font>).</p></div>
+<p>Vous voulez voir les <b>20 recettes complètes</b> avec un exemple réel de chacune ? Consultez le <b>Catalogue de recettes</b> — un document à part vu sa longueur : <font face='Courier'>catalogo_recetas.pdf</font> à côté de ce manuel, ou la version interactive sur <font color="#c46a12"><a href="https://tuialista.com/guia/fiscal/recetas/">tuialista.com/guia/fiscal/recetas</a></font>.</p>
+<h2 class="sec"><span class="n">4</span> Exemples d'usage courant</h2>
+<h4>Préparer le mois</h4>
+<p><font face='Courier'>obligations 30</font> &nbsp;→&nbsp; <font face='Courier'>manquants</font></p>
+<h4>Vérifier les déductions avant la déclaration annuelle</h4>
+<p><font face='Courier'>déductions</font> &nbsp;→&nbsp; <font face='Courier'>résumé</font></p>
+<h4>Voir le calendrier complet de l'année</h4>
+<p><font face='Courier'>calendrier</font></p>
+<h4>Une question ponctuelle</h4>
+<p><i>quand échoit ma déclaration annuelle en tant que particulier ?</i></p>
+<h2 class="sec"><span class="n">5</span> Questions fréquentes</h2>
+<details class="acc"><summary>Mes documents fiscaux sont-ils envoyés sur internet ?</summary><div class="acc-body">Non. Ils sont indexés et analysés sur votre ordinateur (voir Confidentialité, section 7).</div></details>
+<details class="acc"><summary>Quels formats accepte-t-il ?</summary><div class="acc-body">PDF, Word (.docx), Excel (.xlsx), CSV, XML de CFDI, texte (.txt) et Markdown (.md), même dans des sous-dossiers.</div></details>
+<details class="acc"><summary>Les dates du calendrier sont-elles officielles ?</summary><div class="acc-body">Ce sont des échéances <b>typiques</b> de référence (par exemple le 17 du mois suivant pour les paiements mensuels). Elles peuvent varier selon votre situation, votre numéro fiscal, les jours ouvrables ou les prolongations. <b>Confirmez-les toujours auprès de l'administration fiscale.</b></div></details>
+<details class="acc"><summary>Est-ce que cela remplace mon comptable ?</summary><div class="acc-body">Non, absolument pas. C'est un outil d'organisation et d'alerte. Le dépôt de déclarations et les décisions fiscales doivent être validés avec un comptable certifié.</div></details>
+<details class="acc"><summary>Comment connaît-il mon régime ?</summary><div class="acc-body">Il le détecte à partir du texte de vos documents (régime simplifié, honoraires, location, activité commerciale, personne morale, salarié). S'il ne le détecte pas, il utilise une valeur par défaut — vérifiez que c'est bien le vôtre.</div></details>
+<details class="acc"><summary>Les déductions détectées sont-elles déductibles avec certitude ?</summary><div class="acc-body">Non. Il détecte des <b>mentions</b> de dépenses habituellement déductibles ; lesquelles s'appliquent réellement dépend de votre régime et de votre exercice. Confirmez-le avec votre comptable.</div></details>
+<details class="acc"><summary>Les montants de TVA/impôt extraits sont-ils exacts ?</summary><div class="acc-body">Ce sont des lectures automatiques du texte et elles peuvent contenir des erreurs. Elles sont indicatives ; vérifiez-les par rapport à vos documents originaux.</div></details>
+<details class="acc"><summary>Lit-il un PDF scanné ?</summary><div class="acc-body">Seulement s'il contient du texte sélectionnable. Un scan qui est une image pure ne se lit pas de façon fiable.</div></details>
+<details class="acc"><summary>Dans quelle langue répond-il ?</summary><div class="acc-body">Dans la langue dans laquelle vous lui écrivez. Le domaine est centré sur le système fiscal du <b>Mexique</b> (SAT, CFDI, RFC).</div></details>
+<details class="acc"><summary>Modifie-t-il mes documents ?</summary><div class="acc-body">Non. L'agent se contente de les <b>lire</b>.</div></details>
+<h2 class="sec"><span class="n">6</span> Résolution de problèmes</h2>
+<details class="acc"><summary>Un .pdf, .docx ou .xlsx ne se lit pas</summary><div class="acc-body">Vérifiez que le PDF contienne du vrai texte (pas scanné). Si le problème persiste, contactez le support.</div></details>
+<details class="acc"><summary>Affiche &ldquo;0 documents indexés&rdquo;</summary><div class="acc-body">Le dossier est vide ou le chemin est incorrect. Vérifiez que vous avez choisi le bon dossier lors de l'activation de l'agent et qu'il contient des fichiers dans un format compatible.</div></details>
+<details class="acc"><summary>Il ne détecte pas mon identifiant fiscal ou mon régime</summary><div class="acc-body">Il se peut que les documents ne l'incluent pas en texte lisible. Utilisez <font face='Courier'>analyser</font> pour voir ce qu'il a extrait d'un document précis.</div></details>
+<details class="acc"><summary>Affiche &ldquo;Licence invalide&rdquo; ou demande de se reconnecter</summary><div class="acc-body">Vérifiez que la clé collée est correcte (sans espaces en trop), assurez-vous d'avoir internet la première fois que vous activez, et si vous êtes resté plus de 3 jours sans connexion, reconnectez-vous une fois pour revalider.</div></details>
+<details class="acc"><summary>&ldquo;Aucun fournisseur d'IA configuré&rdquo;</summary><div class="acc-body"><font face='Courier'>résumé</font> et les questions libres utilisent l'IA — s'il manque la configuration du moteur, contactez le support. <font face='Courier'>calendrier</font>, <font face='Courier'>obligations</font>, <font face='Courier'>déductions</font>, <font face='Courier'>manquants</font> et <font face='Courier'>analyser</font> continuent de fonctionner localement, sans IA.</div></details>
+<p><b>Aucune de ces solutions n'a résolu votre problème ?</b> Écrivez-nous directement — nous serons ravis de l'examiner avec vous.</p>
+<div class="callout cal-amber"><b>Des questions&nbsp;?</b> &Eacute;crivez-nous &agrave; <code>soporte@tuialista.com</code> ou visitez <a href="/soporte/"><code>tuialista.com/soporte</code></a> — nous r&eacute;pondons g&eacute;n&eacute;ralement le jour m&ecirc;me.</div>
+<h2 class="sec"><span class="n">7</span> Confidentialité</h2>
+<p><b>Vos documents fiscaux ne quittent jamais votre ordinateur.</b></p>
+<ul><li>L'agent lit, indexe et extrait les données <b>localement</b>, sur votre propre appareil. Il n'envoie vos documents à aucun serveur ni à l'administration fiscale.</li><li>Le calendrier, les obligations, les déductions, les manquants et l'analyse de documents sont calculés <b>sur votre machine</b>.</li><li>La seule chose qui transite par internet est : (1) une vérification que votre licence est active — qui n'inclut pas vos documents —, et (2) lorsque vous utilisez <font face='Courier'>résumé</font> ou posez une question libre, un fragment de l'information pertinente est envoyé au moteur d'IA pour rédiger cette réponse.</li></ul>
+<div class="callout cal-steel">La confidentialité de vos informations fiscales est garantie par conception : le traitement de base des documents, du calendrier et des alertes est 100 % local. Les fonctions utilisant l'IA (résumé et questions libres) sont les seules à partager un fragment de données avec le fournisseur d'IA pour pouvoir répondre.</div>
+<div class="callout cal-amber"><b>Rappel important :</b> le calendrier utilise des échéances typiques qui peuvent ne pas correspondre à votre cas ; les montants et régimes sont extraits automatiquement et peuvent contenir des erreurs ; les déductions détectées ne sont que des possibilités. Avant de déposer toute déclaration ou de prendre une décision fiscale, confirmez avec votre comptable et l'administration fiscale. Les lois fiscales changent fréquemment et la responsabilité finale incombe au contribuable.</div>
+
+</main>
+
+<footer>&copy; 2026 TuIAlista &middot; <a href="/soporte/">Support</a> &middot; <a href="/catalogo/">Catalogue</a> &middot; <a href="/">Accueil</a></footer>
+</body>
+</html>
