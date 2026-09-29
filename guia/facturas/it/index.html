@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guida &middot; Agente Fatture e Debiti verso fornitori — TuIAlista</title>
+<meta name="description" content="Come usare l' Agente Fatture e Debiti verso fornitori di TuIAlista: installazione, comandi, esempi e domande frequenti.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{--steel-900:#0f1922;--paper:#f5f6f4;--paper-2:#eceee9;--ink:#0f1922;--muted:#5a6b73;--signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2;--ok:#1d9e75;--amber-tint:#fdf1e4;--steel-tint:#eef2f4}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper-2);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--signal-dim)}
+  header{position:sticky;top:0;background:rgba(245,246,244,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+  .nav{max-width:860px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+  .logo b{color:var(--signal)}
+  .nav .r{display:flex;align-items:center;gap:18px}
+  .nav .r a{font-size:14px;color:var(--muted);text-decoration:none}
+  .nav .r a:hover{color:var(--ink)}
+  main{max-width:860px;margin:0 auto;padding:38px 24px 80px}
+  .eyebrow{font-family:'JetBrains Mono';font-size:11.5px;letter-spacing:.1em;color:var(--signal-dim);margin-bottom:8px}
+  h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,34px);line-height:1.12;margin-bottom:10px}
+  .sub{color:var(--muted);font-size:15.5px;max-width:640px;margin-bottom:18px}
+  .hero-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+  .price{font-family:'Space Grotesk';font-weight:600;font-size:14px;color:var(--signal-dim);background:var(--amber-tint);border:1px solid var(--signal);border-radius:999px;padding:7px 16px}
+  .cta{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:9px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;text-decoration:none;transition:.15s}
+  .cta:hover{background:var(--signal);color:#1a1206}
+  h2.sec{font-family:'Space Grotesk';font-size:18px;font-weight:600;margin:38px 0 14px;padding:10px 16px;background:var(--steel-900);color:#fff;border-radius:10px;display:flex;align-items:center;gap:10px}
+  h2.sec .n{color:var(--signal)}
+  h4{font-family:'Space Grotesk';font-size:14.5px;font-weight:600;margin:16px 0 4px;color:var(--signal-dim)}
+  p{margin:0 0 12px;font-size:14.5px}
+  ul{margin:0 0 12px 20px;font-size:14.5px}
+  li{margin-bottom:6px}
+  code{font-family:'JetBrains Mono',monospace;font-size:.92em;background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  .callout{border-radius:10px;padding:14px 16px;margin:10px 0 16px;font-size:14px;border-left:3px solid}
+  .cal-amber{background:var(--amber-tint);border-color:var(--signal)}
+  .cal-steel{background:var(--steel-tint);border-color:#2c4a5c}
+  .quick{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:22px}
+  .quick h3{font-family:'Space Grotesk';font-size:16px;margin-bottom:8px}
+  .stepline{display:flex;gap:12px;margin-bottom:16px}
+  .stepline .num{flex:none;width:28px;height:28px;border-radius:8px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center}
+  .stepline .steptitle{font-family:'Space Grotesk';font-weight:600;font-size:14.5px;display:block;margin-bottom:2px}
+  .stepline p{font-size:13.5px;color:var(--muted);margin:0}
+  .cmdcard{background:var(--paper-2);border-left:3px solid #2c4a5c;border-radius:8px;padding:12px 16px;margin-bottom:10px}
+  .cmdcard code{background:transparent;border:none;padding:0;font-weight:600;display:block;margin-bottom:4px}
+  .cmdcard p{margin:0;font-size:13.5px;color:var(--muted)}
+  .shot{margin:14px 0 20px;text-align:center}
+  .shot img{max-width:100%;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(15,25,34,.06)}
+  .shot figcaption{font-size:12.5px;color:var(--muted);font-style:italic;margin-top:8px}
+  details.acc{background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;overflow:hidden}
+  details.acc summary{cursor:pointer;list-style:none;padding:13px 16px;font-weight:600;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+  details.acc summary::-webkit-details-marker{display:none}
+  details.acc summary::after{content:"+";color:var(--signal-dim);font-size:18px;font-weight:400}
+  details.acc[open] summary::after{content:"\2212"}
+  details.acc[open] summary{border-bottom:1px solid var(--line)}
+  .acc-body{padding:12px 16px;font-size:13.8px;color:var(--muted)}
+  .acc-body code{color:var(--ink)}
+  footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px;margin-top:10px}
+  footer a{color:#cdd5d9;text-decoration:none}
+  @media(max-width:520px){.nav .r a.hide-sm{display:none}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+  <div class="r">
+    <a class="hide-sm" href="/catalogo/">Catalogo</a>
+    <a class="hide-sm" href="/soporte/">Assistenza</a>
+    <a href="/portal/">Accedi</a>
+  </div>
+</div></header>
+
+<main>
+  <div class="eyebrow">GUIDA DELL'AGENTE</div>
+  <h1>Agente Fatture e Debiti verso fornitori</h1>
+  <p class="sub">Digli cosa ti serve con parole tue e ti prepara l'Excel delle fatture, il riepilogo delle imposte e i debiti verso fornitori — senza inserire nulla a mano.</p>
+  <div class="hero-row">
+    <span class="price">49 USD / mese</span>
+    <a class="cta" href="/descargar/?agent=facturas"><i class="ti ti-download"></i> Scarica questo agente</a>
+  </div>
+
+  <div class="quick">
+    <h3>Cosa risolve e cosa ti serve?</h3>
+    <p>Inserire le fatture a mano in Excel richiede ore ed è facile pagare due volte la stessa o perdere una scadenza. Questo agente legge i tuoi XML CFDI e PDF delle fatture, e ti prepara l'Excel di inserimento, il riepilogo delle imposte e i debiti verso fornitori — gli scrivi ciò che ti serve come scriveresti a una persona, non comandi esatti.</p>
+    <ul><li><b>Ti serve:</b> la tua chiave di licenza (<font face='Courier'>TIA-XXXX-XXXX-XXXX-XXXX</font>) e la cartella con le tue fatture (XML CFDI e/o PDF). Niente Python né conoscenze tecniche.</li><li><b>Primo risultato in meno di 5 minuti:</b> installi, attivi, scegli la tua cartella e scrivi <font face='Courier-Bold'>esporta</font> perché ti prepari l'Excel completo.</li><li><b>Le tue fatture non lasciano mai il tuo computer</b> — l'analisi gira in locale.</li></ul>
+    <div class="callout cal-amber"><b>Avviso:</b> questo agente è uno strumento di supporto. I dati vengono estratti automaticamente dall'XML/PDF e possono contenere errori in casi atipici. <b>Verifica sempre i dati prima di eseguire un pagamento reale.</b></div>
+    <div class="callout cal-amber"><b>Domande?</b> Scrivici a <code>soporte@tuialista.com</code> o visita <a href="/soporte/"><code>tuialista.com/soporte</code></a> — di solito rispondiamo lo stesso giorno lavorativo.</div>
+  </div>
+
+  <h2 class="sec"><span class="n">1</span> Cosa fa questo agente</h2>
+<p>Gli indichi la cartella con le tue fatture (XML CFDI del SAT e/o PDF) e lui:</p>
+<ul><li><b>Inserisce ogni fattura in un Excel ordinato</b> — ciò che normalmente si fa a mano in ore: numero, fornitore, partita IVA, date, subtotale, IVA, ritenuta, totale e valuta.</li><li><b>Riepiloga le imposte del periodo</b>, sommando quanto dichiara ogni fattura per valuta (base, imposta, ritenuta, totale).</li><li>Prepara i tuoi <b>debiti verso fornitori</b> con avvisi su cosa è scaduto e cosa scade presto.</li><li><b>Rileva fatture duplicate.</b></li><li>Risponde a <b>qualsiasi domanda o richiesta</b> sul tuo portafoglio fatture con parole tue — nessun comando da memorizzare.</li></ul>
+<p>Il lavoro di inserimento e calcolo segue <b>regole fisse già collaudate, sul tuo computer</b> (non usa IA, non sbaglia per invenzione): legge l'XML CFDI in modo esatto e ogni fattura PDF tramite lettura del testo. Risultato: paghi in tempo, senza duplicati, con il tuo Excel delle fatture pronto senza inserirlo tu.</p>
+<h2 class="sec"><span class="n">2</span> Installazione (2 minuti)</h2>
+<p>Per Windows. Non serve internet permanente né caricare nulla sul cloud.</p>
+<div class="stepline"><div class="num">1</div><div><b class="steptitle">Scaricalo e installalo</b><p>Scarica l'installer da <font face='Courier'>tuialista.com/descargar</font> (agente Fatture) e aprilo. Crea un collegamento sul desktop con il logo — non richiede Python né terminale.</p></div></div>
+<div class="stepline"><div class="num">2</div><div><b class="steptitle">Aprilo dal desktop</b><p>Doppio clic sulla nuova icona. Incolla la tua <b>chiave di licenza</b> (ricevuta via email all'acquisto) e premi <b>Attiva</b>. Vedrai un segno di spunta verde quando è valida.</p></div></div>
+<div class="stepline"><div class="num">3</div><div><b class="steptitle">Scegli la tua cartella</b><p>Seleziona la cartella con le tue fatture e premi <b>Inizia a usare l'agente</b>. La prossima volta si avvia direttamente — ricorda la tua chiave e la tua cartella.</p></div></div>
+<figure class="shot"><img src="../../assets/mockups/facturas/activacion_it.png" alt="Ecco come appare la finestra di attivazione (con dati di esempio). Compare la prima volta che apri l'agente." loading="lazy"><figcaption>Ecco come appare la finestra di attivazione (con dati di esempio). Compare la prima volta che apri l'agente.</figcaption></figure>
+<h2 class="sec"><span class="n">3</span> Come usarlo</h2>
+<p>L'agente apre una <b>finestra di chat</b>, come un'app di messaggistica — non è uno schermo nero da programmatore. <b>Nessun comando esatto da memorizzare:</b> gli scrivi ciò che ti serve quasi come lo chiederesti a una persona, premi <b>Invia</b> (o Invio), e lui fa il lavoro. Queste sono le 4 cose principali che sa fare, con esempi di come chiederle:</p>
+<figure class="shot"><img src="../../assets/mockups/facturas/chat_it.png" alt="La conversazione reale: chiedi &ldquo;da pagare&rdquo; e l'agente risponde con i tuoi debiti ordinati per urgenza (dati di esempio)." loading="lazy"><figcaption>La conversazione reale: chiedi &ldquo;da pagare&rdquo; e l'agente risponde con i tuoi debiti ordinati per urgenza (dati di esempio).</figcaption></figure>
+<div class="cmdcard"><code>&gt; esporta &nbsp;/&nbsp; genera l'Excel &nbsp;/&nbsp; inseriscile</code><p>Ti prepara un Excel con <b>tutto</b>: inserimento di ogni fattura, riepilogo delle imposte e debiti verso fornitori, pronto da aprire.</p></div>
+<div class="cmdcard"><code>&gt; imposte &nbsp;/&nbsp; quanto di IVA</code><p>Riepilogo delle imposte del periodo: base, imposta, ritenuta e totale, sommato per valuta.</p></div>
+<div class="cmdcard"><code>&gt; da pagare &nbsp;/&nbsp; cosa scade &nbsp;/&nbsp; quanto devo</code><p>I tuoi debiti verso fornitori, il più urgente prima: scaduti, in scadenza presto e correnti, con fornitore e importo.</p></div>
+<div class="cmdcard"><code>&gt; duplicati &nbsp;/&nbsp; fatture ripetute</code><p>Rileva fatture che sembrano caricate due volte (stesso numero/UUID, o stesso fornitore e totale).</p></div>
+<div class="cmdcard"><code>&gt; qualsiasi altra domanda</code><p>Es.: <i>&ldquo;quanto devo ad ACME&rdquo;</i>, <i>&ldquo;totale per fornitore&rdquo;</i>, <i>&ldquo;confronta questo mese con il precedente&rdquo;</i> — l'agente capisce la richiesta e prepara la risposta o il report.</p></div>
+<div class="callout cal-steel">Non serve azzeccare una parola esatta: &ldquo;fattura da pagare&rdquo;, &ldquo;cosa scade questa settimana&rdquo; o &ldquo;debiti verso fornitori&rdquo; attivano lo stesso. Se la tua frase non corrisponde a nessuna delle 4 azioni principali, l'agente la interpreta con IA e comunque cerca di aiutarti.</div>
+<p>Vuoi vedere le <b>20 ricette complete</b> con un esempio reale per ciascuna? Consulta il <b>Catalogo delle ricette</b> — un documento separato data la sua lunghezza: <font face='Courier'>catalogo_recetas.pdf</font> insieme a questo manuale, o la versione interattiva su <font color="#c46a12"><a href="https://tuialista.com/guia/facturas/recetas/">tuialista.com/guia/facturas/recetas</a></font>.</p>
+<h2 class="sec"><span class="n">4</span> Esempi di uso comune</h2>
+<h4>Preparare l'Excel completo del mese</h4>
+<p><i>&ldquo;esporta&rdquo;</i> — ottieni un Excel con inserimento, imposte e debiti verso fornitori, pronto da rivedere o inviare al tuo commercialista.</p>
+<h4>Revisione settimanale dei pagamenti</h4>
+<p><i>&ldquo;da pagare&rdquo;</i> &nbsp;→&nbsp; <i>&ldquo;duplicati&rdquo;</i></p>
+<h4>Chiusura mensile delle imposte</h4>
+<p><i>&ldquo;imposte del periodo&rdquo;</i></p>
+<h4>Una richiesta puntuale</h4>
+<p><i>&ldquo;quanto devo ad ACME questo mese?&rdquo;</i></p>
+<h2 class="sec"><span class="n">5</span> Domande frequenti</h2>
+<details class="acc"><summary>Le mie fatture vengono caricate su internet?</summary><div class="acc-body">No. Vengono lette ed elaborate sul tuo computer (vedi Privacy, sezione 7).</div></details>
+<details class="acc"><summary>Quali formati accetta?</summary><div class="acc-body">XML CFDI (SAT, Messico) e PDF delle fatture, oltre a .txt. L'XML viene letto in modo esatto (non è una supposizione del testo); il PDF viene letto in base al contenuto. Non legge Word, Excel né CSV come file di input — l'output invece è un Excel.</div></details>
+<details class="acc"><summary>Devo scrivere il comando esatto?</summary><div class="acc-body">No. L'agente riconosce l'intento tramite parole chiave (ad esempio &ldquo;esporta&rdquo;, &ldquo;export&rdquo;, &ldquo;excel&rdquo;, &ldquo;inserisci&rdquo; e &ldquo;genera&rdquo; attivano lo stesso). Puoi scriverlo come ti viene.</div></details>
+<details class="acc"><summary>Rileva i duplicati in modo sicuro?</summary><div class="acc-body">Segnala <b>possibili</b> duplicati (stesso UUID/numero, o stesso fornitore e totale). Confermali manualmente prima di rifiutare o annullare un pagamento.</div></details>
+<details class="acc"><summary>Esegue pagamenti?</summary><div class="acc-body">No. L'agente <b>organizza, inserisce e avvisa</b>; non effettua né programma pagamenti. Li esegui tu nella tua banca o sistema.</div></details>
+<details class="acc"><summary>In quale lingua risponde?</summary><div class="acc-body">Nella lingua in cui gli scrivi.</div></details>
+<details class="acc"><summary>Legge un PDF scansionato?</summary><div class="acc-body">Solo se contiene testo selezionabile. Una scansione che è pura immagine non viene letta in modo affidabile — per questi casi, l'XML CFDI è la fonte più sicura.</div></details>
+<details class="acc"><summary>Modifica le mie fatture originali?</summary><div class="acc-body">No. L'agente si limita a <b>leggerle</b>; l'Excel che genera è un file nuovo, separato dalle tue fatture.</div></details>
+<details class="acc"><summary>Posso cambiare la cartella?</summary><div class="acc-body">Sì. Riapri l'agente e premi &ldquo;Scegli&hellip;&rdquo; per cambiarla (se non te lo chiede, elimina <font face='Courier'>config.json</font> dentro <font face='Courier'>%USERPROFILE%\.tuialista</font> perché te lo richieda di nuovo).</div></details>
+<details class="acc"><summary>Cos'è la &ldquo;modalità sicura&rdquo;?</summary><div class="acc-body">Di default l'agente usa solo attività già collaudate (esportare, imposte, da pagare, duplicati, e alcuni report automatici) — mai IA che scriva codice sui tuoi dati. Se scrivi &ldquo;modalità esperto&rdquo;, tenta anche richieste nuove con IA (isolata, non può toccare i tuoi file). Torni con &ldquo;modalità sicura&rdquo;.</div></details>
+<h2 class="sec"><span class="n">6</span> Risoluzione dei problemi</h2>
+<details class="acc"><summary>Non legge un file</summary><div class="acc-body">Verifica che sia .xml (CFDI), .pdf o .txt — altri formati non vengono letti come input. Se è PDF, verifica che abbia testo reale (non scansionato).</div></details>
+<details class="acc"><summary>Indica che non ha trovato fatture</summary><div class="acc-body">La cartella è vuota o il percorso è errato per questo tipo di file. Verifica di aver scelto la cartella corretta durante l'attivazione dell'agente, oppure usa &ldquo;Cartelle&hellip;&rdquo; per indicare dove si trovano.</div></details>
+<details class="acc"><summary>Non rileva bene un dato di una fattura</summary><div class="acc-body">Il PDF potrebbe avere un formato poco comune. L'XML CFDI è più affidabile del PDF perché viene letto in modo esatto, non tramite testo.</div></details>
+<details class="acc"><summary>Mostra &ldquo;Licenza non valida&rdquo; o chiede di riconnettersi</summary><div class="acc-body">Verifica che la chiave incollata sia corretta (senza spazi in più), conferma di avere internet la prima volta che attivi, e se sei stato più di 3 giorni senza connessione, riconnettiti una volta per rivalidare.</div></details>
+<details class="acc"><summary>L'IA non risponde a una domanda libera</summary><div class="acc-body">&ldquo;esporta&rdquo;, &ldquo;imposte&rdquo;, &ldquo;da pagare&rdquo; e &ldquo;duplicati&rdquo; funzionano sempre, senza connessione a un motore IA. Solo le domande al di fuori di queste 4 azioni dipendono dall'IA — se fallisce, riprova tra poco o contatta l'assistenza.</div></details>
+<p><b>Nessuna di queste soluzioni ha risolto il tuo problema?</b> Scrivici direttamente — saremo felici di rivederlo con te.</p>
+<div class="callout cal-amber"><b>Domande?</b> Scrivici a <code>soporte@tuialista.com</code> o visita <a href="/soporte/"><code>tuialista.com/soporte</code></a> — di solito rispondiamo lo stesso giorno lavorativo.</div>
+<h2 class="sec"><span class="n">7</span> Privacy e riservatezza</h2>
+<p><b>Le tue fatture non lasciano mai il tuo computer.</b></p>
+<ul><li>L'agente legge ed elabora le fatture <b>in locale</b>, sul tuo stesso dispositivo. Non le carica su nessun server.</li><li>L'inserimento in Excel, il riepilogo delle imposte, i debiti verso fornitori e i duplicati vengono calcolati <b>sul tuo dispositivo</b>, con regole fisse già collaudate (senza IA).</li><li>L'unica cosa che viaggia su internet è: (1) una verifica che la tua licenza sia attiva — che non include le tue fatture —, e (2) se gli chiedi qualcosa che non è una delle 4 azioni principali (una domanda libera), viene inviato un frammento delle informazioni rilevanti al motore IA per poter rispondere.</li></ul>
+<div class="callout cal-steel">La riservatezza delle tue informazioni finanziarie è garantita per progettazione: esportare, imposte, debiti verso fornitori e duplicati sono al 100% locali, con regole fisse già collaudate — non usano IA. Solo le domande libere al di fuori di queste 4 azioni condividono un frammento di dati con il fornitore di IA per poter rispondere.</div>
+<div class="callout cal-amber"><b>Promemoria importante:</b> verifica i dati estratti prima di eseguire un pagamento reale. L'XML CFDI viene letto in modo esatto, ma il PDF viene letto tramite testo e in fatture con formato insolito può confondere un dato. Il rilevamento dei duplicati è un avviso, non una certezza. Prima di pagare, annullare o rifiutare una fattura, conferma i dati con il documento originale. L'agente organizza e avvisa; la decisione di pagamento è tua.</div>
+
+</main>
+
+<footer>&copy; 2026 TuIAlista &middot; <a href="/soporte/">Assistenza</a> &middot; <a href="/catalogo/">Catalogo</a> &middot; <a href="/">Home</a></footer>
+</body>
+</html>
