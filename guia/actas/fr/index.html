@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guide &middot; Agent Comptes-rendus et réunions — TuIAlista</title>
+<meta name="description" content="Comment utiliser l' Agent Comptes-rendus et réunions de TuIAlista&nbsp;: installation, commandes, exemples et questions fr&eacute;quentes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{--steel-900:#0f1922;--paper:#f5f6f4;--paper-2:#eceee9;--ink:#0f1922;--muted:#5a6b73;--signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2;--ok:#1d9e75;--amber-tint:#fdf1e4;--steel-tint:#eef2f4}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper-2);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--signal-dim)}
+  header{position:sticky;top:0;background:rgba(245,246,244,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+  .nav{max-width:860px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+  .logo b{color:var(--signal)}
+  .nav .r{display:flex;align-items:center;gap:18px}
+  .nav .r a{font-size:14px;color:var(--muted);text-decoration:none}
+  .nav .r a:hover{color:var(--ink)}
+  main{max-width:860px;margin:0 auto;padding:38px 24px 80px}
+  .eyebrow{font-family:'JetBrains Mono';font-size:11.5px;letter-spacing:.1em;color:var(--signal-dim);margin-bottom:8px}
+  h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,34px);line-height:1.12;margin-bottom:10px}
+  .sub{color:var(--muted);font-size:15.5px;max-width:640px;margin-bottom:18px}
+  .hero-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+  .price{font-family:'Space Grotesk';font-weight:600;font-size:14px;color:var(--signal-dim);background:var(--amber-tint);border:1px solid var(--signal);border-radius:999px;padding:7px 16px}
+  .cta{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:9px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;text-decoration:none;transition:.15s}
+  .cta:hover{background:var(--signal);color:#1a1206}
+  h2.sec{font-family:'Space Grotesk';font-size:18px;font-weight:600;margin:38px 0 14px;padding:10px 16px;background:var(--steel-900);color:#fff;border-radius:10px;display:flex;align-items:center;gap:10px}
+  h2.sec .n{color:var(--signal)}
+  h4{font-family:'Space Grotesk';font-size:14.5px;font-weight:600;margin:16px 0 4px;color:var(--signal-dim)}
+  p{margin:0 0 12px;font-size:14.5px}
+  ul{margin:0 0 12px 20px;font-size:14.5px}
+  li{margin-bottom:6px}
+  code{font-family:'JetBrains Mono',monospace;font-size:.92em;background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  .callout{border-radius:10px;padding:14px 16px;margin:10px 0 16px;font-size:14px;border-left:3px solid}
+  .cal-amber{background:var(--amber-tint);border-color:var(--signal)}
+  .cal-steel{background:var(--steel-tint);border-color:#2c4a5c}
+  .quick{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:22px}
+  .quick h3{font-family:'Space Grotesk';font-size:16px;margin-bottom:8px}
+  .stepline{display:flex;gap:12px;margin-bottom:16px}
+  .stepline .num{flex:none;width:28px;height:28px;border-radius:8px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center}
+  .stepline .steptitle{font-family:'Space Grotesk';font-weight:600;font-size:14.5px;display:block;margin-bottom:2px}
+  .stepline p{font-size:13.5px;color:var(--muted);margin:0}
+  .cmdcard{background:var(--paper-2);border-left:3px solid #2c4a5c;border-radius:8px;padding:12px 16px;margin-bottom:10px}
+  .cmdcard code{background:transparent;border:none;padding:0;font-weight:600;display:block;margin-bottom:4px}
+  .cmdcard p{margin:0;font-size:13.5px;color:var(--muted)}
+  .shot{margin:14px 0 20px;text-align:center}
+  .shot img{max-width:100%;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(15,25,34,.06)}
+  .shot figcaption{font-size:12.5px;color:var(--muted);font-style:italic;margin-top:8px}
+  details.acc{background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;overflow:hidden}
+  details.acc summary{cursor:pointer;list-style:none;padding:13px 16px;font-weight:600;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+  details.acc summary::-webkit-details-marker{display:none}
+  details.acc summary::after{content:"+";color:var(--signal-dim);font-size:18px;font-weight:400}
+  details.acc[open] summary::after{content:"\2212"}
+  details.acc[open] summary{border-bottom:1px solid var(--line)}
+  .acc-body{padding:12px 16px;font-size:13.8px;color:var(--muted)}
+  .acc-body code{color:var(--ink)}
+  footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px;margin-top:10px}
+  footer a{color:#cdd5d9;text-decoration:none}
+  @media(max-width:520px){.nav .r a.hide-sm{display:none}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+  <div class="r">
+    <a class="hide-sm" href="/catalogo/">Catalogue</a>
+    <a class="hide-sm" href="/soporte/">Support</a>
+    <a href="/portal/">Se connecter</a>
+  </div>
+</div></header>
+
+<main>
+  <div class="eyebrow">GUIDE DE L'AGENT</div>
+  <h1>Agent Comptes-rendus et réunions</h1>
+  <p class="sub">Transforme vos notes de réunion en comptes-rendus clairs et extrait automatiquement les décisions et les tâches.</p>
+  <div class="hero-row">
+    <span class="price">19 $ US / mois</span>
+    <a class="cta" href="/descargar/?agent=actas"><i class="ti ti-download"></i> T&eacute;l&eacute;charger cet agent</a>
+  </div>
+
+  <div class="quick">
+    <h3>Que résout-il et de quoi avez-vous besoin ?</h3>
+    <p>Dans presque toutes les réunions, des choses se décident et des tâches se répartissent, mais ensuite personne n'écrit de compte-rendu ordonné et les décisions se perdent. Cet agent lit vos notes ou transcriptions et prépare le compte-rendu, extrait les tâches avec responsable et date, et détecte quelles tâches de réunions passées pourraient être en train de tomber dans l'oubli.</p>
+    <ul><li><b>Vous avez besoin de :</b> votre clé de licence (<font face='Courier'>TIA-XXXX-XXXX-XXXX-XXXX</font>) et du dossier contenant vos notes de réunion. Ni Python ni connaissances techniques.</li><li><b>Premier résultat en moins de 5 minutes :</b> vous installez, activez, choisissez votre dossier et lancez <font face='Courier-Bold'>compte-rendu &lt;fichier&gt;</font> pour votre premier compte-rendu prêt.</li><li><b>Vos notes ne quittent jamais votre ordinateur</b> — la lecture s'exécute localement.</li></ul>
+    <div class="callout cal-amber"><b>Avertissement :</b> cet agent est un outil d'aide, <b>pas le procès-verbal officiel</b>. Ses comptes-rendus sont générés par IA et peuvent contenir des imprécisions — vérifiez les décisions, responsables et dates critiques avant de les partager comme procès-verbal formel.</div>
+    <div class="callout cal-amber"><b>Des questions&nbsp;?</b> &Eacute;crivez-nous &agrave; <code>soporte@tuialista.com</code> ou visitez <a href="/soporte/"><code>tuialista.com/soporte</code></a> — nous r&eacute;pondons g&eacute;n&eacute;ralement le jour m&ecirc;me.</div>
+  </div>
+
+  <h2 class="sec"><span class="n">1</span> Ce que fait cet agent</h2>
+<p>Vous lui indiquez le dossier contenant vos notes ou transcriptions de réunion et il :</p>
+<ul><li>Les <b>lit toutes</b> (texte, Markdown, Word et PDF), sans que vous ayez à les ouvrir.</li><li>Génère un <b>compte-rendu structuré</b> : titre, date, participants, sujets, décisions et tâches.</li><li>Extrait les <b>tâches et engagements</b> avec leur <b>responsable</b> et leur <b>date limite</b> lorsqu'ils apparaissent.</li><li>Sépare clairement les <b>décisions déjà prises</b> des <b>tâches futures</b>.</li><li>Consolide les <b>tâches de toutes les réunions</b> et détecte le <b>suivi</b> : tâches passées qui pourraient rester ouvertes.</li><li>Répond à vos <b>questions</b> sur ce qui a été dit : <i>&ldquo;qu'a-t-on décidé sur le budget ?&rdquo;</i></li></ul>
+<p>Résultat : vous sortez de chaque réunion avec un compte-rendu prêt et une liste de tâches claire, sans y consacrer de temps à l'écrire.</p>
+<h2 class="sec"><span class="n">2</span> Installation (2 minutes)</h2>
+<p>Pour Windows. Pas besoin d'internet permanent ni de rien envoyer sur le cloud.</p>
+<div class="stepline"><div class="num">1</div><div><b class="steptitle">Téléchargez-le et installez-le</b><p>Téléchargez l'installateur depuis <font face='Courier'>tuialista.com/descargar</font> (agent Comptes-rendus) et ouvrez-le. Il crée un raccourci sur votre bureau avec le logo — pas besoin de Python ni de terminal.</p></div></div>
+<div class="stepline"><div class="num">2</div><div><b class="steptitle">Ouvrez-le depuis le bureau</b><p>Double-cliquez sur la nouvelle icône. Collez votre <b>clé de licence</b> (reçue par e-mail à l'achat) et cliquez sur <b>Activer</b>. Une coche verte apparaît quand elle est valide.</p></div></div>
+<div class="stepline"><div class="num">3</div><div><b class="steptitle">Choisissez votre dossier</b><p>Sélectionnez le dossier contenant vos notes de réunion et cliquez sur <b>Commencer à utiliser l'agent</b>. La prochaine fois, il démarre directement — il se souvient de votre clé et de votre dossier.</p></div></div>
+<figure class="shot"><img src="../../assets/mockups/actas/activacion_fr.png" alt="Voici à quoi ressemble la fenêtre d'activation (avec des données d'exemple). Elle apparaît la première fois que vous ouvrez l'agent." loading="lazy"><figcaption>Voici à quoi ressemble la fenêtre d'activation (avec des données d'exemple). Elle apparaît la première fois que vous ouvrez l'agent.</figcaption></figure>
+<h2 class="sec"><span class="n">3</span> Comment l'utiliser</h2>
+<p>L'agent ouvre une <b>fenêtre de discussion</b>, comme une app de messagerie — pas un écran noir de programmeur. Vous écrivez votre commande ou votre question dans le champ de texte en bas, cliquez sur <b>Envoyer</b> (ou Entrée), et la réponse apparaît comme un message, exactement comme sur cette image réelle :</p>
+<figure class="shot"><img src="../../assets/mockups/actas/chat_fr.png" alt="La vraie conversation : vous écrivez &ldquo;tâches&rdquo; et l'agent répond avec les tâches de toutes vos réunions (données d'exemple)." loading="lazy"><figcaption>La vraie conversation : vous écrivez &ldquo;tâches&rdquo; et l'agent répond avec les tâches de toutes vos réunions (données d'exemple).</figcaption></figure>
+<p>Les commandes suivantes sont les mots que vous pouvez écrire dans ce même champ de texte :</p>
+<div class="cmdcard"><code>&gt; compte-rendu &lt;fichier&gt;</code><p>Compte-rendu structuré de cette réunion : titre, date, participants, sujets traités, décisions, tâches (avec responsable et date limite) et prochaines étapes.</p></div>
+<div class="cmdcard"><code>&gt; tâches</code><p>Consolide les tâches de <b>toutes</b> les réunions indexées, classées par date limite.</p></div>
+<div class="cmdcard"><code>&gt; décisions &lt;fichier&gt;</code><p>Seulement les décisions/accords concrets d'une réunion, sans les tâches futures.</p></div>
+<div class="cmdcard"><code>&gt; suivi</code><p>Tâches de réunions <b>passées</b> qui pourraient rester ouvertes (sans date ou avec une date échue), pour que rien ne tombe dans l'oubli.</p></div>
+<div class="cmdcard"><code>&gt; résumé &lt;fichier&gt;</code><p>Résumé exécutif court (max. ~150 mots) pour qui n'a pas assisté : ce qui a été discuté, ce qui a été décidé et les prochaines actions.</p></div>
+<div class="cmdcard"><code>&gt; question libre ?</code><p>Écrivez votre question et l'agent cherche dans l'historique des réunions, ex. : <i>qu'a-t-on décidé sur le lancement de juillet ?</i></p></div>
+<div class="cmdcard"><code>&gt; quitter</code><p>Termine la session (fonctionne aussi avec <font face='Courier'>exit</font>).</p></div>
+<div class="callout cal-steel">L'agent indexe le dossier au démarrage. Si vous ajoutez de nouvelles notes, fermez-le et relancez-le pour qu'il les lise.</div>
+<h2 class="sec"><span class="n">4</span> Exemples d'usage courant</h2>
+<h4>Compte-rendu prêt à la fin de la réunion</h4>
+<p>Vous enregistrez vos notes brutes et <font face='Courier'>compte-rendu reunion-du-jour.txt</font> — vous obtenez le compte-rendu structuré à partager avec l'équipe.</p>
+<h4>Revoir les tâches avant la prochaine réunion</h4>
+<p><font face='Courier'>tâches</font> — vous arrivez avec la liste consolidée des engagements et responsables.</p>
+<h4>Récupérer des tâches en train de se perdre</h4>
+<p><font face='Courier'>suivi</font> — détecte ce qui reste de réunions précédentes et est encore ouvert.</p>
+<h4>Mettre à jour quelqu'un qui était absent</h4>
+<p><font face='Courier'>résumé reunion-strategie.docx</font></p>
+<h2 class="sec"><span class="n">5</span> Questions fréquentes</h2>
+<details class="acc"><summary>Mes notes sont-elles envoyées sur internet ?</summary><div class="acc-body">Non. Tout est traité sur votre ordinateur (voir Confidentialité, section 7).</div></details>
+<details class="acc"><summary>Ai-je besoin d'internet pour l'utiliser ?</summary><div class="acc-body">Seulement pour valider votre licence (jusqu'à 3 jours sans connexion) et pour générer des comptes-rendus/résumés avec l'IA. La lecture de vos notes se fait sur votre appareil.</div></details>
+<details class="acc"><summary>Quels formats accepte-t-il ?</summary><div class="acc-body">Texte (.txt), Markdown (.md), Word (.docx) et PDF (.pdf), même dans des sous-dossiers.</div></details>
+<details class="acc"><summary>Comment détecte-t-il les tâches et les responsables ?</summary><div class="acc-body">Il combine une détection locale par phrases typiques (&ldquo;reste à&rdquo;, &ldquo;s'engage à&rdquo;, &ldquo;en attente&rdquo;, &ldquo;@nom&rdquo;, &ldquo;responsable :&rdquo;) avec un raffinement par l'IA.</div></details>
+<details class="acc"><summary>Comment connaît-il la date de la réunion ?</summary><div class="acc-body">Il la cherche dans les premières lignes du document. S'il ne la trouve pas, le compte-rendu dira &ldquo;Non spécifiée&rdquo;.</div></details>
+<details class="acc"><summary>Dans quelle langue répond-il ?</summary><div class="acc-body">Dans la langue dans laquelle vous lui écrivez. La détection locale de tâches est optimisée pour le français et l'espagnol.</div></details>
+<details class="acc"><summary>Lit-il un PDF scanné ?</summary><div class="acc-body">Pas de façon fiable : si c'est une image sans texte sélectionnable, il ne pourra pas la lire.</div></details>
+<details class="acc"><summary>Puis-je changer le dossier de réunions ?</summary><div class="acc-body">Oui. Rouvrez l'agent et cliquez sur &ldquo;Choisir&hellip;&rdquo; pour le changer (s'il ne vous le demande pas, supprimez <font face='Courier'>config.json</font> dans <font face='Courier'>%USERPROFILE%\.tuialista</font>).</div></details>
+<details class="acc"><summary>Les comptes-rendus sont-ils 100 % exacts ?</summary><div class="acc-body">Ce sont d'excellents brouillons, mais vérifiez les décisions et dates critiques par rapport à vos notes originales avant de les considérer comme définitifs.</div></details>
+<details class="acc"><summary>Conserve-t-il un historique entre les sessions ?</summary><div class="acc-body">Il garde le contexte tant que l'agent est ouvert ; en le fermant, cette mémoire se perd (les fichiers sont réindexés au redémarrage).</div></details>
+<h2 class="sec"><span class="n">6</span> Résolution de problèmes</h2>
+<details class="acc"><summary>Un .docx ou .pdf ne se lit pas</summary><div class="acc-body">Vérifiez que le PDF contienne du vrai texte (pas scanné). Si le problème persiste, contactez le support.</div></details>
+<details class="acc"><summary>Affiche &ldquo;0 réunions indexées&rdquo;</summary><div class="acc-body">Le dossier est vide ou le chemin est incorrect. Vérifiez que vous avez choisi le bon dossier lors de l'activation de l'agent.</div></details>
+<details class="acc"><summary>Affiche &ldquo;Licence invalide&rdquo; ou demande de se reconnecter</summary><div class="acc-body">Vérifiez que la clé collée est correcte (sans espaces en trop), assurez-vous d'avoir internet la première fois que vous activez, et si vous êtes resté plus de 3 jours sans connexion, reconnectez-vous une fois pour revalider.</div></details>
+<details class="acc"><summary>&ldquo;Aucun fournisseur d'IA configuré&rdquo;</summary><div class="acc-body">Les comptes-rendus, résumés et questions utilisent l'IA — s'il manque la configuration du moteur, contactez le support. <font face='Courier'>tâches</font> peut continuer à fonctionner localement (détection par motifs).</div></details>
+<p><b>Aucune de ces solutions n'a résolu votre problème ?</b> Écrivez-nous directement — nous serons ravis de l'examiner avec vous.</p>
+<div class="callout cal-amber"><b>Des questions&nbsp;?</b> &Eacute;crivez-nous &agrave; <code>soporte@tuialista.com</code> ou visitez <a href="/soporte/"><code>tuialista.com/soporte</code></a> — nous r&eacute;pondons g&eacute;n&eacute;ralement le jour m&ecirc;me.</div>
+<h2 class="sec"><span class="n">7</span> Confidentialité</h2>
+<p><b>Vos notes de réunion ne quittent jamais votre ordinateur.</b></p>
+<ul><li>L'agent lit et indexe les fichiers <b>localement</b>, sur votre propre appareil. Il ne les envoie à aucun serveur.</li><li>La détection locale des tâches, dates et participants se produit <b>sur votre machine</b>.</li><li>La seule chose qui transite par internet est : (1) une vérification que votre licence est active — qui n'inclut pas le contenu de vos notes —, et (2) lors de la génération d'un compte-rendu, résumé ou question, un fragment du texte est envoyé au moteur d'IA pour rédiger la réponse.</li></ul>
+<div class="callout cal-steel">La confidentialité de vos réunions est garantie par conception : la détection locale de tâches par motifs ne dépend pas de l'IA. Comptes-rendus, résumés et questions partagent bien un fragment avec le fournisseur d'IA pour rédiger la réponse.</div>
+<div class="callout cal-amber"><b>Rappel important :</b> cet agent est un outil d'aide, pas le procès-verbal officiel. Il vous épargne le travail de rédaction et évite de perdre des tâches, mais ses comptes-rendus sont générés par IA et peuvent contenir des imprécisions. Vérifiez les décisions, responsables et dates critiques par rapport à vos notes originales avant de les considérer comme définitifs.</div>
+
+</main>
+
+<footer>&copy; 2026 TuIAlista &middot; <a href="/soporte/">Support</a> &middot; <a href="/catalogo/">Catalogue</a> &middot; <a href="/">Accueil</a></footer>
+</body>
+</html>
