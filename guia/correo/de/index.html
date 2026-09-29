@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leitfaden &middot; E-Mail-Agent — TuIAlista</title>
+<meta name="description" content="So nutzt du den E-Mail-Agent von TuIAlista: Einrichtung, Befehle, Beispiele und FAQ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{--steel-900:#0f1922;--paper:#f5f6f4;--paper-2:#eceee9;--ink:#0f1922;--muted:#5a6b73;--signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2;--ok:#1d9e75;--amber-tint:#fdf1e4;--steel-tint:#eef2f4}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper-2);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--signal-dim)}
+  header{position:sticky;top:0;background:rgba(245,246,244,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+  .nav{max-width:860px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+  .logo b{color:var(--signal)}
+  .nav .r{display:flex;align-items:center;gap:18px}
+  .nav .r a{font-size:14px;color:var(--muted);text-decoration:none}
+  .nav .r a:hover{color:var(--ink)}
+  main{max-width:860px;margin:0 auto;padding:38px 24px 80px}
+  .eyebrow{font-family:'JetBrains Mono';font-size:11.5px;letter-spacing:.1em;color:var(--signal-dim);margin-bottom:8px}
+  h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,34px);line-height:1.12;margin-bottom:10px}
+  .sub{color:var(--muted);font-size:15.5px;max-width:640px;margin-bottom:18px}
+  .hero-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+  .price{font-family:'Space Grotesk';font-weight:600;font-size:14px;color:var(--signal-dim);background:var(--amber-tint);border:1px solid var(--signal);border-radius:999px;padding:7px 16px}
+  .cta{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:9px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;text-decoration:none;transition:.15s}
+  .cta:hover{background:var(--signal);color:#1a1206}
+  h2.sec{font-family:'Space Grotesk';font-size:18px;font-weight:600;margin:38px 0 14px;padding:10px 16px;background:var(--steel-900);color:#fff;border-radius:10px;display:flex;align-items:center;gap:10px}
+  h2.sec .n{color:var(--signal)}
+  h4{font-family:'Space Grotesk';font-size:14.5px;font-weight:600;margin:16px 0 4px;color:var(--signal-dim)}
+  p{margin:0 0 12px;font-size:14.5px}
+  ul{margin:0 0 12px 20px;font-size:14.5px}
+  li{margin-bottom:6px}
+  code{font-family:'JetBrains Mono',monospace;font-size:.92em;background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  .callout{border-radius:10px;padding:14px 16px;margin:10px 0 16px;font-size:14px;border-left:3px solid}
+  .cal-amber{background:var(--amber-tint);border-color:var(--signal)}
+  .cal-steel{background:var(--steel-tint);border-color:#2c4a5c}
+  .quick{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:22px}
+  .quick h3{font-family:'Space Grotesk';font-size:16px;margin-bottom:8px}
+  .stepline{display:flex;gap:12px;margin-bottom:16px}
+  .stepline .num{flex:none;width:28px;height:28px;border-radius:8px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center}
+  .stepline .steptitle{font-family:'Space Grotesk';font-weight:600;font-size:14.5px;display:block;margin-bottom:2px}
+  .stepline p{font-size:13.5px;color:var(--muted);margin:0}
+  .cmdcard{background:var(--paper-2);border-left:3px solid #2c4a5c;border-radius:8px;padding:12px 16px;margin-bottom:10px}
+  .cmdcard code{background:transparent;border:none;padding:0;font-weight:600;display:block;margin-bottom:4px}
+  .cmdcard p{margin:0;font-size:13.5px;color:var(--muted)}
+  .shot{margin:14px 0 20px;text-align:center}
+  .shot img{max-width:100%;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(15,25,34,.06)}
+  .shot figcaption{font-size:12.5px;color:var(--muted);font-style:italic;margin-top:8px}
+  details.acc{background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;overflow:hidden}
+  details.acc summary{cursor:pointer;list-style:none;padding:13px 16px;font-weight:600;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+  details.acc summary::-webkit-details-marker{display:none}
+  details.acc summary::after{content:"+";color:var(--signal-dim);font-size:18px;font-weight:400}
+  details.acc[open] summary::after{content:"\2212"}
+  details.acc[open] summary{border-bottom:1px solid var(--line)}
+  .acc-body{padding:12px 16px;font-size:13.8px;color:var(--muted)}
+  .acc-body code{color:var(--ink)}
+  footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px;margin-top:10px}
+  footer a{color:#cdd5d9;text-decoration:none}
+  @media(max-width:520px){.nav .r a.hide-sm{display:none}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+  <div class="r">
+    <a class="hide-sm" href="/catalogo/">Katalog</a>
+    <a class="hide-sm" href="/soporte/">Support</a>
+    <a href="/portal/">Anmelden</a>
+  </div>
+</div></header>
+
+<main>
+  <div class="eyebrow">AGENTEN-LEITFADEN</div>
+  <h1>E-Mail-Agent</h1>
+  <p class="sub">Ordnet Ihren Posteingang, sagt Ihnen, was dringend ist, und verfasst Antworten für Sie — alles wird auf Ihrem Computer verarbeitet.</p>
+  <div class="hero-row">
+    <span class="price">15 USD / Monat</span>
+    <a class="cta" href="/descargar/?agent=correo"><i class="ti ti-download"></i> Diesen Agenten herunterladen</a>
+  </div>
+
+  <div class="quick">
+    <h3>Was löst er und was brauchen Sie?</h3>
+    <p>E-Mail ist einer der größten Zeitfresser des Tages: Dutzende von Nachrichten, bei denen sich Dringendes mit Rauschen vermischt. Dieser Agent verwandelt diesen chaotischen Posteingang in eine klare Aktionsliste — priorisiert, mit extrahierten Aufgaben und fertigen Entwürfen.</p>
+    <ul><li><b>Sie brauchen:</b> Ihren Lizenzschlüssel (<font face='Courier'>TIA-XXXX-XXXX-XXXX-XXXX</font>) und den Ordner mit Ihren <b>exportierten</b> E-Mails (.eml, .mbox, .txt oder .csv). Kein Python, keine technischen Kenntnisse.</li><li><b>Erstes Ergebnis in weniger als 5 Minuten:</b> Sie installieren, aktivieren, wählen Ihren Ordner und führen <font face='Courier-Bold'>Priorität</font> aus, um Ihren Posteingang nach Dringlichkeit sortiert zu sehen.</li><li><b>Ihre E-Mails verlassen nie Ihren Computer</b> — die Analyse läuft lokal.</li></ul>
+    <div class="callout cal-amber"><b>Hinweis:</b> Dieser Agent ist ein Hilfsmittel zur Produktivität. Seine Klassifizierungen und Antworten werden mit KI erstellt und können falsch sein. <b>Überprüfen Sie immer einen Entwurf, bevor Sie ihn senden.</b></div>
+    <div class="callout cal-amber"><b>Fragen?</b> Schreib uns an <code>soporte@tuialista.com</code> oder besuche <a href="/soporte/"><code>tuialista.com/soporte</code></a> — wir antworten normalerweise am selben Werktag.</div>
+  </div>
+
+  <h2 class="sec"><span class="n">1</span> Was dieser Agent tut</h2>
+<p>Sie zeigen ihm den Ordner mit Ihren exportierten E-Mails und er:</p>
+<ul><li>Liest sie alle (.eml, .mbox, .txt und .csv), <b>ohne Verbindung zu E-Mail-Servern</b>.</li><li><b>Priorisiert</b> jede Nachricht: dringend, wichtig, normal oder niedrig.</li><li>Extrahiert die <b>Aufgaben</b>, um die Sie gebeten werden, von wem und bis wann.</li><li>Erkennt wahrscheinlich <b>unbeantwortete ausstehende Nachrichten</b>.</li><li>Verfasst professionelle <b>Antwortentwürfe</b> in der Sprache der E-Mail.</li><li><b>Gruppiert nach Absender</b> und <b>sucht</b> in Ihren E-Mails.</li><li>Beantwortet Ihre <b>Fragen</b> zum Posteingang: <i>&ldquo;was wurde ich diese Woche mit Frist gebeten zu tun?&rdquo;</i></li></ul>
+<p>Ergebnis: Sie verschwenden keine Zeit mehr im Posteingang und handeln zuerst bei dem, was wirklich wichtig ist.</p>
+<h2 class="sec"><span class="n">2</span> Installation (2 Minuten)</h2>
+<p>Für Windows. Keine dauerhafte Internetverbindung nötig, nichts wird in die Cloud hochgeladen.</p>
+<div class="stepline"><div class="num">1</div><div><b class="steptitle">Herunterladen und installieren</b><p>Laden Sie das Installationsprogramm von <font face='Courier'>tuialista.com/descargar</font> herunter (E-Mail-Agent) und öffnen Sie es. Es erstellt eine Verknüpfung mit dem Logo auf Ihrem Desktop — kein Python oder Terminal erforderlich.</p></div></div>
+<div class="stepline"><div class="num">2</div><div><b class="steptitle">Öffnen Sie es vom Desktop aus</b><p>Doppelklicken Sie auf das neue Symbol. Fügen Sie Ihren <b>Lizenzschlüssel</b> ein (er wurde Ihnen beim Kauf per E-Mail zugesandt) und klicken Sie auf <b>Aktivieren</b>. Sie sehen ein grünes Häkchen, wenn er gültig ist.</p></div></div>
+<div class="stepline"><div class="num">3</div><div><b class="steptitle">Wählen Sie Ihren Ordner</b><p>Wählen Sie den Ordner mit Ihren exportierten E-Mails aus und klicken Sie auf <b>Agent jetzt verwenden</b>. Beim nächsten Mal startet er direkt — er merkt sich Ihren Schlüssel und Ihren Ordner.</p></div></div>
+<figure class="shot"><img src="../../assets/mockups/correo/activacion_de.png" alt="So sieht das Aktivierungsfenster aus (mit Beispieldaten). Es erscheint beim ersten Öffnen des Agenten." loading="lazy"><figcaption>So sieht das Aktivierungsfenster aus (mit Beispieldaten). Es erscheint beim ersten Öffnen des Agenten.</figcaption></figure>
+<h2 class="sec"><span class="n">3</span> So verwenden Sie ihn</h2>
+<p>Der Agent öffnet ein <b>Chat-Fenster</b>, wie eine Messaging-App — kein schwarzer Programmierer-Bildschirm. Sie schreiben Ihren Befehl oder Ihre Frage in das Textfeld unten, klicken auf <b>Senden</b> (oder Enter), und die Antwort erscheint als Nachricht, genau wie auf diesem echten Bild:</p>
+<figure class="shot"><img src="../../assets/mockups/correo/chat_de.png" alt="Das echte Gespräch: Sie schreiben &ldquo;Priorität&rdquo; und der Agent antwortet mit Ihrem nach Dringlichkeit sortierten Posteingang (Beispieldaten)." loading="lazy"><figcaption>Das echte Gespräch: Sie schreiben &ldquo;Priorität&rdquo; und der Agent antwortet mit Ihrem nach Dringlichkeit sortierten Posteingang (Beispieldaten).</figcaption></figure>
+<p>Die folgenden Befehle sind die Wörter, die Sie in dasselbe Textfeld eingeben können:</p>
+<div class="cmdcard"><code>&gt; Priorität</code><p>Ihr Posteingang nach Dringlichkeit sortiert: <font color='#a32d2d'><b>DRINGEND</b></font>, <font color='#c46a12'><b>WICHTIG</b></font>, <b>NORMAL</b>, NIEDRIG. Markiert diejenigen mit Frist.</p></div>
+<div class="cmdcard"><code>&gt; Zusammenfassung</code><p>Management-Übersicht des Posteingangs: wie viele dringend/wichtig, häufigste Absender und was zuerst zu erledigen ist.</p></div>
+<div class="cmdcard"><code>&gt; Aufgaben</code><p>E-Mails, die eine Aktion verlangen, mit wem sie verlangt, der Priorität und der genannten Frist, falls vorhanden.</p></div>
+<div class="cmdcard"><code>&gt; antworten &lt;Betreff&gt;</code><p>Antwortentwurf für die von Ihnen angegebene E-Mail (nach Betreff oder Nummer), in der Sprache des Originals, mit Platzhaltern <font face='Courier'>[IN ECKIGEN KLAMMERN]</font> zum Ausfüllen.</p></div>
+<div class="cmdcard"><code>&gt; ausstehend</code><p>E-Mails, die eine Aktion verlangen und deren Absender nicht als Empfänger einer anderen Ihrer E-Mails erscheint — möglicherweise unbeantwortet.</p></div>
+<div class="cmdcard"><code>&gt; Absender</code><p>Gruppiert Ihre E-Mails nach Absender, sortiert nach Volumen.</p></div>
+<div class="cmdcard"><code>&gt; suchen &lt;Text&gt;</code><p>Sucht ein Wort oder eine Phrase in Betreff und Text. Z. B.: <font face='Courier'>suchen rechnung maerz</font>.</p></div>
+<div class="cmdcard"><code>&gt; freie Frage?</code><p>Schreiben Sie jede Frage in natürlicher Sprache, z. B.: <i>welche dringenden E-Mails habe ich diese Woche?</i></p></div>
+<div class="cmdcard"><code>&gt; beenden</code><p>Beendet die Sitzung (funktioniert auch mit <font face='Courier'>exit</font>).</p></div>
+<h2 class="sec"><span class="n">4</span> Beispiele für häufige Anwendungen</h2>
+<h4>Den Tag mit dem Dringenden beginnen</h4>
+<p><font face='Courier'>Priorität</font> — Sie sehen zuerst das DRINGENDE und das mit Frist.</p>
+<h4>Nicht vergessen, was man Sie gebeten hat</h4>
+<p><font face='Courier'>Aufgaben</font></p>
+<h4>Schnell und gut antworten</h4>
+<p><font face='Courier'>antworten projektvorschlag</font> — Sie erhalten einen professionellen Entwurf, bereit zum Überprüfen und Senden.</p>
+<h4>Erkennen, was unbeantwortet blieb</h4>
+<p><font face='Courier'>ausstehend</font></p>
+<h2 class="sec"><span class="n">5</span> Häufig gestellte Fragen</h2>
+<details class="acc"><summary>Werden meine E-Mails ins Internet hochgeladen?</summary><div class="acc-body">Nein. Alles wird auf Ihrem Computer verarbeitet; Ihre E-Mails verlassen nie Ihr Gerät (siehe Datenschutz, Abschnitt 7).</div></details>
+<details class="acc"><summary>Verbindet er sich mit meinem Gmail-/Outlook-Konto?</summary><div class="acc-body">Nein. Der Agent verbindet sich <b>nicht</b> mit E-Mail-Servern. Er arbeitet mit Dateien, die Sie exportieren (.eml, .mbox, .txt, .csv).</div></details>
+<details class="acc"><summary>Brauche ich Internet, um ihn zu verwenden?</summary><div class="acc-body">Nur um Ihre Lizenz zu validieren (bis zu 3 Tage offline) und für Zusammenfassungen, Entwürfe und Fragen mit KI. Das Lesen und Priorisieren von E-Mails ist lokal.</div></details>
+<details class="acc"><summary>Wie entscheidet er die Priorität?</summary><div class="acc-body">Durch Schlüsselwörter (dringend, asap, heute, Frist, wichtig, bitte, bestätigen...) und durch die Erkennung von Fristen. Es ist ein sehr nützlicher Leitfaden, keine unfehlbare Regel.</div></details>
+<details class="acc"><summary>In welcher Sprache verfasst er die Antworten?</summary><div class="acc-body">In der Sprache der Original-E-Mail. Wenn man Ihnen auf Englisch schreibt, kommt der Entwurf auf Englisch.</div></details>
+<details class="acc"><summary>Wie erkennt er &ldquo;unbeantwortete ausstehende Nachrichten&rdquo;?</summary><div class="acc-body">Mit einer Heuristik: E-Mails, die eine Aktion verlangen, deren Absender nicht als Empfänger in einer anderen Ihrer E-Mails erscheint. Es kann falsch-positive Ergebnisse geben; verwenden Sie es als Hinweis.</div></details>
+<details class="acc"><summary>Kann ich den E-Mail-Ordner ändern?</summary><div class="acc-body">Ja. Öffnen Sie den Agenten erneut und klicken Sie auf &ldquo;Auswählen&hellip;&rdquo;, um ihn zu ändern (falls er nicht danach fragt, löschen Sie <font face='Courier'>config.json</font> in <font face='Courier'>%USERPROFILE%\.tuialista</font>).</div></details>
+<details class="acc"><summary>Liest er Anhänge (PDF, Word)?</summary><div class="acc-body">Nein. Der Agent verarbeitet den <b>Text</b> der E-Mails, nicht ihre Anhänge.</div></details>
+<details class="acc"><summary>Verändert oder versendet er E-Mails?</summary><div class="acc-body">Nein. Er liest nur und verfasst <b>Entwürfe</b>; er sendet nie etwas oder verändert Ihren tatsächlichen Posteingang.</div></details>
+<details class="acc"><summary>Speichert er einen Verlauf zwischen Sitzungen?</summary><div class="acc-body">Er behält den Kontext, solange er geöffnet ist; beim Schließen geht er verloren (wird beim Neustart neu indiziert).</div></details>
+<h2 class="sec"><span class="n">6</span> Problemlösung</h2>
+<details class="acc"><summary>Zeigt &ldquo;0 E-Mails&rdquo;</summary><div class="acc-body">Der Ordner ist leer oder der Pfad ist falsch. Überprüfen Sie, ob Sie beim Aktivieren des Agenten den richtigen Ordner ausgewählt haben und dass er .eml-, .mbox-, .txt- oder .csv-Dateien enthält.</div></details>
+<details class="acc"><summary>Ein .csv wird nicht richtig gelesen</summary><div class="acc-body">Stellen Sie sicher, dass es erkennbare Spaltenüberschriften hat (von/an/betreff/text oder from/to/subject/body).</div></details>
+<details class="acc"><summary>Zeigt &ldquo;Lizenz ungültig&rdquo; oder fordert erneute Verbindung</summary><div class="acc-body">Überprüfen Sie, ob der eingefügte Schlüssel korrekt ist (ohne zusätzliche Leerzeichen), stellen Sie sicher, dass Sie beim ersten Aktivieren Internet haben, und wenn Sie mehr als 3 Tage offline waren, verbinden Sie sich einmal erneut zur Neuvalidierung.</div></details>
+<details class="acc"><summary>&ldquo;Keine KI-Anbieter konfiguriert&rdquo;</summary><div class="acc-body"><font face='Courier'>Zusammenfassung</font>, <font face='Courier'>antworten</font> und die Fragen verwenden KI — fehlt die Engine-Konfiguration, kontaktieren Sie den Support. <font face='Courier'>Priorität</font>, <font face='Courier'>Aufgaben</font>, <font face='Courier'>Absender</font> und <font face='Courier'>suchen</font> funktionieren weiterhin lokal, ohne KI.</div></details>
+<p><b>Keine dieser Lösungen hat Ihr Problem behoben?</b> Schreiben Sie uns direkt — wir schauen es uns gerne gemeinsam mit Ihnen an.</p>
+<div class="callout cal-amber"><b>Fragen?</b> Schreib uns an <code>soporte@tuialista.com</code> oder besuche <a href="/soporte/"><code>tuialista.com/soporte</code></a> — wir antworten normalerweise am selben Werktag.</div>
+<h2 class="sec"><span class="n">7</span> Datenschutz und Vertraulichkeit</h2>
+<p><b>Ihre E-Mails verlassen nie Ihren Computer.</b></p>
+<ul><li>Der Agent liest und verarbeitet die Dateien <b>lokal</b>, auf Ihrem eigenen Gerät. Er verbindet sich nicht mit Ihrem E-Mail-Server und lädt Ihre E-Mails nirgendwohin hoch.</li><li>Die Priorisierung, die Aufgabenerkennung und die Gruppierung nach Absender erfolgen <b>auf Ihrem Gerät</b>.</li><li>Das Einzige, was über das Internet läuft, ist: (1) eine Überprüfung, dass Ihre Lizenz aktiv ist — die den Inhalt Ihrer E-Mails nicht enthält —, und (2) bei einer Anfrage nach Zusammenfassung, Entwurf oder Frage wird ein Ausschnitt der relevanten E-Mails an die KI-Engine gesendet, um die Antwort zu verfassen.</li></ul>
+<div class="callout cal-steel">Die Vertraulichkeit Ihrer Korrespondenz ist durch Design garantiert: Priorität, Aufgaben, Absender und suchen sind 100 % lokal. Nur Zusammenfassung, antworten und freie Fragen teilen einen Ausschnitt mit dem KI-Anbieter.</div>
+<div class="callout cal-amber"><b>Wichtiger Hinweis:</b> Dieser Agent ist ein Hilfsmittel zur Produktivität. Er priorisiert, fasst zusammen und verfasst Entwürfe, aber seine Klassifizierungen und Antworten werden mit KI erstellt und können falsch sein. Überprüfen Sie immer einen Entwurf, bevor Sie ihn senden, und bestätigen Sie selbst, was wirklich dringend ist.</div>
+
+</main>
+
+<footer>&copy; 2026 TuIAlista &middot; <a href="/soporte/">Support</a> &middot; <a href="/catalogo/">Katalog</a> &middot; <a href="/">Startseite</a></footer>
+</body>
+</html>
