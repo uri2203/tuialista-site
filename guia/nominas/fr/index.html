@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guide &middot; Agent Paie et Ressources humaines — TuIAlista</title>
+<meta name="description" content="Comment utiliser l' Agent Paie et Ressources humaines de TuIAlista&nbsp;: installation, commandes, exemples et questions fr&eacute;quentes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{--steel-900:#0f1922;--paper:#f5f6f4;--paper-2:#eceee9;--ink:#0f1922;--muted:#5a6b73;--signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2;--ok:#1d9e75;--amber-tint:#fdf1e4;--steel-tint:#eef2f4}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper-2);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--signal-dim)}
+  header{position:sticky;top:0;background:rgba(245,246,244,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+  .nav{max-width:860px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+  .logo b{color:var(--signal)}
+  .nav .r{display:flex;align-items:center;gap:18px}
+  .nav .r a{font-size:14px;color:var(--muted);text-decoration:none}
+  .nav .r a:hover{color:var(--ink)}
+  main{max-width:860px;margin:0 auto;padding:38px 24px 80px}
+  .eyebrow{font-family:'JetBrains Mono';font-size:11.5px;letter-spacing:.1em;color:var(--signal-dim);margin-bottom:8px}
+  h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,34px);line-height:1.12;margin-bottom:10px}
+  .sub{color:var(--muted);font-size:15.5px;max-width:640px;margin-bottom:18px}
+  .hero-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+  .price{font-family:'Space Grotesk';font-weight:600;font-size:14px;color:var(--signal-dim);background:var(--amber-tint);border:1px solid var(--signal);border-radius:999px;padding:7px 16px}
+  .cta{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:9px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;text-decoration:none;transition:.15s}
+  .cta:hover{background:var(--signal);color:#1a1206}
+  h2.sec{font-family:'Space Grotesk';font-size:18px;font-weight:600;margin:38px 0 14px;padding:10px 16px;background:var(--steel-900);color:#fff;border-radius:10px;display:flex;align-items:center;gap:10px}
+  h2.sec .n{color:var(--signal)}
+  h4{font-family:'Space Grotesk';font-size:14.5px;font-weight:600;margin:16px 0 4px;color:var(--signal-dim)}
+  p{margin:0 0 12px;font-size:14.5px}
+  ul{margin:0 0 12px 20px;font-size:14.5px}
+  li{margin-bottom:6px}
+  code{font-family:'JetBrains Mono',monospace;font-size:.92em;background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  .callout{border-radius:10px;padding:14px 16px;margin:10px 0 16px;font-size:14px;border-left:3px solid}
+  .cal-amber{background:var(--amber-tint);border-color:var(--signal)}
+  .cal-steel{background:var(--steel-tint);border-color:#2c4a5c}
+  .quick{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:22px}
+  .quick h3{font-family:'Space Grotesk';font-size:16px;margin-bottom:8px}
+  .stepline{display:flex;gap:12px;margin-bottom:16px}
+  .stepline .num{flex:none;width:28px;height:28px;border-radius:8px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center}
+  .stepline .steptitle{font-family:'Space Grotesk';font-weight:600;font-size:14.5px;display:block;margin-bottom:2px}
+  .stepline p{font-size:13.5px;color:var(--muted);margin:0}
+  .cmdcard{background:var(--paper-2);border-left:3px solid #2c4a5c;border-radius:8px;padding:12px 16px;margin-bottom:10px}
+  .cmdcard code{background:transparent;border:none;padding:0;font-weight:600;display:block;margin-bottom:4px}
+  .cmdcard p{margin:0;font-size:13.5px;color:var(--muted)}
+  .shot{margin:14px 0 20px;text-align:center}
+  .shot img{max-width:100%;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(15,25,34,.06)}
+  .shot figcaption{font-size:12.5px;color:var(--muted);font-style:italic;margin-top:8px}
+  details.acc{background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;overflow:hidden}
+  details.acc summary{cursor:pointer;list-style:none;padding:13px 16px;font-weight:600;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+  details.acc summary::-webkit-details-marker{display:none}
+  details.acc summary::after{content:"+";color:var(--signal-dim);font-size:18px;font-weight:400}
+  details.acc[open] summary::after{content:"\2212"}
+  details.acc[open] summary{border-bottom:1px solid var(--line)}
+  .acc-body{padding:12px 16px;font-size:13.8px;color:var(--muted)}
+  .acc-body code{color:var(--ink)}
+  footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px;margin-top:10px}
+  footer a{color:#cdd5d9;text-decoration:none}
+  @media(max-width:520px){.nav .r a.hide-sm{display:none}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+  <div class="r">
+    <a class="hide-sm" href="/catalogo/">Catalogue</a>
+    <a class="hide-sm" href="/soporte/">Support</a>
+    <a href="/portal/">Se connecter</a>
+  </div>
+</div></header>
+
+<main>
+  <div class="eyebrow">GUIDE DE L'AGENT</div>
+  <h1>Agent Paie et Ressources humaines</h1>
+  <p class="sub">Organise votre effectif, calcule les congés selon la loi du travail applicable et surveille les dates RH critiques — sans que les données quittent votre appareil.</p>
+  <div class="hero-row">
+    <span class="price">59 $ US / mois</span>
+    <a class="cta" href="/descargar/?agent=nominas"><i class="ti ti-download"></i> T&eacute;l&eacute;charger cet agent</a>
+  </div>
+
+  <div class="quick">
+    <h3>Que résout-il et de quoi avez-vous besoin ?</h3>
+    <p>Les données des employés sont ultra-sensibles et ne peuvent pas circuler dans le cloud. Cet agent les traite à 100 % sur votre machine : il charge votre effectif, calcule le solde de congés selon la loi du travail applicable et vous avertit des dates critiques (fin de contrats, anniversaires) avant qu'elles ne vous échappent.</p>
+    <ul><li><b>Vous avez besoin de :</b> votre clé de licence (<font face='Courier'>TIA-XXXX-XXXX-XXXX-XXXX</font>) et de votre effectif en Excel ou CSV. Ni Python ni connaissances techniques.</li><li><b>Premier résultat en moins de 5 minutes :</b> vous installez, activez, choisissez votre dossier et lancez <font face='Courier-Bold'>congés</font> pour voir le solde de chaque employé.</li><li><b>Les données de vos employés ne quittent jamais votre ordinateur</b> — le calcul s'exécute localement.</li></ul>
+    <div class="callout cal-amber"><b>Avertissement :</b> les calculs de congés, avantages et impôts sont des <b>estimations</b> à valider avec le service juridique/comptable. Les lois du travail changent.</div>
+    <div class="callout cal-amber"><b>Des questions&nbsp;?</b> &Eacute;crivez-nous &agrave; <code>soporte@tuialista.com</code> ou visitez <a href="/soporte/"><code>tuialista.com/soporte</code></a> — nous r&eacute;pondons g&eacute;n&eacute;ralement le jour m&ecirc;me.</div>
+  </div>
+
+  <h2 class="sec"><span class="n">1</span> Ce que fait cet agent</h2>
+<p>Vous lui indiquez le dossier contenant votre effectif (en Excel ou CSV) et il :</p>
+<ul><li><b>Charge les données</b> des employés en détectant automatiquement les colonnes (nom, poste, salaire, date d'embauche, type de contrat...), même avec des noms différents.</li><li>Calcule le <b>solde de congés</b> selon la <b>loi du travail applicable</b> (réforme &ldquo;congés dignes&rdquo; 2023).</li><li>Vous avertit des <b>dates critiques</b> : fin de contrats et anniversaires professionnels à venir.</li><li>Génère un <b>résumé de paie</b> (total, moyenne, par département et type de contrat).</li><li>Liste les <b>anniversaires</b> à venir pour les reconnaissances.</li><li>Alerte sur les <b>contrats bientôt expirés</b>.</li><li>Génère un <b>rapport d'effectif</b> (embauches, départs, effectif par service).</li><li>Répond à des <b>questions RH</b> avec un contexte anonymisé.</li></ul>
+<p>Résultat : un service RH organisé, avec les dates sous contrôle et les données toujours chez vous.</p>
+<h2 class="sec"><span class="n">2</span> Installation (2 minutes)</h2>
+<p>Pour Windows. Pas besoin d'internet permanent ni de rien envoyer sur le cloud.</p>
+<div class="stepline"><div class="num">1</div><div><b class="steptitle">Téléchargez-le et installez-le</b><p>Téléchargez l'installateur depuis <font face='Courier'>tuialista.com/descargar</font> (agent Paie) et ouvrez-le. Il crée un raccourci sur votre bureau avec le logo — pas besoin de Python ni de terminal.</p></div></div>
+<div class="stepline"><div class="num">2</div><div><b class="steptitle">Ouvrez-le depuis le bureau</b><p>Double-cliquez sur la nouvelle icône. Collez votre <b>clé de licence</b> (reçue par e-mail à l'achat) et cliquez sur <b>Activer</b>. Une coche verte apparaît quand elle est valide.</p></div></div>
+<div class="stepline"><div class="num">3</div><div><b class="steptitle">Choisissez votre dossier</b><p>Sélectionnez le dossier contenant votre effectif et cliquez sur <b>Commencer à utiliser l'agent</b>. La prochaine fois, il démarre directement — il se souvient de votre clé et de votre dossier.</p></div></div>
+<figure class="shot"><img src="../../assets/mockups/nominas/activacion_fr.png" alt="Voici à quoi ressemble la fenêtre d'activation (avec des données d'exemple). Elle apparaît la première fois que vous ouvrez l'agent." loading="lazy"><figcaption>Voici à quoi ressemble la fenêtre d'activation (avec des données d'exemple). Elle apparaît la première fois que vous ouvrez l'agent.</figcaption></figure>
+<h2 class="sec"><span class="n">3</span> Comment l'utiliser</h2>
+<p>L'agent ouvre une <b>fenêtre de discussion</b>, comme une app de messagerie — pas un écran noir de programmeur. Vous écrivez votre commande ou votre question dans le champ de texte en bas, cliquez sur <b>Envoyer</b> (ou Entrée), et la réponse apparaît comme un message, exactement comme sur cette image réelle :</p>
+<figure class="shot"><img src="../../assets/mockups/nominas/chat_fr.png" alt="La vraie conversation : vous écrivez &ldquo;congés&rdquo; et l'agent répond avec le solde de chaque employé (données d'exemple)." loading="lazy"><figcaption>La vraie conversation : vous écrivez &ldquo;congés&rdquo; et l'agent répond avec le solde de chaque employé (données d'exemple).</figcaption></figure>
+<p>Les commandes suivantes sont les mots que vous pouvez écrire dans ce même champ de texte :</p>
+<div class="cmdcard"><code>&gt; congés</code><p>Par employé : son ancienneté, les jours de congés qui lui reviennent (barème légal avec la réforme 2023), ceux pris et ceux restants.</p></div>
+<div class="cmdcard"><code>&gt; dates [jours]</code><p>Événements RH des N prochains jours (30 par défaut) : fin de contrats et anniversaires professionnels, classés par urgence. Ex. : <font face='Courier'>dates 45</font>.</p></div>
+<div class="cmdcard"><code>&gt; paie</code><p>Total de la paie, salaire moyen, maximum et minimum, et répartition par département et type de contrat — sans exposer inutilement de données individuelles sensibles.</p></div>
+<div class="cmdcard"><code>&gt; anniversaires [jours]</code><p>Employés qui fêtent leur anniversaire professionnel dans les N prochains jours (60 par défaut).</p></div>
+<div class="cmdcard"><code>&gt; contrats [jours]</code><p>Contrats temporaires expirant dans les N prochains jours (45 par défaut), y compris les récemment expirés.</p></div>
+<div class="cmdcard"><code>&gt; effectif</code><p>Total de l'effectif, actifs, départs, embauches de l'année, et répartition par département et type de contrat.</p></div>
+<div class="cmdcard"><code>&gt; question libre ?</code><p>Écrivez toute question en langage naturel, ex. : <i>combien d'employés fêtent 5 ans d'ancienneté ce trimestre ?</i></p></div>
+<div class="cmdcard"><code>&gt; quitter</code><p>Termine la session (fonctionne aussi avec <font face='Courier'>exit</font>).</p></div>
+<p>Vous voulez voir les <b>20 recettes complètes</b> avec un exemple réel de chacune ? Consultez le <b>Catalogue de recettes</b> — un document à part vu sa longueur : <font face='Courier'>catalogo_recetas.pdf</font> à côté de ce manuel, ou la version interactive sur <font color="#c46a12"><a href="https://tuialista.com/guia/nominas/recetas/">tuialista.com/guia/nominas/recetas</a></font>.</p>
+<h2 class="sec"><span class="n">4</span> Exemples d'usage courant</h2>
+<h4>Révision mensuelle RH</h4>
+<p><font face='Courier'>dates 30</font> &nbsp;→&nbsp; <font face='Courier'>contrats 45</font></p>
+<h4>Préparer les congés de l'année</h4>
+<p><font face='Courier'>congés</font></p>
+<h4>Rapport pour la direction</h4>
+<p><font face='Courier'>paie</font> &nbsp;→&nbsp; <font face='Courier'>effectif</font></p>
+<h4>Une requête ponctuelle</h4>
+<p><i>qui fête son anniversaire professionnel le mois prochain ?</i></p>
+<h2 class="sec"><span class="n">5</span> Questions fréquentes</h2>
+<details class="acc"><summary>Les données de mes employés sont-elles envoyées sur internet ?</summary><div class="acc-body">Non. Elles sont chargées et traitées sur votre ordinateur (voir Confidentialité, section 7).</div></details>
+<details class="acc"><summary>Quels formats accepte-t-il ?</summary><div class="acc-body">Excel (.xlsx, .xls) et CSV (.csv). L'agent lit l'effectif depuis des feuilles de calcul, pas depuis un PDF ni Word.</div></details>
+<details class="acc"><summary>Dois-je nommer les colonnes d'une façon exacte ?</summary><div class="acc-body">Non. L'agent détecte automatiquement des colonnes avec des noms variés en français, espagnol et anglais (nom/employé/name, salaire/salary, date d'embauche/hire date...). Il a besoin d'au moins la colonne <b>nom</b> ou <b>salaire</b> pour reconnaître le fichier.</div></details>
+<details class="acc"><summary>Comment calcule-t-il les congés ?</summary><div class="acc-body">Avec le barème légal applicable et sa réforme &ldquo;congés dignes&rdquo; (2023) : 12 jours la première année, jusqu'à 20 la cinquième ; à partir de la sixième, 22 jours et +2 tous les 5 ans supplémentaires.</div></details>
+<details class="acc"><summary>Le calcul des congés a-t-il une valeur légale contraignante ?</summary><div class="acc-body">Non. C'est une <b>estimation</b> du minimum légal selon l'ancienneté. Vérifiez-le avec votre service juridique avant d'autoriser ; votre entreprise peut accorder plus de jours.</div></details>
+<details class="acc"><summary>Expose-t-il les salaires individuels ?</summary><div class="acc-body">Le résumé et les questions sont conçus pour respecter la vie privée et ne pas exposer de données individuelles sensibles sauf nécessité.</div></details>
+<details class="acc"><summary>Dans quelle langue répond-il ?</summary><div class="acc-body">Dans la langue dans laquelle vous lui écrivez. Le calcul des congés est basé sur la législation applicable configurée.</div></details>
+<details class="acc"><summary>Modifie-t-il mon fichier d'employés ?</summary><div class="acc-body">Non. L'agent se contente de le <b>lire</b>.</div></details>
+<details class="acc"><summary>J'ai mis à jour l'effectif, en tient-il compte ?</summary><div class="acc-body">Relancez l'agent ; il recharge les données depuis le dossier.</div></details>
+<details class="acc"><summary>Puis-je avoir plusieurs fichiers ?</summary><div class="acc-body">Oui. Il charge tous les .xlsx/.xls/.csv du dossier et de ses sous-dossiers.</div></details>
+<h2 class="sec"><span class="n">6</span> Résolution de problèmes</h2>
+<details class="acc"><summary>Ne charge pas les employés / affiche &ldquo;0 employés&rdquo;</summary><div class="acc-body">Vérifiez que vous avez choisi le bon dossier lors de l'activation de l'agent et que le fichier a une colonne reconnaissable de <b>nom</b> ou <b>salaire</b> en première ligne.</div></details>
+<details class="acc"><summary>Une colonne est mal détectée</summary><div class="acc-body">Renommez l'en-tête avec une variante plus courante (par exemple &ldquo;Nom&rdquo;, &ldquo;Salaire&rdquo;, &ldquo;Date d'embauche&rdquo;) et relancez.</div></details>
+<details class="acc"><summary>Les calculs de congés ne correspondent pas à ce qui est attendu</summary><div class="acc-body">L'agent calcule le <b>minimum légal</b> selon l'ancienneté ; votre entreprise peut en accorder plus. Vérifiez avec le service juridique.</div></details>
+<details class="acc"><summary>Affiche &ldquo;Licence invalide&rdquo; ou demande de se reconnecter</summary><div class="acc-body">Vérifiez que la clé collée est correcte (sans espaces en trop), assurez-vous d'avoir internet la première fois que vous activez, et si vous êtes resté plus de 3 jours sans connexion, reconnectez-vous une fois pour revalider.</div></details>
+<details class="acc"><summary>&ldquo;Aucun fournisseur d'IA configuré&rdquo;</summary><div class="acc-body">Seules les questions libres utilisent l'IA — s'il manque la configuration du moteur, contactez le support. <font face='Courier'>dates</font>, <font face='Courier'>congés</font>, <font face='Courier'>paie</font>, <font face='Courier'>anniversaires</font>, <font face='Courier'>contrats</font> et <font face='Courier'>effectif</font> continuent de fonctionner localement, sans IA.</div></details>
+<p><b>Aucune de ces solutions n'a résolu votre problème ?</b> Écrivez-nous directement — nous serons ravis de l'examiner avec vous.</p>
+<div class="callout cal-amber"><b>Des questions&nbsp;?</b> &Eacute;crivez-nous &agrave; <code>soporte@tuialista.com</code> ou visitez <a href="/soporte/"><code>tuialista.com/soporte</code></a> — nous r&eacute;pondons g&eacute;n&eacute;ralement le jour m&ecirc;me.</div>
+<h2 class="sec"><span class="n">7</span> Confidentialité</h2>
+<p><b>Les données de vos employés ne quittent jamais votre ordinateur.</b></p>
+<ul><li>L'agent charge et traite l'effectif <b>localement</b>, sur votre propre appareil. Il n'envoie aucune donnée d'employé à un serveur.</li><li>Le calcul des congés, les rapports de paie, les dates critiques et l'effectif sont calculés <b>sur votre machine</b>.</li><li>La seule chose qui transite par internet est : (1) une vérification que votre licence est active — qui n'inclut pas les données d'employés —, et (2) lors d'une question libre, un <b>contexte anonymisé</b> (résumés agrégés, sans exposer les salaires individuels par défaut) est envoyé au moteur d'IA pour rédiger la réponse.</li></ul>
+<div class="callout cal-steel">La confidentialité des données de votre personnel est garantie par conception : congés, paie, dates critiques et effectif sont 100 % locaux. Seules les questions libres partagent un contexte anonymisé avec le fournisseur d'IA.</div>
+<div class="callout cal-amber"><b>Rappel important :</b> les calculs de congés, avantages et impôts sont des estimations ; validez-les avec le service juridique/comptable. L'agent calcule le minimum légal de congés selon la loi (réforme 2023) à partir de l'ancienneté, mais chaque entreprise peut avoir des avantages supérieurs et les lois changent. Avant d'autoriser des congés, des indemnités de départ ou des renouvellements de contrat, confirmez avec votre service juridique ou comptable.</div>
+
+</main>
+
+<footer>&copy; 2026 TuIAlista &middot; <a href="/soporte/">Support</a> &middot; <a href="/catalogo/">Catalogue</a> &middot; <a href="/">Accueil</a></footer>
+</body>
+</html>
