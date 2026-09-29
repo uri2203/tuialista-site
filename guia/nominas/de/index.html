@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leitfaden &middot; Agent für Lohnabrechnung und Personalwesen — TuIAlista</title>
+<meta name="description" content="So nutzt du den Agent für Lohnabrechnung und Personalwesen von TuIAlista: Einrichtung, Befehle, Beispiele und FAQ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{--steel-900:#0f1922;--paper:#f5f6f4;--paper-2:#eceee9;--ink:#0f1922;--muted:#5a6b73;--signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2;--ok:#1d9e75;--amber-tint:#fdf1e4;--steel-tint:#eef2f4}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper-2);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--signal-dim)}
+  header{position:sticky;top:0;background:rgba(245,246,244,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+  .nav{max-width:860px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+  .logo b{color:var(--signal)}
+  .nav .r{display:flex;align-items:center;gap:18px}
+  .nav .r a{font-size:14px;color:var(--muted);text-decoration:none}
+  .nav .r a:hover{color:var(--ink)}
+  main{max-width:860px;margin:0 auto;padding:38px 24px 80px}
+  .eyebrow{font-family:'JetBrains Mono';font-size:11.5px;letter-spacing:.1em;color:var(--signal-dim);margin-bottom:8px}
+  h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,34px);line-height:1.12;margin-bottom:10px}
+  .sub{color:var(--muted);font-size:15.5px;max-width:640px;margin-bottom:18px}
+  .hero-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+  .price{font-family:'Space Grotesk';font-weight:600;font-size:14px;color:var(--signal-dim);background:var(--amber-tint);border:1px solid var(--signal);border-radius:999px;padding:7px 16px}
+  .cta{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:9px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;text-decoration:none;transition:.15s}
+  .cta:hover{background:var(--signal);color:#1a1206}
+  h2.sec{font-family:'Space Grotesk';font-size:18px;font-weight:600;margin:38px 0 14px;padding:10px 16px;background:var(--steel-900);color:#fff;border-radius:10px;display:flex;align-items:center;gap:10px}
+  h2.sec .n{color:var(--signal)}
+  h4{font-family:'Space Grotesk';font-size:14.5px;font-weight:600;margin:16px 0 4px;color:var(--signal-dim)}
+  p{margin:0 0 12px;font-size:14.5px}
+  ul{margin:0 0 12px 20px;font-size:14.5px}
+  li{margin-bottom:6px}
+  code{font-family:'JetBrains Mono',monospace;font-size:.92em;background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  .callout{border-radius:10px;padding:14px 16px;margin:10px 0 16px;font-size:14px;border-left:3px solid}
+  .cal-amber{background:var(--amber-tint);border-color:var(--signal)}
+  .cal-steel{background:var(--steel-tint);border-color:#2c4a5c}
+  .quick{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:22px}
+  .quick h3{font-family:'Space Grotesk';font-size:16px;margin-bottom:8px}
+  .stepline{display:flex;gap:12px;margin-bottom:16px}
+  .stepline .num{flex:none;width:28px;height:28px;border-radius:8px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center}
+  .stepline .steptitle{font-family:'Space Grotesk';font-weight:600;font-size:14.5px;display:block;margin-bottom:2px}
+  .stepline p{font-size:13.5px;color:var(--muted);margin:0}
+  .cmdcard{background:var(--paper-2);border-left:3px solid #2c4a5c;border-radius:8px;padding:12px 16px;margin-bottom:10px}
+  .cmdcard code{background:transparent;border:none;padding:0;font-weight:600;display:block;margin-bottom:4px}
+  .cmdcard p{margin:0;font-size:13.5px;color:var(--muted)}
+  .shot{margin:14px 0 20px;text-align:center}
+  .shot img{max-width:100%;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(15,25,34,.06)}
+  .shot figcaption{font-size:12.5px;color:var(--muted);font-style:italic;margin-top:8px}
+  details.acc{background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;overflow:hidden}
+  details.acc summary{cursor:pointer;list-style:none;padding:13px 16px;font-weight:600;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+  details.acc summary::-webkit-details-marker{display:none}
+  details.acc summary::after{content:"+";color:var(--signal-dim);font-size:18px;font-weight:400}
+  details.acc[open] summary::after{content:"\2212"}
+  details.acc[open] summary{border-bottom:1px solid var(--line)}
+  .acc-body{padding:12px 16px;font-size:13.8px;color:var(--muted)}
+  .acc-body code{color:var(--ink)}
+  footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px;margin-top:10px}
+  footer a{color:#cdd5d9;text-decoration:none}
+  @media(max-width:520px){.nav .r a.hide-sm{display:none}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+  <div class="r">
+    <a class="hide-sm" href="/catalogo/">Katalog</a>
+    <a class="hide-sm" href="/soporte/">Support</a>
+    <a href="/portal/">Anmelden</a>
+  </div>
+</div></header>
+
+<main>
+  <div class="eyebrow">AGENTEN-LEITFADEN</div>
+  <h1>Agent für Lohnabrechnung und Personalwesen</h1>
+  <p class="sub">Organisiert Ihre Belegschaft, berechnet Urlaub nach dem geltenden Arbeitsrecht und überwacht kritische HR-Termine — ohne dass die Daten Ihr Gerät verlassen.</p>
+  <div class="hero-row">
+    <span class="price">59 USD / Monat</span>
+    <a class="cta" href="/descargar/?agent=nominas"><i class="ti ti-download"></i> Diesen Agenten herunterladen</a>
+  </div>
+
+  <div class="quick">
+    <h3>Was löst er und was brauchen Sie?</h3>
+    <p>Mitarbeiterdaten sind hochsensibel und dürfen nicht in der Cloud landen. Dieser Agent verarbeitet sie zu 100 % auf Ihrem Gerät: Er lädt Ihre Belegschaft, berechnet den Urlaubssaldo nach dem geltenden Arbeitsrecht und warnt Sie vor kritischen Terminen (Vertragsende, Jubiläen), bevor sie Ihnen entgehen.</p>
+    <ul><li><b>Sie brauchen:</b> Ihren Lizenzschlüssel (<font face='Courier'>TIA-XXXX-XXXX-XXXX-XXXX</font>) und Ihre Belegschaft in Excel oder CSV. Kein Python, keine technischen Kenntnisse.</li><li><b>Erstes Ergebnis in weniger als 5 Minuten:</b> Sie installieren, aktivieren, wählen Ihren Ordner und führen <font face='Courier-Bold'>Urlaub</font> aus, um den Saldo jedes Mitarbeiters zu sehen.</li><li><b>Die Daten Ihrer Mitarbeiter verlassen nie Ihren Computer</b> — die Berechnung läuft lokal.</li></ul>
+    <div class="callout cal-amber"><b>Hinweis:</b> Die Berechnungen für Urlaub, Leistungen und Steuern sind <b>Schätzungen</b>, die mit der Rechts-/Buchhaltungsabteilung bestätigt werden müssen. Arbeitsgesetze ändern sich.</div>
+    <div class="callout cal-amber"><b>Fragen?</b> Schreib uns an <code>soporte@tuialista.com</code> oder besuche <a href="/soporte/"><code>tuialista.com/soporte</code></a> — wir antworten normalerweise am selben Werktag.</div>
+  </div>
+
+  <h2 class="sec"><span class="n">1</span> Was dieser Agent tut</h2>
+<p>Sie zeigen ihm den Ordner mit Ihrer Belegschaft (in Excel oder CSV) und er:</p>
+<ul><li><b>Lädt die Mitarbeiterdaten</b> und erkennt automatisch die Spalten (Name, Position, Gehalt, Eintrittsdatum, Vertragsart...), auch mit unterschiedlichen Namen.</li><li>Berechnet den <b>Urlaubssaldo</b> nach dem <b>geltenden Arbeitsrecht</b> (Reform &ldquo;würdiger Urlaub&rdquo; 2023).</li><li>Warnt Sie vor <b>kritischen Terminen</b>: Vertragsende und bevorstehende Jubiläen.</li><li>Erstellt eine <b>Lohnübersicht</b> (Gesamt, Durchschnitt, nach Abteilung und Vertragsart).</li><li>Listet bevorstehende <b>Jubiläen</b> für Auszeichnungen auf.</li><li>Warnt vor <b>bald auslaufenden Verträgen</b>.</li><li>Erstellt einen <b>Personalbericht</b> (Einstellungen, Austritte, Personalzahl nach Bereich).</li><li>Beantwortet <b>HR-Fragen</b> mit anonymisiertem Kontext.</li></ul>
+<p>Ergebnis: eine organisierte HR-Abteilung, mit Terminen unter Kontrolle und Daten immer zu Hause.</p>
+<h2 class="sec"><span class="n">2</span> Installation (2 Minuten)</h2>
+<p>Für Windows. Keine dauerhafte Internetverbindung nötig, nichts wird in die Cloud hochgeladen.</p>
+<div class="stepline"><div class="num">1</div><div><b class="steptitle">Herunterladen und installieren</b><p>Laden Sie das Installationsprogramm von <font face='Courier'>tuialista.com/descargar</font> herunter (Lohn-Agent) und öffnen Sie es. Es erstellt eine Verknüpfung mit dem Logo auf Ihrem Desktop — kein Python oder Terminal erforderlich.</p></div></div>
+<div class="stepline"><div class="num">2</div><div><b class="steptitle">Öffnen Sie es vom Desktop aus</b><p>Doppelklicken Sie auf das neue Symbol. Fügen Sie Ihren <b>Lizenzschlüssel</b> ein (er wurde Ihnen beim Kauf per E-Mail zugesandt) und klicken Sie auf <b>Aktivieren</b>. Sie sehen ein grünes Häkchen, wenn er gültig ist.</p></div></div>
+<div class="stepline"><div class="num">3</div><div><b class="steptitle">Wählen Sie Ihren Ordner</b><p>Wählen Sie den Ordner mit Ihrer Belegschaft aus und klicken Sie auf <b>Agent jetzt verwenden</b>. Beim nächsten Mal startet er direkt — er merkt sich Ihren Schlüssel und Ihren Ordner.</p></div></div>
+<figure class="shot"><img src="../../assets/mockups/nominas/activacion_de.png" alt="So sieht das Aktivierungsfenster aus (mit Beispieldaten). Es erscheint beim ersten Öffnen des Agenten." loading="lazy"><figcaption>So sieht das Aktivierungsfenster aus (mit Beispieldaten). Es erscheint beim ersten Öffnen des Agenten.</figcaption></figure>
+<h2 class="sec"><span class="n">3</span> So verwenden Sie ihn</h2>
+<p>Der Agent öffnet ein <b>Chat-Fenster</b>, wie eine Messaging-App — kein schwarzer Programmierer-Bildschirm. Sie schreiben Ihren Befehl oder Ihre Frage in das Textfeld unten, klicken auf <b>Senden</b> (oder Enter), und die Antwort erscheint als Nachricht, genau wie auf diesem echten Bild:</p>
+<figure class="shot"><img src="../../assets/mockups/nominas/chat_de.png" alt="Das echte Gespräch: Sie schreiben &ldquo;Urlaub&rdquo; und der Agent antwortet mit dem Saldo jedes Mitarbeiters (Beispieldaten)." loading="lazy"><figcaption>Das echte Gespräch: Sie schreiben &ldquo;Urlaub&rdquo; und der Agent antwortet mit dem Saldo jedes Mitarbeiters (Beispieldaten).</figcaption></figure>
+<p>Die folgenden Befehle sind die Wörter, die Sie in dasselbe Textfeld eingeben können:</p>
+<div class="cmdcard"><code>&gt; Urlaub</code><p>Pro Mitarbeiter: seine Betriebszugehörigkeit, die ihm zustehenden Urlaubstage (Tabelle nach dem Arbeitsrecht mit der Reform 2023), die genommenen und die ausstehenden.</p></div>
+<div class="cmdcard"><code>&gt; Termine [Tage]</code><p>HR-Ereignisse der nächsten N Tage (30 Standard): Vertragsende und Arbeitsjubiläen, sortiert nach Dringlichkeit. Z. B.: <font face='Courier'>Termine 45</font>.</p></div>
+<div class="cmdcard"><code>&gt; Lohn</code><p>Gesamtlohn, Durchschnitts-, Höchst- und Mindestgehalt, und Aufschlüsselung nach Abteilung und Vertragsart — ohne unnötig sensible Einzeldaten offenzulegen.</p></div>
+<div class="cmdcard"><code>&gt; Jubiläen [Tage]</code><p>Mitarbeiter, die in den nächsten N Tagen ein Arbeitsjubiläum haben (60 Standard).</p></div>
+<div class="cmdcard"><code>&gt; Verträge [Tage]</code><p>Befristete Verträge, die in den nächsten N Tagen auslaufen (45 Standard), einschließlich kürzlich abgelaufener.</p></div>
+<div class="cmdcard"><code>&gt; Belegschaft</code><p>Gesamte Belegschaft, aktive, Austritte, Einstellungen des Jahres, und Aufschlüsselung nach Abteilung und Vertragsart.</p></div>
+<div class="cmdcard"><code>&gt; freie Frage?</code><p>Schreiben Sie jede Frage in natürlicher Sprache, z. B.: <i>wie viele Mitarbeiter erreichen dieses Quartal 5 Jahre?</i></p></div>
+<div class="cmdcard"><code>&gt; beenden</code><p>Beendet die Sitzung (funktioniert auch mit <font face='Courier'>exit</font>).</p></div>
+<p>Möchten Sie die <b>20 vollständigen Rezepte</b> mit einem echten Beispiel für jedes sehen? Sehen Sie sich den <b>Rezeptkatalog</b> an — ein eigenes Dokument wegen seiner Länge: <font face='Courier'>catalogo_recetas.pdf</font> neben diesem Handbuch, oder die interaktive Version unter <font color="#c46a12"><a href="https://tuialista.com/guia/nominas/recetas/">tuialista.com/guia/nominas/recetas</a></font>.</p>
+<h2 class="sec"><span class="n">4</span> Beispiele für häufige Anwendungen</h2>
+<h4>Monatliche HR-Überprüfung</h4>
+<p><font face='Courier'>Termine 30</font> &nbsp;→&nbsp; <font face='Courier'>Verträge 45</font></p>
+<h4>Urlaub des Jahres vorbereiten</h4>
+<p><font face='Courier'>Urlaub</font></p>
+<h4>Bericht für die Geschäftsleitung</h4>
+<p><font face='Courier'>Lohn</font> &nbsp;→&nbsp; <font face='Courier'>Belegschaft</font></p>
+<h4>Eine punktuelle Abfrage</h4>
+<p><i>wer hat nächsten Monat ein Jubiläum?</i></p>
+<h2 class="sec"><span class="n">5</span> Häufig gestellte Fragen</h2>
+<details class="acc"><summary>Werden die Daten meiner Mitarbeiter ins Internet hochgeladen?</summary><div class="acc-body">Nein. Sie werden auf Ihrem Computer geladen und verarbeitet (siehe Datenschutz, Abschnitt 7).</div></details>
+<details class="acc"><summary>Welche Formate akzeptiert er?</summary><div class="acc-body">Excel (.xlsx, .xls) und CSV (.csv). Der Agent liest die Belegschaft aus Tabellen, nicht aus PDF oder Word.</div></details>
+<details class="acc"><summary>Muss ich die Spalten exakt benennen?</summary><div class="acc-body">Nein. Der Agent erkennt automatisch Spalten mit verschiedenen Namen auf Deutsch, Spanisch und Englisch (Name/Mitarbeiter/name, Gehalt/salario/salary, Eintrittsdatum/hire date...). Er braucht mindestens die Spalte <b>Name</b> oder <b>Gehalt</b>, um die Datei zu erkennen.</div></details>
+<details class="acc"><summary>Wie berechnet er den Urlaub?</summary><div class="acc-body">Mit der Tabelle des geltenden Arbeitsrechts und der Reform &ldquo;würdiger Urlaub&rdquo; (2023): 12 Tage im ersten Jahr, steigend auf 20 im fünften; ab dem sechsten 22 Tage und +2 für je 5 weitere Jahre.</div></details>
+<details class="acc"><summary>Ist die Urlaubsberechnung rechtlich bindend?</summary><div class="acc-body">Nein. Es ist eine <b>Schätzung</b> des gesetzlichen Minimums nach Betriebszugehörigkeit. Überprüfen Sie dies mit Ihrer Rechtsabteilung vor der Genehmigung; Ihr Unternehmen kann mehr Tage gewähren.</div></details>
+<details class="acc"><summary>Legt er individuelle Gehälter offen?</summary><div class="acc-body">Die Zusammenfassung und Fragen sind so konzipiert, dass sie die Privatsphäre respektieren und sensible Einzeldaten nur bei Bedarf offenlegen.</div></details>
+<details class="acc"><summary>In welcher Sprache antwortet er?</summary><div class="acc-body">In der Sprache, in der Sie ihm schreiben. Die Urlaubsberechnung basiert auf der konfigurierten Gesetzgebung.</div></details>
+<details class="acc"><summary>Verändert er meine Mitarbeiterdatei?</summary><div class="acc-body">Nein. Der Agent <b>liest</b> sie nur.</div></details>
+<details class="acc"><summary>Ich habe die Belegschaft aktualisiert, wird sie übernommen?</summary><div class="acc-body">Starten Sie den Agenten neu; er lädt die Daten aus dem Ordner neu.</div></details>
+<details class="acc"><summary>Kann ich mehrere Dateien haben?</summary><div class="acc-body">Ja. Er lädt alle .xlsx/.xls/.csv-Dateien des Ordners und seiner Unterordner.</div></details>
+<h2 class="sec"><span class="n">6</span> Problemlösung</h2>
+<details class="acc"><summary>Mitarbeiter werden nicht geladen / zeigt &ldquo;0 Mitarbeiter&rdquo;</summary><div class="acc-body">Stellen Sie sicher, dass Sie beim Aktivieren des Agenten den richtigen Ordner gewählt haben und dass die Datei in der ersten Zeile eine erkennbare Spalte <b>Name</b> oder <b>Gehalt</b> hat.</div></details>
+<details class="acc"><summary>Eine Spalte wird falsch erkannt</summary><div class="acc-body">Benennen Sie die Kopfzeile in eine gängigere Variante um (z. B. &ldquo;Name&rdquo;, &ldquo;Gehalt&rdquo;, &ldquo;Eintrittsdatum&rdquo;) und starten Sie neu.</div></details>
+<details class="acc"><summary>Die Urlaubsberechnungen stimmen nicht mit den Erwartungen überein</summary><div class="acc-body">Der Agent berechnet das <b>gesetzliche Minimum</b> nach Betriebszugehörigkeit; Ihr Unternehmen kann mehr gewähren. Überprüfen Sie dies mit der Rechtsabteilung.</div></details>
+<details class="acc"><summary>Zeigt &ldquo;Lizenz ungültig&rdquo; oder fordert erneute Verbindung</summary><div class="acc-body">Überprüfen Sie, ob der eingefügte Schlüssel korrekt ist (ohne zusätzliche Leerzeichen), stellen Sie sicher, dass Sie beim ersten Aktivieren Internet haben, und wenn Sie mehr als 3 Tage offline waren, verbinden Sie sich einmal erneut zur Neuvalidierung.</div></details>
+<details class="acc"><summary>&ldquo;Keine KI-Anbieter konfiguriert&rdquo;</summary><div class="acc-body">Nur freie Fragen verwenden KI — fehlt die Engine-Konfiguration, kontaktieren Sie den Support. <font face='Courier'>Termine</font>, <font face='Courier'>Urlaub</font>, <font face='Courier'>Lohn</font>, <font face='Courier'>Jubiläen</font>, <font face='Courier'>Verträge</font> und <font face='Courier'>Belegschaft</font> funktionieren weiterhin lokal, ohne KI.</div></details>
+<p><b>Keine dieser Lösungen hat Ihr Problem behoben?</b> Schreiben Sie uns direkt — wir schauen es uns gerne gemeinsam mit Ihnen an.</p>
+<div class="callout cal-amber"><b>Fragen?</b> Schreib uns an <code>soporte@tuialista.com</code> oder besuche <a href="/soporte/"><code>tuialista.com/soporte</code></a> — wir antworten normalerweise am selben Werktag.</div>
+<h2 class="sec"><span class="n">7</span> Datenschutz und Vertraulichkeit</h2>
+<p><b>Die Daten Ihrer Mitarbeiter verlassen nie Ihren Computer.</b></p>
+<ul><li>Der Agent lädt und verarbeitet die Belegschaft <b>lokal</b>, auf Ihrem eigenen Gerät. Er lädt keine Mitarbeiterdaten auf einen Server hoch.</li><li>Die Urlaubsberechnung, die Lohnberichte, die kritischen Termine und die Personalzahl werden <b>auf Ihrem Gerät</b> berechnet.</li><li>Das Einzige, was über das Internet läuft, ist: (1) eine Überprüfung, dass Ihre Lizenz aktiv ist — die keine Mitarbeiterdaten enthält —, und (2) bei einer freien Frage wird ein <b>anonymisierter Kontext</b> (aggregierte Zusammenfassungen, ohne standardmäßig individuelle Gehälter offenzulegen) an die KI-Engine gesendet, um die Antwort zu verfassen.</li></ul>
+<div class="callout cal-steel">Die Vertraulichkeit der Daten Ihres Personals ist durch Design garantiert: Urlaub, Lohn, kritische Termine und Personalzahl sind 100 % lokal. Nur freie Fragen teilen einen anonymisierten Kontext mit dem KI-Anbieter.</div>
+<div class="callout cal-amber"><b>Wichtiger Hinweis:</b> Die Berechnungen für Urlaub, Leistungen und Steuern sind Schätzungen; bestätigen Sie diese mit der Rechts-/Buchhaltungsabteilung. Der Agent berechnet das gesetzliche Mindesturlaub nach dem Arbeitsrecht (Reform 2023) anhand der Betriebszugehörigkeit, aber jedes Unternehmen kann höhere Leistungen haben, und Gesetze ändern sich. Bevor Sie Urlaub, Abfindungen oder Vertragsverlängerungen genehmigen, bestätigen Sie mit Ihrer Rechts- oder Buchhaltungsabteilung.</div>
+
+</main>
+
+<footer>&copy; 2026 TuIAlista &middot; <a href="/soporte/">Support</a> &middot; <a href="/catalogo/">Katalog</a> &middot; <a href="/">Startseite</a></footer>
+</body>
+</html>

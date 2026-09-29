@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leitfaden &middot; Agent für Reklamationen und Garantien — TuIAlista</title>
+<meta name="description" content="So nutzt du den Agent für Reklamationen und Garantien von TuIAlista: Einrichtung, Befehle, Beispiele und FAQ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{--steel-900:#0f1922;--paper:#f5f6f4;--paper-2:#eceee9;--ink:#0f1922;--muted:#5a6b73;--signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2;--ok:#1d9e75;--amber-tint:#fdf1e4;--steel-tint:#eef2f4}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper-2);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--signal-dim)}
+  header{position:sticky;top:0;background:rgba(245,246,244,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+  .nav{max-width:860px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+  .logo b{color:var(--signal)}
+  .nav .r{display:flex;align-items:center;gap:18px}
+  .nav .r a{font-size:14px;color:var(--muted);text-decoration:none}
+  .nav .r a:hover{color:var(--ink)}
+  main{max-width:860px;margin:0 auto;padding:38px 24px 80px}
+  .eyebrow{font-family:'JetBrains Mono';font-size:11.5px;letter-spacing:.1em;color:var(--signal-dim);margin-bottom:8px}
+  h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,34px);line-height:1.12;margin-bottom:10px}
+  .sub{color:var(--muted);font-size:15.5px;max-width:640px;margin-bottom:18px}
+  .hero-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+  .price{font-family:'Space Grotesk';font-weight:600;font-size:14px;color:var(--signal-dim);background:var(--amber-tint);border:1px solid var(--signal);border-radius:999px;padding:7px 16px}
+  .cta{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:9px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;text-decoration:none;transition:.15s}
+  .cta:hover{background:var(--signal);color:#1a1206}
+  h2.sec{font-family:'Space Grotesk';font-size:18px;font-weight:600;margin:38px 0 14px;padding:10px 16px;background:var(--steel-900);color:#fff;border-radius:10px;display:flex;align-items:center;gap:10px}
+  h2.sec .n{color:var(--signal)}
+  h4{font-family:'Space Grotesk';font-size:14.5px;font-weight:600;margin:16px 0 4px;color:var(--signal-dim)}
+  p{margin:0 0 12px;font-size:14.5px}
+  ul{margin:0 0 12px 20px;font-size:14.5px}
+  li{margin-bottom:6px}
+  code{font-family:'JetBrains Mono',monospace;font-size:.92em;background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  .callout{border-radius:10px;padding:14px 16px;margin:10px 0 16px;font-size:14px;border-left:3px solid}
+  .cal-amber{background:var(--amber-tint);border-color:var(--signal)}
+  .cal-steel{background:var(--steel-tint);border-color:#2c4a5c}
+  .quick{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:22px}
+  .quick h3{font-family:'Space Grotesk';font-size:16px;margin-bottom:8px}
+  .stepline{display:flex;gap:12px;margin-bottom:16px}
+  .stepline .num{flex:none;width:28px;height:28px;border-radius:8px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center}
+  .stepline .steptitle{font-family:'Space Grotesk';font-weight:600;font-size:14.5px;display:block;margin-bottom:2px}
+  .stepline p{font-size:13.5px;color:var(--muted);margin:0}
+  .cmdcard{background:var(--paper-2);border-left:3px solid #2c4a5c;border-radius:8px;padding:12px 16px;margin-bottom:10px}
+  .cmdcard code{background:transparent;border:none;padding:0;font-weight:600;display:block;margin-bottom:4px}
+  .cmdcard p{margin:0;font-size:13.5px;color:var(--muted)}
+  .shot{margin:14px 0 20px;text-align:center}
+  .shot img{max-width:100%;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(15,25,34,.06)}
+  .shot figcaption{font-size:12.5px;color:var(--muted);font-style:italic;margin-top:8px}
+  details.acc{background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;overflow:hidden}
+  details.acc summary{cursor:pointer;list-style:none;padding:13px 16px;font-weight:600;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+  details.acc summary::-webkit-details-marker{display:none}
+  details.acc summary::after{content:"+";color:var(--signal-dim);font-size:18px;font-weight:400}
+  details.acc[open] summary::after{content:"\2212"}
+  details.acc[open] summary{border-bottom:1px solid var(--line)}
+  .acc-body{padding:12px 16px;font-size:13.8px;color:var(--muted)}
+  .acc-body code{color:var(--ink)}
+  footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px;margin-top:10px}
+  footer a{color:#cdd5d9;text-decoration:none}
+  @media(max-width:520px){.nav .r a.hide-sm{display:none}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+  <div class="r">
+    <a class="hide-sm" href="/catalogo/">Katalog</a>
+    <a class="hide-sm" href="/soporte/">Support</a>
+    <a href="/portal/">Anmelden</a>
+  </div>
+</div></header>
+
+<main>
+  <div class="eyebrow">AGENTEN-LEITFADEN</div>
+  <h1>Agent für Reklamationen und Garantien</h1>
+  <p class="sub">Verfolgt Ihre Garantien, warnt Sie, bevor sie ablaufen, und erstellt das Reklamationsschreiben versandfertig.</p>
+  <div class="hero-row">
+    <span class="price">19 USD / Monat</span>
+    <a class="cta" href="/descargar/?agent=garantias"><i class="ti ti-download"></i> Diesen Agenten herunterladen</a>
+  </div>
+
+  <div class="quick">
+    <h3>Was löst er und was brauchen Sie?</h3>
+    <p>Menschen und Unternehmen verlieren Geld durch Garantien, die ablaufen, ohne dass sie jemand überprüft: ein Haushaltsgerät, ein Laptop, ein Werkzeug, das kaputt ging und noch geschützt war. Dieser Agent verwandelt Ihre verstreuten Belege, Rechnungen und Quittungen in ein aktives Rückforderungssystem.</p>
+    <ul><li><b>Sie brauchen:</b> Ihren Lizenzschlüssel (<font face='Courier'>TIA-XXXX-XXXX-XXXX-XXXX</font>) und den Ordner mit Ihren Belegen. Kein Python, keine technischen Kenntnisse.</li><li><b>Erstes Ergebnis in weniger als 5 Minuten:</b> Sie installieren, aktivieren, wählen Ihren Ordner und führen <font face='Courier-Bold'>Status</font> aus, um den Status all Ihrer Garantien zu sehen.</li><li><b>Ihre Belege verlassen nie Ihren Computer</b> — die Analyse läuft lokal.</li></ul>
+    <div class="callout cal-amber"><b>Hinweis:</b> Die Garantiebedingungen hängen von jedem Hersteller und Händler ab. Dieser Agent organisiert und warnt; <b>er ersetzt keine Rechtsberatung</b>. Bei ungelösten Reklamationen wenden Sie sich an die zuständige Verbraucherschutzbehörde.</div>
+    <div class="callout cal-amber"><b>Fragen?</b> Schreib uns an <code>soporte@tuialista.com</code> oder besuche <a href="/soporte/"><code>tuialista.com/soporte</code></a> — wir antworten normalerweise am selben Werktag.</div>
+  </div>
+
+  <h2 class="sec"><span class="n">1</span> Was dieser Agent tut</h2>
+<p>Sie zeigen ihm den Ordner mit Ihren Belegen, Rechnungen und Quittungen und er:</p>
+<ul><li><b>Liest sie</b> (Text, PDF, Word, Excel und CSV), ohne dass Sie sie einzeln öffnen müssen.</li><li>Extrahiert die Kaufdaten: <b>Produkt, Datum, Betrag, Geschäft, Seriennummer und Garantiezeitraum.</b></li><li>Berechnet den <b>Status</b> jeder Garantie: aktiv, bald ablaufend oder abgelaufen.</li><li><b>Warnt Sie vor bald ablaufenden Garantien</b>, bevor es zu spät ist.</li><li>Erstellt ein <b>formelles Reklamationsschreiben</b> versandfertig (mit Verweis auf das geltende Verbraucherschutzrecht).</li><li>Berechnet den <b>Gesamtwert</b> Ihrer noch geschützten Produkte.</li><li>Beantwortet Ihre <b>Fragen</b>: <i>&ldquo;hat mein Laptop noch Garantie?&rdquo;</i></li></ul>
+<p>Ergebnis: Sie verlieren keine Garantien mehr durch Vergessen und bekommen Geld zurück, das Ihnen zusteht.</p>
+<h2 class="sec"><span class="n">2</span> Installation (2 Minuten)</h2>
+<p>Für Windows. Keine dauerhafte Internetverbindung nötig, nichts wird in die Cloud hochgeladen.</p>
+<div class="stepline"><div class="num">1</div><div><b class="steptitle">Herunterladen und installieren</b><p>Laden Sie das Installationsprogramm von <font face='Courier'>tuialista.com/descargar</font> herunter (Garantie-Agent) und öffnen Sie es. Es erstellt eine Verknüpfung mit dem Logo auf Ihrem Desktop — kein Python oder Terminal erforderlich.</p></div></div>
+<div class="stepline"><div class="num">2</div><div><b class="steptitle">Öffnen Sie es vom Desktop aus</b><p>Doppelklicken Sie auf das neue Symbol. Fügen Sie Ihren <b>Lizenzschlüssel</b> ein (er wurde Ihnen beim Kauf per E-Mail zugesandt) und klicken Sie auf <b>Aktivieren</b>. Sie sehen ein grünes Häkchen, wenn er gültig ist.</p></div></div>
+<div class="stepline"><div class="num">3</div><div><b class="steptitle">Wählen Sie Ihren Ordner</b><p>Wählen Sie den Ordner mit Ihren Belegen und Quittungen aus und klicken Sie auf <b>Agent jetzt verwenden</b>. Beim nächsten Mal startet er direkt — er merkt sich Ihren Schlüssel und Ihren Ordner.</p></div></div>
+<figure class="shot"><img src="../../assets/mockups/garantias/activacion_de.png" alt="So sieht das Aktivierungsfenster aus (mit Beispieldaten). Es erscheint beim ersten Öffnen des Agenten." loading="lazy"><figcaption>So sieht das Aktivierungsfenster aus (mit Beispieldaten). Es erscheint beim ersten Öffnen des Agenten.</figcaption></figure>
+<h2 class="sec"><span class="n">3</span> So verwenden Sie ihn</h2>
+<p>Der Agent öffnet ein <b>Chat-Fenster</b>, wie eine Messaging-App — kein schwarzer Programmierer-Bildschirm. Sie schreiben Ihren Befehl oder Ihre Frage in das Textfeld unten, klicken auf <b>Senden</b> (oder Enter), und die Antwort erscheint als Nachricht, genau wie auf diesem echten Bild:</p>
+<figure class="shot"><img src="../../assets/mockups/garantias/chat_de.png" alt="Das echte Gespräch: Sie schreiben &ldquo;Status&rdquo; und der Agent antwortet mit dem Status Ihrer Garantien (Beispieldaten)." loading="lazy"><figcaption>Das echte Gespräch: Sie schreiben &ldquo;Status&rdquo; und der Agent antwortet mit dem Status Ihrer Garantien (Beispieldaten).</figcaption></figure>
+<p>Die folgenden Befehle sind die Wörter, die Sie in dasselbe Textfeld eingeben können:</p>
+<div class="cmdcard"><code>&gt; Status</code><p>Alle Ihre Garantien: AKTIV, BALD_ABLAUFEND, ABGELAUFEN oder OHNE_DATUM, mit den verbleibenden Tagen.</p></div>
+<div class="cmdcard"><code>&gt; bald_ablaufend [Tage]</code><p>Garantien, die in den nächsten N Tagen ablaufen (30 Standard), um rechtzeitig zu reklamieren. Z. B.: <font face='Courier'>bald_ablaufend 60</font>.</p></div>
+<div class="cmdcard"><code>&gt; reklamierbar</code><p>Produkte mit aktiver Garantie, mit Angabe, ob Sie alle Daten für eine Reklamation haben oder was fehlt.</p></div>
+<div class="cmdcard"><code>&gt; reklamieren &lt;Produkt&gt;</code><p>Das formelle Reklamationsschreiben fertig, mit Verweis auf das geltende Verbraucherschutzrecht, und einem Platz zur Beschreibung des Problems. Z. B.: <font face='Courier'>reklamieren laptop</font>.</p></div>
+<div class="cmdcard"><code>&gt; Fehlendes</code><p>Belege, denen eine Schlüsselangabe fehlt (Datum, Betrag, Geschäft, Seriennummer), um reklamieren zu können.</p></div>
+<div class="cmdcard"><code>&gt; geschützt</code><p>Summiert den Wert Ihrer Produkte mit aktiver und bald ablaufender Garantie.</p></div>
+<div class="cmdcard"><code>&gt; freie Frage?</code><p>Schreiben Sie jede Frage in natürlicher Sprache, z. B.: <i>wie viel Garantie habe ich noch für den Kühlschrank?</i></p></div>
+<div class="cmdcard"><code>&gt; beenden</code><p>Beendet die Sitzung (funktioniert auch mit <font face='Courier'>exit</font>).</p></div>
+<div class="callout cal-steel">Wenn ein Beleg keinen Garantiezeitraum angibt, geht der Agent standardmäßig von <b>1 Jahr (365 Tagen)</b> aus, um die Gültigkeit zu berechnen.</div>
+<p>Möchten Sie die <b>20 vollständigen Rezepte</b> mit einem echten Beispiel für jedes sehen? Sehen Sie sich den <b>Rezeptkatalog</b> an — ein eigenes Dokument wegen seiner Länge: <font face='Courier'>catalogo_recetas.pdf</font> neben diesem Handbuch, oder die interaktive Version unter <font color="#c46a12"><a href="https://tuialista.com/guia/garantias/recetas/">tuialista.com/guia/garantias/recetas</a></font>.</p>
+<h2 class="sec"><span class="n">4</span> Beispiele für häufige Anwendungen</h2>
+<h4>Prüfen, was bald abläuft</h4>
+<p><font face='Courier'>bald_ablaufend 45</font> — Sie sehen, welche Garantien bald ablaufen, und entscheiden, ob es sich lohnt, jetzt zu reklamieren.</p>
+<h4>Ein kaputtes Produkt reklamieren</h4>
+<p><font face='Courier'>reklamierbar</font> &nbsp;→&nbsp; <font face='Courier'>reklamieren mixer</font> — Sie bestätigen, dass noch Garantie besteht, und erhalten das fertige Schreiben.</p>
+<h4>Wissen, wie viel Sie geschützt haben</h4>
+<p><font face='Courier'>geschützt</font></p>
+<h4>Ergänzen, was fehlt</h4>
+<p><font face='Courier'>Fehlendes</font> — Sie erkennen, welche Belege mehr Daten brauchen, bevor reklamiert werden kann.</p>
+<h2 class="sec"><span class="n">5</span> Häufig gestellte Fragen</h2>
+<details class="acc"><summary>Werden meine Belege ins Internet hochgeladen?</summary><div class="acc-body">Nein. Alles wird auf Ihrem Computer verarbeitet (siehe Datenschutz, Abschnitt 7).</div></details>
+<details class="acc"><summary>Welche Formate akzeptiert er?</summary><div class="acc-body">Text (.txt), Markdown (.md), PDF (.pdf), Word (.docx), Excel (.xlsx) und CSV (.csv). In Tabellen wird jede Zeile als ein Beleg behandelt.</div></details>
+<details class="acc"><summary>Woher kennt er das Datum, den Betrag und die Garantie?</summary><div class="acc-body">Er extrahiert sie automatisch aus dem Text des Belegs (sucht nach &ldquo;Kaufdatum&rdquo;, &ldquo;Summe&rdquo;, &ldquo;Garantie von X Jahren/Monaten&rdquo;, Seriennummer, Geschäft...). Sehr nützlich, kann sich aber bei Belegen mit ungewöhnlichem Format irren.</div></details>
+<details class="acc"><summary>Was passiert, wenn der Beleg den Garantiezeitraum nicht angibt?</summary><div class="acc-body">Der Agent geht standardmäßig von <b>1 Jahr</b> aus. Wenn Ihr Produkt eine andere Garantie hat, überprüfen Sie dies und berücksichtigen Sie es bei der Reklamation.</div></details>
+<details class="acc"><summary>Ist das Reklamationsschreiben rechtlich gültig?</summary><div class="acc-body">Es ist ein <b>unterstützender Entwurf</b> mit formellem Format und Verweis auf das geltende Recht. Überprüfen, vervollständigen und passen Sie ihn an Ihren Fall an. Die Bedingungen hängen vom Hersteller/Händler ab.</div></details>
+<details class="acc"><summary>In welcher Sprache antwortet er mir?</summary><div class="acc-body">In der Sprache, in der Sie ihm schreiben. Die Datenextraktion ist für Deutsch und Spanisch optimiert.</div></details>
+<details class="acc"><summary>Liest er ein gescanntes PDF?</summary><div class="acc-body">Nicht zuverlässig: Wenn es ein Bild ohne auswählbaren Text ist, kann er es nicht lesen.</div></details>
+<details class="acc"><summary>Verändert er meine Dateien?</summary><div class="acc-body">Nein. Der Agent <b>liest</b> Ihre Belege nur.</div></details>
+<details class="acc"><summary>Kann ich den Ordner ändern?</summary><div class="acc-body">Ja. Öffnen Sie den Agenten erneut und klicken Sie auf &ldquo;Auswählen&hellip;&rdquo;, um ihn zu ändern (falls er nicht danach fragt, löschen Sie <font face='Courier'>config.json</font> in <font face='Courier'>%USERPROFILE%\.tuialista</font>, damit er erneut danach fragt).</div></details>
+<details class="acc"><summary>Ersetzt er Rechts- oder Verbraucherberatung?</summary><div class="acc-body">Nein. Es ist ein Werkzeug zur Organisation und Unterstützung. Bei ungelösten Reklamationen wenden Sie sich an die Verbraucherschutzbehörde oder einen Berater.</div></details>
+<h2 class="sec"><span class="n">6</span> Problemlösung</h2>
+<details class="acc"><summary>Ein .pdf, .docx oder .xlsx wird nicht gelesen</summary><div class="acc-body">Stellen Sie sicher, dass das PDF echten Text enthält (nicht gescannt). Bei anhaltendem Problem kontaktieren Sie den Support.</div></details>
+<details class="acc"><summary>Zeigt &ldquo;0 Belege&rdquo;</summary><div class="acc-body">Der Ordner ist leer oder der Pfad ist falsch. Überprüfen Sie, ob Sie beim Aktivieren des Agenten den richtigen Ordner ausgewählt haben.</div></details>
+<details class="acc"><summary>Zeigt &ldquo;Lizenz ungültig&rdquo; oder fordert erneute Verbindung</summary><div class="acc-body">Überprüfen Sie, ob der eingefügte Schlüssel korrekt ist (ohne zusätzliche Leerzeichen), stellen Sie sicher, dass Sie beim ersten Aktivieren Internet haben, und wenn Sie mehr als 3 Tage offline waren, verbinden Sie sich einmal erneut zur Neuvalidierung.</div></details>
+<details class="acc"><summary>&ldquo;Keine KI-Anbieter konfiguriert&rdquo;</summary><div class="acc-body"><font face='Courier'>reklamieren</font> und freie Fragen verwenden KI — fehlt die Engine-Konfiguration, kontaktieren Sie den Support. <font face='Courier'>Status</font>, <font face='Courier'>bald_ablaufend</font>, <font face='Courier'>reklamierbar</font>, <font face='Courier'>Fehlendes</font> und <font face='Courier'>geschützt</font> funktionieren weiterhin lokal, ohne KI.</div></details>
+<p><b>Keine dieser Lösungen hat Ihr Problem behoben?</b> Schreiben Sie uns direkt — wir schauen es uns gerne gemeinsam mit Ihnen an.</p>
+<div class="callout cal-amber"><b>Fragen?</b> Schreib uns an <code>soporte@tuialista.com</code> oder besuche <a href="/soporte/"><code>tuialista.com/soporte</code></a> — wir antworten normalerweise am selben Werktag.</div>
+<h2 class="sec"><span class="n">7</span> Datenschutz und Vertraulichkeit</h2>
+<p><b>Ihre Belege verlassen nie Ihren Computer.</b></p>
+<ul><li>Der Agent liest und analysiert die Dateien <b>lokal</b>, auf Ihrem eigenen Gerät. Er lädt sie auf keinen Server hoch.</li><li>Die Extraktion der Kaufdaten und die Berechnung der Gültigkeit finden <b>auf Ihrem Gerät</b> statt.</li><li>Das Einzige, was über das Internet läuft, ist: (1) eine Überprüfung, dass Ihre Lizenz aktiv ist — die Ihre Belege nicht enthält —, und (2) beim Erstellen eines Reklamationsschreibens oder einer freien Frage wird ein Ausschnitt der relevanten Information an die KI-Engine gesendet, um diese Antwort zu verfassen.</li></ul>
+<div class="callout cal-steel">Die Vertraulichkeit Ihrer Käufe ist durch Design garantiert: die grundlegende Verarbeitung (Lesen, Status, Berechnung des geschützten Werts) ist 100 % lokal. Nur <font face='Courier'>reklamieren</font> und freie Fragen teilen einen Datenausschnitt mit dem KI-Anbieter, um antworten zu können.</div>
+<div class="callout cal-amber"><b>Wichtiger Hinweis:</b> Dieser Agent hilft Ihnen, keine Garantien zu verlieren, ist aber weder Anwalt noch Verbraucherschutzbehörde. Er extrahiert Daten, Beträge und Zeiträume automatisch und kann bei Belegen mit ungewöhnlichem Format eine Angabe auslassen oder verwechseln. Überprüfen Sie kritische Ablauffristen und die Garantiebedingungen mit dem Beleg und dem Hersteller, bevor Sie handeln. Bei ungelösten Reklamationen wenden Sie sich an die zuständige Behörde.</div>
+
+</main>
+
+<footer>&copy; 2026 TuIAlista &middot; <a href="/soporte/">Support</a> &middot; <a href="/catalogo/">Katalog</a> &middot; <a href="/">Startseite</a></footer>
+</body>
+</html>
