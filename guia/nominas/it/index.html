@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guida &middot; Agente Buste Paga e Risorse Umane — TuIAlista</title>
+<meta name="description" content="Come usare l' Agente Buste Paga e Risorse Umane di TuIAlista: installazione, comandi, esempi e domande frequenti.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{--steel-900:#0f1922;--paper:#f5f6f4;--paper-2:#eceee9;--ink:#0f1922;--muted:#5a6b73;--signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2;--ok:#1d9e75;--amber-tint:#fdf1e4;--steel-tint:#eef2f4}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper-2);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--signal-dim)}
+  header{position:sticky;top:0;background:rgba(245,246,244,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+  .nav{max-width:860px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+  .logo b{color:var(--signal)}
+  .nav .r{display:flex;align-items:center;gap:18px}
+  .nav .r a{font-size:14px;color:var(--muted);text-decoration:none}
+  .nav .r a:hover{color:var(--ink)}
+  main{max-width:860px;margin:0 auto;padding:38px 24px 80px}
+  .eyebrow{font-family:'JetBrains Mono';font-size:11.5px;letter-spacing:.1em;color:var(--signal-dim);margin-bottom:8px}
+  h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,34px);line-height:1.12;margin-bottom:10px}
+  .sub{color:var(--muted);font-size:15.5px;max-width:640px;margin-bottom:18px}
+  .hero-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+  .price{font-family:'Space Grotesk';font-weight:600;font-size:14px;color:var(--signal-dim);background:var(--amber-tint);border:1px solid var(--signal);border-radius:999px;padding:7px 16px}
+  .cta{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:9px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;text-decoration:none;transition:.15s}
+  .cta:hover{background:var(--signal);color:#1a1206}
+  h2.sec{font-family:'Space Grotesk';font-size:18px;font-weight:600;margin:38px 0 14px;padding:10px 16px;background:var(--steel-900);color:#fff;border-radius:10px;display:flex;align-items:center;gap:10px}
+  h2.sec .n{color:var(--signal)}
+  h4{font-family:'Space Grotesk';font-size:14.5px;font-weight:600;margin:16px 0 4px;color:var(--signal-dim)}
+  p{margin:0 0 12px;font-size:14.5px}
+  ul{margin:0 0 12px 20px;font-size:14.5px}
+  li{margin-bottom:6px}
+  code{font-family:'JetBrains Mono',monospace;font-size:.92em;background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  .callout{border-radius:10px;padding:14px 16px;margin:10px 0 16px;font-size:14px;border-left:3px solid}
+  .cal-amber{background:var(--amber-tint);border-color:var(--signal)}
+  .cal-steel{background:var(--steel-tint);border-color:#2c4a5c}
+  .quick{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:22px}
+  .quick h3{font-family:'Space Grotesk';font-size:16px;margin-bottom:8px}
+  .stepline{display:flex;gap:12px;margin-bottom:16px}
+  .stepline .num{flex:none;width:28px;height:28px;border-radius:8px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center}
+  .stepline .steptitle{font-family:'Space Grotesk';font-weight:600;font-size:14.5px;display:block;margin-bottom:2px}
+  .stepline p{font-size:13.5px;color:var(--muted);margin:0}
+  .cmdcard{background:var(--paper-2);border-left:3px solid #2c4a5c;border-radius:8px;padding:12px 16px;margin-bottom:10px}
+  .cmdcard code{background:transparent;border:none;padding:0;font-weight:600;display:block;margin-bottom:4px}
+  .cmdcard p{margin:0;font-size:13.5px;color:var(--muted)}
+  .shot{margin:14px 0 20px;text-align:center}
+  .shot img{max-width:100%;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(15,25,34,.06)}
+  .shot figcaption{font-size:12.5px;color:var(--muted);font-style:italic;margin-top:8px}
+  details.acc{background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;overflow:hidden}
+  details.acc summary{cursor:pointer;list-style:none;padding:13px 16px;font-weight:600;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+  details.acc summary::-webkit-details-marker{display:none}
+  details.acc summary::after{content:"+";color:var(--signal-dim);font-size:18px;font-weight:400}
+  details.acc[open] summary::after{content:"\2212"}
+  details.acc[open] summary{border-bottom:1px solid var(--line)}
+  .acc-body{padding:12px 16px;font-size:13.8px;color:var(--muted)}
+  .acc-body code{color:var(--ink)}
+  footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px;margin-top:10px}
+  footer a{color:#cdd5d9;text-decoration:none}
+  @media(max-width:520px){.nav .r a.hide-sm{display:none}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+  <div class="r">
+    <a class="hide-sm" href="/catalogo/">Catalogo</a>
+    <a class="hide-sm" href="/soporte/">Assistenza</a>
+    <a href="/portal/">Accedi</a>
+  </div>
+</div></header>
+
+<main>
+  <div class="eyebrow">GUIDA DELL'AGENTE</div>
+  <h1>Agente Buste Paga e Risorse Umane</h1>
+  <p class="sub">Organizza il tuo personale, calcola le ferie secondo la normativa del lavoro applicabile e monitora le scadenze critiche delle Risorse Umane — senza che i dati escano dal tuo dispositivo.</p>
+  <div class="hero-row">
+    <span class="price">59 USD / mese</span>
+    <a class="cta" href="/descargar/?agent=nominas"><i class="ti ti-download"></i> Scarica questo agente</a>
+  </div>
+
+  <div class="quick">
+    <h3>Cosa risolve e cosa ti serve?</h3>
+    <p>I dati dei dipendenti sono estremamente sensibili e non possono girare sul cloud. Questo agente li elabora al 100% sul tuo dispositivo: carica il tuo personale, calcola il saldo ferie secondo la normativa del lavoro applicabile e ti avvisa di scadenze critiche (fine contratti, anniversari) prima che ti sfuggano.</p>
+    <ul><li><b>Ti serve:</b> la tua chiave di licenza (<font face='Courier'>TIA-XXXX-XXXX-XXXX-XXXX</font>) e il tuo personale in Excel o CSV. Niente Python né conoscenze tecniche.</li><li><b>Primo risultato in meno di 5 minuti:</b> installi, attivi, scegli la tua cartella ed esegui <font face='Courier-Bold'>ferie</font> per vedere il saldo di ogni dipendente.</li><li><b>I dati dei tuoi dipendenti non lasciano mai il tuo computer</b> — il calcolo gira in locale.</li></ul>
+    <div class="callout cal-amber"><b>Avviso:</b> i calcoli di ferie, benefit e imposte sono <b>stime</b> da convalidare con l'area legale/contabile. Le leggi sul lavoro cambiano.</div>
+    <div class="callout cal-amber"><b>Domande?</b> Scrivici a <code>soporte@tuialista.com</code> o visita <a href="/soporte/"><code>tuialista.com/soporte</code></a> — di solito rispondiamo lo stesso giorno lavorativo.</div>
+  </div>
+
+  <h2 class="sec"><span class="n">1</span> Cosa fa questo agente</h2>
+<p>Gli indichi la cartella con il tuo personale (in Excel o CSV) e lui:</p>
+<ul><li><b>Carica i dati</b> dei dipendenti rilevando automaticamente le colonne (nome, ruolo, stipendio, data di assunzione, tipo di contratto...), anche con nomi diversi.</li><li>Calcola il <b>saldo ferie</b> secondo la <b>normativa del lavoro applicabile</b> (riforma &ldquo;ferie dignitose&rdquo; 2023).</li><li>Ti avvisa delle <b>scadenze critiche</b>: fine contratti e anniversari lavorativi imminenti.</li><li>Genera un <b>riepilogo buste paga</b> (totale, media, per reparto e tipo di contratto).</li><li>Elenca gli <b>anniversari</b> imminenti per riconoscimenti.</li><li>Avvisa dei <b>contratti in scadenza</b>.</li><li>Genera un <b>report del personale</b> (assunzioni, cessazioni, organico per area).</li><li>Risponde a <b>domande di Risorse Umane</b> con contesto anonimizzato.</li></ul>
+<p>Risultato: un'area Risorse Umane organizzata, con le scadenze sotto controllo e i dati sempre in casa.</p>
+<h2 class="sec"><span class="n">2</span> Installazione (2 minuti)</h2>
+<p>Per Windows. Non serve internet permanente né caricare nulla sul cloud.</p>
+<div class="stepline"><div class="num">1</div><div><b class="steptitle">Scaricalo e installalo</b><p>Scarica l'installer da <font face='Courier'>tuialista.com/descargar</font> (agente Buste Paga) e aprilo. Crea un collegamento sul desktop con il logo — non richiede Python né terminale.</p></div></div>
+<div class="stepline"><div class="num">2</div><div><b class="steptitle">Aprilo dal desktop</b><p>Doppio clic sulla nuova icona. Incolla la tua <b>chiave di licenza</b> (ricevuta via email all'acquisto) e premi <b>Attiva</b>. Vedrai un segno di spunta verde quando è valida.</p></div></div>
+<div class="stepline"><div class="num">3</div><div><b class="steptitle">Scegli la tua cartella</b><p>Seleziona la cartella con il tuo personale e premi <b>Inizia a usare l'agente</b>. La prossima volta si avvia direttamente — ricorda la tua chiave e la tua cartella.</p></div></div>
+<figure class="shot"><img src="../../assets/mockups/nominas/activacion_it.png" alt="Ecco come appare la finestra di attivazione (con dati di esempio). Compare la prima volta che apri l'agente." loading="lazy"><figcaption>Ecco come appare la finestra di attivazione (con dati di esempio). Compare la prima volta che apri l'agente.</figcaption></figure>
+<h2 class="sec"><span class="n">3</span> Come usarlo</h2>
+<p>L'agente apre una <b>finestra di chat</b>, come un'app di messaggistica — non è uno schermo nero da programmatore. Scrivi il tuo comando o la tua domanda nella casella di testo in basso, premi <b>Invia</b> (o Invio), e la risposta appare come un messaggio, proprio come in questa immagine reale:</p>
+<figure class="shot"><img src="../../assets/mockups/nominas/chat_it.png" alt="La conversazione reale: scrivi &ldquo;ferie&rdquo; e l'agente risponde con il saldo di ogni dipendente (dati di esempio)." loading="lazy"><figcaption>La conversazione reale: scrivi &ldquo;ferie&rdquo; e l'agente risponde con il saldo di ogni dipendente (dati di esempio).</figcaption></figure>
+<p>I comandi seguenti sono le parole che puoi scrivere nella stessa casella di testo:</p>
+<div class="cmdcard"><code>&gt; ferie</code><p>Per dipendente: la sua anzianità, i giorni di ferie che gli spettano (tabella normativa con la riforma 2023), quelli presi e quelli residui.</p></div>
+<div class="cmdcard"><code>&gt; date [giorni]</code><p>Eventi delle Risorse Umane dei prossimi N giorni (30 di default): fine contratti e anniversari lavorativi, ordinati per urgenza. Es.: <font face='Courier'>date 45</font>.</p></div>
+<div class="cmdcard"><code>&gt; buste_paga</code><p>Totale delle buste paga, stipendio medio, massimo e minimo, e suddivisione per reparto e tipo di contratto — senza esporre inutilmente dati individuali sensibili.</p></div>
+<div class="cmdcard"><code>&gt; anniversari [giorni]</code><p>Dipendenti che festeggiano un anniversario lavorativo nei prossimi N giorni (60 di default).</p></div>
+<div class="cmdcard"><code>&gt; contratti [giorni]</code><p>Contratti temporanei in scadenza nei prossimi N giorni (45 di default), inclusi quelli appena scaduti.</p></div>
+<div class="cmdcard"><code>&gt; personale</code><p>Totale del personale, attivi, cessazioni, assunzioni dell'anno, e suddivisione per reparto e tipo di contratto.</p></div>
+<div class="cmdcard"><code>&gt; domanda libera?</code><p>Scrivi qualsiasi domanda in linguaggio naturale, es.: <i>quanti dipendenti raggiungono 5 anni di anzianità questo trimestre?</i></p></div>
+<div class="cmdcard"><code>&gt; esci</code><p>Termina la sessione (funziona anche <font face='Courier'>exit</font>).</p></div>
+<p>Vuoi vedere le <b>20 ricette complete</b> con un esempio reale per ciascuna? Consulta il <b>Catalogo delle ricette</b> — un documento separato data la sua lunghezza: <font face='Courier'>catalogo_recetas.pdf</font> insieme a questo manuale, o la versione interattiva su <font color="#c46a12"><a href="https://tuialista.com/guia/nominas/recetas/">tuialista.com/guia/nominas/recetas</a></font>.</p>
+<h2 class="sec"><span class="n">4</span> Esempi di uso comune</h2>
+<h4>Revisione mensile Risorse Umane</h4>
+<p><font face='Courier'>date 30</font> &nbsp;→&nbsp; <font face='Courier'>contratti 45</font></p>
+<h4>Preparare le ferie dell'anno</h4>
+<p><font face='Courier'>ferie</font></p>
+<h4>Report per la direzione</h4>
+<p><font face='Courier'>buste_paga</font> &nbsp;→&nbsp; <font face='Courier'>personale</font></p>
+<h4>Una richiesta puntuale</h4>
+<p><i>chi festeggia un anniversario il prossimo mese?</i></p>
+<h2 class="sec"><span class="n">5</span> Domande frequenti</h2>
+<details class="acc"><summary>I dati dei miei dipendenti vengono caricati su internet?</summary><div class="acc-body">No. Vengono caricati ed elaborati sul tuo computer (vedi Privacy, sezione 7).</div></details>
+<details class="acc"><summary>Quali formati accetta?</summary><div class="acc-body">Excel (.xlsx, .xls) e CSV (.csv). L'agente legge il personale da fogli di calcolo, non da PDF né Word.</div></details>
+<details class="acc"><summary>Devo nominare le colonne in modo esatto?</summary><div class="acc-body">No. L'agente rileva automaticamente colonne con nomi diversi in italiano, spagnolo e inglese (nome/dipendente/name, stipendio/salario/salary, data assunzione/hire date...). Necessita almeno la colonna <b>nome</b> o <b>stipendio</b> per riconoscere il file.</div></details>
+<details class="acc"><summary>Come calcola le ferie?</summary><div class="acc-body">Con la tabella della normativa applicabile e la sua riforma &ldquo;ferie dignitose&rdquo; (2023): 12 giorni al primo anno, salendo fino a 20 al quinto; dal sesto, 22 giorni e +2 ogni 5 anni aggiuntivi.</div></details>
+<details class="acc"><summary>Il calcolo delle ferie è legalmente vincolante?</summary><div class="acc-body">No. È una <b>stima</b> del minimo legale secondo l'anzianità. Verificalo con la tua area legale prima di autorizzare; la tua azienda può concedere più giorni.</div></details>
+<details class="acc"><summary>Espone gli stipendi individuali?</summary><div class="acc-body">Il riepilogo e le domande sono progettati per rispettare la privacy e non esporre dati individuali sensibili salvo necessità.</div></details>
+<details class="acc"><summary>In quale lingua risponde?</summary><div class="acc-body">Nella lingua in cui gli scrivi. Il calcolo delle ferie si basa sulla legislazione configurata.</div></details>
+<details class="acc"><summary>Modifica il mio file dipendenti?</summary><div class="acc-body">No. L'agente si limita a <b>leggerlo</b>.</div></details>
+<details class="acc"><summary>Ho aggiornato il personale, lo rileva?</summary><div class="acc-body">Riavvia l'agente; ricarica i dati dalla cartella.</div></details>
+<details class="acc"><summary>Posso avere più file?</summary><div class="acc-body">Sì. Carica tutti gli .xlsx/.xls/.csv della cartella e delle sue sottocartelle.</div></details>
+<h2 class="sec"><span class="n">6</span> Risoluzione dei problemi</h2>
+<details class="acc"><summary>Non carica i dipendenti / mostra &ldquo;0 dipendenti&rdquo;</summary><div class="acc-body">Verifica di aver scelto la cartella corretta durante l'attivazione dell'agente e che il file abbia una colonna riconoscibile di <b>nome</b> o <b>stipendio</b> nella prima riga.</div></details>
+<details class="acc"><summary>Rileva male una colonna</summary><div class="acc-body">Rinomina l'intestazione in una variante più comune (ad esempio &ldquo;Nome&rdquo;, &ldquo;Stipendio&rdquo;, &ldquo;Data di assunzione&rdquo;) e riavvia.</div></details>
+<details class="acc"><summary>I calcoli delle ferie non corrispondono a quanto atteso</summary><div class="acc-body">L'agente calcola il <b>minimo legale</b> per anzianità; la tua azienda può concedere di più. Verifica con l'area legale.</div></details>
+<details class="acc"><summary>Mostra &ldquo;Licenza non valida&rdquo; o chiede di riconnettersi</summary><div class="acc-body">Verifica che la chiave incollata sia corretta (senza spazi in più), conferma di avere internet la prima volta che attivi, e se sei stato più di 3 giorni senza connessione, riconnettiti una volta per rivalidare.</div></details>
+<details class="acc"><summary>&ldquo;Nessun fornitore IA configurato&rdquo;</summary><div class="acc-body">Solo le domande libere usano IA — se manca la configurazione del motore, contatta l'assistenza. <font face='Courier'>date</font>, <font face='Courier'>ferie</font>, <font face='Courier'>buste_paga</font>, <font face='Courier'>anniversari</font>, <font face='Courier'>contratti</font> e <font face='Courier'>personale</font> continuano a funzionare in locale, senza IA.</div></details>
+<p><b>Nessuna di queste soluzioni ha risolto il tuo problema?</b> Scrivici direttamente — saremo felici di rivederlo con te.</p>
+<div class="callout cal-amber"><b>Domande?</b> Scrivici a <code>soporte@tuialista.com</code> o visita <a href="/soporte/"><code>tuialista.com/soporte</code></a> — di solito rispondiamo lo stesso giorno lavorativo.</div>
+<h2 class="sec"><span class="n">7</span> Privacy e riservatezza</h2>
+<p><b>I dati dei tuoi dipendenti non lasciano mai il tuo computer.</b></p>
+<ul><li>L'agente carica ed elabora il personale <b>in locale</b>, sul tuo stesso dispositivo. Non carica dati dei dipendenti su nessun server.</li><li>Il calcolo delle ferie, i report delle buste paga, le scadenze critiche e l'organico vengono calcolati <b>sul tuo dispositivo</b>.</li><li>L'unica cosa che viaggia su internet è: (1) una verifica che la tua licenza sia attiva — che non include dati dei dipendenti —, e (2) quando fai una domanda libera, viene inviato un <b>contesto anonimizzato</b> (riepiloghi aggregati, senza esporre stipendi individuali di default) al motore IA per redigere la risposta.</li></ul>
+<div class="callout cal-steel">La riservatezza dei dati del tuo personale è garantita per progettazione: ferie, buste paga, scadenze critiche e organico sono al 100% locali. Solo le domande libere condividono un contesto anonimizzato con il fornitore di IA.</div>
+<div class="callout cal-amber"><b>Promemoria importante:</b> i calcoli di ferie, benefit e imposte sono stime; convalidali con l'area legale/contabile. L'agente calcola il minimo legale delle ferie secondo la normativa (riforma 2023) in base all'anzianità, ma ogni azienda può avere benefit superiori e le leggi cambiano. Prima di autorizzare ferie, liquidazioni o rinnovi di contratto, conferma con la tua area legale o contabile.</div>
+
+</main>
+
+<footer>&copy; 2026 TuIAlista &middot; <a href="/soporte/">Assistenza</a> &middot; <a href="/catalogo/">Catalogo</a> &middot; <a href="/">Home</a></footer>
+</body>
+</html>
