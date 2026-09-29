@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guide &middot; Agent Contrats personnels — TuIAlista</title>
+<meta name="description" content="Comment utiliser l' Agent Contrats personnels de TuIAlista&nbsp;: installation, commandes, exemples et questions fr&eacute;quentes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{--steel-900:#0f1922;--paper:#f5f6f4;--paper-2:#eceee9;--ink:#0f1922;--muted:#5a6b73;--signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2;--ok:#1d9e75;--amber-tint:#fdf1e4;--steel-tint:#eef2f4}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper-2);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--signal-dim)}
+  header{position:sticky;top:0;background:rgba(245,246,244,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+  .nav{max-width:860px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+  .logo b{color:var(--signal)}
+  .nav .r{display:flex;align-items:center;gap:18px}
+  .nav .r a{font-size:14px;color:var(--muted);text-decoration:none}
+  .nav .r a:hover{color:var(--ink)}
+  main{max-width:860px;margin:0 auto;padding:38px 24px 80px}
+  .eyebrow{font-family:'JetBrains Mono';font-size:11.5px;letter-spacing:.1em;color:var(--signal-dim);margin-bottom:8px}
+  h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,34px);line-height:1.12;margin-bottom:10px}
+  .sub{color:var(--muted);font-size:15.5px;max-width:640px;margin-bottom:18px}
+  .hero-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+  .price{font-family:'Space Grotesk';font-weight:600;font-size:14px;color:var(--signal-dim);background:var(--amber-tint);border:1px solid var(--signal);border-radius:999px;padding:7px 16px}
+  .cta{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:9px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;text-decoration:none;transition:.15s}
+  .cta:hover{background:var(--signal);color:#1a1206}
+  h2.sec{font-family:'Space Grotesk';font-size:18px;font-weight:600;margin:38px 0 14px;padding:10px 16px;background:var(--steel-900);color:#fff;border-radius:10px;display:flex;align-items:center;gap:10px}
+  h2.sec .n{color:var(--signal)}
+  h4{font-family:'Space Grotesk';font-size:14.5px;font-weight:600;margin:16px 0 4px;color:var(--signal-dim)}
+  p{margin:0 0 12px;font-size:14.5px}
+  ul{margin:0 0 12px 20px;font-size:14.5px}
+  li{margin-bottom:6px}
+  code{font-family:'JetBrains Mono',monospace;font-size:.92em;background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  .callout{border-radius:10px;padding:14px 16px;margin:10px 0 16px;font-size:14px;border-left:3px solid}
+  .cal-amber{background:var(--amber-tint);border-color:var(--signal)}
+  .cal-steel{background:var(--steel-tint);border-color:#2c4a5c}
+  .quick{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:22px}
+  .quick h3{font-family:'Space Grotesk';font-size:16px;margin-bottom:8px}
+  .stepline{display:flex;gap:12px;margin-bottom:16px}
+  .stepline .num{flex:none;width:28px;height:28px;border-radius:8px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center}
+  .stepline .steptitle{font-family:'Space Grotesk';font-weight:600;font-size:14.5px;display:block;margin-bottom:2px}
+  .stepline p{font-size:13.5px;color:var(--muted);margin:0}
+  .cmdcard{background:var(--paper-2);border-left:3px solid #2c4a5c;border-radius:8px;padding:12px 16px;margin-bottom:10px}
+  .cmdcard code{background:transparent;border:none;padding:0;font-weight:600;display:block;margin-bottom:4px}
+  .cmdcard p{margin:0;font-size:13.5px;color:var(--muted)}
+  .shot{margin:14px 0 20px;text-align:center}
+  .shot img{max-width:100%;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(15,25,34,.06)}
+  .shot figcaption{font-size:12.5px;color:var(--muted);font-style:italic;margin-top:8px}
+  details.acc{background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;overflow:hidden}
+  details.acc summary{cursor:pointer;list-style:none;padding:13px 16px;font-weight:600;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+  details.acc summary::-webkit-details-marker{display:none}
+  details.acc summary::after{content:"+";color:var(--signal-dim);font-size:18px;font-weight:400}
+  details.acc[open] summary::after{content:"\2212"}
+  details.acc[open] summary{border-bottom:1px solid var(--line)}
+  .acc-body{padding:12px 16px;font-size:13.8px;color:var(--muted)}
+  .acc-body code{color:var(--ink)}
+  footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px;margin-top:10px}
+  footer a{color:#cdd5d9;text-decoration:none}
+  @media(max-width:520px){.nav .r a.hide-sm{display:none}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+  <div class="r">
+    <a class="hide-sm" href="/catalogo/">Catalogue</a>
+    <a class="hide-sm" href="/soporte/">Support</a>
+    <a href="/portal/">Se connecter</a>
+  </div>
+</div></header>
+
+<main>
+  <div class="eyebrow">GUIDE DE L'AGENT</div>
+  <h1>Agent Contrats personnels</h1>
+  <p class="sub">Vous explique en mots simples tout contrat que vous êtes sur le point de signer et vous avertit des clauses qui pourraient vous nuire.</p>
+  <div class="hero-row">
+    <span class="price">19 $ US / mois</span>
+    <a class="cta" href="/descargar/?agent=contratos-personales"><i class="ti ti-download"></i> T&eacute;l&eacute;charger cet agent</a>
+  </div>
+
+  <div class="quick">
+    <h3>Que résout-il et de quoi avez-vous besoin ?</h3>
+    <p>Un avocat facture entre 100 et 300 $ pour examiner un contrat. Cet agent le fait instantanément, autant de fois que vous voulez, en toute confidentialité, pour les contrats du quotidien : location, téléphonie, salle de sport, crédit, un emploi.</p>
+    <ul><li><b>Vous avez besoin de :</b> votre clé de licence (<font face='Courier'>TIA-XXXX-XXXX-XXXX-XXXX</font>) et du contrat (ou du dossier contenant vos contrats). Ni Python ni connaissances techniques.</li><li><b>Premier résultat en moins de 5 minutes :</b> vous installez, activez, chargez votre contrat avec <font face='Courier-Bold'>charger</font> et lancez <font face='Courier-Bold'>dangers</font> pour voir quelles clauses examiner.</li><li><b>Votre contrat ne quitte jamais votre ordinateur</b> — l'analyse s'exécute localement.</li></ul>
+    <div class="callout cal-amber"><b>Avertissement :</b> cette analyse est informative. Pour les contrats à forte valeur (crédit important, hypothèque, contrat de travail complexe), il est recommandé de consulter un avocat ou l'organisme de protection des consommateurs. L'agent vous le rappelle lui-même à la fin de chaque analyse.</div>
+    <div class="callout cal-amber"><b>Des questions&nbsp;?</b> &Eacute;crivez-nous &agrave; <code>soporte@tuialista.com</code> ou visitez <a href="/soporte/"><code>tuialista.com/soporte</code></a> — nous r&eacute;pondons g&eacute;n&eacute;ralement le jour m&ecirc;me.</div>
+  </div>
+
+  <h2 class="sec"><span class="n">1</span> Ce que fait cet agent</h2>
+<p>Vous lui indiquez le contrat (ou le dossier contenant vos contrats) et il :</p>
+<ul><li>L'<b>explique en langage quotidien</b> : ce que vous signez, à quoi vous vous engagez, combien vous payez et pour combien de temps.</li><li>Détecte les <b>clauses dangereuses pour le consommateur</b> (renouvellement automatique, engagement forcé, pénalités, hausses de prix unilatérales, frais cachés, prélèvement automatique, cession de données, taux d'intérêt élevés...).</li><li>Liste vos <b>obligations</b> concrètes (ce que vous devez faire, quand et combien).</li><li>Extrait <b>tous les coûts</b> et estime le <b>coût total</b> si vous respectez le contrat en entier.</li><li>Explique <b>comment et quand vous pouvez annuler</b> et ce que ça vous coûte.</li><li>Suggère des <b>questions à poser avant de signer</b>.</li></ul>
+<p>Résultat : vous signez en comprenant vraiment ce que vous acceptez.</p>
+<h2 class="sec"><span class="n">2</span> Installation (2 minutes)</h2>
+<p>Pour Windows. Pas besoin d'internet permanent ni de rien envoyer sur le cloud.</p>
+<div class="stepline"><div class="num">1</div><div><b class="steptitle">Téléchargez-le et installez-le</b><p>Téléchargez l'installateur depuis <font face='Courier'>tuialista.com/descargar</font> (agent Contrats personnels) et ouvrez-le. Il crée un raccourci sur votre bureau avec le logo — pas besoin de Python ni de terminal.</p></div></div>
+<div class="stepline"><div class="num">2</div><div><b class="steptitle">Ouvrez-le depuis le bureau</b><p>Double-cliquez sur la nouvelle icône. Collez votre <b>clé de licence</b> (reçue par e-mail à l'achat) et cliquez sur <b>Activer</b>. Une coche verte apparaît quand elle est valide.</p></div></div>
+<div class="stepline"><div class="num">3</div><div><b class="steptitle">Choisissez votre dossier</b><p>Sélectionnez le dossier contenant vos contrats et cliquez sur <b>Commencer à utiliser l'agent</b>. La prochaine fois, il démarre directement — il se souvient de votre clé et de votre dossier.</p></div></div>
+<figure class="shot"><img src="../../assets/mockups/contratos-personales/activacion_fr.png" alt="Voici à quoi ressemble la fenêtre d'activation (avec des données d'exemple). Elle apparaît la première fois que vous ouvrez l'agent." loading="lazy"><figcaption>Voici à quoi ressemble la fenêtre d'activation (avec des données d'exemple). Elle apparaît la première fois que vous ouvrez l'agent.</figcaption></figure>
+<h2 class="sec"><span class="n">3</span> Comment l'utiliser</h2>
+<p>L'agent ouvre une <b>fenêtre de discussion</b>, comme une app de messagerie — pas un écran noir de programmeur. Vous <b>chargez</b> d'abord le contrat, puis écrivez chaque demande dans ce même champ de texte :</p>
+<figure class="shot"><img src="../../assets/mockups/contratos-personales/chat_fr.png" alt="La vraie conversation : vous chargez le contrat et demandez &ldquo;dangers&rdquo; — il répond avec les clauses à risque détectées (données d'exemple)." loading="lazy"><figcaption>La vraie conversation : vous chargez le contrat et demandez &ldquo;dangers&rdquo; — il répond avec les clauses à risque détectées (données d'exemple).</figcaption></figure>
+<div class="cmdcard"><code>&gt; charger &lt;fichier&gt;</code><p>Charge le contrat. Ensuite vous pouvez utiliser les autres commandes avec ce contrat. Ex. : <font face='Courier'>charger contrat_salle_de_sport.pdf</font>.</p></div>
+<div class="cmdcard"><code>&gt; explique &lt;fichier&gt;</code><p>L'explication claire : ce qu'est le contrat, à quoi vous vous engagez, ce qu'on peut vous facturer en plus, quand il se termine et comment en sortir.</p></div>
+<div class="cmdcard"><code>&gt; dangers &lt;fichier&gt;</code><p>Clauses qui peuvent vous nuire, classées par niveau (<font color='#a32d2d'><b>ÉLEVÉ</b></font> / <font color='#c46a12'><b>MOYEN</b></font>), avec le passage du contrat où elles apparaissent. C'est la seule action qui fonctionne à 100 % en local, sans IA.</p></div>
+<div class="cmdcard"><code>&gt; obligations &lt;fichier&gt;</code><p>Liste concrète : quoi, quand et combien (ex. : &ldquo;Payer 699 $ par mois les 5 premiers jours de chaque mois pendant 12 mois&rdquo;).</p></div>
+<div class="cmdcard"><code>&gt; coûts &lt;fichier&gt;</code><p>Mensualité, inscription, dépôts, pénalités, intérêts, TVA... et le <b>coût total estimé</b> si vous respectez le contrat en entier.</p></div>
+<div class="cmdcard"><code>&gt; annuler &lt;fichier&gt;</code><p>Si vous pouvez annuler quand vous voulez ou s'il y a un délai minimum, comment annuler, avec combien de préavis et ce qu'on vous facture.</p></div>
+<div class="cmdcard"><code>&gt; questions &lt;fichier&gt;</code><p>Questions concrètes à poser avant de signer.</p></div>
+<div class="cmdcard"><code>&gt; question libre ?</code><p>Avec un contrat chargé, posez ce que vous voulez, ex. : <i>peuvent-ils augmenter ma mensualité pendant le contrat ?</i></p></div>
+<div class="cmdcard"><code>&gt; quitter</code><p>Termine la session (fonctionne aussi avec <font face='Courier'>exit</font>).</p></div>
+<h2 class="sec"><span class="n">4</span> Exemples d'usage courant</h2>
+<h4>Avant de signer un abonnement de salle de sport</h4>
+<p><font face='Courier'>charger contrat_salle_de_sport.pdf</font> &nbsp;→&nbsp; <font face='Courier'>explique contrat_salle_de_sport.pdf</font> &nbsp;→&nbsp; <font face='Courier'>dangers contrat_salle_de_sport.pdf</font></p>
+<h4>Comprendre un crédit</h4>
+<p><font face='Courier'>coûts contrat_credit.pdf</font> &nbsp;→&nbsp; <font face='Courier'>annuler contrat_credit.pdf</font></p>
+<h4>Vous préparer avec des questions</h4>
+<p><font face='Courier'>questions contrat_location.pdf</font></p>
+<h4>Une question ponctuelle</h4>
+<p><i>que se passe-t-il si je veux partir avant les 18 mois ?</i></p>
+<h2 class="sec"><span class="n">5</span> Questions fréquentes</h2>
+<details class="acc"><summary>Mon contrat est-il envoyé sur internet ?</summary><div class="acc-body">Non. Il est lu et analysé sur votre ordinateur (voir Confidentialité, section 7).</div></details>
+<details class="acc"><summary>Quels formats accepte-t-il ?</summary><div class="acc-body">Texte (.txt), Markdown (.md), PDF (.pdf) et Word (.docx).</div></details>
+<details class="acc"><summary>Est-ce que cela remplace un avocat ?</summary><div class="acc-body">Non. C'est une aide informative. Pour les contrats importants (crédit important, hypothèque, contrat de travail complexe), consultez un avocat ou l'organisme de protection des consommateurs.</div></details>
+<details class="acc"><summary>Comment détecte-t-il les clauses dangereuses ?</summary><div class="acc-body">Avec des motifs sur le texte (cherche des phrases comme &ldquo;renouvellement automatique&rdquo;, &ldquo;engagement minimum&rdquo;, &ldquo;pénalité d'annulation&rdquo;...). Il peut ne pas détecter une clause rédigée de façon inhabituelle : cela ne remplace pas votre propre lecture.</div></details>
+<details class="acc"><summary>Le coût total calculé est-il exact ?</summary><div class="acc-body">C'est une <b>estimation</b> basée sur les montants trouvés dans le texte. Vérifiez les chiffres par rapport au contrat avant de décider.</div></details>
+<details class="acc"><summary>Conserve-t-il mes contrats ?</summary><div class="acc-body">Il les garde en mémoire pendant la session pour pouvoir répondre. En fermant l'agent, cette mémoire s'efface ; les fichiers restent là où vous les avez.</div></details>
+<details class="acc"><summary>Dans quelle langue répond-il ?</summary><div class="acc-body">Il est optimisé pour le français et pour les contrats de consommation courants (références aux organismes de protection du consommateur, taux annuel effectif, etc.).</div></details>
+<details class="acc"><summary>Lit-il un PDF scanné ?</summary><div class="acc-body">Seulement s'il contient du texte sélectionnable. Un scan qui est une image pure ne se lit pas de façon fiable.</div></details>
+<details class="acc"><summary>Puis-je analyser plusieurs contrats ?</summary><div class="acc-body">Oui. Chargez un dossier avec <font face='Courier'>charger</font> (en pointant vers le répertoire) ou passez-lui différents fichiers par nom.</div></details>
+<details class="acc"><summary>Modifie-t-il mon contrat ?</summary><div class="acc-body">Non. L'agent se contente de le <b>lire</b>.</div></details>
+<h2 class="sec"><span class="n">6</span> Résolution de problèmes</h2>
+<details class="acc"><summary>Un .pdf ou .docx ne se lit pas</summary><div class="acc-body">Vérifiez que le PDF contienne du vrai texte (pas scanné). Si le problème persiste, contactez le support.</div></details>
+<details class="acc"><summary>Indique qu'il n'a pas pu lire le contrat</summary><div class="acc-body">Vérifiez le chemin ou le nom. Si vous l'avez déjà chargé, vous pouvez utiliser une partie du nom plutôt que le chemin complet.</div></details>
+<details class="acc"><summary>Il ne détecte pas une clause que je sais présente</summary><div class="acc-body">Les motifs couvrent les clauses les plus courantes ; si elle est rédigée de façon inhabituelle, elle peut passer inaperçue. Utilisez <font face='Courier'>explique</font> et une question libre pour la vérifier.</div></details>
+<details class="acc"><summary>Affiche &ldquo;Licence invalide&rdquo; ou demande de se reconnecter</summary><div class="acc-body">Vérifiez que la clé collée est correcte (sans espaces en trop), assurez-vous d'avoir internet la première fois que vous activez, et si vous êtes resté plus de 3 jours sans connexion, reconnectez-vous une fois pour revalider.</div></details>
+<details class="acc"><summary>&ldquo;Aucun fournisseur d'IA configuré&rdquo;</summary><div class="acc-body"><font face='Courier'>explique</font>, <font face='Courier'>obligations</font>, <font face='Courier'>coûts</font>, <font face='Courier'>annuler</font>, <font face='Courier'>questions</font> et les questions libres utilisent l'IA — s'il manque la configuration du moteur, contactez le support. <font face='Courier'>dangers</font> continue de fonctionner (il est local).</div></details>
+<p><b>Aucune de ces solutions n'a résolu votre problème ?</b> Écrivez-nous directement — nous serons ravis de l'examiner avec vous.</p>
+<div class="callout cal-amber"><b>Des questions&nbsp;?</b> &Eacute;crivez-nous &agrave; <code>soporte@tuialista.com</code> ou visitez <a href="/soporte/"><code>tuialista.com/soporte</code></a> — nous r&eacute;pondons g&eacute;n&eacute;ralement le jour m&ecirc;me.</div>
+<h2 class="sec"><span class="n">7</span> Confidentialité</h2>
+<p><b>Votre contrat ne quitte jamais votre ordinateur.</b></p>
+<ul><li>L'agent lit et analyse le contrat <b>localement</b>, sur votre propre appareil. Il ne l'envoie à aucun serveur ni ne le partage avec personne.</li><li>La détection des clauses dangereuses (<font face='Courier'>dangers</font>) se produit <b>à 100 % sur votre machine</b>.</li><li>La seule chose qui transite par internet est : (1) une vérification que votre licence est active — qui n'inclut pas votre contrat —, et (2) pour les explications et questions, un fragment du contrat (jusqu'à environ 7 000 caractères) est envoyé au moteur d'IA pour rédiger la réponse.</li></ul>
+<div class="callout cal-steel">La confidentialité de vos contrats personnels est garantie par conception : &ldquo;dangers&rdquo; est 100 % local. Les autres actions (explique, obligations, coûts, annuler, questions) partagent un fragment du contrat avec le fournisseur d'IA pour pouvoir répondre.</div>
+<div class="callout cal-amber"><b>Rappel important :</b> cet agent vous aide à comprendre un contrat, mais ce n'est pas un avocat. La détection de clauses dangereuses et le calcul de coûts sont une aide, pas un avis juridique. Avant de signer quelque chose d'important — un crédit important, une hypothèque, un contrat de travail complexe — consultez un avocat ou l'organisme compétent. La décision finale vous appartient.</div>
+
+</main>
+
+<footer>&copy; 2026 TuIAlista &middot; <a href="/soporte/">Support</a> &middot; <a href="/catalogo/">Catalogue</a> &middot; <a href="/">Accueil</a></footer>
+</body>
+</html>
