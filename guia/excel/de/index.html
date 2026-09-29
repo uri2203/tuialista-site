@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leitfaden &middot; Excel- und Datenagent — TuIAlista</title>
+<meta name="description" content="So nutzt du den Excel- und Datenagent von TuIAlista: Einrichtung, Befehle, Beispiele und FAQ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{--steel-900:#0f1922;--paper:#f5f6f4;--paper-2:#eceee9;--ink:#0f1922;--muted:#5a6b73;--signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2;--ok:#1d9e75;--amber-tint:#fdf1e4;--steel-tint:#eef2f4}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper-2);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--signal-dim)}
+  header{position:sticky;top:0;background:rgba(245,246,244,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+  .nav{max-width:860px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+  .logo b{color:var(--signal)}
+  .nav .r{display:flex;align-items:center;gap:18px}
+  .nav .r a{font-size:14px;color:var(--muted);text-decoration:none}
+  .nav .r a:hover{color:var(--ink)}
+  main{max-width:860px;margin:0 auto;padding:38px 24px 80px}
+  .eyebrow{font-family:'JetBrains Mono';font-size:11.5px;letter-spacing:.1em;color:var(--signal-dim);margin-bottom:8px}
+  h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,34px);line-height:1.12;margin-bottom:10px}
+  .sub{color:var(--muted);font-size:15.5px;max-width:640px;margin-bottom:18px}
+  .hero-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+  .price{font-family:'Space Grotesk';font-weight:600;font-size:14px;color:var(--signal-dim);background:var(--amber-tint);border:1px solid var(--signal);border-radius:999px;padding:7px 16px}
+  .cta{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:9px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;text-decoration:none;transition:.15s}
+  .cta:hover{background:var(--signal);color:#1a1206}
+  h2.sec{font-family:'Space Grotesk';font-size:18px;font-weight:600;margin:38px 0 14px;padding:10px 16px;background:var(--steel-900);color:#fff;border-radius:10px;display:flex;align-items:center;gap:10px}
+  h2.sec .n{color:var(--signal)}
+  h4{font-family:'Space Grotesk';font-size:14.5px;font-weight:600;margin:16px 0 4px;color:var(--signal-dim)}
+  p{margin:0 0 12px;font-size:14.5px}
+  ul{margin:0 0 12px 20px;font-size:14.5px}
+  li{margin-bottom:6px}
+  code{font-family:'JetBrains Mono',monospace;font-size:.92em;background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  .callout{border-radius:10px;padding:14px 16px;margin:10px 0 16px;font-size:14px;border-left:3px solid}
+  .cal-amber{background:var(--amber-tint);border-color:var(--signal)}
+  .cal-steel{background:var(--steel-tint);border-color:#2c4a5c}
+  .quick{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:22px}
+  .quick h3{font-family:'Space Grotesk';font-size:16px;margin-bottom:8px}
+  .stepline{display:flex;gap:12px;margin-bottom:16px}
+  .stepline .num{flex:none;width:28px;height:28px;border-radius:8px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center}
+  .stepline .steptitle{font-family:'Space Grotesk';font-weight:600;font-size:14.5px;display:block;margin-bottom:2px}
+  .stepline p{font-size:13.5px;color:var(--muted);margin:0}
+  .cmdcard{background:var(--paper-2);border-left:3px solid #2c4a5c;border-radius:8px;padding:12px 16px;margin-bottom:10px}
+  .cmdcard code{background:transparent;border:none;padding:0;font-weight:600;display:block;margin-bottom:4px}
+  .cmdcard p{margin:0;font-size:13.5px;color:var(--muted)}
+  .shot{margin:14px 0 20px;text-align:center}
+  .shot img{max-width:100%;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(15,25,34,.06)}
+  .shot figcaption{font-size:12.5px;color:var(--muted);font-style:italic;margin-top:8px}
+  details.acc{background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;overflow:hidden}
+  details.acc summary{cursor:pointer;list-style:none;padding:13px 16px;font-weight:600;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+  details.acc summary::-webkit-details-marker{display:none}
+  details.acc summary::after{content:"+";color:var(--signal-dim);font-size:18px;font-weight:400}
+  details.acc[open] summary::after{content:"\2212"}
+  details.acc[open] summary{border-bottom:1px solid var(--line)}
+  .acc-body{padding:12px 16px;font-size:13.8px;color:var(--muted)}
+  .acc-body code{color:var(--ink)}
+  footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px;margin-top:10px}
+  footer a{color:#cdd5d9;text-decoration:none}
+  @media(max-width:520px){.nav .r a.hide-sm{display:none}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+  <div class="r">
+    <a class="hide-sm" href="/catalogo/">Katalog</a>
+    <a class="hide-sm" href="/soporte/">Support</a>
+    <a href="/portal/">Anmelden</a>
+  </div>
+</div></header>
+
+<main>
+  <div class="eyebrow">AGENTEN-LEITFADEN</div>
+  <h1>Excel- und Datenagent</h1>
+  <p class="sub">Sagen Sie ihm in Ihrer eigenen Sprache, was Sie brauchen, und er ERLEDIGT es wirklich: Summen, Verknüpfungen, Pivot-Tabellen, Diagramme und Berichte — ohne dass Sie eine einzige Formel schreiben.</p>
+  <div class="hero-row">
+    <span class="price">9 USD / Monat</span>
+    <a class="cta" href="/descargar/?agent=excel"><i class="ti ti-download"></i> Diesen Agenten herunterladen</a>
+  </div>
+
+  <div class="quick">
+    <h3>Was löst er und was brauchen Sie?</h3>
+    <p>Kein Chat, der nur Ihre Daten kommentiert: Er ist ein Analyst, der die Operation <b>wirklich ausführt</b> (in einer sicheren lokalen Sandbox, isoliert von Ihrem System) und Ihnen das Ergebnis liefert — Tabelle auf dem Bildschirm und die Excel-Datei oder das Diagramm fertig zum Öffnen.</p>
+    <ul><li><b>Sie brauchen:</b> Ihren Lizenzschlüssel (<font face='Courier'>TIA-XXXX-XXXX-XXXX-XXXX</font>) und den Ordner mit Ihren Excel-Tabellen (.xlsx) oder CSV. Kein Python, keine Formeln.</li><li><b>Erstes Ergebnis in weniger als 5 Minuten:</b> Sie installieren, aktivieren, wählen Ihren Ordner und bitten ihn <i>&ldquo;Gesamtumsatz pro Monat und erstelle mir das Diagramm&rdquo;</i>.</li><li><b>Ihre Daten verlassen nie Ihren Computer</b> — an die KI geht nur die Struktur (Spalten), niemals die Daten, und die häufigsten Rezepte nutzen nicht einmal KI.</li></ul>
+    <div class="callout cal-amber"><b>Hinweis:</b> Dies ist ein Hilfsmittel zur Analyse. Bei Rezepten und automatischen Operationen arbeitet er mit Ihren echten Daten (nicht mit einer Stichprobe); bei neuen Aufgaben mit KI <b>überprüfen Sie kritische Zahlen</b>, bevor Sie darauf basierend entscheiden.</div>
+    <div class="callout cal-amber"><b>Fragen?</b> Schreib uns an <code>soporte@tuialista.com</code> oder besuche <a href="/soporte/"><code>tuialista.com/soporte</code></a> — wir antworten normalerweise am selben Werktag.</div>
+  </div>
+
+  <h2 class="sec"><span class="n">1</span> Was dieser Agent tut</h2>
+<p>Sie zeigen ihm Ihre Tabellen und bitten ihn um <b>alles in Ihrer eigenen Sprache</b>:</p>
+<ul><li><i>&ldquo;ermittle die Summe pro Region und erstelle mir das Diagramm&rdquo;</i></li><li><i>&ldquo;erstelle ein Blatt mit diesen Spalten und verknüpfe es mit der anderen Datei&rdquo;</i></li><li><i>&ldquo;Management-Bericht mit Formatierung, Pivot-Tabelle und eingebettetem Diagramm&rdquo;</i></li></ul>
+<p>Der Agent versteht, baut die Operation auf und <b>führt sie wirklich aus</b> in einer sicheren lokalen Sandbox — er beschreibt nicht nur, was er tun würde. Außerdem:</p>
+<ul><li>Er hat <b>automatische Rezepte</b> (feste, bereits getestete Regeln, ohne KI, die nie versagen) für das Häufigste: 2 Dateien abgleichen, konsolidieren, Forderungsalterung, Mindestbestand unterschritten, Daten aus einer anderen Tabelle holen (wie SVERWEIS/VLOOKUP, aber ohne Formeln), Pivot-Tabellen, Cashflow, Umsatzsteuer und mehr.</li><li>Er <b>erinnert sich</b> zwischen Fragen: Sie können ihm sagen &ldquo;füge das der vorherigen Datei hinzu&rdquo; oder &ldquo;speichere es in meinen Dokumenten&rdquo;.</li><li>Er kann Ihre <b>mehrstufigen Routinen aufzeichnen</b> und sie auf Anfrage wiederholen.</li><li>Er hat einen <b>Live-Modus</b>: Wenn Sie Excel bereits geöffnet haben, kann er Zellen direkt dort lesen und schreiben (mit Ihrer Bestätigung, bevor etwas geschrieben wird).</li></ul>
+<h2 class="sec"><span class="n">2</span> Installation (2 Minuten)</h2>
+<p>Für Windows. Keine dauerhafte Internetverbindung nötig, nichts wird in die Cloud hochgeladen.</p>
+<div class="stepline"><div class="num">1</div><div><b class="steptitle">Herunterladen und installieren</b><p>Laden Sie das Installationsprogramm von <font face='Courier'>tuialista.com/descargar</font> herunter (Excel-Agent) und öffnen Sie es. Es erstellt eine Verknüpfung mit dem Logo auf Ihrem Desktop — kein Python oder Terminal erforderlich.</p></div></div>
+<div class="stepline"><div class="num">2</div><div><b class="steptitle">Öffnen Sie es vom Desktop aus</b><p>Doppelklicken Sie auf das neue Symbol. Fügen Sie Ihren <b>Lizenzschlüssel</b> ein (er wurde Ihnen beim Kauf per E-Mail zugesandt) und klicken Sie auf <b>Aktivieren</b>. Sie sehen ein grünes Häkchen, wenn er gültig ist.</p></div></div>
+<div class="stepline"><div class="num">3</div><div><b class="steptitle">Wählen Sie Ihren Ordner</b><p>Wählen Sie den Ordner mit Ihren Excel-Tabellen (.xlsx) oder CSV aus und klicken Sie auf <b>Agent jetzt verwenden</b>. Beim nächsten Mal startet er direkt — er merkt sich Ihren Schlüssel und Ihren Ordner.</p></div></div>
+<figure class="shot"><img src="../../assets/mockups/excel/activacion_de.png" alt="So sieht das Aktivierungsfenster aus (mit Beispieldaten). Es erscheint beim ersten Öffnen des Agenten." loading="lazy"><figcaption>So sieht das Aktivierungsfenster aus (mit Beispieldaten). Es erscheint beim ersten Öffnen des Agenten.</figcaption></figure>
+<h2 class="sec"><span class="n">3</span> So verwenden Sie ihn</h2>
+<p>Der Agent öffnet ein <b>Chat-Fenster</b>, wie eine Messaging-App — kein schwarzer Programmierer-Bildschirm. <b>Keine Befehle zum Auswendiglernen:</b> Sie bitten ihn um das, was Sie brauchen, so wie Sie es einem Analysten sagen würden, klicken auf <b>Senden</b> (oder Enter), und er erledigt es:</p>
+<figure class="shot"><img src="../../assets/mockups/excel/chat_de.png" alt="Das echte Gespräch: Sie bitten um eine Summe, und der Agent berechnet sie und liefert Ihnen das Ergebnis (Beispieldaten)." loading="lazy"><figcaption>Das echte Gespräch: Sie bitten um eine Summe, und der Agent berechnet sie und liefert Ihnen das Ergebnis (Beispieldaten).</figcaption></figure>
+<h4>Was er OHNE KI erledigt (sicherer Modus, standardmäßig aktiviert)</h4>
+<ul><li>2 Dateien abgleichen / Fehlendes erkennen</li><li>Mehrere Dateien zu einer konsolidieren · Duplikate entfernen · bereinigen</li><li>Forderungen nach Alter (30/60/90 Tage)</li><li>Bestand: unter Mindestbestand · bewerten · toter Bestand</li><li>Daten verknüpfen und abrufen (SVERWEIS) · Pivot-Tabellen · Top-N · Summen nach X</li><li>Preise/Versionen vergleichen · günstigstes Angebot · Anomalien erkennen</li><li>Cashflow · Budget vs. Ist · Umsatzsteuer · Stempeluhr-Stunden</li></ul>
+<div class="callout cal-steel"><b>Sicherer Modus vs. Expertenmodus:</b> Standardmäßig verwendet der Agent nur diese zu 100 % getesteten Aufgaben — null Risiko für Ihre Daten. Wenn Sie &ldquo;Expertenmodus&rdquo; schreiben, versucht er zusätzlich neue Anfragen mit KI (isoliert, kann Ihre Dateien nie berühren oder beschädigen). Mit &ldquo;sicherer Modus&rdquo; kehren Sie zurück.</div>
+<p>Möchten Sie die <b>20 vollständigen Rezepte</b> mit einem echten Beispiel für jedes sehen? Sehen Sie sich den <b>Rezeptkatalog</b> an — ein eigenes Dokument wegen seiner Länge: <font face='Courier'>catalogo_recetas.pdf</font> neben diesem Handbuch, oder die interaktive Version unter <font color="#c46a12"><a href="https://tuialista.com/guia/excel/recetas/">tuialista.com/guia/excel/recetas</a></font>.</p>
+<h4>Erinnerung und Routinen</h4>
+<p>Sie können ihm sagen <i>&ldquo;speichere das als meinen Wochenbericht&rdquo;</i>, um eine Operation später mit <i>&ldquo;führe meinen Wochenbericht aus&rdquo;</i> zu wiederholen, oder <i>&ldquo;mach da weiter, wo wir gestern aufgehört haben&rdquo;</i> — sogar in einer anderen Sitzung.</p>
+<h4>Live-Modus (Excel geöffnet)</h4>
+<p>Wenn Sie die Datei bereits in Excel geöffnet haben, können Sie direkte Fragen zu Zellen stellen (<i>&ldquo;wie viel ergibt B2:B40?&rdquo;</i>, <i>&ldquo;trage in D5 die Summe ein&rdquo;</i>). Lesevorgänge antworten sofort; Schreibvorgänge zeigen Ihnen eine <b>Vorschau</b> und warten auf Ihr &ldquo;ja&rdquo;, bevor die Datei berührt wird.</p>
+<h2 class="sec"><span class="n">4</span> Beispiele für häufige Anwendungen</h2>
+<h4>Eine Summe ohne Formeln ermitteln</h4>
+<p><i>&ldquo;wie hoch war der Gesamtumsatz im März?&rdquo;</i></p>
+<h4>Zeiträume oder Kategorien vergleichen</h4>
+<p><i>&ldquo;vergleiche die Verkäufe von Januar mit Februar nach Region&rdquo;</i> — antwortet mit einer Vergleichstabelle.</p>
+<h4>Zwei Dateien abgleichen</h4>
+<p><i>&ldquo;gleiche die Bankdatei mit der Buchhaltungsdatei ab und sag mir, was fehlt&rdquo;</i> — automatisches Rezept, ohne KI.</p>
+<h4>Ein vollständiger Bericht</h4>
+<p><i>&ldquo;Management-Bericht mit Formatierung, Pivot-Tabelle und eingebettetem Diagramm&rdquo;</i> — liefert Ihnen die fertige Excel-Datei.</p>
+<h2 class="sec"><span class="n">5</span> Häufig gestellte Fragen</h2>
+<details class="acc"><summary>Werden meine Daten ins Internet hochgeladen?</summary><div class="acc-body">Nein. Alles wird auf Ihrem Computer verarbeitet (siehe Datenschutz, Abschnitt 7).</div></details>
+<details class="acc"><summary>Welche Formate akzeptiert er?</summary><div class="acc-body">Excel (.xlsx) und CSV (.csv), auch in Unterordnern. Alte .xls-Dateien sollten Sie als .xlsx speichern.</div></details>
+<details class="acc"><summary>Führt er die Operation wirklich aus oder beschreibt er sie nur?</summary><div class="acc-body">Er führt sie aus. Der Agent baut die Operation auf, führt sie in einer sicheren lokalen Sandbox aus (isoliert, ohne Zugriff auf den Rest Ihres Systems) und liefert Ihnen die Tabelle auf dem Bildschirm und die fertige Datei — keine Simulation.</div></details>
+<details class="acc"><summary>Was passiert, wenn ich etwas außerhalb der getesteten Rezepte anfrage?</summary><div class="acc-body">Im sicheren Modus (dem Standard) sagt er Ihnen, was er tatsächlich tun kann. Wenn Sie den &ldquo;Expertenmodus&rdquo; aktivieren, versucht er es isoliert mit KI zu lösen — er kann Ihre Originaldateien nie beschädigen.</div></details>
+<details class="acc"><summary>Kann der Live-Modus mein geöffnetes Excel beschädigen?</summary><div class="acc-body">Lesevorgänge sind sofort und sicher. Schreibvorgänge zeigen Ihnen immer zuerst eine Vorschau und werden nur angewendet, wenn Sie mit &ldquo;ja&rdquo; bestätigen.</div></details>
+<details class="acc"><summary>In welcher Sprache antwortet er mir?</summary><div class="acc-body">In der Sprache, in der Sie ihm schreiben.</div></details>
+<details class="acc"><summary>Kann er mehrere Dateien gleichzeitig lesen?</summary><div class="acc-body">Ja. Er lädt alle .xlsx- und .csv-Dateien des Ordners und kann sie kombinieren (Verknüpfungen, Abgleiche, Konsolidierungen).</div></details>
+<details class="acc"><summary>Kann ich den Datenordner ändern?</summary><div class="acc-body">Ja. Öffnen Sie den Agenten erneut und klicken Sie auf &ldquo;Auswählen&hellip;&rdquo;, um ihn zu ändern (falls er nicht danach fragt, löschen Sie <font face='Courier'>config.json</font> in <font face='Courier'>%USERPROFILE%\.tuialista</font>).</div></details>
+<details class="acc"><summary>Verändert er meine Originaldateien?</summary><div class="acc-body">Rezepte und Berichte erstellen standardmäßig <b>neue Dateien</b>. Der Live-Modus schreibt tatsächlich in die geöffnete Datei, aber nur nach Ihrer ausdrücklichen Bestätigung.</div></details>
+<details class="acc"><summary>Was sind &ldquo;Routinen&rdquo;?</summary><div class="acc-body">Operationen, die Sie einmal aufzeichnen (&ldquo;speichere das als mein...&rdquo;), um sie später mit einer einzigen Anfrage (&ldquo;führe mein... aus&rdquo;) zu wiederholen, anstatt jedes Mal alles neu zu erklären.</div></details>
+<h2 class="sec"><span class="n">6</span> Problemlösung</h2>
+<details class="acc"><summary>Eine Excel-Datei wird nicht geladen</summary><div class="acc-body">Stellen Sie sicher, dass die Datei ein gültiges .xlsx ist (keine alte .xls- oder beschädigte Datei).</div></details>
+<details class="acc"><summary>Zeigt &ldquo;0 Tabellen geladen&rdquo;</summary><div class="acc-body">Der Ordner ist leer oder der Pfad ist falsch. Überprüfen Sie, ob Sie beim Aktivieren des Agenten den richtigen Ordner ausgewählt haben.</div></details>
+<details class="acc"><summary>Zeigt &ldquo;Lizenz ungültig&rdquo; oder fordert erneute Verbindung</summary><div class="acc-body">Überprüfen Sie, ob der eingefügte Schlüssel korrekt ist (ohne zusätzliche Leerzeichen), stellen Sie sicher, dass Sie beim ersten Aktivieren Internet haben, und wenn Sie mehr als 3 Tage offline waren, verbinden Sie sich einmal erneut zur Neuvalidierung.</div></details>
+<details class="acc"><summary>Zeigt an, dass diese Aufgabe nicht im sicheren Modus verfügbar ist</summary><div class="acc-body">Das ist das erwartete Verhalten: Im sicheren Modus laufen nur 100 % getestete Aufgaben. Sagen Sie &ldquo;Expertenmodus&rdquo;, damit er es mit KI versucht (isoliert, ohne Risiko für Ihre Dateien), oder formulieren Sie Ihre Anfrage so um, dass sie einem der Rezepte aus Abschnitt 3 ähnelt.</div></details>
+<details class="acc"><summary>Der Live-Modus reagiert nicht</summary><div class="acc-body">Stellen Sie sicher, dass die Datei zu diesem Zeitpunkt wirklich in Excel geöffnet ist — der Live-Modus arbeitet mit dem Excel, das Sie bereits auf dem Bildschirm haben, nicht mit geschlossenen Dateien.</div></details>
+<p><b>Keine dieser Lösungen hat Ihr Problem behoben?</b> Schreiben Sie uns direkt — wir schauen es uns gerne gemeinsam mit Ihnen an.</p>
+<div class="callout cal-amber"><b>Fragen?</b> Schreib uns an <code>soporte@tuialista.com</code> oder besuche <a href="/soporte/"><code>tuialista.com/soporte</code></a> — wir antworten normalerweise am selben Werktag.</div>
+<h2 class="sec"><span class="n">7</span> Datenschutz und Vertraulichkeit</h2>
+<p><b>Ihre Daten verlassen nie Ihren Computer.</b></p>
+<ul><li>Die <b>automatischen Rezepte</b> (Abgleichen, Konsolidieren, Forderungen, Bestand, Daten aus einer anderen Tabelle abrufen, Pivot-Tabellen, Cashflow...) laufen <b>100 % lokal, ohne KI</b>.</li><li>Bei neuen Aufgaben mit KI (Expertenmodus) wird der KI nur die <b>Struktur</b> (Spaltennamen) gesendet, niemals Ihre Daten.</li><li>Das Einzige, was über das Internet läuft, ist: (1) eine Überprüfung, dass Ihre Lizenz aktiv ist, und (2) die Struktur Ihrer Tabellen, wenn KI für eine neue Aufgabe benötigt wird.</li></ul>
+<div class="callout cal-steel">Die Sandbox, in der der generierte Code ausgeführt wird, läuft <b>lokal</b> — niemals auf einem externen Server. Ihre Zahlen, Beträge und Kundendaten verlassen zu keinem Zeitpunkt des Prozesses Ihr Gerät.</div>
+<div class="callout cal-amber"><b>Wichtiger Hinweis:</b> Dieser Agent ist ein Hilfsmittel zur Analyse, kein Ersatz für Ihr eigenes Urteilsvermögen. Getestete Rezepte sind zuverlässig; bei neuen, mit KI gelösten Aufgaben überprüfen Sie kritische Zahlen in Ihrer Originaldatei, bevor Sie wichtige Entscheidungen darauf basierend treffen.</div>
+
+</main>
+
+<footer>&copy; 2026 TuIAlista &middot; <a href="/soporte/">Support</a> &middot; <a href="/catalogo/">Katalog</a> &middot; <a href="/">Startseite</a></footer>
+</body>
+</html>
