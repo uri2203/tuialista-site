@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guida &middot; Agente Conoscenza Interna — TuIAlista</title>
+<meta name="description" content="Come usare l' Agente Conoscenza Interna di TuIAlista: installazione, comandi, esempi e domande frequenti.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.30.0/dist/tabler-icons.min.css">
+<style>
+  :root{--steel-900:#0f1922;--paper:#f5f6f4;--paper-2:#eceee9;--ink:#0f1922;--muted:#5a6b73;--signal:#e8821e;--signal-dim:#c46a12;--line:#d4d8d2;--ok:#1d9e75;--amber-tint:#fdf1e4;--steel-tint:#eef2f4}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper-2);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--signal-dim)}
+  header{position:sticky;top:0;background:rgba(245,246,244,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:10}
+  .nav{max-width:860px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .logo .dot{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+  .logo b{color:var(--signal)}
+  .nav .r{display:flex;align-items:center;gap:18px}
+  .nav .r a{font-size:14px;color:var(--muted);text-decoration:none}
+  .nav .r a:hover{color:var(--ink)}
+  main{max-width:860px;margin:0 auto;padding:38px 24px 80px}
+  .eyebrow{font-family:'JetBrains Mono';font-size:11.5px;letter-spacing:.1em;color:var(--signal-dim);margin-bottom:8px}
+  h1{font-family:'Space Grotesk';font-size:clamp(26px,4vw,34px);line-height:1.12;margin-bottom:10px}
+  .sub{color:var(--muted);font-size:15.5px;max-width:640px;margin-bottom:18px}
+  .hero-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+  .price{font-family:'Space Grotesk';font-weight:600;font-size:14px;color:var(--signal-dim);background:var(--amber-tint);border:1px solid var(--signal);border-radius:999px;padding:7px 16px}
+  .cta{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:9px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:14px;text-decoration:none;transition:.15s}
+  .cta:hover{background:var(--signal);color:#1a1206}
+  h2.sec{font-family:'Space Grotesk';font-size:18px;font-weight:600;margin:38px 0 14px;padding:10px 16px;background:var(--steel-900);color:#fff;border-radius:10px;display:flex;align-items:center;gap:10px}
+  h2.sec .n{color:var(--signal)}
+  h4{font-family:'Space Grotesk';font-size:14.5px;font-weight:600;margin:16px 0 4px;color:var(--signal-dim)}
+  p{margin:0 0 12px;font-size:14.5px}
+  ul{margin:0 0 12px 20px;font-size:14.5px}
+  li{margin-bottom:6px}
+  code{font-family:'JetBrains Mono',monospace;font-size:.92em;background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+  .callout{border-radius:10px;padding:14px 16px;margin:10px 0 16px;font-size:14px;border-left:3px solid}
+  .cal-amber{background:var(--amber-tint);border-color:var(--signal)}
+  .cal-steel{background:var(--steel-tint);border-color:#2c4a5c}
+  .quick{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-top:22px}
+  .quick h3{font-family:'Space Grotesk';font-size:16px;margin-bottom:8px}
+  .stepline{display:flex;gap:12px;margin-bottom:16px}
+  .stepline .num{flex:none;width:28px;height:28px;border-radius:8px;background:var(--steel-900);color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center}
+  .stepline .steptitle{font-family:'Space Grotesk';font-weight:600;font-size:14.5px;display:block;margin-bottom:2px}
+  .stepline p{font-size:13.5px;color:var(--muted);margin:0}
+  .cmdcard{background:var(--paper-2);border-left:3px solid #2c4a5c;border-radius:8px;padding:12px 16px;margin-bottom:10px}
+  .cmdcard code{background:transparent;border:none;padding:0;font-weight:600;display:block;margin-bottom:4px}
+  .cmdcard p{margin:0;font-size:13.5px;color:var(--muted)}
+  .shot{margin:14px 0 20px;text-align:center}
+  .shot img{max-width:100%;border:1px solid var(--line);border-radius:10px;box-shadow:0 2px 10px rgba(15,25,34,.06)}
+  .shot figcaption{font-size:12.5px;color:var(--muted);font-style:italic;margin-top:8px}
+  details.acc{background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;overflow:hidden}
+  details.acc summary{cursor:pointer;list-style:none;padding:13px 16px;font-weight:600;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+  details.acc summary::-webkit-details-marker{display:none}
+  details.acc summary::after{content:"+";color:var(--signal-dim);font-size:18px;font-weight:400}
+  details.acc[open] summary::after{content:"\2212"}
+  details.acc[open] summary{border-bottom:1px solid var(--line)}
+  .acc-body{padding:12px 16px;font-size:13.8px;color:var(--muted)}
+  .acc-body code{color:var(--ink)}
+  footer{background:var(--steel-900);color:#aeb8bd;text-align:center;padding:24px;font-size:13px;margin-top:10px}
+  footer a{color:#cdd5d9;text-decoration:none}
+  @media(max-width:520px){.nav .r a.hide-sm{display:none}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
+  <div class="r">
+    <a class="hide-sm" href="/catalogo/">Catalogo</a>
+    <a class="hide-sm" href="/soporte/">Assistenza</a>
+    <a href="/portal/">Accedi</a>
+  </div>
+</div></header>
+
+<main>
+  <div class="eyebrow">GUIDA DELL'AGENTE</div>
+  <h1>Agente Conoscenza Interna</h1>
+  <p class="sub">Trasforma tutti i documenti della tua azienda in una base di conoscenza che risponde alle domande citando la fonte.</p>
+  <div class="hero-row">
+    <span class="price">39 USD / mese</span>
+    <a class="cta" href="/descargar/?agent=conocimiento"><i class="ti ti-download"></i> Scarica questo agente</a>
+  </div>
+
+  <div class="quick">
+    <h3>Cosa risolve e cosa ti serve?</h3>
+    <p>In ogni azienda la conoscenza è dispersa: politiche in un PDF, processi in un Word, prezzi in un Excel, l'induzione in un PowerPoint. La risposta a &ldquo;quanti giorni di ferie mi spettano&rdquo; esiste, ma nessuno sa in quale file. Questo agente indicizza tutto e risponde citando esattamente da dove proviene ogni dato.</p>
+    <ul><li><b>Ti serve:</b> la tua chiave di licenza (<font face='Courier'>TIA-XXXX-XXXX-XXXX-XXXX</font>) e la cartella con i documenti interni. Niente Python né conoscenze tecniche.</li><li><b>Primo risultato in meno di 5 minuti:</b> installi, attivi, scegli la tua cartella e chiedi direttamente ciò che hai bisogno di sapere.</li><li><b>La conoscenza della tua azienda non lascia mai il tuo computer</b> — l'indice viene costruito e consultato in locale.</li></ul>
+    <div class="callout cal-amber"><b>Avviso:</b> l'agente risponde con ciò che è nei tuoi documenti; la sua utilità dipende dal fatto che la documentazione sia aggiornata. <b>Non è una fonte di verità legale o normativa</b> — usalo come motore di ricerca e organizzatore della conoscenza esistente.</div>
+    <div class="callout cal-amber"><b>Domande?</b> Scrivici a <code>soporte@tuialista.com</code> o visita <a href="/soporte/"><code>tuialista.com/soporte</code></a> — di solito rispondiamo lo stesso giorno lavorativo.</div>
+  </div>
+
+  <h2 class="sec"><span class="n">1</span> Cosa fa questo agente</h2>
+<p>Gli indichi la cartella con i documenti interni e l'agente:</p>
+<ul><li>Li <b>indicizza</b> tutti (PDF, Word, Excel, CSV, PowerPoint, testo, Markdown) in una base locale.</li><li>Divide ogni documento in <b>frammenti</b> per trovare la parte esatta che risponde.</li><li><b>Risponde alle domande</b> del tuo team usando solo quei documenti, e <b>cita sempre</b> da dove proviene ogni dato (<font face='Courier'>[Fonte: file, sezione]</font>).</li><li><b>Riepiloga un argomento</b> consolidando ciò che dicono più documenti.</li><li>Rileva <b>lacune di conoscenza</b>: argomenti menzionati spesso ma senza un documento dedicato.</li><li>Costruisce una <b>directory di responsabili</b>: chi appare come incaricato di cosa.</li></ul>
+<p>L'essenziale: se la risposta non è nei documenti, l'agente <b>lo dice</b> invece di inventare.</p>
+<h2 class="sec"><span class="n">2</span> Installazione (2 minuti)</h2>
+<p>Per Windows. Non serve internet permanente né caricare nulla sul cloud.</p>
+<div class="stepline"><div class="num">1</div><div><b class="steptitle">Scaricalo e installalo</b><p>Scarica l'installer da <font face='Courier'>tuialista.com/descargar</font> (agente Conoscenza) e aprilo. Crea un collegamento sul desktop con il logo — non richiede Python né terminale.</p></div></div>
+<div class="stepline"><div class="num">2</div><div><b class="steptitle">Aprilo dal desktop</b><p>Doppio clic sulla nuova icona. Incolla la tua <b>chiave di licenza</b> (ricevuta via email all'acquisto) e premi <b>Attiva</b>. Vedrai un segno di spunta verde quando è valida.</p></div></div>
+<div class="stepline"><div class="num">3</div><div><b class="steptitle">Scegli la tua cartella</b><p>Seleziona la cartella con i tuoi documenti interni e premi <b>Inizia a usare l'agente</b>. La prossima volta si avvia direttamente — ricorda la tua chiave e la tua cartella.</p></div></div>
+<figure class="shot"><img src="../../assets/mockups/conocimiento/activacion_it.png" alt="Ecco come appare la finestra di attivazione (con dati di esempio). Compare la prima volta che apri l'agente." loading="lazy"><figcaption>Ecco come appare la finestra di attivazione (con dati di esempio). Compare la prima volta che apri l'agente.</figcaption></figure>
+<h2 class="sec"><span class="n">3</span> Come usarlo</h2>
+<p>L'agente apre una <b>finestra di chat</b>, come un'app di messaggistica — non è uno schermo nero da programmatore. Il suo uso principale è chiedere direttamente nella casella di testo, e ha anche alcuni comandi di esplorazione:</p>
+<figure class="shot"><img src="../../assets/mockups/conocimiento/chat_it.png" alt="La conversazione reale: fai una domanda e l'agente risponde citando il documento e la sezione esatti (dati di esempio)." loading="lazy"><figcaption>La conversazione reale: fai una domanda e l'agente risponde citando il documento e la sezione esatti (dati di esempio).</figcaption></figure>
+<div class="cmdcard"><code>&gt; domanda libera?</code><p>L'uso principale. Scrivi la tua domanda così com'è, es.: <i>quanti giorni di ferie corrispondono al secondo anno?</i> — l'agente cerca nei documenti e risponde <b>citando la fonte</b>. Se l'informazione non c'è, te lo dice invece di inventare.</p></div>
+<div class="cmdcard"><code>&gt; argomenti</code><p>Elenca le categorie/aree coperte dai tuoi documenti (politiche, processi, sicurezza, Risorse Umane, finanza...) e in quanti file appare ciascuna.</p></div>
+<div class="cmdcard"><code>&gt; riepilogo &lt;argomento&gt;</code><p>Raccoglie ciò che dicono più documenti su un argomento e prepara un riepilogo esecutivo, segnalando contraddizioni se presenti. Es.: <font face='Courier'>riepilogo ferie</font>.</p></div>
+<div class="cmdcard"><code>&gt; lacune</code><p>Argomenti menzionati abbastanza ma senza un documento proprio — utile per sapere quali politiche conviene scrivere.</p></div>
+<div class="cmdcard"><code>&gt; directory</code><p>Nomi di persone che appaiono come responsabili/incaricati/contatti e in quali documenti.</p></div>
+<div class="cmdcard"><code>&gt; analizzare &lt;file&gt;</code><p>Righe, numero di frammenti e un'anteprima di un documento indicizzato.</p></div>
+<div class="cmdcard"><code>&gt; esci</code><p>Termina la sessione (funziona anche <font face='Courier'>exit</font>).</p></div>
+<h2 class="sec"><span class="n">4</span> Esempi di uso comune</h2>
+<h4>Risolvere un dubbio del team</h4>
+<p><i>qual è la procedura per richiedere un acquisto superiore a 10.000?</i> — risposta con la citazione del documento e della sezione esatti.</p>
+<h4>Preparare un riepilogo per l'induzione</h4>
+<p><font face='Courier'>riepilogo sicurezza</font></p>
+<h4>Verificare la documentazione</h4>
+<p><font face='Courier'>argomenti</font> &nbsp;→&nbsp; <font face='Courier'>lacune</font> — vedi quali aree sono ben coperte e quali hanno quasi nessuna documentazione.</p>
+<h4>Trovare il responsabile</h4>
+<p><font face='Courier'>directory</font></p>
+<h2 class="sec"><span class="n">5</span> Domande frequenti</h2>
+<details class="acc"><summary>I documenti della mia azienda vengono caricati su internet?</summary><div class="acc-body">No. Vengono indicizzati e consultati sul tuo dispositivo (vedi Privacy, sezione 7).</div></details>
+<details class="acc"><summary>Quali formati accetta?</summary><div class="acc-body">PDF, Word (.docx), Excel (.xlsx/.xls), CSV, PowerPoint (.pptx), testo (.txt), Markdown (.md) e reStructuredText (.rst), anche in sottocartelle.</div></details>
+<details class="acc"><summary>Cita davvero la fonte?</summary><div class="acc-body">Sì. Ogni dato rilevante della risposta arriva con <font face='Courier'>[Fonte: nome_file, sezione]</font> perché tu possa verificarlo.</div></details>
+<details class="acc"><summary>Cosa succede se la risposta non è nei documenti?</summary><div class="acc-body">L'agente risponde chiaramente &ldquo;Non ho trovato questa informazione nella base di conoscenza attuale&rdquo;. Non inventa.</div></details>
+<details class="acc"><summary>Cosa fa se due documenti si contraddicono?</summary><div class="acc-body">Lo segnala esplicitamente e indica quale documento dice cosa.</div></details>
+<details class="acc"><summary>Ho aggiunto nuovi documenti, li rileva?</summary><div class="acc-body">Riavvia l'agente; l'indice viene ricostruito dalla cartella.</div></details>
+<details class="acc"><summary>Come sceglie quali frammenti usare?</summary><div class="acc-body">Con una ricerca per rilevanza locale (conta le corrispondenze delle parole della tua domanda, con bonus se appaiono nel nome del file o nel titolo della sezione).</div></details>
+<details class="acc"><summary>Legge un PDF scansionato?</summary><div class="acc-body">Solo se contiene testo selezionabile. Una scansione che è pura immagine non viene indicizzata in modo affidabile.</div></details>
+<details class="acc"><summary>In quale lingua risponde?</summary><div class="acc-body">Nella lingua in cui gli scrivi.</div></details>
+<details class="acc"><summary>Modifica i miei documenti?</summary><div class="acc-body">No. L'agente si limita a <b>leggerli</b> per costruire l'indice.</div></details>
+<h2 class="sec"><span class="n">6</span> Risoluzione dei problemi</h2>
+<details class="acc"><summary>Non indicizza un .pdf, .docx, .xlsx o .pptx</summary><div class="acc-body">Verifica che il PDF abbia testo reale (non scansionato). Se il problema persiste, contatta l'assistenza.</div></details>
+<details class="acc"><summary>Mostra &ldquo;0 documenti indicizzati&rdquo;</summary><div class="acc-body">La cartella è vuota, il percorso è errato o i file non sono in un formato supportato. Verifica di aver scelto la cartella corretta durante l'attivazione dell'agente.</div></details>
+<details class="acc"><summary>Una risposta cita il documento sbagliato</summary><div class="acc-body">La ricerca è per corrispondenza di parole; riformula la domanda con termini più specifici o usa <font face='Courier'>riepilogo &lt;argomento&gt;</font>.</div></details>
+<details class="acc"><summary>Mostra &ldquo;Licenza non valida&rdquo; o chiede di riconnettersi</summary><div class="acc-body">Verifica che la chiave incollata sia corretta (senza spazi in più), conferma di avere internet la prima volta che attivi, e se sei stato più di 3 giorni senza connessione, riconnettiti una volta per rivalidare.</div></details>
+<details class="acc"><summary>&ldquo;Nessun fornitore IA configurato&rdquo;</summary><div class="acc-body">Le risposte e i riepiloghi usano IA — se manca la configurazione del motore, contatta l'assistenza. <font face='Courier'>argomenti</font>, <font face='Courier'>lacune</font>, <font face='Courier'>directory</font> e <font face='Courier'>analizzare</font> continuano a funzionare in locale, senza IA.</div></details>
+<p><b>Nessuna di queste soluzioni ha risolto il tuo problema?</b> Scrivici direttamente — saremo felici di rivederlo con te.</p>
+<div class="callout cal-amber"><b>Domande?</b> Scrivici a <code>soporte@tuialista.com</code> o visita <a href="/soporte/"><code>tuialista.com/soporte</code></a> — di solito rispondiamo lo stesso giorno lavorativo.</div>
+<h2 class="sec"><span class="n">7</span> Privacy e riservatezza</h2>
+<p><b>La conoscenza della tua azienda non lascia mai il tuo computer.</b></p>
+<ul><li>L'agente legge, divide in frammenti e indicizza i documenti <b>in locale</b>, sul tuo stesso dispositivo. Non li carica su nessun server.</li><li>Le ricerche, gli argomenti, le lacune e la directory vengono calcolati <b>sul tuo dispositivo</b>.</li><li>L'unica cosa che viaggia su internet è: (1) una verifica che la tua licenza sia attiva — che non include i tuoi documenti —, e (2) quando rispondi a una domanda o generi un riepilogo, vengono inviati i <b>frammenti più rilevanti</b> al motore IA per redigere la risposta. Il resto della conoscenza rimane locale.</li></ul>
+<div class="callout cal-steel">La riservatezza delle informazioni interne è garantita per progettazione: indicizzazione, argomenti, lacune e directory sono al 100% locali. Solo le domande e i riepiloghi condividono i frammenti rilevanti con il fornitore di IA.</div>
+<div class="callout cal-amber"><b>Promemoria importante:</b> l'agente risponde con ciò che è nei tuoi documenti; la sua utilità dipende dal fatto che la documentazione sia aggiornata. Se un documento è obsoleto, l'agente citerà quel dato obsoleto (indicando la fonte, perché tu lo rilevi). Usalo come motore di ricerca e organizzatore della conoscenza esistente, non come fonte di verità legale o normativa.</div>
+
+</main>
+
+<footer>&copy; 2026 TuIAlista &middot; <a href="/soporte/">Assistenza</a> &middot; <a href="/catalogo/">Catalogo</a> &middot; <a href="/">Home</a></footer>
+</body>
+</html>
