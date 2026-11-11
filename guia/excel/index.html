@@ -66,7 +66,7 @@
 </head>
 <body>
 <header><div class="nav">
-  <a class="logo" href="/"><img src="/assets/img/logo.png" alt="TuIAlista" height="52" style="display:block"></a>
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
   <div class="r">
     <a class="hide-sm" href="/catalogo/">Cat&aacute;logo</a>
     <a class="hide-sm" href="/soporte/">Soporte</a>
@@ -79,7 +79,7 @@
   <h1>Agente de Excel y datos</h1>
   <p class="sub">Le pides lo que quieras en tu idioma y lo HACE de verdad: totales, cruces, tablas dinámicas, gráficas y reportes — sin que escribas una fórmula.</p>
   <div class="hero-row">
-    <span class="price">$9 USD / mes</span>
+    <span class="price">$59 USD / mes</span>
     <a class="cta" href="/descargar/?agent=excel"><i class="ti ti-download"></i> Descargar este agente</a>
   </div>
 
@@ -146,6 +146,21 @@
 <ul><li>Las <b>recetas automáticas</b> (conciliar, consolidar, cuentas por cobrar, inventario, traer datos de otra tabla, tablas dinámicas, flujo de caja...) corren <b>100% local, sin IA</b>.</li><li>Para tareas nuevas con IA (modo experto), a la IA solo se le envía la <b>estructura</b> (nombres de columnas), nunca tus datos.</li><li>Lo único que viaja por internet es: (1) una comprobación de que tu licencia está activa, y (2) la estructura de tus hojas cuando se necesita IA para una tarea nueva.</li></ul>
 <div class="callout cal-steel">El sandbox donde se ejecuta el código generado corre <b>localmente</b> — nunca en un servidor externo. Tus cifras, montos y datos de clientes no salen de tu equipo en ningún punto del proceso.</div>
 <div class="callout cal-amber"><b>Recordatorio importante:</b> este agente es una herramienta de apoyo al análisis, no un sustituto de tu criterio. Las recetas probadas son confiables; en tareas nuevas resueltas con IA, verifica las cifras críticas en tu archivo original antes de tomar decisiones importantes con ellas.</div>
+<h2 class="sec"><span class="n">8</span> Lo que respondió de verdad (evidencia medida)</h2>
+<p>Esta secci&oacute;n no son promesas de folleto: cada respuesta se midi&oacute; contra el agente REAL instalado, con datos de ejemplo, en nuestras pruebas nocturnas autom&aacute;ticas. Lo que escribes va en la caja gris; debajo, lo que el agente contest&oacute; tal cual (recortado donde es largo).</p>
+<div class="cmdcard"><code>&gt; Totales y promedios por cliente, proveedor, categoría, mes…</code><p>Promedio de "total" por "cliente".<br/><br/>OK: Guardé el archivo aquí:<br/>(tu carpeta)\Resultado_2427.xlsx</p></div>
+<div class="cmdcard"><code>&gt; Los mejores y los peores: top 10, ranking, de mayor a menor</code><p>Top 10 por "total" (mayores) de "Sheet1 (ventas.xlsx)".<br/><br/>OK: Guardé el archivo aquí:<br/>(tu carpeta)\Resultado_2428.xlsx</p></div>
+<div class="cmdcard"><code>&gt; Conciliar dos listas: qué falta en una y está en la otra</code><p>Conciliación por "cantidad":<br/>  - Solo en Sheet1 (ventas_anterior.xlsx): 0 registro(s)<br/>  - Solo en Sheet1 (ventas.xlsx): 1 registro(s)<br/>  - En ambos: 5<br/><br/>OK: Guardé el archivo aquí:<br/>(tu carpeta)\Resultado_2618.xlsx</p></div>
+<div class="cmdcard"><code>&gt; Detectar datos raros o inconsistentes</code><p>"Sheet1 (ventas.xlsx)": 0 fila(s) con anomalías (negativos, vacíos o atípicos).<br/><br/>OK: Guardé el archivo aquí:<br/>(tu carpeta)\Resultado_2619.xlsx</p></div>
+<div class="cmdcard"><code>&gt; Tablas dinámicas y conteos por categoría</code><p>Dinámica de "total": filas "cliente" × columnas "producto".<br/><br/>OK: Guardé el archivo aquí:<br/>(tu carpeta)\Resultado_2620.xlsx</p></div>
+<div class="cmdcard"><code>&gt; Operar el Excel que tienes ABIERTO (sumar un rango, escribir en una celda)</code><p>Total de "total" por "categoria".<br/><br/>OK: Guardé el archivo aquí:<br/>(tu carpeta)\Resultado_2621.xlsx</p></div>
+<div class="cmdcard"><code>&gt; Un resumen de tus datos: totales, promedios y qué columnas traes</code><p>Promedio de "total" por "categoria".<br/><br/>OK: Guardé el archivo aquí:<br/>(tu carpeta)\Resultado_2622.xlsx</p></div>
+<div class="cmdcard"><code>&gt; Cuánto suma algo en total (ventas, gastos, importes…)</code><p>Total de "total" por "categoria".<br/><br/>OK: Guardé el archivo aquí:<br/>(tu carpeta)\Resultado_2623.xlsx</p></div>
+<div class="cmdcard"><code>&gt; Juntar varios archivos o hojas en uno solo</code><p>Consolidé 3 tabla(s) -&gt; 14 filas.<br/><br/>OK: Guardé el archivo aquí:<br/>(tu carpeta)\Resultado_2429.xlsx</p></div>
+<div class="cmdcard"><code>&gt; Quitar duplicados y limpiar la base (espacios, formatos)</code><p>"Sheet1 (ventas.xlsx)": quité 0 duplicado(s) (6 -&gt; 6).<br/><br/>OK: Guardé el archivo aquí:<br/>(tu carpeta)\Resultado_2430.xlsx</p></div>
+<div class="cmdcard"><code>&gt; Cruzar dos archivos y traer datos de uno al otro (tipo BUSCARV)</code><p>Traje 5 columna(s) de "Sheet1 (ventas.xlsx)" a "Sheet1 (ventas_anterior.xlsx)" por "cantidad". 0 fila(s) sin coincidencia.<br/><br/>OK: Guardé el archivo aquí:<br/>(tu carpeta)\Resultado_2431.xlsx</p></div>
+<div class="cmdcard"><code>&gt; Cuentas por cobrar: quién me debe y desde cuándo</code><p>Cuentas por cobrar: 6 de 6 vencidas. Total vencido: 51,450.00.<br/><br/>OK: Guardé el archivo aquí:<br/>(tu carpeta)\Resultado_2432.xlsx</p></div>
+<div class="callout cal-steel"><b>Medido por &uacute;ltima vez: 2026-11-07.</b> Estas respuestas salen de nuestras pruebas autom&aacute;ticas nocturnas; con tus archivos ver&aacute;s tus propios n&uacute;meros y columnas, no los del ejemplo.</div>
 
 </main>
 

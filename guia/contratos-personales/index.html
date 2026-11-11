@@ -66,7 +66,7 @@
 </head>
 <body>
 <header><div class="nav">
-  <a class="logo" href="/"><img src="/assets/img/logo.png" alt="TuIAlista" height="52" style="display:block"></a>
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
   <div class="r">
     <a class="hide-sm" href="/catalogo/">Cat&aacute;logo</a>
     <a class="hide-sm" href="/soporte/">Soporte</a>
@@ -79,7 +79,7 @@
   <h1>Agente de Contratos Personales</h1>
   <p class="sub">Te explica en palabras simples cualquier contrato que estés a punto de firmar y te avisa de las cláusulas que te pueden perjudicar.</p>
   <div class="hero-row">
-    <span class="price">$19 USD / mes</span>
+    <span class="price">$29 USD / mes</span>
     <a class="cta" href="/descargar/?agent=contratos-personales"><i class="ti ti-download"></i> Descargar este agente</a>
   </div>
 
@@ -146,6 +146,14 @@
 <ul><li>El agente lee y analiza el contrato <b>localmente</b>, en tu propio equipo. No lo sube a ningún servidor ni lo comparte con nadie.</li><li>La detección de cláusulas peligrosas (<font face='Courier'>peligros</font>) ocurre <b>100% en tu máquina</b>.</li><li>Lo único que viaja por internet es: (1) una comprobación de que tu licencia está activa — que no incluye tu contrato —, y (2) para las explicaciones y preguntas, se envía un fragmento del contrato (hasta unos 7,000 caracteres) al motor de IA para redactar la respuesta.</li></ul>
 <div class="callout cal-steel">La confidencialidad de tus contratos personales está garantizada por diseño: &ldquo;peligros&rdquo; es 100% local. Las demás acciones (explica, obligaciones, costos, cancelar, preguntas) comparten un fragmento del contrato con el proveedor de IA para poder responder.</div>
 <div class="callout cal-amber"><b>Recordatorio importante:</b> este agente te ayuda a entender un contrato, pero no es un abogado. La detección de cláusulas peligrosas y el cálculo de costos son un apoyo, no un dictamen legal. Antes de firmar algo importante — un crédito grande, una hipoteca, un contrato laboral complejo — consulta a un abogado o a la PROFECO. La decisión final es tuya.</div>
+<h2 class="sec"><span class="n">8</span> Lo que respondió de verdad (evidencia medida)</h2>
+<p>Esta secci&oacute;n no son promesas de folleto: cada respuesta se midi&oacute; contra el agente REAL instalado, con datos de ejemplo, en nuestras pruebas nocturnas autom&aacute;ticas. Lo que escribes va en la caja gris; debajo, lo que el agente contest&oacute; tal cual (recortado donde es largo).</p>
+<div class="cmdcard"><code>&gt; Cuánto pagas en total y qué cargos extra trae</code><p>Costos que encontré en "contrato_telefonia.pdf":<br/>  - Renta mensual: 499.00<br/><br/>Suma los cargos únicos (activación, penalización) al pago recurrente para saber el costo REAL del contrato.</p></div>
+<div class="cmdcard"><code>&gt; Qué cuesta y cómo se cancela</code><p>**Costo del servicio**<br/><br/>- **Renta mensual:** $499MXN (IVA incluido).<br/>- **Duración obligatoria:** 18meses (del01/03/2026 al28/02/2028).<br/>- **Total que pagarás durante el plazo forzoso:** 18×$499=$8,982MXN.<br/><br/>**Cómo se cancela** <i>[respuesta recortada]</i></p></div>
+<div class="cmdcard"><code>&gt; Qué preguntar ANTES de firmar</code><p>**Preguntas que deberías hacer antes de firmar (basado en lo que dice el contrato):**<br/><br/>1. **¿Cuál es el costo total del plan?**<br/>   - Renta mensual: $499MXN (IVA incluido).<br/>   - Plazo forzoso: 18meses -&gt; $499×18=$8,982MXN en total.<br/><br/>2. **¿Qué pasa si quiero cancelar antes de los 18meses?** <i>[respuesta recortada]</i></p></div>
+<div class="cmdcard"><code>&gt; Explicarte el contrato en palabras simples, sin abogadismos</code><p>**Resumen del contrato (en palabras simples)**<br/><br/>1. **Qué vas a recibir**<br/>   - Un plan de telefonía móvil con **40GB de datos** y **llamadas ilimitadas**.<br/><br/>2. **Cuánto pagarás**<br/>   - **$499MXN al mes** (IVA incluido). <i>[respuesta recortada]</i></p></div>
+<div class="cmdcard"><code>&gt; Qué cláusulas te perjudican (permanencia, multas, renovación automática)</code><p>2 punto(s) que te pueden perjudicar en "contrato_telefonia.pdf":<br/><br/>[ALTO] Permanencia mínima obligatoria<br/>  Estás obligado a quedarte X meses/años. Si te vas antes, pagas una penalización.<br/>  Dice: "...adas ilimitadas Renta mensual: $499.00 MXN con IVA incluido Plazo forzoso: 18 meses a partir del 01/03/2026 Penalizacio"<br/><br/>[ALTO] Penalización por cancelación anticipada <i>[respuesta recortada]</i></p></div>
+<div class="callout cal-steel"><b>Medido por &uacute;ltima vez: 2026-11-07.</b> Estas respuestas salen de nuestras pruebas autom&aacute;ticas nocturnas; con tus archivos ver&aacute;s tus propios n&uacute;meros y columnas, no los del ejemplo.</div>
 
 </main>
 

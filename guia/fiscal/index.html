@@ -66,7 +66,7 @@
 </head>
 <body>
 <header><div class="nav">
-  <a class="logo" href="/"><img src="/assets/img/logo.png" alt="TuIAlista" height="52" style="display:block"></a>
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
   <div class="r">
     <a class="hide-sm" href="/catalogo/">Cat&aacute;logo</a>
     <a class="hide-sm" href="/soporte/">Soporte</a>
@@ -79,7 +79,7 @@
   <h1>Agente de Cumplimiento Fiscal</h1>
   <p class="sub">Organiza tus documentos fiscales, arma tu calendario de obligaciones y te avisa antes de cada fecha límite del SAT.</p>
   <div class="hero-row">
-    <span class="price">$35 USD / mes</span>
+    <span class="price">$119 USD / mes</span>
     <a class="cta" href="/descargar/?agent=fiscal"><i class="ti ti-download"></i> Descargar este agente</a>
   </div>
 
@@ -147,6 +147,17 @@
 <ul><li>El agente lee, indexa y extrae datos <b>localmente</b>, en tu propio equipo. No sube tus documentos a ningún servidor ni al SAT.</li><li>El calendario, las obligaciones, las deducciones, los faltantes y el análisis de documentos se calculan <b>en tu máquina</b>.</li><li>Lo único que viaja por internet es: (1) una comprobación de que tu licencia está activa — que no incluye tus documentos —, y (2) al usar <font face='Courier'>resumen</font> o hacer una pregunta libre, se envía un fragmento de la información relevante al motor de IA para redactar esa respuesta.</li></ul>
 <div class="callout cal-steel">La confidencialidad de tu información fiscal está garantizada por diseño: el procesamiento base de documentos, calendario y alertas es 100% local. Las funciones que usan IA (resumen y preguntas libres) son las únicas que comparten un fragmento de datos con el proveedor de IA para poder responder.</div>
 <div class="callout cal-amber"><b>Recordatorio importante:</b> el calendario usa fechas límite típicas que pueden no coincidir con tu caso; los montos y regímenes se extraen automáticamente y pueden contener errores; las deducciones detectadas son solo posibles. Antes de presentar cualquier declaración o tomar una decisión fiscal, confirma con tu contador y con el SAT. Las leyes fiscales cambian con frecuencia y la responsabilidad final es del contribuyente.</div>
+<h2 class="sec"><span class="n">8</span> Lo que respondió de verdad (evidencia medida)</h2>
+<p>Esta secci&oacute;n no son promesas de folleto: cada respuesta se midi&oacute; contra el agente REAL instalado, con datos de ejemplo, en nuestras pruebas nocturnas autom&aacute;ticas. Lo que escribes va en la caja gris; debajo, lo que el agente contest&oacute; tal cual (recortado donde es largo).</p>
+<div class="cmdcard"><code>&gt; Cuánto me retuvieron (ISR e IVA retenidos)</code><p>Retenciones: a tu favor ISR $6,000.00 / IVA $3,920.00; a enterar ISR $4,000.00 / IVA $4,266.68.<br/>   Regla: LISR art. 106 / LIVA art. 1-A (retenciones por honorarios y arrendamiento de PM a PF). Orientativo - no sustituye a un contador certificado ni al SAT. Verifica antes de declarar.<br/><br/>OK: Guardé el archivo aquí:<br/>(tu carpeta)\Resultado_2023.xlsx</p></div>
+<div class="cmdcard"><code>&gt; Mis facturas están bien (valida tus CFDI y detecta descuadres)</code><p>Validación CFDI: 4 con descuadre aritmético; 2 sin UUID (¿sin timbrar?).<br/>   Regla: CFF art. 29-A (requisitos del comprobante) + aritmética SAT. Orientativo - no sustituye a un contador certificado ni al SAT. Verifica antes de declarar.<br/><br/>OK: Guardé el archivo aquí:<br/>(tu carpeta)\Resultado_2024.xlsx</p></div>
+<div class="cmdcard"><code>&gt; Cómo voy este mes / qué me falta para declarar (revisión completa con AUDITORÍA)</code><p>REVISIÓN FISCAL MENSUAL<br/>-  IVA del periodo (orientativo): saldo a CARGO (a pagar) $13,680.00.<br/>-  Retenciones: a tu favor ISR $6,000.00 / IVA $3,920.00; a enterar ISR $4,000.00 / IVA $4,266.68.<br/>-  DIOT: 2 proveedor(es). IVA acreditable total: $6,560.00.<br/>-  Validación CFDI: 4 con descuadre aritmético; 2 sin UUID (¿sin timbrar?).<br/>-  1 CFDI PPD emitidos y 0 complemento(s) de pago (REP) detectados -&gt; 1 podrían faltar.<br/>- OK: Deducibilidad: sin banderas de efectivo&gt;$2,000 ni forma de pago indefinida. <i>[respuesta recortada]</i></p></div>
+<div class="cmdcard"><code>&gt; Cuánto IVA tengo que pagar o me sale a favor (trasladado − acreditable)</code><p>IVA del periodo (orientativo): saldo a CARGO (a pagar) $13,680.00.<br/>   Trasladado $24,160.00  acreditable $6,560.00  retenido a favor $3,920.00.<br/>   Regla: LIVA art. 45. El IVA acreditable requiere que el gasto esté EFECTIVAMENTE PAGADO (base flujo de efectivo). Orientativo - no sustituye a un contador certificado ni al SAT. Verifica antes de declarar.<br/><br/>OK: Guardé el archivo aquí:<br/>(tu carpeta)\Resultado_2022.xlsx</p></div>
+<div class="cmdcard"><code>&gt; Qué gastos no me puedo deducir (p. ej. pagos en efectivo &gt; $2,000)</code><p>OK: Deducibilidad: sin banderas de efectivo&gt;$2,000 ni forma de pago indefinida.</p></div>
+<div class="cmdcard"><code>&gt; Me falta algún complemento de pago (facturas PPD sin su REP)</code><p>1 CFDI PPD emitidos y 0 complemento(s) de pago (REP) detectados -&gt; 1 podrían faltar.<br/>   Regla: CFF art. 29-A / RMF: el REP se emite a más tardar el 5° día del mes siguiente al pago. Faltarlo es infracción. Orientativo - no sustituye a un contador certificado ni al SAT. Verifica antes de declarar.<br/><br/>OK: Guardé el archivo aquí:<br/>(tu carpeta)\Resultado_2025.xlsx</p></div>
+<div class="cmdcard"><code>&gt; A quién le facturo / en qué gasto más (concentración por cliente y proveedor)</code><p>Concentración - clientes: top-3 = 100%; proveedores: top-3 = 100%.<br/>   Nota: alta concentración (&gt;70% en pocos terceros) es riesgo operativo y foco de revisión SAT. Orientativo - no sustituye a un contador certificado ni al SAT. Verifica antes de declarar.<br/><br/>OK: Guardé el archivo aquí:<br/>(tu carpeta)\Resultado_1887.xlsx</p></div>
+<div class="cmdcard"><code>&gt; La DIOT (operaciones con terceros) lista para presentar</code><p>DIOT: 2 proveedor(es). IVA acreditable total: $6,560.00.<br/>   Regla: RMF - Declaración Informativa de Operaciones con Terceros (a más tardar el mes siguiente). Orientativo - no sustituye a un contador certificado ni al SAT. Verifica antes de declarar.<br/><br/>OK: Guardé el archivo aquí:<br/>(tu carpeta)\Resultado_1888.xlsx</p></div>
+<div class="callout cal-steel"><b>Medido por &uacute;ltima vez: 2026-11-07.</b> Estas respuestas salen de nuestras pruebas autom&aacute;ticas nocturnas; con tus archivos ver&aacute;s tus propios n&uacute;meros y columnas, no los del ejemplo.</div>
 
 </main>
 

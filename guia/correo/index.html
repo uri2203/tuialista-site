@@ -66,7 +66,7 @@
 </head>
 <body>
 <header><div class="nav">
-  <a class="logo" href="/"><img src="/assets/img/logo.png" alt="TuIAlista" height="52" style="display:block"></a>
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
   <div class="r">
     <a class="hide-sm" href="/catalogo/">Cat&aacute;logo</a>
     <a class="hide-sm" href="/soporte/">Soporte</a>
@@ -79,7 +79,7 @@
   <h1>Agente de Correo</h1>
   <p class="sub">Ordena tu bandeja, te dice qué urge y te redacta respuestas — procesando todo en tu computadora.</p>
   <div class="hero-row">
-    <span class="price">$15 USD / mes</span>
+    <span class="price">$39 USD / mes</span>
     <a class="cta" href="/descargar/?agent=correo"><i class="ti ti-download"></i> Descargar este agente</a>
   </div>
 
@@ -146,6 +146,14 @@
 <ul><li>El agente lee y procesa los archivos <b>localmente</b>, en tu propio equipo. No se conecta a tu servidor de correo ni sube tus emails a ningún lado.</li><li>La priorización, la detección de tareas y la agrupación por remitente ocurren <b>en tu máquina</b>.</li><li>Lo único que viaja por internet es: (1) una comprobación de que tu licencia está activa — que no incluye el contenido de tus correos —, y (2) al pedir un resumen, un borrador o una pregunta, se envía un fragmento de los correos relevantes al motor de IA para redactar la respuesta.</li></ul>
 <div class="callout cal-steel">La confidencialidad de tu correspondencia está garantizada por diseño: prioridad, tareas, remitentes y buscar son 100% locales. Solo resumen, responder y las preguntas libres comparten un fragmento con el proveedor de IA.</div>
 <div class="callout cal-amber"><b>Recordatorio importante:</b> este agente es una herramienta de apoyo a la productividad. Prioriza, resume y redacta borradores, pero sus clasificaciones y respuestas se generan con IA y pueden equivocarse. Revisa siempre un borrador antes de enviarlo y confirma tú mismo qué es realmente urgente.</div>
+<h2 class="sec"><span class="n">8</span> Lo que respondió de verdad (evidencia medida)</h2>
+<p>Esta secci&oacute;n no son promesas de folleto: cada respuesta se midi&oacute; contra el agente REAL instalado, con datos de ejemplo, en nuestras pruebas nocturnas autom&aacute;ticas. Lo que escribes va en la caja gris; debajo, lo que el agente contest&oacute; tal cual (recortado donde es largo).</p>
+<div class="cmdcard"><code>&gt; Qué te están cobrando y por cuánto</code><p>### Resumen rápido de tu bandeja (sin abrir cada mensaje)<br/><br/>| ID | Remitente | Asunto | Fecha | Prioridad |<br/>|----|-----------|--------|-------|-----------|<br/>| **0** | Ana Trevino | **Re: Re: Propuesta mantenimiento 2026** | 08/04/2026 | **Alta**  pendiente de mover junta y enviar desglose. |<br/>| **1** | cobranza@suministrosdelnorte.test | **Recordatorio de pago factura A1024** | 06/04/2026 | **Alta**  factura vencida, requiere confirmación de pago. |<br/>| **2** | soporte@tuialistaseguridad.test | **URGENTE: verificación <i>[respuesta recortada]</i></p></div>
+<div class="cmdcard"><code>&gt; Redactar una respuesta lista para enviar</code><p>##  Resumen de los correos y prioridades<br/><br/>| ID | Remitente | Asunto | Prioridad | Acción requerida |<br/>|----|-----------|--------|-----------|------------------|<br/>| **2** | soporte@tuialistaseguridad.test | **URGENTE: verificación de cuenta requerida** | **ALTA** (posible phishing / intento de suplantación) | No enviar ningún dato. Informar al área de Seguridad/IT y revertir los cambios de CLABE. |<br/>| **1** | cobranza@suministrosdelnorte.test | Recordatorio de pago factura A1024 | **MEDIA** | Confirmar fecha de pago <i>[respuesta recortada]</i></p></div>
+<div class="cmdcard"><code>&gt; Encontrar de qué se habló con un cliente o proveedor</code><p>**Resumen de los correos y acciones recomendadas**<br/><br/>| ID | Remitente | Asunto | Acción requerida | Prioridad |<br/>|----|-----------|--------|------------------|-----------|<br/>| 0 | Ana Trevino | Re: Re: Propuesta mantenimiento 2026 | 1 Cambiar la hora de la junta del jueves a las 11:00am.&lt;br&gt;2 Enviar el desglose por equipo antes del miércoles (06/11/2026). | Alta |<br/>| 1 | cobranza@suministrosdelnorte.test | Recordatorio de pago factura A-1024 | Confirmar fecha de pago de la factura A1024 (MXN $1,160) y responder al Lic. <i>[respuesta recortada]</i></p></div>
+<div class="cmdcard"><code>&gt; Qué correos requieren respuesta y cuáles son urgentes</code><p>1 correo(s) esperan respuesta:<br/>  - [URGENTE]  Re: Re: Propuesta mantenimiento 2026<br/>      de</p></div>
+<div class="cmdcard"><code>&gt; Resumen de tu bandeja sin leerla toda</code><p>**Resumen de la bandeja (07/11/2026)**<br/><br/>| ID | Remitente | Asunto | Estado | Acción requerida |<br/>|----|-----------|--------|--------|-------------------|<br/>| 0 | Ana Trevino / Marisol Aguirre | Re: Re: Propuesta mantenimiento 2026 | **Pendiente** (último mensaje de Ana) | - **Mover la junta** del jueves a las **11:00** (solicitado por Ana).&lt;br&gt;- **Entregar desglose por equipo** antes del **miércoles** (fecha límite implícita: 08/11/2026). |<br/>| 1 | cobranza@suministrosdelnorte.test | Recordatorio de pago factura A1024 <i>[respuesta recortada]</i></p></div>
+<div class="callout cal-steel"><b>Medido por &uacute;ltima vez: 2026-11-07.</b> Estas respuestas salen de nuestras pruebas autom&aacute;ticas nocturnas; con tus archivos ver&aacute;s tus propios n&uacute;meros y columnas, no los del ejemplo.</div>
 
 </main>
 

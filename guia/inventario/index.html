@@ -66,7 +66,7 @@
 </head>
 <body>
 <header><div class="nav">
-  <a class="logo" href="/"><img src="/assets/img/logo.png" alt="TuIAlista" height="52" style="display:block"></a>
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
   <div class="r">
     <a class="hide-sm" href="/catalogo/">Cat&aacute;logo</a>
     <a class="hide-sm" href="/soporte/">Soporte</a>
@@ -79,7 +79,7 @@
   <h1>Agente de Inventario</h1>
   <p class="sub">Detecta qué reordenar, cuánto vale tu inventario y dónde tienes capital inmovilizado — en segundos.</p>
   <div class="hero-row">
-    <span class="price">$29 USD / mes</span>
+    <span class="price">$79 USD / mes</span>
     <a class="cta" href="/descargar/?agent=inventario"><i class="ti ti-download"></i> Descargar este agente</a>
   </div>
 
@@ -146,6 +146,17 @@
 <ul><li>El agente lee y analiza tus archivos <b>localmente</b>, en tu propio equipo. No los sube a ningún servidor.</li><li>Todos los cálculos (bajo stock, valor, ABC, exceso, stock muerto) ocurren <b>en tu máquina</b>.</li><li>Lo único que viaja por internet es: (1) una comprobación de que tu licencia está activa — que no incluye tus datos —, y (2) al hacer una pregunta libre, se envía un resumen del inventario relevante al motor de IA para redactar la respuesta.</li></ul>
 <div class="callout cal-steel">La confidencialidad de tus costos, precios y niveles de stock está garantizada por diseño: todos los cálculos (bajo stock, reorden, valor, ABC, exceso, stock muerto) son 100% locales. Solo las preguntas libres comparten un resumen con el proveedor de IA para poder responder.</div>
 <div class="callout cal-amber"><b>Recordatorio importante:</b> este agente es una herramienta de apoyo a la decisión, no un sistema de compras automático. Sus sugerencias de reorden y sus análisis se basan en los datos que tú le des y en reglas simples. Verifica las cifras críticas (costos, precios, stock) y aplica tu criterio de negocio antes de comprar o dar de baja inventario.</div>
+<h2 class="sec"><span class="n">8</span> Lo que respondió de verdad (evidencia medida)</h2>
+<p>Esta secci&oacute;n no son promesas de folleto: cada respuesta se midi&oacute; contra el agente REAL instalado, con datos de ejemplo, en nuestras pruebas nocturnas autom&aacute;ticas. Lo que escribes va en la caja gris; debajo, lo que el agente contest&oacute; tal cual (recortado donde es largo).</p>
+<div class="cmdcard"><code>&gt; Qué no se mueve (stock muerto) y dónde tengo capital parado</code><p>Stock muerto &gt;90 dias sin movimiento (5 productos):<br/>  Taladro                               11 uds     $16,500  (ultima salida: 2026-06-17, 143 dias)<br/>  Casco                                 42 uds     $14,700  (ultima salida: 2026-04-18, 203 dias)<br/>  Taladro                                8 uds     $12,000  (ultima salida: 2026-06-19, 141 dias)<br/>  Casco                                 30 uds     $10,500  (ultima salida: 2026-04-20, 201 dias)<br/>  Candado                               22 uds      $2,090  (ultima salida: <i>[respuesta recortada]</i></p></div>
+<div class="cmdcard"><code>&gt; Qué productos concentran mi dinero (análisis ABC / 80-20)</code><p>Analisis ABC - Valor total: $171,748.00<br/>  Clase A: 10 productos - $139,068.00 (81.0% del valor)<br/>      Cemento                          stock=   168  valor=$ 30,240.00  (17.6%)<br/>      Cemento                          stock=   120  valor=$ 21,600.00  (12.6%)<br/>      Taladro                          stock=    11  valor=$ 16,500.00  (9.6%)<br/>      Casco                            stock=    42  valor=$ 14,700.00  (8.6%)<br/>      Guantes                          stock=   280  valor=$ 12,600.00  (7.3%) <i>[respuesta recortada]</i></p></div>
+<div class="cmdcard"><code>&gt; Qué me falta comprar / qué está por acabarse (stock bajo y cuánto pedir)</code><p>Stock bajo (3 productos):<br/>  Producto                           Stock  Minimo   Dias  Estado<br/>  -----------------------------------------------------------------<br/>  Tornillos                              0      20      ?  [CRITICO]<br/>  Tornillos                              0      20      ?  [CRITICO]<br/>  Taladro                                8      10   16.0  [BAJO]</p></div>
+<div class="cmdcard"><code>&gt; Cuánto vale mi mercancía (valor del inventario al costo y a precio de venta)</code><p>Valor del Inventario:<br/>  Total productos:       21<br/>  Total unidades:        3,244<br/>  Valor al costo:        $     171,748.00<br/>  Valor al precio venta: $     278,995.00<br/>  Margen potencial:      $     107,247.00 <i>[respuesta recortada]</i></p></div>
+<div class="cmdcard"><code>&gt; Margen y utilidad por producto</code><p>Margen por producto (21). Margen promedio: 44.4%.<br/><br/>OK: Guardé el archivo aquí:<br/>(tu carpeta)\Inventario_2216.xlsx</p></div>
+<div class="cmdcard"><code>&gt; Cuánto me dura el stock (días de cobertura)</code><p>Días de cobertura por producto (19).<br/><br/>OK: Guardé el archivo aquí:<br/>(tu carpeta)\Inventario_2217.xlsx</p></div>
+<div class="cmdcard"><code>&gt; Totales y rankings: por proveedor, por categoría, top-N por valor</code><p>Top 10 por "precio" (mayores) de "Inventario".<br/><br/>OK: Guardé el archivo aquí:<br/>(tu carpeta)\Inventario_2074.xlsx</p></div>
+<div class="cmdcard"><code>&gt; Revisión completa de mi inventario (todo junto, con hoja de AUDITORÍA)</code><p>ANÁLISIS COMPLETO DE INVENTARIO<br/>- 3 bajo mínimo (2 críticos/sin stock).<br/>- 5 en stock muerto ($55,790 inmovilizados).<br/>- 4 con exceso de inventario.<br/>- Valor al costo: $171,748.00 - 21 productos.<br/>- Clase A: 10 productos concentran el 81% del valor. <i>[respuesta recortada]</i></p></div>
+<div class="callout cal-steel"><b>Medido por &uacute;ltima vez: 2026-11-07.</b> Estas respuestas salen de nuestras pruebas autom&aacute;ticas nocturnas; con tus archivos ver&aacute;s tus propios n&uacute;meros y columnas, no los del ejemplo.</div>
 
 </main>
 

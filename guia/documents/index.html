@@ -66,7 +66,7 @@
 </head>
 <body>
 <header><div class="nav">
-  <a class="logo" href="/"><img src="/assets/img/logo.png" alt="TuIAlista" height="52" style="display:block"></a>
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
   <div class="r">
     <a class="hide-sm" href="/catalogo/">Cat&aacute;logo</a>
     <a class="hide-sm" href="/soporte/">Soporte</a>
@@ -79,7 +79,7 @@
   <h1>Agente de Documentos</h1>
   <p class="sub">Busca dentro de tus documentos por ti y te responde en lenguaje normal, citando de qué archivo salió la respuesta.</p>
   <div class="hero-row">
-    <span class="price">$9 USD / mes</span>
+    <span class="price">$19 USD / mes</span>
     <a class="cta" href="/descargar/?agent=documents"><i class="ti ti-download"></i> Descargar este agente</a>
   </div>
 
@@ -138,6 +138,14 @@
 <ul><li>El agente lee e indexa los archivos <b>localmente</b>, en tu propio equipo. No los sube a ningún servidor ni los comparte con nadie.</li><li>La búsqueda y selección de los fragmentos relevantes ocurre <b>en tu máquina</b>.</li><li>Lo único que viaja por internet es: (1) una comprobación de que tu licencia está activa — que no incluye el contenido de tus documentos —, y (2) al hacer una pregunta, se envía un fragmento de los documentos relevantes al motor de IA para redactar la respuesta.</li></ul>
 <div class="callout cal-steel">La confidencialidad de tu información está garantizada por diseño: el producto nace precisamente para que puedas consultar tus documentos sin exponerlos. Cada pregunta comparte solo el fragmento relevante con el proveedor de IA — nunca la carpeta completa.</div>
 <div class="callout cal-amber"><b>Recordatorio importante:</b> este agente es una herramienta de apoyo para encontrar información más rápido. Como toda herramienta con IA, sus respuestas pueden contener imprecisiones: verifica siempre los datos críticos en el documento original que el agente te cita antes de tomar decisiones basadas en ellos.</div>
+<h2 class="sec"><span class="n">8</span> Lo que respondió de verdad (evidencia medida)</h2>
+<p>Esta secci&oacute;n no son promesas de folleto: cada respuesta se midi&oacute; contra el agente REAL instalado, con datos de ejemplo, en nuestras pruebas nocturnas autom&aacute;ticas. Lo que escribes va en la caja gris; debajo, lo que el agente contest&oacute; tal cual (recortado donde es largo).</p>
+<div class="cmdcard"><code>&gt; Encontrar un dato (precio, fecha, condición) sin abrir archivo por archivo</code><p>**Dato solicitado (ejemplo: precio, fecha y condición)**<br/><br/>- **Precio:** $385.00MXN por kilogramo (más IVA).<br/>- **Fecha de vigencia de la propuesta:** 02/04/2026 (30días naturales a partir de esa fecha).<br/>- **Condición de pago:** crédito a 15días con autorización previa.<br/><br/>*Fuente:* **propuesta_comercial.docx**.</p></div>
+<div class="cmdcard"><code>&gt; Comparar dos documentos y ver en qué cambian</code><p>**Comparación entre los dos documentos**<br/><br/>| Tema | **nota_de_la_junta.txt** | **propuesta_comercial.docx** | Diferencia |<br/>|------|--------------------------|------------------------------|------------|<br/>| **Mínimo de compra** | El cliente solicita bajar el mínimo de **80kg a 60kg**. *(nota_de_la_junta.txt)* | Volumen mínimo establecido en **80kg mensuales** para conservar el precio. *(propuesta_comercial.docx)* | La nota indica una petición de reducción; la propuesta mantiene el mínimo en 80kg. |<br/>| **Tipo de <i>[respuesta recortada]</i></p></div>
+<div class="cmdcard"><code>&gt; Decirte qué documentos tienes y de qué tratan</code><p>Tengo dos documentos en el contexto:<br/><br/>1. **nota_de_la_junta.txt**<br/>   - Son notas rápidas tomadas el02/04/2026.<br/>   - Se menciona que el cliente pidió bajar el peso mínimo de 80kg a 60kg y que hay que revisar el margen.<br/>   - Solicitan que la factura incluya el complemento de pago PPD.<br/>   - Queda pendiente enviar la ficha técnica del tueste medio. <i>[respuesta recortada]</i></p></div>
+<div class="cmdcard"><code>&gt; Responder qué dice un documento (PDF, Word o texto)</code><p>**nota_de_la_junta.txt**<br/>- En la reunión del02/04/2026 se anotó que el cliente solicitó bajar el volumen mínimo de 80kg a 60kg y se debe revisar el margen de utilidad.<br/>- El cliente quiere que la factura incluya el complemento de pago PPD.<br/>- Está pendiente el envío de la ficha técnica del tueste medio.<br/>*(Fuente: nota_de_la_junta.txt)*<br/><br/>**propuesta_comercial.docx** <i>[respuesta recortada]</i></p></div>
+<div class="cmdcard"><code>&gt; Resumir documentos largos en lo esencial</code><p>**Resumen esencial**<br/><br/>**nota_de_la_junta.txt**<br/>- El cliente solicita bajar el peso mínimo de compra de 80kg a 60kg (revisar margen).<br/>- Necesitan factura con complemento de pago PPD.<br/>- Pendiente: enviar la ficha técnica del tueste medio. <i>[respuesta recortada]</i></p></div>
+<div class="callout cal-steel"><b>Medido por &uacute;ltima vez: 2026-11-07.</b> Estas respuestas salen de nuestras pruebas autom&aacute;ticas nocturnas; con tus archivos ver&aacute;s tus propios n&uacute;meros y columnas, no los del ejemplo.</div>
 
 </main>
 

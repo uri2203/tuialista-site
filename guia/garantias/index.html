@@ -66,7 +66,7 @@
 </head>
 <body>
 <header><div class="nav">
-  <a class="logo" href="/"><img src="/assets/img/logo.png" alt="TuIAlista" height="52" style="display:block"></a>
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
   <div class="r">
     <a class="hide-sm" href="/catalogo/">Cat&aacute;logo</a>
     <a class="hide-sm" href="/soporte/">Soporte</a>
@@ -79,7 +79,7 @@
   <h1>Agente de Reclamaciones y Garantías</h1>
   <p class="sub">Rastrea tus garantías, te alerta antes de que venzan y te genera la carta de reclamación lista para enviar.</p>
   <div class="hero-row">
-    <span class="price">$19 USD / mes</span>
+    <span class="price">$29 USD / mes</span>
     <a class="cta" href="/descargar/?agent=garantias"><i class="ti ti-download"></i> Descargar este agente</a>
   </div>
 
@@ -147,6 +147,17 @@
 <ul><li>El agente lee y analiza los archivos <b>localmente</b>, en tu propio equipo. No los sube a ningún servidor.</li><li>La extracción de datos de compra y el cálculo de vigencias ocurren <b>en tu máquina</b>.</li><li>Lo único que viaja por internet es: (1) una comprobación de que tu licencia está activa — que no incluye tus comprobantes —, y (2) al generar una carta de reclamación o hacer una pregunta libre, se envía un fragmento de la información relevante al motor de IA para redactar esa respuesta.</li></ul>
 <div class="callout cal-steel">La confidencialidad de tus compras está garantizada por diseño: el procesamiento base (lectura, estatus, cálculo de valor protegido) es 100% local. Solo <font face='Courier'>reclamar</font> y las preguntas libres comparten un fragmento de datos con el proveedor de IA para poder responder.</div>
 <div class="callout cal-amber"><b>Recordatorio importante:</b> este agente te ayuda a no perder garantías, pero no es un abogado ni PROFECO. Extrae fechas, montos y periodos de forma automática, y puede omitir o confundir algún dato en comprobantes con formato inusual. Verifica las fechas de vencimiento críticas y los términos de tu garantía con el comprobante y el fabricante antes de actuar. Para reclamaciones no resueltas, acude a PROFECO.</div>
+<h2 class="sec"><span class="n">8</span> Lo que respondió de verdad (evidencia medida)</h2>
+<p>Esta secci&oacute;n no son promesas de folleto: cada respuesta se midi&oacute; contra el agente REAL instalado, con datos de ejemplo, en nuestras pruebas nocturnas autom&aacute;ticas. Lo que escribes va en la caja gris; debajo, lo que el agente contest&oacute; tal cual (recortado donde es largo).</p>
+<div class="cmdcard"><code>&gt; Cuánto dinero tengo protegido y cuánto ya se perdió</code><p>Dinero protegido: $25,500.00 - en riesgo inmediato: $7,000.00 - ya perdido: $8,000.00. Orientativo - los términos dependen del fabricante/comercio. Reclamos no resueltos: PROFECO (profeco.gob.mx - 55 5625-6700).<br/><br/>OK: Guardé el archivo aquí:<br/>(tu carpeta)\Resultado_1961.xlsx</p></div>
+<div class="cmdcard"><code>&gt; Qué garantías ya se me vencieron</code><p>2 garantía(s) VENCIDA(s) - $8,000.00. Si el defecto es de fábrica, valora PROFECO igual. Orientativo - los términos dependen del fabricante/comercio. Reclamos no resueltos: PROFECO (profeco.gob.mx - 55 5625-6700).<br/><br/>OK: Guardé el archivo aquí:<br/>(tu carpeta)\Resultado_1962.xlsx</p></div>
+<div class="cmdcard"><code>&gt; Qué garantías tengo vigentes y de qué productos</code><p>REVISIÓN DE GARANTÍAS<br/>-  Dinero protegido: $25,500.00 - en riesgo inmediato: $7,000.00 - ya perdido: $8,000.00.<br/>- 2 por vencer - reclamar antes de perder el dinero.<br/><br/>5 comprobante(s) - 2 punto(s) requieren acción. Abre la hoja AUDITORÍA para el detalle. Orientativo - los términos dependen del fabricante/comercio. Reclamos no resueltos: PROFECO (profeco.gob.mx - 55 5625-6700).<br/><br/>OK: Guardé el archivo aquí: <i>[respuesta recortada]</i></p></div>
+<div class="cmdcard"><code>&gt; Qué puedo reclamar YA (lo que vence pronto, antes de perder el dinero)</code><p>2 garantía(s) POR VENCER - $7,000.00 en riesgo si no reclamas.<br/>   Criterio: vence en 30 días. Reclama YA (guarda acuse). Orientativo - los términos dependen del fabricante/comercio. Reclamos no resueltos: PROFECO (profeco.gob.mx - 55 5625-6700).<br/><br/>OK: Guardé el archivo aquí:<br/>(tu carpeta)\Resultado_1960.xlsx</p></div>
+<div class="cmdcard"><code>&gt; Garantías por tienda / comercio donde compré</code><p>3 comercio(s). Puedes agrupar reclamos por vendedor. Orientativo - los términos dependen del fabricante/comercio. Reclamos no resueltos: PROFECO (profeco.gob.mx - 55 5625-6700).<br/><br/>OK: Guardé el archivo aquí:<br/>(tu carpeta)\Resultado_1963.xlsx</p></div>
+<div class="cmdcard"><code>&gt; Qué datos me faltan para poder reclamar</code><p>1 comprobante(s) con datos incompletos para reclamar. Orientativo - los términos dependen del fabricante/comercio. Reclamos no resueltos: PROFECO (profeco.gob.mx - 55 5625-6700).<br/><br/>OK: Guardé el archivo aquí:<br/>(tu carpeta)\Resultado_1964.xlsx</p></div>
+<div class="cmdcard"><code>&gt; Redactar la carta de reclamación de un producto</code><p>¿De qué producto quieres la carta? Copia una de estas líneas y te la redacto:<br/>  - reclamar Microondas<br/>  - reclamar Laptop XZ</p></div>
+<div class="cmdcard"><code>&gt; Revisión completa de mis garantías (tablero con AUDITORÍA)</code><p>REVISIÓN DE GARANTÍAS<br/>-  Dinero protegido: $25,500.00 - en riesgo inmediato: $7,000.00 - ya perdido: $8,000.00.<br/>- 2 por vencer - reclamar antes de perder el dinero.<br/><br/>5 comprobante(s) - 2 punto(s) requieren acción. Abre la hoja AUDITORÍA para el detalle. Orientativo - los términos dependen del fabricante/comercio. Reclamos no resueltos: PROFECO (profeco.gob.mx - 55 5625-6700).<br/><br/>OK: Guardé el archivo aquí: <i>[respuesta recortada]</i></p></div>
+<div class="callout cal-steel"><b>Medido por &uacute;ltima vez: 2026-11-07.</b> Estas respuestas salen de nuestras pruebas autom&aacute;ticas nocturnas; con tus archivos ver&aacute;s tus propios n&uacute;meros y columnas, no los del ejemplo.</div>
 
 </main>
 

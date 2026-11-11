@@ -66,7 +66,7 @@
 </head>
 <body>
 <header><div class="nav">
-  <a class="logo" href="/"><img src="/assets/img/logo.png" alt="TuIAlista" height="52" style="display:block"></a>
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
   <div class="r">
     <a class="hide-sm" href="/catalogo/">Cat&aacute;logo</a>
     <a class="hide-sm" href="/soporte/">Soporte</a>
@@ -79,7 +79,7 @@
   <h1>Agente de Facturas y Cuentas por Pagar</h1>
   <p class="sub">Le dices qué necesitas en tus palabras y te arma el Excel de facturas, el resumen de impuestos y las cuentas por pagar — sin capturar nada a mano.</p>
   <div class="hero-row">
-    <span class="price">$49 USD / mes</span>
+    <span class="price">$99 USD / mes</span>
     <a class="cta" href="/descargar/?agent=facturas"><i class="ti ti-download"></i> Descargar este agente</a>
   </div>
 
@@ -144,6 +144,17 @@
 <ul><li>El agente lee y procesa las facturas <b>localmente</b>, en tu propio equipo. No las sube a ningún servidor.</li><li>La captura al Excel, el resumen de impuestos, las cuentas por pagar y los duplicados se calculan <b>en tu máquina</b>, con reglas fijas ya probadas (sin IA).</li><li>Lo único que viaja por internet es: (1) una comprobación de que tu licencia está activa — que no incluye tus facturas —, y (2) si le pides algo que no es una de las 4 acciones principales (una pregunta libre), se envía un fragmento de la información relevante al motor de IA para poder responder.</li></ul>
 <div class="callout cal-steel">La confidencialidad de tu información financiera está garantizada por diseño: exportar, impuestos, cuentas por pagar y duplicados son 100% locales, con reglas fijas ya probadas — no usan IA. Solo las preguntas libres fuera de esas 4 acciones comparten un fragmento de datos con el proveedor de IA para poder responder.</div>
 <div class="callout cal-amber"><b>Recordatorio importante:</b> verifica los datos extraídos antes de ejecutar un pago real. El XML de CFDI se lee de forma exacta, pero el PDF se lee por texto y en facturas con formato inusual puede confundir un dato. La detección de duplicados es una alerta, no una certeza. Antes de pagar, cancelar o rechazar una factura, confirma los datos contra el documento original. El agente organiza y avisa; la decisión de pago es tuya.</div>
+<h2 class="sec"><span class="n">8</span> Lo que respondió de verdad (evidencia medida)</h2>
+<p>Esta secci&oacute;n no son promesas de folleto: cada respuesta se midi&oacute; contra el agente REAL instalado, con datos de ejemplo, en nuestras pruebas nocturnas autom&aacute;ticas. Lo que escribes va en la caja gris; debajo, lo que el agente contest&oacute; tal cual (recortado donde es largo).</p>
+<div class="cmdcard"><code>&gt; por pagar</code><p>Cuentas por pagar (lo más urgente primero):<br/><br/>  [VENCIDA ] 2026-10-05   -33d  MXN     1,160.00  Mi Empresa SA<br/>  [VENCIDA ] 2026-10-05   -33d  MXN     1,160.00  Proveedor Demo<br/>  [VENCIDA ] 2026-10-09   -29d  MXN    52,200.00  Mi Empresa SA de CV<br/>  [VENCIDA ] 2026-10-24   -14d  MXN    10,613.33  Sergio Castro Avila<br/>  [VENCIDA ] 2026-10-24   -14d  MXN    10,613.33  Sergio Castro Avila <i>[respuesta recortada]</i></p></div>
+<div class="cmdcard"><code>&gt; duplicados</code><p>Posibles duplicados:<br/><br/>  - factura_honorarios_con_retenciones.xml    factura_honorarios_copia (1).xml   (11111111-2222-3333-4444-555555555555)</p></div>
+<div class="cmdcard"><code>&gt; exporta</code><p>OK: Listo. Generé tu Excel con captura + impuestos + cuentas por pagar:<br/>(tu carpeta)\Facturas_2026-11-07.xlsx<br/>(6 factura(s)). Ábrelo desde esa carpeta.</p></div>
+<div class="cmdcard"><code>&gt; impuestos</code><p>Resumen de impuestos (sumado de lo que cada factura declara):<br/><br/>  MXN:  base 97,000.00  -  impuesto 15,520.00  -  retención 9,093.34  -  total 107,586.66   (6)</p></div>
+<div class="cmdcard"><code>&gt; impuestos del periodo</code><p>Resumen de impuestos (sumado de lo que cada factura declara):<br/><br/>  MXN:  base 97,000.00  -  impuesto 15,520.00  -  retención 9,093.34  -  total 107,586.66   (6)</p></div>
+<div class="cmdcard"><code>&gt; total por proveedor</code><p>Concentración: top 3 proveedores = 99% del gasto (107,586.66 total).<br/><br/>OK: Guardé el archivo aquí:<br/>(tu carpeta)\Facturas_1813.xlsx<br/>(Revisa siempre los datos antes de pagar.)</p></div>
+<div class="cmdcard"><code>&gt; modo experto</code><p>OK: MODO EXPERTO activado: además intentaré tareas nuevas con IA (enjaulada, no puede tocar tus archivos). Di "modo seguro" para volver.</p></div>
+<div class="cmdcard"><code>&gt; modo seguro</code><p>OK: MODO SEGURO activado: solo tareas probadas, sin IA de código.</p></div>
+<div class="callout cal-steel"><b>Medido por &uacute;ltima vez: 2026-11-07.</b> Estas respuestas salen de nuestras pruebas autom&aacute;ticas nocturnas; con tus archivos ver&aacute;s tus propios n&uacute;meros y columnas, no los del ejemplo.</div>
 
 </main>
 

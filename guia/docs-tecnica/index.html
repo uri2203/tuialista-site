@@ -66,7 +66,7 @@
 </head>
 <body>
 <header><div class="nav">
-  <a class="logo" href="/"><img src="/assets/img/logo.png" alt="TuIAlista" height="52" style="display:block"></a>
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
   <div class="r">
     <a class="hide-sm" href="/catalogo/">Cat&aacute;logo</a>
     <a class="hide-sm" href="/soporte/">Soporte</a>
@@ -79,7 +79,7 @@
   <h1>Agente de Documentación Técnica</h1>
   <p class="sub">Genera y mantiene la documentación técnica de tu software a partir de tu propio código, sin que el código salga de tu equipo.</p>
   <div class="hero-row">
-    <span class="price">$49 USD / mes</span>
+    <span class="price">$89 USD / mes</span>
     <a class="cta" href="/descargar/?agent=docs-tecnica"><i class="ti ti-download"></i> Descargar este agente</a>
   </div>
 
@@ -146,6 +146,14 @@
 <ul><li>El agente escanea el proyecto y extrae su estructura <b>localmente</b>, en tu propio equipo. No sube tu código a ningún servidor.</li><li>La detección de estructura, la deuda de documentación (<font face='Courier'>sin-documentar</font>) y el mapa de dependencias se calculan <b>en tu máquina</b>.</li><li>Lo único que viaja por internet es: (1) una comprobación de que tu licencia está activa — que no incluye tu código —, y (2) al generar README, FAQ, documentar un archivo o responder una pregunta, se envían <b>fragmentos del código</b> (los más relevantes) al motor de IA para redactar el texto.</li></ul>
 <div class="callout cal-steel">La confidencialidad de tu propiedad intelectual está garantizada por diseño: sin-documentar, dependencias y analizar son 100% locales. Solo readme, faq, documentar y las preguntas libres comparten fragmentos del código con el proveedor de IA.</div>
 <div class="callout cal-amber"><b>Recordatorio importante:</b> la documentación generada es un punto de partida excelente, no un documento final infalible. El agente describe lo que encuentra en el código; puede malinterpretar lógica muy compleja o inferir un propósito equivocado. Revisa la documentación antes de publicarla, especialmente en proyectos críticos.</div>
+<h2 class="sec"><span class="n">8</span> Lo que respondió de verdad (evidencia medida)</h2>
+<p>Esta secci&oacute;n no son promesas de folleto: cada respuesta se midi&oacute; contra el agente REAL instalado, con datos de ejemplo, en nuestras pruebas nocturnas autom&aacute;ticas. Lo que escribes va en la caja gris; debajo, lo que el agente contest&oacute; tal cual (recortado donde es largo).</p>
+<div class="cmdcard"><code>&gt; Documentar código que nadie documentó</code><p>[Archivo 'código que nadie documentó' no encontrado. Disponibles:<br/>  calculo_comisiones.py<br/>  esquema_ventas.sql<br/>  README.md]</p></div>
+<div class="cmdcard"><code>&gt; Armar preguntas frecuentes del sistema</code><p>## Preguntas Frecuentes (FAQ)  Módulo de Ventas<br/><br/>A continuación se recopilan las dudas más habituales que pueden surgir al trabajar con el **Módulo de Ventas** (esquema de base de datos y cálculo de comisiones). Cada respuesta está basada exclusivamente en el código y la documentación proporcionada; si algún aspecto no está definido en el código, se indica explícitamente.<br/><br/>| # | Pregunta | Respuesta |<br/>|---|----------|-----------|<br/>| 1 | **¿Qué tablas y campos contiene la base de datos?** | - **`clientes`**: <i>[respuesta recortada]</i></p></div>
+<div class="cmdcard"><code>&gt; Encontrar dónde está implementada una regla de negocio</code><p>## ¿Dónde está implementada la regla de negocio?<br/><br/>| Regla de negocio | ¿Dónde se menciona? | ¿Dónde está implementada en el código? |<br/>|------------------|---------------------|----------------------------------------|<br/>| **La comisión se paga al cobrar, no al facturar** | En el archivo **`README.md`**, bajo la sección **Reglas de negocio**. | **No está implementada** en el código fuente. El módulo `calculo_comisiones.py` solo calcula la comisión a partir del *monto*, el *nivel* y si la *meta* está cumplida <i>[respuesta recortada]</i></p></div>
+<div class="cmdcard"><code>&gt; Explicarte qué hace un archivo o una función de tu sistema</code><p>#  Documentación Técnica del proyecto **TuIAlistaPruebas**<br/><br/>&gt; **Ubicación:** `(tu carpeta)\DocsTecnica`<br/>&gt; **Componentes indexados:** 3 archivos<br/>&gt; - `esquema_ventas.sql`<br/>&gt; - `calculo_comisiones.py`<br/>&gt; - `README.md` <i>[respuesta recortada]</i></p></div>
+<div class="cmdcard"><code>&gt; Qué tablas y campos tiene la base de datos</code><p>2 tabla(s)/vista(s) en tu base:<br/>  - clientes   (esquema_ventas.sql:2)<br/>  - pedidos   (esquema_ventas.sql:9)</p></div>
+<div class="callout cal-steel"><b>Medido por &uacute;ltima vez: 2026-11-07.</b> Estas respuestas salen de nuestras pruebas autom&aacute;ticas nocturnas; con tus archivos ver&aacute;s tus propios n&uacute;meros y columnas, no los del ejemplo.</div>
 
 </main>
 

@@ -66,7 +66,7 @@
 </head>
 <body>
 <header><div class="nav">
-  <a class="logo" href="/"><img src="/assets/img/logo.png" alt="TuIAlista" height="52" style="display:block"></a>
+  <a class="logo" href="/"><span class="dot"></span>Tu<b>IA</b>lista</a>
   <div class="r">
     <a class="hide-sm" href="/catalogo/">Cat&aacute;logo</a>
     <a class="hide-sm" href="/soporte/">Soporte</a>
@@ -79,7 +79,7 @@
   <h1>Agente de Nóminas y Recursos Humanos</h1>
   <p class="sub">Organiza a tu plantilla, calcula vacaciones según la LFT y vigila las fechas críticas de RH — sin que los datos salgan de tu equipo.</p>
   <div class="hero-row">
-    <span class="price">$59 USD / mes</span>
+    <span class="price">$99 USD / mes</span>
     <a class="cta" href="/descargar/?agent=nominas"><i class="ti ti-download"></i> Descargar este agente</a>
   </div>
 
@@ -147,6 +147,16 @@
 <ul><li>El agente carga y procesa la plantilla <b>localmente</b>, en tu propio equipo. No sube datos de empleados a ningún servidor.</li><li>El cálculo de vacaciones, los reportes de nómina, las fechas críticas y el headcount se calculan <b>en tu máquina</b>.</li><li>Lo único que viaja por internet es: (1) una comprobación de que tu licencia está activa — que no incluye datos de empleados —, y (2) al hacer una pregunta libre, se envía un <b>contexto anonimizado</b> (resúmenes agregados, sin exponer salarios individuales por defecto) al motor de IA para redactar la respuesta.</li></ul>
 <div class="callout cal-steel">La confidencialidad de los datos de tu personal está garantizada por diseño: vacaciones, nómina, fechas críticas y headcount son 100% locales. Solo las preguntas libres comparten un contexto anonimizado con el proveedor de IA.</div>
 <div class="callout cal-amber"><b>Recordatorio importante:</b> los cálculos de vacaciones, prestaciones e impuestos son estimaciones; valídalos con el área legal/contable. El agente calcula el mínimo legal de vacaciones según la LFT (reforma 2023) a partir de la antigüedad, pero cada empresa puede tener prestaciones superiores y las leyes cambian. Antes de autorizar vacaciones, finiquitos o renovaciones de contrato, confirma con tu área legal o contable.</div>
+<h2 class="sec"><span class="n">8</span> Lo que respondió de verdad (evidencia medida)</h2>
+<p>Esta secci&oacute;n no son promesas de folleto: cada respuesta se midi&oacute; contra el agente REAL instalado, con datos de ejemplo, en nuestras pruebas nocturnas autom&aacute;ticas. Lo que escribes va en la caja gris; debajo, lo que el agente contest&oacute; tal cual (recortado donde es largo).</p>
+<div class="cmdcard"><code>&gt; Cuántos empleados tengo y cómo está mi plantilla</code><p>Resumen de Nomina:<br/>  Total empleados:  5<br/>  Nomina mensual:   $     81,000.00<br/>  Salario promedio: $     16,200.00<br/>  Salario maximo:   $     20,000.00<br/>  Salario minimo:   $     12,000.00 <i>[respuesta recortada]</i></p></div>
+<div class="cmdcard"><code>&gt; Quién gana más / menos</code><p>Quién gana más: Sofia ($20,000.00).<br/>Quién gana menos: Dario ($12,000.00).<br/>En el archivo van los 5 de arriba y los 5 de abajo, de 5 empleado(s).<br/><br/>OK: Guardé el archivo aquí:<br/>(tu carpeta)\Resultado_1978.xlsx</p></div>
+<div class="cmdcard"><code>&gt; A quién le toca vacaciones y cuántos días por ley (LFT, reforma 2023)</code><p>Balance de vacaciones - LFT Mexico (reforma 2023):<br/>  Nombre                        Anos  Corres  Tomados Pendientes<br/>  --------------------------------------------------------------<br/>  Dario                           11      24       10         14<br/>  Luis                            10      22        0         22<br/>  Ana                              7      22        5         17<br/>  Elena                            6      22        2         20 <i>[respuesta recortada]</i></p></div>
+<div class="cmdcard"><code>&gt; Cuánto es el aguinaldo de cada quien (LFT art. 87)</code><p>Aguinaldo proporcional (15 días; asume salario mensual). Total: 34,397.26.<br/><br/>OK: Guardé el archivo aquí:<br/>(tu carpeta)\Resultado_1976.xlsx</p></div>
+<div class="cmdcard"><code>&gt; Qué fechas vienen: aniversarios, fin de contrato, avisos</code><p>Eventos proximos (30 dias):<br/>  [INFO   ] [   +13d]  2026-11-20  Aniversario laboral     Dario (12 anos)<br/>  [AVISAR ] [   +19d]  2026-11-26  Fin de contrato         Dario<br/><br/>  AVISO: Verificar requisitos legales antes de actuar.</p></div>
+<div class="cmdcard"><code>&gt; Cierre de nómina completo (todo junto, con hoja de AUDITORÍA)</code><p>CIERRE DE NÓMINA<br/>- Costo de nómina por departamento. Total: 81,000.00.<br/>- Antigüedad y vacaciones de ley por empleado (5).<br/>- Aguinaldo proporcional (15 días; asume salario mensual). Total: 34,397.26.<br/><br/>Revisa la hoja AUDITORÍA (cálculos con base LFT). Orientativo - confirma con tu contador/RRHH. <i>[respuesta recortada]</i></p></div>
+<div class="cmdcard"><code>&gt; Cuánto pago de sueldos (costo total, promedio y por departamento)</code><p>Resumen de Nomina:<br/>  Total empleados:  5<br/>  Nomina mensual:   $     81,000.00<br/>  Salario promedio: $     16,200.00<br/>  Salario maximo:   $     20,000.00<br/>  Salario minimo:   $     12,000.00 <i>[respuesta recortada]</i></p></div>
+<div class="callout cal-steel"><b>Medido por &uacute;ltima vez: 2026-11-07.</b> Estas respuestas salen de nuestras pruebas autom&aacute;ticas nocturnas; con tus archivos ver&aacute;s tus propios n&uacute;meros y columnas, no los del ejemplo.</div>
 
 </main>
 
